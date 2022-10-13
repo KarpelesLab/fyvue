@@ -1,0 +1,33 @@
+{
+  "name": "@karpeleslab/fyvue",
+  "version": "0.1.0",
+  "description": "Vue lib for KLB systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarpelesLab/fyvue.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KarpelesLab/fyvue/issues"
+  },
+  "homepage": "https://github.com/KarpelesLab/fyvue#readme",
+  "dependencies": {
+    "@karpeleslab/i18next-klb-backend": "karpeleslab/i18next-klb-backend",
+    "@karpeleslab/klbfw": "^0.1.10",
+    "@vuelidate/core": "^2.0.0-alpha.41",
+    "@vuelidate/validators": "^2.0.0-alpha.29",
+    "@vueuse/core": "^8.4.2",
+    "@vueuse/head": "^0.7.6",
+    "i18next": "^21.8.9",
+    "mitt": "^3.0.0",
+    "notiwind": "^1.2.6"
+  },
+  "devDependencies": {
+    "@headlessui/vue": "^1.6.1",
+    "@heroicons/vue": "^2.0.12"
+  }
+}

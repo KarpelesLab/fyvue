@@ -1,0 +1,110 @@
+<template>
+  <template v-if="pagine && paymentHistory">
+    <FyPaging
+      id="billingHistory"
+      v-model:items="paging"
+      v-if="paging && paging.page_no"
+      class="mt-4"
+    /><br />
+    <BaseDatatable
+      v-model:data="paymentHistory"
+      :headers="{
+        Invoice_Number: $t('billing_history_headers_invoice_number'),
+        Invoice_Date: $t('billing_history_headers_created'),
+        Paid: $t('billing_history_headers_paid'),
+        Status: $t('billing_history_headers_status'),
+        Total: $t('billing_history_headers_price'),
+        Actions: $t('billing_history_headers_actions'),
+      }"
+    >
+      <template v-slot:Actions_item="property">
+        <a
+          :href="property.data.item.Invoice_Url"
+          target="_blank"
+          class="btn neutral p-2"
+          v-if="property.data.item.Invoice_Url"
+          ><ArrowDownTrayIcon
+            stroke="currentColor"
+            class="h-5 -mt-0.5 align-middle inline-block"
+          />
+          Download PDF</a
+        >
+      </template>
+      <template v-slot:Total_item="property">
+        <span class="uppercase block mx-auto bg-blue-200 rounded p-1">{{
+          property.data.item.Total.display
+        }}</span>
+      </template>
+      <template v-slot:Status_item="property">
+        <span class="uppercase block mx-auto bg-blue-200 rounded p-1">{{
+          property.data.item.Status
+        }}</span>
+      </template>
+      <template v-slot:Invoice_Date_item="property">
+        {{
+          $t("global_datetime", {
+            val: new Date(property.data.item.Invoice_Date.iso),
+            formatParams: {
+              val: {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+              },
+            },
+          })
+        }}
+      </template>
+      <template v-slot:Paid_item="property">
+        {{
+          $t("global_datetime", {
+            val: new Date(property.data.item.Paid.iso),
+            formatParams: {
+              val: {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+              },
+            },
+          })
+        }}
+      </template>
+    </BaseDatatable>
+    <FyPaging
+      id="billingHistory"
+      v-model:items="paging"
+      v-if="paging && paging.page_no"
+      class="mt-4"
+    /><br />
+  </template>
+  <div v-else class="text-center">{{$t('billing_history_empty')}}</div>
+</template>
+<script setup>
+import { ref, onMounted } from "vue";
+import { getPaymentHistory } from "./../../klb/api/billing";
+import { getUser } from "./../../klb/api/user";
+import { eventBus } from "./../..";
+import BaseDatatable from "./../../components/Datatable.vue";
+import { ArrowDownTrayIcon } from "@heroicons/vue/24/solid";
+import FyPaging from "./../../components/FyPaging.vue";
+
+const user = ref(null);
+const paymentHistory = ref(null);
+const paging = ref(null);
+
+const _getPaymentHistory = async (page = 1) => {
+  let tmp = await getPaymentHistory(page);
+  paymentHistory.value = await tmp.data;
+  paging.value = await tmp.paging;
+};
+onMounted(async () => {
+  user.value = await getUser();
+  if (user.value) {
+    _getPaymentHistory();
+    eventBus.on("billingHistoryGoToPage", (page) => _getPaymentHistory(page));
+  }
+});
+</script>
