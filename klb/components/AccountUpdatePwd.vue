@@ -64,7 +64,7 @@ import { ref, onMounted } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, sameAs } from "@vuelidate/validators";
 import { notify } from "notiwind";
-import i18next from "@/i18n";
+import i18next from "./../../klb/api/i18n";
 import { eventBus } from "./../../";
 import { getUser } from "./../../klb/api/user";
 import FyInput from "./../../components/FyInput.vue";

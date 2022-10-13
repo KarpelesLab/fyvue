@@ -51,7 +51,7 @@ import {
 } from "./../../klb/api/billing";
 import { getLocationByID } from "./../../klb/api/location";
 import { notify } from "notiwind";
-import i18next from "@/i18n";
+import i18next from "./../../klb/api/i18n";
 import { eventBus } from "./../..";
 const user = ref(null);
 const billing = ref(null);

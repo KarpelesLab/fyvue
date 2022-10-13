@@ -98,6 +98,18 @@ export default {
   components: {
     // PasswordLost,
   },
+  props: {
+    nav: {
+      returnDefault: String,
+      default() {
+        return "/";
+      },
+      forceAction: String,
+      default() {
+        return "";
+      },
+    },
+  },
   data() {
     return {
       email: "",
@@ -109,13 +121,14 @@ export default {
       formData: {
         return_to: "/l/en-US/",
         session: null,
+        action: this.forceAction != "" ? this.forceAction : null,
       },
       completed: false,
       currentMessage: "Please input your email address",
       message: "",
       req: [],
       showPwdMod: false,
-      returnTo: "/account/history",
+      returnTo: this.return_default,
     };
   },
   created() {

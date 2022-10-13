@@ -3,10 +3,15 @@ import Notifications from "notiwind";
 import { rest } from "@karpeleslab/klbfw";
 import * as FyvueComponents from "./components/";
 import * as KlbComponents from "./klb/components/";
-import i18next from "./klb/api/i18n";
 import { createHead } from "@vueuse/head";
+import { KlbBilling, KlbLocation, KlbUser, i18next } from "./klb/api";
+
 const head = createHead();
+
 export const eventBus = mitt();
+
+export { KlbBilling, KlbLocation, KlbUser, i18next }
+
 export default {
   install: (app) => {
     app.config.globalProperties.$eventBus = eventBus;
