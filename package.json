@@ -1,6 +1,6 @@
 {
   "name": "@karpeleslab/fyvue",
-  "version": "0.1.01",
+  "version": "0.1.02",
   "description": "Vue lib for KLB systems",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/KarpelesLab/fyvue#readme",
   "dependencies": {
-    "@karpeleslab/i18next-klb-backend": "karpeleslab/i18next-klb-backend",
+    "@karpeleslab/i18next-klb-backend": "^0.1.0",
     "@karpeleslab/klbfw": "^0.1.10",
     "@vuelidate/core": "^2.0.0-alpha.41",
     "@vuelidate/validators": "^2.0.0-alpha.29",
