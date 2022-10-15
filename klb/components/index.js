@@ -5,6 +5,7 @@ import BillingProfileCreate from "./BillingProfileCreate.vue";
 import BillingUpdatePayment from "./BillingUpdatePayment.vue";
 import PasswordLost from "./PasswordLost.vue";
 import SignInSignUp from "./SignInSignUp.vue";
+import BillingHistory from "./BillingHistory.vue";
 
 export {
   AccountUpdatePwd,
@@ -14,4 +15,5 @@ export {
   BillingProfileCreate,
   PasswordLost,
   SignInSignUp,
+  BillingHistory
 };

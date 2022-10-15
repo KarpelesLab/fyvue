@@ -1,10 +1,9 @@
 <template>
-  <table class="border-collapse w-full md:mx-0">
+  <table class="border-collapse w-full md:mx-0 fy-datatable">
     <thead v-if="showHeaders">
       <tr>
         <th
           v-for="title in headers" :key="`header_${title}`"
-          class="p- 2 font-bold uppercase bg-orange-600 text-sm text-gray-200 squared border border-orange-700 hidden md:table-cell"
         >
           {{ title }}
         </th>

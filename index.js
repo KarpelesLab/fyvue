@@ -18,7 +18,14 @@ export default {
     app.config.globalProperties.$eventBus = eventBus;
     app.config.globalProperties.$t = i18next.t;
     app.config.globalProperties.$rest = rest;
-
+    app.config.globalProperties.$cropText = (str, ml=100) => {
+      if (str && typeof(str) == 'string') {
+        if (str.length > ml) {
+          return `${str.slice(0, ml)}...`
+        }
+      }
+      return str
+    }
     for (const componentKey in FyvueComponents) {
       app.component(componentKey, FyvueComponents[componentKey]);
     }

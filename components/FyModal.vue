@@ -8,16 +8,18 @@
     >
       <div class="flex items-center justify-center min-h-screen text-black">
         <DialogOverlay />
-        <div class="relative mx-1 md:mx0 w-full md:max-w-2xl w-10/12 mx-auto bg-white rounded p-6 shadow -mt-44">
+        <div
+          class="relative mx-1 md:mx0 w-full md:max-w-2xl w-10/12 mx-auto bg-white rounded p-6 shadow -mt-44"
+        >
           <div>
             <a
               href="javascript:void(0)"
               class="float-right"
-              @click="setModal(false)"
-            > <XCircleIcon class="w-8 -mr-4 -mt-2 text-gray-500" /></a>
-            <DialogTitle class="text-xl mb-2">
-              {{ title }}
-            </DialogTitle><br>
+              @click="handleEvents(false)"
+            >
+              <XCircleIcon class="w-8 -mr-4 -mt-2 text-gray-500"
+            /></a>
+            <DialogTitle class="text-xl mb-2"> {{ title }} </DialogTitle><br />
             <slot />
           </div>
         </div>
@@ -38,8 +40,10 @@ export default {
     XCircleIcon,
   },
   props: {
-    id: {type: String, default: 'FyModal'},
-    title: {type: String, default: ''}
+    id: { type: String, default: "CustomModal" },
+    title: { type: String, default: "" },
+    onOpen: { type: Function, default: () => {} },
+    onClose: { type: Function, default: () => {} },
   },
   setup() {
     let modal = ref(false);
@@ -63,6 +67,11 @@ export default {
   methods: {
     handleEvents(v) {
       this.setModal(v);
+      if (v == false) {
+        this.onClose();
+      } else {
+        this.onOpen();
+      }
     },
   },
 };

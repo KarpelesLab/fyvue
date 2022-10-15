@@ -3,7 +3,7 @@
     <div v-for="field of fields" :key="field.label">
       <div class="input-group">
         <template v-if="field.cat == 'label'">
-          <p class="error-form" v-if="field.style == 'error'">
+          <p class="form-error-label " v-if="field.style == 'error'">
             {{ field.label }}
           </p>
           <p class="font-medium" v-else>
@@ -83,7 +83,11 @@
         </a>
       </template>
     </div>
-    <button class="block text-lg mx-auto p-2 px-4 btn primary" type="submit">
+    <button
+      class="block text-lg mx-auto p-2 px-4 btn primary"
+      type="submit"
+      v-if="showNext"
+    >
       Next
     </button>
   </form>
@@ -99,15 +103,13 @@ export default {
     // PasswordLost,
   },
   props: {
-    nav: {
-      returnDefault: String,
-      default() {
-        return "/";
-      },
-      forceAction: String,
-      default() {
-        return "";
-      },
+    returnDefault: String,
+    default() {
+      return "null";
+    },
+    forceAction: String,
+    default() {
+      return "";
     },
   },
   data() {
@@ -128,7 +130,8 @@ export default {
       message: "",
       req: [],
       showPwdMod: false,
-      returnTo: this.return_default,
+      returnTo: "",
+      showNext: true,
     };
   },
   created() {
@@ -185,11 +188,16 @@ export default {
     },
     getFirstInput() {
       if (Array.isArray(this.fields)) {
+        if (this.fields.length == 0) {
+          this.showNext = false;
+        }
         for (let i = 0; i < this.fields.length; i++) {
           if (this.fields[i].cat == "input") {
             return `login${this.fields[i].name}`;
           }
         }
+      } else {
+        this.showNext = false;
       }
     },
     checkStep(message) {
@@ -201,10 +209,15 @@ export default {
     },
 
     userFlow() {
-      this.returnTo =
-        this.$route.query.return_to === void 0
-          ? "/"
-          : this.$route.query.return_to;
+      if (this.returnDefault) {
+        this.returnTo = this.returnDefault;
+      } else {
+        this.returnTo =
+          this.$route.query.return_to === void 0
+            ? "/"
+            : this.$route.query.return_to;
+      }
+
       this.showPwdMod = false;
       this.$eventBus.emit("loading", true);
       this.req = [];
@@ -231,7 +244,8 @@ export default {
               .dispatch("setSession", response.data.user.User__)
               .then(() => {
                 this.completed = true;
-                window.location = this.returnTo;
+                console.log(this.returnTo);
+                window.location = this.returnTo
               });
           } else {
             this.$nextTick(() => {

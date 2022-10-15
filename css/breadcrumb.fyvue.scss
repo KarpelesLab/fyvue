@@ -1,0 +1,9 @@
+.breadcrumb {
+    @apply border-blue-600 py-0 pt-4;
+    .bc-innactive {
+        @apply text-gray-600
+    }
+    .bc-active {
+        @apply text-blue-600
+    }
+}

@@ -1,7 +1,7 @@
 <template>
   <div v-if="user">
     <FyModal id="FirstBilling" :title="$t('modal_first_billing_title')">
-      {{ $t("modal_first_billing_description") }}
+      {{ $t("modal_first_billing_description") }}<br /><br />
 
       <form @submit.prevent="submitBillingCreate">
         <FyInput

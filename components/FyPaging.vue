@@ -177,19 +177,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.paging {
-    .prevNext {
-        @apply relative inline-flex items-center px-2 py-2  border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-200 hover:text-gray-600;
-    }
-    .active {
-        @apply z-10 bg-orange-50 border-orange-500 text-orange-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium font-bold hover:text-gray-600;
-    }
-    .innactive {
-        @apply bg-white border-gray-300 text-gray-500 hover:bg-gray-200 relative inline-flex items-center px-4 py-2 border text-sm font-medium hover:text-gray-600;
-    }
-    .dots {
-        @apply relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:text-gray-600;
-    }
-}
-</style>

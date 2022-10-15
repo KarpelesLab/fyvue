@@ -52,15 +52,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-    .breadcrumb {
-        @apply border-red-600 py-0;
-        .bc-innactive {
-            @apply text-gray-600
-        }
-        .bc-active {
-            @apply text-orange-600
-        }
-    }
-
-</style>

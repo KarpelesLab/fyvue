@@ -1,0 +1,26 @@
+.form-error-label {
+  @apply text-xs text-red-900 pl-1;
+}
+.input-basic {
+    @apply w-full py-3 text-xs placeholder-slate-400 font-semibold leading-none bg-slate-50 border-0 outline-none text-black;
+}
+
+.input-box {
+    @apply flex bg-slate-50  border border-gray-300 rounded;
+    select {
+        padding-top: 14px;
+        padding-bottom: 13px;
+    }
+}
+
+.label-basic {
+    @apply block uppercase tracking-wide whitespace-nowrap  text-gray-400 text-xs font-bold mb-2 text-left pt-0 md:pt-3;
+}
+
+.input-group {
+    @apply w-full;
+}
+
+.error-form {
+    @apply border-2 border-red-200;
+}

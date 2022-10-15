@@ -1,0 +1,8 @@
+.fy-datatable {
+  td {
+    @apply text-xs;
+  }
+  th {
+    @apply font-bold uppercase bg-blue-600 text-sm text-gray-200  border border-blue-700 hidden md:table-cell;
+  }
+}

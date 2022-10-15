@@ -1,12 +1,12 @@
 <template>
-  <template v-if="pagine && paymentHistory">
+  <template v-if="paymentHistory && paymentHistory.length > 0">
     <FyPaging
       id="billingHistory"
       v-model:items="paging"
       v-if="paging && paging.page_no"
       class="mt-4"
     /><br />
-    <BaseDatatable
+    <FyDatatable
       v-model:data="paymentHistory"
       :headers="{
         Invoice_Number: $t('billing_history_headers_invoice_number'),
@@ -72,7 +72,7 @@
           })
         }}
       </template>
-    </BaseDatatable>
+    </FyDatatable>
     <FyPaging
       id="billingHistory"
       v-model:items="paging"
@@ -87,9 +87,7 @@ import { ref, onMounted } from "vue";
 import { getPaymentHistory } from "./../../klb/api/billing";
 import { getUser } from "./../../klb/api/user";
 import { eventBus } from "./../..";
-import BaseDatatable from "./../../components/Datatable.vue";
 import { ArrowDownTrayIcon } from "@heroicons/vue/24/solid";
-import FyPaging from "./../../components/FyPaging.vue";
 
 const user = ref(null);
 const paymentHistory = ref(null);
