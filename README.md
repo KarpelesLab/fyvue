@@ -23,3 +23,9 @@ app.use(fyvue)
 - BillingProfileCreate (Create user billing profile)
 - PasswordLost (Handle password lost from userflow @todo: redo this)
 - SignInSignUp (Handle user sign-in/sign-up)
+
+### Notes
+Add ```  optimizeDeps: {
+    include: ["@karpeleslab/i18next-klb-backend","@karpeleslab/fyvue"],
+  }```
+  If you don't wanna go crazy.
