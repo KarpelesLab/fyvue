@@ -12,14 +12,14 @@
     <tbody>
       <template v-for="(item, index) in data" :key="index">
         <tr
-          :class="`flex md:table-row flex-row md:flex-row flex-wrap md:flex-no-wrap mb-10 md:mb-0 ${bgColor(index)} md:border-0 border-orange-500`"
+          :class="`tr ${bgColor(index)} `"
         >
           <template v-for="(title, property) in headers" :key="title">
             <td
-              class="w-full -mt-4 md:mt-0 border-0  border-orange-500  md:w-auto py-3 px-0 md:px-3 text-gray-700 text-md text-left md:text-center block md:table-cell relative md:static "
+              class="td "
             >
               <div
-                class="w-full md:hidden  bg-orange-700 text-gray-200 px-2 py-1 text-xs font-bold uppercase mb-2"
+                class="div"
                 >{{ title }}</div
               >
               <div class="px-2 md:px-0">

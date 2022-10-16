@@ -12,10 +12,10 @@
                     class="text-black relative mx-1 md:mx0 w-full max-w-md mx-auto bg-white rounded p-6 shadow"
                 >
                     <div>
-                        <DialogTitle class="mb-2 text-lg">{{
+                        <DialogTitle class="confirm-modal-desc-title">{{
                             title
                         }}</DialogTitle
-                        >{{ desc }}<br /><br v-if="desc" />
+                        ><div class="confirm-modal-desc">{{ desc }}</div><br /><br v-if="desc" />
                         <div class="flex justify-between">
                             <button
                                 @click="setConfirm(false)"
