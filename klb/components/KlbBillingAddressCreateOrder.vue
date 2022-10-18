@@ -62,11 +62,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, defineProps } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { notify } from "notiwind";
-import i18next from "./../../klb/api/i18n";
 import { eventBus } from "./../../";
 import { getUser } from "./../../klb/api/user";
 import { getUserBilling } from "./../../klb/api/billing";
@@ -76,6 +74,7 @@ import {
 } from "./../../klb/api/location";
 import { cartCreateOrder } from "./../../klb/api/order";
 
+const props = defineProps({ onComplete: Function });
 const countries = ref(null);
 const billing = ref(null);
 const location = ref(null);
@@ -105,16 +104,7 @@ const submitEditBillingAddress = async () => {
       Country__: state.country,
     });
     if (result.result == "success") {
-      eventBus.emit("orderCreated", result.data.Order__);
-
-      notify(
-        {
-          group: "default",
-          title: i18next.t("notif_success_title"),
-          text: i18next.t("update_success_confirm"),
-        },
-        4000
-      );
+      props.onComplete(result.data.Order__)
     }
   }
   eventBus.emit("loading", false);

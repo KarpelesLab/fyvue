@@ -133,7 +133,7 @@ import { orderProcessPost } from "./../../klb/api/order";
 import { eventBus } from "./../..";
 const user = ref(null);
 const order = ref(null);
-const props = defineProps({ orderUuid: String });
+const props = defineProps({ orderUuid: String, onComplete: Function });
 const session = ref(null);
 const currentMethod = ref(null);
 const methodProperties = reactive({});
@@ -163,7 +163,7 @@ const processOrder = async () => {
     data.cc_token = methodProperties.cardToken.token.id;
     data.method = currentMethod.value;
     let orderResult = await orderProcessPost(props.orderUuid, data);
-    eventBus.emit("OrderProcessed", orderResult);
+    onComplete(orderResult)
   }
   eventBus.emit("loading", false);
 };
