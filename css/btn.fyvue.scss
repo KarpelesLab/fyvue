@@ -29,4 +29,8 @@
   &.fround {
     @apply rounded-full;
   }
+
+  &.btn-defaults {
+    @apply block font-extrabold mx-auto px-4 py-3 mt-4 ;
+  }
 }

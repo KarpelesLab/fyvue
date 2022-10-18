@@ -10,7 +10,7 @@
                     v-if="hasLabelHelp"
                 >
                     <QuestionMarkCircleIcon
-                        class="w-6 inline-block -mt-1 text-gray-600"
+                        class="help-icon"
                 /></a>
             </label>
         </div>
@@ -39,7 +39,7 @@
                 <slot name="icon"> </slot>
             </div>
             <slot name="adds"> </slot>
-            <div class="text-gray-600 text-xs font-semibold" v-if="help">
+            <div class="help-text" v-if="help">
                 {{ help }}
             </div>
             <div

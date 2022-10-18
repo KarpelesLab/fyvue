@@ -1,19 +1,19 @@
 <template>
   <div class="">
     <div
-      class=" breadcrumb  mr-auto  font-semibold -mt-1 uppercase "
+      class="fy-breadcrumb"
       aria-label="Breadcrumb"
     >
-      <ol class="list-none p-0 inline-flex">
+      <ol>
         <template v-for="item in nav">
           <li
             v-if="item.to"
             :key="item.to"
-            class="flex items-center bc-innactive pr-2 break-words"
+            class="bc-innactive"
           >
             <router-link
               :to="item.to"
-              class="bc-active pr-2 break-words"
+              class="bc-active link"
             >
               {{
                 $cropText(item.name, 15)
@@ -23,7 +23,7 @@
           </li>
           <li
             v-else
-            :key="item.to"
+            v-bind:key="item.to"
             class="flex items-center"
           >
             <span class="bc-innactive break-words">{{ $cropText(item.name, 15) }}</span>

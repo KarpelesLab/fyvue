@@ -24,3 +24,9 @@
 .error-form {
     @apply border-2 border-red-200;
 }
+.help-text {
+    @apply text-gray-600 text-xs font-semibold;
+}
+.help-icon {
+    @apply w-6 inline-block -mt-1 text-gray-600;
+}

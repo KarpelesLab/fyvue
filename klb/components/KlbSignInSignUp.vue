@@ -3,7 +3,7 @@
     <div v-for="field of fields" :key="field.label">
       <div class="input-group">
         <template v-if="field.cat == 'label'">
-          <p class="form-error-label " v-if="field.style == 'error'">
+          <p class="form-error-label" v-if="field.style == 'error'">
             {{ field.label }}
           </p>
           <p class="font-medium" v-else>
@@ -46,22 +46,24 @@
             </div>
           </div>
           <div v-if="field.type == 'checkbox'">
-            <label class="inline-flex text-xs" :for="`login${field.name}`">
-              <input
-                type="checkbox"
-                class="form-checkbox"
-                :id="`login${field.name}`"
-                v-model="formData[field.name]"
-              />
-              <span class="ml-2">
-                <a
-                  class="underline hover:text-slate-500"
-                  :href="field.link"
-                  target="_blank"
-                  >{{ field.label }}</a
-                >
-              </span>
-            </label>
+            <div class="mt-6">
+              <label class="inline-flex text-xs" :for="`login${field.name}`">
+                <input
+                  type="checkbox"
+                  class="form-checkbox"
+                  :id="`login${field.name}`"
+                  v-model="formData[field.name]"
+                />
+                <span class="ml-2">
+                  <a
+                    class="underline hover:text-slate-500"
+                    :href="field.link"
+                    target="_blank"
+                    >{{ field.label }}</a
+                  >
+                </span>
+              </label>
+            </div>
           </div>
         </template>
       </div>
@@ -103,13 +105,13 @@ export default {
     // PasswordLost,
   },
   props: {
-    returnDefault: String,
-    default() {
-      return "null";
+    returnDefault: {
+      type: String,
+      default: "null",
     },
-    forceAction: String,
-    default() {
-      return "";
+    forceAction: {
+      type: String,
+      default: "",
     },
   },
   data() {
@@ -245,7 +247,7 @@ export default {
               .then(() => {
                 this.completed = true;
                 console.log(this.returnTo);
-                window.location = this.returnTo
+                window.location = this.returnTo;
               });
           } else {
             this.$nextTick(() => {

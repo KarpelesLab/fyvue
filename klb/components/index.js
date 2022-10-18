@@ -1,19 +1,23 @@
-import AccountUpdateEmail from "./AccountUpdateEmail.vue";
-import AccountUpdatePwd from "./AccountUpdatePwd.vue";
-import BillingAddressSingle from "./BillingAddressSingle.vue";
-import BillingProfileCreate from "./BillingProfileCreate.vue";
-import BillingUpdatePayment from "./BillingUpdatePayment.vue";
-import PasswordLost from "./PasswordLost.vue";
-import SignInSignUp from "./SignInSignUp.vue";
-import BillingHistory from "./BillingHistory.vue";
+import KlbAccountUpdateEmail from "./KlbAccountUpdateEmail.vue";
+import KlbAccountUpdatePwd from "./KlbAccountUpdatePwd.vue";
+import KlbBillingAddressSingle from "./KlbBillingAddressSingle.vue";
+import KlbBillingProfileCreate from "./KlbBillingProfileCreate.vue";
+import KlbBillingUpdatePayment from "./KlbBillingUpdatePayment.vue";
+import KlbPasswordLost from "./KlbPasswordLost.vue";
+import KlbSignInSignUp from "./KlbSignInSignUp.vue";
+import KlbProcessOrder from "./KlbProcessOrder.vue";
+import KlbBillingAddressCreateOrder from "./KlbBillingAddressCreateOrder.vue";
+import KlbBillingHistory from "./KlbBillingHistory.vue";
 
 export {
-  AccountUpdatePwd,
-  AccountUpdateEmail,
-  BillingUpdatePayment,
-  BillingAddressSingle,
-  BillingProfileCreate,
-  PasswordLost,
-  SignInSignUp,
-  BillingHistory
+  KlbAccountUpdatePwd,
+  KlbAccountUpdateEmail,
+  KlbBillingUpdatePayment,
+  KlbBillingAddressSingle,
+  KlbBillingProfileCreate,
+  KlbPasswordLost,
+  KlbSignInSignUp,
+  KlbBillingHistory,
+  KlbBillingAddressCreateOrder,
+  KlbProcessOrder
 };

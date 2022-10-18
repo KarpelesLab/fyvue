@@ -22,11 +22,12 @@ export const updateBillingByID = async (id, data) => {
   });
 };
 
-export const getPaymentHistory = async (page=1) => {
+export const getPaymentHistory = async (page = 1) => {
   return new Promise((resolve, reject) => {
     rest("Order", "GET", {
       page_no: page,
       results_per_page: 10,
+      Status: "completed",
     })
       .catch((err) => {
         console.log("Order::" + err);

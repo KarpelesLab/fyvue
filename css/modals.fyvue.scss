@@ -1,6 +1,26 @@
-.confirm-modal-desc-title  {
-  @apply text-lg mt-2;
-}
-.confirm-modal-desc {
-  @apply text-sm;
+.fy-modal {
+    @apply fixed inset-0 z-10 overflow-y-auto;
+ 
+  .confirm-modal-desc-title  {
+    @apply text-lg mt-2;
+  }
+  .confirm-modal-desc {
+    @apply text-sm;
+  }
+  .parent {
+    @apply flex items-center justify-center min-h-screen text-black;
+    
+  }
+  .modal-container {
+    @apply relative mx-1 md:mx-0 w-full md:max-w-2xl w-10/12 mx-auto bg-white rounded p-6 shadow -mt-44;
+  }
+  .btn-box {
+    @apply flex justify-between;
+  }
+  .close-icon {
+    @apply w-8 -mr-4 -mt-2 text-gray-500;
+  }
+  .title {
+    @apply text-xl mb-2;
+  }
 }

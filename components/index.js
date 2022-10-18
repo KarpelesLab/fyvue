@@ -6,6 +6,7 @@ import FyDatatable from "./FyDatatable.vue";
 import FyModal from "./FyModal.vue";
 import FyLoader from "./FyLoader.vue";
 import FyPaging from "./FyPaging.vue";
+import FySteps from "./FySteps.vue";
 
 export {
   FyLoader,
@@ -15,5 +16,6 @@ export {
   FyBreadcrumb,
   FyNotif,
   FyInput,
-  FyPaging
+  FyPaging,
+  FySteps
 };

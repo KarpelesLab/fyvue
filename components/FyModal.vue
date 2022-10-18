@@ -1,15 +1,15 @@
 <template>
-  <div class="">
+  <div >
     <Dialog
       :open="modal"
-      class="fixed inset-0 z-10 overflow-y-auto"
+      class="fy-modal"
       style="background: rgba(0, 0, 0, 0.8)"
       @close="setModal"
     >
-      <div class="flex items-center justify-center min-h-screen text-black">
+      <div class="parent">
         <DialogOverlay />
         <div
-          class="relative mx-1 md:mx0 w-full md:max-w-2xl w-10/12 mx-auto bg-white rounded p-6 shadow -mt-44"
+          class="modal-container"
         >
           <div>
             <a
@@ -17,9 +17,9 @@
               class="float-right"
               @click="handleEvents(false)"
             >
-              <XCircleIcon class="w-8 -mr-4 -mt-2 text-gray-500"
+              <XCircleIcon class="close-icon"
             /></a>
-            <DialogTitle class="text-xl mb-2"> {{ title }} </DialogTitle><br />
+            <DialogTitle class="title"> {{ title }} </DialogTitle><br />
             <slot />
           </div>
         </div>

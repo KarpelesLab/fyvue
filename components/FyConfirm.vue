@@ -1,31 +1,32 @@
 <template>
-    <div class="text-black">
+
+    <div >
         <Dialog
             :open="confirm"
             @close="setConfirm"
-            class="fixed inset-0 z-50 overflow-y-auto"
+            class="fy-modal"
             style="background: rgba(0, 0, 0, 0.6)"
         >
-            <div class="flex items-center justify-center min-h-screen">
+            <div class="parent">
                 <DialogOverlay />
                 <div
-                    class="text-black relative mx-1 md:mx0 w-full max-w-md mx-auto bg-white rounded p-6 shadow"
+                    class="modal-container"
                 >
                     <div>
                         <DialogTitle class="confirm-modal-desc-title">{{
                             title
                         }}</DialogTitle
                         ><div class="confirm-modal-desc">{{ desc }}</div><br /><br v-if="desc" />
-                        <div class="flex justify-between">
+                        <div class="btn-box">
                             <button
                                 @click="setConfirm(false)"
-                                class="btn neutral p-2"
+                                class="btn neutral btn-defaults"
                             >
                                 {{ $t("confirm_modal_cta_cancel") }}
                             </button>
                             <button
                                 @click="onConfirm()"
-                                class="btn primary p-2"
+                                class="btn primary btn-defaults"
                             >
                                 {{ $t("confirm_modal_cta_confirm") }}
                             </button>
