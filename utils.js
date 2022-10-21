@@ -11,3 +11,12 @@ export const formatBytes = (bytes, decimals=2) => {
 
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
+
+export const cropText = (str, ml=100) => {
+      if (str && typeof(str) == 'string') {
+        if (str.length > ml) {
+          return `${str.slice(0, ml)}...`
+        }
+      }
+      return str
+    }
