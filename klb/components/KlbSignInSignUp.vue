@@ -125,6 +125,7 @@ export default {
       formData: {
         return_to: "/l/en-US/",
         session: null,
+        action: this.forceAction ? this.forceAction : undefined
       },
       completed: false,
       currentMessage: "Please input your email address",
@@ -228,11 +229,8 @@ export default {
       ) {
         this.formData.session = this.$route.query.session;
       }
-      let  _formData = {...this.formData}
-      if (this.formData.action && this.forceAction != '' && this.forceAction !=  null) {
-        _formData.action = this.forceAction
-      }
-      rest("User:flow", "POST", _formData)
+
+      rest("User:flow", "POST", this.formData)
         .then((response) => {
           //localStorage.userSession = response.data.session;
           this.fields = response.data.fields;
