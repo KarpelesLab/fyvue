@@ -5,13 +5,13 @@ import { rest } from "@karpeleslab/klbfw";
 import * as FyvueComponents from "./components/";
 import * as KlbComponents from "./klb/components/";
 import { createHead } from "@vueuse/head";
-import { KlbBilling, KlbLocation, KlbUser } from "./klb/api";
+import { KlbBilling, KlbLocation, KlbUser, KlbOrder } from "./klb/api";
 
 const head = createHead();
 
-export const eventBus = mitt();
+const eventBus = mitt();
 
-export { KlbBilling, KlbLocation, KlbUser, i18next }
+export { KlbBilling, KlbLocation, KlbUser, KlbOrder, i18next, eventBus }
 
 export default {
   install: (app) => {

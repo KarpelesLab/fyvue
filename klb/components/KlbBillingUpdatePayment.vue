@@ -1,10 +1,6 @@
 <template>
   <div v-if="user">
-    <form
-      @submit.prevent="submitEditPaymentInfo"
-      v-if="isEditing"
-      class="bg-orange-100 rounded p-3"
-    >
+    <form @submit.prevent="submitEditPaymentInfo" v-if="isEditing">
       <div class="input-group w-full">
         <div class="mr-4 w-16">
           <label class="label-basic" for="typeDef"
@@ -12,7 +8,7 @@
           </label>
         </div>
         <div class="w-full">
-          <div class="input-box w-full">
+          <div class="input-box w-full pl-2">
             <div id="theCard" class="input-basic w-full"></div>
           </div>
         </div>
@@ -24,7 +20,7 @@
         {{ $t("save_billing_data") }}
       </button>
     </form>
-    <div v-else class="bg-orange-100 rounded p-3">
+    <div v-else class="">
       <div v-if="billing && billing.Methods && billing.Methods.length > 0">
         {{ $t("payment_method_billing") }}: <b>{{ billing.Methods[0].Name }}</b
         ><br />
@@ -83,7 +79,7 @@ const switchToEdit = async () => {
 };
 
 const submitEditPaymentInfo = async () => {
-  eventBus.emit('loading', true);
+  eventBus.emit("loading", true);
   cardToken.value = await stripe.value.createToken(stripeCard.value, {
     name: `${location.value.data.First_Name} ${location.value.data.Last_Name}`,
     email: user.value.Email,
@@ -101,7 +97,7 @@ const submitEditPaymentInfo = async () => {
     billing.value = billing.value.data[0];
   }
   isEditing.value = false;
-  eventBus.emit('loading', false);
+  eventBus.emit("loading", false);
   notify(
     {
       group: "default",
@@ -120,7 +116,6 @@ onMounted(async () => {
         billing.value.data[0].User_Location__
       );
       billing.value = billing.value.data[0];
-      console.log(billing);
     }
   }
 });

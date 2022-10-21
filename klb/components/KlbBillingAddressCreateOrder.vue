@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive, defineProps } from "vue";
+import { ref, onMounted, reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { eventBus } from "./../../";
@@ -74,7 +74,7 @@ import {
 } from "./../../klb/api/location";
 import { cartCreateOrder } from "./../../klb/api/order";
 
-const props = defineProps({ onComplete: Function });
+const props = defineProps({ onComplete: Function }); // eslint-disable-line
 const countries = ref(null);
 const billing = ref(null);
 const location = ref(null);

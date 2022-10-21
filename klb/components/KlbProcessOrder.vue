@@ -1,4 +1,5 @@
 <template>
+
   <form
     @submit.prevent="processOrder"
     v-if="order && order.data && order.data.methods && currentMethod"
@@ -126,14 +127,14 @@
   </form>
 </template>
 <script setup>
-import { ref, reactive, onMounted, watch, defineProps } from "vue";
+import { ref, reactive, onMounted, watch } from "vue";
 import { getUser } from "./../../klb/api/user";
 import { orderProcessPost } from "./../../klb/api/order";
 
 import { eventBus } from "./../..";
 const user = ref(null);
 const order = ref(null);
-const props = defineProps({ orderUuid: String, onComplete: Function });
+const props = defineProps({ orderUuid: String, onComplete: Function }); // eslint-disable-line
 const session = ref(null);
 const currentMethod = ref(null);
 const methodProperties = reactive({});
@@ -163,7 +164,13 @@ const processOrder = async () => {
     data.cc_token = methodProperties.cardToken.token.id;
     data.method = currentMethod.value;
     let orderResult = await orderProcessPost(props.orderUuid, data);
-    onComplete(orderResult)
+    props.onComplete(orderResult)
+  } else if (currentMethod.value == 'Free') {
+    let data = { ...formData };
+    data.session = session.value
+    data.method = currentMethod.value
+    let orderResult = await orderProcessPost(props.orderUuid, data);
+    props.onComplete(orderResult)    
   }
   eventBus.emit("loading", false);
 };
@@ -179,6 +186,10 @@ onMounted(async () => {
       methodProperties.stripe = window.Stripe(
         order.value.data.methods[method].fields.cc_token.attributes.key
       );
+    } else if (method == 'Free') {
+      session.value = order.value.data.methods[method].session;
+      console.log(order.value.data.methods)
+      currentMethod.value = 'Free'
     }
 
     for (const [key, value] of Object.entries(
