@@ -1,7 +1,7 @@
 import mitt from "mitt";
 import Notifications from "notiwind";
 import { getLocale } from "@karpeleslab/klbfw";
-import { Backend } from "@karpeleslab/i18next-klb-backend";
+import Backend from "./klb/i18n-backend.js";
 import i18next from "i18next";
 import I18NextVue from "i18next-vue";
 import { rest } from "@karpeleslab/klbfw";
@@ -14,6 +14,7 @@ const head = createHead();
 
 const eventBus = mitt();
 const locale = getLocale();
+
 export const i18nextPromise = i18next.use(Backend).init({
   ns: ["translation"],
   defaultNS: "translation",
@@ -22,6 +23,7 @@ export const i18nextPromise = i18next.use(Backend).init({
   load: "currentOnly",
   initImmediate: false,
 });
+
 export { KlbBilling, KlbLocation, KlbUser, KlbOrder, i18next, eventBus };
 
 export default {
