@@ -64,14 +64,15 @@ import { ref, onMounted } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, sameAs } from "@vuelidate/validators";
 import { notify } from "notiwind";
-import i18next from "./../../klb/api/i18n";
 import { eventBus } from "./../../";
 import { getUser } from "./../../klb/api/user";
 import FyInput from "./../../components/FyInput.vue";
 import { updatePwd } from "./../../klb/api/user";
 import FyModal from "./../../components/FyModal.vue";
 import { PencilSquareIcon } from "@heroicons/vue/24/solid";
+import { useTranslation } from "i18next-vue";
 
+const { i18next } = useTranslation();
 const user = ref(null);
 const error = ref(null);
 const oldPwd = ref("");

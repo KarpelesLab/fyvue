@@ -66,7 +66,6 @@ import { ref, onMounted, reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { notify } from "notiwind";
-import i18next from "./../../klb/api/i18n";
 import { eventBus } from "./../../";
 import { getUser } from "./../../klb/api/user";
 import {
@@ -78,6 +77,9 @@ import {
   getLocationByID,
   updateLocationByID,
 } from "./../../klb/api/location";
+import { useTranslation } from "i18next-vue";
+
+const { i18next } = useTranslation();
 const countries = ref(null);
 const billing = ref(null);
 const location = ref(null);

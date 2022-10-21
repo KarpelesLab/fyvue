@@ -47,8 +47,9 @@ import {
 } from "./../../klb/api/billing";
 import { getLocationByID } from "./../../klb/api/location";
 import { notify } from "notiwind";
-import i18next from "./../../klb/api/i18n";
+import { useTranslation } from "i18next-vue";
 import { eventBus } from "./../..";
+
 const user = ref(null);
 const billing = ref(null);
 const isEditing = ref(false);
@@ -57,6 +58,7 @@ const stripePK = ref(null);
 const stripeCard = ref(null);
 const cardToken = ref(null);
 const location = ref(null);
+const { i18next } = useTranslation();
 
 const switchToEdit = async () => {
   isEditing.value = true;
