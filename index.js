@@ -1,6 +1,8 @@
 import mitt from "mitt";
 import Notifications from "notiwind";
-import i18next from "./klb/api/i18n";
+import { getLocale } from "@karpeleslab/klbfw";
+import { Backend } from "@karpeleslab/i18next-klb-backend";
+import i18next from "i18next";
 import I18NextVue from "i18next-vue";
 import { rest } from "@karpeleslab/klbfw";
 import * as FyvueComponents from "./components/";
@@ -11,7 +13,15 @@ import { cropText, formatBytes } from "./utils";
 const head = createHead();
 
 const eventBus = mitt();
-
+const locale = getLocale();
+i18next.use(Backend).init({
+  ns: ["translation"],
+  defaultNS: "translation",
+  debug: false,
+  lng: locale,
+  load: "currentOnly",
+  initImmediate: false,
+});
 export { KlbBilling, KlbLocation, KlbUser, KlbOrder, i18next, eventBus };
 
 export default {
