@@ -14,7 +14,7 @@ const head = createHead();
 
 const eventBus = mitt();
 const locale = getLocale();
-i18next.use(Backend).init({
+export const i18nextPromise = i18next.use(Backend).init({
   ns: ["translation"],
   defaultNS: "translation",
   debug: false,
@@ -39,6 +39,5 @@ export default {
     }
     app.use(Notifications);
     app.use(head);
-    
   },
 };
