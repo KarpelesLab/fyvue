@@ -1,146 +1,139 @@
 <template>
-  <div class="boxed">
-    <pre class="text-xs" v-if="response && 0">{{ response.data }}</pre>
-
-    <form @submit.prevent="onSubmit" v-if="!completed" class="klb-login">
-      <div class="w-full">
-        <h1>{{ $t("user_flow_title") }}</h1>
-        <h2 class="message" v-if="responseMessage">{{ responseMessage }}</h2>
-        <template v-if="responseFields.length > 0">
-          <template v-for="field of responseFields" :key="field.label">
-            <h3
-              v-if="field.type == 'label'"
-              class="label"
-              :class="field.style == 'error' ? 'response-error' : ''"
+  <form @submit.prevent="onSubmit" v-if="!completed" class="klb-login">
+    <div class="w-full">
+      <h1>{{ $t("user_flow_title") }}</h1>
+      <h2 class="message" v-if="responseMessage">{{ responseMessage }}</h2>
+      <template v-if="responseFields.length > 0">
+        <template v-for="field of responseFields" :key="field.label">
+          <h3
+            v-if="field.type == 'label'"
+            class="label"
+            :class="field.style == 'error' ? 'response-error' : ''"
+          >
+            {{ field.label }}
+          </h3>
+          <template v-if="field.cat == 'input'">
+            <template
+              v-if="
+                field.type == 'text' ||
+                field.type == 'password' ||
+                field.type == 'email'
+              "
             >
-              {{ field.label }}
-            </h3>
-            <template v-if="field.cat == 'input'">
-              <template
-                v-if="
-                  field.type == 'text' ||
-                  field.type == 'password' ||
-                  field.type == 'email'
-                "
-              >
-                <div class="input-group">
-                  <div>
-                    <label class="label-basic" :for="`login${field.name}`">
-                      {{ field.label }}
-                      <sup
-                        class="text-red-700"
-                        v-if="responseReq.includes(field.name)"
-                        >*</sup
-                      >
-                    </label>
-                  </div>
-                  <div class="flex-1">
-                    <div class="input-box">
-                      <input
-                        :placeholder="
-                          field.name == 'name' ? 'John Doe' : field.label
-                        "
-                        :class="fieldsError[field.name] ? 'error-form' : ''"
-                        class="input-basic"
-                        :type="field.type"
-                        v-model="formData[field.name]"
-                        :id="`login${field.name}`"
-                        :ref="
-                          (el) => {
-                            if (el) inputs.push(el);
-                          }
-                        "
-                      />
-                    </div>
-                    <div
-                      class="form-error-label"
-                      v-if="fieldsError[field.name]"
-                    >
-                      {{ $t(fieldsError[field.name]) }}
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </template>
-            <template v-if="field.type == 'checkbox'">
-              <div class="mt-6">
-                <label class="inline-flex text-xs" :for="`login${field.name}`">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox"
-                    :id="`login${field.name}`"
-                    v-model="formData[field.name]"
-                    :class="fieldsError[field.name] ? 'error-form' : ''"
-                    :true-value="true"
-                    :false-value="false"
-                  />
-                  <span class="ml-2">
-                    <a
-                      class="underline hover:text-slate-500"
-                      :href="field.link"
-                      target="_blank"
-                      >{{ field.label }}</a
-                    >&nbsp;
+              <div class="input-group">
+                <div>
+                  <label class="label-basic" :for="`login${field.name}`">
+                    {{ field.label }}
                     <sup
                       class="text-red-700"
                       v-if="responseReq.includes(field.name)"
                       >*</sup
                     >
-                  </span>
-                </label>
+                  </label>
+                </div>
+                <div class="flex-1">
+                  <div class="input-box">
+                    <input
+                      :placeholder="
+                        field.name == 'name' ? 'John Doe' : field.label
+                      "
+                      :class="fieldsError[field.name] ? 'error-form' : ''"
+                      class="input-basic"
+                      :type="field.type"
+                      v-model="formData[field.name]"
+                      :id="`login${field.name}`"
+                      :ref="
+                        (el) => {
+                          if (el) inputs.push(el);
+                        }
+                      "
+                    />
+                  </div>
+                  <div class="form-error-label" v-if="fieldsError[field.name]">
+                    {{ $t(fieldsError[field.name]) }}
+                  </div>
+                </div>
               </div>
             </template>
           </template>
-          <div class="oauth-container" v-if="hasOauth">
-            <template v-for="field of responseFields" :key="field.id">
-              <a
-                @click="
-                  () => {
-                    userFlow({ initial: true, oauth: field.id });
-                  }
-                "
-                v-if="field.type && field.type == 'oauth2'"
-                href="javascript:void(0);"
-              >
-                <img
-                  :key="`${field.label}oauth`"
-                  class="oauth-button"
-                  :alt="field.info.Name"
-                  :src="field.button.logo"
-                  :style="`background: ${field.button['background-color']}`"
+          <template v-if="field.type == 'checkbox'">
+            <div class="mt-6">
+              <label class="inline-flex text-xs" :for="`login${field.name}`">
+                <input
+                  type="checkbox"
+                  class="form-checkbox"
+                  :id="`login${field.name}`"
+                  v-model="formData[field.name]"
+                  :class="fieldsError[field.name] ? 'error-form' : ''"
+                  :true-value="true"
+                  :false-value="false"
                 />
-              </a>
-            </template>
-          </div>
-          <div class="response-error" v-if="responseError">
-            {{ $t(responseError.token) }}
-          </div>
-          <div v-if="responseReq.includes('password') &&  0" class="reset-pwd">
+                <span class="ml-2">
+                  <a
+                    class="underline hover:text-slate-500"
+                    :href="field.link"
+                    target="_blank"
+                    >{{ field.label }}</a
+                  >&nbsp;
+                  <sup
+                    class="text-red-700"
+                    v-if="responseReq.includes(field.name)"
+                    >*</sup
+                  >
+                </span>
+              </label>
+            </div>
+          </template>
+        </template>
+        <div class="oauth-container" v-if="hasOauth">
+          <template v-for="field of responseFields" :key="field.id">
             <a
-              href="javascript:void(0)"
               @click="
                 () => {
-                  $eventBus.emit('ResetPasswordModal', true);
-                  pwdRecoverMailSent = false;
+                  userFlow({ initial: true, oauth: field.id });
                 }
               "
-              >{{ $t("recover_pwd_link") }}</a
+              v-if="field.type && field.type == 'oauth2'"
+              href="javascript:void(0);"
             >
-          </div>
-          <button
+              <img
+                :key="`${field.label}oauth`"
+                class="oauth-button"
+                :alt="field.info.Name"
+                :src="field.button.logo"
+                :style="`background: ${field.button['background-color']}`"
+              />
+            </a>
+          </template>
+        </div>
+        <div class="response-error" v-if="responseError">
+          {{ $t(responseError.token) }}
+        </div>
+        <div v-if="responseReq.includes('password') && 0" class="reset-pwd">
+          <a
+            href="javascript:void(0)"
             @click="
               () => {
-                userFlow();
+                $eventBus.emit('ResetPasswordModal', true);
+                pwdRecoverMailSent = false;
               }
             "
-            class="btn primary btn-defaults"
+            >{{ $t("recover_pwd_link") }}</a
           >
-            {{ $t("cta_login_next") }}
-          </button>
-        </template>
-      </div>
-    </form>
-  </div>
+        </div>
+        <button
+          @click="
+            () => {
+              userFlow();
+            }
+          "
+          class="btn primary btn-defaults"
+        >
+          {{ $t("cta_login_next") }}
+        </button>
+      </template>
+    </div>
+  </form>
   <FyModal id="ResetPassword" :title="`${$t('recover_pwd_title')}`">
     <template v-if="!pwdRecoverMailSent">
       <FyInput
@@ -294,7 +287,8 @@ const userFlow = async (params = { initial: false }) => {
       }
     });
     setTimeout(() => {
-      if (inputs.value.length > 0 && inputs.value[inputs.value.length-1]) inputs.value[inputs.value.length-1].focus();
+      if (inputs.value.length > 0 && inputs.value[inputs.value.length - 1])
+        inputs.value[inputs.value.length - 1].focus();
     }, 500);
   } else {
     console.log(response);
