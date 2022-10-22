@@ -33,7 +33,7 @@
         </button>
       </form>
     </BaseModal>
-    <span class="text-lg float-left italic mr-2">{{user.Email}}</span>
+    <span class="text-lg float-left italic mr-2">{{ user.Email }}</span>
     <button
       class="block font-extrabold float-left p-2 -mt-1 btn primary"
       @click="
@@ -43,11 +43,13 @@
       "
     >
       <PencilSquareIcon
-            stroke="currentColor"
-            class="h-5 -mt-0.5 align-middle inline-block"
-          />  {{ $t("change_email_btn") }}
-    </button><br style="clear:both" />
+        stroke="currentColor"
+        class="h-5 -mt-0.5 align-middle inline-block"
+      />
+      {{ $t("change_email_btn") }}</button
+    ><br style="clear: both" />
   </div>
+  <FySelfLoading :isLoading="true" style="height: 55px; " :size="[40,40]" v-else />
 </template>
 <script setup>
 import { ref, onMounted } from "vue";

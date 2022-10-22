@@ -7,6 +7,7 @@ import FyModal from "./FyModal.vue";
 import FyLoader from "./FyLoader.vue";
 import FyPaging from "./FyPaging.vue";
 import FySteps from "./FySteps.vue";
+import FySelfLoading from "./FySelfLoading.vue";
 
 export {
   FyLoader,
@@ -17,5 +18,6 @@ export {
   FyNotif,
   FyInput,
   FyPaging,
-  FySteps
+  FySteps,
+  FySelfLoading
 };

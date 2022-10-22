@@ -1,78 +1,67 @@
 <template>
-  <div >
+  <TransitionRoot
+    :show="isOpen"
+    as="template"
+    enter="duration-300 ease-out"
+    enter-from="opacity-0"
+    enter-to="opacity-100"
+    leave="duration-200 ease-in"
+    leave-from="opacity-100"
+    leave-to="opacity-0"
+  >
     <Dialog
-      :open="modal"
-      class="fy-modal"
-      style="background: rgba(0, 0, 0, 0.8)"
+      :open="isOpen"
       @close="setModal"
+      style="background: rgba(0, 0, 0, 0.8)"
+      class="fy-modal"
     >
       <div class="parent">
-        <DialogOverlay />
-        <div
-          class="modal-container"
-        >
-          <div>
-            <a
-              href="javascript:void(0)"
-              class="float-right"
-              @click="handleEvents(false)"
-            >
-              <XCircleIcon class="close-icon"
-            /></a>
-            <DialogTitle class="title"> {{ title }} </DialogTitle><br />
-            <slot />
-          </div>
-        </div>
+        <DialogPanel class="modal-container">
+          <a
+            href="javascript:void(0)"
+            class="float-right"
+            @click="setModal(false)"
+          >
+            <XCircleIcon class="close-icon"
+          /></a>
+          <DialogTitle class="title"> {{ title }} </DialogTitle><br />
+          <slot />
+        </DialogPanel>
       </div>
     </Dialog>
-  </div>
+  </TransitionRoot>
 </template>
-<script>
-import { ref } from "vue";
-import { Dialog, DialogOverlay, DialogTitle } from "@headlessui/vue";
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  DialogDescription,
+  TransitionRoot,
+} from "@headlessui/vue";
 import { XCircleIcon } from "@heroicons/vue/24/solid";
-export default {
-  name: "FyModal",
-  components: {
-    Dialog,
-    DialogOverlay,
-    DialogTitle,
-    XCircleIcon,
-  },
-  props: {
-    id: { type: String, default: "CustomModal" },
-    title: { type: String, default: "" },
-    onOpen: { type: Function, default: () => {} },
-    onClose: { type: Function, default: () => {} },
-  },
-  setup() {
-    let modal = ref(false);
+import { eventBus } from "./../";
 
-    return {
-      modal,
-      setModal(value) {
-        modal.value = value;
-      },
-    };
-  },
-  data() {
-    return {};
-  },
-  created() {
-    this.$eventBus.on(`${this.id}Modal`, this.handleEvents);
-  },
-  unmounted() {
-    this.$eventBus.off(`${this.id}Modal`, this.handleEvents);
-  },
-  methods: {
-    handleEvents(v) {
-      this.setModal(v);
-      if (v == false) {
-        this.onClose();
-      } else {
-        this.onOpen();
-      }
-    },
-  },
+const props = defineProps({ // eslint-disable-line
+  id: { type: String, default: "CustomModal" },
+  title: { type: String, default: "" },
+  onOpen: { type: Function, default: () => {} },
+  onClose: { type: Function, default: () => {} },
+});
+const isOpen = ref(false);
+const setModal = (value) => {
+  if (value === true) props.onOpen();
+  else {
+    props.onClose();
+  }
+  isOpen.value = value;
 };
+
+onMounted(() => {
+  eventBus.on(`${props.id}Modal`, setModal);
+});
+onUnmounted(() => {
+  eventBus.on(`${props.id}Modal`, setModal);
+});
 </script>

@@ -1,40 +1,50 @@
 <template>
   <div v-if="user">
-    <form @submit.prevent="submitEditPaymentInfo" v-if="isEditing">
-      <div class="input-group w-full">
-        <div class="mr-4 w-16">
-          <label class="label-basic" for="typeDef"
-            >{{ $t("billing_create_creditcard_label") }}
-          </label>
-        </div>
-        <div class="w-full">
-          <div class="input-box w-full pl-2">
-            <div id="theCard" class="input-basic w-full"></div>
+    <div v-if="hasBilling">
+      <form @submit.prevent="submitEditPaymentInfo" v-if="isEditing">
+        <div class="input-group w-full">
+          <div class="mr-4 w-16">
+            <label class="label-basic" for="typeDef"
+              >{{ $t("billing_create_creditcard_label") }}
+            </label>
+          </div>
+          <div class="w-full">
+            <div class="input-box w-full pl-2">
+              <div id="theCard" class="input-basic w-full"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <button
-        class="block font-extrabold mx-auto p-2 mt-4 btn primary"
-        type="submit"
-      >
-        {{ $t("save_billing_data") }}
-      </button>
-    </form>
-    <div v-else class="">
-      <div v-if="billing && billing.Methods && billing.Methods.length > 0">
-        {{ $t("payment_method_billing") }}: <b>{{ billing.Methods[0].Name }}</b
-        ><br />
-        {{ $t("payment_method_exp") }}:
-        <b>{{ billing.Methods[0].Expiration }}</b>
         <button
           class="block font-extrabold mx-auto p-2 mt-4 btn primary"
-          @click="switchToEdit"
+          type="submit"
         >
-          {{ $t("edit_billing_method") }}
+          {{ $t("save_billing_data") }}
         </button>
+      </form>
+      <div v-else class="">
+        <div v-if="billing && billing.Methods && billing.Methods.length > 0">
+          {{ $t("payment_method_billing") }}:
+          <b>{{ billing.Methods[0].Name }}</b
+          ><br />
+          {{ $t("payment_method_exp") }}:
+          <b>{{ billing.Methods[0].Expiration }}</b>
+          <button
+            class="block font-extrabold mx-auto p-2 mt-4 btn primary"
+            @click="switchToEdit"
+          >
+            {{ $t("edit_billing_method") }}
+          </button>
+        </div>
       </div>
     </div>
+    <div v-else>{{ $t("no_payment_information_yet") }}<br  /> <button @click="()=>{eventBus.emit('ShowCreateBillingProfile', true)}" class="btn primary btn-defaults">{{ $t('add_payment_method_cta') }}</button></div>
   </div>
+  <FySelfLoading
+    :isLoading="true"
+    style="height: 60px"
+    :size="[45, 45]"
+    v-else
+  />
 </template>
 
 <script setup>
@@ -50,6 +60,12 @@ import { notify } from "notiwind";
 import { useTranslation } from "i18next-vue";
 import { eventBus } from "./../..";
 
+const props = defineProps({ // eslint-disable-line
+  includeProfileModal: {
+    type: Boolean,
+    default: true
+  },
+});
 const user = ref(null);
 const billing = ref(null);
 const isEditing = ref(false);
@@ -59,6 +75,7 @@ const stripeCard = ref(null);
 const cardToken = ref(null);
 const location = ref(null);
 const { i18next } = useTranslation();
+const hasBilling = ref(false);
 
 const switchToEdit = async () => {
   isEditing.value = true;
@@ -114,6 +131,7 @@ onMounted(async () => {
   if (user.value) {
     billing.value = await getUserBilling();
     if (billing.value.data.length != 0) {
+      hasBilling.value = true;
       location.value = await getLocationByID(
         billing.value.data[0].User_Location__
       );

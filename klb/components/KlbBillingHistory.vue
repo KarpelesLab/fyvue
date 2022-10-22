@@ -1,5 +1,5 @@
 <template>
-  <template v-if="paymentHistory && paymentHistory.length > 0">
+  <template v-if="paymentHistory">
     <FyPaging
       id="billingHistory"
       v-model:items="paging"
@@ -80,7 +80,13 @@
       class="mt-4"
     /><br />
   </template>
-  <div v-else class="text-center">{{$t('billing_history_empty')}}</div>
+    <FySelfLoading
+    :isLoading="true"
+    style="height: 60px"
+    :size="[45, 45]"
+    v-else
+  />
+  <div v-if="paymentHistory && paymentHistory.length==0" class="text-center">{{$t('billing_history_empty')}}</div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";

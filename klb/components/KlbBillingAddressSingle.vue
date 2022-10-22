@@ -1,6 +1,6 @@
 <template>
   <div v-if="user">
-    <form @submit.prevent="submitEditBillingAddress">
+    <form @submit.prevent="submitEditBillingAddress" v-if="hasBilling">
       <div class="grid grid-cols-2 gap-2">
         <FyInput
           id="billingFirstname"
@@ -58,7 +58,16 @@
         {{ $t("save_billing_address") }}
       </button>
     </form>
+    <div v-else>
+      {{ $t("no_billing_location_yet") }}
+    </div>
   </div>
+  <FySelfLoading
+    :isLoading="true"
+    style="height: 155px"
+    :size="[80, 80]"
+    v-else
+  />
 </template>
 
 <script setup>
@@ -68,10 +77,7 @@ import { required } from "@vuelidate/validators";
 import { notify } from "notiwind";
 import { eventBus } from "./../../";
 import { getUser } from "./../../klb/api/user";
-import {
-  getUserBilling,
-  updateBillingByID,
-} from "./../../klb/api/billing";
+import { getUserBilling, updateBillingByID } from "./../../klb/api/billing";
 import {
   getCountries,
   getLocationByID,
@@ -98,6 +104,7 @@ const rules = {
 const v$ = useVuelidate(rules, state);
 
 const user = ref(null);
+const hasBilling = ref(false);
 const submitEditBillingAddress = async () => {
   eventBus.emit("loading", true);
 
@@ -139,6 +146,7 @@ onMounted(async () => {
     countries.value = await getCountries();
     billing.value = await getUserBilling();
     if (billing.value.data.length != 0) {
+      hasBilling.value = true;
       location.value = await getLocationByID(
         billing.value.data[0].User_Location__
       );

@@ -59,6 +59,12 @@
       </button>
     </form>
   </div>
+  <FySelfLoading
+    :isLoading="true"
+    style="height: 155px"
+    :size="[80, 80]"
+    v-else
+  />
 </template>
 
 <script setup>

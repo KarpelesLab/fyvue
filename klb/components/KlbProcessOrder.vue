@@ -125,13 +125,19 @@
       {{ $t("process_order_cta") }}
     </button>
   </form>
+  <FySelfLoading
+    :isLoading="true"
+    style="height: 155px"
+    :size="[80, 80]"
+    v-else
+  />
 </template>
 <script setup>
 import { ref, reactive, onMounted, watch } from "vue";
 import { getUser } from "./../../klb/api/user";
 import { orderProcessPost } from "./../../klb/api/order";
-
 import { eventBus } from "./../..";
+
 const user = ref(null);
 const order = ref(null);
 const props = defineProps({ orderUuid: String, onComplete: Function }); // eslint-disable-line
@@ -175,7 +181,6 @@ const processOrder = async () => {
   eventBus.emit("loading", false);
 };
 onMounted(async () => {
-  eventBus.emit("loading", true);
   user.value = await getUser();
   order.value = await orderProcessPost(props.orderUuid);
   order.value.data.methods_order.forEach((method) => {
@@ -201,6 +206,5 @@ onMounted(async () => {
       }
     }
   });
-  eventBus.emit("loading", false);
 });
 </script>

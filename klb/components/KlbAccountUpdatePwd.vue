@@ -58,6 +58,7 @@
           /> {{ $t("change_pwd_btn") }}
     </button>
   </div>
+  <FySelfLoading v-else :isLoading="true" style="height: 55px; " :size="[40,40]"/>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";

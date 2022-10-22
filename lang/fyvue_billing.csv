@@ -29,3 +29,6 @@
 "billing_history_empty","No billing history yet.",,
 "billing_history_title","Billing history",,
 "billing_info_title","Edit your payment information",,
+"no_billing_location_yet","No billing location yet.",,
+"no_payment_information_yet","No payment method registered.",,
+"add_payment_method_cta","Add payment method",,

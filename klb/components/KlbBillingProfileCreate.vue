@@ -70,7 +70,7 @@
           </div>
           <div class="w-full">
             <div class="input-box w-full">
-              <div id="theCard" class="input-basic w-full"></div>
+              <div id="theCard" class="pl-2 input-basic w-full"></div>
             </div>
           </div>
         </div>
@@ -100,6 +100,9 @@ import { eventBus } from "./../../";
 import FyModal from "./../../components/FyModal.vue";
 import FyInput from "./../../components/FyInput.vue";
 
+const props = defineProps({ // eslint-disable-line
+  showOnMount: { type: Boolean, default: false },
+});
 const state = reactive({
   label: "",
   firstname: "",
@@ -147,7 +150,6 @@ const submitBillingCreate = async () => {
 };
 const showBillingModal = async () => {
   countries.value = await getCountries();
-  console.log(countries.value);
   eventBus.emit("FirstBillingModal", true);
   stripePK.value = await getPaymentMethod();
   if (
@@ -175,7 +177,7 @@ onMounted(async () => {
   if (user.value) {
     billing.value = await getUserBilling();
     if (billing.value.data.length == 0) {
-      showBillingModal();
+      if (props.showOnMount) showBillingModal();
     }
   }
 });
