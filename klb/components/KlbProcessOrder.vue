@@ -136,7 +136,7 @@
 import { ref, reactive, onMounted, watch } from "vue";
 import { getUser } from "./../../klb/api/user";
 import { orderProcessPost } from "./../../klb/api/order";
-import { eventBus } from "./../..";
+import { useEventBus } from "./../..";
 
 const user = ref(null);
 const order = ref(null);
@@ -146,6 +146,7 @@ const currentMethod = ref(null);
 const methodProperties = reactive({});
 const formData = reactive({});
 const theCard = ref(null);
+const eventBus = useEventBus();
 
 watch(theCard, (v) => {
   if (v && currentMethod.value == "Stripe") {

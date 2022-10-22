@@ -1,6 +1,6 @@
 {
   "name": "@karpeleslab/fyvue",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Vue lib for KLB systems",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,9 @@
     "i18next": "^22.0.2",
     "i18next-vue": "^2.0.0",
     "mitt": "^3.0.0",
-    "notiwind": "^1.2.6"
+    "notiwind": "^1.2.6",
+    "vuex": "^4.1.0",
+    "vue": "^3.2.41"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.3",

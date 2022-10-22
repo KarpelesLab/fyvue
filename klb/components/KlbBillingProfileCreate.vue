@@ -96,13 +96,14 @@ import {
   createBillingProfile,
 } from "./../../klb/api/billing";
 import { getCountries } from "./../../klb/api/location";
-import { eventBus } from "./../../";
+import { useEventBus } from "./../../";
 import FyModal from "./../../components/FyModal.vue";
 import FyInput from "./../../components/FyInput.vue";
 
 const props = defineProps({ // eslint-disable-line
   showOnMount: { type: Boolean, default: false },
 });
+const eventBus = useEventBus();
 const state = reactive({
   label: "",
   firstname: "",

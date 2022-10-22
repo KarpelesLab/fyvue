@@ -56,7 +56,7 @@ import { ref, onMounted } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 import { notify } from "notiwind";
-import { eventBus } from "./../../";
+import { useEventBus } from "./../../";
 import { getUser } from "./../../klb/api/user";
 import FyInput from "./../../components/FyInput.vue";
 import { updateEmail } from "./../../klb/api/user";
@@ -64,6 +64,7 @@ import BaseModal from "./../../components/FyModal.vue";
 import { PencilSquareIcon } from "@heroicons/vue/24/solid";
 import { useTranslation } from "i18next-vue";
 
+const eventBus = useEventBus();
 const { i18next } = useTranslation();
 const user = ref(null);
 const error = ref(null);

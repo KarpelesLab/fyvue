@@ -92,12 +92,13 @@
 import { ref, onMounted } from "vue";
 import { getPaymentHistory } from "./../../klb/api/billing";
 import { getUser } from "./../../klb/api/user";
-import { eventBus } from "./../..";
+import { useEventBus } from "./../..";
 import { ArrowDownTrayIcon } from "@heroicons/vue/24/solid";
 
 const user = ref(null);
 const paymentHistory = ref(null);
 const paging = ref(null);
+const eventBus = useEventBus();
 
 const _getPaymentHistory = async (page = 1) => {
   let tmp = await getPaymentHistory(page);

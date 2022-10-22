@@ -58,7 +58,7 @@ import {
 import { getLocationByID } from "./../../klb/api/location";
 import { notify } from "notiwind";
 import { useTranslation } from "i18next-vue";
-import { eventBus } from "./../..";
+import { useEventBus } from "./../..";
 
 const props = defineProps({ // eslint-disable-line
   includeProfileModal: {
@@ -66,6 +66,7 @@ const props = defineProps({ // eslint-disable-line
     default: true
   },
 });
+const eventBus = useEventBus();
 const user = ref(null);
 const billing = ref(null);
 const isEditing = ref(false);

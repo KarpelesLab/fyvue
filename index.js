@@ -8,12 +8,20 @@ import { rest } from "@karpeleslab/klbfw";
 import * as FyvueComponents from "./components/";
 import * as KlbComponents from "./klb/components/";
 import { createHead } from "@vueuse/head";
+import { getCurrentInstance } from 'vue'
 import { KlbBilling, KlbLocation, KlbUser, KlbOrder } from "./klb/api";
 import { cropText, formatBytes } from "./utils";
-const head = createHead();
 
+const head = createHead();
 const eventBus = mitt();
 const locale = getLocale();
+
+export const useEventBus = () => {
+    const internalInstance = getCurrentInstance(); 
+    const eventBus = internalInstance.appContext.config.globalProperties.$eventBus;
+
+    return eventBus;
+};
 
 export const i18nextPromise = i18next.use(Backend).init({
   ns: ["translation"],
@@ -24,10 +32,10 @@ export const i18nextPromise = i18next.use(Backend).init({
   initImmediate: false,
 });
 
-export { KlbBilling, KlbLocation, KlbUser, KlbOrder, i18next, eventBus };
+export { KlbBilling, KlbLocation, KlbUser, KlbOrder, i18next };
 
 export default {
-  install: (app) => {
+  install: (app, options) => {
     app.config.globalProperties.$eventBus = eventBus;
     app.config.globalProperties.$rest = rest;
     app.config.globalProperties.$cropText = cropText;
@@ -41,5 +49,5 @@ export default {
     }
     app.use(Notifications);
     app.use(head);
-  },
-};
+  }
+}

@@ -71,7 +71,7 @@
 import { ref, onMounted, reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { eventBus } from "./../../";
+import { useEventBus } from "./../../";
 import { getUser } from "./../../klb/api/user";
 import { getUserBilling } from "./../../klb/api/billing";
 import {
@@ -81,6 +81,7 @@ import {
 import { cartCreateOrder } from "./../../klb/api/order";
 
 const props = defineProps({ onComplete: Function }); // eslint-disable-line
+const eventBus = useEventBus();
 const countries = ref(null);
 const billing = ref(null);
 const location = ref(null);

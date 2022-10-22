@@ -41,7 +41,9 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { XCircleIcon } from "@heroicons/vue/24/solid";
-import { eventBus } from "./../";
+import { useEventBus } from "./../";
+
+const eventBus = useEventBus();
 
 const props = defineProps({ // eslint-disable-line
   id: { type: String, default: "CustomModal" },
