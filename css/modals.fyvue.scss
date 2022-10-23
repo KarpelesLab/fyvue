@@ -9,16 +9,15 @@
   }
   .parent {
     @apply flex items-center justify-center min-h-screen text-black;
-    
   }
   .modal-container {
-    @apply relative mx-1 md:mx-0 w-full md:max-w-2xl w-10/12 mx-auto bg-white rounded p-6 shadow -mt-44;
+    @apply relative mx-1 md:mx-0 w-full md:max-w-2xl w-11/12 mx-auto bg-white rounded p-3 md:p-4 lg:p-6 shadow -mt-20;
   }
   .btn-box {
     @apply flex justify-between;
   }
   .close-icon {
-    @apply w-8 -mr-4 -mt-2 text-gray-500;
+    @apply w-8 -mr-2.5 md:-mr-3 lg:-mr-4 -mt-2 md:-mt-3 lg:-mt-4 text-gray-500;
   }
   .title {
     @apply text-xl mb-2;

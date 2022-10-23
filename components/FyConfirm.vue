@@ -5,18 +5,18 @@
             :open="confirm"
             @close="setConfirm"
             class="fy-modal"
-            style="background: rgba(0, 0, 0, 0.6)"
+            style="background: rgba(0, 0, 0, 0.6); z-index:51 !important;"
         >
             <div class="parent">
                 <DialogOverlay />
                 <div
-                    class="modal-container"
+                    class="modal-container" style="width: 350px !important; padding: 1rem !important;"
                 >
                     <div>
                         <DialogTitle class="confirm-modal-desc-title">{{
                             title
                         }}</DialogTitle
-                        ><div class="confirm-modal-desc">{{ desc }}</div><br /><br v-if="desc" />
+                        ><div class="confirm-modal-desc default-p">{{ desc }}</div><br />
                         <div class="btn-box">
                             <button
                                 @click="setConfirm(false)"

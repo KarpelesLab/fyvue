@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading">
-    <div class="fy-loader " style="z-index: 1000 !important;">
+    <div class="fy-loader " style="z-index: 60 !important;">
       <div
         class="loader-container  "
         style="top: 50%"

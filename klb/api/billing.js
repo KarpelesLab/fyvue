@@ -1,11 +1,11 @@
 import { rest } from "@karpeleslab/klbfw";
+import { notificationErrors } from './../../';
 
 export const getUserBilling = async () => {
   return new Promise((resolve, reject) => {
     rest("User/Billing", "GET")
       .catch((err) => {
-        console.log("getUserBilling::" + err);
-        reject(err);
+        notificationErrors(err)
       })
       .then((result) => resolve(result));
   });
@@ -15,8 +15,7 @@ export const updateBillingByID = async (id, data) => {
   return new Promise((resolve, reject) => {
     rest(`User/Billing/${id}`, "PATCH", data)
       .catch((err) => {
-        console.log("PatchUserBillingId::" + err);
-        reject(err);
+        notificationErrors(err)
       })
       .then((result) => resolve(result));
   });
@@ -30,8 +29,7 @@ export const getPaymentHistory = async (page = 1) => {
       Status: "completed",
     })
       .catch((err) => {
-        console.log("Order::" + err);
-        reject(err);
+        notificationErrors(err)
       })
       .then((result) => resolve(result));
   });
@@ -44,8 +42,7 @@ export const changePaymentMethodByID = async (id, cc_token) => {
       cc_token: cc_token,
     })
       .catch((err) => {
-        console.log("userBillingMethodIdChange::" + err);
-        reject(err);
+        notificationErrors(err)
       })
       .then((result) => resolve(result));
   });
@@ -57,8 +54,7 @@ export const getPaymentMethod = async () => {
       method: "Stripe",
     })
       .catch((err) => {
-        console.log("getPaymentMethod::" + err);
-        reject(err);
+        notificationErrors(err)
       })
       .then((result) => resolve(result));
   });
@@ -84,8 +80,7 @@ export const createBillingProfile = async (
       cc_token: cc_token,
     })
       .catch((err) => {
-        console.log("Billing:create::" + err);
-        reject(err);
+        notificationErrors(err)
       })
       .then((result) => resolve(result));
   });

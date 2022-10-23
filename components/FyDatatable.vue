@@ -64,7 +64,7 @@ export default {
       if (i % 2 == 0) {
         return 'bg-gray-200'
       }
-      return 'bg-white'
+      return 'bg-gray-100'
     }
   }
 };

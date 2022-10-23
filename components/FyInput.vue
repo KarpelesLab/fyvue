@@ -1,7 +1,7 @@
 <template>
     <div class="input-group" v-if="validate">
         <div class="" v-if="showLabel">
-            <label  class="label-basic " :for="id"
+            <label class="label-basic" :for="id"
                 >{{ label }} <sup class="text-red-700" v-if="req">*</sup>
                 <a
                     :href="labelHelp"
@@ -9,8 +9,7 @@
                     @click="labelHelp()"
                     v-if="hasLabelHelp"
                 >
-                    <QuestionMarkCircleIcon
-                        class="help-icon"
+                    <QuestionMarkCircleIcon class="help-icon"
                 /></a>
             </label>
         </div>
@@ -26,7 +25,9 @@
                     v-model="validate.$model"
                     :autocomplete="autocomplete"
                     :id="id"
-                    v-if="type == 'text' || type == 'password' || type == 'email'"
+                    v-if="
+                        type == 'text' || type == 'password' || type == 'email'
+                    "
                 />
                 <textarea
                     v-if="type == 'textarea'"
@@ -36,6 +37,20 @@
                     :autocomplete="autocomplete"
                     :id="id"
                 ></textarea>
+                <select
+                    v-if="type == 'select'"
+                    id="id"
+                    class="input-basic"
+                    v-model="validate.$model"
+                >
+                    <option
+                        v-for="opt in options"
+                        :value="opt[0]"
+                        v-bind:key="opt[0]"
+                    >
+                        {{ opt[1] }}
+                    </option>
+                </select>
                 <slot name="icon"> </slot>
             </div>
             <slot name="adds"> </slot>
@@ -49,7 +64,7 @@
                     validate.$errors[0].$validator
                 "
             >
-                {{ $t(snakeCase(`errorForm`+validate.$errors[0].$message)) }}
+                {{ $t(snakeCase(`errorForm` + validate.$errors[0].$message)) }}
             </div>
         </div>
     </div>
@@ -58,42 +73,47 @@
 import { QuestionMarkCircleIcon } from "@heroicons/vue/24/solid";
 
 export default {
-  name: "FyInput",
-  components: {
-    QuestionMarkCircleIcon,
-  },
-  props: {
-    req: {
-      type: Boolean,
-      default: false,
+    name: "FyInput",
+    components: {
+        QuestionMarkCircleIcon,
     },
-    hasLabelHelp: {
-      type: Boolean,
-      default: false,
+    props: {
+        req: {
+            type: Boolean,
+            default: false,
+        },
+        hasLabelHelp: {
+            type: Boolean,
+            default: false,
+        },
+        options: {
+            type: Array,
+            default: [],
+        },
+        labelHelp: String,
+        showLabel: Boolean,
+        validate: Object,
+        label: String,
+        help: String,
+        placeholder: String,
+        autocomplete: {
+            type: String,
+            default: "",
+        },
+        id: String,
+        type: {
+            type: String,
+            default: "text",
+        },
     },
-    labelHelp: String,
-    showLabel: Boolean,
-    validate: Object,
-    label: String,
-    help: String,
-    placeholder: String,
-    autocomplete: {
-      type: String,
-      default: "",
+    methods: {
+        snakeCase: (str) => {
+            return str
+                .replace(/\W+/g, " ")
+                .split(/ |\B(?=[A-Z])/)
+                .map((word) => word.toLowerCase())
+                .join("_");
+        },
     },
-    id: String,
-    type: {
-      type: String,
-      default: "text",
-    },
-  },
-  methods: {
-    snakeCase: (str) => {
-      return str.replace(/\W+/g, " ")
-        .split(/ |\B(?=[A-Z])/)
-        .map(word => word.toLowerCase())
-        .join('_');
-    },
-  },
 };
 </script>

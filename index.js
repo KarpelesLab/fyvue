@@ -9,6 +9,7 @@ import * as FyvueComponents from "./components/";
 import * as KlbComponents from "./klb/components/";
 import { createHead } from "@vueuse/head";
 import { getCurrentInstance } from 'vue'
+import { notify } from "notiwind";
 import { KlbBilling, KlbLocation, KlbUser, KlbOrder } from "./klb/api";
 import { cropText, formatBytes } from "./utils";
 
@@ -31,6 +32,20 @@ export const i18nextPromise = i18next.use(Backend).init({
   load: "currentOnly",
   initImmediate: false,
 });
+
+export const notificationErrors = (err) => {
+  notify(
+    {
+      group: "default",
+      type: "error",
+      title: i18next.t("error_notif_title"),
+      text: err.error
+        ? err.error
+        : i18next.t("error_notif_unknown"),
+    },
+    6000
+  );
+};
 
 export { KlbBilling, KlbLocation, KlbUser, KlbOrder, i18next };
 

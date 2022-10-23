@@ -5,3 +5,8 @@
 "global_datetime","{{val, datetime}}","{{val, datetime}}","{{val, datetime}}"
 "global_paging","Showing {{start, number}} to {{end, number}} of {{total, number}} results",,
 "global_loading_text","loading...",,
+"confirm_modal_cta_cancel","Cancel",,
+"confirm_modal_cta_confirm","Confirm",,
+"unknown_error","Unknown error",,
+"error_notif_title","An error has happened",,
+"error_notif_unknown","Unknown error",,

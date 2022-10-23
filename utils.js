@@ -1,6 +1,5 @@
 
-
-export const formatBytes = (bytes, decimals=2) => {
+export const formatBytes = (bytes, decimals = 2) => {
   if (!+bytes) return "0 Bytes";
 
   const k = 1024;
@@ -12,11 +11,11 @@ export const formatBytes = (bytes, decimals=2) => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
-export const cropText = (str, ml=100) => {
-      if (str && typeof(str) == 'string') {
-        if (str.length > ml) {
-          return `${str.slice(0, ml)}...`
-        }
-      }
-      return str
+export const cropText = (str, ml = 100) => {
+  if (str && typeof str == "string") {
+    if (str.length > ml) {
+      return `${str.slice(0, ml)}...`;
     }
+  }
+  return str;
+};
