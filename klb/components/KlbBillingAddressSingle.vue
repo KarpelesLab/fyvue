@@ -37,11 +37,10 @@
               <select
                 class="input-basic"
                 v-model="state.country"
-                v-if="countries && countries.data.length > 0"
               >
                 <option
                   :value="country.Country__"
-                  v-for="country in countries.data"
+                  v-for="country in countries"
                   v-bind:key="country.Country__"
                 >
                   {{ country.Name }}
@@ -75,11 +74,10 @@ import { ref, onMounted, reactive } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { notify } from "notiwind";
-import { useEventBus } from "./../../";
+import { useEventBus, useCountries } from "./../../";
 import { getUser } from "./../../klb/api/user";
 import { getUserBilling, updateBillingByID } from "./../../klb/api/billing";
 import {
-  getCountries,
   getLocationByID,
   updateLocationByID,
 } from "./../../klb/api/location";
@@ -87,7 +85,7 @@ import { useTranslation } from "i18next-vue";
 
 const eventBus = useEventBus();
 const { i18next } = useTranslation();
-const countries = ref(null);
+const countries = useCountries().countries;
 const billing = ref(null);
 const location = ref(null);
 const state = reactive({
@@ -144,7 +142,6 @@ const submitEditBillingAddress = async () => {
 onMounted(async () => {
   user.value = await getUser();
   if (user.value) {
-    countries.value = await getCountries();
     billing.value = await getUserBilling();
     if (billing.value.data.length != 0) {
       hasBilling.value = true;

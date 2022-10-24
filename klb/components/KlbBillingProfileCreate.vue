@@ -48,11 +48,10 @@
                 <select
                   class="input-basic"
                   v-model="state.country"
-                  v-if="countries && countries.data.length > 0"
                 >
                   <option
                     :value="country.Country__"
-                    v-for="country in countries.data"
+                    v-for="country in countries"
                     v-bind:key="country.Country__"
                   >
                     {{ country.Name }}
@@ -95,8 +94,7 @@ import {
   getPaymentMethod,
   createBillingProfile,
 } from "./../../klb/api/billing";
-import { getCountries } from "./../../klb/api/location";
-import { useEventBus } from "./../../";
+import { useEventBus, useCountries } from "./../../";
 import FyModal from "./../../components/FyModal.vue";
 import FyInput from "./../../components/FyInput.vue";
 
@@ -122,7 +120,7 @@ const v$ = useVuelidate(rules, state);
 
 const user = ref(null);
 const billing = ref(null);
-const countries = ref(null);
+const countries = useCountries().countries;
 const stripe = ref(null);
 const stripePK = ref(null);
 const stripeCard = ref(null);
@@ -150,7 +148,6 @@ const submitBillingCreate = async () => {
   }
 };
 const showBillingModal = async () => {
-  countries.value = await getCountries();
   eventBus.emit("FirstBillingModal", true);
   stripePK.value = await getPaymentMethod();
   if (
