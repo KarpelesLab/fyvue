@@ -6,7 +6,7 @@
       v-if="paging && paging.page_no"
       class="mt-4"
     /><br />
-    <FyDatatable
+    <FyTable
       v-model:data="paymentHistory"
       :headers="{
         Invoice_Number: $t('billing_history_headers_invoice_number'),
@@ -72,7 +72,7 @@
           })
         }}
       </template>
-    </FyDatatable>
+    </FyTable>
     <FyPaging
       id="billingHistory"
       v-model:items="paging"

@@ -1,4 +1,3 @@
-
 export const formatBytes = (bytes, decimals = 2) => {
   if (!+bytes) return "0 Bytes";
 
@@ -18,4 +17,16 @@ export const cropText = (str, ml = 100) => {
     }
   }
   return str;
+};
+
+export const isPathActive = (paths, path) => {
+  if (paths.includes(path)) return true;
+  let foundPath = false;
+  for (let _path of paths) {
+    if (_path.includes("*") && path.includes(_path.replace("*", ""))) {
+      foundPath = true;
+      break;
+    }
+  }
+  return foundPath;
 };

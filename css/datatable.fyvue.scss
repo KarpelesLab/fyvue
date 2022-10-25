@@ -18,3 +18,24 @@
     background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E"), linear-gradient(to top, #3f5d9a, #3f4e9a) !important;;
   }
 }
+.fy-table  {
+  @apply my-2 py-2 overflow-x-auto sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4;
+  .table-container {
+    @apply align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200;
+  }
+  table {
+    @apply min-w-full;
+    thead th {
+      @apply px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider;
+      button {
+        @apply flex items-center ;
+      }
+    }
+    tbody {
+      @apply bg-white;
+      td {
+        @apply px-6 py-4 whitespace-nowrap  border-b border-gray-200 text-gray-700 ;
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ import FyLoader from "./FyLoader.vue";
 import FyPaging from "./FyPaging.vue";
 import FySteps from "./FySteps.vue";
 import FySelfLoading from "./FySelfLoading.vue";
+import FyTable from "./FyTable.vue";
 
 export {
   FyLoader,
@@ -19,5 +20,6 @@ export {
   FyInput,
   FyPaging,
   FySteps,
-  FySelfLoading
+  FySelfLoading,
+  FyTable
 };

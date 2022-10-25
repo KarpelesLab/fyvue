@@ -11,7 +11,7 @@ import { createHead } from "@vueuse/head";
 import { getCurrentInstance } from "vue";
 import { notify } from "notiwind";
 import { KlbBilling, KlbLocation, KlbUser, KlbOrder } from "./klb/api";
-import { cropText, formatBytes } from "./utils";
+import { cropText, formatBytes, isPathActive } from "./utils";
 
 const head = createHead();
 const eventBus = mitt();
@@ -71,6 +71,8 @@ export default {
     app.config.globalProperties.$countries = countries;
     app.config.globalProperties.$cropText = cropText;
     app.config.globalProperties.$formatBytes = formatBytes;
+    app.config.globalProperties.$isPathActive = isPathActive;
+    
     app.use(I18NextVue, { i18next });
     for (const componentKey in FyvueComponents) {
       app.component(componentKey, FyvueComponents[componentKey]);
