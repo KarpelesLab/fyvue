@@ -2,7 +2,7 @@
   <div class="fy-table">
     <div class="table-container">
       <table v-if="data && data.length">
-        <thead>
+        <thead v-if="showHeaders">
           <tr>
             <th v-for="(title, property) in headers" :key="property">
               {{ title }}
@@ -56,6 +56,10 @@ const props = defineProps({
     default() {
       return {};
     },
+  },
+  showHeaders: {
+    type: Boolean,
+    default: true
   },
   data: {
     type: Array,
