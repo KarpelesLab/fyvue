@@ -34,14 +34,12 @@
       >
         <template v-slot:Actions_item="property">
           <button
-            class="btn primary p-2 fround"
+            class="btn primary px-2 py-1 text-sm"
             @click="
               () => {
                 $eventBus.emit('showConfirm', {
                   title: $t('workgroup_del_user_confirm_title'),
-                  desc: `${$t('workgroup_del_user_confirm_desc')} (${
-                    property.data.item.User.Display_Name
-                  } from ${groupUsers.data.Name}).`,
+                  desc: `${$t('workgroup_del_user_confirm_desc', {user: property.data.item.User.Display_Name, group:groupUsers.data.Name})}`,
                   onConfirm: async () => {
                     await _delUserFromGroup(property.data.item.User.User__);
                   },
@@ -55,7 +53,6 @@
             />
           </button>
         </template>
-
         <template v-slot:Name_item="property">
           {{ property.data.item.User.Profile.Display_Name }}
           <small>({{ property.data.item.User.Email }})</small>

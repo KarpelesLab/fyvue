@@ -28,7 +28,7 @@
 "workgroup_summary_group","Group:",,
 "workgroup_summary_owned_by","Owned by",,
 "workgroup_del_user_confirm_title","Remove user from group",,
-"workgroup_del_user_confirm_desc","This will remove this user from this group",,
+"workgroup_del_user_confirm_desc","This will remove this {{user}} from {{group}}.",,
 "workgroup_delete_cta","Delete",,
 "workgroup_del_group_confirm_title","Delete group",,
 "workgroup_del_group_confirm_desc","This will delete {{group}} permantly, do you want to proceed?",,
