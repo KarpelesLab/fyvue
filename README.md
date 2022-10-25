@@ -43,7 +43,7 @@ Generate an input with *[Vuevalidate](https://vuelidate-next.netlify.app/)*, han
     />
 
 #### FyLoader
-Loader modal for important use actions. `<FyLoader />` should be included in your root template.
+Loader. `<FyLoader />` should be included in your root template.
 ##### Example:
     eventBus.emit("loader", true)
     eventBus.emit("loader", false)`
