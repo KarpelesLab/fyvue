@@ -86,7 +86,7 @@
     :size="[45, 45]"
     v-else
   />
-  <div v-if="paymentHistory && paymentHistory.length==0" class="text-center">{{$t('billing_history_empty')}}</div>
+  <div v-if="paymentHistory && paymentHistory.length==0" class="text-center default-p">{{$t('billing_history_empty')}}</div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";

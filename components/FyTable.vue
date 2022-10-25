@@ -1,7 +1,7 @@
 <template>
-  <div class="fy-table">
+  <div class="fy-table" v-if="data && data.length">
     <div class="table-container">
-      <table v-if="data && data.length">
+      <table>
         <thead v-if="showHeaders">
           <tr>
             <th v-for="(title, property) in headers" :key="property">
