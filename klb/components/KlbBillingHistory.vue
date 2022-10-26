@@ -4,8 +4,8 @@
       id="billingHistory"
       v-model:items="paging"
       v-if="paging && paging.page_no"
-      class="mt-4"
-    /><br />
+      class="mt-4 mb-4"
+    />
     <FyTable
       v-model:data="paymentHistory"
       :headers="{
@@ -77,8 +77,8 @@
       id="billingHistory"
       v-model:items="paging"
       v-if="paging && paging.page_no"
-      class="mt-4"
-    /><br />
+      class="mt-4 mb-4"
+    />
   </template>
     <FySelfLoading
     :isLoading="true"

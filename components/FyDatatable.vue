@@ -1,5 +1,5 @@
 <template>
-  <table class="border-collapse w-full md:mx-0 fy-datatable">
+  <table class="border-collapse w-full md:mx-0 fy-datatable" v-if="data && data.length > 0">
     <thead v-if="showHeaders">
       <tr>
         <th

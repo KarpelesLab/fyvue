@@ -9,6 +9,7 @@ import FyPaging from "./FyPaging.vue";
 import FySteps from "./FySteps.vue";
 import FySelfLoading from "./FySelfLoading.vue";
 import FyTable from "./FyTable.vue";
+import FyCirclePercent from "./FyCirclePercent.vue";
 
 export {
   FyLoader,
@@ -21,5 +22,6 @@ export {
   FyPaging,
   FySteps,
   FySelfLoading,
-  FyTable
+  FyTable,
+  FyCirclePercent
 };
