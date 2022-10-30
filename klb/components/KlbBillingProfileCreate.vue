@@ -100,6 +100,7 @@ import FyInput from "./../../components/FyInput.vue";
 
 const props = defineProps({ // eslint-disable-line
   showOnMount: { type: Boolean, default: false },
+  onComplete: { type: Function, default: ()=> {}} 
 });
 const eventBus = useEventBus();
 const state = reactive({
@@ -128,11 +129,11 @@ const cardToken = ref(null);
 const billingProfile = ref(null);
 const submitBillingCreate = async () => {
   if (await v$.value.$validate()) {
+    eventBus.emit('loading', true)
     cardToken.value = await stripe.value.createToken(stripeCard.value, {
       name: `${state.firstname} ${state.lastname}`,
       email: user.value.Email,
     });
-    console.log(cardToken.value);
     createBillingProfile.value = await createBillingProfile(
       state.label,
       state.firstname,
@@ -144,7 +145,8 @@ const submitBillingCreate = async () => {
     );
     eventBus.emit("FirstBillingModal", false);
     user.value = await getUser();
-    console.log(billingProfile.value);
+    eventBus.emit('loading', false)
+    props.onComplete(createBillingProfile.value);
   }
 };
 const showBillingModal = async () => {
