@@ -1,5 +1,5 @@
 # fyvue
-Vue lib for KLB systems (Doc soon™)
+Vue lib for KLB systems (Doc soon™) - SRC: https://github.com/Fy-/fyvue-src
 
     import { createFyvue } from "@karpeleslab/fyvue";
     import { createApp } from "vue";
