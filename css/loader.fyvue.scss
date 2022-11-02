@@ -1,16 +1,44 @@
 .fy-loader {
   @apply absolute w-full h-full top-0 left-0  ;
-  background-color: rgba(255,255,255,.5);
 
   .loader-container {
-    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-neutral-800 p-10 rounded-full  shadow w-56 h-56 flex items-center justify-center;
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  p-10 rounded-full  shadow w-56 h-56 flex items-center justify-center;
+  
+    &.is-nobem {
+      @apply p-2 h-40 w-40;
+    }
   }
   .loader-text {
     @apply w-full text-center font-bold mx-auto uppercase text-gray-100 mt-4 text-xs;
   }
 }
+.light {
+  .fy-loader {
+    @apply bg-neutral-50;
+  }
+  .loader-container {
+    @apply bg-neutral-200;
+  }
+  .fy-self-loader {
+    background: rgba(255,255,255,.2) !important;
+  }
+}
+.dark {
+  .loader-container {
+    @apply bg-neutral-800;
+  }
+  .fy-loader {
+    @apply bg-neutral-800;
+  }
+  .fy-self-loader {
+    background: rgba(0,0,0,.2) !important;
+  }
+}
+
 .fy-self-loader {
-  @apply shadow rounded flex items-center justify-center;
+  @apply shadow rounded flex items-center justify-center ;
+  
+
   animation-name: backgroundColorPalette;
   animation-duration: 3s;
   animation-iteration-count: infinite;
@@ -26,11 +54,15 @@
     }
   }
 }
+
 .fy-self-loader, .fy-loader {
-
-
   .half-circle-spinner, .half-circle-spinner * {
       box-sizing: border-box;
+  }
+
+  .nobem-loader {
+    @apply rounded-full;
+    animation: half-circle-spinner-animation 1s infinite;
   }
 
   .half-circle-spinner {
@@ -51,12 +83,12 @@
   }
 
   .half-circle-spinner .circle.circle-1 {
-    border-top-color: #5669b8;
+    border-top-color: #9f5dd2;
     animation: half-circle-spinner-animation 1s infinite;
   }
 
   .half-circle-spinner .circle.circle-2 {
-    border-bottom-color: #5669b8;
+    border-bottom-color: #9f5dd2;
     animation: half-circle-spinner-animation 1s infinite alternate;
   }
 

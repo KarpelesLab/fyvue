@@ -1,12 +1,12 @@
 .form-error-label {
-  @apply text-xs text-red-900 pl-1;
+  @apply text-xs text-center font-bold -mt-3.5 md:mt-0.5;
 }
 .input-basic {
-    @apply w-full py-3 text-xs placeholder-slate-400 font-semibold leading-none bg-slate-50 border-0 outline-none text-black;
+    @apply w-full py-3 text-xs placeholder-neutral-400 font-semibold leading-none bg-neutral-50 border-0 outline-none text-black;
 }
 
 .input-box {
-    @apply flex bg-slate-50  border border-gray-300 rounded;
+    @apply flex bg-neutral-50 border-neutral-300 border   mb-4 md:mb-0;
     select {
         padding-top: 14px;
         padding-bottom: 13px;
@@ -14,7 +14,7 @@
 }
 
 .label-basic {
-    @apply block uppercase tracking-wide whitespace-nowrap  text-gray-400 text-xs font-bold mb-2 text-left pt-0 md:pt-3;
+    @apply block uppercase tracking-wide whitespace-nowrap   text-xs font-bold mb-2 text-left pt-0 md:pt-3;
 }
 
 .input-group {
@@ -22,11 +22,28 @@
 }
 
 .error-form {
-    @apply border-2 border-red-200;
+    @apply border border-red-600 ;
 }
 .help-text {
-    @apply text-gray-600 text-xs font-semibold;
+    @apply font-medium text-sm;
 }
 .help-icon {
-    @apply w-6 inline-block -mt-1 text-gray-600;
+    @apply w-6 inline-block -mt-1;
+}
+
+.light {
+    .label-basic, .help-icon, .help-text {
+        @apply text-neutral-600;
+    }
+    .form-error-label {
+        @apply text-red-500;
+    }
+}
+.dark {
+    .label-basic, .help-icon, .help-text {
+        @apply text-neutral-200;
+    }
+    .form-error-label {
+        @apply text-red-400;
+    }
 }

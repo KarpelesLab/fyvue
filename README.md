@@ -1,6 +1,13 @@
 # fyvue
 Vue lib for KLB systems (Doc soon™)
 
+    import { createFyvue } from "@karpeleslab/fyvue";
+    import { createApp } from "vue";
+    const app = createApp(App);
+    const fyvue = createFyvue();
+    app.use(fyvue);
+    ...
+
 # Helpers
 ### EventBus
 Shortcut to **[mitt](https://github.com/developit/mitt)** (event emitter / pubsub)
