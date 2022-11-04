@@ -336,7 +336,7 @@ const _hoisted_4$i = {
 };
 const _hoisted_5$h = ["href"];
 const _hoisted_6$c = { class: "flex-1" };
-const _hoisted_7$8 = ["type", "placeholder", "autocomplete", "id"];
+const _hoisted_7$7 = ["type", "placeholder", "autocomplete", "id"];
 const _hoisted_8$7 = ["placeholder", "autocomplete", "id"];
 const _hoisted_9$7 = ["value"];
 const _hoisted_10$7 = {
@@ -379,7 +379,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
           "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $props.validate.$model = $event),
           autocomplete: $props.autocomplete,
           id: $props.id
-        }, null, 8, _hoisted_7$8)), [
+        }, null, 8, _hoisted_7$7)), [
           [vModelDynamic, $props.validate.$model]
         ]) : createCommentVNode("v-if", true),
         $props.type == "textarea" ? withDirectives((openBlock(), createElementBlock("textarea", {
@@ -1586,7 +1586,10 @@ const _hoisted_2$k = {
   class: "modal-container",
   style: { "width": "350px !important", "padding": "1rem !important" }
 };
-const _hoisted_3$i = { class: "confirm-modal-desc default-p" };
+const _hoisted_3$i = {
+  key: 0,
+  class: "confirm-modal-desc default-p"
+};
 const _hoisted_4$g = /* @__PURE__ */ createElementVNode("br", null, null, -1);
 const _hoisted_5$f = { class: "btn-box" };
 function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1597,7 +1600,7 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
     createVNode(_component_Dialog, {
       open: $setup.confirm,
       onClose: $setup.setConfirm,
-      class: "fy-modal",
+      class: "fy-modal is-confirm",
       style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "51 !important" }
     }, {
       default: withCtx(() => [
@@ -1605,13 +1608,13 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
           createVNode(_component_DialogOverlay),
           createElementVNode("div", _hoisted_2$k, [
             createElementVNode("div", null, [
-              createVNode(_component_DialogTitle, { class: "confirm-modal-desc-title" }, {
+              createVNode(_component_DialogTitle, { class: "title" }, {
                 default: withCtx(() => [
                   createTextVNode(toDisplayString($data.title), 1)
                 ]),
                 _: 1
               }),
-              createElementVNode("div", _hoisted_3$i, toDisplayString($data.desc), 1),
+              $data.desc ? (openBlock(), createElementBlock("div", _hoisted_3$i, toDisplayString($data.desc), 1)) : createCommentVNode("v-if", true),
               _hoisted_4$g,
               createElementVNode("div", _hoisted_5$f, [
                 createElementVNode("button", {
@@ -1909,7 +1912,7 @@ const _hoisted_6$a = {
   "aria-current": "page",
   class: "active"
 };
-const _hoisted_7$7 = ["onClick"];
+const _hoisted_7$6 = ["onClick"];
 const _hoisted_8$6 = {
   key: 3,
   class: "dots"
@@ -1956,7 +1959,7 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
               class: "innactive",
               href: "javascript:void(0);",
               onClick: ($event) => $options.page($props.items.page_no + i)
-            }, toDisplayString($props.items.page_no + i), 9, _hoisted_7$7)) : createCommentVNode("v-if", true)
+            }, toDisplayString($props.items.page_no + i), 9, _hoisted_7$6)) : createCommentVNode("v-if", true)
           ], 64);
         }), 64)),
         $props.items.page_no + 2 < $props.items.page_max - 1 ? (openBlock(), createElementBlock("span", _hoisted_8$6, " ... ")) : createCommentVNode("v-if", true),
@@ -2365,11 +2368,10 @@ const _hoisted_4$a = {
   class: "form-error-label"
 };
 const _hoisted_5$9 = {
-  class: "block font-extrabold mx-auto p-2 mt-4 btn primary",
+  class: "btn-defaults mt-4 btn primary",
   type: "submit"
 };
-const _hoisted_6$8 = { class: "text-lg float-left italic mr-2" };
-const _hoisted_7$6 = /* @__PURE__ */ createElementVNode("br", { style: { "clear": "both" } }, null, -1);
+const _hoisted_6$8 = { class: "text-lg italic ml-2" };
 const _sfc_main$c = {
   __name: "KlbAccountUpdateEmail",
   setup(__props) {
@@ -2455,9 +2457,8 @@ const _sfc_main$c = {
           ]),
           _: 1
         }, 8, ["title"]),
-        createElementVNode("span", _hoisted_6$8, toDisplayString(user.value.Email), 1),
         createElementVNode("button", {
-          class: "block font-extrabold float-left p-2 -mt-1 btn primary",
+          class: "btn primary btn-defaults inline-block",
           onClick: _cache[0] || (_cache[0] = () => {
             unref(eventBus).emit("UpdateEmailModal", true);
           })
@@ -2468,7 +2469,7 @@ const _sfc_main$c = {
           }),
           createTextVNode(" " + toDisplayString(_ctx.$t("change_email_btn")), 1)
         ]),
-        _hoisted_7$6
+        createElementVNode("span", _hoisted_6$8, toDisplayString(user.value.Email), 1)
       ])) : (openBlock(), createBlock(_component_FySelfLoading, {
         key: 1,
         isLoading: true,
@@ -2508,7 +2509,7 @@ const _hoisted_4$9 = {
   class: "form-error-label"
 };
 const _hoisted_5$8 = {
-  class: "block font-extrabold mx-auto p-2 mt-4 btn primary",
+  class: "btn-defaults mt-4 btn primary",
   type: "submit"
 };
 const _sfc_main$b = {
@@ -2606,7 +2607,7 @@ const _sfc_main$b = {
           _: 1
         }, 8, ["title"]),
         createElementVNode("button", {
-          class: "block font-extrabold p-2 mt-4 btn primary",
+          class: "btn primary btn-defaults",
           onClick: _cache[0] || (_cache[0] = () => {
             unref(eventBus).emit("UpdatePwdModal", true);
           })
@@ -5015,7 +5016,7 @@ const useCountries = () => {
   return getCurrentInstance().appContext.config.globalProperties.$countries;
 };
 const useTranslation = () => {
-  return getCurrentInstance().appContext.config.globalProperties.$t;
+  return { t: getCurrentInstance().appContext.config.globalProperties.$t };
 };
 const countriesPromise = () => {
   return new Promise((resolve) => {

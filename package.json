@@ -1,6 +1,6 @@
 {
   "name": "@karpeleslab/fyvue",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "Vue lib for KLB systems",
   "main": "./fyvue/index.js",
   "module": "./fyvue/index.mjs",
