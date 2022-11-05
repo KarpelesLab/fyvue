@@ -5686,10 +5686,12 @@ const useTranslation = () => {
 const countriesPromise = () => {
   return new Promise((resolve) => {
     getCountries().then((_countries) => {
-      countries.countries = _countries.data;
-      _countries.data.forEach((_country) => {
-        countries.byUuid[_country.Country__] = _country;
-      });
+      if (_countries && _countries.result == "success") {
+        countries.countries = _countries.data;
+        _countries.data.forEach((_country) => {
+          countries.byUuid[_country.Country__] = _country;
+        });
+      }
       resolve();
     });
   });
