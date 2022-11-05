@@ -6,19 +6,19 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.fyvue = {}, global.mitt, global.Notifications, global.klbfw, global.i18next, global.Vue, global.useVuelidate, global.validators, global.vueRouter, global.vuex, global.vue3Clipboard, global.head$1));
 })(this, (function (exports, mitt, Notifications, klbfw, i18next, vue, useVuelidate, validators, vueRouter, vuex, vue3Clipboard, head$1) { 'use strict';
 
-  var __defProp$7 = Object.defineProperty;
-  var __getOwnPropSymbols$9 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$9 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$9 = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp$7 = (obj, key, value) => key in obj ? __defProp$7(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues$7 = (a, b) => {
+  var __defProp$8 = Object.defineProperty;
+  var __getOwnPropSymbols$a = Object.getOwnPropertySymbols;
+  var __hasOwnProp$a = Object.prototype.hasOwnProperty;
+  var __propIsEnum$a = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$8 = (obj, key, value) => key in obj ? __defProp$8(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$8 = (a, b) => {
     for (var prop in b || (b = {}))
-      if (__hasOwnProp$9.call(b, prop))
-        __defNormalProp$7(a, prop, b[prop]);
-    if (__getOwnPropSymbols$9)
-      for (var prop of __getOwnPropSymbols$9(b)) {
-        if (__propIsEnum$9.call(b, prop))
-          __defNormalProp$7(a, prop, b[prop]);
+      if (__hasOwnProp$a.call(b, prop))
+        __defNormalProp$8(a, prop, b[prop]);
+    if (__getOwnPropSymbols$a)
+      for (var prop of __getOwnPropSymbols$a(b)) {
+        if (__propIsEnum$a.call(b, prop))
+          __defNormalProp$8(a, prop, b[prop]);
       }
     return a;
   };
@@ -32,7 +32,7 @@
     }
     init(services, options = {}) {
       this.services = services;
-      this.options = __spreadValues$7(__spreadValues$7(__spreadValues$7({}, defaults), this.options), options);
+      this.options = __spreadValues$8(__spreadValues$8(__spreadValues$8({}, defaults), this.options), options);
     }
     read(language, namespace, callback) {
       if (language.length != 5) {
@@ -541,21 +541,21 @@
     throw Error.captureStackTrace && Error.captureStackTrace(t, u$4), t;
   }
 
-  var __defProp$6 = Object.defineProperty;
+  var __defProp$7 = Object.defineProperty;
   var __defProps$3 = Object.defineProperties;
   var __getOwnPropDescs$3 = Object.getOwnPropertyDescriptors;
-  var __getOwnPropSymbols$8 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$8 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$8 = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp$6 = (obj, key, value) => key in obj ? __defProp$6(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues$6 = (a, b2) => {
+  var __getOwnPropSymbols$9 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$9 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$9 = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$7 = (obj, key, value) => key in obj ? __defProp$7(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$7 = (a, b2) => {
     for (var prop in b2 || (b2 = {}))
-      if (__hasOwnProp$8.call(b2, prop))
-        __defNormalProp$6(a, prop, b2[prop]);
-    if (__getOwnPropSymbols$8)
-      for (var prop of __getOwnPropSymbols$8(b2)) {
-        if (__propIsEnum$8.call(b2, prop))
-          __defNormalProp$6(a, prop, b2[prop]);
+      if (__hasOwnProp$9.call(b2, prop))
+        __defNormalProp$7(a, prop, b2[prop]);
+    if (__getOwnPropSymbols$9)
+      for (var prop of __getOwnPropSymbols$9(b2)) {
+        if (__propIsEnum$9.call(b2, prop))
+          __defNormalProp$7(a, prop, b2[prop]);
       }
     return a;
   };
@@ -563,11 +563,11 @@
   var __objRest$6 = (source, exclude) => {
     var target = {};
     for (var prop in source)
-      if (__hasOwnProp$8.call(source, prop) && exclude.indexOf(prop) < 0)
+      if (__hasOwnProp$9.call(source, prop) && exclude.indexOf(prop) < 0)
         target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols$8)
-      for (var prop of __getOwnPropSymbols$8(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum$8.call(source, prop))
+    if (source != null && __getOwnPropSymbols$9)
+      for (var prop of __getOwnPropSymbols$9(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum$9.call(source, prop))
           target[prop] = source[prop];
       }
     return target;
@@ -585,7 +585,7 @@
       return u$4(l, { [0]() {
         return null;
       }, [1]() {
-        return p$2(__spreadProps$3(__spreadValues$6({}, i), { props: __spreadProps$3(__spreadValues$6({}, n), { hidden: true, style: { display: "none" } }) }));
+        return p$2(__spreadProps$3(__spreadValues$7({}, i), { props: __spreadProps$3(__spreadValues$7({}, n), { hidden: true, style: { display: "none" } }) }));
       } });
     }
     return p$2(s);
@@ -801,30 +801,30 @@
     }, true), v$1("blur", (e) => a(e, () => window.document.activeElement instanceof HTMLIFrameElement ? window.document.activeElement : null), true);
   }
 
-  var __defProp$5 = Object.defineProperty;
-  var __getOwnPropSymbols$7 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$7 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$7 = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp$5 = (obj, key, value) => key in obj ? __defProp$5(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues$5 = (a2, b) => {
+  var __defProp$6 = Object.defineProperty;
+  var __getOwnPropSymbols$8 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$8 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$8 = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$6 = (obj, key, value) => key in obj ? __defProp$6(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$6 = (a2, b) => {
     for (var prop in b || (b = {}))
-      if (__hasOwnProp$7.call(b, prop))
-        __defNormalProp$5(a2, prop, b[prop]);
-    if (__getOwnPropSymbols$7)
-      for (var prop of __getOwnPropSymbols$7(b)) {
-        if (__propIsEnum$7.call(b, prop))
-          __defNormalProp$5(a2, prop, b[prop]);
+      if (__hasOwnProp$8.call(b, prop))
+        __defNormalProp$6(a2, prop, b[prop]);
+    if (__getOwnPropSymbols$8)
+      for (var prop of __getOwnPropSymbols$8(b)) {
+        if (__propIsEnum$8.call(b, prop))
+          __defNormalProp$6(a2, prop, b[prop]);
       }
     return a2;
   };
   var __objRest$5 = (source, exclude) => {
     var target = {};
     for (var prop in source)
-      if (__hasOwnProp$7.call(source, prop) && exclude.indexOf(prop) < 0)
+      if (__hasOwnProp$8.call(source, prop) && exclude.indexOf(prop) < 0)
         target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols$7)
-      for (var prop of __getOwnPropSymbols$7(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum$7.call(source, prop))
+    if (source != null && __getOwnPropSymbols$8)
+      for (var prop of __getOwnPropSymbols$8(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum$8.call(source, prop))
           target[prop] = source[prop];
       }
     return target;
@@ -832,7 +832,7 @@
   var a = ((e) => (e[e.None = 1] = "None", e[e.Focusable = 2] = "Focusable", e[e.Hidden = 4] = "Hidden", e))(a || {});
   let f = vue.defineComponent({ name: "Hidden", props: { as: { type: [Object, String], default: "div" }, features: { type: Number, default: 1 } }, setup(r, { slots: t, attrs: d }) {
     return () => {
-      let _a = r, { features: e } = _a, o = __objRest$5(_a, ["features"]), n = { "aria-hidden": (e & 2) === 2 ? true : void 0, style: __spreadValues$5({ position: "fixed", top: 1, left: 1, width: 1, height: 0, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0, 0, 0, 0)", whiteSpace: "nowrap", borderWidth: "0" }, (e & 4) === 4 && (e & 2) !== 2 && { display: "none" }) };
+      let _a = r, { features: e } = _a, o = __objRest$5(_a, ["features"]), n = { "aria-hidden": (e & 2) === 2 ? true : void 0, style: __spreadValues$6({ position: "fixed", top: 1, left: 1, width: 1, height: 0, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0, 0, 0, 0)", whiteSpace: "nowrap", borderWidth: "0" }, (e & 4) === 4 && (e & 2) !== 2 && { display: "none" }) };
       return P$3({ ourProps: n, theirProps: o, slot: {}, attrs: d, slots: t, name: "Hidden" });
     };
   } });
@@ -863,30 +863,30 @@
     }));
   }
 
-  var __defProp$4 = Object.defineProperty;
-  var __getOwnPropSymbols$6 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$6 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$6 = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp$4 = (obj, key, value) => key in obj ? __defProp$4(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues$4 = (a, b2) => {
+  var __defProp$5 = Object.defineProperty;
+  var __getOwnPropSymbols$7 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$7 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$7 = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$5 = (obj, key, value) => key in obj ? __defProp$5(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$5 = (a, b2) => {
     for (var prop in b2 || (b2 = {}))
-      if (__hasOwnProp$6.call(b2, prop))
-        __defNormalProp$4(a, prop, b2[prop]);
-    if (__getOwnPropSymbols$6)
-      for (var prop of __getOwnPropSymbols$6(b2)) {
-        if (__propIsEnum$6.call(b2, prop))
-          __defNormalProp$4(a, prop, b2[prop]);
+      if (__hasOwnProp$7.call(b2, prop))
+        __defNormalProp$5(a, prop, b2[prop]);
+    if (__getOwnPropSymbols$7)
+      for (var prop of __getOwnPropSymbols$7(b2)) {
+        if (__propIsEnum$7.call(b2, prop))
+          __defNormalProp$5(a, prop, b2[prop]);
       }
     return a;
   };
   var __objRest$4 = (source, exclude) => {
     var target = {};
     for (var prop in source)
-      if (__hasOwnProp$6.call(source, prop) && exclude.indexOf(prop) < 0)
+      if (__hasOwnProp$7.call(source, prop) && exclude.indexOf(prop) < 0)
         target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols$6)
-      for (var prop of __getOwnPropSymbols$6(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum$6.call(source, prop))
+    if (source != null && __getOwnPropSymbols$7)
+      for (var prop of __getOwnPropSymbols$7(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum$7.call(source, prop))
           target[prop] = source[prop];
       }
     return target;
@@ -906,7 +906,7 @@
     }
     return () => {
       let l = {}, c = { ref: n$1 }, _a = u, { features: f$1, initialFocus: p, containers: U } = _a, y = __objRest$4(_a, ["features", "initialFocus", "containers"]);
-      return vue.h(vue.Fragment, [Boolean(f$1 & 4) && vue.h(f, { as: "button", type: "button", onFocus: i, features: a.Focusable }), P$3({ ourProps: c, theirProps: __spreadValues$4(__spreadValues$4({}, a$1), y), slot: l, attrs: a$1, slots: t, name: "FocusTrap" }), Boolean(f$1 & 4) && vue.h(f, { as: "button", type: "button", onFocus: i, features: a.Focusable })]);
+      return vue.h(vue.Fragment, [Boolean(f$1 & 4) && vue.h(f, { as: "button", type: "button", onFocus: i, features: a.Focusable }), P$3({ ourProps: c, theirProps: __spreadValues$5(__spreadValues$5({}, a$1), y), slot: l, attrs: a$1, slots: t, name: "FocusTrap" }), Boolean(f$1 & 4) && vue.h(f, { as: "button", type: "button", onFocus: i, features: a.Focusable })]);
     };
   } }), { features: h });
   function A({ ownerDocument: u }, a) {
@@ -1016,17 +1016,17 @@
     });
   }
 
-  var __getOwnPropSymbols$5 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$5 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$5 = Object.prototype.propertyIsEnumerable;
+  var __getOwnPropSymbols$6 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$6 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$6 = Object.prototype.propertyIsEnumerable;
   var __objRest$3 = (source, exclude) => {
     var target = {};
     for (var prop in source)
-      if (__hasOwnProp$5.call(source, prop) && exclude.indexOf(prop) < 0)
+      if (__hasOwnProp$6.call(source, prop) && exclude.indexOf(prop) < 0)
         target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols$5)
-      for (var prop of __getOwnPropSymbols$5(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum$5.call(source, prop))
+    if (source != null && __getOwnPropSymbols$6)
+      for (var prop of __getOwnPropSymbols$6(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum$6.call(source, prop))
           target[prop] = source[prop];
       }
     return target;
@@ -1042,17 +1042,17 @@
     };
   } });
 
-  var __getOwnPropSymbols$4 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$4 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$4 = Object.prototype.propertyIsEnumerable;
+  var __getOwnPropSymbols$5 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$5 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$5 = Object.prototype.propertyIsEnumerable;
   var __objRest$2 = (source, exclude) => {
     var target = {};
     for (var prop in source)
-      if (__hasOwnProp$4.call(source, prop) && exclude.indexOf(prop) < 0)
+      if (__hasOwnProp$5.call(source, prop) && exclude.indexOf(prop) < 0)
         target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols$4)
-      for (var prop of __getOwnPropSymbols$4(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum$4.call(source, prop))
+    if (source != null && __getOwnPropSymbols$5)
+      for (var prop of __getOwnPropSymbols$5(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum$5.call(source, prop))
           target[prop] = source[prop];
       }
     return target;
@@ -1116,21 +1116,21 @@
     }), vue.provide(u$1, t);
   }
 
-  var __defProp$3 = Object.defineProperty;
+  var __defProp$4 = Object.defineProperty;
   var __defProps$2 = Object.defineProperties;
   var __getOwnPropDescs$2 = Object.getOwnPropertyDescriptors;
-  var __getOwnPropSymbols$3 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$3 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$3 = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp$3 = (obj, key, value) => key in obj ? __defProp$3(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues$3 = (a, b2) => {
+  var __getOwnPropSymbols$4 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$4 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$4 = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$4 = (obj, key, value) => key in obj ? __defProp$4(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$4 = (a, b2) => {
     for (var prop in b2 || (b2 = {}))
-      if (__hasOwnProp$3.call(b2, prop))
-        __defNormalProp$3(a, prop, b2[prop]);
-    if (__getOwnPropSymbols$3)
-      for (var prop of __getOwnPropSymbols$3(b2)) {
-        if (__propIsEnum$3.call(b2, prop))
-          __defNormalProp$3(a, prop, b2[prop]);
+      if (__hasOwnProp$4.call(b2, prop))
+        __defNormalProp$4(a, prop, b2[prop]);
+    if (__getOwnPropSymbols$4)
+      for (var prop of __getOwnPropSymbols$4(b2)) {
+        if (__propIsEnum$4.call(b2, prop))
+          __defNormalProp$4(a, prop, b2[prop]);
       }
     return a;
   };
@@ -1155,12 +1155,12 @@
   vue.defineComponent({ name: "Description", props: { as: { type: [Object, String], default: "p" } }, setup(t, { attrs: o, slots: s }) {
     let e = b(), n = `headlessui-description-${t$1()}`;
     return vue.onMounted(() => vue.onUnmounted(e.register(n))), () => {
-      let { name: r = "Description", slot: i = vue.ref({}), props: l = {} } = e, c = t, d = __spreadProps$2(__spreadValues$3({}, Object.entries(l).reduce((f, [a, g]) => Object.assign(f, { [a]: vue.unref(g) }), {})), { id: n });
+      let { name: r = "Description", slot: i = vue.ref({}), props: l = {} } = e, c = t, d = __spreadProps$2(__spreadValues$4({}, Object.entries(l).reduce((f, [a, g]) => Object.assign(f, { [a]: vue.unref(g) }), {})), { id: n });
       return P$3({ ourProps: d, theirProps: c, slot: i.value, attrs: o, slots: s, name: r });
     };
   } });
 
-  var __async$h = (__this, __arguments, generator) => {
+  var __async$j = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -1201,7 +1201,7 @@
       for (let e of a.splice(0))
         e();
     }, workQueue() {
-      return __async$h(this, null, function* () {
+      return __async$j(this, null, function* () {
         for (let e of i.splice(0))
           yield e();
       });
@@ -1213,21 +1213,21 @@
     return /iPhone/gi.test(window.navigator.platform) || /Mac/gi.test(window.navigator.platform) && window.navigator.maxTouchPoints > 0;
   }
 
-  var __defProp$2 = Object.defineProperty;
+  var __defProp$3 = Object.defineProperty;
   var __defProps$1 = Object.defineProperties;
   var __getOwnPropDescs$1 = Object.getOwnPropertyDescriptors;
-  var __getOwnPropSymbols$2 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$2 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$2 = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp$2 = (obj, key, value) => key in obj ? __defProp$2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues$2 = (a, b) => {
+  var __getOwnPropSymbols$3 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$3 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$3 = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$3 = (obj, key, value) => key in obj ? __defProp$3(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$3 = (a, b) => {
     for (var prop in b || (b = {}))
-      if (__hasOwnProp$2.call(b, prop))
-        __defNormalProp$2(a, prop, b[prop]);
-    if (__getOwnPropSymbols$2)
-      for (var prop of __getOwnPropSymbols$2(b)) {
-        if (__propIsEnum$2.call(b, prop))
-          __defNormalProp$2(a, prop, b[prop]);
+      if (__hasOwnProp$3.call(b, prop))
+        __defNormalProp$3(a, prop, b[prop]);
+    if (__getOwnPropSymbols$3)
+      for (var prop of __getOwnPropSymbols$3(b)) {
+        if (__propIsEnum$3.call(b, prop))
+          __defNormalProp$3(a, prop, b[prop]);
       }
     return a;
   };
@@ -1235,11 +1235,11 @@
   var __objRest$1 = (source, exclude) => {
     var target = {};
     for (var prop in source)
-      if (__hasOwnProp$2.call(source, prop) && exclude.indexOf(prop) < 0)
+      if (__hasOwnProp$3.call(source, prop) && exclude.indexOf(prop) < 0)
         target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols$2)
-      for (var prop of __getOwnPropSymbols$2(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum$2.call(source, prop))
+    if (source != null && __getOwnPropSymbols$3)
+      for (var prop of __getOwnPropSymbols$3(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum$3.call(source, prop))
           target[prop] = source[prop];
       }
     return target;
@@ -1323,7 +1323,7 @@
       });
       n.observe(l), o(() => n.disconnect());
     }), () => {
-      let o = __spreadProps$1(__spreadValues$2({}, t), { ref: m, id: Q, role: "dialog", "aria-modal": f$1.value === 0 ? true : void 0, "aria-labelledby": E$1.value, "aria-describedby": J.value }), _a = a$1, { open: l, initialFocus: n } = _a, p = __objRest$1(_a, ["open", "initialFocus"]), e = { open: f$1.value === 0 };
+      let o = __spreadProps$1(__spreadValues$3({}, t), { ref: m, id: Q, role: "dialog", "aria-modal": f$1.value === 0 ? true : void 0, "aria-labelledby": E$1.value, "aria-describedby": J.value }), _a = a$1, { open: l, initialFocus: n } = _a, p = __objRest$1(_a, ["open", "initialFocus"]), e = { open: f$1.value === 0 };
       return vue.h(P$1, { force: true }, () => [vue.h(R, () => vue.h(L$1, { target: m.value }, () => vue.h(P$1, { force: false }, () => vue.h(ee, { initialFocus: n, containers: x, features: H.value ? u$4(z.value, { parent: ee.features.RestoreFocus, leaf: ee.features.All & ~ee.features.FocusLock }) : ee.features.None }, () => P$3({ ourProps: o, theirProps: p, slot: e, attrs: t, slots: s$1, visible: f$1.value === 0, features: R$1.RenderStrategy | R$1.Static, name: "Dialog" }))))), vue.h(f, { features: a.Hidden, ref: B })]);
     };
   } });
@@ -1341,7 +1341,7 @@
         throw new Error("A <DialogBackdrop /> component is being used, but a <DialogPanel /> component is missing.");
     }), () => {
       let d = a, S = { id: g, ref: r, "aria-hidden": true };
-      return vue.h(P$1, { force: true }, () => vue.h(R, () => P$3({ ourProps: S, theirProps: __spreadValues$2(__spreadValues$2({}, u), d), slot: { open: i.dialogState.value === 0 }, attrs: u, slots: t, name: "DialogBackdrop" })));
+      return vue.h(P$1, { force: true }, () => vue.h(R, () => P$3({ ourProps: S, theirProps: __spreadValues$3(__spreadValues$3({}, u), d), slot: { open: i.dialogState.value === 0 }, attrs: u, slots: t, name: "DialogBackdrop" })));
     };
   } });
   let _e = vue.defineComponent({ name: "DialogPanel", props: { as: { type: [Object, String], default: "div" } }, setup(a, { attrs: u, slots: t, expose: s }) {
@@ -1395,21 +1395,21 @@
     }), s$1.add(() => d$1(e, ...t, ...i, ...n, ...a)), s$1.add(() => o("cancelled")), s$1.dispose;
   }
 
-  var __defProp$1 = Object.defineProperty;
+  var __defProp$2 = Object.defineProperty;
   var __defProps = Object.defineProperties;
   var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-  var __getOwnPropSymbols$1 = Object.getOwnPropertySymbols;
-  var __hasOwnProp$1 = Object.prototype.hasOwnProperty;
-  var __propIsEnum$1 = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues$1 = (a, b2) => {
+  var __getOwnPropSymbols$2 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$2 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$2 = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$2 = (obj, key, value) => key in obj ? __defProp$2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$2 = (a, b2) => {
     for (var prop in b2 || (b2 = {}))
-      if (__hasOwnProp$1.call(b2, prop))
-        __defNormalProp$1(a, prop, b2[prop]);
-    if (__getOwnPropSymbols$1)
-      for (var prop of __getOwnPropSymbols$1(b2)) {
-        if (__propIsEnum$1.call(b2, prop))
-          __defNormalProp$1(a, prop, b2[prop]);
+      if (__hasOwnProp$2.call(b2, prop))
+        __defNormalProp$2(a, prop, b2[prop]);
+    if (__getOwnPropSymbols$2)
+      for (var prop of __getOwnPropSymbols$2(b2)) {
+        if (__propIsEnum$2.call(b2, prop))
+          __defNormalProp$2(a, prop, b2[prop]);
       }
     return a;
   };
@@ -1417,11 +1417,11 @@
   var __objRest = (source, exclude) => {
     var target = {};
     for (var prop in source)
-      if (__hasOwnProp$1.call(source, prop) && exclude.indexOf(prop) < 0)
+      if (__hasOwnProp$2.call(source, prop) && exclude.indexOf(prop) < 0)
         target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols$1)
-      for (var prop of __getOwnPropSymbols$1(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum$1.call(source, prop))
+    if (source != null && __getOwnPropSymbols$2)
+      for (var prop of __getOwnPropSymbols$2(source)) {
+        if (exclude.indexOf(prop) < 0 && __propIsEnum$2.call(source, prop))
           target[prop] = source[prop];
       }
     return target;
@@ -1470,7 +1470,7 @@
   let _ = R$1.RenderStrategy;
   let oe = vue.defineComponent({ props: { as: { type: [Object, String], default: "div" }, show: { type: [Boolean], default: null }, unmount: { type: [Boolean], default: true }, appear: { type: [Boolean], default: false }, enter: { type: [String], default: "" }, enterFrom: { type: [String], default: "" }, enterTo: { type: [String], default: "" }, entered: { type: [String], default: "" }, leave: { type: [String], default: "" }, leaveFrom: { type: [String], default: "" }, leaveTo: { type: [String], default: "" } }, emits: { beforeEnter: () => true, afterEnter: () => true, beforeLeave: () => true, afterLeave: () => true }, setup(e, { emit: t, attrs: a, slots: s, expose: v }) {
     if (!le() && f$1())
-      return () => vue.h(fe, __spreadProps(__spreadValues$1({}, e), { onBeforeEnter: () => t("beforeEnter"), onAfterEnter: () => t("afterEnter"), onBeforeLeave: () => t("beforeLeave"), onAfterLeave: () => t("afterLeave") }), s);
+      return () => vue.h(fe, __spreadProps(__spreadValues$2({}, e), { onBeforeEnter: () => t("beforeEnter"), onAfterEnter: () => t("afterEnter"), onBeforeLeave: () => t("beforeLeave"), onAfterLeave: () => t("afterLeave") }), s);
     let r = vue.ref(null), n = vue.ref("visible"), l = vue.computed(() => e.unmount ? O$1.Unmount : O$1.Hidden);
     v({ el: r, $el: r });
     let { show: i, appear: x } = ie(), { register: g$1, unregister: p } = se(), R = { value: true }, m = t$1(), S = { value: false }, N = K(() => {
@@ -1531,7 +1531,7 @@
       });
     }), vue.provide(F, l), vue.provide(B, x), () => {
       let g = w$3(e, ["show", "appear", "unmount", "onBeforeEnter", "onBeforeLeave", "onAfterEnter", "onAfterLeave"]), p = { unmount: e.unmount };
-      return P$3({ ourProps: __spreadProps(__spreadValues$1({}, p), { as: "template" }), theirProps: {}, slot: {}, slots: __spreadProps(__spreadValues$1({}, s), { default: () => [vue.h(ue, __spreadValues$1(__spreadValues$1(__spreadValues$1({ onBeforeEnter: () => t("beforeEnter"), onAfterEnter: () => t("afterEnter"), onBeforeLeave: () => t("beforeLeave"), onAfterLeave: () => t("afterLeave") }, a), p), g), s.default)] }), attrs: {}, features: _, visible: n.value === "visible", name: "Transition" });
+      return P$3({ ourProps: __spreadProps(__spreadValues$2({}, p), { as: "template" }), theirProps: {}, slot: {}, slots: __spreadProps(__spreadValues$2({}, s), { default: () => [vue.h(ue, __spreadValues$2(__spreadValues$2(__spreadValues$2({ onBeforeEnter: () => t("beforeEnter"), onAfterEnter: () => t("afterEnter"), onBeforeLeave: () => t("beforeLeave"), onAfterLeave: () => t("afterLeave") }, a), p), g), s.default)] }), attrs: {}, features: _, visible: n.value === "visible", name: "Transition" });
     };
   } });
 
@@ -2198,7 +2198,7 @@
     FyCirclePercent: FyCirclePercent
   });
 
-  var __async$g = (__this, __arguments, generator) => {
+  var __async$i = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -2218,7 +2218,7 @@
       step((generator = generator.apply(__this, __arguments)).next());
     });
   };
-  const getUser = () => __async$g(void 0, null, function* () {
+  const getUser = () => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("User:get", "GET").catch((err) => {
         reject(err);
@@ -2230,56 +2230,56 @@
       });
     });
   });
-  const addGroup = (Name) => __async$g(void 0, null, function* () {
+  const addGroup = (Name) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Group`, "POST", { Name }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const delGroup = (groupUuid) => __async$g(void 0, null, function* () {
+  const delGroup = (groupUuid) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Group/${groupUuid}`, "DELETE", {}).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const delUserFromGroup = (groupUuid, user) => __async$g(void 0, null, function* () {
+  const delUserFromGroup = (groupUuid, user) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Group/${groupUuid}:delMember`, "POST", { user }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const addUserToGroup = (groupUuid, user, access = "R") => __async$g(void 0, null, function* () {
+  const addUserToGroup = (groupUuid, user, access = "R") => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Group/${groupUuid}:addMember`, "POST", { user, access }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const getGroups = (groupUuid) => __async$g(void 0, null, function* () {
+  const getGroups = (groupUuid) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Group${groupUuid ? "/" + groupUuid : ""}`, "GET", {}).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const decodeMetaLink = (link) => __async$g(void 0, null, function* () {
+  const decodeMetaLink = (link) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`MetaObject/Link:decode`, "POST", { id: link }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const joinMetaLink = (link) => __async$g(void 0, null, function* () {
+  const joinMetaLink = (link) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`MetaObject:linkJoin`, "POST", { id: link }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const groupLinkAccess = (groupUuid, access = "R", expires = "+24 hour", type = "permuser") => __async$g(void 0, null, function* () {
+  const groupLinkAccess = (groupUuid, access = "R", expires = "+24 hour", type = "permuser") => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`MetaObject/${groupUuid}:linkAccess`, "POST", {
         access,
@@ -2290,7 +2290,7 @@
       }).then((result) => resolve(result));
     });
   });
-  const userLogout = () => __async$g(void 0, null, function* () {
+  const userLogout = () => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("User:logout", "Post").catch((err) => {
         notificationErrors(err);
@@ -2302,14 +2302,14 @@
       });
     });
   });
-  const updatePwd = (pwd, newPwd) => __async$g(void 0, null, function* () {
+  const updatePwd = (pwd, newPwd) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/@:setPassword`, "POST", { old_password: pwd, password: newPwd }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const updateEmail = (pwd, email) => __async$g(void 0, null, function* () {
+  const updateEmail = (pwd, email) => __async$i(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/@:setEmail`, "POST", { email, current_password: pwd }).catch((err) => {
         notificationErrors(err);
@@ -2333,7 +2333,7 @@
     updateEmail: updateEmail
   });
 
-  var __async$f = (__this, __arguments, generator) => {
+  var __async$h = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -2379,7 +2379,7 @@
         pwd: { required: validators.required }
       };
       const v$ = useVuelidate(rules, { emailField, pwd });
-      const submitUpdatePwd = () => __async$f(this, null, function* () {
+      const submitUpdatePwd = () => __async$h(this, null, function* () {
         eventBus.emit("loading", true);
         error.value = null;
         if (yield v$.value.$validate()) {
@@ -2405,7 +2405,7 @@
         }
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$f(this, null, function* () {
+      vue.onMounted(() => __async$h(this, null, function* () {
         user.value = yield getUser();
         if (user.value) {
           emailField.value = user.value.Email;
@@ -2474,7 +2474,7 @@
   };
   var KlbAccountUpdateEmail = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__file", "KlbAccountUpdateEmail.vue"]]);
 
-  var __async$e = (__this, __arguments, generator) => {
+  var __async$g = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -2521,7 +2521,7 @@
         pwdConfirm: { req: validators.required, sameAs: validators.sameAs(pwd) }
       };
       const v$ = useVuelidate(rules, { oldPwd, pwd, pwdConfirm });
-      const submitUpdatePwd = () => __async$e(this, null, function* () {
+      const submitUpdatePwd = () => __async$g(this, null, function* () {
         eventBus.emit("loading", true);
         error.value = null;
         if (yield v$.value.$validate()) {
@@ -2547,7 +2547,7 @@
         }
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$e(this, null, function* () {
+      vue.onMounted(() => __async$g(this, null, function* () {
         user.value = yield getUser();
       }));
       return (_ctx, _cache) => {
@@ -2622,7 +2622,7 @@
   };
   var KlbAccountUpdatePwd = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__file", "KlbAccountUpdatePwd.vue"]]);
 
-  var __async$d = (__this, __arguments, generator) => {
+  var __async$f = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -2642,21 +2642,21 @@
       step((generator = generator.apply(__this, __arguments)).next());
     });
   };
-  const getUserBilling = () => __async$d(void 0, null, function* () {
+  const getUserBilling = () => __async$f(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("User/Billing", "GET").catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const updateBillingByID = (id, data) => __async$d(void 0, null, function* () {
+  const updateBillingByID = (id, data) => __async$f(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Billing/${id}`, "PATCH", data).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const getPaymentHistory = (page = 1) => __async$d(void 0, null, function* () {
+  const getPaymentHistory = (page = 1) => __async$f(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("Order", "GET", {
         page_no: page,
@@ -2667,7 +2667,7 @@
       }).then((result) => resolve(result));
     });
   });
-  const changePaymentMethodByID = (id, cc_token) => __async$d(void 0, null, function* () {
+  const changePaymentMethodByID = (id, cc_token) => __async$f(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Billing/Method/${id}:change`, "POST", {
         method: "Stripe",
@@ -2677,7 +2677,7 @@
       }).then((result) => resolve(result));
     });
   });
-  const getPaymentMethod = () => __async$d(void 0, null, function* () {
+  const getPaymentMethod = () => __async$f(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("Realm/PaymentMethod:methodInfo", "GET", {
         method: "Stripe"
@@ -2686,7 +2686,7 @@
       }).then((result) => resolve(result));
     });
   });
-  const createBillingProfile = (label, firstname, lastname, zip, country, method, cc_token) => __async$d(void 0, null, function* () {
+  const createBillingProfile = (label, firstname, lastname, zip, country, method, cc_token) => __async$f(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("User/Billing:create", "POST", {
         Label: label,
@@ -2712,7 +2712,7 @@
     createBillingProfile: createBillingProfile
   });
 
-  var __async$c = (__this, __arguments, generator) => {
+  var __async$e = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -2732,21 +2732,21 @@
       step((generator = generator.apply(__this, __arguments)).next());
     });
   };
-  const getCountries = (data) => __async$c(void 0, null, function* () {
+  const getCountries = (data) => __async$e(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("Country", "GET", data).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const getLocationByID = (id) => __async$c(void 0, null, function* () {
+  const getLocationByID = (id) => __async$e(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Location/${id}`, "GET").catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const updateLocationByID = (id, data) => __async$c(void 0, null, function* () {
+  const updateLocationByID = (id, data) => __async$e(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`User/Location/${id}`, "PATCH", data).catch((err) => {
         notificationErrors(err);
@@ -2761,7 +2761,7 @@
     updateLocationByID: updateLocationByID
   });
 
-  var __async$b = (__this, __arguments, generator) => {
+  var __async$d = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -2821,7 +2821,7 @@
       const v$ = useVuelidate(rules, state);
       const user = vue.ref(null);
       const hasBilling = vue.ref(false);
-      const submitEditBillingAddress = () => __async$b(this, null, function* () {
+      const submitEditBillingAddress = () => __async$d(this, null, function* () {
         eventBus.emit("loading", true);
         if (yield v$.value.$validate()) {
           let result = yield updateLocationByID(
@@ -2853,7 +2853,7 @@
         }
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$b(this, null, function* () {
+      vue.onMounted(() => __async$d(this, null, function* () {
         user.value = yield getUser();
         if (user.value) {
           billing.value = yield getUserBilling();
@@ -2938,7 +2938,7 @@
   };
   var KlbBillingAddressSingle = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "KlbBillingAddressSingle.vue"]]);
 
-  var __async$a = (__this, __arguments, generator) => {
+  var __async$c = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -3023,7 +3023,7 @@
       const stripeCard = vue.ref(null);
       const cardToken = vue.ref(null);
       vue.ref(null);
-      const submitBillingCreate = () => __async$a(this, null, function* () {
+      const submitBillingCreate = () => __async$c(this, null, function* () {
         if (yield v$.value.$validate()) {
           eventBus.emit("loading", true);
           cardToken.value = yield stripe.value.createToken(stripeCard.value, {
@@ -3045,7 +3045,7 @@
           props.onComplete(createBillingProfile.value);
         }
       });
-      const showBillingModal = () => __async$a(this, null, function* () {
+      const showBillingModal = () => __async$c(this, null, function* () {
         eventBus.emit("FirstBillingModal", true);
         stripePK.value = yield getPaymentMethod();
         if (stripePK.value && stripePK.value.data && stripePK.value.data.Fields && stripePK.value.data.Fields.cc_token && stripePK.value.data.Fields.cc_token.attributes.key) {
@@ -3056,7 +3056,7 @@
           stripeCard.value.mount("#theCard");
         }
       });
-      vue.onMounted(() => __async$a(this, null, function* () {
+      vue.onMounted(() => __async$c(this, null, function* () {
         user.value = yield getUser();
         eventBus.on("ShowCreateBillingProfile", (r) => {
           if (r)
@@ -3156,7 +3156,7 @@
   };
   var KlbBillingProfileCreate = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "KlbBillingProfileCreate.vue"]]);
 
-  var __async$9 = (__this, __arguments, generator) => {
+  var __async$b = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -3225,7 +3225,7 @@
       const location = vue.ref(null);
       const i18next = useTranslation();
       const hasBilling = vue.ref(false);
-      const switchToEdit = () => __async$9(this, null, function* () {
+      const switchToEdit = () => __async$b(this, null, function* () {
         isEditing.value = true;
         stripePK.value = yield getPaymentMethod();
         if (stripePK.value && stripePK.value.data && stripePK.value.data.Fields && stripePK.value.data.Fields.cc_token && stripePK.value.data.Fields.cc_token.attributes.key) {
@@ -3236,7 +3236,7 @@
           stripeCard.value.mount("#theCard");
         }
       });
-      const submitEditPaymentInfo = () => __async$9(this, null, function* () {
+      const submitEditPaymentInfo = () => __async$b(this, null, function* () {
         eventBus.emit("loading", true);
         cardToken.value = yield stripe.value.createToken(stripeCard.value, {
           name: `${location.value.data.First_Name} ${location.value.data.Last_Name}`,
@@ -3264,7 +3264,7 @@
           4e3
         );
       });
-      vue.onMounted(() => __async$9(this, null, function* () {
+      vue.onMounted(() => __async$b(this, null, function* () {
         user.value = yield getUser();
         if (user.value) {
           billing.value = yield getUserBilling();
@@ -3327,7 +3327,7 @@
   };
   var KlbBillingUpdatePayment = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "KlbBillingUpdatePayment.vue"]]);
 
-  var __async$8 = (__this, __arguments, generator) => {
+  var __async$a = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -3431,7 +3431,7 @@
         action: props.forceAction ? props.forceAction : void 0
       });
       const completed = vue.ref(false);
-      const forgotPassword = () => __async$8(this, null, function* () {
+      const forgotPassword = () => __async$a(this, null, function* () {
         if (yield v$.value.$validate()) {
           let data = yield klbfw.rest("User:forgot_password", "POST", {
             login: state.userEmail
@@ -3445,7 +3445,7 @@
           }
         }
       });
-      const userFlow = (..._0) => __async$8(this, [..._0], function* (params = { initial: false }) {
+      const userFlow = (..._0) => __async$a(this, [..._0], function* (params = { initial: false }) {
         eventBus.emit("loading", true);
         fieldsError.value = {};
         hasOauth.value = false;
@@ -3513,7 +3513,7 @@
         }
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$8(this, null, function* () {
+      vue.onMounted(() => __async$a(this, null, function* () {
         yield userFlow({ intial: true });
       }));
       return (_ctx, _cache) => {
@@ -3671,7 +3671,7 @@
   };
   var KlbSignInSignUp = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "KlbSignInSignUp.vue"]]);
 
-  var __async$7 = (__this, __arguments, generator) => {
+  var __async$9 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -3691,35 +3691,35 @@
       step((generator = generator.apply(__this, __arguments)).next());
     });
   };
-  const catalogSearch = (sort = "Basic.Priority:asc") => __async$7(void 0, null, function* () {
+  const catalogSearch = (sort = "Basic.Priority:asc") => __async$9(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("/Catalog/Product:search", "GET", { sort }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const addProductToCart = (id_product) => __async$7(void 0, null, function* () {
+  const addProductToCart = (id_product) => __async$9(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("Catalog/Cart/@:process", "POST", { request: id_product }).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const getOrder = (uid) => __async$7(void 0, null, function* () {
+  const getOrder = (uid) => __async$9(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest(`Order/${uid}`, "GET").catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const orderProcess = () => __async$7(void 0, null, function* () {
+  const orderProcess = () => __async$9(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("Catalog/Cart/@:process", "GET").catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const orderProcessPost = (_0, ..._1) => __async$7(void 0, [_0, ..._1], function* (order, data = {}) {
+  const orderProcessPost = (_0, ..._1) => __async$9(void 0, [_0, ..._1], function* (order, data = {}) {
     return new Promise((resolve, reject) => {
       klbfw.rest(`Order/${order}:process`, "POST", data).catch((err) => {
         console.log("orderProcessPayment" + err);
@@ -3727,21 +3727,21 @@
       }).then((result) => resolve(result));
     });
   });
-  const resetCart = () => __async$7(void 0, null, function* () {
+  const resetCart = () => __async$9(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("Catalog/Cart/@:reset", "POST", {}).catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const getCart = () => __async$7(void 0, null, function* () {
+  const getCart = () => __async$9(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("/Catalog/Cart", "GET").catch((err) => {
         notificationErrors(err);
       }).then((result) => resolve(result));
     });
   });
-  const cartCreateOrder = (billing) => __async$7(void 0, null, function* () {
+  const cartCreateOrder = (billing) => __async$9(void 0, null, function* () {
     return new Promise((resolve, reject) => {
       klbfw.rest("Catalog/Cart/@:createOrder", "POST", { Billing: billing }).catch((err) => {
         notificationErrors(err);
@@ -3761,23 +3761,23 @@
     cartCreateOrder: cartCreateOrder
   });
 
-  var __defProp = Object.defineProperty;
-  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-  var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __propIsEnum = Object.prototype.propertyIsEnumerable;
-  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues = (a, b) => {
+  var __defProp$1 = Object.defineProperty;
+  var __getOwnPropSymbols$1 = Object.getOwnPropertySymbols;
+  var __hasOwnProp$1 = Object.prototype.hasOwnProperty;
+  var __propIsEnum$1 = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues$1 = (a, b) => {
     for (var prop in b || (b = {}))
-      if (__hasOwnProp.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    if (__getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(b)) {
-        if (__propIsEnum.call(b, prop))
-          __defNormalProp(a, prop, b[prop]);
+      if (__hasOwnProp$1.call(b, prop))
+        __defNormalProp$1(a, prop, b[prop]);
+    if (__getOwnPropSymbols$1)
+      for (var prop of __getOwnPropSymbols$1(b)) {
+        if (__propIsEnum$1.call(b, prop))
+          __defNormalProp$1(a, prop, b[prop]);
       }
     return a;
   };
-  var __async$6 = (__this, __arguments, generator) => {
+  var __async$8 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -3875,7 +3875,7 @@
           methodProperties.stripeCard.mount("#theCard");
         }
       });
-      const processOrder = () => __async$6(this, null, function* () {
+      const processOrder = () => __async$8(this, null, function* () {
         eventBus.emit("loading", true);
         if (currentMethod.value == "Stripe") {
           methodProperties.cardToken = yield methodProperties.stripe.createToken(
@@ -3885,14 +3885,14 @@
               email: user.value.Email
             }
           );
-          let data = __spreadValues({}, formData);
+          let data = __spreadValues$1({}, formData);
           data.session = session.value;
           data.cc_token = methodProperties.cardToken.token.id;
           data.method = currentMethod.value;
           let orderResult = yield orderProcessPost(props.orderUuid, data);
           props.onComplete(orderResult);
         } else if (currentMethod.value == "Free") {
-          let data = __spreadValues({}, formData);
+          let data = __spreadValues$1({}, formData);
           data.session = session.value;
           data.method = currentMethod.value;
           let orderResult = yield orderProcessPost(props.orderUuid, data);
@@ -3900,7 +3900,7 @@
         }
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$6(this, null, function* () {
+      vue.onMounted(() => __async$8(this, null, function* () {
         user.value = yield getUser();
         order.value = yield orderProcessPost(props.orderUuid);
         order.value.data.methods_order.forEach((method) => {
@@ -4047,7 +4047,7 @@
   };
   var KlbProcessOrder = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "KlbProcessOrder.vue"]]);
 
-  var __async$5 = (__this, __arguments, generator) => {
+  var __async$7 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -4106,7 +4106,7 @@
       };
       const v$ = useVuelidate(rules, state);
       const user = vue.ref(null);
-      const submitEditBillingAddress = () => __async$5(this, null, function* () {
+      const submitEditBillingAddress = () => __async$7(this, null, function* () {
         eventBus.emit("loading", true);
         if (yield v$.value.$validate()) {
           let result = yield cartCreateOrder({
@@ -4121,7 +4121,7 @@
         }
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$5(this, null, function* () {
+      vue.onMounted(() => __async$7(this, null, function* () {
         user.value = yield getUser();
         if (user.value) {
           billing.value = yield getUserBilling();
@@ -4204,7 +4204,7 @@
   };
   var KlbBillingAddressCreateOrder = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "KlbBillingAddressCreateOrder.vue"]]);
 
-  var __async$4 = (__this, __arguments, generator) => {
+  var __async$6 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -4238,12 +4238,12 @@
       const paymentHistory = vue.ref(null);
       const paging = vue.ref(null);
       const eventBus = useEventBus();
-      const _getPaymentHistory = (page = 1) => __async$4(this, null, function* () {
+      const _getPaymentHistory = (page = 1) => __async$6(this, null, function* () {
         let tmp = yield getPaymentHistory(page);
         paymentHistory.value = yield tmp.data;
         paging.value = yield tmp.paging;
       });
-      vue.onMounted(() => __async$4(this, null, function* () {
+      vue.onMounted(() => __async$6(this, null, function* () {
         user.value = yield getUser();
         if (user.value) {
           _getPaymentHistory();
@@ -4345,7 +4345,7 @@
   };
   var KlbBillingHistory = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "KlbBillingHistory.vue"]]);
 
-  var __async$3 = (__this, __arguments, generator) => {
+  var __async$5 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -4393,13 +4393,13 @@
       const i18next = useTranslation();
       vue.ref(null);
       const groups = vue.ref(null);
-      const _deleteGroup = (groupUuid, name) => __async$3(this, null, function* () {
+      const _deleteGroup = (groupUuid, name) => __async$5(this, null, function* () {
         eventBus.emit("showConfirm", {
           title: i18next.t("workgroup_del_group_confirm_title"),
           desc: i18next.t("workgroup_del_group_confirm_desc", {
             group: name
           }),
-          onConfirm: () => __async$3(this, null, function* () {
+          onConfirm: () => __async$5(this, null, function* () {
             eventBus.emit("loading", true);
             yield delGroup(groupUuid);
             yield _getGroups();
@@ -4408,12 +4408,12 @@
           })
         });
       });
-      const _getGroups = (page = 1, groupUuid = void 0) => __async$3(this, null, function* () {
+      const _getGroups = (page = 1, groupUuid = void 0) => __async$5(this, null, function* () {
         eventBus.emit("loading", true);
         groups.value = yield getGroups(groupUuid);
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$3(this, null, function* () {
+      vue.onMounted(() => __async$5(this, null, function* () {
         yield _getGroups();
       }));
       return (_ctx, _cache) => {
@@ -4490,7 +4490,7 @@
             joinURL: __props.joinURL
           }, null, 8, ["roles", "joinURL"]),
           vue.createVNode(_component_KlbAddGroupModal, {
-            onComplete: () => __async$3(this, null, function* () {
+            onComplete: () => __async$5(this, null, function* () {
               _getGroups();
             })
           }, null, 8, ["onComplete"])
@@ -4500,7 +4500,7 @@
   };
   var KlbWorkGroup = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "KlbWorkGroup.vue"]]);
 
-  var __async$2 = (__this, __arguments, generator) => {
+  var __async$4 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -4538,7 +4538,7 @@
     setup(__props) {
       const props = __props;
       const groupUsers = vue.ref(null);
-      const groupUserModal = (groupUuid) => __async$2(this, null, function* () {
+      const groupUserModal = (groupUuid) => __async$4(this, null, function* () {
         eventBus.emit("loading", true);
         groupUsers.value = yield getGroups(groupUuid);
         eventBus.emit("GroupUsersModal", true);
@@ -4550,18 +4550,18 @@
           return "Owner";
         return props.roles.filter((r) => r[0] == role)[0][1];
       };
-      const _delUserFromGroup = (user) => __async$2(this, null, function* () {
+      const _delUserFromGroup = (user) => __async$4(this, null, function* () {
         eventBus.emit("loading", true);
         yield delUserFromGroup(groupUsers.value.data.User_Group__, user);
         groupUsers.value = yield getGroups(groupUsers.value.data.User_Group__);
         eventBus.emit("resetConfirm", true);
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async$2(this, null, function* () {
-        eventBus.on("KlbGroupUsersModal", (groupUuid) => __async$2(this, null, function* () {
+      vue.onMounted(() => __async$4(this, null, function* () {
+        eventBus.on("KlbGroupUsersModal", (groupUuid) => __async$4(this, null, function* () {
           yield groupUserModal(groupUuid);
         }));
-        eventBus.on("KlbAddUserToGroupCompleted", (groupUuid) => __async$2(this, null, function* () {
+        eventBus.on("KlbAddUserToGroupCompleted", (groupUuid) => __async$4(this, null, function* () {
           eventBus.emit("loading", true);
           groupUsers.value = yield getGroups(groupUuid);
           eventBus.emit("GroupUsersModal", true);
@@ -4615,7 +4615,7 @@
                       _ctx.$eventBus.emit("showConfirm", {
                         title: _ctx.$t("workgroup_del_user_confirm_title"),
                         desc: `${_ctx.$t("workgroup_del_user_confirm_desc", { user: property.data.item.User.Display_Name, group: groupUsers.value.data.Name })}`,
-                        onConfirm: () => __async$2(this, null, function* () {
+                        onConfirm: () => __async$4(this, null, function* () {
                           yield _delUserFromGroup(property.data.item.User.User__);
                         })
                       });
@@ -4645,7 +4645,7 @@
   };
   var KlbGroupUsersModal = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__file", "KlbGroupUsersModal.vue"]]);
 
-  var __async$1 = (__this, __arguments, generator) => {
+  var __async$3 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -4688,7 +4688,7 @@
         }
       };
       const v$ = useVuelidate(rules, state);
-      const _addGroup = () => __async$1(this, null, function* () {
+      const _addGroup = () => __async$3(this, null, function* () {
         eventBus.emit("loading", true);
         if (yield v$.value.group.$validate()) {
           let res = yield addGroup(state.group.groupName);
@@ -4730,7 +4730,7 @@
   };
   var KlbAddGroupModal = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__file", "KlbAddGroupModal.vue"]]);
 
-  var __async = (__this, __arguments, generator) => {
+  var __async$2 = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
       var fulfilled = (value) => {
         try {
@@ -4801,14 +4801,14 @@
         }
       };
       const v$ = useVuelidate(rules, state);
-      const addUserModal = (groupUuid) => __async(this, null, function* () {
+      const addUserModal = (groupUuid) => __async$2(this, null, function* () {
         eventBus.emit("loading", true);
         groupUsers.value = yield getGroups(groupUuid);
         eventBus.emit("AddUserGroupModal", true);
         accessLinkLink.value = null;
         eventBus.emit("loading", false);
       });
-      const generateAccessLink = () => __async(this, null, function* () {
+      const generateAccessLink = () => __async$2(this, null, function* () {
         eventBus.emit("loading", true);
         accessLink.value = yield groupLinkAccess(
           groupUsers.value.data.User_Group__,
@@ -4817,7 +4817,7 @@
         accessLinkLink.value = props.joinURL + accessLink.value.data.Link;
         eventBus.emit("loading", false);
       });
-      const _addUserToGroup = () => __async(this, null, function* () {
+      const _addUserToGroup = () => __async$2(this, null, function* () {
         eventBus.emit("loading", true);
         if (yield v$.value.user.$validate()) {
           addUserGroupError.value = null;
@@ -4840,8 +4840,8 @@
         }
         eventBus.emit("loading", false);
       });
-      vue.onMounted(() => __async(this, null, function* () {
-        eventBus.on("KlbAddUserToGroup", (groupUuid) => __async(this, null, function* () {
+      vue.onMounted(() => __async$2(this, null, function* () {
+        eventBus.on("KlbAddUserToGroup", (groupUuid) => __async$2(this, null, function* () {
           eventBus.emit("loading", true);
           yield addUserModal(groupUuid);
           eventBus.emit("loading", false);
@@ -4995,6 +4995,628 @@
     return foundPath;
   };
 
+  function makeMap(str, expectsLowerCase) {
+    const map = /* @__PURE__ */ Object.create(null);
+    const list = str.split(",");
+    for (let i = 0; i < list.length; i++) {
+      map[list[i]] = true;
+    }
+    return expectsLowerCase ? (val) => !!map[val.toLowerCase()] : (val) => !!map[val];
+  }
+  const specialBooleanAttrs = `itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly`;
+  const isBooleanAttr = /* @__PURE__ */ makeMap(specialBooleanAttrs + `,async,autofocus,autoplay,controls,default,defer,disabled,hidden,loop,open,required,reversed,scoped,seamless,checked,muted,multiple,selected`);
+  function includeBooleanAttr(value) {
+    return !!value || value === "";
+  }
+  const unsafeAttrCharRE = /[>/="'\u0009\u000a\u000c\u0020]/;
+  const attrValidationCache = {};
+  function isSSRSafeAttrName(name) {
+    if (attrValidationCache.hasOwnProperty(name)) {
+      return attrValidationCache[name];
+    }
+    const isUnsafe = unsafeAttrCharRE.test(name);
+    if (isUnsafe) {
+      console.error(`unsafe attribute name: ${name}`);
+    }
+    return attrValidationCache[name] = !isUnsafe;
+  }
+  const propsToAttrMap = {
+    acceptCharset: "accept-charset",
+    className: "class",
+    htmlFor: "for",
+    httpEquiv: "http-equiv"
+  };
+  const isNoUnitNumericStyleProp = /* @__PURE__ */ makeMap(`animation-iteration-count,border-image-outset,border-image-slice,border-image-width,box-flex,box-flex-group,box-ordinal-group,column-count,columns,flex,flex-grow,flex-positive,flex-shrink,flex-negative,flex-order,grid-row,grid-row-end,grid-row-span,grid-row-start,grid-column,grid-column-end,grid-column-span,grid-column-start,font-weight,line-clamp,line-height,opacity,order,orphans,tab-size,widows,z-index,zoom,fill-opacity,flood-opacity,stop-opacity,stroke-dasharray,stroke-dashoffset,stroke-miterlimit,stroke-opacity,stroke-width`);
+  function normalizeStyle(value) {
+    if (isArray(value)) {
+      const res = {};
+      for (let i = 0; i < value.length; i++) {
+        const item = value[i];
+        const normalized = isString(item) ? parseStringStyle(item) : normalizeStyle(item);
+        if (normalized) {
+          for (const key in normalized) {
+            res[key] = normalized[key];
+          }
+        }
+      }
+      return res;
+    } else if (isString(value)) {
+      return value;
+    } else if (isObject(value)) {
+      return value;
+    }
+  }
+  const listDelimiterRE = /;(?![^(]*\))/g;
+  const propertyDelimiterRE = /:(.+)/;
+  function parseStringStyle(cssText) {
+    const ret = {};
+    cssText.split(listDelimiterRE).forEach((item) => {
+      if (item) {
+        const tmp = item.split(propertyDelimiterRE);
+        tmp.length > 1 && (ret[tmp[0].trim()] = tmp[1].trim());
+      }
+    });
+    return ret;
+  }
+  function stringifyStyle(styles) {
+    let ret = "";
+    if (!styles || isString(styles)) {
+      return ret;
+    }
+    for (const key in styles) {
+      const value = styles[key];
+      const normalizedKey = key.startsWith(`--`) ? key : hyphenate(key);
+      if (isString(value) || typeof value === "number" && isNoUnitNumericStyleProp(normalizedKey)) {
+        ret += `${normalizedKey}:${value};`;
+      }
+    }
+    return ret;
+  }
+  function normalizeClass(value) {
+    let res = "";
+    if (isString(value)) {
+      res = value;
+    } else if (isArray(value)) {
+      for (let i = 0; i < value.length; i++) {
+        const normalized = normalizeClass(value[i]);
+        if (normalized) {
+          res += normalized + " ";
+        }
+      }
+    } else if (isObject(value)) {
+      for (const name in value) {
+        if (value[name]) {
+          res += name + " ";
+        }
+      }
+    }
+    return res.trim();
+  }
+  const SVG_TAGS = "svg,animate,animateMotion,animateTransform,circle,clipPath,color-profile,defs,desc,discard,ellipse,feBlend,feColorMatrix,feComponentTransfer,feComposite,feConvolveMatrix,feDiffuseLighting,feDisplacementMap,feDistanceLight,feDropShadow,feFlood,feFuncA,feFuncB,feFuncG,feFuncR,feGaussianBlur,feImage,feMerge,feMergeNode,feMorphology,feOffset,fePointLight,feSpecularLighting,feSpotLight,feTile,feTurbulence,filter,foreignObject,g,hatch,hatchpath,image,line,linearGradient,marker,mask,mesh,meshgradient,meshpatch,meshrow,metadata,mpath,path,pattern,polygon,polyline,radialGradient,rect,set,solidcolor,stop,switch,symbol,text,textPath,title,tspan,unknown,use,view";
+  const VOID_TAGS = "area,base,br,col,embed,hr,img,input,link,meta,param,source,track,wbr";
+  const isSVGTag = /* @__PURE__ */ makeMap(SVG_TAGS);
+  const isVoidTag = /* @__PURE__ */ makeMap(VOID_TAGS);
+  const escapeRE = /["'&<>]/;
+  function escapeHtml(string) {
+    const str = "" + string;
+    const match = escapeRE.exec(str);
+    if (!match) {
+      return str;
+    }
+    let html = "";
+    let escaped;
+    let index;
+    let lastIndex = 0;
+    for (index = match.index; index < str.length; index++) {
+      switch (str.charCodeAt(index)) {
+        case 34:
+          escaped = "&quot;";
+          break;
+        case 38:
+          escaped = "&amp;";
+          break;
+        case 39:
+          escaped = "&#39;";
+          break;
+        case 60:
+          escaped = "&lt;";
+          break;
+        case 62:
+          escaped = "&gt;";
+          break;
+        default:
+          continue;
+      }
+      if (lastIndex !== index) {
+        html += str.slice(lastIndex, index);
+      }
+      lastIndex = index + 1;
+      html += escaped;
+    }
+    return lastIndex !== index ? html + str.slice(lastIndex, index) : html;
+  }
+  const commentStripRE = /^-?>|<!--|-->|--!>|<!-$/g;
+  function escapeHtmlComment(src) {
+    return src.replace(commentStripRE, "");
+  }
+  const NOOP = () => {
+  };
+  const onRE = /^on[^a-z]/;
+  const isOn = (key) => onRE.test(key);
+  const isArray = Array.isArray;
+  const isFunction = (val) => typeof val === "function";
+  const isString = (val) => typeof val === "string";
+  const isObject = (val) => val !== null && typeof val === "object";
+  const isPromise = (val) => {
+    return isObject(val) && isFunction(val.then) && isFunction(val.catch);
+  };
+  const cacheStringFunction = (fn) => {
+    const cache = /* @__PURE__ */ Object.create(null);
+    return (str) => {
+      const hit = cache[str];
+      return hit || (cache[str] = fn(str));
+    };
+  };
+  const hyphenateRE = /\B([A-Z])/g;
+  const hyphenate = cacheStringFunction((str) => str.replace(hyphenateRE, "-$1").toLowerCase());
+
+  var __defProp = Object.defineProperty;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b || (b = {}))
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+  var __async$1 = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+  const shouldIgnoreProp = makeMap(`,key,ref,innerHTML,textContent,ref_key,ref_for`);
+  function ssrRenderAttrs(props, tag) {
+    let ret = "";
+    for (const key in props) {
+      if (shouldIgnoreProp(key) || isOn(key) || tag === "textarea" && key === "value") {
+        continue;
+      }
+      const value = props[key];
+      if (key === "class") {
+        ret += ` class="${ssrRenderClass(value)}"`;
+      } else if (key === "style") {
+        ret += ` style="${ssrRenderStyle(value)}"`;
+      } else {
+        ret += ssrRenderDynamicAttr(key, value, tag);
+      }
+    }
+    return ret;
+  }
+  function ssrRenderDynamicAttr(key, value, tag) {
+    if (!isRenderableValue(value)) {
+      return ``;
+    }
+    const attrKey = tag && (tag.indexOf("-") > 0 || isSVGTag(tag)) ? key : propsToAttrMap[key] || key.toLowerCase();
+    if (isBooleanAttr(attrKey)) {
+      return includeBooleanAttr(value) ? ` ${attrKey}` : ``;
+    } else if (isSSRSafeAttrName(attrKey)) {
+      return value === "" ? ` ${attrKey}` : ` ${attrKey}="${escapeHtml(value)}"`;
+    } else {
+      console.warn(`[@vue/server-renderer] Skipped rendering unsafe attribute name: ${attrKey}`);
+      return ``;
+    }
+  }
+  function isRenderableValue(value) {
+    if (value == null) {
+      return false;
+    }
+    const type = typeof value;
+    return type === "string" || type === "number" || type === "boolean";
+  }
+  function ssrRenderClass(raw) {
+    return escapeHtml(normalizeClass(raw));
+  }
+  function ssrRenderStyle(raw) {
+    if (!raw) {
+      return "";
+    }
+    if (isString(raw)) {
+      return escapeHtml(raw);
+    }
+    const styles = normalizeStyle(raw);
+    return escapeHtml(stringifyStyle(styles));
+  }
+  function ssrCompile(template, instance) {
+    {
+      throw new Error(`On-the-fly template compilation is not supported in the ESM build of @vue/server-renderer. All templates must be pre-compiled into render functions.`);
+    }
+  }
+  function ssrRenderTeleport(parentPush, contentRenderFn, target, disabled, parentComponent) {
+    parentPush("<!--teleport start-->");
+    const context = parentComponent.appContext.provides[vue.ssrContextKey];
+    const teleportBuffers = context.__teleportBuffers || (context.__teleportBuffers = {});
+    const targetBuffer = teleportBuffers[target] || (teleportBuffers[target] = []);
+    const bufferIndex = targetBuffer.length;
+    let teleportContent;
+    if (disabled) {
+      contentRenderFn(parentPush);
+      teleportContent = `<!--teleport anchor-->`;
+    } else {
+      const { getBuffer, push } = createBuffer();
+      contentRenderFn(push);
+      push(`<!--teleport anchor-->`);
+      teleportContent = getBuffer();
+    }
+    targetBuffer.splice(bufferIndex, 0, teleportContent);
+    parentPush("<!--teleport end-->");
+  }
+  const { createComponentInstance, setCurrentRenderingInstance, setupComponent, renderComponentRoot, normalizeVNode } = vue.ssrUtils;
+  function createBuffer() {
+    let appendable = false;
+    const buffer = [];
+    return {
+      getBuffer() {
+        return buffer;
+      },
+      push(item) {
+        const isStringItem = isString(item);
+        if (appendable && isStringItem) {
+          buffer[buffer.length - 1] += item;
+        } else {
+          buffer.push(item);
+        }
+        appendable = isStringItem;
+        if (isPromise(item) || isArray(item) && item.hasAsync) {
+          buffer.hasAsync = true;
+        }
+      }
+    };
+  }
+  function renderComponentVNode(vnode, parentComponent = null, slotScopeId) {
+    const instance = createComponentInstance(vnode, parentComponent, null);
+    const res = setupComponent(instance, true);
+    const hasAsyncSetup = isPromise(res);
+    const prefetches = instance.sp;
+    if (hasAsyncSetup || prefetches) {
+      let p = hasAsyncSetup ? res : Promise.resolve();
+      if (prefetches) {
+        p = p.then(() => Promise.all(prefetches.map((prefetch) => prefetch.call(instance.proxy)))).catch(() => {
+        });
+      }
+      return p.then(() => renderComponentSubTree(instance, slotScopeId));
+    } else {
+      return renderComponentSubTree(instance, slotScopeId);
+    }
+  }
+  function renderComponentSubTree(instance, slotScopeId) {
+    const comp = instance.type;
+    const { getBuffer, push } = createBuffer();
+    if (isFunction(comp)) {
+      let root = renderComponentRoot(instance);
+      if (!comp.props) {
+        for (const key in instance.attrs) {
+          if (key.startsWith(`data-v-`)) {
+            (root.props || (root.props = {}))[key] = ``;
+          }
+        }
+      }
+      renderVNode(push, instance.subTree = root, instance, slotScopeId);
+    } else {
+      if ((!instance.render || instance.render === NOOP) && !instance.ssrRender && !comp.ssrRender && isString(comp.template)) {
+        comp.ssrRender = ssrCompile(comp.template);
+      }
+      for (const e of instance.scope.effects) {
+        if (e.computed)
+          e.computed._cacheable = true;
+      }
+      const ssrRender = instance.ssrRender || comp.ssrRender;
+      if (ssrRender) {
+        let attrs = instance.inheritAttrs !== false ? instance.attrs : void 0;
+        let hasCloned = false;
+        let cur = instance;
+        while (true) {
+          const scopeId = cur.vnode.scopeId;
+          if (scopeId) {
+            if (!hasCloned) {
+              attrs = __spreadValues({}, attrs);
+              hasCloned = true;
+            }
+            attrs[scopeId] = "";
+          }
+          const parent = cur.parent;
+          if (parent && parent.subTree && parent.subTree === cur.vnode) {
+            cur = parent;
+          } else {
+            break;
+          }
+        }
+        if (slotScopeId) {
+          if (!hasCloned)
+            attrs = __spreadValues({}, attrs);
+          attrs[slotScopeId.trim()] = "";
+        }
+        const prev = setCurrentRenderingInstance(instance);
+        try {
+          ssrRender(
+            instance.proxy,
+            push,
+            instance,
+            attrs,
+            instance.props,
+            instance.setupState,
+            instance.data,
+            instance.ctx
+          );
+        } finally {
+          setCurrentRenderingInstance(prev);
+        }
+      } else if (instance.render && instance.render !== NOOP) {
+        renderVNode(push, instance.subTree = renderComponentRoot(instance), instance, slotScopeId);
+      } else {
+        const componentName = comp.name || comp.__file || `<Anonymous>`;
+        vue.warn(`Component ${componentName} is missing template or render function.`);
+        push(`<!---->`);
+      }
+    }
+    return getBuffer();
+  }
+  function renderVNode(push, vnode, parentComponent, slotScopeId) {
+    const { type, shapeFlag, children } = vnode;
+    switch (type) {
+      case vue.Text:
+        push(escapeHtml(children));
+        break;
+      case vue.Comment:
+        push(children ? `<!--${escapeHtmlComment(children)}-->` : `<!---->`);
+        break;
+      case vue.Static:
+        push(children);
+        break;
+      case vue.Fragment:
+        if (vnode.slotScopeIds) {
+          slotScopeId = (slotScopeId ? slotScopeId + " " : "") + vnode.slotScopeIds.join(" ");
+        }
+        push(`<!--[-->`);
+        renderVNodeChildren(push, children, parentComponent, slotScopeId);
+        push(`<!--]-->`);
+        break;
+      default:
+        if (shapeFlag & 1) {
+          renderElementVNode(push, vnode, parentComponent, slotScopeId);
+        } else if (shapeFlag & 6) {
+          push(renderComponentVNode(vnode, parentComponent, slotScopeId));
+        } else if (shapeFlag & 64) {
+          renderTeleportVNode(push, vnode, parentComponent, slotScopeId);
+        } else if (shapeFlag & 128) {
+          renderVNode(push, vnode.ssContent, parentComponent, slotScopeId);
+        } else {
+          vue.warn("[@vue/server-renderer] Invalid VNode type:", type, `(${typeof type})`);
+        }
+    }
+  }
+  function renderVNodeChildren(push, children, parentComponent, slotScopeId) {
+    for (let i = 0; i < children.length; i++) {
+      renderVNode(push, normalizeVNode(children[i]), parentComponent, slotScopeId);
+    }
+  }
+  function renderElementVNode(push, vnode, parentComponent, slotScopeId) {
+    const tag = vnode.type;
+    let { props, children, shapeFlag, scopeId, dirs } = vnode;
+    let openTag = `<${tag}`;
+    if (dirs) {
+      props = applySSRDirectives(vnode, props, dirs);
+    }
+    if (props) {
+      openTag += ssrRenderAttrs(props, tag);
+    }
+    if (scopeId) {
+      openTag += ` ${scopeId}`;
+    }
+    let curParent = parentComponent;
+    let curVnode = vnode;
+    while (curParent && curVnode === curParent.subTree) {
+      curVnode = curParent.vnode;
+      if (curVnode.scopeId) {
+        openTag += ` ${curVnode.scopeId}`;
+      }
+      curParent = curParent.parent;
+    }
+    if (slotScopeId) {
+      openTag += ` ${slotScopeId}`;
+    }
+    push(openTag + `>`);
+    if (!isVoidTag(tag)) {
+      let hasChildrenOverride = false;
+      if (props) {
+        if (props.innerHTML) {
+          hasChildrenOverride = true;
+          push(props.innerHTML);
+        } else if (props.textContent) {
+          hasChildrenOverride = true;
+          push(escapeHtml(props.textContent));
+        } else if (tag === "textarea" && props.value) {
+          hasChildrenOverride = true;
+          push(escapeHtml(props.value));
+        }
+      }
+      if (!hasChildrenOverride) {
+        if (shapeFlag & 8) {
+          push(escapeHtml(children));
+        } else if (shapeFlag & 16) {
+          renderVNodeChildren(push, children, parentComponent, slotScopeId);
+        }
+      }
+      push(`</${tag}>`);
+    }
+  }
+  function applySSRDirectives(vnode, rawProps, dirs) {
+    const toMerge = [];
+    for (let i = 0; i < dirs.length; i++) {
+      const binding = dirs[i];
+      const { dir: { getSSRProps } } = binding;
+      if (getSSRProps) {
+        const props = getSSRProps(binding, vnode);
+        if (props)
+          toMerge.push(props);
+      }
+    }
+    return vue.mergeProps(rawProps || {}, ...toMerge);
+  }
+  function renderTeleportVNode(push, vnode, parentComponent, slotScopeId) {
+    const target = vnode.props && vnode.props.to;
+    const disabled = vnode.props && vnode.props.disabled;
+    if (!target) {
+      if (!disabled) {
+        vue.warn(`[@vue/server-renderer] Teleport is missing target prop.`);
+      }
+      return [];
+    }
+    if (!isString(target)) {
+      vue.warn(`[@vue/server-renderer] Teleport target must be a query selector string.`);
+      return [];
+    }
+    ssrRenderTeleport(push, (push2) => {
+      renderVNodeChildren(push2, vnode.children, parentComponent, slotScopeId);
+    }, target, disabled || disabled === "", parentComponent);
+  }
+  const { isVNode } = vue.ssrUtils;
+  function unrollBuffer(buffer) {
+    return __async$1(this, null, function* () {
+      if (buffer.hasAsync) {
+        let ret = "";
+        for (let i = 0; i < buffer.length; i++) {
+          let item = buffer[i];
+          if (isPromise(item)) {
+            item = yield item;
+          }
+          if (isString(item)) {
+            ret += item;
+          } else {
+            ret += yield unrollBuffer(item);
+          }
+        }
+        return ret;
+      } else {
+        return unrollBufferSync(buffer);
+      }
+    });
+  }
+  function unrollBufferSync(buffer) {
+    let ret = "";
+    for (let i = 0; i < buffer.length; i++) {
+      let item = buffer[i];
+      if (isString(item)) {
+        ret += item;
+      } else {
+        ret += unrollBufferSync(item);
+      }
+    }
+    return ret;
+  }
+  function renderToString(_0) {
+    return __async$1(this, arguments, function* (input, context = {}) {
+      if (isVNode(input)) {
+        return renderToString(vue.createApp({ render: () => input }), context);
+      }
+      const vnode = vue.createVNode(input._component, input._props);
+      vnode.appContext = input._context;
+      input.provide(vue.ssrContextKey, context);
+      const buffer = yield renderComponentVNode(vnode);
+      const result = yield unrollBuffer(buffer);
+      yield resolveTeleports(context);
+      return result;
+    });
+  }
+  function resolveTeleports(context) {
+    return __async$1(this, null, function* () {
+      if (context.__teleportBuffers) {
+        context.teleports = context.teleports || {};
+        for (const key in context.__teleportBuffers) {
+          context.teleports[key] = yield unrollBuffer(yield Promise.all([context.__teleportBuffers[key]]));
+        }
+      }
+    });
+  }
+  vue.initDirectivesForSSR();
+
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+  function handleSSR(_0, _1) {
+    return __async(this, arguments, function* (createApp, cb, options = {}) {
+      const { app, router, head } = yield createApp(true);
+      const result = { uuid: klbfw.getUuid(), initial: {} };
+      const ctx = {};
+      const url = `${klbfw.getPath()}`;
+      router.push(url);
+      yield router.isReady();
+      let appHtml = "";
+      try {
+        appHtml = yield renderToString(app, ctx);
+      } catch (e) {
+        router.push(`${klbfw.getPrefix()}/404`);
+        yield router.isReady();
+        appHtml = yield renderToString(app, ctx);
+        result.statusCode = 404;
+        result.app = appHtml;
+        return cb(result);
+      }
+      if (url != router.currentRoute.value.fullPath) {
+        if (router.currentRoute.value.name == "NotFound") {
+          router.push(`${klbfw.getPrefix()}/404`);
+          yield router.isReady();
+          appHtml = yield renderToString(app, ctx);
+          result.statusCode = 404;
+          result.app = appHtml;
+          return cb(result);
+        } else {
+          result.statusCode = 301;
+          result.redirect = router.currentRoute.value.fullPath;
+          return cb(result);
+        }
+      }
+    });
+  }
+
   const head = head$1.createHead();
   const eventBus = mitt();
   const countries = {
@@ -5071,6 +5693,7 @@
   exports.KlbUser = user;
   exports.countriesPromise = countriesPromise;
   exports.createFyvue = createFyvue;
+  exports.handleSSR = handleSSR;
   exports.head = head;
   exports.i18nextPromise = i18nextPromise;
   exports.notificationErrors = notificationErrors;
