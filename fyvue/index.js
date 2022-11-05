@@ -5614,7 +5614,50 @@
           return cb(result);
         }
       }
+      const preloadLinks = renderPreloadLinks(ctx.modules, {});
+      const { headTags, htmlAttrs, bodyAttrs, bodyTags } = head$1.renderHeadToString(head);
+      result.meta = headTags;
+      result.link = preloadLinks;
+      result.bodyAttributes = bodyAttrs;
+      result.htmlAttributes = htmlAttrs;
+      result.bodyTags = bodyTags;
+      result.app = appHtml;
+      result.statusCode = router.currentRoute.value.name == "NotFound" ? 404 : 200;
+      return cb(result);
     });
+  }
+  function renderPreloadLinks(modules, manifest) {
+    let links = "";
+    const seen = /* @__PURE__ */ new Set();
+    modules.forEach((id) => {
+      const entry = Object.keys(manifest).find((entry2) => {
+        if (entry2.startsWith(id))
+          return true;
+      });
+      const files = manifest[entry];
+      if (files) {
+        files.forEach((file) => {
+          if (!seen.has(file)) {
+            seen.add(file);
+            links += renderPreloadLink(file);
+          }
+        });
+      }
+    });
+    return links;
+  }
+  function renderPreloadLink(file) {
+    if (file.endsWith(".js")) {
+      return `<link rel="modulepreload" href="${file}">`;
+    } else if (file.endsWith(".css")) {
+      return `<link rel="stylesheet" href="${file}">`;
+    } else if (file.includes("preload_") && (file.endsWith(".jpg") || file.endsWith(".jpeg"))) {
+      return ` <link rel="preload" href="${file}" as="image" type="image/jpeg">`;
+    } else if (file.includes("preload_") && file.endsWith(".png")) {
+      return ` <link rel="preload" href="${file}" as="image" type="image/png">`;
+    } else {
+      return "";
+    }
   }
 
   const head = head$1.createHead();
