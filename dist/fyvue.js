@@ -88,8 +88,8 @@ const i18nextPromise = i18next.use(Backend).init({
     initImmediate: false,
 });
 
-const _hoisted_1$2 = { class: "parent" };
-var script$2 = /*#__PURE__*/ vue.defineComponent({
+const _hoisted_1$3 = { class: "parent" };
+var script$3 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FyModal',
     props: {
         id: { type: String, default: "CustomModal" },
@@ -135,7 +135,7 @@ var script$2 = /*#__PURE__*/ vue.defineComponent({
                         class: "fy-modal"
                     }, {
                         default: vue.withCtx(() => [
-                            vue.createElementVNode("div", _hoisted_1$2, [
+                            vue.createElementVNode("div", _hoisted_1$3, [
                                 vue.createVNode(vue.unref(vue$1.DialogPanel), { class: "modal-container" }, {
                                     default: vue.withCtx(() => [
                                         (__props.title)
@@ -180,10 +180,10 @@ var script$2 = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script$2.__file = "src/components/ui/FyModal/FyModal.vue";
+script$3.__file = "src/components/ui/FyModal/FyModal.vue";
 
-const _hoisted_1$1 = { class: "fy-circle-percent" };
-const _hoisted_2$1 = {
+const _hoisted_1$2 = { class: "fy-circle-percent" };
+const _hoisted_2$2 = {
     viewBox: "0 0 36 36",
     class: "circular-chart"
 };
@@ -193,7 +193,7 @@ const _hoisted_3$1 = /*#__PURE__*/ vue.createElementVNode("path", {
 }, null, -1 /* HOISTED */);
 const _hoisted_4 = ["stroke-dasharray", "stroke"];
 const _hoisted_5 = ["x", "y"];
-var script$1 = /*#__PURE__*/ vue.defineComponent({
+var script$2 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FyCirclePercent',
     props: {
         percent: { type: Number, default: 100 },
@@ -202,8 +202,8 @@ var script$1 = /*#__PURE__*/ vue.defineComponent({
     },
     setup(__props) {
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
-                (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$1, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
+                (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$2, [
                     _hoisted_3$1,
                     vue.createElementVNode("path", {
                         class: "circle",
@@ -222,12 +222,12 @@ var script$1 = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script$1.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
+script$2.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
-const _hoisted_1 = { class: "fy-step-bar" };
-const _hoisted_2 = { class: "bar-bg" };
+const _hoisted_1$1 = { class: "fy-step-bar" };
+const _hoisted_2$1 = { class: "bar-bg" };
 const _hoisted_3 = { class: "label" };
-var script = /*#__PURE__*/ vue.defineComponent({
+var script$1 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FySteps',
     props: {
         steps: { type: (Array), default: [] },
@@ -244,8 +244,8 @@ var script = /*#__PURE__*/ vue.defineComponent({
             return 'past-step';
         };
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
-                vue.createElementVNode("div", _hoisted_2, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
+                vue.createElementVNode("div", _hoisted_2$1, [
                     vue.createElementVNode("div", {
                         class: "bar",
                         style: vue.normalizeStyle(`width:${vue.unref(barWidth)}%`)
@@ -272,14 +272,83 @@ var script = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FySteps/FySteps.vue";
+script$1.__file = "src/components/ui/FySteps/FySteps.vue";
+
+const _hoisted_1 = {
+    class: "fy-breadcrumb",
+    "aria-label": "Breadcrumb"
+};
+const _hoisted_2 = { class: "bc-innactive" };
+var script = /*#__PURE__*/ vue.defineComponent({
+    __name: 'FyBreadcrumb',
+    props: {
+        nav: { type: (Array), default: [] },
+        maxLength: { type: Number, default: 15 }
+    },
+    setup(__props) {
+        return (_ctx, _cache) => {
+            const _component_router_link = vue.resolveComponent("router-link");
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+                vue.createElementVNode("ol", null, [
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item) => {
+                        return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+                            (item.to)
+                                ? (vue.openBlock(), vue.createElementBlock("li", {
+                                    key: item.to,
+                                    class: "bc-innactive"
+                                }, [
+                                    vue.createVNode(_component_router_link, {
+                                        to: item.to,
+                                        class: "bc-active link"
+                                    }, {
+                                        default: vue.withCtx(() => [
+                                            vue.createTextVNode(vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
+                                        ]),
+                                        _: 2 /* DYNAMIC */
+                                    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]),
+                                    vue.createVNode(vue.unref(solid.ArrowRightIcon), { class: "icon bc-innactive" })
+                                ]))
+                                : (vue.openBlock(), vue.createElementBlock("li", {
+                                    key: `e-${item.to}`,
+                                    class: "bc-current"
+                                }, [
+                                    vue.createElementVNode("span", _hoisted_2, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
+                                ]))
+                        ], 64 /* STABLE_FRAGMENT */));
+                    }), 256 /* UNKEYED_FRAGMENT */))
+                ])
+            ]));
+        };
+    }
+});
+
+script.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
 
 var uiComponents = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  FyModal: script$2,
-  FyCirclePercent: script$1,
-  FySteps: script
+  FyModal: script$3,
+  FyCirclePercent: script$2,
+  FySteps: script$1,
+  FyBreadcrumb: script
 });
+
+const cropText = (str, end = '...', ml = 100) => {
+    if (str && typeof str == "string") {
+        if (str.length > ml) {
+            return `${str.slice(0, ml)}${end}`;
+        }
+    }
+    return str;
+};
+const formatBytes = (bytes, decimals = 2) => {
+    if (!+bytes)
+        return "0 Bytes";
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+};
 
 const head = head$1.createHead();
 const createFyvue = () => {
@@ -287,6 +356,8 @@ const createFyvue = () => {
         app.use(head);
         app.config.globalProperties.$eventBus = eventBus;
         app.config.globalProperties.$t = i18next.t;
+        app.config.globalProperties.$cropText = cropText;
+        app.config.globalProperties.$formatBytes = formatBytes;
         // Loading UI components
         for (const componentKey in uiComponents) {
             app.component(componentKey, uiComponents[componentKey]);

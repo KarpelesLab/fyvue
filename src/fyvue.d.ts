@@ -1,10 +1,14 @@
 export interface FyvueOptions {
 }
-export type FyvueEvent = {
+export type FyVueEvent = {
   name: string;
   data?: any;
 };
 export type FyVueStep = {
   name: string;
   icon?: string;
+};
+export type FyVueBreadcrumb = {
+  name: string;
+  to?: string;
 };

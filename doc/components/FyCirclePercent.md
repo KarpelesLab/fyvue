@@ -1,5 +1,6 @@
 # FyCirclePercent
 ![FyCirclePercent](/components/FyCirclePercent.png)
+[[toc]]
 
 ## Usage
 

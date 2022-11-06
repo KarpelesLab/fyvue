@@ -1,12 +1,12 @@
 # FySteps
 ![FySteps](/components/FySteps.png)
+[[toc]]
 
 ## Usage
 
 ```vue
 <script setup lang="ts">
 import { ListBulletIcon, MapPinIcon, CreditCardIcon } from "@heroicons/vue/24/solid";
-
 </script>
 <template>
 <FySteps
@@ -24,7 +24,7 @@ import { ListBulletIcon, MapPinIcon, CreditCardIcon } from "@heroicons/vue/24/so
 
 | Name | Type  | default | Info |
 |---|---|---|---|
-| steps | Array\<FyVueStep> | [] | Array of steps (see usage) |
+| steps | Array\<FyVueStep> | [] | Array of steps<br /> ```[{ name: i18n_key, icon?: Component }]``` |
 | currentStep | Number | 0 | Curren step (starting count a 1) |
 
 ## Details

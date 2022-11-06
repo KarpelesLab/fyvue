@@ -1,9 +1,9 @@
 import { createHead } from '@vueuse/head';
-import { getCurrentInstance, defineComponent, ref, onMounted, onUnmounted, openBlock, createBlock, unref, withCtx, createVNode, createElementVNode, createTextVNode, toDisplayString, resolveDynamicComponent, createElementBlock, normalizeClass, renderSlot, computed, normalizeStyle, Fragment, renderList, createCommentVNode } from 'vue';
+import { getCurrentInstance, defineComponent, ref, onMounted, onUnmounted, openBlock, createBlock, unref, withCtx, createVNode, createElementVNode, createTextVNode, toDisplayString, resolveDynamicComponent, createElementBlock, normalizeClass, renderSlot, computed, normalizeStyle, Fragment, renderList, createCommentVNode, resolveComponent } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
 import { getLocale } from '@karpeleslab/klbfw';
 import i18next from 'i18next';
-import { XCircleIcon } from '@heroicons/vue/24/solid';
+import { XCircleIcon, ArrowRightIcon } from '@heroicons/vue/24/solid';
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -86,8 +86,8 @@ const i18nextPromise = i18next.use(Backend).init({
     initImmediate: false,
 });
 
-const _hoisted_1$2 = { class: "parent" };
-var script$2 = /*#__PURE__*/ defineComponent({
+const _hoisted_1$3 = { class: "parent" };
+var script$3 = /*#__PURE__*/ defineComponent({
     __name: 'FyModal',
     props: {
         id: { type: String, default: "CustomModal" },
@@ -133,7 +133,7 @@ var script$2 = /*#__PURE__*/ defineComponent({
                         class: "fy-modal"
                     }, {
                         default: withCtx(() => [
-                            createElementVNode("div", _hoisted_1$2, [
+                            createElementVNode("div", _hoisted_1$3, [
                                 createVNode(unref(DialogPanel), { class: "modal-container" }, {
                                     default: withCtx(() => [
                                         (__props.title)
@@ -178,10 +178,10 @@ var script$2 = /*#__PURE__*/ defineComponent({
     }
 });
 
-script$2.__file = "src/components/ui/FyModal/FyModal.vue";
+script$3.__file = "src/components/ui/FyModal/FyModal.vue";
 
-const _hoisted_1$1 = { class: "fy-circle-percent" };
-const _hoisted_2$1 = {
+const _hoisted_1$2 = { class: "fy-circle-percent" };
+const _hoisted_2$2 = {
     viewBox: "0 0 36 36",
     class: "circular-chart"
 };
@@ -191,7 +191,7 @@ const _hoisted_3$1 = /*#__PURE__*/ createElementVNode("path", {
 }, null, -1 /* HOISTED */);
 const _hoisted_4 = ["stroke-dasharray", "stroke"];
 const _hoisted_5 = ["x", "y"];
-var script$1 = /*#__PURE__*/ defineComponent({
+var script$2 = /*#__PURE__*/ defineComponent({
     __name: 'FyCirclePercent',
     props: {
         percent: { type: Number, default: 100 },
@@ -200,8 +200,8 @@ var script$1 = /*#__PURE__*/ defineComponent({
     },
     setup(__props) {
         return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", _hoisted_1$1, [
-                (openBlock(), createElementBlock("svg", _hoisted_2$1, [
+            return (openBlock(), createElementBlock("div", _hoisted_1$2, [
+                (openBlock(), createElementBlock("svg", _hoisted_2$2, [
                     _hoisted_3$1,
                     createElementVNode("path", {
                         class: "circle",
@@ -220,12 +220,12 @@ var script$1 = /*#__PURE__*/ defineComponent({
     }
 });
 
-script$1.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
+script$2.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
-const _hoisted_1 = { class: "fy-step-bar" };
-const _hoisted_2 = { class: "bar-bg" };
+const _hoisted_1$1 = { class: "fy-step-bar" };
+const _hoisted_2$1 = { class: "bar-bg" };
 const _hoisted_3 = { class: "label" };
-var script = /*#__PURE__*/ defineComponent({
+var script$1 = /*#__PURE__*/ defineComponent({
     __name: 'FySteps',
     props: {
         steps: { type: (Array), default: [] },
@@ -242,8 +242,8 @@ var script = /*#__PURE__*/ defineComponent({
             return 'past-step';
         };
         return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", _hoisted_1, [
-                createElementVNode("div", _hoisted_2, [
+            return (openBlock(), createElementBlock("div", _hoisted_1$1, [
+                createElementVNode("div", _hoisted_2$1, [
                     createElementVNode("div", {
                         class: "bar",
                         style: normalizeStyle(`width:${unref(barWidth)}%`)
@@ -270,14 +270,83 @@ var script = /*#__PURE__*/ defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FySteps/FySteps.vue";
+script$1.__file = "src/components/ui/FySteps/FySteps.vue";
+
+const _hoisted_1 = {
+    class: "fy-breadcrumb",
+    "aria-label": "Breadcrumb"
+};
+const _hoisted_2 = { class: "bc-innactive" };
+var script = /*#__PURE__*/ defineComponent({
+    __name: 'FyBreadcrumb',
+    props: {
+        nav: { type: (Array), default: [] },
+        maxLength: { type: Number, default: 15 }
+    },
+    setup(__props) {
+        return (_ctx, _cache) => {
+            const _component_router_link = resolveComponent("router-link");
+            return (openBlock(), createElementBlock("div", _hoisted_1, [
+                createElementVNode("ol", null, [
+                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item) => {
+                        return (openBlock(), createElementBlock(Fragment, null, [
+                            (item.to)
+                                ? (openBlock(), createElementBlock("li", {
+                                    key: item.to,
+                                    class: "bc-innactive"
+                                }, [
+                                    createVNode(_component_router_link, {
+                                        to: item.to,
+                                        class: "bc-active link"
+                                    }, {
+                                        default: withCtx(() => [
+                                            createTextVNode(toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
+                                        ]),
+                                        _: 2 /* DYNAMIC */
+                                    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]),
+                                    createVNode(unref(ArrowRightIcon), { class: "icon bc-innactive" })
+                                ]))
+                                : (openBlock(), createElementBlock("li", {
+                                    key: `e-${item.to}`,
+                                    class: "bc-current"
+                                }, [
+                                    createElementVNode("span", _hoisted_2, toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
+                                ]))
+                        ], 64 /* STABLE_FRAGMENT */));
+                    }), 256 /* UNKEYED_FRAGMENT */))
+                ])
+            ]));
+        };
+    }
+});
+
+script.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
 
 var uiComponents = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  FyModal: script$2,
-  FyCirclePercent: script$1,
-  FySteps: script
+  FyModal: script$3,
+  FyCirclePercent: script$2,
+  FySteps: script$1,
+  FyBreadcrumb: script
 });
+
+const cropText = (str, end = '...', ml = 100) => {
+    if (str && typeof str == "string") {
+        if (str.length > ml) {
+            return `${str.slice(0, ml)}${end}`;
+        }
+    }
+    return str;
+};
+const formatBytes = (bytes, decimals = 2) => {
+    if (!+bytes)
+        return "0 Bytes";
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+};
 
 const head = createHead();
 const createFyvue = () => {
@@ -285,6 +354,8 @@ const createFyvue = () => {
         app.use(head);
         app.config.globalProperties.$eventBus = eventBus;
         app.config.globalProperties.$t = i18next.t;
+        app.config.globalProperties.$cropText = cropText;
+        app.config.globalProperties.$formatBytes = formatBytes;
         // Loading UI components
         for (const componentKey in uiComponents) {
             app.component(componentKey, uiComponents[componentKey]);

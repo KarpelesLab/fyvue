@@ -9,7 +9,7 @@
         <li><RouterLink to="/tests/FyCirclePercent">FyCirclePercent</RouterLink></li>
         <li><RouterLink to="/tests/FyModal">FyModal</RouterLink></li>
         <li><RouterLink to="/tests/FySteps">FySteps</RouterLink></li>
-
+        <li><RouterLink to="/tests/FyBreadcrumb">FyBreadcrumb</RouterLink></li>
       </ul>
     </nav>
     <main class="flex-1"><RouterView /></main>

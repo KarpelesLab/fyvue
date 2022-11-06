@@ -1,0 +1,45 @@
+.fy-breadcrumb {
+    @apply  py-0 mr-auto  font-semibold  uppercase;
+    ol {
+      @apply list-none p-0 inline-flex;
+      li {
+          @apply flex items-center pr-2 break-words;
+
+          .link {
+              @apply pr-2 break-words;
+          }
+
+      }
+  }
+  .icon {
+    @apply w-3;
+  }
+  .bc-innactive {
+    @apply break-words;
+  }
+  .bc-current {
+    @apply flex items-center;
+  }
+}
+.light {
+  .fy-breadcrumb {
+    @apply border-blue-600;
+  }
+  .bc-innactive {
+    @apply text-neutral-600;
+  }
+  .bc-active {
+      @apply text-blue-600;
+  }
+}
+.dark {
+  .fy-breadcrumb {
+    @apply border-blue-300;
+  }
+  .bc-innactive {
+    @apply text-neutral-300;
+  }
+  .bc-active {
+      @apply text-blue-300;
+  }
+}

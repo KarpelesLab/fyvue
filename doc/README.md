@@ -8,6 +8,7 @@ Vue lib for KLB systems
     yarn add @karpeleslab/fyvue
 ```
 
+## Activate plugin in Vue
 In main.ts or main.js:
 ```ts
     import { createFyvue } from "@karpeleslab/fyvue";
@@ -18,3 +19,7 @@ In main.ts or main.js:
     //...
     app.mount('#app')
 ```
+
+## With style ;)
+
+**[Styling Fyvue](/fyvue/helpers/style.html)**

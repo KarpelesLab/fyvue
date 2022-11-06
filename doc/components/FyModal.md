@@ -1,6 +1,7 @@
 # FyModal
 
 ![alt text](/components/FyModal.png)
+[[toc]]
 
 ## Usage
 

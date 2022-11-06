@@ -1,4 +1,7 @@
 import { defaultTheme, defineUserConfig } from 'vuepress'
+import { tocPlugin } from '@vuepress/plugin-toc'
+import { searchPlugin } from '@vuepress/plugin-search'
+import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 
 export default  defineUserConfig({
   lang: 'en-US',
@@ -28,7 +31,8 @@ export default  defineUserConfig({
         children: [
           '/helpers/eventBus.md',
           '/helpers/i18next.md',
-          '/helpers/KLBCountries.md'
+          '/helpers/KLBCountries.md',
+          '/helpers/style.md'
         ]
       },
       {
@@ -38,7 +42,8 @@ export default  defineUserConfig({
           '/components/FyModal.md',
           '/components/FyCirclePercent.md',
           '/components/FySteps.md',
-        ]
+          '/components/FyBreadcrumb.md',
+        ],
       },
       {
         text: 'KLB Components',
@@ -50,4 +55,9 @@ export default  defineUserConfig({
       }
     ],
   }),
+  plugins: [
+    tocPlugin(),
+    searchPlugin(),
+    backToTopPlugin(),
+  ]
 })

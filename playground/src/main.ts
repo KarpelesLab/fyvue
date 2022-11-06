@@ -26,6 +26,10 @@ const routes = [
   {
     path: '/tests/FySteps',
     component: () => import('./components/TFySteps.vue')
+  },
+  {
+    path: '/tests/FyBreadcrumb',
+    component: () => import('./components/TFyBreadcrumb.vue')
   }
 ]
 const router = createRouter({

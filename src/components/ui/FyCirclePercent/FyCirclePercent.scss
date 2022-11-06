@@ -30,19 +30,19 @@
     text-anchor: middle;
   }
 }
-.dark {
-  .circle-bg {
-    stroke: #404040;
-  }
-  .percentage {
-    fill: #ebedf1;
-  }
-}
 .light {
   .circle-bg {
     stroke: #ccc;
   }
   .percentage {
     fill: #000;
+  }
+}
+.dark {
+  .circle-bg {
+    stroke: #404040;
+  }
+  .percentage {
+    fill: #ebedf1;
   }
 }
