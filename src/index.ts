@@ -1,9 +1,8 @@
 import type { App, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
-import mitt from "mitt";
-import type { FyvueOptions } from "./index.d"
 import { uiComponents } from "./components";
 import { eventBus, useEventBus } from './helpers';
+import type { FyvueOptions } from "./fyvue"
 
 import './fyvue.scss';
 
@@ -18,7 +17,7 @@ const createFyvue = () => {
       app.component(componentKey, uiComponents[componentKey]);
     }
   }
-  return {
+  return <Plugin>{
     install
   }
 }

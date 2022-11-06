@@ -1,13 +1,8 @@
 {
   "name": "@karpeleslab/fyvue",
-  "version": "0.2.0",
+  "private": true,
   "description": "Vue lib for KLB systems",
-  "main": "dist/fyvue.js",
-  "module": "dist/fyvue.mjs",
   "packageManager": "pnpm@7.14.1",
-  "files": [
-    "dist/*"
-  ],
   "scripts": {
     "build": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
     "build:css": "npx tailwindcss -i ./src/global.scss -o ./dist/fyvue.css",
@@ -60,6 +55,7 @@
     "pinia": "^2.0.13",
     "postcss": "^8.4.18",
     "rollup": "^3.2.5",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-scss": "v3",
     "rollup-plugin-typescript2": "^0.34.1",

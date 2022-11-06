@@ -2,15 +2,12 @@ import { fileURLToPath, URL } from 'url'
 import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 
-// https://vitejs.dev/config/
-const pkgRoot = path.resolve('../dist');
+const fyvueRoot = path.resolve('../dist');
 
 export default defineConfig({
   plugins: [
     vue(), 
-    vueJsx(),
   ],
   resolve: {
     alias: [
@@ -20,11 +17,11 @@ export default defineConfig({
       },
       {
         find: /^@karpeleslab\/fyvue(\/(es|lib))?$/,
-        replacement: path.resolve(pkgRoot, 'fyvue.mjs'),
+        replacement: path.resolve(fyvueRoot, 'fyvue.mjs'),
       },
       {
         find: /^@karpeleslab\/fyvue\/fyvue.scss(\/(es|lib))?$/,
-        replacement: path.resolve(pkgRoot, 'fyvue.scss'),
+        replacement: path.resolve(fyvueRoot, 'fyvue.scss'),
       },
     ]
   }

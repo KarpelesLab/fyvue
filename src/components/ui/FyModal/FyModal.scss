@@ -1,10 +1,14 @@
 .fy-modal {
-    @apply fixed inset-0 z-10 overflow-y-auto;
+    @apply fixed inset-0 overflow-y-auto;
+    z-index: 40;
+
     .parent {
       @apply flex items-center justify-center min-h-screen;
+      
     }
     .modal-container {
       @apply relative mx-1 md:mx-0 md:max-w-2xl w-11/12 shadow -mt-20 ;
+      z-index: 41;
     }
     .title {
       @apply text-xl flex justify-between items-center px-2 py-1;

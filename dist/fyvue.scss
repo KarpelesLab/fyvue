@@ -1,11 +1,13 @@
 .fy-modal {
-  @apply fixed inset-0 z-10 overflow-y-auto;
+  @apply fixed inset-0 overflow-y-auto;
+  z-index: 40;
 }
 .fy-modal .parent {
   @apply flex items-center justify-center min-h-screen;
 }
 .fy-modal .modal-container {
   @apply relative mx-1 md:mx-0 md:max-w-2xl w-11/12 shadow -mt-20;
+  z-index: 41;
 }
 .fy-modal .title {
   @apply text-xl flex justify-between items-center px-2 py-1;
@@ -55,4 +57,46 @@
 }
 .dark .fy-modal .close-icon:hover {
   @apply text-neutral-200;
+}
+
+.fy-circle-percent {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.fy-circle-percent .circular-chart {
+  display: block;
+  margin: 10px auto;
+}
+.fy-circle-percent .circle-bg {
+  fill: none;
+  stroke-width: 3.8;
+}
+.fy-circle-percent .circle {
+  fill: none;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  animation: progress 3s ease-out forwards;
+}
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+.fy-circle-percent .percentage {
+  font-size: 0.5em;
+  text-anchor: middle;
+}
+
+.dark .circle-bg {
+  stroke: #404040;
+}
+.dark .percentage {
+  fill: #ebedf1;
+}
+
+.light .circle-bg {
+  stroke: #ccc;
+}
+.light .percentage {
+  fill: #000;
 }

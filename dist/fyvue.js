@@ -13,8 +13,8 @@ const useEventBus = () => {
     return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$eventBus;
 };
 
-const _hoisted_1 = { class: "parent" };
-var script = /*#__PURE__*/ vue.defineComponent({
+const _hoisted_1$1 = { class: "parent" };
+var script$1 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FyModal',
     props: {
         id: { type: String, default: "CustomModal" },
@@ -60,7 +60,7 @@ var script = /*#__PURE__*/ vue.defineComponent({
                         class: "fy-modal"
                     }, {
                         default: vue.withCtx(() => [
-                            vue.createElementVNode("div", _hoisted_1, [
+                            vue.createElementVNode("div", _hoisted_1$1, [
                                 vue.createVNode(vue.unref(vue$1.DialogPanel), { class: "modal-container" }, {
                                     default: vue.withCtx(() => [
                                         (__props.title)
@@ -105,11 +105,54 @@ var script = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FyModal/FyModal.vue";
+script$1.__file = "src/components/ui/FyModal/FyModal.vue";
+
+const _hoisted_1 = { class: "fy-circle-percent" };
+const _hoisted_2 = {
+    viewBox: "0 0 36 36",
+    class: "circular-chart"
+};
+const _hoisted_3 = /*#__PURE__*/ vue.createElementVNode("path", {
+    class: "circle-bg",
+    d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
+}, null, -1 /* HOISTED */);
+const _hoisted_4 = ["stroke-dasharray", "stroke"];
+const _hoisted_5 = ["x", "y"];
+var script = /*#__PURE__*/ vue.defineComponent({
+    __name: 'FyCirclePercent',
+    props: {
+        percent: { type: Number, default: 100 },
+        textXY: { type: (Array), default: [18, 20.85] },
+        color: { type: String, default: "blue" }
+    },
+    setup(__props) {
+        return (_ctx, _cache) => {
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+                (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2, [
+                    _hoisted_3,
+                    vue.createElementVNode("path", {
+                        class: "circle",
+                        "stroke-dasharray": `${__props.percent}, 100`,
+                        stroke: __props.color,
+                        d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                    }, null, 8 /* PROPS */, _hoisted_4),
+                    vue.createElementVNode("text", {
+                        x: __props.textXY[0].toString(),
+                        y: __props.textXY[1].toString(),
+                        class: "percentage"
+                    }, vue.toDisplayString(__props.percent) + "%", 9 /* TEXT, PROPS */, _hoisted_5)
+                ]))
+            ]));
+        };
+    }
+});
+
+script.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
 var uiComponents = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    FyModal: script
+    FyModal: script$1,
+    FyCirclePercent: script
 });
 
 const head = head$1.createHead();

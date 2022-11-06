@@ -3,6 +3,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import resolve from '@rollup/plugin-node-resolve'
 import typescript from 'rollup-plugin-typescript2';
 import scss from 'rollup-plugin-scss'
+import copy from 'rollup-plugin-copy'
 
 export default {
   input: './src/index.ts',
@@ -25,7 +26,7 @@ export default {
     }
   ],
   plugins: [
-    vue({ css: true, compileTemplate: true }),
+    vue(),
     resolve(),
     peerDepsExternal(),
     typescript({
@@ -33,7 +34,11 @@ export default {
     }),
     scss({
       output: './dist/fyvue.scss',
-      //include: ['./src/**/*.scss'],
+    }),
+    copy({
+      targets: [
+        { src: 'src/package.fyvue.json', dest: 'dist/', rename:"package.json" },
+      ]
     })
   ],
 };

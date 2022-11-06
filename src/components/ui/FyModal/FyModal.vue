@@ -3,10 +3,9 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
-  DialogDescription,
   TransitionRoot,
 } from "@headlessui/vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useEventBus } from "../../../helpers";
 import { XCircleIcon } from "@heroicons/vue/24/solid";
 
