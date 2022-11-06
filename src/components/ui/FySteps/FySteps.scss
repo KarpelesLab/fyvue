@@ -1,0 +1,67 @@
+.fy-step-bar {
+    @apply border-b mb-4 pb-4;
+    .bar-bg {
+        @apply  overflow-hidden rounded-full;
+        .bar  {
+            @apply h-2 rounded-full;
+        }
+    }
+    ol {
+        @apply mt-4 grid grid-cols-3 text-sm font-medium;
+
+        li {
+            @apply flex items-center justify-center;
+
+        }
+    }
+    .icon {
+      @apply h-6 w-6 sm:ml-2 sm:h-5 sm:w-5;
+    }
+    .label {
+      @apply hidden sm:inline;
+    }
+}
+.light {
+  .bar-bg {
+    @apply bg-neutral-200;
+  }
+  .bar {
+    @apply bg-blue-500;
+  }
+  ol {
+    @apply text-neutral-500;
+    li {
+      &.current-step {
+        @apply text-blue-500;
+      }
+      &.past-step {
+          @apply text-neutral-500;
+      }
+      &.future-step {
+          @apply text-neutral-500;
+      }
+    }
+  }
+}
+.dark {
+  .bar-bg {
+    @apply bg-neutral-800;
+  }
+  .bar {
+    @apply bg-blue-700;
+  }
+  ol {
+    @apply text-neutral-300;
+    li {
+      &.current-step {
+        @apply text-blue-300;
+      }
+      &.past-step {
+          @apply text-neutral-300;
+      }
+      &.future-step {
+          @apply text-neutral-300;
+      }
+    }
+  }
+}

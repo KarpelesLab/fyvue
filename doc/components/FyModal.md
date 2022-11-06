@@ -57,8 +57,8 @@ export default {
 
 ### CSS
 
-@[code scss](../../../src/components/ui/FyModal/FyModal.scss)
+@[code sass](../../src/components/ui/FyModal/FyModal.scss)
 
 ### Code
 
-@[code vue](../../../src/components/ui/FyModal/FyModal.vue)
+@[code vue](../../src/components/ui/FyModal/FyModal.vue)

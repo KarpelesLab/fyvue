@@ -10,7 +10,7 @@ export default  defineUserConfig({
     colorMode: "dark",
     colorModeSwitch: false,
     repo: 'KarpelesLab/fyvue',
-
+    editLink: false,
     navbar: [
       /*{
         text: 'Helpers',
@@ -27,6 +27,8 @@ export default  defineUserConfig({
         collapsable: false,
         children: [
           '/helpers/eventBus.md',
+          '/helpers/i18next.md',
+          '/helpers/KLBCountries.md'
         ]
       },
       {
@@ -35,6 +37,7 @@ export default  defineUserConfig({
         children: [
           '/components/FyModal.md',
           '/components/FyCirclePercent.md',
+          '/components/FySteps.md',
         ]
       },
       {

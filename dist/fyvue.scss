@@ -100,3 +100,63 @@
 .light .percentage {
   fill: #000;
 }
+
+.fy-step-bar {
+  @apply border-b mb-4 pb-4;
+}
+.fy-step-bar .bar-bg {
+  @apply overflow-hidden rounded-full;
+}
+.fy-step-bar .bar-bg .bar {
+  @apply h-2 rounded-full;
+}
+.fy-step-bar ol {
+  @apply mt-4 grid grid-cols-3 text-sm font-medium;
+}
+.fy-step-bar ol li {
+  @apply flex items-center justify-center;
+}
+.fy-step-bar .icon {
+  @apply h-6 w-6 sm:ml-2 sm:h-5 sm:w-5;
+}
+.fy-step-bar .label {
+  @apply hidden sm:inline;
+}
+
+.light .bar-bg {
+  @apply bg-neutral-200;
+}
+.light .bar {
+  @apply bg-blue-500;
+}
+.light ol {
+  @apply text-neutral-500;
+}
+.light ol li.current-step {
+  @apply text-blue-500;
+}
+.light ol li.past-step {
+  @apply text-neutral-500;
+}
+.light ol li.future-step {
+  @apply text-neutral-500;
+}
+
+.dark .bar-bg {
+  @apply bg-neutral-800;
+}
+.dark .bar {
+  @apply bg-blue-700;
+}
+.dark ol {
+  @apply text-neutral-300;
+}
+.dark ol li.current-step {
+  @apply text-blue-300;
+}
+.dark ol li.past-step {
+  @apply text-neutral-300;
+}
+.dark ol li.future-step {
+  @apply text-neutral-300;
+}

@@ -21,8 +21,8 @@
 
 ### CSS
 
-@[code scss](../../../src/components/ui/FyCirclePercent/FyCirclePercent.scss)
+@[code sass](../../src/components/ui/FyCirclePercent/FyCirclePercent.scss)
 
 ### Code
 
-@[code vue](../../../src/components/ui/FyCirclePercent/FyCirclePercent.vue)
+@[code vue](../../src/components/ui/FyCirclePercent/FyCirclePercent.vue)

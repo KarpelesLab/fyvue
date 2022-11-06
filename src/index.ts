@@ -1,7 +1,7 @@
 import type { App, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
 import { uiComponents } from "./components";
-import { eventBus, useEventBus } from './helpers';
+import { eventBus, useEventBus, i18next, i18nextPromise } from './helpers';
 import type { FyvueOptions } from "./fyvue"
 
 import './fyvue.scss';
@@ -12,6 +12,7 @@ const createFyvue = () => {
   const install = (app: App, options?: FyvueOptions) => {
     app.use(head)
     app.config.globalProperties.$eventBus = eventBus;
+    app.config.globalProperties.$t = i18next.t;
     // Loading UI components
     for (const componentKey in uiComponents) {
       app.component(componentKey, uiComponents[componentKey]);
@@ -24,5 +25,6 @@ const createFyvue = () => {
 
 export {
   createFyvue,
-  useEventBus
+  useEventBus,
+  i18nextPromise
 }

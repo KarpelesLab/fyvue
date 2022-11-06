@@ -1,9 +1,17 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <div class="container mx-auto flex my-6">
+    <nav class="w-32 flex flex-col items-center border-r border-gray-200 pr-2 mr-2">
+      <RouterLink to="/"><img src="@/assets/fyvue.svg" alt="fyvue" class="w-24 mb-6" /></RouterLink>
+      <ul>
+        <li><RouterLink to="/tests/FyCirclePercent">FyCirclePercent</RouterLink></li>
+        <li><RouterLink to="/tests/FyModal">FyModal</RouterLink></li>
+        <li><RouterLink to="/tests/FySteps">FySteps</RouterLink></li>
+
+      </ul>
+    </nav>
+    <main class="flex-1"><RouterView /></main>
+  </div>
 </template>
