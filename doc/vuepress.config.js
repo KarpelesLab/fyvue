@@ -4,8 +4,8 @@ export default  defineUserConfig({
   lang: 'en-US',
   title: 'fyvue',
   description: 'Vue lib for KLB systems',
+  base: "/fyvue/",
   theme: defaultTheme({
-    base: "/",
     logo: '/fyvue.svg',
     colorMode: "dark",
     colorModeSwitch: false,
