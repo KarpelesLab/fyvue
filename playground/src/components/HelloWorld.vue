@@ -4,9 +4,11 @@
 </script>
 
 <template>
-  <main>
+  <main class="p-20">
     Yop <button @click="() => eventBus.emit('TestModal', true)" >Test</button>
-    <FyModal id="Test" title="Test">Yoyoyoyo</FyModal>
-    <div class="w-24 light"><FyCirclePercent :percent="60" color="red" /></div>
+    <FyModal id="Test" title="Hey Title">
+    <p>Hey</p>
+   </FyModal>
+    <div class="w-24 light mt-20"><FyCirclePercent :percent="60" color="red" /></div>
   </main>
 </template>

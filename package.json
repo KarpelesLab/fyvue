@@ -7,7 +7,9 @@
     "build": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
     "build:css": "npx tailwindcss -i ./src/global.scss -o ./dist/fyvue.css",
     "lint": "eslint --ext .js,.vue,.ts src/",
-    "play": "pnpm run -C ./playground dev"
+    "play": "pnpm run -C ./playground dev",
+    "doc": "pnpm run -C ./doc docs:build",
+    "doc:dev": "pnpm run -C ./doc docs:dev"
   },
   "repository": {
     "type": "git",
