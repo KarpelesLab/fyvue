@@ -12,9 +12,6 @@
 .fy-modal .title {
   @apply text-xl flex justify-between items-center px-2 py-1;
 }
-.fy-modal.is-confirm .title {
-  @apply -mx-4;
-}
 .fy-modal .close-icon {
   @apply w-8;
 }
@@ -201,4 +198,44 @@
 }
 .dark .bc-active {
   @apply text-blue-300;
+}
+
+.btn {
+  @apply text-white shadow  whitespace-nowrap  rounded-tl-xl rounded-br-xl;
+  @apply transition duration-300 ease-in-out transform;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+.btn.neutral {
+  @apply shadow-sm text-gray-50 border-t border-b;
+  background: rgba(0, 0, 0, 0.7);
+}
+.btn.neutral:hover {
+  @apply shadow-sm text-white;
+  background: rgba(60, 60, 60, 0.7);
+}
+.btn.primary {
+  @apply shadow-sm text-gray-50 border-t border-b;
+  background: #2b79c4;
+  border-top-color: #4b92d7;
+  border-bottom-color: #225f9a;
+}
+.btn.primary:hover {
+  @apply border-t border-b;
+  @apply shadow-sm text-white border-t border-b;
+  background: #225f9a;
+  border-top-color: #2b79c4;
+  border-bottom-color: #194570;
+}
+.btn.btn-defaults {
+  @apply mx-auto px-3 py-1.5;
+}
+.btn.fround, .btn.round {
+  @apply rounded-full;
+}
+
+.btn-box {
+  @apply flex space-x-2 justify-start;
+}
+.btn-box button {
+  @apply flex-1;
 }

@@ -87,9 +87,13 @@ const i18nextPromise = i18next.use(Backend).init({
     load: "currentOnly",
     initImmediate: false,
 });
+const useTranslation = () => {
+    const vueInstance = vue.getCurrentInstance();
+    return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$t;
+};
 
-const _hoisted_1$3 = { class: "parent" };
-var script$3 = /*#__PURE__*/ vue.defineComponent({
+const _hoisted_1$4 = { class: "parent" };
+var script$4 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FyModal',
     props: {
         id: { type: String, default: "CustomModal" },
@@ -108,7 +112,7 @@ var script$3 = /*#__PURE__*/ vue.defineComponent({
             else {
                 props.onClose();
             }
-            isOpen.value = Boolean(value);
+            isOpen.value = value;
         };
         vue.onMounted(() => {
             eventBus.on(`${props.id}Modal`, setModal);
@@ -135,7 +139,7 @@ var script$3 = /*#__PURE__*/ vue.defineComponent({
                         class: "fy-modal"
                     }, {
                         default: vue.withCtx(() => [
-                            vue.createElementVNode("div", _hoisted_1$3, [
+                            vue.createElementVNode("div", _hoisted_1$4, [
                                 vue.createVNode(vue.unref(vue$1.DialogPanel), { class: "modal-container" }, {
                                     default: vue.withCtx(() => [
                                         (__props.title)
@@ -180,20 +184,20 @@ var script$3 = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script$3.__file = "src/components/ui/FyModal/FyModal.vue";
+script$4.__file = "src/components/ui/FyModal/FyModal.vue";
 
-const _hoisted_1$2 = { class: "fy-circle-percent" };
-const _hoisted_2$2 = {
+const _hoisted_1$3 = { class: "fy-circle-percent" };
+const _hoisted_2$3 = {
     viewBox: "0 0 36 36",
     class: "circular-chart"
 };
-const _hoisted_3$1 = /*#__PURE__*/ vue.createElementVNode("path", {
+const _hoisted_3$2 = /*#__PURE__*/ vue.createElementVNode("path", {
     class: "circle-bg",
     d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1 /* HOISTED */);
-const _hoisted_4 = ["stroke-dasharray", "stroke"];
-const _hoisted_5 = ["x", "y"];
-var script$2 = /*#__PURE__*/ vue.defineComponent({
+const _hoisted_4$1 = ["stroke-dasharray", "stroke"];
+const _hoisted_5$1 = ["x", "y"];
+var script$3 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FyCirclePercent',
     props: {
         percent: { type: Number, default: 100 },
@@ -202,32 +206,32 @@ var script$2 = /*#__PURE__*/ vue.defineComponent({
     },
     setup(__props) {
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
-                (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$2, [
-                    _hoisted_3$1,
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, [
+                (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$3, [
+                    _hoisted_3$2,
                     vue.createElementVNode("path", {
                         class: "circle",
                         "stroke-dasharray": `${__props.percent}, 100`,
                         stroke: __props.color,
                         d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                    }, null, 8 /* PROPS */, _hoisted_4),
+                    }, null, 8 /* PROPS */, _hoisted_4$1),
                     vue.createElementVNode("text", {
                         x: __props.textXY[0].toString(),
                         y: __props.textXY[1].toString(),
                         class: "percentage"
-                    }, vue.toDisplayString(__props.percent) + "%", 9 /* TEXT, PROPS */, _hoisted_5)
+                    }, vue.toDisplayString(__props.percent) + "%", 9 /* TEXT, PROPS */, _hoisted_5$1)
                 ]))
             ]));
         };
     }
 });
 
-script$2.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
+script$3.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
-const _hoisted_1$1 = { class: "fy-step-bar" };
-const _hoisted_2$1 = { class: "bar-bg" };
-const _hoisted_3 = { class: "label" };
-var script$1 = /*#__PURE__*/ vue.defineComponent({
+const _hoisted_1$2 = { class: "fy-step-bar" };
+const _hoisted_2$2 = { class: "bar-bg" };
+const _hoisted_3$1 = { class: "label" };
+var script$2 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FySteps',
     props: {
         steps: { type: (Array), default: [] },
@@ -244,8 +248,8 @@ var script$1 = /*#__PURE__*/ vue.defineComponent({
             return 'past-step';
         };
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
-                vue.createElementVNode("div", _hoisted_2$1, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
+                vue.createElementVNode("div", _hoisted_2$2, [
                     vue.createElementVNode("div", {
                         class: "bar",
                         style: vue.normalizeStyle(`width:${vue.unref(barWidth)}%`)
@@ -257,7 +261,7 @@ var script$1 = /*#__PURE__*/ vue.defineComponent({
                             key: index,
                             class: vue.normalizeClass(getStepClass(index))
                         }, [
-                            vue.createElementVNode("span", _hoisted_3, vue.toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
+                            vue.createElementVNode("span", _hoisted_3$1, vue.toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
                             (step.icon)
                                 ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(step.icon), {
                                     key: 0,
@@ -272,14 +276,14 @@ var script$1 = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script$1.__file = "src/components/ui/FySteps/FySteps.vue";
+script$2.__file = "src/components/ui/FySteps/FySteps.vue";
 
-const _hoisted_1 = {
+const _hoisted_1$1 = {
     class: "fy-breadcrumb",
     "aria-label": "Breadcrumb"
 };
-const _hoisted_2 = { class: "bc-innactive" };
-var script = /*#__PURE__*/ vue.defineComponent({
+const _hoisted_2$1 = { class: "bc-innactive" };
+var script$1 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FyBreadcrumb',
     props: {
         nav: { type: (Array), default: [] },
@@ -288,7 +292,7 @@ var script = /*#__PURE__*/ vue.defineComponent({
     setup(__props) {
         return (_ctx, _cache) => {
             const _component_router_link = vue.resolveComponent("router-link");
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
                 vue.createElementVNode("ol", null, [
                     (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item) => {
                         return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
@@ -312,7 +316,7 @@ var script = /*#__PURE__*/ vue.defineComponent({
                                     key: `e-${item.to}`,
                                     class: "bc-current"
                                 }, [
-                                    vue.createElementVNode("span", _hoisted_2, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
+                                    vue.createElementVNode("span", _hoisted_2$1, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
                                 ]))
                         ], 64 /* STABLE_FRAGMENT */));
                     }), 256 /* UNKEYED_FRAGMENT */))
@@ -322,14 +326,109 @@ var script = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
+script$1.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
+
+const _hoisted_1 = { class: "parent" };
+const _hoisted_2 = {
+    class: "modal-container",
+    style: { "width": "350px !important" }
+};
+const _hoisted_3 = { class: "modal-content" };
+const _hoisted_4 = {
+    key: 0,
+    class: "confirm-modal-desc default-p"
+};
+const _hoisted_5 = /*#__PURE__*/ vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = { class: "btn-box" };
+var script = /*#__PURE__*/ vue.defineComponent({
+    __name: 'FyConfirm',
+    setup(__props) {
+        const eventBus = useEventBus();
+        const confirm = vue.ref(false);
+        const title = vue.ref(null);
+        const desc = vue.ref(null);
+        const onConfirm = vue.ref(null);
+        const _onConfirm = async () => {
+            if (onConfirm.value) {
+                await onConfirm.value();
+            }
+            resetConfirm();
+        };
+        const resetConfirm = () => {
+            title.value = null;
+            desc.value = null;
+            onConfirm.value = null;
+            confirm.value = false;
+        };
+        const showConfirm = (data) => {
+            title.value = data.title;
+            desc.value = data.desc;
+            onConfirm.value = data.onConfirm;
+            confirm.value = true;
+        };
+        vue.onMounted(() => {
+            eventBus.on('resetConfirm', resetConfirm);
+            eventBus.on('showConfirm', showConfirm);
+        });
+        vue.onUnmounted(() => {
+            eventBus.off('resetConfirm', resetConfirm);
+            eventBus.off('showConfirm', showConfirm);
+        });
+        return (_ctx, _cache) => {
+            return (vue.openBlock(), vue.createElementBlock("div", null, [
+                vue.createVNode(vue.unref(vue$1.Dialog), {
+                    open: confirm.value,
+                    onClose: _cache[2] || (_cache[2] = ($event) => (confirm.value = false)),
+                    class: "fy-modal is-confirm",
+                    style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "43 !important" }
+                }, {
+                    default: vue.withCtx(() => [
+                        vue.createElementVNode("div", _hoisted_1, [
+                            vue.createVNode(vue.unref(vue$1.DialogOverlay)),
+                            vue.createElementVNode("div", _hoisted_2, [
+                                vue.createElementVNode("div", null, [
+                                    vue.createVNode(vue.unref(vue$1.DialogTitle), { class: "title" }, {
+                                        default: vue.withCtx(() => [
+                                            vue.createTextVNode(vue.toDisplayString(title.value), 1 /* TEXT */)
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    }),
+                                    vue.createElementVNode("div", _hoisted_3, [
+                                        (desc.value)
+                                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4, vue.toDisplayString(desc.value), 1 /* TEXT */))
+                                            : vue.createCommentVNode("v-if", true),
+                                        _hoisted_5,
+                                        vue.createElementVNode("div", _hoisted_6, [
+                                            vue.createElementVNode("button", {
+                                                onClick: _cache[0] || (_cache[0] = ($event) => (confirm.value = false)),
+                                                class: "btn neutral btn-defaults"
+                                            }, vue.toDisplayString(_ctx.$t("confirm_modal_cta_cancel")), 1 /* TEXT */),
+                                            vue.createElementVNode("button", {
+                                                onClick: _cache[1] || (_cache[1] = ($event) => (_onConfirm())),
+                                                class: "btn primary btn-defaults"
+                                            }, vue.toDisplayString(_ctx.$t("confirm_modal_cta_confirm")), 1 /* TEXT */)
+                                        ])
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ]),
+                    _: 1 /* STABLE */
+                }, 8 /* PROPS */, ["open"])
+            ]));
+        };
+    }
+});
+
+script.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
 
 var uiComponents = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  FyModal: script$3,
-  FyCirclePercent: script$2,
-  FySteps: script$1,
-  FyBreadcrumb: script
+  FyModal: script$4,
+  FyCirclePercent: script$3,
+  FySteps: script$2,
+  FyBreadcrumb: script$1,
+  FyConfirm: script
 });
 
 const cropText = (str, end = '...', ml = 100) => {
@@ -371,4 +470,5 @@ const createFyvue = () => {
 exports.createFyvue = createFyvue;
 exports.i18nextPromise = i18nextPromise;
 exports.useEventBus = useEventBus;
+exports.useTranslation = useTranslation;
 //# sourceMappingURL=fyvue.js.map

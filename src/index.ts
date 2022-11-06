@@ -1,7 +1,7 @@
 import type { App, Component, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
 import { uiComponents } from "./components";
-import { eventBus, useEventBus, i18next, i18nextPromise } from './helpers';
+import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './helpers';
 import { cropText, formatBytes } from "./displayHelpers";
 import type { FyvueOptions } from "./fyvue"
 
@@ -30,5 +30,6 @@ const createFyvue = () => {
 export {
   createFyvue,
   useEventBus,
+  useTranslation,
   i18nextPromise
 }

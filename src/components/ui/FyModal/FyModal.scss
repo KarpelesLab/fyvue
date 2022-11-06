@@ -4,7 +4,7 @@
 
     .parent {
       @apply flex items-center justify-center min-h-screen;
-      
+
     }
     .modal-container {
       @apply relative mx-1 md:mx-0 md:max-w-2xl w-11/12 shadow -mt-20 ;
@@ -12,11 +12,6 @@
     }
     .title {
       @apply text-xl flex justify-between items-center px-2 py-1;
-    }
-    &.is-confirm {
-      .title {
-        @apply -mx-4;
-      }
     }
     .close-icon {
       @apply w-8;
@@ -28,7 +23,7 @@
       @apply p-2 md:p-3 xl:p-4 2xl:p-5;
     }
   }
-  
+
   .light {
     .fy-modal {
       .parent {
@@ -49,7 +44,7 @@
       }
     }
   }
-  
+
   .dark {
     .fy-modal {
       .parent {

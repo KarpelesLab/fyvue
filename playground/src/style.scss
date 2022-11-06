@@ -4,9 +4,13 @@
 
 @import "@karpeleslab/fyvue/fyvue.scss";
 
-.nav a {
-  @apply text-blue-700;
+nav a {
+  @apply pl-2 inline-block;
+  &:hover {
+    @apply text-neutral-700;
+  }
 }
+
 .router-link-exact-active {
   @apply font-bold;
 }

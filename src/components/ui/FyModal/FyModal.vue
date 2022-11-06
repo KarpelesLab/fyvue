@@ -19,13 +19,13 @@ const props = defineProps({
 
 const eventBus = useEventBus();
 
-const isOpen = ref<Boolean>(false);
-const setModal = (value: Boolean) => {
+const isOpen = ref<boolean>(false);
+const setModal = (value: boolean) => {
   if (value === true) props.onOpen();
   else {
     props.onClose();
   }
-  isOpen.value = Boolean(value);
+  isOpen.value = value;
 };
 onMounted(() => {
   eventBus.on(`${props.id}Modal`, setModal);

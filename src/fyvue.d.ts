@@ -12,3 +12,8 @@ export type FyVueBreadcrumb = {
   name: string;
   to?: string;
 };
+export type FyvueConfirm = {
+  title: string;
+  desc: string;
+  onConfirm: Function
+}

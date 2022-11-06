@@ -1,6 +1,6 @@
 import { createHead } from '@vueuse/head';
 import { getCurrentInstance, defineComponent, ref, onMounted, onUnmounted, openBlock, createBlock, unref, withCtx, createVNode, createElementVNode, createTextVNode, toDisplayString, resolveDynamicComponent, createElementBlock, normalizeClass, renderSlot, computed, normalizeStyle, Fragment, renderList, createCommentVNode, resolveComponent } from 'vue';
-import { TransitionRoot, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
+import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay } from '@headlessui/vue';
 import { getLocale } from '@karpeleslab/klbfw';
 import i18next from 'i18next';
 import { XCircleIcon, ArrowRightIcon } from '@heroicons/vue/24/solid';
@@ -85,9 +85,13 @@ const i18nextPromise = i18next.use(Backend).init({
     load: "currentOnly",
     initImmediate: false,
 });
+const useTranslation = () => {
+    const vueInstance = getCurrentInstance();
+    return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$t;
+};
 
-const _hoisted_1$3 = { class: "parent" };
-var script$3 = /*#__PURE__*/ defineComponent({
+const _hoisted_1$4 = { class: "parent" };
+var script$4 = /*#__PURE__*/ defineComponent({
     __name: 'FyModal',
     props: {
         id: { type: String, default: "CustomModal" },
@@ -106,7 +110,7 @@ var script$3 = /*#__PURE__*/ defineComponent({
             else {
                 props.onClose();
             }
-            isOpen.value = Boolean(value);
+            isOpen.value = value;
         };
         onMounted(() => {
             eventBus.on(`${props.id}Modal`, setModal);
@@ -133,7 +137,7 @@ var script$3 = /*#__PURE__*/ defineComponent({
                         class: "fy-modal"
                     }, {
                         default: withCtx(() => [
-                            createElementVNode("div", _hoisted_1$3, [
+                            createElementVNode("div", _hoisted_1$4, [
                                 createVNode(unref(DialogPanel), { class: "modal-container" }, {
                                     default: withCtx(() => [
                                         (__props.title)
@@ -178,20 +182,20 @@ var script$3 = /*#__PURE__*/ defineComponent({
     }
 });
 
-script$3.__file = "src/components/ui/FyModal/FyModal.vue";
+script$4.__file = "src/components/ui/FyModal/FyModal.vue";
 
-const _hoisted_1$2 = { class: "fy-circle-percent" };
-const _hoisted_2$2 = {
+const _hoisted_1$3 = { class: "fy-circle-percent" };
+const _hoisted_2$3 = {
     viewBox: "0 0 36 36",
     class: "circular-chart"
 };
-const _hoisted_3$1 = /*#__PURE__*/ createElementVNode("path", {
+const _hoisted_3$2 = /*#__PURE__*/ createElementVNode("path", {
     class: "circle-bg",
     d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1 /* HOISTED */);
-const _hoisted_4 = ["stroke-dasharray", "stroke"];
-const _hoisted_5 = ["x", "y"];
-var script$2 = /*#__PURE__*/ defineComponent({
+const _hoisted_4$1 = ["stroke-dasharray", "stroke"];
+const _hoisted_5$1 = ["x", "y"];
+var script$3 = /*#__PURE__*/ defineComponent({
     __name: 'FyCirclePercent',
     props: {
         percent: { type: Number, default: 100 },
@@ -200,32 +204,32 @@ var script$2 = /*#__PURE__*/ defineComponent({
     },
     setup(__props) {
         return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", _hoisted_1$2, [
-                (openBlock(), createElementBlock("svg", _hoisted_2$2, [
-                    _hoisted_3$1,
+            return (openBlock(), createElementBlock("div", _hoisted_1$3, [
+                (openBlock(), createElementBlock("svg", _hoisted_2$3, [
+                    _hoisted_3$2,
                     createElementVNode("path", {
                         class: "circle",
                         "stroke-dasharray": `${__props.percent}, 100`,
                         stroke: __props.color,
                         d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                    }, null, 8 /* PROPS */, _hoisted_4),
+                    }, null, 8 /* PROPS */, _hoisted_4$1),
                     createElementVNode("text", {
                         x: __props.textXY[0].toString(),
                         y: __props.textXY[1].toString(),
                         class: "percentage"
-                    }, toDisplayString(__props.percent) + "%", 9 /* TEXT, PROPS */, _hoisted_5)
+                    }, toDisplayString(__props.percent) + "%", 9 /* TEXT, PROPS */, _hoisted_5$1)
                 ]))
             ]));
         };
     }
 });
 
-script$2.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
+script$3.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
-const _hoisted_1$1 = { class: "fy-step-bar" };
-const _hoisted_2$1 = { class: "bar-bg" };
-const _hoisted_3 = { class: "label" };
-var script$1 = /*#__PURE__*/ defineComponent({
+const _hoisted_1$2 = { class: "fy-step-bar" };
+const _hoisted_2$2 = { class: "bar-bg" };
+const _hoisted_3$1 = { class: "label" };
+var script$2 = /*#__PURE__*/ defineComponent({
     __name: 'FySteps',
     props: {
         steps: { type: (Array), default: [] },
@@ -242,8 +246,8 @@ var script$1 = /*#__PURE__*/ defineComponent({
             return 'past-step';
         };
         return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", _hoisted_1$1, [
-                createElementVNode("div", _hoisted_2$1, [
+            return (openBlock(), createElementBlock("div", _hoisted_1$2, [
+                createElementVNode("div", _hoisted_2$2, [
                     createElementVNode("div", {
                         class: "bar",
                         style: normalizeStyle(`width:${unref(barWidth)}%`)
@@ -255,7 +259,7 @@ var script$1 = /*#__PURE__*/ defineComponent({
                             key: index,
                             class: normalizeClass(getStepClass(index))
                         }, [
-                            createElementVNode("span", _hoisted_3, toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
+                            createElementVNode("span", _hoisted_3$1, toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
                             (step.icon)
                                 ? (openBlock(), createBlock(resolveDynamicComponent(step.icon), {
                                     key: 0,
@@ -270,14 +274,14 @@ var script$1 = /*#__PURE__*/ defineComponent({
     }
 });
 
-script$1.__file = "src/components/ui/FySteps/FySteps.vue";
+script$2.__file = "src/components/ui/FySteps/FySteps.vue";
 
-const _hoisted_1 = {
+const _hoisted_1$1 = {
     class: "fy-breadcrumb",
     "aria-label": "Breadcrumb"
 };
-const _hoisted_2 = { class: "bc-innactive" };
-var script = /*#__PURE__*/ defineComponent({
+const _hoisted_2$1 = { class: "bc-innactive" };
+var script$1 = /*#__PURE__*/ defineComponent({
     __name: 'FyBreadcrumb',
     props: {
         nav: { type: (Array), default: [] },
@@ -286,7 +290,7 @@ var script = /*#__PURE__*/ defineComponent({
     setup(__props) {
         return (_ctx, _cache) => {
             const _component_router_link = resolveComponent("router-link");
-            return (openBlock(), createElementBlock("div", _hoisted_1, [
+            return (openBlock(), createElementBlock("div", _hoisted_1$1, [
                 createElementVNode("ol", null, [
                     (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item) => {
                         return (openBlock(), createElementBlock(Fragment, null, [
@@ -310,7 +314,7 @@ var script = /*#__PURE__*/ defineComponent({
                                     key: `e-${item.to}`,
                                     class: "bc-current"
                                 }, [
-                                    createElementVNode("span", _hoisted_2, toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
+                                    createElementVNode("span", _hoisted_2$1, toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
                                 ]))
                         ], 64 /* STABLE_FRAGMENT */));
                     }), 256 /* UNKEYED_FRAGMENT */))
@@ -320,14 +324,109 @@ var script = /*#__PURE__*/ defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
+script$1.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
+
+const _hoisted_1 = { class: "parent" };
+const _hoisted_2 = {
+    class: "modal-container",
+    style: { "width": "350px !important" }
+};
+const _hoisted_3 = { class: "modal-content" };
+const _hoisted_4 = {
+    key: 0,
+    class: "confirm-modal-desc default-p"
+};
+const _hoisted_5 = /*#__PURE__*/ createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = { class: "btn-box" };
+var script = /*#__PURE__*/ defineComponent({
+    __name: 'FyConfirm',
+    setup(__props) {
+        const eventBus = useEventBus();
+        const confirm = ref(false);
+        const title = ref(null);
+        const desc = ref(null);
+        const onConfirm = ref(null);
+        const _onConfirm = async () => {
+            if (onConfirm.value) {
+                await onConfirm.value();
+            }
+            resetConfirm();
+        };
+        const resetConfirm = () => {
+            title.value = null;
+            desc.value = null;
+            onConfirm.value = null;
+            confirm.value = false;
+        };
+        const showConfirm = (data) => {
+            title.value = data.title;
+            desc.value = data.desc;
+            onConfirm.value = data.onConfirm;
+            confirm.value = true;
+        };
+        onMounted(() => {
+            eventBus.on('resetConfirm', resetConfirm);
+            eventBus.on('showConfirm', showConfirm);
+        });
+        onUnmounted(() => {
+            eventBus.off('resetConfirm', resetConfirm);
+            eventBus.off('showConfirm', showConfirm);
+        });
+        return (_ctx, _cache) => {
+            return (openBlock(), createElementBlock("div", null, [
+                createVNode(unref(Dialog), {
+                    open: confirm.value,
+                    onClose: _cache[2] || (_cache[2] = ($event) => (confirm.value = false)),
+                    class: "fy-modal is-confirm",
+                    style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "43 !important" }
+                }, {
+                    default: withCtx(() => [
+                        createElementVNode("div", _hoisted_1, [
+                            createVNode(unref(DialogOverlay)),
+                            createElementVNode("div", _hoisted_2, [
+                                createElementVNode("div", null, [
+                                    createVNode(unref(DialogTitle), { class: "title" }, {
+                                        default: withCtx(() => [
+                                            createTextVNode(toDisplayString(title.value), 1 /* TEXT */)
+                                        ]),
+                                        _: 1 /* STABLE */
+                                    }),
+                                    createElementVNode("div", _hoisted_3, [
+                                        (desc.value)
+                                            ? (openBlock(), createElementBlock("div", _hoisted_4, toDisplayString(desc.value), 1 /* TEXT */))
+                                            : createCommentVNode("v-if", true),
+                                        _hoisted_5,
+                                        createElementVNode("div", _hoisted_6, [
+                                            createElementVNode("button", {
+                                                onClick: _cache[0] || (_cache[0] = ($event) => (confirm.value = false)),
+                                                class: "btn neutral btn-defaults"
+                                            }, toDisplayString(_ctx.$t("confirm_modal_cta_cancel")), 1 /* TEXT */),
+                                            createElementVNode("button", {
+                                                onClick: _cache[1] || (_cache[1] = ($event) => (_onConfirm())),
+                                                class: "btn primary btn-defaults"
+                                            }, toDisplayString(_ctx.$t("confirm_modal_cta_confirm")), 1 /* TEXT */)
+                                        ])
+                                    ])
+                                ])
+                            ])
+                        ])
+                    ]),
+                    _: 1 /* STABLE */
+                }, 8 /* PROPS */, ["open"])
+            ]));
+        };
+    }
+});
+
+script.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
 
 var uiComponents = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  FyModal: script$3,
-  FyCirclePercent: script$2,
-  FySteps: script$1,
-  FyBreadcrumb: script
+  FyModal: script$4,
+  FyCirclePercent: script$3,
+  FySteps: script$2,
+  FyBreadcrumb: script$1,
+  FyConfirm: script
 });
 
 const cropText = (str, end = '...', ml = 100) => {
@@ -366,5 +465,5 @@ const createFyvue = () => {
     };
 };
 
-export { createFyvue, i18nextPromise, useEventBus };
+export { createFyvue, i18nextPromise, useEventBus, useTranslation };
 //# sourceMappingURL=fyvue.mjs.map

@@ -30,9 +30,10 @@ export default  defineUserConfig({
         collapsable: false,
         children: [
           '/helpers/eventBus.md',
+          '/helpers/style.md',
           '/helpers/i18next.md',
           '/helpers/KLBCountries.md',
-          '/helpers/style.md'
+          '/helpers/klb-template.md'
         ]
       },
       {
@@ -43,6 +44,7 @@ export default  defineUserConfig({
           '/components/FyCirclePercent.md',
           '/components/FySteps.md',
           '/components/FyBreadcrumb.md',
+          '/components/FyConfirm.md'
         ],
       },
       {

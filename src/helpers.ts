@@ -11,6 +11,7 @@ const useEventBus = () => {
     return vueInstance?.appContext.config.globalProperties.$eventBus;
 }
 
+
 const i18nextPromise = i18next.use(Backend).init({
   ns: ["translation"],
   defaultNS: "translation",
@@ -20,10 +21,15 @@ const i18nextPromise = i18next.use(Backend).init({
   initImmediate: false,
 });
 
+const useTranslation = () => {
+  const vueInstance = getCurrentInstance();
+  return vueInstance?.appContext.config.globalProperties.$t;
+};
 
 export {
   eventBus,
   useEventBus,
   i18next,
   i18nextPromise,
+  useTranslation
 }

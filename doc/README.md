@@ -9,7 +9,9 @@ Vue lib for KLB systems
 ```
 
 ## Activate plugin in Vue
-In main.ts or main.js:
+
+In main.ts\/js:
+
 ```ts
     import { createFyvue } from "@karpeleslab/fyvue";
     import { createApp } from "vue";
