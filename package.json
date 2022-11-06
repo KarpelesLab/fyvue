@@ -1,11 +1,18 @@
 {
   "name": "@karpeleslab/fyvue",
-  "version": "0.1.31",
+  "version": "0.2.0",
   "description": "Vue lib for KLB systems",
-  "main": "./fyvue/index.js",
-  "module": "./fyvue/index.mjs",
+  "main": "dist/fyvue.js",
+  "module": "dist/fyvue.mjs",
+  "packageManager": "pnpm@7.14.1",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
+    "build:css": "npx tailwindcss -i ./src/global.scss -o ./dist/fyvue.css",
+    "lint": "eslint --ext .js,.vue,.ts src/",
+    "play": "pnpm run -C ./playground dev"
   },
   "repository": {
     "type": "git",
@@ -17,21 +24,50 @@
   },
   "homepage": "https://github.com/KarpelesLab/fyvue#readme",
   "peerDependencies": {
+    "@headlessui/vue": "^1.7.4",
+    "@heroicons/vue": "^2.0.13",
     "@karpeleslab/klbfw": "^0.1.10",
     "@vuelidate/core": "^2.0.0",
     "@vuelidate/validators": "^2.0.0",
     "@vueuse/core": "^9.3.1",
     "@vueuse/head": "^0.9.8",
     "i18next": "^22.0.2",
-    "mitt": "^3.0.0",
-    "notiwind": "^1.2.6",
-    "vuex": "^4.1.0",
+    "pinia": "^2.0.13",
     "vue": "^3.2.41",
-    "vue3-clipboard": "^1.0.0"
+    "vue-router": "^4.1.5"
   },
   "devDependencies": {
-    "@headlessui/vue": "^1.7.3",
-    "@heroicons/vue": "^2.0.12",
-    "tailwindcss": "^3.0.24"
+    "@headlessui/vue": "^1.7.4",
+    "@heroicons/vue": "^2.0.13",
+    "@karpeleslab/klbfw": "^0.1.10",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.7",
+    "@vue/compiler-sfc": "^3.2.41",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "@vue/tsconfig": "^0.1.3",
+    "@vuelidate/core": "^2.0.0",
+    "@vuelidate/validators": "^2.0.0",
+    "@vueuse/core": "^9.3.1",
+    "@vueuse/head": "^0.9.8",
+    "eslint": "^8.27.0",
+    "eslint-plugin-vue": "^9.7.0",
+    "i18next": "^22.0.2",
+    "mitt": "^3.0.0",
+    "pinia": "^2.0.13",
+    "postcss": "^8.4.18",
+    "rollup": "^3.2.5",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-scss": "v3",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-vue": "^6.0.0",
+    "tailwindcss": "^3.2.2",
+    "tslib": "^2.4.1",
+    "typescript": "^4.8.4",
+    "vue": "^3.2.41",
+    "vue-router": "^4.1.5"
   }
 }

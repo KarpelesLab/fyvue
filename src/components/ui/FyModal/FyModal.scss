@@ -1,0 +1,68 @@
+.fy-modal {
+    @apply fixed inset-0 z-10 overflow-y-auto;
+    .parent {
+      @apply flex items-center justify-center min-h-screen;
+    }
+    .modal-container {
+      @apply relative mx-1 md:mx-0 md:max-w-2xl w-11/12 shadow -mt-20 ;
+    }
+    .title {
+      @apply text-xl flex justify-between items-center px-2 py-1;
+    }
+    &.is-confirm {
+      .title {
+        @apply -mx-4;
+      }
+    }
+    .close-icon {
+      @apply w-8;
+      &.is-alone {
+        @apply float-right mr-1 mt-1;
+      }
+    }
+    .modal-content {
+      @apply p-2 md:p-3 xl:p-4 2xl:p-5;
+    }
+  }
+  
+  .light {
+    .fy-modal {
+      .parent {
+        @apply text-neutral-800;
+        background: rgba(0,0,0,.2) !important;
+      }
+      .modal-container {
+        @apply bg-neutral-100;
+      }
+      .title {
+        @apply bg-neutral-50;
+      }
+      .close-icon {
+        @apply text-neutral-700;
+        &:hover {
+          @apply text-neutral-800;
+        }
+      }
+    }
+  }
+  
+  .dark {
+    .fy-modal {
+      .parent {
+        @apply text-neutral-300;
+        background: rgba(255,255,255,.2) !important;
+      }
+      .modal-container {
+        @apply bg-neutral-800;
+      }
+      .title {
+        @apply bg-neutral-900;
+      }
+      .close-icon {
+        @apply text-neutral-400;
+        &:hover {
+          @apply text-neutral-200;
+        }
+      }
+    }
+  }
