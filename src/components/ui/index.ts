@@ -5,6 +5,7 @@ import FyBreadcrumb from "./FyBreadcrumb/FyBreadcrumb.vue"
 import FySteps from "./FySteps/FySteps.vue"
 import FyDatatable from "./FyDatatable/FyDatatable.vue"
 import FyTable from "./FyTable/FyTable.vue"
+import FyLoader from "./FyLoader/FyLoader.vue"
 
 
 export default [
@@ -14,5 +15,6 @@ export default [
   FyBreadcrumb,
   FySteps,
   FyDatatable,
-  FyTable
+  FyTable,
+  FyLoader
 ]

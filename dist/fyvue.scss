@@ -1,3 +1,10 @@
+@layer base {
+  :root {
+    --color-primary: 255 115 179;
+    --color-secondary: 111 114 185;
+    /* ... */
+  }
+}
 .fy-modal {
   @apply fixed inset-0 overflow-y-auto;
   z-index: 40;
@@ -23,37 +30,37 @@
 }
 
 .light .fy-modal .parent {
-  @apply text-neutral-800;
+  @apply text-fv-neutral-800;
   background: rgba(0, 0, 0, 0.2) !important;
 }
 .light .fy-modal .modal-container {
-  @apply bg-neutral-100;
+  @apply bg-fv-neutral-100;
 }
 .light .fy-modal .title {
-  @apply bg-neutral-50;
+  @apply bg-fv-neutral-50;
 }
 .light .fy-modal .close-icon {
-  @apply text-neutral-700;
+  @apply text-fv-neutral-700;
 }
 .light .fy-modal .close-icon:hover {
-  @apply text-neutral-800;
+  @apply text-fv-neutral-800;
 }
 
 .dark .fy-modal .parent {
-  @apply text-neutral-300;
+  @apply text-fv-neutral-300;
   background: rgba(255, 255, 255, 0.2) !important;
 }
 .dark .fy-modal .modal-container {
-  @apply bg-neutral-800;
+  @apply bg-fv-neutral-800;
 }
 .dark .fy-modal .title {
-  @apply bg-neutral-900;
+  @apply bg-fv-neutral-900;
 }
 .dark .fy-modal .close-icon {
-  @apply text-neutral-400;
+  @apply text-fv-neutral-400;
 }
 .dark .fy-modal .close-icon:hover {
-  @apply text-neutral-200;
+  @apply text-fv-neutral-200;
 }
 
 .fy-circle-percent {
@@ -121,41 +128,41 @@
 }
 
 .light .bar-bg {
-  @apply bg-neutral-200;
+  @apply bg-fv-neutral-200;
 }
 .light .bar {
-  @apply bg-blue-500;
+  @apply bg-fv-primary-500;
 }
 .light ol {
-  @apply text-neutral-500;
+  @apply text-fv-neutral-500;
 }
 .light ol li.current-step {
-  @apply text-blue-500;
+  @apply text-fv-primary-500;
 }
 .light ol li.past-step {
-  @apply text-neutral-500;
+  @apply text-fv-neutral-500;
 }
 .light ol li.future-step {
-  @apply text-neutral-500;
+  @apply text-fv-neutral-500;
 }
 
 .dark .bar-bg {
-  @apply bg-neutral-800;
+  @apply bg-fv-neutral-800;
 }
 .dark .bar {
-  @apply bg-blue-700;
+  @apply bg-fv-primary-700;
 }
 .dark ol {
-  @apply text-neutral-300;
+  @apply text-fv-neutral-300;
 }
 .dark ol li.current-step {
-  @apply text-blue-300;
+  @apply text-fv-primary-300;
 }
 .dark ol li.past-step {
-  @apply text-neutral-300;
+  @apply text-fv-neutral-300;
 }
 .dark ol li.future-step {
-  @apply text-neutral-300;
+  @apply text-fv-neutral-300;
 }
 
 .fy-breadcrumb {
@@ -181,23 +188,23 @@
 }
 
 .light .fy-breadcrumb {
-  @apply border-blue-600;
+  @apply border-fv-primary-600;
 }
 .light .bc-innactive {
-  @apply text-neutral-600;
+  @apply text-fv-neutral-600;
 }
 .light .bc-active {
-  @apply text-blue-600;
+  @apply text-fv-primary-600;
 }
 
 .dark .fy-breadcrumb {
-  @apply border-blue-300;
+  @apply border-fv-primary-300;
 }
 .dark .bc-innactive {
-  @apply text-neutral-300;
+  @apply text-fv-neutral-300;
 }
 .dark .bc-active {
-  @apply text-blue-300;
+  @apply text-fv-primary-300;
 }
 
 .fy-datatable td {
@@ -239,65 +246,94 @@
 }
 
 .light .fy-table .table-container {
-  @apply border-neutral-200;
+  @apply border-fv-neutral-200;
 }
 .light .fy-table table thead th {
-  @apply border-neutral-200 bg-neutral-50 text-neutral-600;
+  @apply border-fv-neutral-200 bg-fv-neutral-50 text-fv-neutral-600;
 }
 .light .fy-datatable tbody {
   @apply bg-white;
 }
 .light .fy-datatable td {
-  @apply text-neutral-700 border-b-neutral-300;
+  @apply text-fv-neutral-700 border-b-fv-neutral-300;
 }
 .light .fy-datatable th {
-  @apply bg-neutral-300 text-black;
+  @apply bg-fv-neutral-300 text-black;
 }
 .light .fy-datatable .div {
-  @apply bg-transparent md:bg-neutral-300 text-black;
+  @apply bg-transparent md:bg-fv-neutral-300 text-black;
 }
 .light .fy-datatable .bg-color-1 {
-  @apply bg-neutral-200;
+  @apply bg-fv-neutral-200;
 }
 .light .fy-datatable .bg-color-2 {
-  @apply bg-neutral-100;
+  @apply bg-fv-neutral-100;
 }
 
 .dark .fy-table .table-container {
-  @apply border-neutral-900 text-white bg-neutral-800;
+  @apply border-fv-neutral-900 text-white bg-fv-neutral-800;
 }
 .dark .fy-table table thead th {
-  @apply border-neutral-900 bg-neutral-900 text-neutral-400;
+  @apply border-fv-neutral-900 bg-fv-neutral-900 text-fv-neutral-400;
 }
 .dark .fy-table table tbody td {
-  @apply border-b-neutral-900;
+  @apply border-b-fv-neutral-900;
 }
 .dark .fy-datatable tbody {
   @apply bg-black;
 }
 .dark .fy-datatable td {
-  @apply text-neutral-200 border-b-neutral-900;
+  @apply text-fv-neutral-200 border-b-fv-neutral-900;
 }
 .dark .fy-datatable th {
-  @apply bg-neutral-900 text-white;
+  @apply bg-fv-neutral-900 text-white;
 }
 .dark .fy-datatable .div {
-  @apply bg-transparent md:bg-neutral-900 text-white;
+  @apply bg-transparent md:bg-fv-neutral-900 text-white;
 }
 .dark .fy-datatable .bg-color-1 {
-  @apply bg-neutral-700;
+  @apply bg-fv-neutral-700;
 }
 .dark .fy-datatable .bg-color-2 {
-  @apply bg-neutral-800;
+  @apply bg-fv-neutral-800;
+}
+
+.fy-loader {
+  @apply absolute  inset-0 flex items-center justify-center;
+  z-index: 60 !important;
+}
+.fy-loader .loader-container {
+  @apply flex items-center flex-col  flex-grow-0 justify-center bg-white;
+}
+.fy-loader .loader-text {
+  @apply w-full text-center font-bold mx-auto uppercase text-fv-neutral-800 mt-4 text-xs;
+}
+
+.fy-self-loader {
+  z-index: 60 !important;
+}
+
+.light .fy-self-loader .default-loader, .light .fy-loader .default-loader {
+  @apply text-neutral-200 mb-2 animate-spin fill-fv-primary-600;
+}
+.light .fy-self-loader, .light .fy-loader {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark .fy-self-loader .default-loader, .dark .fy-loader .default-loader {
+  @apply text-neutral-900 mb-2 animate-spin fill-fv-primary-400;
+}
+.dark .fy-self-loader, .dark .fy-loader {
+  background: rgba(0, 0, 0, 0.2) !important;
 }
 
 .btn {
-  @apply text-white shadow  whitespace-nowrap  rounded-tl-xl rounded-br-xl;
+  @apply text-white shadow  whitespace-nowrap;
   @apply transition duration-300 ease-in-out transform;
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 .btn.neutral {
-  @apply shadow-sm text-gray-50 border-t border-b;
+  @apply shadow-sm text-gray-50;
   background: rgba(0, 0, 0, 0.7);
 }
 .btn.neutral:hover {
@@ -305,17 +341,10 @@
   background: rgba(60, 60, 60, 0.7);
 }
 .btn.primary {
-  @apply shadow-sm text-gray-50 border-t border-b;
-  background: #2b79c4;
-  border-top-color: #4b92d7;
-  border-bottom-color: #225f9a;
+  @apply bg-fv-primary-500 shadow-sm text-gray-50;
 }
 .btn.primary:hover {
-  @apply border-t border-b;
-  @apply shadow-sm text-white border-t border-b;
-  background: #225f9a;
-  border-top-color: #2b79c4;
-  border-bottom-color: #194570;
+  @apply bg-fv-primary-600 shadow-sm text-white;
 }
 .btn.btn-defaults {
   @apply mx-auto px-3 py-1.5;

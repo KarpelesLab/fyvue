@@ -1,16 +1,26 @@
+@layer base {
+  :root {
+    --color-primary: 255 115 179;
+    --color-secondary: 111 114 185;
+    /* ... */
+  }
+}
+
 @import "./components/ui/FyModal/FyModal.scss";
 @import "./components/ui/FyCirclePercent/FyCirclePercent.scss";
 @import "./components/ui/FySteps/FySteps.scss";
 @import "./components/ui/FyBreadcrumb/FyBreadcrumb.scss";
 @import "./components/ui/FyDatatable/FyDatatable.scss";
+@import "./components/ui/FyLoader/FyLoader.scss";
+
 
 .btn {
-  @apply  text-white shadow  whitespace-nowrap  rounded-tl-xl rounded-br-xl;
+  @apply  text-white shadow  whitespace-nowrap ;
   @apply transition duration-300 ease-in-out transform;
   text-shadow: 2px 2px 0px rgba(0,0,0,.3);
 
   &.neutral {
-    @apply  shadow-sm text-gray-50 border-t border-b ;
+    @apply  shadow-sm text-gray-50  ;
     background: rgba(0,0,0,.7);
 
   }
@@ -19,17 +29,11 @@
     background: rgba(60,60,60,.7);
   }
   &.primary {
-    @apply  shadow-sm text-gray-50 border-t border-b;
-    background: #2b79c4;
-    border-top-color: lighten(#2b79c4, 10%);
-    border-bottom-color: darken(#2b79c4, 10%);
+    @apply bg-fv-primary-500 shadow-sm text-gray-50 ;
+
   }
   &.primary:hover {
-    @apply border-t border-b;
-    @apply  shadow-sm text-white border-t border-b;
-    background: darken(#2b79c4, 10%);
-    border-top-color: lighten(darken(#2b79c4, 10%), 10%);
-    border-bottom-color: darken(darken(#2b79c4, 10%), 10%);
+    @apply bg-fv-primary-600 shadow-sm text-white ;
   }
 
   &.btn-defaults {

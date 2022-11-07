@@ -4,7 +4,7 @@ await i18nextPromise;
 </script>
 
 <template>
-  <div class="container mx-auto flex my-6">
+  <div class="container mx-auto flex my-6 min-h-screen">
     <nav class="w-32 flex flex-col items-center border-r border-gray-200 pr-2 mr-2">
       <RouterLink to="/"><img src="@/assets/fyvue.svg" alt="fyvue" class="w-24 mb-6" /></RouterLink>
       <ul>
@@ -19,9 +19,9 @@ await i18nextPromise;
         <li><RouterLink to="/tests/FyConfirm">FyConfirm</RouterLink></li>
         <li><RouterLink to="/tests/FyDatatable">FyDatatable</RouterLink></li>
         <li><RouterLink to="/tests/FyTable">FyTable</RouterLink></li>
-
+        <li><RouterLink to="/tests/FyLoader">FyLoader</RouterLink></li>
       </ul>
     </nav>
-    <main class="flex-1"><RouterView /></main>
+    <main class="flex-1 relative">    <RouterView /></main>
   </div>
 </template>

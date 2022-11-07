@@ -27,19 +27,19 @@
   .light {
     .fy-modal {
       .parent {
-        @apply text-neutral-800;
+        @apply text-fv-neutral-800;
         background: rgba(0,0,0,.2) !important;
       }
       .modal-container {
-        @apply bg-neutral-100;
+        @apply bg-fv-neutral-100;
       }
       .title {
-        @apply bg-neutral-50;
+        @apply bg-fv-neutral-50;
       }
       .close-icon {
-        @apply text-neutral-700;
+        @apply text-fv-neutral-700;
         &:hover {
-          @apply text-neutral-800;
+          @apply text-fv-neutral-800;
         }
       }
     }
@@ -48,19 +48,19 @@
   .dark {
     .fy-modal {
       .parent {
-        @apply text-neutral-300;
+        @apply text-fv-neutral-300;
         background: rgba(255,255,255,.2) !important;
       }
       .modal-container {
-        @apply bg-neutral-800;
+        @apply bg-fv-neutral-800;
       }
       .title {
-        @apply bg-neutral-900;
+        @apply bg-fv-neutral-900;
       }
       .close-icon {
-        @apply text-neutral-400;
+        @apply text-fv-neutral-400;
         &:hover {
-          @apply text-neutral-200;
+          @apply text-fv-neutral-200;
         }
       }
     }

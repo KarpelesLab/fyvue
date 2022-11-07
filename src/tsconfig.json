@@ -13,6 +13,11 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "removeComments": true,
+    "paths": {
+      "@karpeleslab/fyvue/*": [
+        "./*"
+      ],
+    }
   },
   "include": [
     "./**/*.ts",

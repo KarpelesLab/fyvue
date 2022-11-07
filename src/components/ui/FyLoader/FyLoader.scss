@@ -1,0 +1,38 @@
+.fy-loader {
+  @apply absolute  inset-0 flex items-center justify-center;
+  z-index: 60 !important;
+
+  .loader-container {
+    @apply flex items-center flex-col  flex-grow-0 justify-center bg-white;
+  }
+  .loader-text {
+    @apply w-full text-center font-bold mx-auto uppercase text-fv-neutral-800 mt-4 text-xs;
+  }
+}
+
+.fy-self-loader {
+  z-index: 60 !important;
+}
+
+.light {
+  .fy-self-loader, .fy-loader {
+    .default-loader {
+      @apply  text-neutral-200 mb-2 animate-spin fill-fv-primary-600;
+    }
+  }
+
+  .fy-self-loader, .fy-loader {
+    background: rgba(255,255,255,.2) !important;
+  }
+}
+.dark {
+  .fy-self-loader, .fy-loader {
+    .default-loader {
+      @apply  text-neutral-900 mb-2 animate-spin fill-fv-primary-400;
+    }
+  }
+  .fy-self-loader, .fy-loader {
+    background: rgba(0,0,0,.2) !important;
+  }
+}
+

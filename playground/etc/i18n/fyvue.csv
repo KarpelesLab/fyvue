@@ -4,7 +4,7 @@
 "error_form_value_is_not_a_valid_email_address","Not a valid email address",,
 "global_datetime","{{val, datetime}}","{{val, datetime}}","{{val, datetime}}"
 "global_paging","Showing {{start, number}} to {{end, number}} of {{total, number}} results",,
-"global_loading_text","loading...",,
+"global_loading_text","Loading...",,
 "confirm_modal_cta_cancel","Cancel",,
 "confirm_modal_cta_confirm","Confirm",,
 "unknown_error","Unknown error",,

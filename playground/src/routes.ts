@@ -34,5 +34,9 @@ export const routes = [
   {
     path: '/tests/FyTable',
     component: () => import('./components/TFyTable.vue')
+  },
+  {
+    path: '/tests/FyLoader',
+    component: () => import('./components/TFyLoader.vue')
   }
 ]

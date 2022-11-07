@@ -23,23 +23,23 @@
 }
 .light {
   .fy-breadcrumb {
-    @apply border-blue-600;
+    @apply border-fv-primary-600;
   }
   .bc-innactive {
-    @apply text-neutral-600;
+    @apply text-fv-neutral-600;
   }
   .bc-active {
-      @apply text-blue-600;
+      @apply text-fv-primary-600;
   }
 }
 .dark {
   .fy-breadcrumb {
-    @apply border-blue-300;
+    @apply border-fv-primary-300;
   }
   .bc-innactive {
-    @apply text-neutral-300;
+    @apply text-fv-neutral-300;
   }
   .bc-active {
-      @apply text-blue-300;
+      @apply text-fv-primary-300;
   }
 }

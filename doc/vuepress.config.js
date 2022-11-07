@@ -46,7 +46,8 @@ export default  defineUserConfig({
           '/components/FyBreadcrumb.md',
           '/components/FyConfirm.md',
           '/components/FyDatatable.md',
-          '/components/FyTable.md'
+          '/components/FyTable.md',
+          '/components/FyLoader.md'
         ],
       },
       {

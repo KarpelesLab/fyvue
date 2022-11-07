@@ -1,9 +1,9 @@
 import type { App, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
-import uiComponents from "./components/ui";
-import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './helpers';
-import { cropText, formatBytes } from "./displayHelpers";
-import type { FyvueOptions } from "./fyvue"
+import uiComponents from "@karpeleslab/fyvue/components/ui";
+import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from '@karpeleslab/fyvue/helpers';
+import { cropText, formatBytes, tailwindColors } from "@karpeleslab/fyvue/displayHelpers";
+import type { FyvueOptions } from "@karpeleslab/fyvue/types"
 
 import './fyvue.scss';
 
@@ -30,5 +30,6 @@ export {
   createFyvue,
   useEventBus,
   useTranslation,
-  i18nextPromise
+  i18nextPromise,
+  tailwindColors
 }

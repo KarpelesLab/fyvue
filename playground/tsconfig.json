@@ -10,21 +10,32 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["vite/client", "unplugin-icons/types/vue"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "vite/client"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ],
+      "@karpeleslab/fyvue": [
+        "../dist/fyvue.mjs"
+      ],
+      "@karpeleslab/fyvue/*": [
+        "../dist"
+      ],
     }
   },
   "include": [
-    "./vite.config.*",
-    "./src/**/*.ts",
-    "./src/**/*.d.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.vue",
+    "vite.config.*",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
     "../typings/env.d.ts",
     "../typings/components.d.ts",
     "../src/**/*.ts",
@@ -34,7 +45,7 @@
   ],
   "references": [
     {
-      "path": "./tsconfig.node.json"
+      "path": "tsconfig.node.json"
     }
   ],
 }
