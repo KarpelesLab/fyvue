@@ -1,5 +1,5 @@
 import { createHead } from '@vueuse/head';
-import { getCurrentInstance, defineComponent, ref, onMounted, onUnmounted, openBlock, createBlock, unref, withCtx, createVNode, createElementVNode, createTextVNode, toDisplayString, resolveDynamicComponent, createElementBlock, normalizeClass, renderSlot, computed, normalizeStyle, Fragment, renderList, createCommentVNode, resolveComponent } from 'vue';
+import { getCurrentInstance, defineComponent, ref, onMounted, onUnmounted, openBlock, createBlock, unref, withCtx, createVNode, createElementVNode, createTextVNode, toDisplayString, resolveDynamicComponent, createElementBlock, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay } from '@headlessui/vue';
 import { getLocale } from '@karpeleslab/klbfw';
 import i18next from 'i18next';
@@ -75,7 +75,7 @@ Backend.type = 'backend';
 const eventBus = mitt();
 const useEventBus = () => {
     const vueInstance = getCurrentInstance();
-    return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$eventBus;
+    return vueInstance?.appContext.config.globalProperties.$eventBus;
 };
 const i18nextPromise = i18next.use(Backend).init({
     ns: ["translation"],
@@ -87,7 +87,7 @@ const i18nextPromise = i18next.use(Backend).init({
 });
 const useTranslation = () => {
     const vueInstance = getCurrentInstance();
-    return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$t;
+    return vueInstance?.appContext.config.globalProperties.$t;
 };
 
 const _hoisted_1$4 = { class: "parent" };
@@ -226,119 +226,19 @@ var script$3 = /*#__PURE__*/ defineComponent({
 
 script$3.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
-const _hoisted_1$2 = { class: "fy-step-bar" };
-const _hoisted_2$2 = { class: "bar-bg" };
-const _hoisted_3$1 = { class: "label" };
-var script$2 = /*#__PURE__*/ defineComponent({
-    __name: 'FySteps',
-    props: {
-        steps: { type: (Array), default: [] },
-        currentStep: { type: Number, default: 0 }
-    },
-    setup(__props) {
-        const props = __props;
-        const barWidth = computed(() => (props.currentStep * 100) / props.steps.length);
-        const getStepClass = (index) => {
-            if ((index + 1) < props.currentStep)
-                return 'past-step';
-            if ((index + 1) == props.currentStep)
-                return 'current-step';
-            return 'past-step';
-        };
-        return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", _hoisted_1$2, [
-                createElementVNode("div", _hoisted_2$2, [
-                    createElementVNode("div", {
-                        class: "bar",
-                        style: normalizeStyle(`width:${unref(barWidth)}%`)
-                    }, null, 4 /* STYLE */)
-                ]),
-                createElementVNode("ol", null, [
-                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.steps, (step, index) => {
-                        return (openBlock(), createElementBlock("li", {
-                            key: index,
-                            class: normalizeClass(getStepClass(index))
-                        }, [
-                            createElementVNode("span", _hoisted_3$1, toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
-                            (step.icon)
-                                ? (openBlock(), createBlock(resolveDynamicComponent(step.icon), {
-                                    key: 0,
-                                    class: "icon"
-                                }))
-                                : createCommentVNode("v-if", true)
-                        ], 2 /* CLASS */));
-                    }), 128 /* KEYED_FRAGMENT */))
-                ])
-            ]));
-        };
-    }
-});
-
-script$2.__file = "src/components/ui/FySteps/FySteps.vue";
-
-const _hoisted_1$1 = {
-    class: "fy-breadcrumb",
-    "aria-label": "Breadcrumb"
-};
-const _hoisted_2$1 = { class: "bc-innactive" };
-var script$1 = /*#__PURE__*/ defineComponent({
-    __name: 'FyBreadcrumb',
-    props: {
-        nav: { type: (Array), default: [] },
-        maxLength: { type: Number, default: 15 }
-    },
-    setup(__props) {
-        return (_ctx, _cache) => {
-            const _component_router_link = resolveComponent("router-link");
-            return (openBlock(), createElementBlock("div", _hoisted_1$1, [
-                createElementVNode("ol", null, [
-                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item) => {
-                        return (openBlock(), createElementBlock(Fragment, null, [
-                            (item.to)
-                                ? (openBlock(), createElementBlock("li", {
-                                    key: item.to,
-                                    class: "bc-innactive"
-                                }, [
-                                    createVNode(_component_router_link, {
-                                        to: item.to,
-                                        class: "bc-active link"
-                                    }, {
-                                        default: withCtx(() => [
-                                            createTextVNode(toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
-                                        ]),
-                                        _: 2 /* DYNAMIC */
-                                    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]),
-                                    createVNode(unref(ArrowRightIcon), { class: "icon bc-innactive" })
-                                ]))
-                                : (openBlock(), createElementBlock("li", {
-                                    key: `e-${item.to}`,
-                                    class: "bc-current"
-                                }, [
-                                    createElementVNode("span", _hoisted_2$1, toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
-                                ]))
-                        ], 64 /* STABLE_FRAGMENT */));
-                    }), 256 /* UNKEYED_FRAGMENT */))
-                ])
-            ]));
-        };
-    }
-});
-
-script$1.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
-
-const _hoisted_1 = { class: "parent" };
-const _hoisted_2 = {
+const _hoisted_1$2 = { class: "parent" };
+const _hoisted_2$2 = {
     class: "modal-container",
     style: { "width": "350px !important" }
 };
-const _hoisted_3 = { class: "modal-content" };
+const _hoisted_3$1 = { class: "modal-content" };
 const _hoisted_4 = {
     key: 0,
     class: "confirm-modal-desc default-p"
 };
 const _hoisted_5 = /*#__PURE__*/ createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_6 = { class: "btn-box" };
-var script = /*#__PURE__*/ defineComponent({
+var script$2 = /*#__PURE__*/ defineComponent({
     __name: 'FyConfirm',
     setup(__props) {
         const eventBus = useEventBus();
@@ -381,9 +281,9 @@ var script = /*#__PURE__*/ defineComponent({
                     style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "43 !important" }
                 }, {
                     default: withCtx(() => [
-                        createElementVNode("div", _hoisted_1, [
+                        createElementVNode("div", _hoisted_1$2, [
                             createVNode(unref(DialogOverlay)),
-                            createElementVNode("div", _hoisted_2, [
+                            createElementVNode("div", _hoisted_2$2, [
                                 createElementVNode("div", null, [
                                     createVNode(unref(DialogTitle), { class: "title" }, {
                                         default: withCtx(() => [
@@ -391,7 +291,7 @@ var script = /*#__PURE__*/ defineComponent({
                                         ]),
                                         _: 1 /* STABLE */
                                     }),
-                                    createElementVNode("div", _hoisted_3, [
+                                    createElementVNode("div", _hoisted_3$1, [
                                         (desc.value)
                                             ? (openBlock(), createElementBlock("div", _hoisted_4, toDisplayString(desc.value), 1 /* TEXT */))
                                             : createCommentVNode("v-if", true),
@@ -418,18 +318,117 @@ var script = /*#__PURE__*/ defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
+script$2.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
 
-var uiComponents = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  FyModal: script$4,
-  FyCirclePercent: script$3,
-  FySteps: script$2,
-  FyBreadcrumb: script$1,
-  FyConfirm: script
+const _hoisted_1$1 = {
+    class: "fy-breadcrumb",
+    "aria-label": "Breadcrumb"
+};
+const _hoisted_2$1 = { class: "bc-innactive" };
+var script$1 = /*#__PURE__*/ defineComponent({
+    __name: 'FyBreadcrumb',
+    props: {
+        nav: { type: (Array), default: [] },
+        maxLength: { type: Number, default: 15 }
+    },
+    setup(__props) {
+        return (_ctx, _cache) => {
+            const _component_router_link = resolveComponent("router-link");
+            return (openBlock(), createElementBlock("div", _hoisted_1$1, [
+                createElementVNode("ol", null, [
+                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item) => {
+                        return (openBlock(), createElementBlock(Fragment, null, [
+                            (item.to)
+                                ? (openBlock(), createElementBlock("li", {
+                                    key: item.to,
+                                    class: "bc-innactive"
+                                }, [
+                                    createVNode(_component_router_link, {
+                                        to: item.to,
+                                        class: "bc-active link"
+                                    }, {
+                                        default: withCtx(() => [
+                                            createTextVNode(toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1 /* TEXT */)
+                                        ]),
+                                        _: 2 /* DYNAMIC */
+                                    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]),
+                                    createVNode(unref(ArrowRightIcon), { class: "icon bc-innactive" })
+                                ]))
+                                : (openBlock(), createElementBlock("li", {
+                                    key: `e-${item.to}`,
+                                    class: "bc-current"
+                                }, [
+                                    createElementVNode("span", _hoisted_2$1, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1 /* TEXT */)
+                                ]))
+                        ], 64 /* STABLE_FRAGMENT */));
+                    }), 256 /* UNKEYED_FRAGMENT */))
+                ])
+            ]));
+        };
+    }
 });
 
-const cropText = (str, end = '...', ml = 100) => {
+script$1.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
+
+const _hoisted_1 = { class: "fy-step-bar" };
+const _hoisted_2 = { class: "bar-bg" };
+const _hoisted_3 = { class: "label" };
+var script = /*#__PURE__*/ defineComponent({
+    __name: 'FySteps',
+    props: {
+        steps: { type: (Array), default: [] },
+        currentStep: { type: Number, default: 0 }
+    },
+    setup(__props) {
+        const props = __props;
+        const barWidth = computed(() => (props.currentStep * 100) / props.steps.length);
+        const getStepClass = (index) => {
+            if ((index + 1) < props.currentStep)
+                return 'past-step';
+            if ((index + 1) == props.currentStep)
+                return 'current-step';
+            return 'past-step';
+        };
+        return (_ctx, _cache) => {
+            return (openBlock(), createElementBlock("div", _hoisted_1, [
+                createElementVNode("div", _hoisted_2, [
+                    createElementVNode("div", {
+                        class: "bar",
+                        style: normalizeStyle(`width:${unref(barWidth)}%`)
+                    }, null, 4 /* STYLE */)
+                ]),
+                createElementVNode("ol", null, [
+                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.steps, (step, index) => {
+                        return (openBlock(), createElementBlock("li", {
+                            key: index,
+                            class: normalizeClass(getStepClass(index))
+                        }, [
+                            createElementVNode("span", _hoisted_3, toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
+                            (step.icon)
+                                ? (openBlock(), createBlock(resolveDynamicComponent(step.icon), {
+                                    key: 0,
+                                    class: "icon"
+                                }))
+                                : createCommentVNode("v-if", true)
+                        ], 2 /* CLASS */));
+                    }), 128 /* KEYED_FRAGMENT */))
+                ])
+            ]));
+        };
+    }
+});
+
+script.__file = "src/components/ui/FySteps/FySteps.vue";
+
+var uiComponents = [
+    script$4,
+    script$3,
+    script$2,
+    script$1,
+    script
+];
+
+const cropText = (str, ml = 100, end = '...') => {
     if (str && typeof str == "string") {
         if (str.length > ml) {
             return `${str.slice(0, ml)}${end}`;
@@ -455,10 +454,10 @@ const createFyvue = () => {
         app.config.globalProperties.$t = i18next.t;
         app.config.globalProperties.$cropText = cropText;
         app.config.globalProperties.$formatBytes = formatBytes;
-        // Loading UI components
-        for (const componentKey in uiComponents) {
-            app.component(componentKey, uiComponents[componentKey]);
-        }
+        uiComponents.forEach((component) => {
+            if (component.__name)
+                app.component(component.__name, component);
+        });
     };
     return {
         install

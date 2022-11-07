@@ -1,11 +1,10 @@
 import mitt from "mitt";
 import { getCurrentInstance } from "vue";
-import type { FyVueEvent } from "./fyvue"
 import { getLocale } from "@karpeleslab/klbfw";
 import Backend from "./lib/klb-i18n-backend.js";
 import i18next from "i18next";
 
-const eventBus = mitt<FyVueEvent>();
+const eventBus = mitt();
 const useEventBus = () => {
     const vueInstance = getCurrentInstance();
     return vueInstance?.appContext.config.globalProperties.$eventBus;

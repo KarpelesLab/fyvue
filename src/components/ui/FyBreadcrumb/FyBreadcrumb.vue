@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { FyVueBreadcrumb } from '../../../fyvue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid'
-
 defineProps({
     nav: { type: Array<FyVueBreadcrumb>, default: [] },
     maxLength: { type: Number, default: 15 }
@@ -24,7 +23,7 @@ defineProps({
             class="bc-active link"
           >
             {{
-              $cropText($t(item.name), maxLength)
+              $cropText($t(item.name).toString(), maxLength)
             }}
           </router-link>
           <ArrowRightIcon class="icon bc-innactive" />
@@ -34,7 +33,7 @@ defineProps({
           v-bind:key="`e-${item.to}`"
           class="bc-current"
         >
-          <span class="bc-innactive">{{ $cropText($t(item.name), maxLength) }}</span>
+          <span class="bc-innactive">{{ $cropText($t(item.name).toString(), maxLength) }}</span>
         </li>
       </template>
     </ol>

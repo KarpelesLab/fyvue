@@ -40,7 +40,6 @@ package-lock.json
 /libpeerconnection.log
 npm-debug.log
 testem.log
-/typings
 
 # e2e
 /e2e/src/*.js

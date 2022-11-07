@@ -8,7 +8,8 @@ import copy from 'rollup-plugin-copy'
 export default {
   input: './src/index.ts',
   output: [
-    /*{
+    /*
+    {
       format: 'umd',
       sourcemap: true,
       file: "./dist/fyvue.umd.js",

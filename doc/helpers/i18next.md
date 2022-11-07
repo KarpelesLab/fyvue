@@ -4,7 +4,7 @@ You will need to import **i18nextPromise** from **@karpeleslab/fyvue** and await
 @[code{1-4} vue](../../playground/src/App.vue)
 
 ## Use i18next
-You can use **useTranslations** for composition API or **this.$t** for the standard API.
+You can use **useTranslation** for composition API or **this.$t** for the standard API.
 @[code vue](../../playground/src/components/Ti18n.vue)
 
 

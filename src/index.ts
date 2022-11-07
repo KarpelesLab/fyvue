@@ -1,6 +1,6 @@
-import type { App, Component, Plugin } from "vue";
+import type { App, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
-import { uiComponents } from "./components";
+import uiComponents from "./components/ui";
 import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './helpers';
 import { cropText, formatBytes } from "./displayHelpers";
 import type { FyvueOptions } from "./fyvue"
@@ -17,10 +17,9 @@ const createFyvue = () => {
     app.config.globalProperties.$cropText = cropText;
     app.config.globalProperties.$formatBytes = formatBytes;
 
-    // Loading UI components
-    for (const componentKey in uiComponents) {
-      app.component(componentKey, uiComponents[componentKey]);
-    }
+    uiComponents.forEach((component) => {
+      if (component.__name) app.component(component.__name, component)
+    });
   }
   return <Plugin>{
     install

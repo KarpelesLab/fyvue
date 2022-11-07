@@ -77,7 +77,7 @@ Backend.type = 'backend';
 const eventBus = mitt();
 const useEventBus = () => {
     const vueInstance = vue.getCurrentInstance();
-    return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$eventBus;
+    return vueInstance?.appContext.config.globalProperties.$eventBus;
 };
 const i18nextPromise = i18next.use(Backend).init({
     ns: ["translation"],
@@ -89,7 +89,7 @@ const i18nextPromise = i18next.use(Backend).init({
 });
 const useTranslation = () => {
     const vueInstance = vue.getCurrentInstance();
-    return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$t;
+    return vueInstance?.appContext.config.globalProperties.$t;
 };
 
 const _hoisted_1$4 = { class: "parent" };
@@ -228,119 +228,19 @@ var script$3 = /*#__PURE__*/ vue.defineComponent({
 
 script$3.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
-const _hoisted_1$2 = { class: "fy-step-bar" };
-const _hoisted_2$2 = { class: "bar-bg" };
-const _hoisted_3$1 = { class: "label" };
-var script$2 = /*#__PURE__*/ vue.defineComponent({
-    __name: 'FySteps',
-    props: {
-        steps: { type: (Array), default: [] },
-        currentStep: { type: Number, default: 0 }
-    },
-    setup(__props) {
-        const props = __props;
-        const barWidth = vue.computed(() => (props.currentStep * 100) / props.steps.length);
-        const getStepClass = (index) => {
-            if ((index + 1) < props.currentStep)
-                return 'past-step';
-            if ((index + 1) == props.currentStep)
-                return 'current-step';
-            return 'past-step';
-        };
-        return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
-                vue.createElementVNode("div", _hoisted_2$2, [
-                    vue.createElementVNode("div", {
-                        class: "bar",
-                        style: vue.normalizeStyle(`width:${vue.unref(barWidth)}%`)
-                    }, null, 4 /* STYLE */)
-                ]),
-                vue.createElementVNode("ol", null, [
-                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.steps, (step, index) => {
-                        return (vue.openBlock(), vue.createElementBlock("li", {
-                            key: index,
-                            class: vue.normalizeClass(getStepClass(index))
-                        }, [
-                            vue.createElementVNode("span", _hoisted_3$1, vue.toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
-                            (step.icon)
-                                ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(step.icon), {
-                                    key: 0,
-                                    class: "icon"
-                                }))
-                                : vue.createCommentVNode("v-if", true)
-                        ], 2 /* CLASS */));
-                    }), 128 /* KEYED_FRAGMENT */))
-                ])
-            ]));
-        };
-    }
-});
-
-script$2.__file = "src/components/ui/FySteps/FySteps.vue";
-
-const _hoisted_1$1 = {
-    class: "fy-breadcrumb",
-    "aria-label": "Breadcrumb"
-};
-const _hoisted_2$1 = { class: "bc-innactive" };
-var script$1 = /*#__PURE__*/ vue.defineComponent({
-    __name: 'FyBreadcrumb',
-    props: {
-        nav: { type: (Array), default: [] },
-        maxLength: { type: Number, default: 15 }
-    },
-    setup(__props) {
-        return (_ctx, _cache) => {
-            const _component_router_link = vue.resolveComponent("router-link");
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
-                vue.createElementVNode("ol", null, [
-                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item) => {
-                        return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-                            (item.to)
-                                ? (vue.openBlock(), vue.createElementBlock("li", {
-                                    key: item.to,
-                                    class: "bc-innactive"
-                                }, [
-                                    vue.createVNode(_component_router_link, {
-                                        to: item.to,
-                                        class: "bc-active link"
-                                    }, {
-                                        default: vue.withCtx(() => [
-                                            vue.createTextVNode(vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
-                                        ]),
-                                        _: 2 /* DYNAMIC */
-                                    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]),
-                                    vue.createVNode(vue.unref(solid.ArrowRightIcon), { class: "icon bc-innactive" })
-                                ]))
-                                : (vue.openBlock(), vue.createElementBlock("li", {
-                                    key: `e-${item.to}`,
-                                    class: "bc-current"
-                                }, [
-                                    vue.createElementVNode("span", _hoisted_2$1, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name), __props.maxLength)), 1 /* TEXT */)
-                                ]))
-                        ], 64 /* STABLE_FRAGMENT */));
-                    }), 256 /* UNKEYED_FRAGMENT */))
-                ])
-            ]));
-        };
-    }
-});
-
-script$1.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
-
-const _hoisted_1 = { class: "parent" };
-const _hoisted_2 = {
+const _hoisted_1$2 = { class: "parent" };
+const _hoisted_2$2 = {
     class: "modal-container",
     style: { "width": "350px !important" }
 };
-const _hoisted_3 = { class: "modal-content" };
+const _hoisted_3$1 = { class: "modal-content" };
 const _hoisted_4 = {
     key: 0,
     class: "confirm-modal-desc default-p"
 };
 const _hoisted_5 = /*#__PURE__*/ vue.createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_6 = { class: "btn-box" };
-var script = /*#__PURE__*/ vue.defineComponent({
+var script$2 = /*#__PURE__*/ vue.defineComponent({
     __name: 'FyConfirm',
     setup(__props) {
         const eventBus = useEventBus();
@@ -383,9 +283,9 @@ var script = /*#__PURE__*/ vue.defineComponent({
                     style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "43 !important" }
                 }, {
                     default: vue.withCtx(() => [
-                        vue.createElementVNode("div", _hoisted_1, [
+                        vue.createElementVNode("div", _hoisted_1$2, [
                             vue.createVNode(vue.unref(vue$1.DialogOverlay)),
-                            vue.createElementVNode("div", _hoisted_2, [
+                            vue.createElementVNode("div", _hoisted_2$2, [
                                 vue.createElementVNode("div", null, [
                                     vue.createVNode(vue.unref(vue$1.DialogTitle), { class: "title" }, {
                                         default: vue.withCtx(() => [
@@ -393,7 +293,7 @@ var script = /*#__PURE__*/ vue.defineComponent({
                                         ]),
                                         _: 1 /* STABLE */
                                     }),
-                                    vue.createElementVNode("div", _hoisted_3, [
+                                    vue.createElementVNode("div", _hoisted_3$1, [
                                         (desc.value)
                                             ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4, vue.toDisplayString(desc.value), 1 /* TEXT */))
                                             : vue.createCommentVNode("v-if", true),
@@ -420,18 +320,117 @@ var script = /*#__PURE__*/ vue.defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
+script$2.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
 
-var uiComponents = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  FyModal: script$4,
-  FyCirclePercent: script$3,
-  FySteps: script$2,
-  FyBreadcrumb: script$1,
-  FyConfirm: script
+const _hoisted_1$1 = {
+    class: "fy-breadcrumb",
+    "aria-label": "Breadcrumb"
+};
+const _hoisted_2$1 = { class: "bc-innactive" };
+var script$1 = /*#__PURE__*/ vue.defineComponent({
+    __name: 'FyBreadcrumb',
+    props: {
+        nav: { type: (Array), default: [] },
+        maxLength: { type: Number, default: 15 }
+    },
+    setup(__props) {
+        return (_ctx, _cache) => {
+            const _component_router_link = vue.resolveComponent("router-link");
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
+                vue.createElementVNode("ol", null, [
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item) => {
+                        return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+                            (item.to)
+                                ? (vue.openBlock(), vue.createElementBlock("li", {
+                                    key: item.to,
+                                    class: "bc-innactive"
+                                }, [
+                                    vue.createVNode(_component_router_link, {
+                                        to: item.to,
+                                        class: "bc-active link"
+                                    }, {
+                                        default: vue.withCtx(() => [
+                                            vue.createTextVNode(vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1 /* TEXT */)
+                                        ]),
+                                        _: 2 /* DYNAMIC */
+                                    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]),
+                                    vue.createVNode(vue.unref(solid.ArrowRightIcon), { class: "icon bc-innactive" })
+                                ]))
+                                : (vue.openBlock(), vue.createElementBlock("li", {
+                                    key: `e-${item.to}`,
+                                    class: "bc-current"
+                                }, [
+                                    vue.createElementVNode("span", _hoisted_2$1, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1 /* TEXT */)
+                                ]))
+                        ], 64 /* STABLE_FRAGMENT */));
+                    }), 256 /* UNKEYED_FRAGMENT */))
+                ])
+            ]));
+        };
+    }
 });
 
-const cropText = (str, end = '...', ml = 100) => {
+script$1.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
+
+const _hoisted_1 = { class: "fy-step-bar" };
+const _hoisted_2 = { class: "bar-bg" };
+const _hoisted_3 = { class: "label" };
+var script = /*#__PURE__*/ vue.defineComponent({
+    __name: 'FySteps',
+    props: {
+        steps: { type: (Array), default: [] },
+        currentStep: { type: Number, default: 0 }
+    },
+    setup(__props) {
+        const props = __props;
+        const barWidth = vue.computed(() => (props.currentStep * 100) / props.steps.length);
+        const getStepClass = (index) => {
+            if ((index + 1) < props.currentStep)
+                return 'past-step';
+            if ((index + 1) == props.currentStep)
+                return 'current-step';
+            return 'past-step';
+        };
+        return (_ctx, _cache) => {
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+                vue.createElementVNode("div", _hoisted_2, [
+                    vue.createElementVNode("div", {
+                        class: "bar",
+                        style: vue.normalizeStyle(`width:${vue.unref(barWidth)}%`)
+                    }, null, 4 /* STYLE */)
+                ]),
+                vue.createElementVNode("ol", null, [
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.steps, (step, index) => {
+                        return (vue.openBlock(), vue.createElementBlock("li", {
+                            key: index,
+                            class: vue.normalizeClass(getStepClass(index))
+                        }, [
+                            vue.createElementVNode("span", _hoisted_3, vue.toDisplayString(_ctx.$t(step.name)), 1 /* TEXT */),
+                            (step.icon)
+                                ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(step.icon), {
+                                    key: 0,
+                                    class: "icon"
+                                }))
+                                : vue.createCommentVNode("v-if", true)
+                        ], 2 /* CLASS */));
+                    }), 128 /* KEYED_FRAGMENT */))
+                ])
+            ]));
+        };
+    }
+});
+
+script.__file = "src/components/ui/FySteps/FySteps.vue";
+
+var uiComponents = [
+    script$4,
+    script$3,
+    script$2,
+    script$1,
+    script
+];
+
+const cropText = (str, ml = 100, end = '...') => {
     if (str && typeof str == "string") {
         if (str.length > ml) {
             return `${str.slice(0, ml)}${end}`;
@@ -457,10 +456,10 @@ const createFyvue = () => {
         app.config.globalProperties.$t = i18next.t;
         app.config.globalProperties.$cropText = cropText;
         app.config.globalProperties.$formatBytes = formatBytes;
-        // Loading UI components
-        for (const componentKey in uiComponents) {
-            app.component(componentKey, uiComponents[componentKey]);
-        }
+        uiComponents.forEach((component) => {
+            if (component.__name)
+                app.component(component.__name, component);
+        });
     };
     return {
         install

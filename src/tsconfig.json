@@ -14,10 +14,18 @@
     "esModuleInterop": true,
     "removeComments": false,
     "rootDir": ".",
-    "types": [],
-    "paths": {
-      "@karpeleslab/fyvue": ["./dist/fyvue.mjs"],
-      "@karpeleslab/fyvue/*": ["./dist/*"]
-    }
-  }
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.d.ts",
+    "./**/*.tsx",
+    "./**/*.vue",
+    "../typings/env.d.ts",
+    "../typings/components.d.ts",
+    "./*.ts",
+    "./*.d.ts",
+    "./*.tsx",
+    "./*.vue",
+  ],
 }
+

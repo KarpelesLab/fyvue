@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps({ 
+defineProps({
     percent: { type:Number, default: 100 },
     textXY: { type: Array<Number>, default: [18, 20.85] },
     color: { type: String, default: "blue" }

@@ -1,7 +1,7 @@
 export interface FyvueOptions {
 }
 export type FyVueEvent = {
-  name: string;
+  key: string;
   data?: any;
 };
 export type FyVueStep = {
