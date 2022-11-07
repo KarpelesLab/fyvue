@@ -248,19 +248,19 @@
   @apply bg-white;
 }
 .light .fy-datatable td {
-  @apply text-neutral-700 border-b-slate-300;
+  @apply text-neutral-700 border-b-neutral-300;
 }
 .light .fy-datatable th {
-  @apply bg-slate-300 text-black;
+  @apply bg-neutral-300 text-black;
 }
 .light .fy-datatable .div {
-  @apply bg-transparent md:bg-slate-300 text-black;
+  @apply bg-transparent md:bg-neutral-300 text-black;
 }
 .light .fy-datatable .bg-color-1 {
-  @apply bg-slate-200;
+  @apply bg-neutral-200;
 }
 .light .fy-datatable .bg-color-2 {
-  @apply bg-slate-100;
+  @apply bg-neutral-100;
 }
 
 .dark .fy-table .table-container {
@@ -276,19 +276,19 @@
   @apply bg-black;
 }
 .dark .fy-datatable td {
-  @apply text-neutral-200 border-b-slate-900;
+  @apply text-neutral-200 border-b-neutral-900;
 }
 .dark .fy-datatable th {
-  @apply bg-slate-900 text-white;
+  @apply bg-neutral-900 text-white;
 }
 .dark .fy-datatable .div {
-  @apply bg-transparent md:bg-slate-900 text-white;
+  @apply bg-transparent md:bg-neutral-900 text-white;
 }
 .dark .fy-datatable .bg-color-1 {
-  @apply bg-slate-700;
+  @apply bg-neutral-700;
 }
 .dark .fy-datatable .bg-color-2 {
-  @apply bg-slate-800;
+  @apply bg-neutral-800;
 }
 
 .btn {
