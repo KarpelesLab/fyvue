@@ -27,6 +27,7 @@ importers:
       pinia: ^2.0.13
       postcss: ^8.4.18
       rollup: ^3.2.5
+      rollup-plugin-cleanup: ^3.2.1
       rollup-plugin-copy: ^3.4.0
       rollup-plugin-peer-deps-external: ^2.2.4
       rollup-plugin-scss: v3
@@ -35,6 +36,7 @@ importers:
       tailwindcss: ^3.2.2
       tslib: ^2.4.1
       typescript: ^4.8.4
+      vite: ^3.2.0
       vue: ^3.2.41
       vue-router: ^4.1.5
     devDependencies:
@@ -61,6 +63,7 @@ importers:
       pinia: 2.0.23_l7r24p6nevbtlimqmqcwa3ouhu
       postcss: 8.4.18
       rollup: 3.2.5
+      rollup-plugin-cleanup: 3.2.1_rollup@3.2.5
       rollup-plugin-copy: 3.4.0
       rollup-plugin-peer-deps-external: 2.2.4_rollup@3.2.5
       rollup-plugin-scss: 3.0.0
@@ -69,6 +72,7 @@ importers:
       tailwindcss: 3.2.2_postcss@8.4.18
       tslib: 2.4.1
       typescript: 4.8.4
+      vite: 3.2.2
       vue: 3.2.41
       vue-router: 4.1.6_vue@3.2.41
 
@@ -2292,6 +2296,15 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
+  /js-cleanup/1.2.0:
+    resolution: {integrity: sha512-JeDD0yiiSt80fXzAVa/crrS0JDPQljyBG/RpOtaSbyDq03VHa9szJWMaWOYU/bcTn412uMN2MxApXq8v79cUiQ==}
+    engines: {node: ^10.14.2 || >=12.0.0}
+    dependencies:
+      magic-string: 0.25.9
+      perf-regexes: 1.0.1
+      skip-regex: 1.0.2
+    dev: true
+
   /js-sdsl/4.1.5:
     resolution: {integrity: sha512-08bOAKweV2NUC1wqTtf3qZlnpOX/R2DU9ikpjOHs0H+ibQv3zpncVQg6um4uYtRtrwIX8M4Nh3ytK4HGlYAq7Q==}
     dev: true
@@ -2683,6 +2696,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /perf-regexes/1.0.1:
+    resolution: {integrity: sha512-L7MXxUDtqr4PUaLFCDCXBfGV/6KLIuSEccizDI7JxT+c9x1G1v04BQ4+4oag84SHaCdrBgQAIs/Cqn+flwFPng==}
+    engines: {node: '>=6.14'}
+    dev: true
+
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
@@ -2913,6 +2931,17 @@ packages:
       glob: 7.2.3
     dev: true
 
+  /rollup-plugin-cleanup/3.2.1_rollup@3.2.5:
+    resolution: {integrity: sha512-zuv8EhoO3TpnrU8MX8W7YxSbO4gmOR0ny06Lm3nkFfq0IVKdBUtHwhVzY1OAJyNCIAdLiyPnOrU0KnO0Fri1GQ==}
+    engines: {node: ^10.14.2 || >=12.0.0}
+    peerDependencies:
+      rollup: '>=2.0'
+    dependencies:
+      js-cleanup: 1.2.0
+      rollup: 3.2.5
+      rollup-pluginutils: 2.8.2
+    dev: true
+
   /rollup-plugin-copy/3.4.0:
     resolution: {integrity: sha512-rGUmYYsYsceRJRqLVlE9FivJMxJ7X6jDlP79fmFkL8sJs7VVMSVyA2yfyL+PGyO/vJs4A87hwhgVfz61njI+uQ==}
     engines: {node: '>=8.3'}
@@ -3051,6 +3080,11 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: true
+
+  /skip-regex/1.0.2:
+    resolution: {integrity: sha512-pEjMUbwJ5Pl/6Vn6FsamXHXItJXSRftcibixDmNCWbWhic0hzHrwkMZo0IZ7fMRH9KxcWDFSkzhccB4285PutA==}
+    engines: {node: '>=4.2'}
     dev: true
 
   /slash/3.0.0:
