@@ -44,7 +44,9 @@ export default  defineUserConfig({
           '/components/FyCirclePercent.md',
           '/components/FySteps.md',
           '/components/FyBreadcrumb.md',
-          '/components/FyConfirm.md'
+          '/components/FyConfirm.md',
+          '/components/FyDatatable.md',
+          '/components/FyTable.md'
         ],
       },
       {

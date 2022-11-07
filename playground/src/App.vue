@@ -17,6 +17,8 @@ await i18nextPromise;
         <li><RouterLink to="/tests/FySteps">FySteps</RouterLink></li>
         <li><RouterLink to="/tests/FyBreadcrumb">FyBreadcrumb</RouterLink></li>
         <li><RouterLink to="/tests/FyConfirm">FyConfirm</RouterLink></li>
+        <li><RouterLink to="/tests/FyDatatable">FyDatatable</RouterLink></li>
+        <li><RouterLink to="/tests/FyTable">FyTable</RouterLink></li>
 
       </ul>
     </nav>

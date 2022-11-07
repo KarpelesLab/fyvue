@@ -200,6 +200,97 @@
   @apply text-blue-300;
 }
 
+.fy-datatable td {
+  @apply text-xs;
+}
+.fy-datatable th {
+  @apply font-bold uppercase  text-sm hidden md:table-cell;
+}
+.fy-datatable .tr {
+  @apply flex md:table-row flex-row md:flex-row flex-wrap md:flex-nowrap md:border-0;
+}
+.fy-datatable .td {
+  @apply w-full  md:w-auto py-0.5 md:py-1 px-0 md:px-3  text-left md:text-center flex items-center md:table-cell relative md:static;
+}
+.fy-datatable .div {
+  @apply md:hidden px-2 py-1 text-xs font-bold uppercase mb-0.5 w-28;
+}
+.fy-datatable .div-cell {
+  @apply px-2 md:px-0 py-1;
+}
+
+.fy-table {
+  @apply my-2 py-2 overflow-x-auto sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4;
+}
+.fy-table .table-container {
+  @apply align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b;
+}
+.fy-table table {
+  @apply min-w-full;
+}
+.fy-table table thead th {
+  @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 border-b  text-left text-xs leading-4 font-medium  uppercase tracking-wider;
+}
+.fy-table table thead th button {
+  @apply flex items-center;
+}
+.fy-table table tbody td {
+  @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 whitespace-nowrap  border-b;
+}
+
+.light .fy-table .table-container {
+  @apply border-neutral-200;
+}
+.light .fy-table table thead th {
+  @apply border-neutral-200 bg-neutral-50 text-neutral-600;
+}
+.light .fy-datatable tbody {
+  @apply bg-white;
+}
+.light .fy-datatable td {
+  @apply text-neutral-700 border-b-slate-300;
+}
+.light .fy-datatable th {
+  @apply bg-slate-300 text-black;
+}
+.light .fy-datatable .div {
+  @apply bg-transparent md:bg-slate-300 text-black;
+}
+.light .fy-datatable .bg-color-1 {
+  @apply bg-slate-200;
+}
+.light .fy-datatable .bg-color-2 {
+  @apply bg-slate-100;
+}
+
+.dark .fy-table .table-container {
+  @apply border-neutral-900 text-white bg-neutral-800;
+}
+.dark .fy-table table thead th {
+  @apply border-neutral-900 bg-neutral-900 text-neutral-400;
+}
+.dark .fy-table table tbody td {
+  @apply border-b-neutral-900;
+}
+.dark .fy-datatable tbody {
+  @apply bg-black;
+}
+.dark .fy-datatable td {
+  @apply text-neutral-200 border-b-slate-900;
+}
+.dark .fy-datatable th {
+  @apply bg-slate-900 text-white;
+}
+.dark .fy-datatable .div {
+  @apply bg-transparent md:bg-slate-900 text-white;
+}
+.dark .fy-datatable .bg-color-1 {
+  @apply bg-slate-700;
+}
+.dark .fy-datatable .bg-color-2 {
+  @apply bg-slate-800;
+}
+
 .btn {
   @apply text-white shadow  whitespace-nowrap  rounded-tl-xl rounded-br-xl;
   @apply transition duration-300 ease-in-out transform;

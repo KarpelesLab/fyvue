@@ -4,6 +4,8 @@ import FyBreadcrumb from '../src/components/ui/FyBreadcrumb/FyBreadcrumb.vue';
 import FyConfirm from '../src/components/ui/FyConfirm/FyConfirm.vue';
 import FyCirclePercent from '../src/components/ui/FyCirclePercent/FyCirclePercent.vue';
 import FySteps from '../src/components/ui/FySteps/FySteps.vue';
+import FyDatatable from '../src/components/ui/FyDatatable/FyDatatable.vue';
+import FyTable from '../src/components/ui/FyTable/FyTable.vue';
 
 declare module 'vue' {
   export interface GlobalComponents {
@@ -12,6 +14,8 @@ declare module 'vue' {
     FyConfirm: typeof FyConfirm,
     FyCirclePercent: typeof FyCirclePercent,
     FySteps: typeof FySteps,
+    FyDatatable: typeof FyDatatable,
+    FyTable: typeof FyTable,
   }
 
   interface ComponentCustomProperties {

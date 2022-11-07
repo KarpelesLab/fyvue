@@ -30,10 +30,6 @@ const testFyConfirm = () => {
 
 ## Details
 
-### CSS
-
-@[code sass](../../src/components/ui/FyConfirm/FyConfirm.scss)
-
 ### Code
 
 @[code vue](../../src/components/ui/FyConfirm/FyConfirm.vue)

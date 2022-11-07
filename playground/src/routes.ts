@@ -26,5 +26,13 @@ export const routes = [
   {
     path: '/tests/i18n',
     component: () => import('./components/Ti18n.vue')
+  },
+  {
+    path: '/tests/FyDatatable',
+    component: () => import('./components/TFyDatatable.vue')
+  },
+  {
+    path: '/tests/FyTable',
+    component: () => import('./components/TFyTable.vue')
   }
 ]

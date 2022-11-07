@@ -1,0 +1,113 @@
+.fy-datatable {
+  td {
+    @apply text-xs;
+  }
+  th {
+    @apply font-bold uppercase  text-sm hidden md:table-cell;
+  }
+  .tr {
+    @apply flex md:table-row flex-row md:flex-row flex-wrap md:flex-nowrap md:border-0;
+  }
+  .td {
+    @apply w-full  md:w-auto py-0.5 md:py-1 px-0 md:px-3  text-left md:text-center flex items-center md:table-cell relative md:static;
+  }
+  .div {
+    @apply md:hidden px-2 py-1 text-xs font-bold uppercase mb-0.5 w-28;
+  }
+  .div-cell {
+    @apply px-2 md:px-0 py-1;
+  }
+}
+.fy-table  {
+  @apply my-2 py-2 overflow-x-auto sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4;
+  .table-container {
+    @apply align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b ;
+  }
+  table {
+    @apply min-w-full;
+    thead th {
+      @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 border-b  text-left text-xs leading-4 font-medium  uppercase tracking-wider;
+      button {
+        @apply flex items-center ;
+      }
+    }
+    tbody {
+      td {
+        @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 whitespace-nowrap  border-b  ;
+      }
+    }
+  }
+}
+
+.light {
+  .fy-table  {
+    .table-container {
+      @apply border-neutral-200;
+    }
+    table {
+      thead th {
+        @apply border-neutral-200 bg-neutral-50 text-neutral-600;
+      }
+    }
+  }
+  .fy-datatable {
+    tbody {
+      @apply bg-white
+    }
+    td {
+      @apply text-neutral-700 border-b-slate-300 ;
+    }
+    th {
+      @apply bg-slate-300 text-black;
+    }
+    .div {
+      @apply bg-transparent md:bg-slate-300 text-black;
+    }
+    .bg-color-1 {
+      @apply bg-slate-200
+    }
+    .bg-color-2 {
+      @apply bg-slate-100
+    }
+  }
+}
+
+.dark {
+  .fy-table  {
+
+
+    .table-container {
+      @apply border-neutral-900 text-white bg-neutral-800;;
+    }
+    table {
+      thead th {
+        @apply border-neutral-900 bg-neutral-900 text-neutral-400;
+      }
+      tbody {
+        td {
+          @apply border-b-neutral-900
+        }
+      }
+    }
+  }
+  .fy-datatable {
+    tbody {
+      @apply bg-black
+    }
+    td {
+      @apply text-neutral-200 border-b-slate-900;
+    }
+    th, {
+      @apply bg-slate-900 text-white;
+    }
+    .div {
+      @apply bg-transparent md:bg-slate-900 text-white;
+    }
+    .bg-color-1 {
+      @apply bg-slate-700
+    }
+    .bg-color-2 {
+      @apply bg-slate-800
+    }
+  }
+}

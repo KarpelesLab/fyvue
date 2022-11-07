@@ -1,9 +1,6 @@
 export interface FyvueOptions {
 }
-export type FyVueEvent = {
-  key: string;
-  data?: any;
-};
+
 export type FyVueStep = {
   name: string;
   icon?: string;
@@ -17,3 +14,5 @@ export type FyvueConfirm = {
   desc: string;
   onConfirm: Function
 }
+
+export type FyDatatableValue = any;

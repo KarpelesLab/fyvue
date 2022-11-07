@@ -5,5 +5,4 @@ console.log(translate('confirm_modal_cta_confirm'))
 </script>
 <template>
   <p>{{ $t('unknown_error') }}</p>
-  {{ $eventBus.emit('lol') }}
 </template>
