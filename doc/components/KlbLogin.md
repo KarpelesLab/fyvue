@@ -17,8 +17,8 @@
 
 | Name | Type  | default | Info |
 |---|---|---|---|
-| nav | Array\<FyVueBreadcrumb> | [] | Array of links <br />```[{ name: i18n_key, to?:'/xxx' }]``` |
-| maxLength? | number | 15 | Max length for name of link |
+| returnDefault? | string | "/" | Default return url |
+| forceAction? | string | undefined | force an action in the flow (```delete_account```, etc...) |
 
 ## Details
 
