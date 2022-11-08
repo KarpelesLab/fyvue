@@ -3,24 +3,17 @@ import { useEventBus } from '../../../helpers';
 import { onMounted, onUnmounted, ref } from 'vue';
 import DefaultLoader from './DefaultLoader.vue';
 
-const props = defineProps({
-  id: {
-    type: String,
-    default: null
-  },
-  loader: {
-    type: Object,
-    default: DefaultLoader
-  },
-  showLoadingText: {
-    type: Boolean,
-    default: true
-  },
-  size: {
-    type: String,
-    default: "16"
-  }
+const props = withDefaults(defineProps<{
+  id?: string,
+  loader?: Object,
+  showLoadingText?: boolean,
+  size?: string
+}>(),{
+  loader: () => DefaultLoader,
+  showLoadingText: false,
+  size: "16"
 })
+
 const eventBus = useEventBus();
 const loading = ref<boolean>(false)
 const setLoading = (value: boolean) => {

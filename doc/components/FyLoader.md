@@ -1,5 +1,10 @@
 # FyLoader
-![FyLoader](/components/FyLoader.png)
+
+<details>
+  <summary>Preview</summary>
+
+  ![FyLoader](/components/FyLoader.png)
+</details>
 
 [[toc]]
 
@@ -11,10 +16,10 @@
 
 | Name | Type  | default | Info |
 |---|---|---|---|
-| id | String | null | Use has ID to call the loader with ```eventBus``` |
-| loader | Object | ```DefaultLoader``` | Loader component ([check source for DefaultLoader](#defaultloader-vue)) |
-| size | String | 16 | css property in ```rem``` passed to the loader component |
-| showLoadingText | Boolean | true | Passed to the loader component |
+| id? | string | undefined | Use has ID to call the loader with ```eventBus``` |
+| loader? | Object | ```DefaultLoader``` | Loader component ([check source for DefaultLoader](#defaultloader-vue)) |
+| size? | string | 16 | css property in ```rem``` passed to the loader component |
+| showLoadingText? | boolean | true | Passed to the loader component |
 
 
 ## Details

@@ -1,8 +1,6 @@
-const cropText = (str : String, ml = 100, end='...') => {
-  if (str && typeof str == "string") {
-    if (str.length > ml) {
-      return `${str.slice(0, ml)}${end}`;
-    }
+const cropText = (str : string, ml = 100, end='...') => {
+  if (str.length > ml) {
+    return `${str.slice(0, ml)}${end}`;
   }
   return str;
 };

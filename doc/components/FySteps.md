@@ -1,5 +1,11 @@
 # FySteps
-![FySteps](/components/FySteps.png)
+
+<details>
+  <summary>Preview</summary>
+
+  ![FySteps](/components/FySteps.png)
+</details>
+
 [[toc]]
 
 ## Usage

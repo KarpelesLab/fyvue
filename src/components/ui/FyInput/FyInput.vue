@@ -1,59 +1,28 @@
 <script setup lang="ts">
 import { LinkIcon } from "@heroicons/vue/24/solid";
-
-defineProps({
-  id: {
-    type: String,
-    default: undefined,
-  },
-  showLabel: {
-    type: Boolean,
-    default: true
-  },
-  label: {
-    type: String,
-    default: undefined
-  },
-  type: {
-    type: String,
-    default: 'text',
-    required: true
-  },
-  placeholder: {
-    type: String,
-    default: undefined
-  },
-  autocomplete: {
-    type: String,
-    default: undefined
-  },
-  checkboxTrueValue: {
-    type: String,
-    default: undefined
-  },
-  checkboxFalseValue: {
-    type: String,
-    default: undefined
-  },
-  req: {
-    type: Boolean,
-    default: false
-  },
-  help: {
-    type: String,
-    default: undefined
-  },
-  linkIcon: {
-    type: String,
-    default: undefined
-  },
-  modelValue: null,
-  options: {
-    type: Array<string[]>,
-    default: []
-  }
+import type { FyVuevalidate } from '../../../dts/'
+withDefaults(defineProps<{
+  id: string,
+  showLabel: boolean,
+  label? : string,
+  type : string,
+  placeholder? : string,
+  autocomplete? : string,
+  checkboxTrueValue? : string,
+  checkboxFalseValue? : string,
+  req? : boolean,
+  linkIcon? : string,
+  modelValue: FyVuevalidate,
+  options?: string[][],
+  help?: string
+}>(), {
+  showLabel: true,
+  type: 'text',
+  req: false,
+  options: () => [],
+  checkboxTrueValue: "on",
+  checkboxFalseValue: "off"
 })
-
 
 </script>
 

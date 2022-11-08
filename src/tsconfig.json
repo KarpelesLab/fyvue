@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    //"skipLibCheck": true,
+    //"jsx": "preserve",
     "outDir": "dist",
-    "target": "es2018",
+    "target": "esnext",
     "module": "esnext",
     "baseUrl": ".",
     "sourceMap": false,
@@ -20,9 +22,7 @@
     }
   },
   "include": [
-    "types.d.ts",
     "./**/*.ts",
-    "./**/*.d.ts",
     "./**/*.tsx",
     "./**/*.vue",
     "../typings/env.d.ts",

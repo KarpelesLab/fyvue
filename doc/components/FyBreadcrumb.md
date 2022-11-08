@@ -1,5 +1,11 @@
 # FyBreadcrumb
-![FyBreadcrumb](/components/FyBreadcrumb.png)
+
+<details>
+  <summary>Preview</summary>
+
+  ![FyBreadcrumb](/components/FyBreadcrumb.png)
+</details>
+
 [[toc]]
 
 ## Usage
@@ -19,6 +25,7 @@
 | Name | Type  | default | Info |
 |---|---|---|---|
 | nav | Array\<FyVueBreadcrumb> | [] | Array of links <br />```[{ name: i18n_key, to?:'/xxx' }]``` |
+| maxLength? | number | 15 | Max length for name of link |
 
 ## Details
 

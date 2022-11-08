@@ -44,6 +44,9 @@ await i18nextPromise;
         <li>
           <RouterLink to="/tests/FyInput">FyInput</RouterLink>
         </li>
+        <li>
+          <RouterLink to="/tests/FyPaging">FyPaging</RouterLink>
+        </li>
 
       </ul>
     </nav>

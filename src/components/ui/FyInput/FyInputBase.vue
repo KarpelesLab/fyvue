@@ -1,66 +1,47 @@
 <script setup lang="ts">
 import { LinkIcon } from "@heroicons/vue/24/solid";
-import { computed } from "vue";
-const props = defineProps({
-  id: {
-    type: String,
-    default: undefined,
-  },
-  showLabel: {
-    type: Boolean,
-    default: true
-  },
-  label: {
-    type: String,
-    default: undefined
-  },
-  errors: {
-    type: String,
-    default: undefined
-  },
-  type: {
-    type: String,
-    default: 'text',
-    required: true
-  },
-  placeholder: {
-    type: String,
-    default: undefined
-  },
-  autocomplete: {
-    type: String,
-    default: undefined
-  },
-  checkboxTrueValue: {
-    type: String,
-    default: "on"
-  },
-  checkboxFalseValue: {
-    type: String,
-    default: "off"
-  },
-  req: {
-    type: Boolean,
-    default: false
-  },
-  help: {
-    type: String,
-    default: undefined
-  },
-  linkIcon: {
-    type: String,
-    default: undefined
-  },
-  modelValue: null,
-  options: {
-    type: Array<string[]>,
-    default: []
-  }
+import { computed, PropType } from "vue";
+import type { modelValueType, checkboxValueType } from '../../../dts/'
+
+const props = withDefaults(defineProps<{
+  id: string,
+  showLabel: boolean,
+  label? : string,
+  type : string,
+  placeholder? : string,
+  autocomplete? : string,
+  checkboxTrueValue? : string,
+  checkboxFalseValue? : string,
+  req? : boolean,
+  linkIcon? : string,
+  modelValue?: modelValueType,
+  checkboxValue?: checkboxValueType,
+  options?: string[][],
+  help?: string,
+  error?: string
+}>(), {
+  showLabel: true,
+  type: 'text',
+  req: false,
+  options: () => [],
+  checkboxTrueValue: "on",
+  checkboxFalseValue: "off"
 })
-const emit = defineEmits(['update:modelValue'])
+
+const emit = defineEmits(['update:modelValue', 'update:checkboxValue'])
 const model = computed({
   get: () => props.modelValue,
-  set: items => emit('update:modelValue', items)
+  set: items => {
+    emit('update:modelValue', items)
+    console.log(items)
+  }
+})
+const modelCheckbox = computed({
+  get: () => props.checkboxValue,
+  set: items => {
+    emit('update:checkboxValue', items)
+    console.log(items)
+  }
 })
 </script>
 <template>
@@ -68,8 +49,8 @@ const model = computed({
     <template v-if="showLabel && id && label">
       <label class="label-basic" :for="id">
         <input v-if="type == 'checkbox'" type="checkbox" class="form-checkbox" :id="id"
-          :class="{ 'error-form': errors }" :true-value="checkboxTrueValue" :false-value="checkboxFalseValue"
-          v-model="model" />
+          :class="{ 'error-form': error }" :true-value="checkboxTrueValue" :false-value="checkboxFalseValue"
+          v-model="modelCheckbox" />
 
         {{ label }}
 
@@ -81,9 +62,9 @@ const model = computed({
     </template>
     <div v-if="!['checkbox', 'radiobox'].includes(type)" class="input-box">
       <slot name="before"></slot>
-      <input v-if="['text', 'password', 'email'].includes(type)" class="input-basic" :class="{ 'error-form': errors }"
+      <input v-if="['text', 'password', 'email'].includes(type)" class="input-basic" :class="{ 'error-form': error }"
         :placeholder="placeholder" :autocomplete="autocomplete" :id="id" v-model="model" />
-      <textarea v-if="type == 'textarea'" class="input-basic is-textarea" :class="{ 'error-form': errors }"
+      <textarea v-if="type == 'textarea'" class="input-basic is-textarea" :class="{ 'error-form': error }"
         :placeholder="placeholder" :autocomplete="autocomplete" :id="id" v-model="model" />
 
       <select v-if="type == 'select'" :id="id" class="input-basic" v-model="model">
@@ -96,8 +77,8 @@ const model = computed({
     <div class="help-text" v-if="help">
       {{ help }}
     </div>
-    <div v-if="errors" class="form-error-label">
-      {{ errors }}
+    <div v-if="error" class="form-error-label">
+      {{ error }}
     </div>
   </div>
 </template>

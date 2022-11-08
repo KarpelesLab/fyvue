@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { Dialog, DialogOverlay, DialogTitle } from "@headlessui/vue";
-import type { FyvueConfirm } from '../../../types';
+import type { FyvueConfirm } from '../../../dts';
 import { useEventBus } from "../../../helpers";
 
 const eventBus = useEventBus();

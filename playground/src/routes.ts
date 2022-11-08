@@ -16,6 +16,10 @@ export const routes = [
     component: () => import('./components/TFyInput.vue')
   },
   {
+    path: '/tests/FyPaging',
+    component: () => import('./components/TFyPaging.vue')
+  },
+  {
     path: '/tests/FyCirclePercent',
     component: () => import('./components/TFyCirclePercent.vue')
   },

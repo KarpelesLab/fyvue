@@ -8,9 +8,10 @@ import FyTable from "./FyTable/FyTable.vue"
 import FyLoader from "./FyLoader/FyLoader.vue"
 import FyInputBase from "./FyInput/FyInputBase.vue"
 import FyInput from "./FyInput/FyInput.vue"
+import FyPaging from "./FyPaging/FyPaging.vue"
 
 
-export default [
+export default {
   FyModal,
   FyCirclePercent,
   FyConfirm,
@@ -20,5 +21,6 @@ export default [
   FyTable,
   FyLoader,
   FyInputBase,
-  FyInput
-]
+  FyInput,
+  FyPaging
+}

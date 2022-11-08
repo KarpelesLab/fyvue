@@ -3,6 +3,29 @@ import { tocPlugin } from '@vuepress/plugin-toc'
 import { searchPlugin } from '@vuepress/plugin-search'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 
+let comps = [
+  '/components/FyModal.md',
+  '/components/FyCirclePercent.md',
+  '/components/FySteps.md',
+  '/components/FyBreadcrumb.md',
+  '/components/FyConfirm.md',
+  '/components/FyDatatable.md',
+  '/components/FyTable.md',
+  '/components/FyLoader.md',
+  '/components/FyInputBase.md',
+  '/components/FyInput.md',
+  '/components/FyPaging.md'
+]
+comps.sort()
+let helpers = [
+  '/helpers/eventBus.md',
+  '/helpers/style.md',
+  '/helpers/KLBi18next.md',
+  '/helpers/KLBCountries.md',
+  '/helpers/KLBtemplate.md'
+]
+helpers.sort()
+
 export default  defineUserConfig({
   lang: 'en-US',
   title: 'fyvue',
@@ -28,27 +51,12 @@ export default  defineUserConfig({
       {
         text: 'Helpers',
         collapsable: false,
-        children: [
-          '/helpers/eventBus.md',
-          '/helpers/style.md',
-          '/helpers/i18next.md',
-          '/helpers/KLBCountries.md',
-          '/helpers/klb-template.md'
-        ]
+        children: helpers
       },
       {
         text: 'Components',
         collapsable: false,
-        children: [
-          '/components/FyModal.md',
-          '/components/FyCirclePercent.md',
-          '/components/FySteps.md',
-          '/components/FyBreadcrumb.md',
-          '/components/FyConfirm.md',
-          '/components/FyDatatable.md',
-          '/components/FyTable.md',
-          '/components/FyLoader.md'
-        ],
+        children: comps,
       },
       {
         text: 'KLB Components',

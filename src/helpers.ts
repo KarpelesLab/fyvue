@@ -10,12 +10,6 @@ const useEventBus = () => {
     return vueInstance?.appContext.config.globalProperties.$eventBus;
 }
 
-const cssDynamic = async () => {
-  try {
-    if (!process.env.live) await import('./fyvue.scss')
-  } catch {}
-}
-
 const i18nextPromise = i18next.use(Backend).init({
   ns: ["translation"],
   defaultNS: "translation",
@@ -36,5 +30,4 @@ export {
   i18next,
   i18nextPromise,
   useTranslation,
-  cssDynamic
 }

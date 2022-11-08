@@ -25,7 +25,8 @@ In main.ts\/js:
 ## With style ;)
 Add this to your ```tailwind.config```:
 ```js
-const fyvueColors = require('@karpeleslab/fyvue').tailwindColors
+const fyvueColors = require('@karpeleslab/fyvue')['helpers']['tailwindColors']
+
 module.exports = {
   //...
   theme: {

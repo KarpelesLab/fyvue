@@ -1,5 +1,11 @@
 # FyCirclePercent
-![FyCirclePercent](/components/FyCirclePercent.png)
+
+<details>
+  <summary>Preview</summary>
+
+  ![FyCirclePercent](/components/FyCirclePercent.png)
+</details>
+
 [[toc]]
 
 ## Usage
@@ -14,9 +20,9 @@
 
 | Name | Type  | default | Info |
 |---|---|---|---|
-| percent | Number | 100 | Current Percent |
-| textXY | Array\<Number\> | [18, 20.85] | Percent Text position in SVG |
-| color | String | blue | Fill color (compatbile with svg stroke="") |
+| percent | number | 100 | Current Percent |
+| textXY? | Array\<number\> | [18, 20.85] | Percent Text position in SVG |
+| color? | string | blue | Fill color (compatbile with svg stroke="") |
 
 ## Details
 

@@ -1,12 +1,14 @@
 import type { App, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
 import uiComponents from "./components/ui";
-import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise, cssDynamic } from './helpers';
+import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './helpers';
 import { cropText, formatBytes, tailwindColors } from "./displayHelpers";
-import type { FyvueOptions } from "./types"
+import type { FyvueOptions } from "./dts"
 
-cssDynamic() //@todo: do something better
-
+const components = {...uiComponents};
+const helpers = {
+  i18next: i18next.t, cropText, formatBytes, tailwindColors
+}
 const head = createHead();
 
 const createFyvue = () => {
@@ -17,9 +19,10 @@ const createFyvue = () => {
     app.config.globalProperties.$cropText = cropText;
     app.config.globalProperties.$formatBytes = formatBytes;
 
-    uiComponents.forEach((component) => {
-      if (component.__name) app.component(component.__name, component)
-    });
+    let k: keyof typeof uiComponents;
+    for (k in uiComponents) {
+      app.component(uiComponents[k].__name!, uiComponents[k]);
+    }
   }
   return <Plugin>{
     install
@@ -31,5 +34,6 @@ export {
   useEventBus,
   useTranslation,
   i18nextPromise,
-  tailwindColors
+  components,
+  helpers
 }

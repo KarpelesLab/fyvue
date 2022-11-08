@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import type { FyVueBreadcrumb } from '../../../types';
+import type { FyVueBreadcrumb } from '../../../dts';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid'
-defineProps({
-    nav: { type: Array<FyVueBreadcrumb>, default: [] },
-    maxLength: { type: Number, default: 15 }
-});
+
+withDefaults(defineProps<{
+  nav: FyVueBreadcrumb[],
+  maxLength?: number
+}>(), {
+  maxLength: 15,
+  nav: () => []
+})
+
 </script>
 <template>
   <div

@@ -2,7 +2,6 @@
   :root {
     --color-primary: 255 115 179;
     --color-secondary: 111 114 185;
-    /* ... */
   }
 }
 .fy-modal {
@@ -435,6 +434,64 @@
 }
 .dark .input-group .form-error-label {
   @apply text-red-400;
+}
+
+.paging {
+  @apply flex items-center justify-center;
+}
+.paging nav {
+  @apply relative z-0 inline-flex rounded-md shadow-sm -space-x-px;
+}
+.paging .prev-next {
+  @apply relative inline-flex items-center px-2 py-2  border text-sm font-medium;
+}
+.paging .active {
+  @apply z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium font-bold;
+}
+.paging .innactive {
+  @apply relative inline-flex items-center px-4 py-2 border text-sm font-medium;
+}
+.paging .dots {
+  @apply relative inline-flex items-center px-2 py-2 border  text-sm font-medium;
+}
+.paging .paging-text {
+  @apply text-xs text-center italic mt-0.5;
+}
+
+.light .paging .prev-next {
+  @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-500 hover:bg-fv-neutral-200 hover:text-fv-neutral-600;
+}
+.light .paging .active {
+  @apply bg-fv-primary-50 border-fv-primary-500 text-fv-primary-600 hover:text-fv-neutral-600;
+}
+.light .paging .innactive {
+  @apply bg-fv-neutral-100 border-fv-neutral-300 text-fv-neutral-500 hover:bg-fv-neutral-200 hover:text-fv-neutral-600;
+}
+.light .paging .dots {
+  @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-700 hover:text-fv-neutral-600;
+}
+.light .paging .paging-text {
+  @apply text-fv-neutral-700;
+}
+
+.dark .paging .prev-next {
+  @apply border-fv-neutral-600 bg-fv-neutral-800 text-fv-neutral-200 hover:bg-fv-neutral-800 hover:text-fv-neutral-100;
+}
+.dark .paging .active {
+  @apply bg-fv-primary-900 border-fv-primary-500 text-fv-primary-200 hover:text-fv-neutral-100;
+}
+.dark .paging .innactive {
+  @apply bg-fv-neutral-800 border-fv-neutral-600 text-fv-neutral-200 hover:bg-fv-neutral-800 hover:text-fv-neutral-100;
+}
+.dark .paging .dots {
+  @apply border-fv-neutral-600 bg-fv-neutral-800 text-fv-neutral-700 hover:text-fv-neutral-100;
+}
+.dark .paging .paging-text {
+  @apply text-fv-neutral-300;
+}
+
+.is-sr {
+  @apply sr-only;
 }
 
 .btn {

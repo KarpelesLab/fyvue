@@ -1,9 +1,15 @@
 <script setup lang="ts">
-defineProps({
-    percent: { type:Number, default: 100 },
-    textXY: { type: Array<Number>, default: [18, 20.85] },
-    color: { type: String, default: "blue" }
-});
+
+withDefaults(defineProps<{
+  percent: number,
+  textXY?: Array<number>,
+  color?: string
+}>(), {
+  percent: 100,
+  textXY: () => [18, 20.85],
+  color: "blue"
+})
+
 </script>
 <template>
     <div class="fy-circle-percent">

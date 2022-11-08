@@ -1,5 +1,10 @@
 # FyConfirm
-![FyConfirm](/components/FyConfirm.png)
+<details>
+  <summary>Preview</summary>
+
+  ![FyConfirm](/components/FyConfirm.png)
+</details>
+
 [[toc]]
 
 ## Usage

@@ -1,19 +1,13 @@
 
 <script setup lang="ts">
-import type { FyDatatableValue } from '../../../types'
-defineProps({
-  showHeaders: {
-    type: Boolean,
-    default: true
-  },
-  headers: {
-    type: Object,
-    default: {}
-  },
-  data: {
-    type: Array<FyDatatableValue>,
-    default: []
-  }
+import type { FyDatatableHeader, FyDatatableValue } from '../../../dts'
+
+withDefaults(defineProps<{
+  showHeaders?: boolean,
+  headers: FyDatatableHeader,
+  data: Array<FyDatatableValue>
+}>(), {
+  showHeaders: true,
 })
 </script>
 <template>
@@ -30,11 +24,11 @@ defineProps({
         <tbody>
           <template v-for="(item, index) in data" :key="index">
             <tr>
-              <template v-for="(_, property) in headers" :key="`${property}`">
+              <template v-for="(_, property) in headers" :key="`${property as string}`">
                 <td
                 >
                   <slot
-                    :name="`${property}_item`"
+                    :name="`${property as string}_item`"
                     v-bind:data="{
                       prop: item[property],
                       item: item,
