@@ -1,9 +1,12 @@
 {
     "name": "@karpeleslab/fyvue",
-    "version": "0.2.0-alpha.0",
+    "version": "0.2.0-alpha.1",
     "description": "Vue lib for KLB systems",
     "main": "fyvue.js",
     "module": "fyvue.mjs",
+    "exports": {
+      "types": "./index.d.ts"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/KarpelesLab/fyvue.git"

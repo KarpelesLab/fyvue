@@ -18,6 +18,11 @@ export default [
     ]
   },
   {
+    input: "./src/dts/export.d.ts",
+    output: [{ file: "dist/index.d.ts", format: "es" }],
+    plugins: [dts.default()],
+  },
+  {
     input: "./src/dts/index.d.ts",
     output: [{ file: "dist/dts/index.d.ts", format: "es" }],
     plugins: [dts.default()],
