@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FyDatatableValue } from '@karpeleslab/fyvue/types'
+import type { FyDatatableValue } from '../../../types'
 defineProps({
   showHeaders: {
     type: Boolean,

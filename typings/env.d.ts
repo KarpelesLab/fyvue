@@ -4,5 +4,8 @@ declare module '*.vue' {
   export default component
 }
 declare module '*.js';
-declare module "@karpeleslab/klbfw"
-
+declare module "@karpeleslab/klbfw";
+declare module '*.scss' {
+  const content: Record<string, string>;
+  export default content;
+}

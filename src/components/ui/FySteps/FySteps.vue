@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue"
-import type { FyVueStep } from "@karpeleslab/fyvue/types"
+import type { FyVueStep } from "../../../types"
 
 const props = defineProps({
   steps: { type:Array<FyVueStep>, default: [] },

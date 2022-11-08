@@ -7,6 +7,8 @@ import FySteps from '../src/components/ui/FySteps/FySteps.vue';
 import FyDatatable from '../src/components/ui/FyDatatable/FyDatatable.vue';
 import FyTable from '../src/components/ui/FyTable/FyTable.vue';
 import FyLoader from '../src/components/ui/FyLoader/FyLoader.vue';
+import FyInputBase from '../src/components/ui/FyInput/FyInputBase.vue';
+import FyInput from '../src/components/ui/FyInput/FyInput.vue';
 
 declare module 'vue' {
   export interface GlobalComponents {
@@ -17,7 +19,9 @@ declare module 'vue' {
     FySteps: typeof FySteps,
     FyDatatable: typeof FyDatatable,
     FyTable: typeof FyTable,
-    FyLoader: typeof FyLoader
+    FyLoader: typeof FyLoader,
+    FyInputBase: typeof FyInputBase,
+    FyInput: typeof FyInput,
   }
 
   interface ComponentCustomProperties {

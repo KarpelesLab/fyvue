@@ -7,7 +7,8 @@
     "build": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
     "build:css": "npx tailwindcss -i ./src/global.scss -o ./dist/fyvue.css",
     "lint": "eslint --ext .js,.vue,.ts src/",
-    "play": "pnpm run -C ./playground dev",
+    "play": "pnpm run -C ./playground dev:live",
+    "play:bundle": "pnpm run -C ./playground dev:bundle",
     "doc": "pnpm run -C ./doc docs:build",
     "doc:dev": "pnpm run -C ./doc docs:dev"
   },
@@ -43,6 +44,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
+    "@types/node": "^18.11.9",
     "@vue/compiler-sfc": "^3.2.41",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/tsconfig": "^0.1.3",

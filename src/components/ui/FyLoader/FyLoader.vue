@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useEventBus } from '@karpeleslab/fyvue/helpers';
+import { useEventBus } from '../../../helpers';
 import { onMounted, onUnmounted, ref } from 'vue';
 import DefaultLoader from './DefaultLoader.vue';
 

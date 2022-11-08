@@ -4,6 +4,18 @@ export const routes = [
     component: () => import('./components/HelloWorld.vue')
   },
   {
+    path: '/tests/i18n',
+    component: () => import('./components/Ti18n.vue')
+  },
+  {
+    path: '/tests/FyInputBase',
+    component: () => import('./components/TFyInputBase.vue')
+  },
+  {
+    path: '/tests/FyInput',
+    component: () => import('./components/TFyInput.vue')
+  },
+  {
     path: '/tests/FyCirclePercent',
     component: () => import('./components/TFyCirclePercent.vue')
   },
@@ -23,10 +35,7 @@ export const routes = [
     path: '/tests/FyConfirm',
     component: () => import('./components/TFyConfirm.vue')
   },
-  {
-    path: '/tests/i18n',
-    component: () => import('./components/Ti18n.vue')
-  },
+
   {
     path: '/tests/FyDatatable',
     component: () => import('./components/TFyDatatable.vue')

@@ -327,6 +327,116 @@
   background: rgba(0, 0, 0, 0.2) !important;
 }
 
+.input-group {
+  @apply w-full;
+}
+.input-group .is-req {
+  @apply text-red-700;
+}
+.input-group .form-error-label {
+  @apply text-xs text-center font-bold -mt-3.5 md:mt-0.5;
+}
+.input-group .link-icon svg {
+  @apply w-5 inline-block -mt-0.5 mr-2;
+}
+.input-group .input-basic {
+  @apply w-full py-3 text-xs placeholder-fv-neutral-400 font-semibold leading-none border-0 outline-none;
+}
+.input-group .input-basic:focus, .input-group .input-basic:active {
+  @apply outline-0 outline-1 outline-fv-primary-500;
+}
+.input-group .input-basic.is-textarea {
+  @apply h-32;
+}
+.input-group .input-box {
+  @apply flex flex-1 border mb-4 md:mb-0;
+}
+.input-group .input-box input {
+  @apply px-2;
+}
+.input-group .input-box select {
+  padding-top: 14px;
+  padding-bottom: 13px;
+}
+.input-group .input-box textarea {
+  @apply px-2;
+}
+.input-group .label-basic {
+  @apply block uppercase tracking-wide whitespace-nowrap text-xs  font-bold mb-2 text-left pt-0 md:pt-3;
+}
+.input-group .label-basic input[type=checkbox] {
+  @apply -mt-1;
+}
+.input-group .label-basic input[type=checkbox]:focus, .input-group .label-basic input[type=checkbox]:active {
+  @apply outline-0 outline-1 outline-fv-primary-500;
+}
+.input-group .label-basic input[type=checkbox]:checked {
+  @apply outline-0 outline-1 outline-fv-primary-500  bg-fv-primary-500;
+}
+.input-group .error-form {
+  @apply outline-1 outline-red-600;
+}
+.input-group .help-text {
+  @apply font-medium text-xs mt-0.5;
+}
+.input-group .help-icon {
+  @apply w-6 inline-block -mt-1;
+}
+
+.light .link-icon svg {
+  @apply text-fv-primary-600;
+}
+.light .link-icon svg:hover {
+  @apply text-fv-primary-900;
+}
+.light .input-group .input-box,
+.light .input-group .dp__input {
+  @apply bg-fv-neutral-50 border-fv-neutral-300;
+}
+.light .input-group .input-basic {
+  @apply bg-fv-neutral-50 text-black;
+}
+.light .input-group .label-basic,
+.light .input-group .help-icon,
+.light .input-group .help-text {
+  @apply text-fv-neutral-600;
+}
+.light .input-group .form-error-label {
+  @apply text-red-500;
+}
+
+.dark .link-icon svg {
+  @apply text-fv-neutral-300;
+}
+.dark .link-icon svg:hover {
+  @apply text-fv-primary-50;
+}
+.dark .input-group .input-box,
+.dark .input-group .dp__input {
+  @apply bg-fv-neutral-800 border-fv-neutral-700;
+}
+.dark .input-group .input-basic {
+  @apply bg-fv-neutral-800 text-fv-neutral-50;
+}
+.dark .input-group .modal-container .input-box,
+.dark .input-group .modal-container .dp__input,
+.dark .input-group .box .input-box,
+.dark .input-group .box .dp__input {
+  @apply bg-fv-neutral-900 border-fv-neutral-700;
+}
+.dark .input-group .modal-container .input-basic,
+.dark .input-group .box .input-basic {
+  @apply bg-fv-neutral-900 text-fv-neutral-50;
+}
+.dark .input-group .label-basic,
+.dark .input-group .help-icon,
+.dark .input-group .help-text {
+  @apply text-fv-neutral-200;
+}
+.dark .input-group .form-error-label {
+  @apply text-red-400;
+}
+
 .btn {
   @apply text-white shadow  whitespace-nowrap;
   @apply transition duration-300 ease-in-out transform;

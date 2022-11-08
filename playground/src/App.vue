@@ -9,19 +9,46 @@ await i18nextPromise;
       <RouterLink to="/"><img src="@/assets/fyvue.svg" alt="fyvue" class="w-24 mb-6" /></RouterLink>
       <ul>
         <li><b class="text-violet-800">Helpers</b></li>
-        <li><RouterLink to="/tests/i18n">i18n</RouterLink></li>
+        <li>
+          <RouterLink to="/tests/i18n">i18n</RouterLink>
+        </li>
 
         <li><b class="text-violet-800">Components</b></li>
-        <li><RouterLink to="/tests/FyCirclePercent">FyCirclePercent</RouterLink></li>
-        <li><RouterLink to="/tests/FyModal">FyModal</RouterLink></li>
-        <li><RouterLink to="/tests/FySteps">FySteps</RouterLink></li>
-        <li><RouterLink to="/tests/FyBreadcrumb">FyBreadcrumb</RouterLink></li>
-        <li><RouterLink to="/tests/FyConfirm">FyConfirm</RouterLink></li>
-        <li><RouterLink to="/tests/FyDatatable">FyDatatable</RouterLink></li>
-        <li><RouterLink to="/tests/FyTable">FyTable</RouterLink></li>
-        <li><RouterLink to="/tests/FyLoader">FyLoader</RouterLink></li>
+        <li>
+          <RouterLink to="/tests/FyCirclePercent">FyCirclePercent</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyModal">FyModal</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FySteps">FySteps</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyBreadcrumb">FyBreadcrumb</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyConfirm">FyConfirm</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyDatatable">FyDatatable</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyTable">FyTable</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyLoader">FyLoader</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyInputBase">FyInputBase</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/tests/FyInput">FyInput</RouterLink>
+        </li>
+
       </ul>
     </nav>
-    <main class="flex-1 relative">    <RouterView /></main>
+    <main class="flex-1 relative">
+      <RouterView />
+    </main>
   </div>
 </template>

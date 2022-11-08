@@ -1,11 +1,15 @@
 import type { App, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
-import uiComponents from "@karpeleslab/fyvue/components/ui";
-import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from '@karpeleslab/fyvue/helpers';
-import { cropText, formatBytes, tailwindColors } from "@karpeleslab/fyvue/displayHelpers";
-import type { FyvueOptions } from "@karpeleslab/fyvue/types"
+import uiComponents from "./components/ui";
+import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './helpers';
+import { cropText, formatBytes, tailwindColors } from "./displayHelpers";
+import type { FyvueOptions } from "./types"
 
-import './fyvue.scss';
+const cssDynamic = async () => {
+  if (!process.env.live) await import('./fyvue.scss')
+  return null;
+}
+cssDynamic()
 
 const head = createHead();
 

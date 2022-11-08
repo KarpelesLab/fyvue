@@ -5,37 +5,49 @@ import typescript from 'rollup-plugin-typescript2';
 import scss from 'rollup-plugin-scss'
 import copy from 'rollup-plugin-copy'
 import cleanup from 'rollup-plugin-cleanup';
-
+import path from "path"
 export default {
   input: 'src/index.ts',
   output: [
     {
-      format: 'umd',
-      sourcemap: true,
-      file: "dist/fyvue.js",
-      name: "fyvue",
-    },
-    {
-      format: 'es',
-      sourcemap: true,
-      file: "dist/fyvue.mjs",
-    },
-    /*
-    {
+      inlineDynamicImports: true,
       format: 'cjs',
       sourcemap: true,
       file: "dist/fyvue.js",
-    }*/
+      name: "fyvue",
+      globals: {
+        '@vueuse/head': 'vhead',
+        'vue': 'vue',
+        '@headlessui/vue': "hlui",
+        '@karpeleslab/klbfw': "klbfw",
+        'i18next': 'i18next',
+        '@heroicons/vue/24/solid': 'hisol'
+      }
+    },
+    {
+      inlineDynamicImports: true,
+      format: 'es',
+      sourcemap: true,
+      file: "dist/fyvue.mjs",
+      globals: {
+        '@vueuse/head': 'vhead',
+        'vue': 'vue',
+        '@headlessui/vue': "hlui",
+        '@karpeleslab/klbfw': "klbfw",
+        'i18next': 'i18next',
+        '@heroicons/vue/24/solid': 'hisol'
+      }
+    },
   ],
   plugins: [
+    scss({
+      output: 'dist/fyvue.scss',
+    }),
     vue(),
     resolve(),
     peerDepsExternal(),
     typescript({
      tsconfig: 'src/tsconfig.json'
-    }),
-    scss({
-      output: 'dist/fyvue.scss',
     }),
     copy({
       targets: [

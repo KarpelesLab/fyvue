@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
+    "dev:bundle": "vite --port 3000",
+    "dev:live": "vite --config vite.config.live.ts --port 3000",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },

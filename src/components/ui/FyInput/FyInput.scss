@@ -1,0 +1,136 @@
+.input-group {
+  @apply w-full;
+
+  .is-req {
+    @apply text-red-700;
+  }
+  .form-error-label {
+    @apply text-xs text-center font-bold -mt-3.5 md:mt-0.5;
+  }
+  .link-icon {
+    svg {
+      @apply w-5 inline-block -mt-0.5 mr-2;
+    }
+  }
+  .input-basic {
+    &:focus, &:active {
+      @apply outline-0 outline-1 outline-fv-primary-500 ;
+    }
+    @apply w-full py-3 text-xs placeholder-fv-neutral-400 font-semibold leading-none border-0 outline-none;
+    &.is-textarea {
+      @apply h-32;
+    }
+  }
+
+  .input-box {
+    @apply flex flex-1 border mb-4 md:mb-0;
+    input {
+      @apply px-2;
+    }
+    select {
+      padding-top: 14px;
+      padding-bottom: 13px;
+    }
+    textarea {
+      @apply px-2;
+    }
+
+  }
+
+  .label-basic {
+    @apply block uppercase tracking-wide whitespace-nowrap text-xs  font-bold mb-2 text-left pt-0 md:pt-3;
+
+    input[type=checkbox] {
+      @apply -mt-1;
+      &:focus, &:active {
+        @apply outline-0 outline-1 outline-fv-primary-500 ;
+      }
+      &:checked {
+        @apply outline-0 outline-1 outline-fv-primary-500  bg-fv-primary-500;
+      }
+    }
+  }
+
+  .error-form {
+    @apply outline-1 outline-red-600;
+  }
+
+  .help-text {
+    @apply font-medium text-xs mt-0.5;
+  }
+
+  .help-icon {
+    @apply w-6 inline-block -mt-1;
+  }
+}
+
+.light {
+  .link-icon svg {
+    @apply text-fv-primary-600;
+    &:hover {
+      @apply text-fv-primary-900;
+    }
+  }
+  .input-group {
+    .input-box,
+    .dp__input {
+      @apply bg-fv-neutral-50 border-fv-neutral-300;
+    }
+
+    .input-basic {
+      @apply bg-fv-neutral-50 text-black;
+    }
+
+    .label-basic,
+    .help-icon,
+    .help-text {
+      @apply text-fv-neutral-600;
+    }
+
+    .form-error-label {
+      @apply text-red-500;
+    }
+  }
+}
+
+.dark {
+  .link-icon svg {
+    @apply text-fv-neutral-300;
+    &:hover {
+      @apply text-fv-primary-50;
+    }
+  }
+  .input-group {
+    .input-box,
+    .dp__input {
+      @apply bg-fv-neutral-800 border-fv-neutral-700;
+    }
+
+    .input-basic {
+      @apply bg-fv-neutral-800 text-fv-neutral-50;
+    }
+
+    .modal-container,
+    .box {
+
+      .input-box,
+      .dp__input {
+        @apply bg-fv-neutral-900 border-fv-neutral-700;
+      }
+
+      .input-basic {
+        @apply bg-fv-neutral-900 text-fv-neutral-50;
+      }
+    }
+
+    .label-basic,
+    .help-icon,
+    .help-text {
+      @apply text-fv-neutral-200;
+    }
+
+    .form-error-label {
+      @apply text-red-400;
+    }
+  }
+}

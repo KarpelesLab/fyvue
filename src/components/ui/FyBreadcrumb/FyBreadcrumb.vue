@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FyVueBreadcrumb } from '@karpeleslab/fyvue/types';
+import type { FyVueBreadcrumb } from '../../../types';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid'
 defineProps({
     nav: { type: Array<FyVueBreadcrumb>, default: [] },
