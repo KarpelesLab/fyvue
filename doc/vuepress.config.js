@@ -3,6 +3,10 @@ import { tocPlugin } from '@vuepress/plugin-toc'
 import { searchPlugin } from '@vuepress/plugin-search'
 import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 
+let klbComps = [
+  '/components/KlbLogin.md',
+]
+klbComps.sort()
 let comps = [
   '/components/FyModal.md',
   '/components/FyCirclePercent.md',
@@ -12,7 +16,6 @@ let comps = [
   '/components/FyDatatable.md',
   '/components/FyTable.md',
   '/components/FyLoader.md',
-  '/components/FyInputBase.md',
   '/components/FyInput.md',
   '/components/FyPaging.md'
 ]
@@ -22,7 +25,9 @@ let helpers = [
   '/helpers/style.md',
   '/helpers/KLBi18next.md',
   '/helpers/KLBCountries.md',
-  '/helpers/KLBtemplate.md'
+  '/helpers/KLBtemplate.md',
+  '/helpers/KLBTypes.md'
+
 ]
 helpers.sort()
 
@@ -54,14 +59,16 @@ export default  defineUserConfig({
         children: helpers
       },
       {
+        text: 'KLB Components',
+        collapsable: false,
+        children: klbComps
+      },
+      {
         text: 'Components',
         collapsable: false,
         children: comps,
       },
-      {
-        text: 'KLB Components',
-        collapsable: false,
-      },
+
       {
         text: 'SSR',
         collapsable: false

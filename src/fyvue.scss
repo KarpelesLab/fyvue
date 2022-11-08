@@ -1,10 +1,3 @@
-@layer base {
-  :root {
-    --color-primary: 255 115 179;
-    --color-secondary: 111 114 185;
-  }
-}
-
 @import "./components/ui/FyModal/FyModal.scss";
 @import "./components/ui/FyCirclePercent/FyCirclePercent.scss";
 @import "./components/ui/FySteps/FySteps.scss";
@@ -13,7 +6,11 @@
 @import "./components/ui/FyLoader/FyLoader.scss";
 @import "./components/ui/FyInput/FyInput.scss";
 @import "./components/ui/FyPaging/FyPaging.scss";
+@import "./components/klb/KlbLogin/KlbLogin.scss";
 
+html, body {
+  @apply antialiased
+}
 .is-sr {
   @apply sr-only;
 }

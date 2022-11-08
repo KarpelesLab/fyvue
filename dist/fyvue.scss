@@ -1,9 +1,3 @@
-@layer base {
-  :root {
-    --color-primary: 255 115 179;
-    --color-secondary: 111 114 185;
-  }
-}
 .fy-modal {
   @apply fixed inset-0 overflow-y-auto;
   z-index: 40;
@@ -488,6 +482,82 @@
 }
 .dark .paging .paging-text {
   @apply text-fv-neutral-300;
+}
+
+.klb-login {
+  @apply w-full  flex flex-col flex-grow  items-center justify-center;
+}
+.klb-login h1 {
+  @apply mt-0 text-2xl;
+}
+.klb-login .label {
+  @apply pt-2 pb-1  text-sm;
+}
+.klb-login .message {
+  @apply text-lg;
+}
+.klb-login .response-error {
+  @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
+}
+.klb-login .oauth-button {
+  @apply h-12 w-12 block  rounded  p-2 mr-3 rounded-full border-4 shadow;
+}
+.klb-login .oauth-button:hover {
+  @apply border;
+}
+.klb-login .oauth-container {
+  @apply flex items-center justify-center shadow py-2 rounded;
+}
+.klb-login .reset-pwd {
+  @apply text-xs underline block absolute mt-6 pt-1 h-12;
+}
+.klb-login .reset-pwd:hover {
+  @apply no-underline;
+}
+.klb-login .btn.primary {
+  @apply block mt-4 text-lg font-bold px-6 py-2;
+}
+
+.light .klb-login .label {
+  @apply text-fv-neutral-500;
+}
+.light .klb-login .checkbox-label {
+  @apply underline text-fv-neutral-600;
+}
+.light .klb-login .checkbox-label:hover {
+  @apply text-fv-neutral-600;
+}
+.light .klb-login .mandatory {
+  @apply text-red-700;
+}
+.light .klb-login .oauth-container {
+  @apply bg-fv-neutral-50;
+}
+.light .klb-login .message {
+  @apply text-fv-neutral-700;
+}
+
+.dark .klb-login .label {
+  @apply text-fv-neutral-400;
+}
+.dark .klb-login .checkbox-label {
+  @apply underline text-fv-neutral-300;
+}
+.dark .klb-login .checkbox-label:hover {
+  @apply text-fv-neutral-300;
+}
+.dark .klb-login .mandatory {
+  @apply text-red-400;
+}
+.dark .klb-login .oauth-container {
+  @apply bg-fv-neutral-800;
+}
+.dark .klb-login .message {
+  @apply text-fv-neutral-300;
+}
+
+html, body {
+  @apply antialiased;
 }
 
 .is-sr {

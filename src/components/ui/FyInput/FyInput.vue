@@ -1,38 +1,75 @@
 <script setup lang="ts">
 import { LinkIcon } from "@heroicons/vue/24/solid";
-import type { FyVuevalidate } from '../../../dts/'
-withDefaults(defineProps<{
+import { computed, ref, toRef } from "vue";
+import type { modelValueType, checkboxValueType } from '../../../dts/'
+import type { ErrorObject } from "@vuelidate/core"
+
+const props = withDefaults(defineProps<{
   id: string,
-  showLabel: boolean,
+  showLabel?: boolean,
   label? : string,
   type : string,
   placeholder? : string,
   autocomplete? : string,
-  checkboxTrueValue? : string,
-  checkboxFalseValue? : string,
+  checkboxTrueValue? : string|boolean,
+  checkboxFalseValue? : string|boolean,
   req? : boolean,
   linkIcon? : string,
-  modelValue: FyVuevalidate,
+  modelValue?: modelValueType,
+  checkboxValue?: checkboxValueType,
   options?: string[][],
-  help?: string
+  help?: string,
+  error?: string,
+  errorVuelidate?: ErrorObject[]
 }>(), {
   showLabel: true,
   type: 'text',
   req: false,
   options: () => [],
-  checkboxTrueValue: "on",
-  checkboxFalseValue: "off"
+  checkboxTrueValue: true,
+  checkboxFalseValue: false
+})
+const inputRef = ref<HTMLInputElement>()
+const errorProps = toRef(props, 'error')
+const errorVuelidateProps = toRef(props, 'errorVuelidate')
+
+const checkErrors = computed(() => {
+  if (errorProps.value) return errorProps.value;
+  if (errorVuelidateProps.value && errorVuelidateProps.value.length > 0) {
+    console.log(errorVuelidateProps.value)
+    return errorVuelidateProps.value[0].$validator.toString()
+  }
+
+  return null
 })
 
-</script>
+const focus = () => {
+  if (inputRef.value) inputRef.value.focus()
+}
+defineExpose({ focus });
 
+const emit = defineEmits(['update:modelValue', 'update:checkboxValue'])
+const model = computed({
+  get: () => props.modelValue,
+  set: items => {
+    emit('update:modelValue', items)
+  }
+})
+const modelCheckbox = computed({
+  get: () => props.checkboxValue,
+  set: items => {
+    emit('update:checkboxValue', items)
+  }
+})
+</script>
 <template>
   <div class="input-group">
     <template v-if="showLabel && id && label">
       <label class="label-basic" :for="id">
-        <input v-if="type == 'checkbox'" type="checkbox" class="form-checkbox" :id="id"
-          :class="{ 'error-form': modelValue.$errors.length }" :true-value="checkboxTrueValue"
-          :false-value="checkboxFalseValue" v-model="modelValue.$model" />
+        <input :ref="`inputRef`" v-if="type == 'checkbox'" type="checkbox" class="form-checkbox" :id="id"
+          :class="{ 'error-form': checkErrors }" :true-value="checkboxTrueValue" :false-value="checkboxFalseValue"
+          v-model="modelCheckbox" />
+
         {{ label }}
 
         <a class="link-icon" :href="linkIcon" target="_blank" v-if="linkIcon">
@@ -43,15 +80,13 @@ withDefaults(defineProps<{
     </template>
     <div v-if="!['checkbox', 'radiobox'].includes(type)" class="input-box">
       <slot name="before"></slot>
-      <input v-if="['text', 'password', 'email'].includes(type)" class="input-basic"
-        :class="{ 'error-form': modelValue.$errors.length > 0 }" :placeholder="placeholder" :autocomplete="autocomplete"
-        :id="id" v-model="modelValue.$model" />
-      <textarea v-if="type == 'textarea'" class="input-basic is-textarea"
-        :class="{ 'error-form': modelValue.$errors.length > 0 }" :placeholder="placeholder" :autocomplete="autocomplete"
-        :id="id" v-model="modelValue.$model" />
+      <input :ref="`inputRef`" v-if="['text', 'password', 'email'].includes(type)" class="input-basic" :class="{ 'error-form': error }"
+        :placeholder="placeholder" :autocomplete="autocomplete" :id="id" v-model="model" :type="type" />
+      <textarea :ref="`inputRef`" v-if="type == 'textarea'" class="input-basic is-textarea" :class="{ 'error-form': checkErrors }"
+        :placeholder="placeholder" :autocomplete="autocomplete" :id="id" v-model="model" />
 
-      <select v-if="type == 'select'" :id="id" class="input-basic" v-model="modelValue.$model">
-        <option v-for="opt in options" :value="opt[0]" v-bind:key="opt[0].toString()">
+      <select :ref="`inputRef`" v-if="type == 'select'" :id="id" class="input-basic" v-model="model">
+        <option v-for="opt in options" :value="opt[0]" :key="opt[0].toString()">
           {{ opt[1] }}
         </option>
       </select>
@@ -60,8 +95,8 @@ withDefaults(defineProps<{
     <div class="help-text" v-if="help">
       {{ help }}
     </div>
-    <div v-if="modelValue.$errors.length > 0" class="form-error-label">
-      {{ $t(`error_form_${modelValue.$errors[0].$validator}`) }}
+    <div v-if="checkErrors" class="form-error-label">
+      {{ checkErrors }}
     </div>
   </div>
 </template>

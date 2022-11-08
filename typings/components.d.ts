@@ -10,9 +10,9 @@ declare module 'vue' {
     FyDatatable: typeof import('../src/')['components']['FyDatatable'],
     FyTable: typeof import('../src/')['components']['FyTable'],
     FyLoader: typeof import('../src/')['components']['FyLoader'],
-    FyInputBase: typeof import('../src/')['components']['FyInputBase'],
     FyInput: typeof import('../src/')['components']['FyInput'],
     FyPaging: typeof import('../src/')['components']['FyPaging'],
+    KlbLogin: typeof import('../src/')['components']['KlbLogin'],
   }
 
   interface ComponentCustomProperties {

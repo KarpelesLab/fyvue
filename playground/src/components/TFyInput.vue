@@ -42,20 +42,20 @@ const submit = async () => {
   <pre class="text-xs">{{ state }}</pre>
 
   <form @submit.prevent="submit">
-    <FyInput v-model="v$.user.email" id="test_email" :req="true" :showLabel="true"
+    <FyInput v-model="state.user.email" :errorVuelidate="v$.user.email.$errors" id="test_email" :req="true" :showLabel="true"
       :placeholder="$t('test_email_placeholder')" :label="$t('test_email_label')" autocomplete="email" type="email">
       <template v-slot:after>
         <EnvelopeOpenIcon class="inline-block w-5 text-fv-primary-500 mx-2" />
       </template>
     </FyInput>
-    <FyInput v-model="v$.user.username" id="test_username" :req="true" :showLabel="true"
+    <FyInput v-model="state.user.username" :errorVuelidate="v$.user.username.$errors"  id="test_username" :req="true" :showLabel="true"
       :placeholder="$t('test_username_placeholder')" :label="$t('test_username_label')" autocomplete="email"
       type="text">
       <template v-slot:before>
         <UserCircleIcon class="inline-block w-5 text-fv-primary-500 mx-2" />
       </template>
     </FyInput>
-    <FyInput v-model="v$.user.select" :options="selectOptions" id="test_select" :req="true" :showLabel="true"
+    <FyInput v-model="state.user.select" :errorVuelidate="v$.user.select.$errors"  :options="selectOptions" id="test_select" :req="true" :showLabel="true"
       :placeholder="$t('test_select_placeholder')" :label="$t('test_select_label')" type="select">
       <template v-slot:after>
         <EnvelopeOpenIcon class="inline-block w-5 text-fv-primary-500 mx-2" />

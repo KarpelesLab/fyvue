@@ -8,6 +8,14 @@ export const routes = [
     component: () => import('./components/Ti18n.vue')
   },
   {
+    path: '/tests/KlbLogin',
+    component: () => import('./components/TKlbLogin.vue')
+  },
+  {
+    path: '/tests/Store',
+    component: () => import('./components/TStore.vue')
+  },
+  {
     path: '/tests/FyInputBase',
     component: () => import('./components/TFyInputBase.vue')
   },

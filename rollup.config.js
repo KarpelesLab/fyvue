@@ -23,6 +23,11 @@ export default [
     plugins: [dts.default()],
   },
   {
+    input: "./src/dts/klb.d.ts",
+    output: [{ file: "dist/dts/klb.d.ts", format: "es" }],
+    plugins: [dts.default()],
+  },
+  {
     input: 'src/index.ts',
     output: [
       {

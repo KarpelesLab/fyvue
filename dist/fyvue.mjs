@@ -1,10 +1,12 @@
 import { createHead } from '@vueuse/head';
-import { getCurrentInstance, defineComponent, h, ref, onMounted, onUnmounted, openBlock, createBlock, unref, withCtx, createVNode, createElementVNode, createTextVNode, toDisplayString, resolveDynamicComponent, createElementBlock, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, withDirectives, isRef, vModelCheckbox, vModelText, vModelSelect } from 'vue';
+import { defineStore, createPinia } from 'pinia';
+import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, reactive, withModifiers } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay } from '@headlessui/vue';
-import { getLocale } from '@karpeleslab/klbfw';
+import { getLocale, rest } from '@karpeleslab/klbfw';
 import i18next from 'i18next';
-import { XCircleIcon, ArrowRightIcon, LinkIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
 import { useRoute, useRouter } from 'vue-router';
+import useVuelidate from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -76,6 +78,81 @@ const useTranslation = () => {
     return vueInstance?.appContext.config.globalProperties.$t;
 };
 
+function render$4(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
+function render$3(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
+function render$2(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
+function render$1(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M19.902 4.098a3.75 3.75 0 00-5.304 0l-4.5 4.5a3.75 3.75 0 001.035 6.037.75.75 0 01-.646 1.353 5.25 5.25 0 01-1.449-8.45l4.5-4.5a5.25 5.25 0 117.424 7.424l-1.757 1.757a.75.75 0 11-1.06-1.06l1.757-1.757a3.75 3.75 0 000-5.304zm-7.389 4.267a.75.75 0 011-.353 5.25 5.25 0 011.449 8.45l-4.5 4.5a5.25 5.25 0 11-7.424-7.424l1.757-1.757a.75.75 0 111.06 1.06l-1.757 1.757a3.75 3.75 0 105.304 5.304l4.5-4.5a3.75 3.75 0 00-1.035-6.037.75.75 0 01-.354-1z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
+function render(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
 const _hoisted_1$b = { class: "parent" };
 var script$b = defineComponent({
     __name: 'FyModal',
@@ -84,7 +161,7 @@ var script$b = defineComponent({
         title: { type: String, required: false },
         onOpen: { type: Function, required: false },
         onClose: { type: Function, required: false },
-        closeIcon: { type: Object, required: false, default: () => h(XCircleIcon) }
+        closeIcon: { type: Object, required: false, default: () => h(render) }
     },
     setup(__props) {
         const props = __props;
@@ -340,7 +417,7 @@ var script$8 = defineComponent({
                                         ]),
                                         _: 2
                                     }, 1032, ["to"]),
-                                    createVNode(unref(ArrowRightIcon), { class: "icon bc-innactive" })
+                                    createVNode(unref(render$4), { class: "icon bc-innactive" })
                                 ]))
                                 : (openBlock(), createElementBlock("li", {
                                     key: `e-${item.to}`,
@@ -643,7 +720,7 @@ const _hoisted_6$2 = {
     key: 1,
     class: "input-box"
 };
-const _hoisted_7$2 = ["placeholder", "autocomplete", "id"];
+const _hoisted_7$2 = ["placeholder", "autocomplete", "id", "type"];
 const _hoisted_8$2 = ["placeholder", "autocomplete", "id"];
 const _hoisted_9$2 = ["id"];
 const _hoisted_10$2 = ["value"];
@@ -651,44 +728,60 @@ const _hoisted_11$1 = {
     key: 2,
     class: "help-text"
 };
-const _hoisted_12$1 = {
+const _hoisted_12 = {
     key: 3,
     class: "form-error-label"
 };
 var script$2 = defineComponent({
-    __name: 'FyInputBase',
+    __name: 'FyInput',
     props: {
         id: { type: String, required: true },
-        showLabel: { type: Boolean, required: true, default: true },
+        showLabel: { type: Boolean, required: false, default: true },
         label: { type: String, required: false },
         type: { type: String, required: true, default: 'text' },
         placeholder: { type: String, required: false },
         autocomplete: { type: String, required: false },
-        checkboxTrueValue: { type: String, required: false, default: "on" },
-        checkboxFalseValue: { type: String, required: false, default: "off" },
+        checkboxTrueValue: { type: [String, Boolean], required: false, default: true },
+        checkboxFalseValue: { type: [String, Boolean], required: false, default: false },
         req: { type: Boolean, required: false, default: false },
         linkIcon: { type: String, required: false },
         modelValue: { type: null, required: false },
         checkboxValue: { type: null, required: false },
         options: { type: Array, required: false, default: () => [] },
         help: { type: String, required: false },
-        error: { type: String, required: false }
+        error: { type: String, required: false },
+        errorVuelidate: { type: Array, required: false }
     },
     emits: ['update:modelValue', 'update:checkboxValue'],
-    setup(__props, { emit }) {
+    setup(__props, { expose, emit }) {
         const props = __props;
+        const inputRef = ref();
+        const errorProps = toRef(props, 'error');
+        const errorVuelidateProps = toRef(props, 'errorVuelidate');
+        const checkErrors = computed(() => {
+            if (errorProps.value)
+                return errorProps.value;
+            if (errorVuelidateProps.value && errorVuelidateProps.value.length > 0) {
+                console.log(errorVuelidateProps.value);
+                return errorVuelidateProps.value[0].$validator.toString();
+            }
+            return null;
+        });
+        const focus = () => {
+            if (inputRef.value)
+                inputRef.value.focus();
+        };
+        expose({ focus });
         const model = computed({
             get: () => props.modelValue,
             set: items => {
                 emit('update:modelValue', items);
-                console.log(items);
             }
         });
         const modelCheckbox = computed({
             get: () => props.checkboxValue,
             set: items => {
                 emit('update:checkboxValue', items);
-                console.log(items);
             }
         });
         return (_ctx, _cache) => {
@@ -702,8 +795,9 @@ var script$2 = defineComponent({
                         (__props.type == 'checkbox')
                             ? withDirectives((openBlock(), createElementBlock("input", {
                                 key: 0,
+                                ref: `inputRef`,
                                 type: "checkbox",
-                                class: normalizeClass(["form-checkbox", { 'error-form': __props.error }]),
+                                class: normalizeClass(["form-checkbox", { 'error-form': unref(checkErrors) }]),
                                 id: __props.id,
                                 "true-value": __props.checkboxTrueValue,
                                 "false-value": __props.checkboxFalseValue,
@@ -720,7 +814,7 @@ var script$2 = defineComponent({
                                 href: __props.linkIcon,
                                 target: "_blank"
                             }, [
-                                createVNode(unref(LinkIcon))
+                                createVNode(unref(render$1))
                             ], 8, _hoisted_4$2))
                             : createCommentVNode("v-if", true),
                         (__props.req)
@@ -734,19 +828,22 @@ var script$2 = defineComponent({
                         (['text', 'password', 'email'].includes(__props.type))
                             ? withDirectives((openBlock(), createElementBlock("input", {
                                 key: 0,
+                                ref: `inputRef`,
                                 class: normalizeClass(["input-basic", { 'error-form': __props.error }]),
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
                                 id: __props.id,
-                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (isRef(model) ? (model).value = $event : null))
+                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (isRef(model) ? (model).value = $event : null)),
+                                type: __props.type
                             }, null, 10, _hoisted_7$2)), [
-                                [vModelText, unref(model)]
+                                [vModelDynamic, unref(model)]
                             ])
                             : createCommentVNode("v-if", true),
                         (__props.type == 'textarea')
                             ? withDirectives((openBlock(), createElementBlock("textarea", {
                                 key: 1,
-                                class: normalizeClass(["input-basic is-textarea", { 'error-form': __props.error }]),
+                                ref: `inputRef`,
+                                class: normalizeClass(["input-basic is-textarea", { 'error-form': unref(checkErrors) }]),
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
                                 id: __props.id,
@@ -758,6 +855,7 @@ var script$2 = defineComponent({
                         (__props.type == 'select')
                             ? withDirectives((openBlock(), createElementBlock("select", {
                                 key: 2,
+                                ref: `inputRef`,
                                 id: __props.id,
                                 class: "input-basic",
                                 "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (isRef(model) ? (model).value = $event : null))
@@ -778,179 +876,40 @@ var script$2 = defineComponent({
                 (__props.help)
                     ? (openBlock(), createElementBlock("div", _hoisted_11$1, toDisplayString(__props.help), 1))
                     : createCommentVNode("v-if", true),
-                (__props.error)
-                    ? (openBlock(), createElementBlock("div", _hoisted_12$1, toDisplayString(__props.error), 1))
+                (unref(checkErrors))
+                    ? (openBlock(), createElementBlock("div", _hoisted_12, toDisplayString(unref(checkErrors)), 1))
                     : createCommentVNode("v-if", true)
             ]));
         };
     }
 });
 
-script$2.__file = "src/components/ui/FyInput/FyInputBase.vue";
+script$2.__file = "src/components/ui/FyInput/FyInput.vue";
 
-const _hoisted_1$1 = { class: "input-group" };
-const _hoisted_2$1 = ["for"];
-const _hoisted_3$1 = ["id", "true-value", "false-value"];
-const _hoisted_4$1 = ["href"];
-const _hoisted_5$1 = {
-    key: 2,
-    class: "is-req"
-};
-const _hoisted_6$1 = {
-    key: 1,
-    class: "input-box"
-};
-const _hoisted_7$1 = ["placeholder", "autocomplete", "id"];
-const _hoisted_8$1 = ["placeholder", "autocomplete", "id"];
-const _hoisted_9$1 = ["id"];
-const _hoisted_10$1 = ["value"];
-const _hoisted_11 = {
-    key: 2,
-    class: "help-text"
-};
-const _hoisted_12 = {
-    key: 3,
-    class: "form-error-label"
-};
-var script$1 = defineComponent({
-    __name: 'FyInput',
-    props: {
-        id: { type: String, required: true },
-        showLabel: { type: Boolean, required: true, default: true },
-        label: { type: String, required: false },
-        type: { type: String, required: true, default: 'text' },
-        placeholder: { type: String, required: false },
-        autocomplete: { type: String, required: false },
-        checkboxTrueValue: { type: String, required: false, default: "on" },
-        checkboxFalseValue: { type: String, required: false, default: "off" },
-        req: { type: Boolean, required: false, default: false },
-        linkIcon: { type: String, required: false },
-        modelValue: { type: null, required: true },
-        options: { type: Array, required: false, default: () => [] },
-        help: { type: String, required: false }
-    },
-    setup(__props) {
-        return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", _hoisted_1$1, [
-                (__props.showLabel && __props.id && __props.label)
-                    ? (openBlock(), createElementBlock("label", {
-                        key: 0,
-                        class: "label-basic",
-                        for: __props.id
-                    }, [
-                        (__props.type == 'checkbox')
-                            ? withDirectives((openBlock(), createElementBlock("input", {
-                                key: 0,
-                                type: "checkbox",
-                                class: normalizeClass(["form-checkbox", { 'error-form': __props.modelValue.$errors.length }]),
-                                id: __props.id,
-                                "true-value": __props.checkboxTrueValue,
-                                "false-value": __props.checkboxFalseValue,
-                                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => ((__props.modelValue.$model) = $event))
-                            }, null, 10, _hoisted_3$1)), [
-                                [vModelCheckbox, __props.modelValue.$model]
-                            ])
-                            : createCommentVNode("v-if", true),
-                        createTextVNode(" " + toDisplayString(__props.label) + " ", 1),
-                        (__props.linkIcon)
-                            ? (openBlock(), createElementBlock("a", {
-                                key: 1,
-                                class: "link-icon",
-                                href: __props.linkIcon,
-                                target: "_blank"
-                            }, [
-                                createVNode(unref(LinkIcon))
-                            ], 8, _hoisted_4$1))
-                            : createCommentVNode("v-if", true),
-                        (__props.req)
-                            ? (openBlock(), createElementBlock("sup", _hoisted_5$1, "*"))
-                            : createCommentVNode("v-if", true)
-                    ], 8, _hoisted_2$1))
-                    : createCommentVNode("v-if", true),
-                (!['checkbox', 'radiobox'].includes(__props.type))
-                    ? (openBlock(), createElementBlock("div", _hoisted_6$1, [
-                        renderSlot(_ctx.$slots, "before"),
-                        (['text', 'password', 'email'].includes(__props.type))
-                            ? withDirectives((openBlock(), createElementBlock("input", {
-                                key: 0,
-                                class: normalizeClass(["input-basic", { 'error-form': __props.modelValue.$errors.length > 0 }]),
-                                placeholder: __props.placeholder,
-                                autocomplete: __props.autocomplete,
-                                id: __props.id,
-                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => ((__props.modelValue.$model) = $event))
-                            }, null, 10, _hoisted_7$1)), [
-                                [vModelText, __props.modelValue.$model]
-                            ])
-                            : createCommentVNode("v-if", true),
-                        (__props.type == 'textarea')
-                            ? withDirectives((openBlock(), createElementBlock("textarea", {
-                                key: 1,
-                                class: normalizeClass(["input-basic is-textarea", { 'error-form': __props.modelValue.$errors.length > 0 }]),
-                                placeholder: __props.placeholder,
-                                autocomplete: __props.autocomplete,
-                                id: __props.id,
-                                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => ((__props.modelValue.$model) = $event))
-                            }, null, 10, _hoisted_8$1)), [
-                                [vModelText, __props.modelValue.$model]
-                            ])
-                            : createCommentVNode("v-if", true),
-                        (__props.type == 'select')
-                            ? withDirectives((openBlock(), createElementBlock("select", {
-                                key: 2,
-                                id: __props.id,
-                                class: "input-basic",
-                                "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => ((__props.modelValue.$model) = $event))
-                            }, [
-                                (openBlock(true), createElementBlock(Fragment, null, renderList(__props.options, (opt) => {
-                                    return (openBlock(), createElementBlock("option", {
-                                        value: opt[0],
-                                        key: opt[0].toString()
-                                    }, toDisplayString(opt[1]), 9, _hoisted_10$1));
-                                }), 128))
-                            ], 8, _hoisted_9$1)), [
-                                [vModelSelect, __props.modelValue.$model]
-                            ])
-                            : createCommentVNode("v-if", true),
-                        renderSlot(_ctx.$slots, "after")
-                    ]))
-                    : createCommentVNode("v-if", true),
-                (__props.help)
-                    ? (openBlock(), createElementBlock("div", _hoisted_11, toDisplayString(__props.help), 1))
-                    : createCommentVNode("v-if", true),
-                (__props.modelValue.$errors.length > 0)
-                    ? (openBlock(), createElementBlock("div", _hoisted_12, toDisplayString(_ctx.$t(`error_form_${__props.modelValue.$errors[0].$validator}`)), 1))
-                    : createCommentVNode("v-if", true)
-            ]));
-        };
-    }
-});
-
-script$1.__file = "src/components/ui/FyInput/FyInput.vue";
-
-const _hoisted_1 = {
+const _hoisted_1$1 = {
     key: 0,
     class: "paging"
 };
-const _hoisted_2 = { "aria-label": "Pagination" };
-const _hoisted_3 = { class: "is-sr" };
-const _hoisted_4 = {
+const _hoisted_2$1 = { "aria-label": "Pagination" };
+const _hoisted_3$1 = { class: "is-sr" };
+const _hoisted_4$1 = {
     key: 2,
     class: "dots"
 };
-const _hoisted_5 = ["onClick"];
-const _hoisted_6 = {
+const _hoisted_5$1 = ["onClick"];
+const _hoisted_6$1 = {
     href: "#",
     "aria-current": "page",
     class: "active"
 };
-const _hoisted_7 = ["onClick"];
-const _hoisted_8 = {
+const _hoisted_7$1 = ["onClick"];
+const _hoisted_8$1 = {
     key: 3,
     class: "dots"
 };
-const _hoisted_9 = { class: "is-sr" };
-const _hoisted_10 = { class: "paging-text" };
-var script = defineComponent({
+const _hoisted_9$1 = { class: "is-sr" };
+const _hoisted_10$1 = { class: "paging-text" };
+var script$1 = defineComponent({
     __name: 'FyPaging',
     props: {
         items: { type: null, required: true },
@@ -1010,9 +969,9 @@ var script = defineComponent({
         });
         return (_ctx, _cache) => {
             return (__props.items && __props.items.page_max > 1 && __props.items.page_no)
-                ? (openBlock(), createElementBlock("div", _hoisted_1, [
+                ? (openBlock(), createElementBlock("div", _hoisted_1$1, [
                     createElementVNode("div", null, [
-                        createElementVNode("nav", _hoisted_2, [
+                        createElementVNode("nav", _hoisted_2$1, [
                             (__props.items.page_no >= 2)
                                 ? (openBlock(), createElementBlock("a", {
                                     key: 0,
@@ -1020,8 +979,8 @@ var script = defineComponent({
                                     onClick: _cache[0] || (_cache[0] = ($event) => (prev())),
                                     class: "prev-next"
                                 }, [
-                                    createElementVNode("span", _hoisted_3, toDisplayString(_ctx.$t('previous_paging')), 1),
-                                    createVNode(unref(ChevronLeftIcon), { class: "h-5 w-5" })
+                                    createElementVNode("span", _hoisted_3$1, toDisplayString(_ctx.$t('previous_paging')), 1),
+                                    createVNode(unref(render$3), { class: "h-5 w-5" })
                                 ]))
                                 : createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 1)
@@ -1033,7 +992,7 @@ var script = defineComponent({
                                 }, " 1 "))
                                 : createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 2)
-                                ? (openBlock(), createElementBlock("span", _hoisted_4, " ... "))
+                                ? (openBlock(), createElementBlock("span", _hoisted_4$1, " ... "))
                                 : createCommentVNode("v-if", true),
                             (openBlock(), createElementBlock(Fragment, null, renderList(2, (i) => {
                                 return (openBlock(), createElementBlock(Fragment, { key: i }, [
@@ -1043,11 +1002,11 @@ var script = defineComponent({
                                             class: "innactive",
                                             href: "javascript:void(0);",
                                             onClick: ($event) => (page(__props.items.page_no - (3 - i)))
-                                        }, toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_5))
+                                        }, toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_5$1))
                                         : createCommentVNode("v-if", true)
                                 ], 64));
                             }), 64)),
-                            createElementVNode("a", _hoisted_6, toDisplayString(__props.items.page_no), 1),
+                            createElementVNode("a", _hoisted_6$1, toDisplayString(__props.items.page_no), 1),
                             (openBlock(), createElementBlock(Fragment, null, renderList(2, (i) => {
                                 return (openBlock(), createElementBlock(Fragment, { key: i }, [
                                     (__props.items.page_no + i <= __props.items.page_max)
@@ -1056,12 +1015,12 @@ var script = defineComponent({
                                             class: "innactive",
                                             href: "javascript:void(0);",
                                             onClick: ($event) => (page(__props.items.page_no + i))
-                                        }, toDisplayString(__props.items.page_no + i), 9, _hoisted_7))
+                                        }, toDisplayString(__props.items.page_no + i), 9, _hoisted_7$1))
                                         : createCommentVNode("v-if", true)
                                 ], 64));
                             }), 64)),
                             (__props.items.page_no + 2 < __props.items.page_max - 1)
-                                ? (openBlock(), createElementBlock("span", _hoisted_8, " ... "))
+                                ? (openBlock(), createElementBlock("span", _hoisted_8$1, " ... "))
                                 : createCommentVNode("v-if", true),
                             (__props.items.page_no + 2 < __props.items.page_max)
                                 ? (openBlock(), createElementBlock("a", {
@@ -1078,12 +1037,12 @@ var script = defineComponent({
                                     onClick: _cache[3] || (_cache[3] = ($event) => (next())),
                                     class: "prev-next"
                                 }, [
-                                    createElementVNode("span", _hoisted_9, toDisplayString(_ctx.$t('next_paging')), 1),
-                                    createVNode(unref(ChevronRightIcon), { class: "h-5 w-5" })
+                                    createElementVNode("span", _hoisted_9$1, toDisplayString(_ctx.$t('next_paging')), 1),
+                                    createVNode(unref(render$2), { class: "h-5 w-5" })
                                 ]))
                                 : createCommentVNode("v-if", true)
                         ]),
-                        createElementVNode("p", _hoisted_10, toDisplayString(_ctx.$t("global_paging", {
+                        createElementVNode("p", _hoisted_10$1, toDisplayString(_ctx.$t("global_paging", {
                             start: __props.items.results_per_page * (__props.items.page_no - 1),
                             end: __props.items.results_per_page * __props.items.page_no,
                             total: __props.items.count,
@@ -1095,7 +1054,7 @@ var script = defineComponent({
     }
 });
 
-script.__file = "src/components/ui/FyPaging/FyPaging.vue";
+script$1.__file = "src/components/ui/FyPaging/FyPaging.vue";
 
 var uiComponents = {
     FyModal: script$b,
@@ -1106,9 +1065,361 @@ var uiComponents = {
     FyDatatable: script$6,
     FyTable: script$5,
     FyLoader: script$3,
-    FyInputBase: script$2,
-    FyInput: script$1,
-    FyPaging: script
+    FyInput: script$2,
+    FyPaging: script$1
+};
+
+const useFVStore = defineStore({
+    id: "fVStore",
+    state: () => ({
+        user: null,
+    }),
+    getters: {
+        isAuth: (state) => {
+            return !(state.user === null);
+        }
+    },
+    actions: {
+        async refreshUser() {
+            const apiData = await rest("User:get", "GET")
+                .catch((err) => { });
+            if (apiData.result == 'success' && apiData.data != null) {
+                this.user = apiData.data;
+            }
+            else {
+                this.user = null;
+            }
+        },
+        async logout() {
+            const apiData = await rest("User:logout", "Post")
+                .catch((err) => { });
+            if (apiData.result == 'success') {
+                this.setUser(null);
+            }
+        },
+        setUser(user) {
+            this.user = user;
+        }
+    },
+});
+
+const _hoisted_1 = { class: "w-full" };
+const _hoisted_2 = {
+    key: 0,
+    class: "message"
+};
+const _hoisted_3 = {
+    key: 0,
+    class: "oauth-container"
+};
+const _hoisted_4 = ["onClick"];
+const _hoisted_5 = ["alt", "src"];
+const _hoisted_6 = {
+    key: 1,
+    class: "response-error"
+};
+const _hoisted_7 = {
+    key: 2,
+    class: "reset-pwd"
+};
+const _hoisted_8 = { class: "btn primary btn-defaults" };
+const _hoisted_9 = {
+    key: 0,
+    class: "response-error"
+};
+const _hoisted_10 = createElementVNode("br", { style: { "clear": "both" } }, null, -1);
+const _hoisted_11 = { key: 1 };
+var script = defineComponent({
+    __name: 'KlbLogin',
+    props: {
+        returnDefault: { type: String, required: false, default: "/" },
+        forceAction: { type: String, required: false }
+    },
+    setup(__props) {
+        const props = __props;
+        const state = reactive({
+            userEmail: "",
+        });
+        const rules = {
+            userEmail: { required },
+        };
+        const store = useFVStore();
+        const v$ = useVuelidate(rules, state);
+        const route = useRoute();
+        const router = useRouter();
+        const eventBus = useEventBus();
+        const returnTo = ref(props.returnDefault);
+        const responseMessage = ref(null);
+        const responseError = ref();
+        const responseReq = ref([]);
+        const responseFields = ref([]);
+        const response = ref();
+        const hasOauth = ref(false);
+        const fieldsError = ref({});
+        const pwdRecoverMailSent = ref(false);
+        const pwdRecoverError = ref();
+        const inputs = ref([]);
+        const formData = ref({
+            return_to: props.returnDefault,
+            session: null,
+            action: props.forceAction ? props.forceAction : undefined,
+        });
+        const completed = ref(false);
+        const forgotPassword = async () => {
+            if (await v$.value.$validate()) {
+                let data = await rest("User:forgot_password", "POST", {
+                    login: state.userEmail,
+                }).catch((err) => {
+                    pwdRecoverError.value = err;
+                });
+                if (data.result == "success") {
+                    pwdRecoverMailSent.value = true;
+                }
+                else {
+                    console.log(data);
+                }
+            }
+        };
+        const userFlow = async (params = { initial: false }) => {
+            eventBus.emit("loading", true);
+            fieldsError.value = {};
+            hasOauth.value = false;
+            if (params.initial === false) {
+                let hasError = false;
+                responseReq.value.forEach((field) => {
+                    if (!formData.value[field] || formData.value[field] == "") {
+                        fieldsError.value[field] = "error_form_value_is_required";
+                        hasError = true;
+                    }
+                });
+                if (hasError) {
+                    eventBus.emit("loading", false);
+                    return;
+                }
+            }
+            if (params.oauth) {
+                formData.value.oauth2 = params.oauth;
+            }
+            if (route.query.return_to && typeof route.query.return_to == 'string') {
+                returnTo.value = route.query.return_to
+                    ? route.query.return_to : props.returnDefault;
+            }
+            if (!formData.value.session) {
+                formData.value.session = route.query.session
+                    ? route.query.session
+                    : undefined;
+            }
+            formData.value.return_to = returnTo.value;
+            response.value = await rest("User:flow", "POST", formData.value).catch((err) => {
+                responseError.value = err;
+                if (responseError.value.param) {
+                    fieldsError.value[responseError.value.param] =
+                        responseError.value.token;
+                }
+                eventBus.emit("loading", false);
+                return;
+            });
+            if (response.value?.result == "success") {
+                if (response.value.data.url) {
+                    window.location.href = response.value.data.url;
+                    return;
+                }
+                if (response.value.data.complete == true && response.value.data.user) {
+                    store.setUser(response.value.data.user);
+                    let routeExists = router.resolve(returnTo.value);
+                    if (routeExists.matched.length != 0)
+                        router.push(returnTo.value);
+                    else
+                        window.location.href = returnTo.value;
+                    return;
+                }
+                formData.value = {
+                    session: response.value.data.session,
+                };
+                inputs.value = [];
+                if (response.value.data.email)
+                    state.userEmail = response.value.data.email;
+                responseFields.value = response.value.data.fields;
+                if (response.value.data.message)
+                    responseMessage.value = response.value.data.message;
+                responseReq.value = response.value.data.req;
+                responseFields.value.forEach((field) => {
+                    if (field.type == "oauth2") {
+                        hasOauth.value = true;
+                    }
+                });
+                setTimeout(() => {
+                    if (inputs.value.length > 0 && inputs.value[inputs.value.length - 1])
+                        inputs.value[inputs.value.length - 1].focus();
+                }, 300);
+            }
+            else {
+                console.log(response);
+            }
+            eventBus.emit("loading", false);
+        };
+        onMounted(async () => {
+            await userFlow({ initial: true });
+        });
+        return (_ctx, _cache) => {
+            const _component_FyModal = resolveComponent("FyModal");
+            return (openBlock(), createElementBlock(Fragment, null, [
+                (!completed.value)
+                    ? (openBlock(), createElementBlock("form", {
+                        key: 0,
+                        onSubmit: _cache[1] || (_cache[1] = withModifiers(($event) => (userFlow()), ["prevent"])),
+                        class: "klb-login"
+                    }, [
+                        createElementVNode("div", _hoisted_1, [
+                            (responseMessage.value)
+                                ? (openBlock(), createElementBlock("h2", _hoisted_2, toDisplayString(responseMessage.value), 1))
+                                : createCommentVNode("v-if", true),
+                            (responseFields.value.length > 0)
+                                ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                                    (openBlock(true), createElementBlock(Fragment, null, renderList(responseFields.value, (field) => {
+                                        return (openBlock(), createElementBlock(Fragment, {
+                                            key: field.label
+                                        }, [
+                                            (field.type == 'label')
+                                                ? (openBlock(), createElementBlock("h3", {
+                                                    key: 0,
+                                                    class: normalizeClass(["label", field.style == 'error' ? 'response-error' : ''])
+                                                }, toDisplayString(field.label), 3))
+                                                : createCommentVNode("v-if", true),
+                                            (field.cat == 'input')
+                                                ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                                                    (field.type == 'text' ||
+                                                        field.type == 'password' ||
+                                                        field.type == 'email')
+                                                        ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+                                                            (field.name)
+                                                                ? (openBlock(), createBlock(script$2, {
+                                                                    key: 0,
+                                                                    id: field.name,
+                                                                    label: field.label,
+                                                                    placeholder: field.name == 'name' ? 'John Doe' : field.label,
+                                                                    error: fieldsError.value[field.name],
+                                                                    type: field.type,
+                                                                    ref_for: true,
+                                                                    ref_key: "inputs",
+                                                                    ref: inputs,
+                                                                    modelValue: formData.value[field.name],
+                                                                    "onUpdate:modelValue": ($event) => ((formData.value[field.name]) = $event),
+                                                                    req: responseReq.value.includes(field.name)
+                                                                }, null, 8, ["id", "label", "placeholder", "error", "type", "modelValue", "onUpdate:modelValue", "req"]))
+                                                                : createCommentVNode("v-if", true)
+                                                        ], 64))
+                                                        : createCommentVNode("v-if", true)
+                                                ], 64))
+                                                : createCommentVNode("v-if", true),
+                                            (field.type == 'checkbox')
+                                                ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+                                                    (field.name)
+                                                        ? (openBlock(), createBlock(script$2, {
+                                                            key: 0,
+                                                            id: field.name,
+                                                            label: field.label,
+                                                            error: fieldsError.value[field.name],
+                                                            type: field.type,
+                                                            "checkbox-value": formData.value[field.name],
+                                                            "onUpdate:checkbox-value": ($event) => ((formData.value[field.name]) = $event),
+                                                            req: responseReq.value.includes(field.name),
+                                                            "link-icon": field.link
+                                                        }, null, 8, ["id", "label", "error", "type", "checkbox-value", "onUpdate:checkbox-value", "req", "link-icon"]))
+                                                        : createCommentVNode("v-if", true)
+                                                ], 64))
+                                                : createCommentVNode("v-if", true)
+                                        ], 64));
+                                    }), 128)),
+                                    (hasOauth.value)
+                                        ? (openBlock(), createElementBlock("div", _hoisted_3, [
+                                            (openBlock(true), createElementBlock(Fragment, null, renderList(responseFields.value, (field) => {
+                                                return (openBlock(), createElementBlock(Fragment, {
+                                                    key: field.id
+                                                }, [
+                                                    (field.type && field.type == 'oauth2' && field.button)
+                                                        ? (openBlock(), createElementBlock("a", {
+                                                            key: 0,
+                                                            onClick: () => {
+                                                                userFlow({ initial: true, oauth: field.id });
+                                                            },
+                                                            href: "javascript:void(0);"
+                                                        }, [
+                                                            (openBlock(), createElementBlock("img", {
+                                                                key: `${field.label}oauth`,
+                                                                class: "oauth-button",
+                                                                alt: field.info.Name,
+                                                                src: field.button.logo,
+                                                                style: normalizeStyle(`background: ${field.button['background-color']}`)
+                                                            }, null, 12, _hoisted_5))
+                                                        ], 8, _hoisted_4))
+                                                        : createCommentVNode("v-if", true)
+                                                ], 64));
+                                            }), 128))
+                                        ]))
+                                        : createCommentVNode("v-if", true),
+                                    (responseError.value)
+                                        ? (openBlock(), createElementBlock("div", _hoisted_6, toDisplayString(_ctx.$t(responseError.value.token)), 1))
+                                        : createCommentVNode("v-if", true),
+                                    (responseReq.value.includes('password') && 0)
+                                        ? (openBlock(), createElementBlock("div", _hoisted_7, [
+                                            createElementVNode("a", {
+                                                href: "javascript:void(0)",
+                                                onClick: _cache[0] || (_cache[0] =
+                                                    () => {
+                                                        unref(eventBus).emit('ResetPasswordModal', true);
+                                                        pwdRecoverMailSent.value = false;
+                                                    })
+                                            }, toDisplayString(_ctx.$t("recover_pwd_link")), 1)
+                                        ]))
+                                        : createCommentVNode("v-if", true),
+                                    createElementVNode("button", _hoisted_8, toDisplayString(_ctx.$t("cta_login_next")), 1)
+                                ], 64))
+                                : createCommentVNode("v-if", true)
+                        ])
+                    ], 32))
+                    : createCommentVNode("v-if", true),
+                createVNode(_component_FyModal, {
+                    id: "ResetPassword",
+                    title: `${_ctx.$t('recover_pwd_title')}`
+                }, {
+                    default: withCtx(() => [
+                        (!pwdRecoverMailSent.value)
+                            ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+                                createVNode(script$2, {
+                                    id: "emailRecover",
+                                    req: true,
+                                    showLabel: true,
+                                    placeholder: _ctx.$t('recover_pwd_email_placeholder'),
+                                    modelValue: state.userEmail,
+                                    "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => ((state.userEmail) = $event)),
+                                    errorVuelidate: unref(v$).userEmail.$errors,
+                                    type: "email",
+                                    label: _ctx.$t('recover_pwd_email_label')
+                                }, null, 8, ["placeholder", "modelValue", "errorVuelidate", "label"]),
+                                (pwdRecoverError.value)
+                                    ? (openBlock(), createElementBlock("div", _hoisted_9, toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1))
+                                    : createCommentVNode("v-if", true),
+                                createElementVNode("a", {
+                                    href: "javascript:void(0)",
+                                    onClick: _cache[3] || (_cache[3] = ($event) => (forgotPassword())),
+                                    class: "mt-2 float-right btn px-5 py-2 primary"
+                                }, toDisplayString(_ctx.$t("recover_pwd_cta")), 1),
+                                _hoisted_10
+                            ], 64))
+                            : (openBlock(), createElementBlock("div", _hoisted_11, toDisplayString(_ctx.$t("pwd_recover_confirm")), 1))
+                    ]),
+                    _: 1
+                }, 8, ["title"])
+            ], 64));
+        };
+    }
+});
+
+script.__file = "src/components/klb/KlbLogin/KlbLogin.vue";
+
+var klbComponents = {
+    KlbLogin: script,
 };
 
 const cropText = (str, ml = 100, end = '...') => {
@@ -1153,14 +1464,15 @@ const formatBytes = (bytes, decimals = 2) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
-const components = { ...uiComponents };
-const helpers = {
-    i18next: i18next.t, cropText, formatBytes, tailwindColors
-};
+const components = { ...uiComponents, ...klbComponents };
 const head = createHead();
+const helpers = {
+    i18next: i18next.t, cropText, formatBytes, tailwindColors, head
+};
 const createFyvue = () => {
     const install = (app, options) => {
         app.use(head);
+        app.use(createPinia());
         app.config.globalProperties.$eventBus = eventBus;
         app.config.globalProperties.$t = i18next.t;
         app.config.globalProperties.$cropText = cropText;
@@ -1169,11 +1481,15 @@ const createFyvue = () => {
         for (k in uiComponents) {
             app.component(uiComponents[k].__name, uiComponents[k]);
         }
+        let klb;
+        for (klb in klbComponents) {
+            app.component(klbComponents[klb].__name, klbComponents[klb]);
+        }
     };
     return {
         install
     };
 };
 
-export { components, createFyvue, helpers, i18nextPromise, useEventBus, useTranslation };
+export { components, createFyvue, helpers, i18nextPromise, useEventBus, useFVStore, useTranslation };
 //# sourceMappingURL=fyvue.mjs.map

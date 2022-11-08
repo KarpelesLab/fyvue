@@ -19,24 +19,11 @@ interface FyvueConfirm {
   desc: string;
   onConfirm: Function
 }
-interface KLBPaging {
-  page_no: number;
-  results_per_page: number;
-  page_max: 1;
-  page_max_relation: string;
-  count: number;
-}
-interface KLBApiResult {
-  result: string;
-  time: number;
-  data: Object | Array<any>;
-  es_q_debug?: any;
-  paging: KLBPaging;
-}
-interface FyDatatableHeader {
+
+interface ObjectS2S {
   [key:string] : string;
 }
-interface FyDatatableValue {
+interface ObjectS2Any {
   [key:string]: any;
 }
 interface FyVuevalidate {
@@ -47,4 +34,4 @@ interface FyVuevalidate {
 type modelValueType = string | number | string[] | undefined;
 type checkboxValueType = any[]|Set<any>|undefined|boolean;
 
-export { FyDatatableHeader, FyDatatableValue, FyVueBreadcrumb, FyVueStep, FyVuevalidate, FyvueConfirm, FyvueOptions, KLBApiResult, KLBPaging, checkboxValueType, modelValueType };
+export { FyVueBreadcrumb, FyVueStep, FyVuevalidate, FyvueConfirm, FyvueOptions, ObjectS2Any, ObjectS2S, checkboxValueType, modelValueType };

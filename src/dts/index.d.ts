@@ -19,24 +19,11 @@ export interface FyvueConfirm {
   desc: string;
   onConfirm: Function
 }
-export interface KLBPaging {
-  page_no: number;
-  results_per_page: number;
-  page_max: 1;
-  page_max_relation: string;
-  count: number;
-}
-export interface KLBApiResult {
-  result: string;
-  time: number;
-  data: Object | Array<any>;
-  es_q_debug?: any;
-  paging: KLBPaging;
-}
-export interface FyDatatableHeader {
+
+export interface ObjectS2S {
   [key:string] : string;
 }
-export interface FyDatatableValue {
+export interface ObjectS2Any {
   [key:string]: any;
 }
 export interface FyVuevalidate {

@@ -12,6 +12,14 @@ await i18nextPromise;
         <li>
           <RouterLink to="/tests/i18n">i18n</RouterLink>
         </li>
+        <li>
+          <RouterLink to="/tests/Store">Store</RouterLink>
+        </li>
+
+        <li><b class="text-violet-800">KLB</b></li>
+        <li>
+          <RouterLink to="/tests/KlbLogin">KlbLogin</RouterLink>
+        </li>
 
         <li><b class="text-violet-800">Components</b></li>
         <li>

@@ -10,9 +10,9 @@ declare module 'vue' {
     FyDatatable: typeof import('@karpeleslab/fyvue')['components']['FyDatatable'],
     FyTable: typeof import('@karpeleslab/fyvue')['components']['FyTable'],
     FyLoader: typeof import('@karpeleslab/fyvue')['components']['FyLoader'],
-    FyInputBase: typeof import('@karpeleslab/fyvue')['components']['FyInputBase'],
     FyInput: typeof import('@karpeleslab/fyvue')['components']['FyInput'],
     FyPaging: typeof import('@karpeleslab/fyvue')['components']['FyPaging'],
+    KlbLogin: typeof import('@karpeleslab/fyvue')['components']['KlbLogin'],
   }
 
   interface ComponentCustomProperties {

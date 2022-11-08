@@ -6,7 +6,6 @@ import FySteps from "./FySteps/FySteps.vue"
 import FyDatatable from "./FyDatatable/FyDatatable.vue"
 import FyTable from "./FyTable/FyTable.vue"
 import FyLoader from "./FyLoader/FyLoader.vue"
-import FyInputBase from "./FyInput/FyInputBase.vue"
 import FyInput from "./FyInput/FyInput.vue"
 import FyPaging from "./FyPaging/FyPaging.vue"
 
@@ -20,7 +19,6 @@ export default {
   FyDatatable,
   FyTable,
   FyLoader,
-  FyInputBase,
   FyInput,
   FyPaging
 }

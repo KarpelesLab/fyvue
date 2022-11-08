@@ -2,7 +2,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid";
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router"
-import type { KLBPaging } from "../../../dts"
+import type { KLBPaging } from "../../../dts/klb"
 import { useEventBus } from "../../../helpers";
 
 const props = defineProps<{
