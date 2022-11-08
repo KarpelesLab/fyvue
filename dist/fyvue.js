@@ -64,6 +64,13 @@ const useEventBus = () => {
     const vueInstance = vue.getCurrentInstance();
     return vueInstance === null || vueInstance === void 0 ? void 0 : vueInstance.appContext.config.globalProperties.$eventBus;
 };
+const cssDynamic = async () => {
+    try {
+        if (!process.env.live)
+            await Promise.resolve().then(function () { return fyvue; });
+    }
+    catch (_a) { }
+};
 const i18nextPromise = i18next.use(Backend).init({
     ns: ["translation"],
     defaultNS: "translation",
@@ -1080,11 +1087,6 @@ const formatBytes = (bytes, decimals = 2) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
-const cssDynamic = async () => {
-    if (!process.env.live)
-        await Promise.resolve().then(function () { return fyvue; });
-    return null;
-};
 cssDynamic();
 const head = head$1.createHead();
 const createFyvue = () => {

@@ -1,15 +1,11 @@
 import type { App, Plugin } from "vue";
 import { createHead } from "@vueuse/head"
 import uiComponents from "./components/ui";
-import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './helpers';
+import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise, cssDynamic } from './helpers';
 import { cropText, formatBytes, tailwindColors } from "./displayHelpers";
 import type { FyvueOptions } from "./types"
 
-const cssDynamic = async () => {
-  if (!process.env.live) await import('./fyvue.scss')
-  return null;
-}
-cssDynamic()
+cssDynamic() //@todo: do something better
 
 const head = createHead();
 
