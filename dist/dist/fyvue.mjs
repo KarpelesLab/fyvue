@@ -1493,19 +1493,9 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
         return cb(result);
     }
     if (url != router.currentRoute.value.fullPath) {
-        if (router.currentRoute.value.name == options.routerNotFound) {
-            router.push(`${getPrefix()}${options.router404Route}`);
-            await router.isReady();
-            appHtml = await renderToString(app, ctx);
-            result.statusCode = 404;
-            result.app = appHtml;
-            return cb(result);
-        }
-        else {
-            result.statusCode = 301;
-            result.redirect = router.currentRoute.value.fullPath;
-            return cb(result);
-        }
+        result.statusCode = 307;
+        result.redirect = router.currentRoute.value.fullPath;
+        return cb(result);
     }
     const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head);
     result.meta = headTags;
@@ -1516,7 +1506,15 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
     if (router.currentRoute.value.name == options.routerNotFound)
         result.statusCode = 404;
     if (router.currentRoute.value.meta.statusCode && router.currentRoute.value.meta.statusCode != 200) {
-        result.statusCode = router.currentRoute.value.meta.statusCode;
+        if ([301, 302, 303, 307].includes(router.currentRoute.value.meta.statusCode)) {
+            if (router.currentRoute.value.meta.redirect) {
+                result.statusCode = router.currentRoute.value.meta.statusCode;
+                result.redirect = router.currentRoute.value.meta.redirect;
+            }
+        }
+        else {
+            result.statusCode = router.currentRoute.value.meta.statusCode;
+        }
     }
     return cb(result);
 }
