@@ -24,14 +24,15 @@ let helpers = [
   '/helpers/eventBus.md',
   '/helpers/style.md',
   '/helpers/KLBi18next.md',
-  '/helpers/KLBCountries.md',
+//  '/helpers/KLBCountries.md',
   '/helpers/KLBtemplate.md',
-  '/helpers/KLBTypes.md'
-
+  '/helpers/KLBTypes.md',
+  '/helpers/KLBSSR.md'
 ]
 helpers.sort()
 
 export default  defineUserConfig({
+  head: [['link', { rel: 'icon', href: '/fyvue/fyvue.svg' }]],
   lang: 'en-US',
   title: 'fyvue',
   description: 'Vue lib for KLB systems',
@@ -68,11 +69,6 @@ export default  defineUserConfig({
         collapsable: false,
         children: comps,
       },
-
-      {
-        text: 'SSR',
-        collapsable: false
-      }
     ],
   }),
   plugins: [

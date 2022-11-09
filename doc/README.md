@@ -1,16 +1,14 @@
-# fyvue
+# Get started with fyvue
 
-Vue lib for KLB systems
+Fyvue is a Vue Plugin for KLB systems
 
 ## Install
 
 ```shell
-    yarn add @karpeleslab/fyvue
+    yarn add @karpeleslab/fyvue@alpha
 ```
 
-## Activate plugin in Vue
-
-In main.ts\/js:
+Then activate fyvue plugin in ```main.(ts|js)```
 
 ```ts
     import { createFyvue } from "@karpeleslab/fyvue";
@@ -22,20 +20,28 @@ In main.ts\/js:
     app.mount('#app')
 ```
 
-## With style ;)
-Add this to your ```tailwind.config```:
+Add this to your ```tailwind.config.(js|cjs)```:
 ```js
-const fyvueColors = require('@karpeleslab/fyvue')['helpers']['tailwindColors']
+// for fyvue theme: const fyvueColors = require('@karpeleslab/fyvue')['helpers']['tailwindColors']
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   //...
   theme: {
     extend: {
-      colors: fyvueColors
+      // fyvue theme > colors: fyvueColors
+      colors: {
+        "fv-primary": colors.blue,
+        "fv-neutral": colors.neutral,
+      }
     },
   },
   //...
 }
 ```
 
-**[Or you can customize the colors yourself](/fyvue/helpers/style.html)** <3
+For typescript support add ```@karpeleslab/fyvue/dist/components``` to types in your ```tsconfig.json```
+```json
+    "types": ["vite/client", "@karpeleslab/fyvue/dist/components"],
+```
+

@@ -17,8 +17,8 @@
 
 | Name | Type  | default | Info |
 |---|---|---|---|
-| id | String | - | Will be used for event names |
-| title? | String | ```""``` | Modal title (optional) |
+| id | string | - | Will be used for event names |
+| title? | string | ```""``` | Modal title (optional) |
 | onOpen? | Function | undefined | On open callback |
 | onClose? | Function | undefined | On close callback |
 | closeIcon? | Object | ```XCircleIcon``` | Close icon component |

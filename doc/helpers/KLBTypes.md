@@ -1,4 +1,4 @@
 # KLB Types
-(work in progress, currently exported in ```@karpeleslab/fyvue/dts/klb.d.ts```)
+(work in progress)
 
 @[code ts](../../src/dts/klb.d.ts)

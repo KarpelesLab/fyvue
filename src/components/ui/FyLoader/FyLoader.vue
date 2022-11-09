@@ -7,11 +7,13 @@ const props = withDefaults(defineProps<{
   id?: string,
   loader?: Object,
   showLoadingText?: boolean,
-  size?: string
+  size?: string,
+  force?: boolean
 }>(),{
   loader: () => DefaultLoader,
   showLoadingText: true,
-  size: "16"
+  size: "16",
+  force: false
 })
 
 const eventBus = useEventBus();
@@ -35,7 +37,7 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <div v-if="loading">
+  <div v-if="loading || force">
     <div class="fy-loader" >
       <div class="loader-container" role="status" :style="`width:${size}rem; height:${size}rem;`">
         <component :is="loader" :size="size" :showLoadingText="showLoadingText" />

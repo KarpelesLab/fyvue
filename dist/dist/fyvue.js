@@ -668,7 +668,8 @@ var script$3 = vue.defineComponent({
         id: { type: String, required: false },
         loader: { type: Object, required: false, default: () => script$4 },
         showLoadingText: { type: Boolean, required: false, default: true },
-        size: { type: String, required: false, default: "16" }
+        size: { type: String, required: false, default: "16" },
+        force: { type: Boolean, required: false, default: false }
     },
     setup(__props) {
         const props = __props;
@@ -694,7 +695,7 @@ var script$3 = vue.defineComponent({
             }
         });
         return (_ctx, _cache) => {
-            return (loading.value)
+            return (loading.value || __props.force)
                 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, [
                     vue.createElementVNode("div", _hoisted_2$3, [
                         vue.createElementVNode("div", {

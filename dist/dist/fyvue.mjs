@@ -666,7 +666,8 @@ var script$3 = defineComponent({
         id: { type: String, required: false },
         loader: { type: Object, required: false, default: () => script$4 },
         showLoadingText: { type: Boolean, required: false, default: true },
-        size: { type: String, required: false, default: "16" }
+        size: { type: String, required: false, default: "16" },
+        force: { type: Boolean, required: false, default: false }
     },
     setup(__props) {
         const props = __props;
@@ -692,7 +693,7 @@ var script$3 = defineComponent({
             }
         });
         return (_ctx, _cache) => {
-            return (loading.value)
+            return (loading.value || __props.force)
                 ? (openBlock(), createElementBlock("div", _hoisted_1$3, [
                     createElementVNode("div", _hoisted_2$3, [
                         createElementVNode("div", {
