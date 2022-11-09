@@ -1263,7 +1263,7 @@ var script = defineComponent({
         });
         return (_ctx, _cache) => {
             const _component_FyModal = resolveComponent("FyModal");
-            return (openBlock(), createElementBlock(Fragment, null, [
+            return (openBlock(), createElementBlock("div", null, [
                 (!completed.value)
                     ? (openBlock(), createElementBlock("form", {
                         key: 0,
@@ -1411,7 +1411,7 @@ var script = defineComponent({
                     ]),
                     _: 1
                 }, 8, ["title"])
-            ], 64));
+            ]));
         };
     }
 });

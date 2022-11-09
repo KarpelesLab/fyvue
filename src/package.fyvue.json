@@ -1,14 +1,20 @@
 {
     "name": "@karpeleslab/fyvue",
-    "version": "0.2.0-alpha.6",
+    "version": "0.2.0-alpha.8",
     "description": "Vue lib for KLB systems",
     "main": "dist/fyvue.js",
     "module": "dist/fyvue.mjs",
     "typings": "dist/index.d.ts",
     "exports": {
-      "import": "./dist/fyvue.mjs",
-      "require": "./dist/fyvue.js",
-      "types": "./dist/index.d.ts"
+      ".": {
+        "import": "./dist/fyvue.mjs",
+        "require": "./dist/fyvue.js",
+        "types": "./dist/index.d.ts"
+      },
+      "./fyvue.scss": {
+        "import": "./dist/fyvue.scss",
+        "require": "./dist/fyvue.scss"
+      }
     },
     "files": [
       "README.md",

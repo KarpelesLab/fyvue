@@ -1265,7 +1265,7 @@ var script = vue.defineComponent({
         });
         return (_ctx, _cache) => {
             const _component_FyModal = vue.resolveComponent("FyModal");
-            return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+            return (vue.openBlock(), vue.createElementBlock("div", null, [
                 (!completed.value)
                     ? (vue.openBlock(), vue.createElementBlock("form", {
                         key: 0,
@@ -1413,7 +1413,7 @@ var script = vue.defineComponent({
                     ]),
                     _: 1
                 }, 8, ["title"])
-            ], 64));
+            ]));
         };
     }
 });
