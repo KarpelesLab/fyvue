@@ -577,6 +577,10 @@ html, body {
   @apply sr-only;
 }
 
+.fv-icon-base {
+  @apply h-5 w-5;
+}
+
 .btn {
   @apply text-white shadow  whitespace-nowrap;
   @apply transition duration-300 ease-in-out transform;

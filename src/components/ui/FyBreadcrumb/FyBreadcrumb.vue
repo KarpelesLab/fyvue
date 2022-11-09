@@ -12,7 +12,7 @@ withDefaults(defineProps<{
 
 </script>
 <template>
-  <div
+  <nav
     class="fy-breadcrumb"
     aria-label="Breadcrumb"
   >
@@ -42,5 +42,5 @@ withDefaults(defineProps<{
         </li>
       </template>
     </ol>
-  </div>
+  </nav>
 </template>

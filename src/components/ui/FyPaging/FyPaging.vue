@@ -51,7 +51,9 @@ const page = (page: number) => {
     eventBus.emit(`${props.id}GoToPage`, page)
   })
 }
-
+const getUuid = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substring(2);
+}
 onMounted(() => {
   const routePage = parseInt(getRoutePage())
 
@@ -66,13 +68,13 @@ onMounted(() => {
       <nav aria-label="Pagination">
         <a href="javascript:void(0);" @click="prev()" v-if="items.page_no >= 2" class="prev-next">
           <span class="is-sr">{{ $t('previous_paging') }}</span>
-          <ChevronLeftIcon class="h-5 w-5" />
+          <ChevronLeftIcon class="fv-icon-base" />
         </a>
         <a v-if="items.page_no - 2 > 1" class="innactive" href="javascript:void(0);" @click="page(1)">
           1
         </a>
         <span v-if="items.page_no - 2 > 2" class="dots"> ... </span>
-        <template v-for="i in 2" :key="i">
+        <template v-for="i in 2" :key="i+getUuid()">
           <a v-if="items.page_no - (3 - i) >= 1" class="innactive" href="javascript:void(0);"
             @click="page(items.page_no - (3 - i))">
             {{ items.page_no - (3 - i) }}
@@ -81,7 +83,7 @@ onMounted(() => {
         <a href="#" aria-current="page" class="active">
           {{ items.page_no }}
         </a>
-        <template v-for="i in 2" :key="i">
+        <template v-for="i in 2" :key="i+getUuid()">
           <a v-if="items.page_no + i <= items.page_max" class="innactive" href="javascript:void(0);"
             @click="page(items.page_no + i)">
             {{ items.page_no + i }}
@@ -96,7 +98,7 @@ onMounted(() => {
         </a>
         <a href="javascript:void(0);" @click="next()" v-if="items.page_no < items.page_max - 1" class="prev-next">
           <span class="is-sr">{{ $t('next_paging') }}</span>
-          <ChevronRightIcon class="h-5 w-5" />
+          <ChevronRightIcon class="fv-icon-base" />
         </a>
       </nav>
       <p class="paging-text">
@@ -104,7 +106,7 @@ onMounted(() => {
     $t("global_paging", {
       start: items.results_per_page * (items.page_no - 1),
       end: items.results_per_page * items.page_no,
-      total: items.count,
+      total: items.count >= 10000 ? $t('paging_a_lot_of') : items.count,
     })
         }}
       </p>

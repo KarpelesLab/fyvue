@@ -400,7 +400,7 @@ var script$8 = defineComponent({
     setup(__props) {
         return (_ctx, _cache) => {
             const _component_router_link = resolveComponent("router-link");
-            return (openBlock(), createElementBlock("div", _hoisted_1$8, [
+            return (openBlock(), createElementBlock("nav", _hoisted_1$8, [
                 createElementVNode("ol", null, [
                     (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item) => {
                         return (openBlock(), createElementBlock(Fragment, null, [
@@ -717,7 +717,7 @@ script$3.__file = "src/components/ui/FyLoader/FyLoader.vue";
 
 const _hoisted_1$2 = { class: "input-group" };
 const _hoisted_2$2 = ["for"];
-const _hoisted_3$2 = ["id", "true-value", "false-value"];
+const _hoisted_3$2 = ["aria-label", "id", "true-value", "false-value"];
 const _hoisted_4$2 = ["href"];
 const _hoisted_5$2 = {
     key: 2,
@@ -727,9 +727,9 @@ const _hoisted_6$2 = {
     key: 1,
     class: "input-box"
 };
-const _hoisted_7$2 = ["placeholder", "autocomplete", "id", "type"];
-const _hoisted_8$2 = ["placeholder", "autocomplete", "id"];
-const _hoisted_9$2 = ["id"];
+const _hoisted_7$2 = ["aria-label", "placeholder", "autocomplete", "id", "type"];
+const _hoisted_8$2 = ["aria-label", "placeholder", "autocomplete", "id"];
+const _hoisted_9$2 = ["aria-label", "id"];
 const _hoisted_10$2 = ["value"];
 const _hoisted_11$1 = {
     key: 2,
@@ -802,6 +802,7 @@ var script$2 = defineComponent({
                         (__props.type == 'checkbox')
                             ? withDirectives((openBlock(), createElementBlock("input", {
                                 key: 0,
+                                "aria-label": __props.label,
                                 ref: `inputRef`,
                                 type: "checkbox",
                                 class: normalizeClass(["form-checkbox", { 'error-form': unref(checkErrors) }]),
@@ -832,10 +833,11 @@ var script$2 = defineComponent({
                 (!['checkbox', 'radiobox'].includes(__props.type))
                     ? (openBlock(), createElementBlock("div", _hoisted_6$2, [
                         renderSlot(_ctx.$slots, "before"),
-                        (['text', 'password', 'email'].includes(__props.type))
+                        (['text', 'password', 'email', 'search'].includes(__props.type))
                             ? withDirectives((openBlock(), createElementBlock("input", {
                                 key: 0,
                                 ref: `inputRef`,
+                                "aria-label": __props.label,
                                 class: normalizeClass(["input-basic", { 'error-form': __props.error }]),
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
@@ -849,6 +851,7 @@ var script$2 = defineComponent({
                         (__props.type == 'textarea')
                             ? withDirectives((openBlock(), createElementBlock("textarea", {
                                 key: 1,
+                                "aria-label": __props.label,
                                 ref: `inputRef`,
                                 class: normalizeClass(["input-basic is-textarea", { 'error-form': unref(checkErrors) }]),
                                 placeholder: __props.placeholder,
@@ -862,6 +865,7 @@ var script$2 = defineComponent({
                         (__props.type == 'select')
                             ? withDirectives((openBlock(), createElementBlock("select", {
                                 key: 2,
+                                "aria-label": __props.label,
                                 ref: `inputRef`,
                                 id: __props.id,
                                 class: "input-basic",
@@ -968,6 +972,9 @@ var script$1 = defineComponent({
                 eventBus.emit(`${props.id}GoToPage`, page);
             });
         };
+        const getUuid = () => {
+            return Date.now().toString(36) + Math.random().toString(36).substring(2);
+        };
         onMounted(() => {
             const routePage = parseInt(getRoutePage());
             if (!isNaN(routePage) && props.items) {
@@ -987,7 +994,7 @@ var script$1 = defineComponent({
                                     class: "prev-next"
                                 }, [
                                     createElementVNode("span", _hoisted_3$1, toDisplayString(_ctx.$t('previous_paging')), 1),
-                                    createVNode(unref(render$3), { class: "h-5 w-5" })
+                                    createVNode(unref(render$3), { class: "fv-icon-base" })
                                 ]))
                                 : createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 1)
@@ -1002,7 +1009,9 @@ var script$1 = defineComponent({
                                 ? (openBlock(), createElementBlock("span", _hoisted_4$1, " ... "))
                                 : createCommentVNode("v-if", true),
                             (openBlock(), createElementBlock(Fragment, null, renderList(2, (i) => {
-                                return (openBlock(), createElementBlock(Fragment, { key: i }, [
+                                return (openBlock(), createElementBlock(Fragment, {
+                                    key: i + getUuid()
+                                }, [
                                     (__props.items.page_no - (3 - i) >= 1)
                                         ? (openBlock(), createElementBlock("a", {
                                             key: 0,
@@ -1015,7 +1024,9 @@ var script$1 = defineComponent({
                             }), 64)),
                             createElementVNode("a", _hoisted_6$1, toDisplayString(__props.items.page_no), 1),
                             (openBlock(), createElementBlock(Fragment, null, renderList(2, (i) => {
-                                return (openBlock(), createElementBlock(Fragment, { key: i }, [
+                                return (openBlock(), createElementBlock(Fragment, {
+                                    key: i + getUuid()
+                                }, [
                                     (__props.items.page_no + i <= __props.items.page_max)
                                         ? (openBlock(), createElementBlock("a", {
                                             key: 0,
@@ -1045,14 +1056,14 @@ var script$1 = defineComponent({
                                     class: "prev-next"
                                 }, [
                                     createElementVNode("span", _hoisted_9$1, toDisplayString(_ctx.$t('next_paging')), 1),
-                                    createVNode(unref(render$2), { class: "h-5 w-5" })
+                                    createVNode(unref(render$2), { class: "fv-icon-base" })
                                 ]))
                                 : createCommentVNode("v-if", true)
                         ]),
                         createElementVNode("p", _hoisted_10$1, toDisplayString(_ctx.$t("global_paging", {
                             start: __props.items.results_per_page * (__props.items.page_no - 1),
                             end: __props.items.results_per_page * __props.items.page_no,
-                            total: __props.items.count,
+                            total: __props.items.count >= 10000 ? _ctx.$t('paging_a_lot_of') : __props.items.count,
                         })), 1)
                     ])
                 ]))

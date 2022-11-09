@@ -66,7 +66,7 @@ const modelCheckbox = computed({
   <div class="input-group">
     <template v-if="showLabel && id && label">
       <label class="label-basic" :for="id">
-        <input :ref="`inputRef`" v-if="type == 'checkbox'" type="checkbox" class="form-checkbox" :id="id"
+        <input :aria-label="label" :ref="`inputRef`" v-if="type == 'checkbox'" type="checkbox" class="form-checkbox" :id="id"
           :class="{ 'error-form': checkErrors }" :true-value="checkboxTrueValue" :false-value="checkboxFalseValue"
           v-model="modelCheckbox" />
 
@@ -80,12 +80,12 @@ const modelCheckbox = computed({
     </template>
     <div v-if="!['checkbox', 'radiobox'].includes(type)" class="input-box">
       <slot name="before"></slot>
-      <input :ref="`inputRef`" v-if="['text', 'password', 'email'].includes(type)" class="input-basic" :class="{ 'error-form': error }"
+      <input :ref="`inputRef`" :aria-label="label" v-if="['text', 'password', 'email', 'search'].includes(type)" class="input-basic" :class="{ 'error-form': error }"
         :placeholder="placeholder" :autocomplete="autocomplete" :id="id" v-model="model" :type="type" />
-      <textarea :ref="`inputRef`" v-if="type == 'textarea'" class="input-basic is-textarea" :class="{ 'error-form': checkErrors }"
+      <textarea :aria-label="label" :ref="`inputRef`" v-if="type == 'textarea'" class="input-basic is-textarea" :class="{ 'error-form': checkErrors }"
         :placeholder="placeholder" :autocomplete="autocomplete" :id="id" v-model="model" />
 
-      <select :ref="`inputRef`" v-if="type == 'select'" :id="id" class="input-basic" v-model="model">
+      <select :aria-label="label" :ref="`inputRef`" v-if="type == 'select'" :id="id" class="input-basic" v-model="model">
         <option v-for="opt in options" :value="opt[0]" :key="opt[0].toString()">
           {{ opt[1] }}
         </option>

@@ -402,7 +402,7 @@ var script$8 = vue.defineComponent({
     setup(__props) {
         return (_ctx, _cache) => {
             const _component_router_link = vue.resolveComponent("router-link");
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$8, [
+            return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$8, [
                 vue.createElementVNode("ol", null, [
                     (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item) => {
                         return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
@@ -719,7 +719,7 @@ script$3.__file = "src/components/ui/FyLoader/FyLoader.vue";
 
 const _hoisted_1$2 = { class: "input-group" };
 const _hoisted_2$2 = ["for"];
-const _hoisted_3$2 = ["id", "true-value", "false-value"];
+const _hoisted_3$2 = ["aria-label", "id", "true-value", "false-value"];
 const _hoisted_4$2 = ["href"];
 const _hoisted_5$2 = {
     key: 2,
@@ -729,9 +729,9 @@ const _hoisted_6$2 = {
     key: 1,
     class: "input-box"
 };
-const _hoisted_7$2 = ["placeholder", "autocomplete", "id", "type"];
-const _hoisted_8$2 = ["placeholder", "autocomplete", "id"];
-const _hoisted_9$2 = ["id"];
+const _hoisted_7$2 = ["aria-label", "placeholder", "autocomplete", "id", "type"];
+const _hoisted_8$2 = ["aria-label", "placeholder", "autocomplete", "id"];
+const _hoisted_9$2 = ["aria-label", "id"];
 const _hoisted_10$2 = ["value"];
 const _hoisted_11$1 = {
     key: 2,
@@ -804,6 +804,7 @@ var script$2 = vue.defineComponent({
                         (__props.type == 'checkbox')
                             ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("input", {
                                 key: 0,
+                                "aria-label": __props.label,
                                 ref: `inputRef`,
                                 type: "checkbox",
                                 class: vue.normalizeClass(["form-checkbox", { 'error-form': vue.unref(checkErrors) }]),
@@ -834,10 +835,11 @@ var script$2 = vue.defineComponent({
                 (!['checkbox', 'radiobox'].includes(__props.type))
                     ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$2, [
                         vue.renderSlot(_ctx.$slots, "before"),
-                        (['text', 'password', 'email'].includes(__props.type))
+                        (['text', 'password', 'email', 'search'].includes(__props.type))
                             ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("input", {
                                 key: 0,
                                 ref: `inputRef`,
+                                "aria-label": __props.label,
                                 class: vue.normalizeClass(["input-basic", { 'error-form': __props.error }]),
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
@@ -851,6 +853,7 @@ var script$2 = vue.defineComponent({
                         (__props.type == 'textarea')
                             ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("textarea", {
                                 key: 1,
+                                "aria-label": __props.label,
                                 ref: `inputRef`,
                                 class: vue.normalizeClass(["input-basic is-textarea", { 'error-form': vue.unref(checkErrors) }]),
                                 placeholder: __props.placeholder,
@@ -864,6 +867,7 @@ var script$2 = vue.defineComponent({
                         (__props.type == 'select')
                             ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("select", {
                                 key: 2,
+                                "aria-label": __props.label,
                                 ref: `inputRef`,
                                 id: __props.id,
                                 class: "input-basic",
@@ -970,6 +974,9 @@ var script$1 = vue.defineComponent({
                 eventBus.emit(`${props.id}GoToPage`, page);
             });
         };
+        const getUuid = () => {
+            return Date.now().toString(36) + Math.random().toString(36).substring(2);
+        };
         vue.onMounted(() => {
             const routePage = parseInt(getRoutePage());
             if (!isNaN(routePage) && props.items) {
@@ -989,7 +996,7 @@ var script$1 = vue.defineComponent({
                                     class: "prev-next"
                                 }, [
                                     vue.createElementVNode("span", _hoisted_3$1, vue.toDisplayString(_ctx.$t('previous_paging')), 1),
-                                    vue.createVNode(vue.unref(render$3), { class: "h-5 w-5" })
+                                    vue.createVNode(vue.unref(render$3), { class: "fv-icon-base" })
                                 ]))
                                 : vue.createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 1)
@@ -1004,7 +1011,9 @@ var script$1 = vue.defineComponent({
                                 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_4$1, " ... "))
                                 : vue.createCommentVNode("v-if", true),
                             (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, vue.renderList(2, (i) => {
-                                return (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: i }, [
+                                return (vue.openBlock(), vue.createElementBlock(vue.Fragment, {
+                                    key: i + getUuid()
+                                }, [
                                     (__props.items.page_no - (3 - i) >= 1)
                                         ? (vue.openBlock(), vue.createElementBlock("a", {
                                             key: 0,
@@ -1017,7 +1026,9 @@ var script$1 = vue.defineComponent({
                             }), 64)),
                             vue.createElementVNode("a", _hoisted_6$1, vue.toDisplayString(__props.items.page_no), 1),
                             (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, vue.renderList(2, (i) => {
-                                return (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: i }, [
+                                return (vue.openBlock(), vue.createElementBlock(vue.Fragment, {
+                                    key: i + getUuid()
+                                }, [
                                     (__props.items.page_no + i <= __props.items.page_max)
                                         ? (vue.openBlock(), vue.createElementBlock("a", {
                                             key: 0,
@@ -1047,14 +1058,14 @@ var script$1 = vue.defineComponent({
                                     class: "prev-next"
                                 }, [
                                     vue.createElementVNode("span", _hoisted_9$1, vue.toDisplayString(_ctx.$t('next_paging')), 1),
-                                    vue.createVNode(vue.unref(render$2), { class: "h-5 w-5" })
+                                    vue.createVNode(vue.unref(render$2), { class: "fv-icon-base" })
                                 ]))
                                 : vue.createCommentVNode("v-if", true)
                         ]),
                         vue.createElementVNode("p", _hoisted_10$1, vue.toDisplayString(_ctx.$t("global_paging", {
                             start: __props.items.results_per_page * (__props.items.page_no - 1),
                             end: __props.items.results_per_page * __props.items.page_no,
-                            total: __props.items.count,
+                            total: __props.items.count >= 10000 ? _ctx.$t('paging_a_lot_of') : __props.items.count,
                         })), 1)
                     ])
                 ]))
