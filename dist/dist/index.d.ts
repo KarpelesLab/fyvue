@@ -1,5 +1,6 @@
 import type { Plugin } from "vue";
 import { useEventBus, useTranslation, i18nextPromise } from './utils/helpers';
+import { handleSSR } from "./utils/ssr";
 import { useFVStore } from './utils/store';
 declare const components: {
     KlbLogin: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
@@ -47,4 +48,4 @@ declare const helpers: {
     head: import("@vueuse/head").HeadClient<{}>;
 };
 declare const createFyvue: () => Plugin;
-export { createFyvue, useEventBus, useTranslation, useFVStore, i18nextPromise, components, helpers };
+export { createFyvue, useEventBus, useTranslation, useFVStore, i18nextPromise, components, helpers, handleSSR };

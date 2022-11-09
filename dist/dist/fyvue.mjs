@@ -1,12 +1,13 @@
-import { createHead } from '@vueuse/head';
+import { renderHeadToString, createHead } from '@vueuse/head';
 import { defineStore, createPinia } from 'pinia';
 import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, reactive, withModifiers } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay } from '@headlessui/vue';
-import { getLocale, rest } from '@karpeleslab/klbfw';
+import { getLocale, rest, getUuid, getPath, getPrefix } from '@karpeleslab/klbfw';
 import i18next from 'i18next';
 import { useRoute, useRouter } from 'vue-router';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
+import { renderToString } from '@vue/server-renderer';
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -1471,6 +1472,50 @@ const formatBytes = (bytes, decimals = 2) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
+async function handleSSR(createApp, cb, options = {}) {
+    const { app, router, head } = await createApp(true);
+    const result = { uuid: getUuid(), initial: {} };
+    const ctx = {};
+    const url = `${getPath()}`;
+    router.push(url);
+    await router.isReady();
+    let appHtml = "";
+    try {
+        appHtml = await renderToString(app, ctx);
+    }
+    catch (e) {
+        router.push(`${getPrefix()}/404`);
+        await router.isReady();
+        appHtml = await renderToString(app, ctx);
+        result.statusCode = 404;
+        result.app = appHtml;
+        return cb(result);
+    }
+    if (url != router.currentRoute.value.fullPath) {
+        if (router.currentRoute.value.name == "NotFound") {
+            router.push(`${getPrefix()}/404`);
+            await router.isReady();
+            appHtml = await renderToString(app, ctx);
+            result.statusCode = 404;
+            result.app = appHtml;
+            return cb(result);
+        }
+        else {
+            result.statusCode = 301;
+            result.redirect = router.currentRoute.value.fullPath;
+            return cb(result);
+        }
+    }
+    const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head);
+    result.meta = headTags;
+    result.bodyAttributes = bodyAttrs;
+    result.htmlAttributes = htmlAttrs;
+    result.bodyTags = bodyTags;
+    result.app = appHtml;
+    result.statusCode = router.currentRoute.value.name == "NotFound" ? 404 : 200;
+    return cb(result);
+}
+
 const components = { ...uiComponents, ...klbComponents };
 const head = createHead();
 const helpers = {
@@ -1498,5 +1543,5 @@ const createFyvue = () => {
     };
 };
 
-export { components, createFyvue, helpers, i18nextPromise, useEventBus, useFVStore, useTranslation };
+export { components, createFyvue, handleSSR, helpers, i18nextPromise, useEventBus, useFVStore, useTranslation };
 //# sourceMappingURL=fyvue.mjs.map

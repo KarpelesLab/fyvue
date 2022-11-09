@@ -9,6 +9,7 @@ var i18next = require('i18next');
 var vueRouter = require('vue-router');
 var useVuelidate = require('@vuelidate/core');
 var validators = require('@vuelidate/validators');
+var serverRenderer = require('@vue/server-renderer');
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -1473,6 +1474,50 @@ const formatBytes = (bytes, decimals = 2) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
+async function handleSSR(createApp, cb, options = {}) {
+    const { app, router, head } = await createApp(true);
+    const result = { uuid: klbfw.getUuid(), initial: {} };
+    const ctx = {};
+    const url = `${klbfw.getPath()}`;
+    router.push(url);
+    await router.isReady();
+    let appHtml = "";
+    try {
+        appHtml = await serverRenderer.renderToString(app, ctx);
+    }
+    catch (e) {
+        router.push(`${klbfw.getPrefix()}/404`);
+        await router.isReady();
+        appHtml = await serverRenderer.renderToString(app, ctx);
+        result.statusCode = 404;
+        result.app = appHtml;
+        return cb(result);
+    }
+    if (url != router.currentRoute.value.fullPath) {
+        if (router.currentRoute.value.name == "NotFound") {
+            router.push(`${klbfw.getPrefix()}/404`);
+            await router.isReady();
+            appHtml = await serverRenderer.renderToString(app, ctx);
+            result.statusCode = 404;
+            result.app = appHtml;
+            return cb(result);
+        }
+        else {
+            result.statusCode = 301;
+            result.redirect = router.currentRoute.value.fullPath;
+            return cb(result);
+        }
+    }
+    const { headTags, htmlAttrs, bodyAttrs, bodyTags } = head$1.renderHeadToString(head);
+    result.meta = headTags;
+    result.bodyAttributes = bodyAttrs;
+    result.htmlAttributes = htmlAttrs;
+    result.bodyTags = bodyTags;
+    result.app = appHtml;
+    result.statusCode = router.currentRoute.value.name == "NotFound" ? 404 : 200;
+    return cb(result);
+}
+
 const components = { ...uiComponents, ...klbComponents };
 const head = head$1.createHead();
 const helpers = {
@@ -1502,6 +1547,7 @@ const createFyvue = () => {
 
 exports.components = components;
 exports.createFyvue = createFyvue;
+exports.handleSSR = handleSSR;
 exports.helpers = helpers;
 exports.i18nextPromise = i18nextPromise;
 exports.useEventBus = useEventBus;

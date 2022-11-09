@@ -6,6 +6,7 @@ import klbComponents from "./components/klb";
 
 import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './utils/helpers';
 import { cropText, formatBytes, tailwindColors } from "./utils/display";
+import { handleSSR } from "./utils/ssr";
 import { useFVStore } from './utils/store'
 import type { FyvueOptions } from "./dts"
 
@@ -45,5 +46,6 @@ export {
   useFVStore,
   i18nextPromise,
   components,
-  helpers
+  helpers,
+  handleSSR
 }
