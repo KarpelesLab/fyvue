@@ -1475,7 +1475,7 @@ const formatBytes = (bytes, decimals = 2) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
-async function handleSSR(createApp, cb, options = {}) {
+async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
     const { app, router, head } = await createApp(true);
     const result = { uuid: klbfw.getUuid(), initial: {} };
     const ctx = {};
@@ -1487,7 +1487,7 @@ async function handleSSR(createApp, cb, options = {}) {
         appHtml = await serverRenderer.renderToString(app, ctx);
     }
     catch (e) {
-        router.push(`${klbfw.getPrefix()}/404`);
+        router.push(`${klbfw.getPrefix()}${options.router404Route}`);
         await router.isReady();
         appHtml = await serverRenderer.renderToString(app, ctx);
         result.statusCode = 404;
@@ -1495,8 +1495,8 @@ async function handleSSR(createApp, cb, options = {}) {
         return cb(result);
     }
     if (url != router.currentRoute.value.fullPath) {
-        if (router.currentRoute.value.name == "NotFound") {
-            router.push(`${klbfw.getPrefix()}/404`);
+        if (router.currentRoute.value.name == options.routerNotFound) {
+            router.push(`${klbfw.getPrefix()}${options.router404Route}`);
             await router.isReady();
             appHtml = await serverRenderer.renderToString(app, ctx);
             result.statusCode = 404;
@@ -1515,7 +1515,8 @@ async function handleSSR(createApp, cb, options = {}) {
     result.htmlAttributes = htmlAttrs;
     result.bodyTags = bodyTags;
     result.app = appHtml;
-    result.statusCode = router.currentRoute.value.name == "NotFound" ? 404 : 200;
+    if (router.currentRoute.value.name == options.routerNotFound)
+        result.statusCode = 404;
     return cb(result);
 }
 

@@ -15,9 +15,9 @@ type KlbSSR = {
   redirect?: string
 }
 
-export async function handleSSR(createApp: Function, cb : Function, options = {}) {
+export async function handleSSR(createApp: Function, cb: Function, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
   const { app, router, head } = await createApp(true);
-  const result : KlbSSR = { uuid: getUuid(), initial: {} };
+  const result: KlbSSR = { uuid: getUuid(), initial: {} };
   const ctx = {};
   const url = `${getPath()}`;
   router.push(url);
@@ -26,7 +26,7 @@ export async function handleSSR(createApp: Function, cb : Function, options = {}
   try {
     appHtml = await renderToString(app, ctx);
   } catch (e) {
-    router.push(`${getPrefix()}/404`);
+    router.push(`${getPrefix()}${options.router404Route}`);
     await router.isReady();
     appHtml = await renderToString(app, ctx);
     result.statusCode = 404;
@@ -34,8 +34,8 @@ export async function handleSSR(createApp: Function, cb : Function, options = {}
     return cb(result);
   }
   if (url != router.currentRoute.value.fullPath) {
-    if (router.currentRoute.value.name == "NotFound") {
-      router.push(`${getPrefix()}/404`);
+    if (router.currentRoute.value.name == options.routerNotFound) {
+      router.push(`${getPrefix()}${options.router404Route}`);
       await router.isReady();
       appHtml = await renderToString(app, ctx);
       result.statusCode = 404;
@@ -55,6 +55,6 @@ export async function handleSSR(createApp: Function, cb : Function, options = {}
   result.htmlAttributes = htmlAttrs
   result.bodyTags = bodyTags
   result.app = appHtml
-  result.statusCode = router.currentRoute.value.name == "NotFound" ? 404 : 200
+  if (router.currentRoute.value.name == options.routerNotFound) result.statusCode = 404;
   return cb(result)
 }
