@@ -5,7 +5,6 @@ import resolve from '@rollup/plugin-node-resolve'
 import scss from 'rollup-plugin-scss'
 import copy from 'rollup-plugin-copy'
 import cleanup from 'rollup-plugin-cleanup';
-import dts from "rollup-plugin-dts";
 import typescript from 'rollup-plugin-typescript2';
 
 export default [
@@ -13,24 +12,9 @@ export default [
     input: 'src/fyvue.scss',
     plugins: [
       scss({
-        output: 'dist/fyvue.scss',
+        output: 'dist/dist/fyvue.scss',
       }),
     ]
-  },
-  {
-    input: "./src/dts/export.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "es" }],
-    plugins: [dts.default()],
-  },
-  {
-    input: "./src/dts/index.d.ts",
-    output: [{ file: "dist/dts/index.d.ts", format: "es" }],
-    plugins: [dts.default()],
-  },
-  {
-    input: "./src/dts/klb.d.ts",
-    output: [{ file: "dist/dts/klb.d.ts", format: "es" }],
-    plugins: [dts.default()],
   },
   {
     input: 'src/index.ts',
@@ -39,7 +23,7 @@ export default [
         inlineDynamicImports: true,
         format: 'cjs',
         sourcemap: true,
-        file: "dist/fyvue.js",
+        file: "dist/dist/fyvue.js",
         name: "fyvue",
         globals: {
           '@vueuse/head': 'vhead',
@@ -54,7 +38,7 @@ export default [
         inlineDynamicImports: true,
         format: 'es',
         sourcemap: true,
-        file: "dist/fyvue.mjs",
+        file: "dist/dist/fyvue.mjs",
         globals: {
           '@vueuse/head': 'vhead',
           'vue': 'vue',
@@ -74,6 +58,7 @@ export default [
         tsconfigOverride: {
           "compilerOptions": {
             "noUnusedLocals": false,
+            "declaration": true,
           },
           include: [
             "../typings/env.d.ts",
@@ -84,11 +69,13 @@ export default [
       copy({
         targets: [
           { src: 'src/package.fyvue.json', dest: 'dist/', rename: "package.json" },
-          { src: 'typings/components.d.ts', dest: 'dist/dts', transform: (contents, filename) =>
-          {
-            return contents.toString().replaceAll('../src/', '@karpeleslab/fyvue')
-          }
-        },
+          { src: 'README.md', dest: 'dist/', rename: "README.md" },
+
+          /* { src: 'typings/components.d.ts', dest: 'dist/dts', transform: (contents, filename) =>
+           {
+             return contents.toString().replaceAll('../src/', '@karpeleslab/fyvue')
+           }
+         },*/
         ]
       }),
       cleanup()

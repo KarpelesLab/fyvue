@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { FyDatatableHeader, FyDatatableValue } from '../../../dts'
+import type { ObjectS2S, ObjectS2Any } from '../../../dts'
 
 withDefaults(defineProps<{
   showHeaders?: boolean,
-  headers: FyDatatableHeader,
-  data?: Array<FyDatatableValue>
+  headers: ObjectS2S,
+  data?: Array<ObjectS2Any>
 }>(), {
   showHeaders: true,
   data: () => []

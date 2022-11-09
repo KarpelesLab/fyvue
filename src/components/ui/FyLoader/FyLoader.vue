@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useEventBus } from '../../../helpers';
+import { useEventBus } from '../../../utils/helpers';
 import { onMounted, onUnmounted, ref } from 'vue';
 import DefaultLoader from './DefaultLoader.vue';
 

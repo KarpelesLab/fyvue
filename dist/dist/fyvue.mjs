@@ -568,7 +568,7 @@ var script$5 = defineComponent({
     props: {
         showHeaders: { type: Boolean, required: false, default: true },
         headers: { type: null, required: true },
-        data: { type: Array, required: true }
+        data: { type: Array, required: false, default: () => [] }
     },
     setup(__props) {
         return (_ctx, _cache) => {

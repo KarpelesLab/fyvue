@@ -4,9 +4,9 @@ import { createPinia } from "pinia";
 import uiComponents from "./components/ui";
 import klbComponents from "./components/klb";
 
-import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './helpers';
-import { cropText, formatBytes, tailwindColors } from "./displayHelpers";
-import { useFVStore } from './store'
+import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './utils/helpers';
+import { cropText, formatBytes, tailwindColors } from "./utils/display";
+import { useFVStore } from './utils/store'
 import type { FyvueOptions } from "./dts"
 
 const components = {...uiComponents,...klbComponents};

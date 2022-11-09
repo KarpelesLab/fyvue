@@ -6,7 +6,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { ref, onMounted, onUnmounted, h } from 'vue'
-import { useEventBus } from "../../../helpers";
+import { useEventBus } from "../../../utils/helpers";
 import { XCircleIcon } from "@heroicons/vue/24/solid";
 
 const props = withDefaults(defineProps<{

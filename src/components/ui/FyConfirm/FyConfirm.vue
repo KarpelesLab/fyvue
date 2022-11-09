@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { Dialog, DialogOverlay, DialogTitle } from "@headlessui/vue";
 import type { FyvueConfirm } from '../../../dts';
-import { useEventBus } from "../../../helpers";
+import { useEventBus } from "../../../utils/helpers";
 
 const eventBus = useEventBus();
 const confirm = ref<boolean>(false)

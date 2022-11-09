@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { rest } from "@karpeleslab/klbfw";
-import type { KLBApiError, KLBApiResult, User } from './dts/klb'
-import { useEventBus } from "./helpers";
+import type { KLBApiError, KLBApiResult, User } from '../dts/klb'
 
 export type RootState = {
   user: User | null
