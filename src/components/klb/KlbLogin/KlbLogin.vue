@@ -67,7 +67,7 @@ const forgotPassword = async () => {
   }
 };
 const userFlow = async (params: paramsType = { initial: false }) => {
-  eventBus.emit("loading", true);
+  eventBus.emit("klblogin-loading", true);
   fieldsError.value = {};
 
   hasOauth.value = false;
@@ -80,7 +80,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
       }
     });
     if (hasError) {
-      eventBus.emit("loading", false);
+      eventBus.emit("klblogin-loading", false);
       return;
     }
   }
@@ -108,7 +108,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
         fieldsError.value[responseError.value.param] =
           responseError.value.token;
       }
-      eventBus.emit("loading", false);
+      eventBus.emit("klblogin-loading", false);
       return;
     }
   );
@@ -145,7 +145,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
     console.log(response);
   }
 
-  eventBus.emit("loading", false);
+  eventBus.emit("klblogin-loading", false);
 };
 
 onMounted(async () => {
@@ -155,6 +155,7 @@ onMounted(async () => {
 <template>
   <div>
     <form @submit.prevent="userFlow()" v-if="!completed" class="klb-login">
+      <FyLoader id="klblogin" />
       <div class="w-full">
         <h2 class="message" v-if="responseMessage">{{ responseMessage }}</h2>
         <template v-if="responseFields.length > 0">

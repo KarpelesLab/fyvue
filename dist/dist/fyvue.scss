@@ -296,10 +296,10 @@
   z-index: 60 !important;
 }
 .fy-loader .loader-container {
-  @apply flex items-center flex-col  flex-grow-0 justify-center bg-white;
+  @apply flex items-center flex-col rounded-full flex-grow-0 justify-center  pt-2;
 }
 .fy-loader .loader-text {
-  @apply w-full text-center font-bold mx-auto uppercase text-fv-neutral-800 mt-4 text-xs;
+  @apply w-full text-center font-bold mx-auto uppercase  mt-4 text-xs;
 }
 
 .fy-self-loader {
@@ -307,17 +307,29 @@
 }
 
 .light .fy-self-loader .default-loader, .light .fy-loader .default-loader {
-  @apply text-neutral-200 mb-2 animate-spin fill-fv-primary-600;
+  @apply text-fv-neutral-200 mb-2 animate-spin fill-fv-primary-600;
+}
+.light .fy-self-loader .loader-container, .light .fy-loader .loader-container {
+  @apply bg-transparent;
+}
+.light .fy-self-loader .loader-text, .light .fy-loader .loader-text {
+  @apply text-fv-neutral-800;
 }
 .light .fy-self-loader, .light .fy-loader {
-  background: rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
 }
 
 .dark .fy-self-loader .default-loader, .dark .fy-loader .default-loader {
-  @apply text-neutral-900 mb-2 animate-spin fill-fv-primary-400;
+  @apply text-fv-neutral-700 mb-2 animate-spin fill-fv-primary-400;
+}
+.dark .fy-self-loader .loader-container, .dark .fy-loader .loader-container {
+  @apply bg-transparent;
+}
+.dark .fy-self-loader .loader-text, .dark .fy-loader .loader-text {
+  @apply text-fv-neutral-300;
 }
 .dark .fy-self-loader, .dark .fy-loader {
-  background: rgba(0, 0, 0, 0.2) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
 }
 
 .input-group {
@@ -485,7 +497,8 @@
 }
 
 .klb-login {
-  @apply w-full  flex flex-col flex-grow  items-center justify-center;
+  @apply w-full  flex flex-col flex-grow  items-center justify-center relative;
+  min-height: 16rem;
 }
 .klb-login h1 {
   @apply mt-0 text-2xl;

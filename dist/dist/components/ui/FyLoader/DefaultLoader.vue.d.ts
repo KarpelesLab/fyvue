@@ -4,6 +4,11 @@ declare const _default: import("vue").DefineComponent<{
         required: false;
         default: string;
     };
+    showLoadingText: {
+        type: BooleanConstructor;
+        required: true;
+        default: boolean;
+    };
 }, (_ctx: any, _cache: any) => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
     [key: string]: any;
 }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -11,6 +16,11 @@ declare const _default: import("vue").DefineComponent<{
         type: StringConstructor;
         required: false;
         default: string;
+    };
+    showLoadingText: {
+        type: BooleanConstructor;
+        required: true;
+        default: boolean;
     };
 }>>, {
     size: string;

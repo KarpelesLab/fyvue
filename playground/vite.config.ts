@@ -3,11 +3,11 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-const fyvueRoot = path.resolve('../dist');
+const fyvueRoot = path.resolve('../dist/dist');
 
 export default defineConfig({
   plugins: [
-    vue(), 
+    vue(),
   ],
   resolve: {
     alias: [

@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{
   size?: string
 }>(),{
   loader: () => DefaultLoader,
-  showLoadingText: false,
+  showLoadingText: true,
   size: "16"
 })
 
@@ -38,7 +38,7 @@ onUnmounted(() => {
   <div v-if="loading">
     <div class="fy-loader" >
       <div class="loader-container" role="status" :style="`width:${size}rem; height:${size}rem;`">
-        <component :is="loader" :size="size" />
+        <component :is="loader" :size="size" :showLoadingText="showLoadingText" />
       </div>
     </div>
   </div>

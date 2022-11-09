@@ -258,7 +258,7 @@ const _hoisted_3$8 = createElementVNode("path", {
     class: "circle-bg",
     d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1);
-const _hoisted_4$7 = ["stroke-dasharray", "stroke"];
+const _hoisted_4$6 = ["stroke-dasharray", "stroke"];
 const _hoisted_5$6 = ["x", "y"];
 var script$a = defineComponent({
     __name: 'FyCirclePercent',
@@ -277,7 +277,7 @@ var script$a = defineComponent({
                         "stroke-dasharray": `${__props.percent}, 100`,
                         stroke: __props.color,
                         d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                    }, null, 8, _hoisted_4$7),
+                    }, null, 8, _hoisted_4$6),
                     createElementVNode("text", {
                         x: __props.textXY[0].toString(),
                         y: __props.textXY[1].toString(),
@@ -297,7 +297,7 @@ const _hoisted_2$9 = {
     style: { "width": "350px !important" }
 };
 const _hoisted_3$7 = { class: "modal-content" };
-const _hoisted_4$6 = {
+const _hoisted_4$5 = {
     key: 0,
     class: "confirm-modal-desc default-p"
 };
@@ -358,7 +358,7 @@ var script$9 = defineComponent({
                                     }),
                                     createElementVNode("div", _hoisted_3$7, [
                                         (desc.value)
-                                            ? (openBlock(), createElementBlock("div", _hoisted_4$6, toDisplayString(desc.value), 1))
+                                            ? (openBlock(), createElementBlock("div", _hoisted_4$5, toDisplayString(desc.value), 1))
                                             : createCommentVNode("v-if", true),
                                         _hoisted_5$5,
                                         createElementVNode("div", _hoisted_6$4, [
@@ -491,7 +491,7 @@ const _hoisted_1$6 = {
 };
 const _hoisted_2$6 = { key: 0 };
 const _hoisted_3$5 = { class: "div" };
-const _hoisted_4$5 = { class: "div-cell" };
+const _hoisted_4$4 = { class: "div-cell" };
 const _hoisted_5$4 = { key: 0 };
 const _hoisted_6$3 = { key: 1 };
 var script$6 = defineComponent({
@@ -532,7 +532,7 @@ var script$6 = defineComponent({
                                             class: "td"
                                         }, [
                                             createElementVNode("div", _hoisted_3$5, toDisplayString(title), 1),
-                                            createElementVNode("div", _hoisted_4$5, [
+                                            createElementVNode("div", _hoisted_4$4, [
                                                 renderSlot(_ctx.$slots, `${property}_item`, {
                                                     data: { prop: item[property], item: item, idx: index }
                                                 }, () => [
@@ -561,7 +561,7 @@ const _hoisted_1$5 = {
 };
 const _hoisted_2$5 = { class: "table-container" };
 const _hoisted_3$4 = { key: 0 };
-const _hoisted_4$4 = { key: 0 };
+const _hoisted_4$3 = { key: 0 };
 const _hoisted_5$3 = { key: 1 };
 var script$5 = defineComponent({
     __name: 'FyTable',
@@ -600,7 +600,7 @@ var script$5 = defineComponent({
                                                     }
                                                 }, () => [
                                                     (item[property])
-                                                        ? (openBlock(), createElementBlock("span", _hoisted_4$4, toDisplayString(item[property]), 1))
+                                                        ? (openBlock(), createElementBlock("span", _hoisted_4$3, toDisplayString(item[property]), 1))
                                                         : (openBlock(), createElementBlock("span", _hoisted_5$3, "n/a"))
                                                 ])
                                             ]));
@@ -630,11 +630,11 @@ const _hoisted_3$3 = [
     _hoisted_1$4,
     _hoisted_2$4
 ];
-const _hoisted_4$3 = { class: "sr-only" };
 var script$4 = defineComponent({
     __name: 'DefaultLoader',
     props: {
-        size: { type: String, required: false, default: "16" }
+        size: { type: String, required: false, default: "16" },
+        showLoadingText: { type: Boolean, required: true, default: true }
     },
     setup(__props) {
         return (_ctx, _cache) => {
@@ -647,7 +647,9 @@ var script$4 = defineComponent({
                     fill: "none",
                     xmlns: "http://www.w3.org/2000/svg"
                 }, _hoisted_3$3, 4)),
-                createElementVNode("span", _hoisted_4$3, toDisplayString(_ctx.$t('global_loading_text')), 1)
+                createElementVNode("span", {
+                    class: normalizeClass(!__props.showLoadingText ? 'is-sr' : 'loader-text')
+                }, toDisplayString(_ctx.$t('global_loading_text')), 3)
             ], 64));
         };
     }
@@ -662,7 +664,7 @@ var script$3 = defineComponent({
     props: {
         id: { type: String, required: false },
         loader: { type: Object, required: false, default: () => script$4 },
-        showLoadingText: { type: Boolean, required: false, default: false },
+        showLoadingText: { type: Boolean, required: false, default: true },
         size: { type: String, required: false, default: "16" }
     },
     setup(__props) {
@@ -697,7 +699,10 @@ var script$3 = defineComponent({
                             role: "status",
                             style: normalizeStyle(`width:${__props.size}rem; height:${__props.size}rem;`)
                         }, [
-                            (openBlock(), createBlock(resolveDynamicComponent(__props.loader), { size: __props.size }, null, 8, ["size"]))
+                            (openBlock(), createBlock(resolveDynamicComponent(__props.loader), {
+                                size: __props.size,
+                                showLoadingText: __props.showLoadingText
+                            }, null, 8, ["size", "showLoadingText"]))
                         ], 4)
                     ])
                 ]))
@@ -1181,7 +1186,7 @@ var script = defineComponent({
             }
         };
         const userFlow = async (params = { initial: false }) => {
-            eventBus.emit("loading", true);
+            eventBus.emit("klblogin-loading", true);
             fieldsError.value = {};
             hasOauth.value = false;
             if (params.initial === false) {
@@ -1193,7 +1198,7 @@ var script = defineComponent({
                     }
                 });
                 if (hasError) {
-                    eventBus.emit("loading", false);
+                    eventBus.emit("klblogin-loading", false);
                     return;
                 }
             }
@@ -1216,7 +1221,7 @@ var script = defineComponent({
                     fieldsError.value[responseError.value.param] =
                         responseError.value.token;
                 }
-                eventBus.emit("loading", false);
+                eventBus.emit("klblogin-loading", false);
                 return;
             });
             if (response.value?.result == "success") {
@@ -1256,12 +1261,13 @@ var script = defineComponent({
             else {
                 console.log(response);
             }
-            eventBus.emit("loading", false);
+            eventBus.emit("klblogin-loading", false);
         };
         onMounted(async () => {
             await userFlow({ initial: true });
         });
         return (_ctx, _cache) => {
+            const _component_FyLoader = resolveComponent("FyLoader");
             const _component_FyModal = resolveComponent("FyModal");
             return (openBlock(), createElementBlock("div", null, [
                 (!completed.value)
@@ -1270,6 +1276,7 @@ var script = defineComponent({
                         onSubmit: _cache[1] || (_cache[1] = withModifiers(($event) => (userFlow()), ["prevent"])),
                         class: "klb-login"
                     }, [
+                        createVNode(_component_FyLoader, { id: "klblogin" }),
                         createElementVNode("div", _hoisted_1, [
                             (responseMessage.value)
                                 ? (openBlock(), createElementBlock("h2", _hoisted_2, toDisplayString(responseMessage.value), 1))

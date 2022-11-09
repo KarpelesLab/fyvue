@@ -1,5 +1,6 @@
 .klb-login {
-  @apply w-full  flex flex-col flex-grow  items-center justify-center;
+  @apply w-full  flex flex-col flex-grow  items-center justify-center relative;
+  min-height: 16rem;
   h1 {
     @apply mt-0 text-2xl;
   }
