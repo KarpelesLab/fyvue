@@ -70,12 +70,11 @@ export default [
         targets: [
           { src: 'src/package.fyvue.json', dest: 'dist/', rename: "package.json" },
           { src: 'README.md', dest: 'dist/', rename: "README.md" },
-
-          /* { src: 'typings/components.d.ts', dest: 'dist/dts', transform: (contents, filename) =>
+          { src: 'typings/components.d.ts', dest: 'dist/dist/', transform: (contents, filename) =>
            {
-             return contents.toString().replaceAll('../src/', '@karpeleslab/fyvue')
+             return contents.toString().replaceAll('../src', '@karpeleslab/fyvue')
            }
-         },*/
+         },
         ]
       }),
       cleanup()
