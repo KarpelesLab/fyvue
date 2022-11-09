@@ -1517,6 +1517,9 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
     result.app = appHtml;
     if (router.currentRoute.value.name == options.routerNotFound)
         result.statusCode = 404;
+    if (router.currentRoute.value.meta.statusCode && router.currentRoute.value.meta.statusCode != 200) {
+        result.statusCode = router.currentRoute.value.meta.statusCode;
+    }
     return cb(result);
 }
 
