@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useEventBus } from "@karpeleslab/fyvue"
+import { useEventBus } from '@karpeleslab/fyvue';
 const eventBus = useEventBus();
 
 const testFyConfirm = () => {
@@ -8,9 +8,9 @@ const testFyConfirm = () => {
     desc: 'What?',
     onConfirm: async () => {
       console.log('yo');
-    }
-  })
-}
+    },
+  });
+};
 </script>
 <template>
   <button @click="testFyConfirm()">Test FyConfirm</button>

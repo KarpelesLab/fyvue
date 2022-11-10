@@ -3,44 +3,55 @@ import { useEventBus } from '../../../utils/helpers';
 import { onMounted, onUnmounted, ref } from 'vue';
 import DefaultLoader from './DefaultLoader.vue';
 
-const props = withDefaults(defineProps<{
-  id?: string,
-  loader?: Object,
-  showLoadingText?: boolean,
-  size?: string,
-  force?: boolean
-}>(),{
-  loader: () => DefaultLoader,
-  showLoadingText: true,
-  size: "16",
-  force: false
-})
+const props = withDefaults(
+  defineProps<{
+    id?: string;
+    loader?: Object;
+    showLoadingText?: boolean;
+    size?: string;
+    force?: boolean;
+  }>(),
+  {
+    loader: () => DefaultLoader,
+    showLoadingText: true,
+    size: '16',
+    force: false,
+  }
+);
 
 const eventBus = useEventBus();
-const loading = ref<boolean>(false)
+const loading = ref<boolean>(false);
 const setLoading = (value: boolean) => {
-  loading.value = value
-}
+  loading.value = value;
+};
 onMounted(() => {
   if (props.id) {
-    eventBus.on(`${props.id}-loading`, setLoading)
+    eventBus.on(`${props.id}-loading`, setLoading);
   } else {
-    eventBus.on("loading", setLoading)
+    eventBus.on('loading', setLoading);
   }
-})
+});
 onUnmounted(() => {
   if (props.id) {
-    eventBus.off(`${props.id}-loading`, setLoading)
+    eventBus.off(`${props.id}-loading`, setLoading);
   } else {
-    eventBus.off("loading", setLoading)
+    eventBus.off('loading', setLoading);
   }
-})
+});
 </script>
 <template>
   <div v-if="loading || force">
-    <div class="fy-loader" >
-      <div class="loader-container" role="status" :style="`width:${size}rem; height:${size}rem;`">
-        <component :is="loader" :size="size" :showLoadingText="showLoadingText" />
+    <div class="fy-loader">
+      <div
+        class="loader-container"
+        role="status"
+        :style="`width:${size}rem; height:${size}rem;`"
+      >
+        <component
+          :is="loader"
+          :size="size"
+          :showLoadingText="showLoadingText"
+        />
       </div>
     </div>
   </div>

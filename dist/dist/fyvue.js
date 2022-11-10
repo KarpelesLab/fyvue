@@ -1,7 +1,5 @@
 'use strict';
 
-var head$1 = require('@vueuse/head');
-var pinia$1 = require('pinia');
 var vue = require('vue');
 var vue$1 = require('@headlessui/vue');
 var klbfw = require('@karpeleslab/klbfw');
@@ -9,7 +7,9 @@ var i18next = require('i18next');
 var vueRouter = require('vue-router');
 var useVuelidate = require('@vuelidate/core');
 var validators = require('@vuelidate/validators');
+var pinia = require('pinia');
 var serverRenderer = require('@vue/server-renderer');
+var head = require('@vueuse/head');
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -34,29 +34,38 @@ class Backend {
       callback(null, {});
       return;
     }
-    if ((typeof FW !== "undefined") && (language == FW.Locale) && (typeof FW.i18n !== "undefined")) {
+    if (
+      typeof FW !== 'undefined' &&
+      language == FW.Locale &&
+      typeof FW.i18n !== 'undefined'
+    ) {
       callback(null, FW.i18n);
       return;
     }
-    var pfx = "";
-    if (typeof FW !== "undefined") {
-        pfx = FW.prefix;
+    var pfx = '';
+    if (typeof FW !== 'undefined') {
+      pfx = FW.prefix;
     }
-    var newpfx = pfx.replace(/\/l\/[a-z]{2}-[A-Z]{2}/, "/l/"+language);
+    var newpfx = pfx.replace(/\/l\/[a-z]{2}-[A-Z]{2}/, '/l/' + language);
     if (newpfx == pfx) {
-        newpfx = newpfx = "/l/"+language;
+      newpfx = newpfx = '/l/' + language;
     }
-    fetch(newpfx+"/_special/locale.json").catch(function(err) { return fetch("/_special/locale/"+language+".json"); })
-      .then(function(res) {
+    fetch(newpfx + '/_special/locale.json')
+      .catch((err) => {
+        return fetch('/_special/locale/' + language + '.json');
+      })
+      .then((res) => {
         if (!res.ok) {
           const retry = res.status >= 500 && res.status < 600;
-    callback(`failed loading i18n`, retry);
-    return;
+          callback(`failed loading i18n`, retry);
+          return;
         }
         return res.json();
       })
-      .then(function(res) { callback(null, res); })
-      .catch(function(err) {
+      .then((res) => {
+        callback(null, res);
+      })
+      .catch((err) => {
         callback(err, false);
       });
   }
@@ -69,11 +78,11 @@ const useEventBus = () => {
     return vueInstance?.appContext.config.globalProperties.$eventBus;
 };
 const i18nextPromise = i18next.use(Backend).init({
-    ns: ["translation"],
-    defaultNS: "translation",
+    ns: ['translation'],
+    defaultNS: 'translation',
     debug: false,
     lng: klbfw.getLocale(),
-    load: "currentOnly",
+    load: 'currentOnly',
     initImmediate: false,
 });
 const useTranslation = () => {
@@ -268,7 +277,7 @@ var script$a = vue.defineComponent({
     props: {
         percent: { type: Number, required: true, default: 100 },
         textXY: { type: Array, required: false, default: () => [18, 20.85] },
-        color: { type: String, required: false, default: "blue" }
+        color: { type: String, required: false, default: 'blue' }
     },
     setup(__props) {
         return (_ctx, _cache) => {
@@ -285,7 +294,7 @@ var script$a = vue.defineComponent({
                         x: __props.textXY[0].toString(),
                         y: __props.textXY[1].toString(),
                         class: "percentage"
-                    }, vue.toDisplayString(__props.percent) + "%", 9, _hoisted_5$6)
+                    }, vue.toDisplayString(__props.percent) + "% ", 9, _hoisted_5$6)
                 ]))
             ]));
         };
@@ -368,11 +377,11 @@ var script$9 = vue.defineComponent({
                                             vue.createElementVNode("button", {
                                                 onClick: _cache[0] || (_cache[0] = ($event) => (confirm.value = false)),
                                                 class: "btn neutral btn-defaults"
-                                            }, vue.toDisplayString(_ctx.$t("confirm_modal_cta_cancel")), 1),
+                                            }, vue.toDisplayString(_ctx.$t('confirm_modal_cta_cancel')), 1),
                                             vue.createElementVNode("button", {
                                                 onClick: _cache[1] || (_cache[1] = ($event) => (_onConfirm())),
                                                 class: "btn primary btn-defaults"
-                                            }, vue.toDisplayString(_ctx.$t("confirm_modal_cta_confirm")), 1)
+                                            }, vue.toDisplayString(_ctx.$t('confirm_modal_cta_confirm')), 1)
                                         ])
                                     ])
                                 ])
@@ -451,9 +460,9 @@ var script$7 = vue.defineComponent({
         const props = __props;
         const barWidth = vue.computed(() => (props.currentStep * 100) / props.steps.length);
         const getStepClass = (index) => {
-            if ((index + 1) < props.currentStep)
+            if (index + 1 < props.currentStep)
                 return 'past-step';
-            if ((index + 1) == props.currentStep)
+            if (index + 1 == props.currentStep)
                 return 'current-step';
             return 'past-step';
         };
@@ -526,8 +535,8 @@ var script$6 = vue.defineComponent({
                         (__props.data)
                             ? (vue.openBlock(true), vue.createElementBlock(vue.Fragment, { key: 0 }, vue.renderList(__props.data, (item, index) => {
                                 return (vue.openBlock(), vue.createElementBlock("tr", {
-                                    key: index,
-                                    class: vue.normalizeClass(`tr ${bgColor(index)} `)
+                                    class: vue.normalizeClass(`tr ${bgColor(index)} `),
+                                    key: index
                                 }, [
                                     (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.headers, (title, property) => {
                                         return (vue.openBlock(), vue.createElementBlock("td", {
@@ -636,7 +645,7 @@ const _hoisted_3$3 = [
 var script$4 = vue.defineComponent({
     __name: 'DefaultLoader',
     props: {
-        size: { type: String, required: false, default: "16" },
+        size: { type: String, required: false, default: '16' },
         showLoadingText: { type: Boolean, required: true, default: true }
     },
     setup(__props) {
@@ -668,7 +677,7 @@ var script$3 = vue.defineComponent({
         id: { type: String, required: false },
         loader: { type: Object, required: false, default: () => script$4 },
         showLoadingText: { type: Boolean, required: false, default: true },
-        size: { type: String, required: false, default: "16" },
+        size: { type: String, required: false, default: '16' },
         force: { type: Boolean, required: false, default: false }
     },
     setup(__props) {
@@ -683,7 +692,7 @@ var script$3 = vue.defineComponent({
                 eventBus.on(`${props.id}-loading`, setLoading);
             }
             else {
-                eventBus.on("loading", setLoading);
+                eventBus.on('loading', setLoading);
             }
         });
         vue.onUnmounted(() => {
@@ -691,7 +700,7 @@ var script$3 = vue.defineComponent({
                 eventBus.off(`${props.id}-loading`, setLoading);
             }
             else {
-                eventBus.off("loading", setLoading);
+                eventBus.off('loading', setLoading);
             }
         });
         return (_ctx, _cache) => {
@@ -771,7 +780,6 @@ var script$2 = vue.defineComponent({
             if (errorProps.value)
                 return errorProps.value;
             if (errorVuelidateProps.value && errorVuelidateProps.value.length > 0) {
-                console.log(errorVuelidateProps.value);
                 return errorVuelidateProps.value[0].$validator.toString();
             }
             return null;
@@ -786,15 +794,15 @@ var script$2 = vue.defineComponent({
         };
         const model = vue.computed({
             get: () => props.modelValue,
-            set: items => {
+            set: (items) => {
                 emit('update:modelValue', items);
-            }
+            },
         });
         const modelCheckbox = vue.computed({
             get: () => props.checkboxValue,
-            set: items => {
+            set: (items) => {
                 emit('update:checkboxValue', items);
-            }
+            },
         });
         expose({ focus, getInputRef });
         return (_ctx, _cache) => {
@@ -948,16 +956,18 @@ var script$1 = vue.defineComponent({
             return '1';
         };
         const isNewPage = (page) => {
-            return (page >= 1) && page <= props.items.page_max && page != props.items.page_no;
+            return (page >= 1 && page <= props.items.page_max && page != props.items.page_no);
         };
         const next = () => {
             const page = props.items.page_no + 1;
             if (!isNewPage(page))
                 return;
-            router.push({
+            router
+                .push({
                 path: route.path,
-                query: { page: page }
-            }).then(() => {
+                query: { page: page },
+            })
+                .then(() => {
                 eventBus.emit(`${props.id}GoToPage`, page);
             });
         };
@@ -965,20 +975,24 @@ var script$1 = vue.defineComponent({
             const page = props.items.page_no - 1;
             if (!isNewPage(page))
                 return;
-            router.push({
+            router
+                .push({
                 path: route.path,
-                query: { page: page }
-            }).then(() => {
+                query: { page: page },
+            })
+                .then(() => {
                 eventBus.emit(`${props.id}GoToPage`, page);
             });
         };
         const page = (page) => {
             if (!isNewPage(page))
                 return;
-            router.push({
+            router
+                .push({
                 path: route.path,
-                query: { page: page }
-            }).then(() => {
+                query: { page: page },
+            })
+                .then(() => {
                 eventBus.emit(`${props.id}GoToPage`, page);
             });
         };
@@ -1063,7 +1077,7 @@ var script$1 = vue.defineComponent({
                                 ]))
                                 : vue.createCommentVNode("v-if", true)
                         ]),
-                        vue.createElementVNode("p", _hoisted_10$1, vue.toDisplayString(_ctx.$t("global_paging", {
+                        vue.createElementVNode("p", _hoisted_10$1, vue.toDisplayString(_ctx.$t('global_paging', {
                             start: __props.items.results_per_page * (__props.items.page_no - 1),
                             end: __props.items.results_per_page * __props.items.page_no,
                             total: __props.items.count >= 10000 ? _ctx.$t('paging_a_lot_of') : __props.items.count,
@@ -1087,23 +1101,22 @@ var uiComponents = {
     FyTable: script$5,
     FyLoader: script$3,
     FyInput: script$2,
-    FyPaging: script$1
+    FyPaging: script$1,
 };
 
-const useFVStore = pinia$1.defineStore({
-    id: "fVStore",
+const useFVStore = pinia.defineStore({
+    id: 'fVStore',
     state: () => ({
         user: null,
     }),
     getters: {
         isAuth: (state) => {
             return !(state.user === null);
-        }
+        },
     },
     actions: {
         async refreshUser() {
-            const apiData = await klbfw.rest("User:get", "GET")
-                .catch((err) => { });
+            const apiData = await klbfw.rest('User:get', 'GET').catch((err) => { });
             if (apiData.result == 'success' && apiData.data != null) {
                 this.user = apiData.data;
             }
@@ -1112,15 +1125,14 @@ const useFVStore = pinia$1.defineStore({
             }
         },
         async logout() {
-            const apiData = await klbfw.rest("User:logout", "Post")
-                .catch((err) => { });
+            const apiData = await klbfw.rest('User:logout', 'Post').catch((err) => { });
             if (apiData.result == 'success') {
                 this.setUser(null);
             }
         },
         setUser(user) {
             this.user = user;
-        }
+        },
     },
 });
 
@@ -1153,13 +1165,13 @@ const _hoisted_11 = { key: 1 };
 var script = vue.defineComponent({
     __name: 'KlbLogin',
     props: {
-        returnDefault: { type: String, required: false, default: "/" },
+        returnDefault: { type: String, required: false, default: '/' },
         forceAction: { type: String, required: false }
     },
     setup(__props) {
         const props = __props;
         const state = vue.reactive({
-            userEmail: "",
+            userEmail: '',
         });
         const rules = {
             userEmail: { required: validators.required },
@@ -1188,33 +1200,30 @@ var script = vue.defineComponent({
         const completed = vue.ref(false);
         const forgotPassword = async () => {
             if (await v$.value.$validate()) {
-                let data = await klbfw.rest("User:forgot_password", "POST", {
+                const data = await klbfw.rest('User:forgot_password', 'POST', {
                     login: state.userEmail,
                 }).catch((err) => {
                     pwdRecoverError.value = err;
                 });
-                if (data.result == "success") {
+                if (data.result == 'success') {
                     pwdRecoverMailSent.value = true;
-                }
-                else {
-                    console.log(data);
                 }
             }
         };
         const userFlow = async (params = { initial: false }) => {
-            eventBus.emit("klblogin-loading", true);
+            eventBus.emit('klblogin-loading', true);
             fieldsError.value = {};
             hasOauth.value = false;
             if (params.initial === false) {
                 let hasError = false;
                 responseReq.value.forEach((field) => {
-                    if (!formData.value[field] || formData.value[field] == "") {
-                        fieldsError.value[field] = "error_form_value_is_required";
+                    if (!formData.value[field] || formData.value[field] == '') {
+                        fieldsError.value[field] = 'error_form_value_is_required';
                         hasError = true;
                     }
                 });
                 if (hasError) {
-                    eventBus.emit("klblogin-loading", false);
+                    eventBus.emit('klblogin-loading', false);
                     return;
                 }
             }
@@ -1223,7 +1232,8 @@ var script = vue.defineComponent({
             }
             if (route.query.return_to && typeof route.query.return_to == 'string') {
                 returnTo.value = route.query.return_to
-                    ? route.query.return_to : props.returnDefault;
+                    ? route.query.return_to
+                    : props.returnDefault;
             }
             if (!formData.value.session) {
                 formData.value.session = route.query.session
@@ -1231,23 +1241,23 @@ var script = vue.defineComponent({
                     : undefined;
             }
             formData.value.return_to = returnTo.value;
-            response.value = await klbfw.rest("User:flow", "POST", formData.value).catch((err) => {
+            response.value = await klbfw.rest('User:flow', 'POST', formData.value).catch((err) => {
                 responseError.value = err;
                 if (responseError.value.param) {
                     fieldsError.value[responseError.value.param] =
                         responseError.value.token;
                 }
-                eventBus.emit("klblogin-loading", false);
+                eventBus.emit('klblogin-loading', false);
                 return;
             });
-            if (response.value?.result == "success") {
+            if (response.value?.result == 'success') {
                 if (response.value.data.url) {
                     window.location.href = response.value.data.url;
                     return;
                 }
                 if (response.value.data.complete == true && response.value.data.user) {
                     store.setUser(response.value.data.user);
-                    let routeExists = router.resolve(returnTo.value);
+                    const routeExists = router.resolve(returnTo.value);
                     if (routeExists.matched.length != 0)
                         router.push(returnTo.value);
                     else
@@ -1265,7 +1275,7 @@ var script = vue.defineComponent({
                     responseMessage.value = response.value.data.message;
                 responseReq.value = response.value.data.req;
                 responseFields.value.forEach((field) => {
-                    if (field.type == "oauth2") {
+                    if (field.type == 'oauth2') {
                         hasOauth.value = true;
                     }
                 });
@@ -1274,10 +1284,7 @@ var script = vue.defineComponent({
                         inputs.value[inputs.value.length - 1].focus();
                 }, 300);
             }
-            else {
-                console.log(response);
-            }
-            eventBus.emit("klblogin-loading", false);
+            eventBus.emit('klblogin-loading', false);
         };
         vue.onMounted(async () => {
             await userFlow({ initial: true });
@@ -1393,10 +1400,10 @@ var script = vue.defineComponent({
                                                         vue.unref(eventBus).emit('ResetPasswordModal', true);
                                                         pwdRecoverMailSent.value = false;
                                                     })
-                                            }, vue.toDisplayString(_ctx.$t("recover_pwd_link")), 1)
+                                            }, vue.toDisplayString(_ctx.$t('recover_pwd_link')), 1)
                                         ]))
                                         : vue.createCommentVNode("v-if", true),
-                                    vue.createElementVNode("button", _hoisted_8, vue.toDisplayString(_ctx.$t("cta_login_next")), 1)
+                                    vue.createElementVNode("button", _hoisted_8, vue.toDisplayString(_ctx.$t('cta_login_next')), 1)
                                 ], 64))
                                 : vue.createCommentVNode("v-if", true)
                         ])
@@ -1427,10 +1434,10 @@ var script = vue.defineComponent({
                                     href: "javascript:void(0)",
                                     onClick: _cache[3] || (_cache[3] = ($event) => (forgotPassword())),
                                     class: "mt-2 float-right btn px-5 py-2 primary"
-                                }, vue.toDisplayString(_ctx.$t("recover_pwd_cta")), 1),
+                                }, vue.toDisplayString(_ctx.$t('recover_pwd_cta')), 1),
                                 _hoisted_10
                             ], 64))
-                            : (vue.openBlock(), vue.createElementBlock("div", _hoisted_11, vue.toDisplayString(_ctx.$t("pwd_recover_confirm")), 1))
+                            : (vue.openBlock(), vue.createElementBlock("div", _hoisted_11, vue.toDisplayString(_ctx.$t('pwd_recover_confirm')), 1))
                     ]),
                     _: 1
                 }, 8, ["title"])
@@ -1452,231 +1459,282 @@ const cropText = (str, ml = 100, end = '...') => {
     return str;
 };
 const tailwindColors = {
-    "fv-primary": {
-        "50": "#f5f3ff",
-        "100": "#ede9fe",
-        "200": "#ddd6fe",
-        "300": "#c4b5fd",
-        "400": "#a78bfa",
-        "500": "#8b5cf6",
-        "600": "#7c3aed",
-        "700": "#6d28d9",
-        "800": "#5b21b6",
-        "900": "#4c1d95"
+    'fv-primary': {
+        '50': '#f5f3ff',
+        '100': '#ede9fe',
+        '200': '#ddd6fe',
+        '300': '#c4b5fd',
+        '400': '#a78bfa',
+        '500': '#8b5cf6',
+        '600': '#7c3aed',
+        '700': '#6d28d9',
+        '800': '#5b21b6',
+        '900': '#4c1d95',
     },
-    "fv-neutral": {
-        "50": "#f8fafc",
-        "100": "#f1f5f9",
-        "200": "#e2e8f0",
-        "300": "#cbd5e1",
-        "400": "#94a3b8",
-        "500": "#64748b",
-        "600": "#475569",
-        "700": "#334155",
-        "800": "#1e293b",
-        "900": "#0f172a"
-    }
+    'fv-neutral': {
+        '50': '#f8fafc',
+        '100': '#f1f5f9',
+        '200': '#e2e8f0',
+        '300': '#cbd5e1',
+        '400': '#94a3b8',
+        '500': '#64748b',
+        '600': '#475569',
+        '700': '#334155',
+        '800': '#1e293b',
+        '900': '#0f172a',
+    },
 };
 const formatBytes = (bytes, decimals = 2) => {
     if (!+bytes)
-        return "0 Bytes";
+        return '0 Bytes';
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 const jpZipcode = (zip) => {
-    let _zip = zip.toString();
+    const _zip = zip.toString();
     if (_zip.length != 7)
-        return "";
-    return "〒" + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
+        return '';
+    return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 
-var UID_LENGTH          = 16;
-var UID                 = generateUID();
-var PLACE_HOLDER_REGEXP = new RegExp('(\\\\)?"@__(F|R|D|M|S|A|U|I|B|L)-' + UID + '-(\\d+)__@"', 'g');
-var IS_NATIVE_CODE_REGEXP = /\{\s*\[native code\]\s*\}/g;
-var IS_PURE_FUNCTION = /function.*?\(/;
-var IS_ARROW_FUNCTION = /.*?=>.*?/;
-var UNSAFE_CHARS_REGEXP   = /[<>\/\u2028\u2029]/g;
-var RESERVED_SYMBOLS = ['*', 'async'];
-var ESCAPED_CHARS = {
-    '<'     : '\\u003C',
-    '>'     : '\\u003E',
-    '/'     : '\\u002F',
-    '\u2028': '\\u2028',
-    '\u2029': '\\u2029'
+const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$";
+const unsafeChars = /[<>\b\f\n\r\t\0\u2028\u2029]/g;
+const reserved = /^(?:do|if|in|for|int|let|new|try|var|byte|case|char|else|enum|goto|long|this|void|with|await|break|catch|class|const|final|float|short|super|throw|while|yield|delete|double|export|import|native|return|switch|throws|typeof|boolean|default|extends|finally|package|private|abstract|continue|debugger|function|volatile|interface|protected|transient|implements|instanceof|synchronized)$/;
+const escaped = {
+  "<": "\\u003C",
+  ">": "\\u003E",
+  "/": "\\u002F",
+  "\\": "\\\\",
+  "\b": "\\b",
+  "\f": "\\f",
+  "\n": "\\n",
+  "\r": "\\r",
+  "	": "\\t",
+  "\0": "\\0",
+  "\u2028": "\\u2028",
+  "\u2029": "\\u2029"
 };
-function escapeUnsafeChars(unsafeChar) {
-    return ESCAPED_CHARS[unsafeChar];
-}
-function generateUID() {
-    var bytes = new Uint8Array(UID_LENGTH);
-    crypto.getRandomValues(bytes);
-    var result = '';
-    for(var i=0; i<UID_LENGTH; ++i) {
-        result += bytes[i].toString(16);
+const objectProtoOwnPropertyNames = Object.getOwnPropertyNames(Object.prototype).sort().join("\0");
+function devalue(value) {
+  const counts = new Map();
+  let logNum = 0;
+  function log(message) {
+    if (logNum < 100) {
+      console.warn(message);
+      logNum += 1;
     }
-    return result;
-}
-function deleteFunctions(obj){
-    var functionKeys = [];
-    for (var key in obj) {
-        if (typeof obj[key] === "function") {
-            functionKeys.push(key);
-        }
+  }
+  function walk(thing) {
+    if (typeof thing === "function") {
+      log(`Cannot stringify a function ${thing.name}`);
+      return;
     }
-    for (var i = 0; i < functionKeys.length; i++) {
-        delete obj[functionKeys[i]];
+    if (counts.has(thing)) {
+      counts.set(thing, counts.get(thing) + 1);
+      return;
     }
-}
-function serialize(obj, options) {
-    options || (options = {});
-    if (typeof options === 'number' || typeof options === 'string') {
-        options = {space: options};
-    }
-    var functions = [];
-    var regexps   = [];
-    var dates     = [];
-    var maps      = [];
-    var sets      = [];
-    var arrays    = [];
-    var undefs    = [];
-    var infinities= [];
-    var bigInts = [];
-    var urls = [];
-    function replacer(key, value) {
-        if(options.ignoreFunction){
-            deleteFunctions(value);
-        }
-        if (!value && value !== undefined) {
-            return value;
-        }
-        var origValue = this[key];
-        var type = typeof origValue;
-        if (type === 'object') {
-            if(origValue instanceof RegExp) {
-                return '@__R-' + UID + '-' + (regexps.push(origValue) - 1) + '__@';
+    counts.set(thing, 1);
+    if (!isPrimitive(thing)) {
+      const type = getType(thing);
+      switch (type) {
+        case "Number":
+        case "String":
+        case "Boolean":
+        case "Date":
+        case "RegExp":
+          return;
+        case "Array":
+          thing.forEach(walk);
+          break;
+        case "Set":
+        case "Map":
+          Array.from(thing).forEach(walk);
+          break;
+        default:
+          const proto = Object.getPrototypeOf(thing);
+          if (proto !== Object.prototype && proto !== null && Object.getOwnPropertyNames(proto).sort().join("\0") !== objectProtoOwnPropertyNames) {
+            if (typeof thing.toJSON !== "function") {
+              log(`Cannot stringify arbitrary non-POJOs ${thing.constructor.name}`);
             }
-            if(origValue instanceof Date) {
-                return '@__D-' + UID + '-' + (dates.push(origValue) - 1) + '__@';
-            }
-            if(origValue instanceof Map) {
-                return '@__M-' + UID + '-' + (maps.push(origValue) - 1) + '__@';
-            }
-            if(origValue instanceof Set) {
-                return '@__S-' + UID + '-' + (sets.push(origValue) - 1) + '__@';
-            }
-            if(origValue instanceof Array) {
-                var isSparse = origValue.filter(function(){return true}).length !== origValue.length;
-                if (isSparse) {
-                    return '@__A-' + UID + '-' + (arrays.push(origValue) - 1) + '__@';
-                }
-            }
-            if(origValue instanceof URL) {
-                return '@__L-' + UID + '-' + (urls.push(origValue) - 1) + '__@';
-            }
-        }
-        if (type === 'function') {
-            return '@__F-' + UID + '-' + (functions.push(origValue) - 1) + '__@';
-        }
-        if (type === 'undefined') {
-            return '@__U-' + UID + '-' + (undefs.push(origValue) - 1) + '__@';
-        }
-        if (type === 'number' && !isNaN(origValue) && !isFinite(origValue)) {
-            return '@__I-' + UID + '-' + (infinities.push(origValue) - 1) + '__@';
-        }
-        if (type === 'bigint') {
-            return '@__B-' + UID + '-' + (bigInts.push(origValue) - 1) + '__@';
-        }
-        return value;
-    }
-    function serializeFunc(fn) {
-      var serializedFn = fn.toString();
-      if (IS_NATIVE_CODE_REGEXP.test(serializedFn)) {
-          throw new TypeError('Serializing native function: ' + fn.name);
+          } else if (Object.getOwnPropertySymbols(thing).length > 0) {
+            log(`Cannot stringify POJOs with symbolic keys ${Object.getOwnPropertySymbols(thing).map((symbol) => symbol.toString())}`);
+          } else {
+            Object.keys(thing).forEach((key) => walk(thing[key]));
+          }
       }
-      if(IS_PURE_FUNCTION.test(serializedFn)) {
-          return serializedFn;
+    }
+  }
+  walk(value);
+  const names = new Map();
+  Array.from(counts).filter((entry) => entry[1] > 1).sort((a, b) => b[1] - a[1]).forEach((entry, i) => {
+    names.set(entry[0], getName(i));
+  });
+  function stringify(thing) {
+    if (names.has(thing)) {
+      return names.get(thing);
+    }
+    if (isPrimitive(thing)) {
+      return stringifyPrimitive(thing);
+    }
+    const type = getType(thing);
+    switch (type) {
+      case "Number":
+      case "String":
+      case "Boolean":
+        return `Object(${stringify(thing.valueOf())})`;
+      case "RegExp":
+        return thing.toString();
+      case "Date":
+        return `new Date(${thing.getTime()})`;
+      case "Array":
+        const members = thing.map((v, i) => i in thing ? stringify(v) : "");
+        const tail = thing.length === 0 || thing.length - 1 in thing ? "" : ",";
+        return `[${members.join(",")}${tail}]`;
+      case "Set":
+      case "Map":
+        return `new ${type}([${Array.from(thing).map(stringify).join(",")}])`;
+      default:
+        if (thing.toJSON) {
+          let json = thing.toJSON();
+          if (getType(json) === "String") {
+            try {
+              json = JSON.parse(json);
+            } catch (e) {
+            }
+          }
+          return stringify(json);
+        }
+        if (Object.getPrototypeOf(thing) === null) {
+          if (Object.keys(thing).length === 0) {
+            return "Object.create(null)";
+          }
+          return `Object.create(null,{${Object.keys(thing).map((key) => `${safeKey(key)}:{writable:true,enumerable:true,value:${stringify(thing[key])}}`).join(",")}})`;
+        }
+        return `{${Object.keys(thing).map((key) => `${safeKey(key)}:${stringify(thing[key])}`).join(",")}}`;
+    }
+  }
+  const str = stringify(value);
+  if (names.size) {
+    const params = [];
+    const statements = [];
+    const values = [];
+    names.forEach((name, thing) => {
+      params.push(name);
+      if (isPrimitive(thing)) {
+        values.push(stringifyPrimitive(thing));
+        return;
       }
-      if(IS_ARROW_FUNCTION.test(serializedFn)) {
-          return serializedFn;
+      const type = getType(thing);
+      switch (type) {
+        case "Number":
+        case "String":
+        case "Boolean":
+          values.push(`Object(${stringify(thing.valueOf())})`);
+          break;
+        case "RegExp":
+          values.push(thing.toString());
+          break;
+        case "Date":
+          values.push(`new Date(${thing.getTime()})`);
+          break;
+        case "Array":
+          values.push(`Array(${thing.length})`);
+          thing.forEach((v, i) => {
+            statements.push(`${name}[${i}]=${stringify(v)}`);
+          });
+          break;
+        case "Set":
+          values.push("new Set");
+          statements.push(`${name}.${Array.from(thing).map((v) => `add(${stringify(v)})`).join(".")}`);
+          break;
+        case "Map":
+          values.push("new Map");
+          statements.push(`${name}.${Array.from(thing).map(([k, v]) => `set(${stringify(k)}, ${stringify(v)})`).join(".")}`);
+          break;
+        default:
+          values.push(Object.getPrototypeOf(thing) === null ? "Object.create(null)" : "{}");
+          Object.keys(thing).forEach((key) => {
+            statements.push(`${name}${safeProp(key)}=${stringify(thing[key])}`);
+          });
       }
-      var argsStartsAt = serializedFn.indexOf('(');
-      var def = serializedFn.substr(0, argsStartsAt)
-        .trim()
-        .split(' ')
-        .filter(function(val) { return val.length > 0 });
-      var nonReservedSymbols = def.filter(function(val) {
-        return RESERVED_SYMBOLS.indexOf(val) === -1
-      });
-      if(nonReservedSymbols.length > 0) {
-          return (def.indexOf('async') > -1 ? 'async ' : '') + 'function'
-            + (def.join('').indexOf('*') > -1 ? '*' : '')
-            + serializedFn.substr(argsStartsAt);
-      }
-      return serializedFn;
-    }
-    if (options.ignoreFunction && typeof obj === "function") {
-        obj = undefined;
-    }
-    if (obj === undefined) {
-        return String(obj);
-    }
-    var str;
-    if (options.isJSON && !options.space) {
-        str = JSON.stringify(obj);
-    } else {
-        str = JSON.stringify(obj, options.isJSON ? null : replacer, options.space);
-    }
-    if (typeof str !== 'string') {
-        return String(str);
-    }
-    if (options.unsafe !== true) {
-        str = str.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
-    }
-    if (functions.length === 0 && regexps.length === 0 && dates.length === 0 && maps.length === 0 && sets.length === 0 && arrays.length === 0 && undefs.length === 0 && infinities.length === 0 && bigInts.length === 0 && urls.length === 0) {
-        return str;
-    }
-    return str.replace(PLACE_HOLDER_REGEXP, function (match, backSlash, type, valueIndex) {
-        if (backSlash) {
-            return match;
-        }
-        if (type === 'D') {
-            return "new Date(\"" + dates[valueIndex].toISOString() + "\")";
-        }
-        if (type === 'R') {
-            return "new RegExp(" + serialize(regexps[valueIndex].source) + ", \"" + regexps[valueIndex].flags + "\")";
-        }
-        if (type === 'M') {
-            return "new Map(" + serialize(Array.from(maps[valueIndex].entries()), options) + ")";
-        }
-        if (type === 'S') {
-            return "new Set(" + serialize(Array.from(sets[valueIndex].values()), options) + ")";
-        }
-        if (type === 'A') {
-            return "Array.prototype.slice.call(" + serialize(Object.assign({ length: arrays[valueIndex].length }, arrays[valueIndex]), options) + ")";
-        }
-        if (type === 'U') {
-            return 'undefined'
-        }
-        if (type === 'I') {
-            return infinities[valueIndex];
-        }
-        if (type === 'B') {
-            return "BigInt(\"" + bigInts[valueIndex] + "\")";
-        }
-        if (type === 'L') {
-            return "new URL(\"" + urls[valueIndex].toString() + "\")";
-        }
-        var fn = functions[valueIndex];
-        return serializeFunc(fn);
     });
+    statements.push(`return ${str}`);
+    return `(function(${params.join(",")}){${statements.join(";")}}(${values.join(",")}))`;
+  } else {
+    return str;
+  }
+}
+function getName(num) {
+  let name = "";
+  do {
+    name = chars[num % chars.length] + name;
+    num = ~~(num / chars.length) - 1;
+  } while (num >= 0);
+  return reserved.test(name) ? `${name}0` : name;
+}
+function isPrimitive(thing) {
+  return Object(thing) !== thing;
+}
+function stringifyPrimitive(thing) {
+  if (typeof thing === "string") {
+    return stringifyString(thing);
+  }
+  if (thing === void 0) {
+    return "void 0";
+  }
+  if (thing === 0 && 1 / thing < 0) {
+    return "-0";
+  }
+  const str = String(thing);
+  if (typeof thing === "number") {
+    return str.replace(/^(-)?0\./, "$1.");
+  }
+  return str;
+}
+function getType(thing) {
+  return Object.prototype.toString.call(thing).slice(8, -1);
+}
+function escapeUnsafeChar(c) {
+  return escaped[c] || c;
+}
+function escapeUnsafeChars(str) {
+  return str.replace(unsafeChars, escapeUnsafeChar);
+}
+function safeKey(key) {
+  return /^[_$a-zA-Z][_$a-zA-Z0-9]*$/.test(key) ? key : escapeUnsafeChars(JSON.stringify(key));
+}
+function safeProp(key) {
+  return /^[_$a-zA-Z][_$a-zA-Z0-9]*$/.test(key) ? `.${key}` : `[${escapeUnsafeChars(JSON.stringify(key))}]`;
+}
+function stringifyString(str) {
+  let result = '"';
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str.charAt(i);
+    const code = char.charCodeAt(0);
+    if (char === '"') {
+      result += '\\"';
+    } else if (char in escaped) {
+      result += escaped[char];
+    } else if (code >= 55296 && code <= 57343) {
+      const next = str.charCodeAt(i + 1);
+      if (code <= 56319 && (next >= 56320 && next <= 57343)) {
+        result += char + str[++i];
+      } else {
+        result += `\\u${code.toString(16).toUpperCase()}`;
+      }
+    } else {
+      result += char;
+    }
+  }
+  result += '"';
+  return result;
 }
 
-const useHistory = pinia$1.defineStore({
-    id: "historyStore",
+const useHistory = pinia.defineStore({
+    id: 'historyStore',
     state: () => ({
         _router: null,
         status: 200,
@@ -1721,12 +1779,18 @@ const setupClient = ({ router, pinia, }) => {
         pinia.state.value = initialState.piniaState;
     useHistory(pinia)._setRouter(router);
 };
-async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
-    const { app, router, head, pinia } = await createApp(true);
+async function handleSSR(createApp, cb, options = {}) {
+    const { app, router, head: head$1, pinia } = await createApp(true);
     const url = `${klbfw.getPath()}`;
     await router.push(url);
     await router.isReady();
-    const result = { uuid: klbfw.getUuid(), initial: { isSSRRendered: true, piniaState: serialize(null) } };
+    const result = {
+        uuid: klbfw.getUuid(),
+        initial: {
+            isSSRRendered: true,
+            piniaState: devalue(null),
+        },
+    };
     const historyStore = useHistory(pinia);
     useHistory(pinia)._setRouter(router);
     if (url !== historyStore.currentRoute.fullPath) {
@@ -1735,13 +1799,12 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
         return cb(result);
     }
     const html = await serverRenderer.renderToString(app, {});
-    const { headTags, htmlAttrs, bodyAttrs, bodyTags } = head$1.renderHeadToString(head);
+    const { headTags, htmlAttrs, bodyAttrs, bodyTags } = head.renderHeadToString(head$1);
     result.meta = headTags;
     result.bodyAttributes = bodyAttrs;
     result.htmlAttributes = htmlAttrs;
     result.bodyTags = bodyTags;
     result.app = html;
-    console.log(`[SSR Debug] Checking status... ${serialize(pinia.state.value)}`);
     if (historyStore.status != 200) {
         if ([301, 302, 303, 307].includes(historyStore.status)) {
             if (historyStore.redirect) {
@@ -1754,17 +1817,13 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
         }
     }
     useHistory(pinia)._setRouter(null);
-    result.initial.piniaState = serialize(pinia.state.value);
+    result.initial.piniaState = devalue(pinia.state.value);
     return cb(result);
 }
 
 const components = { ...uiComponents, ...klbComponents };
-const head = head$1.createHead();
-const pinia = pinia$1.createPinia();
 const createFyvue = () => {
     const install = (app, options) => {
-        app.use(head);
-        app.use(pinia);
         app.config.globalProperties.$eventBus = eventBus;
         app.config.globalProperties.$t = i18next.t;
         app.config.globalProperties.$cropText = cropText;
@@ -1780,15 +1839,19 @@ const createFyvue = () => {
         }
     };
     return {
-        install
+        install,
     };
 };
 const helpers = {
-    i18next: i18next.t, cropText, formatBytes, tailwindColors, jpZipcode,
-    head, pinia
+    i18next: i18next.t,
+    cropText,
+    formatBytes,
+    tailwindColors,
+    jpZipcode,
 };
 const helpersSSR = {
-    setupClient, handleSSR
+    setupClient,
+    handleSSR,
 };
 
 exports.components = components;

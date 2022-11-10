@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LinkIcon } from "@heroicons/vue/24/solid";
+import { LinkIcon } from '@heroicons/vue/24/solid';
 
 defineProps({
   id: {
@@ -8,57 +8,57 @@ defineProps({
   },
   showLabel: {
     type: Boolean,
-    default: true
+    default: true,
   },
   label: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   errors: {
     type: Array<Object>,
-    default: []
+    default: [],
   },
   type: {
     type: String,
     default: 'text',
-    required: true
+    required: true,
   },
   placeholder: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   autocomplete: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   checkboxTrueValue: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   checkboxFalseValue: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   req: {
     type: Boolean,
-    default: false
+    default: false,
   },
   help: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   linkIcon: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   value: {
     type: String,
     default: '',
-    required: true
-  }
-})
+    required: true,
+  },
+});
 const emit = defineEmits<{
-    (event: 'update:value', payload: string): void;
+  (event: 'update:value', payload: string): void;
 }>();
 </script>
 <template>
@@ -66,7 +66,7 @@ const emit = defineEmits<{
     <template v-if="showLabel && id && label">
       <label class="label-basic" :for="id">
         <input
-          v-if="type=='checkbox'"
+          v-if="type == 'checkbox'"
           type="checkbox"
           class="form-checkbox"
           :id="id"
@@ -77,11 +77,13 @@ const emit = defineEmits<{
 
         {{ label }}
 
-        <a class="link-icon" :href="linkIcon" target="_blank" v-if="linkIcon"><LinkIcon /></a>
+        <a class="link-icon" :href="linkIcon" target="_blank" v-if="linkIcon"
+          ><LinkIcon
+        /></a>
         <sup class="is-req" v-if="req">*</sup>
       </label>
     </template>
-    <div v-if="!['checkbox', 'radiobox'].includes(type)" class="input-box" >
+    <div v-if="!['checkbox', 'radiobox'].includes(type)" class="input-box">
       <slot name="before"></slot>
       <input
         v-if="['text', 'password', 'email'].includes(type)"
@@ -104,9 +106,9 @@ const emit = defineEmits<{
       <slot name="after"></slot>
     </div>
     <div class="help-text" v-if="help">
-        {{ help }}
+      {{ help }}
     </div>
-    <div v-if="errors.length > 0"  class="form-error-label">
+    <div v-if="errors.length > 0" class="form-error-label">
       <template v-for="err in errors" :key="err.key">
         {{ $t(err.key) }}
       </template>
@@ -129,8 +131,9 @@ const emit = defineEmits<{
     }
   }
   .input-basic {
-    &:focus, &:active {
-      @apply outline-0 outline-1 outline-fv-primary-500 ;
+    &:focus,
+    &:active {
+      @apply outline-0 outline-1 outline-fv-primary-500;
     }
     @apply w-full py-3 text-xs placeholder-fv-neutral-400 font-semibold leading-none border-0 outline-none;
     &.is-textarea {
@@ -150,16 +153,16 @@ const emit = defineEmits<{
     textarea {
       @apply px-2;
     }
-
   }
 
   .label-basic {
     @apply block uppercase tracking-wide whitespace-nowrap text-xs  font-bold mb-2 text-left pt-0 md:pt-3;
 
-    input[type=checkbox] {
+    input[type='checkbox'] {
       @apply -mt-1;
-      &:focus, &:active {
-        @apply outline-0 outline-1 outline-fv-primary-500 ;
+      &:focus,
+      &:active {
+        @apply outline-0 outline-1 outline-fv-primary-500;
       }
       &:checked {
         @apply outline-0 outline-1 outline-fv-primary-500  bg-fv-primary-500;
@@ -228,7 +231,6 @@ const emit = defineEmits<{
 
     .modal-container,
     .box {
-
       .input-box,
       .dp__input {
         @apply bg-fv-neutral-900 border-fv-neutral-700;

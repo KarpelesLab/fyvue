@@ -3,5 +3,5 @@ import { useFVStore } from '@karpeleslab/fyvue';
 const store = useFVStore();
 </script>
 <template>
-  <pre>{{store}}</pre>
+  <pre>{{ store }}</pre>
 </template>

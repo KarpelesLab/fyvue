@@ -4,12 +4,12 @@ export type UUID = string;
 export type URLString = string;
 export type UnknownYet = unknown;
 export interface TimeUnit {
-    unix: number;
-    us: number;
-    iso: string;
-    tz: 'UTC' | string; // add all possible values and remove | string
-    full: string;
-    unixms: string;
+  unix: number;
+  us: number;
+  iso: string;
+  tz: 'UTC' | string; // add all possible values and remove | string
+  full: string;
+  unixms: string;
 }
 // Users
 export interface UserAgreement {
@@ -31,13 +31,13 @@ export interface UserGroup {
 export interface MediaImage {
   Media_Image__: UUID;
   Url: URLString;
-  Variation?: UnknownYet
+  Variation?: UnknownYet;
 }
 export interface UserProfile {
   User_Profile__: UUID;
   Birthdate: string | '0000-00-00';
   Display_Name: string;
-  Gender: 'M' | 'F' | 'NB' | null
+  Gender: 'M' | 'F' | 'NB' | null;
   Birthdate_Visibility: 'hidden' | 'year_only' | 'month_day_only' | 'full';
   Allow_Mature_Content: 'Y' | 'N';
   Media_Image?: MediaImage;
@@ -55,54 +55,65 @@ export interface User {
   Profile: UserProfile;
   User_Profile__: UUID;
   User__: UUID;
-  Status: 'shadow' | 'valid' | 'sub' | 'banned' | 'delete_pending' | 'deleted' | 'validating' | 'compromised' | 'frozen' | 'expired' | 'purged';
+  Status:
+    | 'shadow'
+    | 'valid'
+    | 'sub'
+    | 'banned'
+    | 'delete_pending'
+    | 'deleted'
+    | 'validating'
+    | 'compromised'
+    | 'frozen'
+    | 'expired'
+    | 'purged';
 }
 export interface KLBPaging {
-  page_no: number
-  results_per_page: number
-  page_max: 1
-  page_max_relation: string
-  count: number
+  page_no: number;
+  results_per_page: number;
+  page_max: 1;
+  page_max_relation: string;
+  count: number;
 }
 export interface KLBApiResult {
-  result: 'redirect' | 'success' | 'error'
-  time: number
-  data: any
-  paging?: KLBPaging
+  result: 'redirect' | 'success' | 'error';
+  time: number;
+  data: any;
+  paging?: KLBPaging;
 }
 export interface KLBApiError {
-  token: string,
-  param?: string
+  token: string;
+  param?: string;
 }
 
 /* Fyvue */
 // User flow
 interface KLBFlowFieldButton {
-  'background-color': string,
-  logo: string,
+  'background-color': string;
+  logo: string;
 }
 interface KLBFlowField {
-  cat?: string
-  label?: string
-  type: string
-  name: string
-  button?: KLBFlowFieldButton
-  id?: InternalUUID
-  info?: any // too lazy
-  style?: string
-  link?: string
+  cat?: string;
+  label?: string;
+  type: string;
+  name: string;
+  button?: KLBFlowFieldButton;
+  id?: InternalUUID;
+  info?: any; // too lazy
+  style?: string;
+  link?: string;
 }
 export interface KLBFLowData {
-  fields: KLBFlowField[]
-  message?: string
-  req: string[]
-  session: string
-  complete: boolean
-  email: string|null
-  initial: boolean
-  url?: string
-  user?: User
+  fields: KLBFlowField[];
+  message?: string;
+  req: string[];
+  session: string;
+  complete: boolean;
+  email: string | null;
+  initial: boolean;
+  url?: string;
+  user?: User;
 }
 export interface KLBUserFlow extends KLBApiResult {
-  data: KLBFLowData
+  data: KLBFLowData;
 }

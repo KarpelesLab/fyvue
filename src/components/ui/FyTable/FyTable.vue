@@ -1,15 +1,17 @@
-
 <script setup lang="ts">
-import type { ObjectS2S, ObjectS2Any } from '../../../dts'
+import type { ObjectS2S, ObjectS2Any } from '../../../dts';
 
-withDefaults(defineProps<{
-  showHeaders?: boolean,
-  headers: ObjectS2S,
-  data?: Array<ObjectS2Any>
-}>(), {
-  showHeaders: true,
-  data: () => []
-})
+withDefaults(
+  defineProps<{
+    showHeaders?: boolean;
+    headers: ObjectS2S;
+    data?: Array<ObjectS2Any>;
+  }>(),
+  {
+    showHeaders: true,
+    data: () => [],
+  }
+);
 </script>
 <template>
   <div class="fy-table" v-if="data && data.length">
@@ -25,9 +27,11 @@ withDefaults(defineProps<{
         <tbody>
           <template v-for="(item, index) in data" :key="index">
             <tr>
-              <template v-for="(_, property) in headers" :key="`${property as string}`">
-                <td
-                >
+              <template
+                v-for="(_, property) in headers"
+                :key="`${property as string}`"
+              >
+                <td>
                   <slot
                     :name="`${property as string}_item`"
                     v-bind:data="{

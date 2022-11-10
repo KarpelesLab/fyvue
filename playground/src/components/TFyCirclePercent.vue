@@ -1,6 +1,6 @@
 <template>
-<div class="flex space-x-3">
-  <div class="w-32 p-2">
+  <div class="flex space-x-3">
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="60" color="red" />
     </div>
     <div class="w-32 p-2">
@@ -9,5 +9,5 @@
     <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
     </div>
-</div>
+  </div>
 </template>
