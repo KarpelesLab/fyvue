@@ -397,7 +397,7 @@ var script$8 = vue.defineComponent({
     __name: 'FyBreadcrumb',
     props: {
         nav: { type: Array, required: true, default: () => [] },
-        maxLength: { type: Number, required: false, default: 15 }
+        maxLength: { type: Number, required: false, default: 32 }
     },
     setup(__props) {
         return (_ctx, _cache) => {

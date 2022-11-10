@@ -162,7 +162,7 @@
   @apply py-0 mr-auto  font-semibold  uppercase;
 }
 .fy-breadcrumb ol {
-  @apply list-none p-0 inline-flex;
+  @apply list-none p-0 inline-flex flex-wrap;
 }
 .fy-breadcrumb ol li {
   @apply flex items-center pr-2 break-words;

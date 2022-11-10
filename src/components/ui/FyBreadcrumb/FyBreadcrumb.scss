@@ -1,7 +1,7 @@
 .fy-breadcrumb {
     @apply  py-0 mr-auto  font-semibold  uppercase;
     ol {
-      @apply list-none p-0 inline-flex;
+      @apply list-none p-0 inline-flex flex-wrap;
       li {
           @apply flex items-center pr-2 break-words;
 

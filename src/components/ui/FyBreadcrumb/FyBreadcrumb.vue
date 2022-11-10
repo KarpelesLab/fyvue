@@ -6,7 +6,7 @@ withDefaults(defineProps<{
   nav: FyVueBreadcrumb[],
   maxLength?: number
 }>(), {
-  maxLength: 15,
+  maxLength: 32,
   nav: () => []
 })
 
