@@ -972,9 +972,6 @@ var script$1 = defineComponent({
                 eventBus.emit(`${props.id}GoToPage`, page);
             });
         };
-        const getUuid = () => {
-            return Date.now().toString(36) + Math.random().toString(36).substring(2);
-        };
         onMounted(() => {
             const routePage = parseInt(getRoutePage());
             if (!isNaN(routePage) && props.items) {
@@ -1009,14 +1006,12 @@ var script$1 = defineComponent({
                                 ? (openBlock(), createElementBlock("span", _hoisted_4$1, " ... "))
                                 : createCommentVNode("v-if", true),
                             (openBlock(), createElementBlock(Fragment, null, renderList(2, (i) => {
-                                return (openBlock(), createElementBlock(Fragment, {
-                                    key: i + getUuid()
-                                }, [
+                                return (openBlock(), createElementBlock(Fragment, null, [
                                     (__props.items.page_no - (3 - i) >= 1)
                                         ? (openBlock(), createElementBlock("a", {
-                                            key: 0,
                                             class: "innactive",
                                             href: "javascript:void(0);",
+                                            key: `${i}-sm`,
                                             onClick: ($event) => (page(__props.items.page_no - (3 - i)))
                                         }, toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_5$1))
                                         : createCommentVNode("v-if", true)
@@ -1024,14 +1019,12 @@ var script$1 = defineComponent({
                             }), 64)),
                             createElementVNode("a", _hoisted_6$1, toDisplayString(__props.items.page_no), 1),
                             (openBlock(), createElementBlock(Fragment, null, renderList(2, (i) => {
-                                return (openBlock(), createElementBlock(Fragment, {
-                                    key: i + getUuid()
-                                }, [
+                                return (openBlock(), createElementBlock(Fragment, null, [
                                     (__props.items.page_no + i <= __props.items.page_max)
                                         ? (openBlock(), createElementBlock("a", {
-                                            key: 0,
                                             class: "innactive",
                                             href: "javascript:void(0);",
+                                            key: `${i}-md`,
                                             onClick: ($event) => (page(__props.items.page_no + i))
                                         }, toDisplayString(__props.items.page_no + i), 9, _hoisted_7$1))
                                         : createCommentVNode("v-if", true)
@@ -1483,6 +1476,12 @@ const formatBytes = (bytes, decimals = 2) => {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
+const jpZipcode = (zip) => {
+    let _zip = zip.toString();
+    if (_zip.length != 7)
+        return "";
+    return "〒" + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
+};
 
 async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
     const { app, router, head } = await createApp(true);
@@ -1533,7 +1532,7 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
 const components = { ...uiComponents, ...klbComponents };
 const head = createHead();
 const helpers = {
-    i18next: i18next.t, cropText, formatBytes, tailwindColors, head
+    i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
 };
 const createFyvue = () => {
     const install = (app, options) => {
@@ -1543,6 +1542,7 @@ const createFyvue = () => {
         app.config.globalProperties.$t = i18next.t;
         app.config.globalProperties.$cropText = cropText;
         app.config.globalProperties.$formatBytes = formatBytes;
+        app.config.globalProperties.$jpZipcode = jpZipcode;
         let k;
         for (k in uiComponents) {
             app.component(uiComponents[k].__name, uiComponents[k]);

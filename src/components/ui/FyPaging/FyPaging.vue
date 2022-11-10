@@ -51,9 +51,7 @@ const page = (page: number) => {
     eventBus.emit(`${props.id}GoToPage`, page)
   })
 }
-const getUuid = () => {
-  return Date.now().toString(36) + Math.random().toString(36).substring(2);
-}
+
 onMounted(() => {
   const routePage = parseInt(getRoutePage())
 
@@ -74,8 +72,8 @@ onMounted(() => {
           1
         </a>
         <span v-if="items.page_no - 2 > 2" class="dots"> ... </span>
-        <template v-for="i in 2" :key="i+getUuid()">
-          <a v-if="items.page_no - (3 - i) >= 1" class="innactive" href="javascript:void(0);"
+        <template v-for="i in 2" >
+          <a v-if="items.page_no - (3 - i) >= 1" class="innactive" href="javascript:void(0);" :key="`${i}-sm`"
             @click="page(items.page_no - (3 - i))">
             {{ items.page_no - (3 - i) }}
           </a>
@@ -83,8 +81,8 @@ onMounted(() => {
         <a href="#" aria-current="page" class="active">
           {{ items.page_no }}
         </a>
-        <template v-for="i in 2" :key="i+getUuid()">
-          <a v-if="items.page_no + i <= items.page_max" class="innactive" href="javascript:void(0);"
+        <template v-for="i in 2">
+          <a v-if="items.page_no + i <= items.page_max" class="innactive" href="javascript:void(0);" :key="`${i}-md`"
             @click="page(items.page_no + i)">
             {{ items.page_no + i }}
           </a>
@@ -103,11 +101,11 @@ onMounted(() => {
       </nav>
       <p class="paging-text">
         {{
-    $t("global_paging", {
-      start: items.results_per_page * (items.page_no - 1),
-      end: items.results_per_page * items.page_no,
-      total: items.count >= 10000 ? $t('paging_a_lot_of') : items.count,
-    })
+          $t("global_paging", {
+            start: items.results_per_page * (items.page_no - 1),
+            end: items.results_per_page * items.page_no,
+            total: items.count >= 10000 ? $t('paging_a_lot_of') : items.count,
+          })
         }}
       </p>
     </div>

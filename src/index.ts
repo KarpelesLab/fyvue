@@ -4,8 +4,8 @@ import { createPinia } from "pinia";
 import uiComponents from "./components/ui";
 import klbComponents from "./components/klb";
 
-import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise } from './utils/helpers';
-import { cropText, formatBytes, tailwindColors } from "./utils/display";
+import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise, } from './utils/helpers';
+import { cropText, formatBytes, tailwindColors, jpZipcode } from "./utils/display";
 import { handleSSR } from "./utils/ssr";
 import { useFVStore } from './utils/store'
 import type { FyvueOptions } from "./dts"
@@ -14,7 +14,7 @@ const components = {...uiComponents,...klbComponents};
 
 const head = createHead();
 const helpers = {
-  i18next: i18next.t, cropText, formatBytes, tailwindColors, head
+  i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
 }
 const createFyvue = () => {
   const install = (app: App, options?: FyvueOptions) => {
@@ -24,6 +24,7 @@ const createFyvue = () => {
     app.config.globalProperties.$t = i18next.t;
     app.config.globalProperties.$cropText = cropText;
     app.config.globalProperties.$formatBytes = formatBytes;
+    app.config.globalProperties.$jpZipcode = jpZipcode;
 
     let k: keyof typeof uiComponents;
     for (k in uiComponents) {

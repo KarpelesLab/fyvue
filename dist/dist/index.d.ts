@@ -46,6 +46,7 @@ declare const helpers: {
         };
     };
     head: import("@vueuse/head").HeadClient<{}>;
+    jpZipcode: (zip: string | number) => string;
 };
 declare const createFyvue: () => Plugin;
 export { createFyvue, useEventBus, useTranslation, useFVStore, i18nextPromise, components, helpers, handleSSR };

@@ -26,4 +26,5 @@ declare const tailwindColors: {
     };
 };
 declare const formatBytes: (bytes: number, decimals?: number) => string;
-export { cropText, formatBytes, tailwindColors };
+declare const jpZipcode: (zip: string | number) => string;
+export { cropText, formatBytes, tailwindColors, jpZipcode };

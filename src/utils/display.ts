@@ -44,8 +44,15 @@ const formatBytes = (bytes : number, decimals = 2) => {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 
+const jpZipcode = (zip: string|number) => {
+  let _zip = zip.toString();
+  if (_zip.length != 7) return "";
+  return "〒"+_zip.slice(0,3)+'-'+_zip.slice(3, _zip.length);
+}
+
 export {
   cropText,
   formatBytes,
-  tailwindColors
+  tailwindColors,
+  jpZipcode
 }
