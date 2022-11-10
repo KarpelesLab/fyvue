@@ -1485,7 +1485,7 @@ const jpZipcode = (zip) => {
 
 async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
     const { app, router, head } = await createApp(true);
-    const result = { uuid: getUuid(), initial: {} };
+    const result = { uuid: getUuid(), initial: { isSSRRendered: true } };
     const ctx = {};
     const url = `${getPath()}`;
     router.push(url);

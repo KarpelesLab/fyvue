@@ -17,7 +17,7 @@ type KlbSSR = {
 
 export async function handleSSR(createApp: Function, cb: Function, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
   const { app, router, head } = await createApp(true);
-  const result: KlbSSR = { uuid: getUuid(), initial: {} };
+  const result: KlbSSR = { uuid: getUuid(), initial: { isSSRRendered: true } };
   const ctx = {};
   const url = `${getPath()}`;
   router.push(url);
