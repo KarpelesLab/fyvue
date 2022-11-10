@@ -13,11 +13,11 @@ import type { FyvueOptions } from "./dts"
 const components = {...uiComponents,...klbComponents};
 
 const head = createHead();
-
+const pinia = createPinia()
 const createFyvue = () => {
   const install = (app: App, options?: FyvueOptions) => {
     app.use(head)
-    app.use(createPinia())
+    app.use(pinia)
     app.config.globalProperties.$eventBus = eventBus;
     app.config.globalProperties.$t = i18next.t;
     app.config.globalProperties.$cropText = cropText;
@@ -39,10 +39,11 @@ const createFyvue = () => {
 }
 
 const helpers = {
-  i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
+  i18next: i18next.t, cropText, formatBytes, tailwindColors, jpZipcode,
+  head, pinia
 }
 const helpersSSR = {
-  useHistory, setupClient, handleSSR
+  setupClient, handleSSR
 }
 
 export {
@@ -50,6 +51,7 @@ export {
   useEventBus,
   useTranslation,
   useFVStore,
+  useHistory,
   i18nextPromise,
   components,
   helpers,

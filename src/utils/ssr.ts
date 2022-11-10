@@ -49,16 +49,18 @@ export const useHistory = defineStore({
     setStatus(status: number) {
       this.status = status
     },
-    _setRouter(_router: HistoryState['_router']) {
-      ;(this._router as unknown as HistoryState['_router']) = _router
+    _setRouter(_router: Router | null) {
+      ;(this._router as unknown as Router | null) = _router
     },
     push(path: string, status = 302) {
       this.status = status
       this._router?.push(path)
+      if (status != 302) this.redirect = path
     },
     replace(path: string, status = 302) {
       this.status = status
       this._router?.replace(path)
+      if (status != 302) this.redirect = path
     },
     go(delta: number) {
       this._router?.go(delta)
@@ -81,14 +83,14 @@ export const setupClient = ({
 }) => {
   const initialState = getInitialState()
 
-  if (initialState.piniaState) pinia.state.value = initialState.piniaState;
+  if (initialState && initialState.piniaState) pinia.state.value = initialState.piniaState;
   useHistory(pinia)._setRouter(router)
 }
 
 export async function handleSSR(createApp: Function, cb: Function, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
   const { app, router, head, pinia } = await createApp(true);
   const url = `${getPath()}`;
-  router.push(url)
+  await router.push(url)
   await router.isReady()
 
   /*
@@ -112,15 +114,17 @@ export async function handleSSR(createApp: Function, cb: Function, options = { '
     result.statusCode = 307
     return cb(result);
   }
+
   const html = await renderToString(app, {});
   const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head)
+
 
   result.meta = headTags
   result.bodyAttributes = bodyAttrs
   result.htmlAttributes = htmlAttrs
   result.bodyTags = bodyTags
   result.app = html
-
+  console.log(`[SSR Debug] Checking status... ${serializeJavascript(pinia.state.value)}`)
   if (historyStore.status != 200) {
     if ([301, 302, 303, 307].includes(historyStore.status)) {
       if (historyStore.redirect) {

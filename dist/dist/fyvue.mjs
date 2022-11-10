@@ -778,7 +778,10 @@ var script$2 = defineComponent({
             if (inputRef.value)
                 inputRef.value.focus();
         };
-        expose({ focus });
+        const getInputRef = () => {
+            if (inputRef.value)
+                return inputRef.value;
+        };
         const model = computed({
             get: () => props.modelValue,
             set: items => {
@@ -791,6 +794,7 @@ var script$2 = defineComponent({
                 emit('update:checkboxValue', items);
             }
         });
+        expose({ focus, getInputRef });
         return (_ctx, _cache) => {
             return (openBlock(), createElementBlock("div", _hoisted_1$2, [
                 (__props.showLabel && __props.id && __props.label)
@@ -803,7 +807,8 @@ var script$2 = defineComponent({
                             ? withDirectives((openBlock(), createElementBlock("input", {
                                 key: 0,
                                 "aria-label": __props.label,
-                                ref: `inputRef`,
+                                ref_key: "inputRef",
+                                ref: inputRef,
                                 type: "checkbox",
                                 class: normalizeClass(["form-checkbox", { 'error-form': unref(checkErrors) }]),
                                 id: __props.id,
@@ -836,7 +841,8 @@ var script$2 = defineComponent({
                         (['text', 'password', 'email', 'search'].includes(__props.type))
                             ? withDirectives((openBlock(), createElementBlock("input", {
                                 key: 0,
-                                ref: `inputRef`,
+                                ref_key: "inputRef",
+                                ref: inputRef,
                                 "aria-label": __props.label,
                                 class: normalizeClass(["input-basic", { 'error-form': __props.error }]),
                                 placeholder: __props.placeholder,
@@ -852,7 +858,8 @@ var script$2 = defineComponent({
                             ? withDirectives((openBlock(), createElementBlock("textarea", {
                                 key: 1,
                                 "aria-label": __props.label,
-                                ref: `inputRef`,
+                                ref_key: "inputRef",
+                                ref: inputRef,
                                 class: normalizeClass(["input-basic is-textarea", { 'error-form': unref(checkErrors) }]),
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
@@ -866,7 +873,8 @@ var script$2 = defineComponent({
                             ? withDirectives((openBlock(), createElementBlock("select", {
                                 key: 2,
                                 "aria-label": __props.label,
-                                ref: `inputRef`,
+                                ref_key: "inputRef",
+                                ref: inputRef,
                                 id: __props.id,
                                 class: "input-basic",
                                 "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => (isRef(model) ? (model).value = $event : null))
@@ -1685,10 +1693,14 @@ const useHistory = defineStore({
         push(path, status = 302) {
             this.status = status;
             this._router?.push(path);
+            if (status != 302)
+                this.redirect = path;
         },
         replace(path, status = 302) {
             this.status = status;
             this._router?.replace(path);
+            if (status != 302)
+                this.redirect = path;
         },
         go(delta) {
             this._router?.go(delta);
@@ -1703,14 +1715,14 @@ const useHistory = defineStore({
 });
 const setupClient = ({ router, pinia, }) => {
     const initialState = getInitialState();
-    if (initialState.piniaState)
+    if (initialState && initialState.piniaState)
         pinia.state.value = initialState.piniaState;
     useHistory(pinia)._setRouter(router);
 };
 async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
     const { app, router, head, pinia } = await createApp(true);
     const url = `${getPath()}`;
-    router.push(url);
+    await router.push(url);
     await router.isReady();
     const result = { uuid: getUuid(), initial: { isSSRRendered: true, piniaState: serialize(null) } };
     const historyStore = useHistory(pinia);
@@ -1727,6 +1739,7 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
     result.htmlAttributes = htmlAttrs;
     result.bodyTags = bodyTags;
     result.app = html;
+    console.log(`[SSR Debug] Checking status... ${serialize(pinia.state.value)}`);
     if (historyStore.status != 200) {
         if ([301, 302, 303, 307].includes(historyStore.status)) {
             if (historyStore.redirect) {
@@ -1745,10 +1758,11 @@ async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound'
 
 const components = { ...uiComponents, ...klbComponents };
 const head = createHead();
+const pinia = createPinia();
 const createFyvue = () => {
     const install = (app, options) => {
         app.use(head);
-        app.use(createPinia());
+        app.use(pinia);
         app.config.globalProperties.$eventBus = eventBus;
         app.config.globalProperties.$t = i18next.t;
         app.config.globalProperties.$cropText = cropText;
@@ -1768,11 +1782,12 @@ const createFyvue = () => {
     };
 };
 const helpers = {
-    i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
+    i18next: i18next.t, cropText, formatBytes, tailwindColors, jpZipcode,
+    head, pinia
 };
 const helpersSSR = {
-    useHistory, setupClient, handleSSR
+    setupClient, handleSSR
 };
 
-export { components, createFyvue, helpers, helpersSSR, i18nextPromise, useEventBus, useFVStore, useTranslation };
+export { components, createFyvue, helpers, helpersSSR, i18nextPromise, useEventBus, useFVStore, useHistory, useTranslation };
 //# sourceMappingURL=fyvue.mjs.map
