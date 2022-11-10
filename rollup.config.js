@@ -55,16 +55,7 @@ export default [
       vue(),
       typescript({
         tsconfig: 'src/tsconfig.json',
-        tsconfigOverride: {
-          "compilerOptions": {
-            "noUnusedLocals": false,
-            "declaration": true,
-          },
-          include: [
-            "../typings/env.d.ts",
-            "../typings/components.d.ts",
-          ]
-        }
+
       }),
       copy({
         targets: [

@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "allowJs": false,
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -27,5 +27,6 @@
     "./**/*.vue",
     "../typings/env.d.ts",
     "../typings/components.d.ts",
+    "../node_modules/vue-router/dist/vue-router.d.ts"
   ],
 }

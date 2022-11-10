@@ -1,8 +1,15 @@
 import { renderToString } from "@vue/server-renderer";
 import { renderHeadToString } from "@vueuse/head";
-import { getPrefix, getUuid, getPath } from "@karpeleslab/klbfw";
+import { getUuid, getPath, getInitialState } from "@karpeleslab/klbfw";
+import type {
+  Router,
+} from 'vue-router'
+import { Pinia, defineStore } from 'pinia'
 
-type KlbSSR = {
+import serializeJavascript from "../lib/serialize-javascript.js"
+
+
+export interface KlbSSR {
   initial?: any
   uuid?: string
   meta?: string
@@ -14,60 +21,118 @@ type KlbSSR = {
   statusCode?: number,
   redirect?: string
 }
+/*
+interface AppContext {
+  pinia: Pinia
+  router: Router
+  query: LocationQuery
+  params: Record<string, string>
+}*/
+export type HistoryState = {
+  _router: Router | null
+  status: number,
+  redirect?: string
+}
+
+export const useHistory = defineStore({
+  id: "historyStore",
+  state: (): HistoryState =>
+  ({
+    _router: null,
+    status: 200,
+    redirect: undefined,
+  }),
+  getters: {
+    currentRoute: (state) => state._router!.currentRoute,
+  },
+  actions: {
+    setStatus(status: number) {
+      this.status = status
+    },
+    _setRouter(_router: HistoryState['_router']) {
+      ;(this._router as unknown as HistoryState['_router']) = _router
+    },
+    push(path: string, status = 302) {
+      this.status = status
+      this._router?.push(path)
+    },
+    replace(path: string, status = 302) {
+      this.status = status
+      this._router?.replace(path)
+    },
+    go(delta: number) {
+      this._router?.go(delta)
+    },
+    back() {
+      this._router?.go(-1)
+    },
+    forward() {
+      this._router?.go(1)
+    },
+  },
+})
+
+export const setupClient = ({
+  router,
+  pinia,
+}: {
+  pinia: Pinia
+  router: Router
+}) => {
+  const initialState = getInitialState()
+
+  if (initialState.piniaState) pinia.state.value = initialState.piniaState;
+  useHistory(pinia)._setRouter(router)
+}
 
 export async function handleSSR(createApp: Function, cb: Function, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
-  const { app, router, head } = await createApp(true);
-  const result: KlbSSR = { uuid: getUuid(), initial: { isSSRRendered: true } };
-  const ctx = {};
+  const { app, router, head, pinia } = await createApp(true);
   const url = `${getPath()}`;
-  router.push(url);
-  await router.isReady();
-  let appHtml = "";
-  try {
-    appHtml = await renderToString(app, ctx);
-  } catch (e) {
-    router.push(`${getPrefix()}${options.router404Route}`);
-    await router.isReady();
-    appHtml = await renderToString(app, ctx);
-    result.statusCode = 404;
-    result.app = appHtml;
-    return cb(result);
-  }
-  if (url != router.currentRoute.value.fullPath) {
-    /*
-    if (router.currentRoute.value.name == options.routerNotFound) {
-      router.push(`${getPrefix()}${options.router404Route}`);
-      await router.isReady();
-      appHtml = await renderToString(app, ctx);
-      result.statusCode = 404;
-      result.app = appHtml;
-      return cb(result);
-    } else {
+  router.push(url)
+  await router.isReady()
 
-    }
-    */
-    result.statusCode = 307;
+  /*
+  const _route = router.currentRoute.value
+  This will be usefull for middlewares, later, maybe...
+  const context: AppContext = {
+    pinia,
+    router,
+    query: _route.query,
+    params: _route.params as AppContext['params'],
+  }
+  */
+
+  const result: KlbSSR = { uuid: getUuid(), initial: { isSSRRendered: true, piniaState: serializeJavascript(null) } };
+
+  const historyStore = useHistory(pinia)
+  useHistory(pinia)._setRouter(router)
+
+  if (url !== historyStore.currentRoute.fullPath) {
     result.redirect = router.currentRoute.value.fullPath;
+    result.statusCode = 307
     return cb(result);
   }
-  //const preloadLinks = renderPreloadLinks(ctx.modules, {});
+  const html = await renderToString(app, {});
   const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head)
+
   result.meta = headTags
-  //result.link = preloadLinks
   result.bodyAttributes = bodyAttrs
   result.htmlAttributes = htmlAttrs
   result.bodyTags = bodyTags
-  result.app = appHtml
-  if (router.currentRoute.value.name == options.routerNotFound) result.statusCode = 404;
-  if (router.currentRoute.value.meta.statusCode && router.currentRoute.value.meta.statusCode != 200) {
-    if ([301, 302, 303, 307].includes(router.currentRoute.value.meta.statusCode)) {
-      if (router.currentRoute.value.meta.redirect) {
-        result.statusCode = router.currentRoute.value.meta.statusCode;
-        result.redirect = router.currentRoute.value.meta.redirect
+  result.app = html
+
+  if (historyStore.status != 200) {
+    if ([301, 302, 303, 307].includes(historyStore.status)) {
+      if (historyStore.redirect) {
+        result.statusCode = historyStore.status;
+        result.redirect = historyStore.redirect;
       }
     } else {
-      result.statusCode = router.currentRoute.value.meta.statusCode;
+      result.statusCode = historyStore.status;
     }
   }
+  useHistory(pinia)._setRouter(null)
+  result.initial.piniaState = serializeJavascript(pinia.state.value)
+
   return cb(result)
 }

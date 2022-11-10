@@ -2,7 +2,7 @@ import { renderHeadToString, createHead } from '@vueuse/head';
 import { defineStore, createPinia } from 'pinia';
 import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, reactive, withModifiers } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay } from '@headlessui/vue';
-import { getLocale, rest, getUuid, getPath, getPrefix } from '@karpeleslab/klbfw';
+import { getLocale, rest, getInitialState, getPath, getUuid } from '@karpeleslab/klbfw';
 import i18next from 'i18next';
 import { useRoute, useRouter } from 'vue-router';
 import useVuelidate from '@vuelidate/core';
@@ -1483,57 +1483,268 @@ const jpZipcode = (zip) => {
     return "〒" + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 
+var randomBytes = require('randombytes');
+var UID_LENGTH          = 16;
+var UID                 = generateUID();
+var PLACE_HOLDER_REGEXP = new RegExp('(\\\\)?"@__(F|R|D|M|S|A|U|I|B|L)-' + UID + '-(\\d+)__@"', 'g');
+var IS_NATIVE_CODE_REGEXP = /\{\s*\[native code\]\s*\}/g;
+var IS_PURE_FUNCTION = /function.*?\(/;
+var IS_ARROW_FUNCTION = /.*?=>.*?/;
+var UNSAFE_CHARS_REGEXP   = /[<>\/\u2028\u2029]/g;
+var RESERVED_SYMBOLS = ['*', 'async'];
+var ESCAPED_CHARS = {
+    '<'     : '\\u003C',
+    '>'     : '\\u003E',
+    '/'     : '\\u002F',
+    '\u2028': '\\u2028',
+    '\u2029': '\\u2029'
+};
+function escapeUnsafeChars(unsafeChar) {
+    return ESCAPED_CHARS[unsafeChar];
+}
+function generateUID() {
+    var bytes = randomBytes(UID_LENGTH);
+    var result = '';
+    for(var i=0; i<UID_LENGTH; ++i) {
+        result += bytes[i].toString(16);
+    }
+    return result;
+}
+function deleteFunctions(obj){
+    var functionKeys = [];
+    for (var key in obj) {
+        if (typeof obj[key] === "function") {
+            functionKeys.push(key);
+        }
+    }
+    for (var i = 0; i < functionKeys.length; i++) {
+        delete obj[functionKeys[i]];
+    }
+}
+function serialize(obj, options) {
+    options || (options = {});
+    if (typeof options === 'number' || typeof options === 'string') {
+        options = {space: options};
+    }
+    var functions = [];
+    var regexps   = [];
+    var dates     = [];
+    var maps      = [];
+    var sets      = [];
+    var arrays    = [];
+    var undefs    = [];
+    var infinities= [];
+    var bigInts = [];
+    var urls = [];
+    function replacer(key, value) {
+        if(options.ignoreFunction){
+            deleteFunctions(value);
+        }
+        if (!value && value !== undefined) {
+            return value;
+        }
+        var origValue = this[key];
+        var type = typeof origValue;
+        if (type === 'object') {
+            if(origValue instanceof RegExp) {
+                return '@__R-' + UID + '-' + (regexps.push(origValue) - 1) + '__@';
+            }
+            if(origValue instanceof Date) {
+                return '@__D-' + UID + '-' + (dates.push(origValue) - 1) + '__@';
+            }
+            if(origValue instanceof Map) {
+                return '@__M-' + UID + '-' + (maps.push(origValue) - 1) + '__@';
+            }
+            if(origValue instanceof Set) {
+                return '@__S-' + UID + '-' + (sets.push(origValue) - 1) + '__@';
+            }
+            if(origValue instanceof Array) {
+                var isSparse = origValue.filter(function(){return true}).length !== origValue.length;
+                if (isSparse) {
+                    return '@__A-' + UID + '-' + (arrays.push(origValue) - 1) + '__@';
+                }
+            }
+            if(origValue instanceof URL) {
+                return '@__L-' + UID + '-' + (urls.push(origValue) - 1) + '__@';
+            }
+        }
+        if (type === 'function') {
+            return '@__F-' + UID + '-' + (functions.push(origValue) - 1) + '__@';
+        }
+        if (type === 'undefined') {
+            return '@__U-' + UID + '-' + (undefs.push(origValue) - 1) + '__@';
+        }
+        if (type === 'number' && !isNaN(origValue) && !isFinite(origValue)) {
+            return '@__I-' + UID + '-' + (infinities.push(origValue) - 1) + '__@';
+        }
+        if (type === 'bigint') {
+            return '@__B-' + UID + '-' + (bigInts.push(origValue) - 1) + '__@';
+        }
+        return value;
+    }
+    function serializeFunc(fn) {
+      var serializedFn = fn.toString();
+      if (IS_NATIVE_CODE_REGEXP.test(serializedFn)) {
+          throw new TypeError('Serializing native function: ' + fn.name);
+      }
+      if(IS_PURE_FUNCTION.test(serializedFn)) {
+          return serializedFn;
+      }
+      if(IS_ARROW_FUNCTION.test(serializedFn)) {
+          return serializedFn;
+      }
+      var argsStartsAt = serializedFn.indexOf('(');
+      var def = serializedFn.substr(0, argsStartsAt)
+        .trim()
+        .split(' ')
+        .filter(function(val) { return val.length > 0 });
+      var nonReservedSymbols = def.filter(function(val) {
+        return RESERVED_SYMBOLS.indexOf(val) === -1
+      });
+      if(nonReservedSymbols.length > 0) {
+          return (def.indexOf('async') > -1 ? 'async ' : '') + 'function'
+            + (def.join('').indexOf('*') > -1 ? '*' : '')
+            + serializedFn.substr(argsStartsAt);
+      }
+      return serializedFn;
+    }
+    if (options.ignoreFunction && typeof obj === "function") {
+        obj = undefined;
+    }
+    if (obj === undefined) {
+        return String(obj);
+    }
+    var str;
+    if (options.isJSON && !options.space) {
+        str = JSON.stringify(obj);
+    } else {
+        str = JSON.stringify(obj, options.isJSON ? null : replacer, options.space);
+    }
+    if (typeof str !== 'string') {
+        return String(str);
+    }
+    if (options.unsafe !== true) {
+        str = str.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
+    }
+    if (functions.length === 0 && regexps.length === 0 && dates.length === 0 && maps.length === 0 && sets.length === 0 && arrays.length === 0 && undefs.length === 0 && infinities.length === 0 && bigInts.length === 0 && urls.length === 0) {
+        return str;
+    }
+    return str.replace(PLACE_HOLDER_REGEXP, function (match, backSlash, type, valueIndex) {
+        if (backSlash) {
+            return match;
+        }
+        if (type === 'D') {
+            return "new Date(\"" + dates[valueIndex].toISOString() + "\")";
+        }
+        if (type === 'R') {
+            return "new RegExp(" + serialize(regexps[valueIndex].source) + ", \"" + regexps[valueIndex].flags + "\")";
+        }
+        if (type === 'M') {
+            return "new Map(" + serialize(Array.from(maps[valueIndex].entries()), options) + ")";
+        }
+        if (type === 'S') {
+            return "new Set(" + serialize(Array.from(sets[valueIndex].values()), options) + ")";
+        }
+        if (type === 'A') {
+            return "Array.prototype.slice.call(" + serialize(Object.assign({ length: arrays[valueIndex].length }, arrays[valueIndex]), options) + ")";
+        }
+        if (type === 'U') {
+            return 'undefined'
+        }
+        if (type === 'I') {
+            return infinities[valueIndex];
+        }
+        if (type === 'B') {
+            return "BigInt(\"" + bigInts[valueIndex] + "\")";
+        }
+        if (type === 'L') {
+            return "new URL(\"" + urls[valueIndex].toString() + "\")";
+        }
+        var fn = functions[valueIndex];
+        return serializeFunc(fn);
+    });
+}
+
+const useHistory = defineStore({
+    id: "historyStore",
+    state: () => ({
+        _router: null,
+        status: 200,
+        redirect: undefined,
+    }),
+    getters: {
+        currentRoute: (state) => state._router.currentRoute,
+    },
+    actions: {
+        setStatus(status) {
+            this.status = status;
+        },
+        _setRouter(_router) {
+            this._router = _router;
+        },
+        push(path, status = 302) {
+            this.status = status;
+            this._router?.push(path);
+        },
+        replace(path, status = 302) {
+            this.status = status;
+            this._router?.replace(path);
+        },
+        go(delta) {
+            this._router?.go(delta);
+        },
+        back() {
+            this._router?.go(-1);
+        },
+        forward() {
+            this._router?.go(1);
+        },
+    },
+});
+const setupClient = ({ router, pinia, }) => {
+    const initialState = getInitialState();
+    if (initialState.piniaState)
+        pinia.state.value = initialState.piniaState;
+    useHistory(pinia)._setRouter(router);
+};
 async function handleSSR(createApp, cb, options = { 'routerNotFound': 'NotFound', 'router404Route': '/404' }) {
-    const { app, router, head } = await createApp(true);
-    const result = { uuid: getUuid(), initial: { isSSRRendered: true } };
-    const ctx = {};
+    const { app, router, head, pinia } = await createApp(true);
     const url = `${getPath()}`;
     router.push(url);
     await router.isReady();
-    let appHtml = "";
-    try {
-        appHtml = await renderToString(app, ctx);
-    }
-    catch (e) {
-        router.push(`${getPrefix()}${options.router404Route}`);
-        await router.isReady();
-        appHtml = await renderToString(app, ctx);
-        result.statusCode = 404;
-        result.app = appHtml;
-        return cb(result);
-    }
-    if (url != router.currentRoute.value.fullPath) {
-        result.statusCode = 307;
+    const result = { uuid: getUuid(), initial: { isSSRRendered: true, piniaState: serialize(null) } };
+    const historyStore = useHistory(pinia);
+    useHistory(pinia)._setRouter(router);
+    if (url !== historyStore.currentRoute.fullPath) {
         result.redirect = router.currentRoute.value.fullPath;
+        result.statusCode = 307;
         return cb(result);
     }
+    const html = await renderToString(app, {});
     const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head);
     result.meta = headTags;
     result.bodyAttributes = bodyAttrs;
     result.htmlAttributes = htmlAttrs;
     result.bodyTags = bodyTags;
-    result.app = appHtml;
-    if (router.currentRoute.value.name == options.routerNotFound)
-        result.statusCode = 404;
-    if (router.currentRoute.value.meta.statusCode && router.currentRoute.value.meta.statusCode != 200) {
-        if ([301, 302, 303, 307].includes(router.currentRoute.value.meta.statusCode)) {
-            if (router.currentRoute.value.meta.redirect) {
-                result.statusCode = router.currentRoute.value.meta.statusCode;
-                result.redirect = router.currentRoute.value.meta.redirect;
+    result.app = html;
+    if (historyStore.status != 200) {
+        if ([301, 302, 303, 307].includes(historyStore.status)) {
+            if (historyStore.redirect) {
+                result.statusCode = historyStore.status;
+                result.redirect = historyStore.redirect;
             }
         }
         else {
-            result.statusCode = router.currentRoute.value.meta.statusCode;
+            result.statusCode = historyStore.status;
         }
     }
+    useHistory(pinia)._setRouter(null);
+    result.initial.piniaState = serialize(pinia.state.value);
     return cb(result);
 }
 
 const components = { ...uiComponents, ...klbComponents };
 const head = createHead();
-const helpers = {
-    i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
-};
 const createFyvue = () => {
     const install = (app, options) => {
         app.use(head);
@@ -1556,6 +1767,12 @@ const createFyvue = () => {
         install
     };
 };
+const helpers = {
+    i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
+};
+const helpersSSR = {
+    useHistory, setupClient, handleSSR
+};
 
-export { components, createFyvue, handleSSR, helpers, i18nextPromise, useEventBus, useFVStore, useTranslation };
+export { components, createFyvue, helpers, helpersSSR, i18nextPromise, useEventBus, useFVStore, useTranslation };
 //# sourceMappingURL=fyvue.mjs.map

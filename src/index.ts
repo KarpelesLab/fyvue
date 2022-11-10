@@ -6,16 +6,14 @@ import klbComponents from "./components/klb";
 
 import { eventBus, useEventBus, useTranslation, i18next, i18nextPromise, } from './utils/helpers';
 import { cropText, formatBytes, tailwindColors, jpZipcode } from "./utils/display";
-import { handleSSR } from "./utils/ssr";
+import { handleSSR, setupClient, useHistory } from "./utils/ssr";
 import { useFVStore } from './utils/store'
 import type { FyvueOptions } from "./dts"
 
 const components = {...uiComponents,...klbComponents};
 
 const head = createHead();
-const helpers = {
-  i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
-}
+
 const createFyvue = () => {
   const install = (app: App, options?: FyvueOptions) => {
     app.use(head)
@@ -40,6 +38,13 @@ const createFyvue = () => {
   }
 }
 
+const helpers = {
+  i18next: i18next.t, cropText, formatBytes, tailwindColors, head, jpZipcode
+}
+const helpersSSR = {
+  useHistory, setupClient, handleSSR
+}
+
 export {
   createFyvue,
   useEventBus,
@@ -48,5 +53,5 @@ export {
   i18nextPromise,
   components,
   helpers,
-  handleSSR
+  helpersSSR
 }
