@@ -1483,7 +1483,6 @@ const jpZipcode = (zip) => {
     return "〒" + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 
-var randomBytes = require('randombytes');
 var UID_LENGTH          = 16;
 var UID                 = generateUID();
 var PLACE_HOLDER_REGEXP = new RegExp('(\\\\)?"@__(F|R|D|M|S|A|U|I|B|L)-' + UID + '-(\\d+)__@"', 'g');
@@ -1503,7 +1502,8 @@ function escapeUnsafeChars(unsafeChar) {
     return ESCAPED_CHARS[unsafeChar];
 }
 function generateUID() {
-    var bytes = randomBytes(UID_LENGTH);
+    var bytes = new Uint8Array(UID_LENGTH);
+    crypto.getRandomValues(bytes);
     var result = '';
     for(var i=0; i<UID_LENGTH; ++i) {
         result += bytes[i].toString(16);
