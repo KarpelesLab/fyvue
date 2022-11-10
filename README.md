@@ -11,4 +11,4 @@
   </a>
   <br />
 </p>
-<p align="center">Vue lib for KLB systems<br /> <a href="https://karpeleslab.github.io/fyvue/">Get Started!</a> </p>
+<p align="center">Vue lib for KLB systems<br /> <a href="https://karpeleslab.github.io/fyvue/">Get Started!</a> (use alpha) </p>
