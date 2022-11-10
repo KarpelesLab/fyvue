@@ -52,15 +52,15 @@ export const createApp = async (isSSR = false) => {
     const fyvue = createFyvue();
     const app = isSSR ? createSSRApp(App) : createRegularApp(App);
     const router = createRouter({
-        history: isSSR
+        history: import.meta.env.SSR
           ? createMemoryHistory(getPrefix())
           : createWebHistory(getPrefix()),
         routes,
       });
-
+      
     app.use(router);
     app.use(fyvue);
-
+    
     return { app, router, head: helpers.head };
 }
 ```
@@ -68,7 +68,14 @@ export const createApp = async (isSSR = false) => {
 Create a ```entry-client.js``` in ```src/```
 ```js
 import { createApp } from "./main.ts";
-createApp(import.meta.env.SSR).then(({ app, router }) => {
+import { getInitialState } from "@karpeleslab/klbfw";
+
+const isSSRRendered = () => {
+  const state = getInitialState()
+  return !!(state && state.isSSRRendered == true)
+}
+
+createApp(isSSRRendered()).then(({ app, router }) => {  
   router.isReady().then(() => {
     app.mount("#app");
   });
@@ -81,7 +88,11 @@ import { handleSSR } from "@karpeleslab/fyvue";
 import { createApp } from "./main.ts";
 
 export async function render(cb) {
-  await handleSSR(createApp, cb);
+  await handleSSR(createApp, cb, { 
+    'routerNotFound': 'notFound', // <- 404 router route name
+    'router404Route': '/404' // <- Default 404 path
+    }
+  );
 }
 ```
 
