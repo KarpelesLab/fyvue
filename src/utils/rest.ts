@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { rest as _rest, getMode } from '@karpeleslab/klbfw';
 import { KLBApiResult } from '../dts/klb';
+import { ErrorCodes } from 'vue';
 
 type RequestResult = {
   [key: number]: KLBApiResult;
@@ -58,26 +59,22 @@ export const rest = async (
   }
 
   return new Promise((resolve) => {
-    let _result: KLBApiResult | undefined = undefined;
     _rest(url, method, params, ctx)
       .then((restResult: KLBApiResult | undefined) => {
         if (restResult?.result == 'success') {
-          _result = restResult;
-          resolve(_result);
+          resolve(restResult);
           if (getMode() == 'ssr') restState.addResult(requestHash, restResult);
         } else {
           if (restResult) {
-            _result = restResult;
-            resolve(_result);
+            resolve(restResult);
             if (getMode() == 'ssr')
               restState.addResult(requestHash, restResult);
           }
         }
       })
       .catch((err: KLBApiResult) => {
-        _result = err;
-        resolve(_result);
-        restState.addResult(requestHash, err);
+        resolve(err);
+        if (getMode() == 'ssr') restState.addResult(requestHash, err);
       });
   });
 };
