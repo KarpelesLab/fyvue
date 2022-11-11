@@ -77,13 +77,14 @@ export interface KLBPaging {
 }
 export interface KLBApiResult {
   result: 'redirect' | 'success' | 'error';
-  time: number;
-  data: any;
-  paging?: KLBPaging;
-}
-export interface KLBApiError {
-  token: string;
   param?: string;
+  code?: number;
+  error?: string;
+  request?: UUID;
+  time?: number;
+  token?: string;
+  data?: any;
+  paging?: KLBPaging;
 }
 
 /* Fyvue */

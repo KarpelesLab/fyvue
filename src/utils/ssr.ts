@@ -71,17 +71,19 @@ export const useHistory = defineStore({
   },
 });
 
-export const setupClient = ({
-  router,
-  pinia,
-}: {
-  pinia: Pinia;
-  router: Router;
-}) => {
+export const isSSRRendered = () => {
+  const state = getInitialState();
+  return !!(state && state.isSSRRendered == true);
+};
+
+export const setupClient = (router: Router, pinia: Pinia) => {
   const initialState = getInitialState();
 
-  if (initialState && initialState.piniaState)
-    pinia.state.value = initialState.piniaState;
+  if (isSSRRendered()) {
+    if (initialState && initialState.piniaState) {
+      pinia.state.value = JSON.parse(initialState.piniaState);
+    }
+  }
   useHistory(pinia)._setRouter(router);
 };
 
@@ -101,7 +103,7 @@ export async function handleSSR(
     uuid: getUuid(),
     initial: {
       isSSRRendered: true,
-      piniaState: devalue(null),
+      piniaState: null,
     },
   };
 
@@ -134,7 +136,7 @@ export async function handleSSR(
     }
   }
   useHistory(pinia)._setRouter(null);
-  result.initial.piniaState = devalue(pinia.state.value);
+  result.initial.piniaState = JSON.stringify(pinia.state.value);
 
   return cb(result);
 }

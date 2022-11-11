@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { rest } from '@karpeleslab/klbfw';
-import type { KLBApiError, KLBApiResult, User } from '../dts/klb';
+import type { KLBApiResult, User } from '../dts/klb';
 
 export type RootState = {
   user: User | null;
@@ -19,7 +19,7 @@ export const useFVStore = defineStore({
   actions: {
     async refreshUser() {
       const apiData: KLBApiResult = await rest('User:get', 'GET').catch(
-        (err: KLBApiError) => {}
+        (err: KLBApiResult) => {}
       ); // @todo
       if (apiData.result == 'success' && apiData.data != null) {
         this.user = apiData.data as User;
@@ -29,7 +29,7 @@ export const useFVStore = defineStore({
     },
     async logout() {
       const apiData: KLBApiResult = await rest('User:logout', 'Post').catch(
-        (err: KLBApiError) => {}
+        (err: KLBApiResult) => {}
       ); // @todo
 
       if (apiData.result == 'success') {

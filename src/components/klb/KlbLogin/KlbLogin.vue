@@ -6,7 +6,7 @@ import { required } from '@vuelidate/validators';
 import FyInput from '../../ui/FyInput/FyInput.vue';
 import { useEventBus } from '../../../utils/helpers';
 import { useRoute, useRouter } from 'vue-router';
-import type { KLBUserFlow, KLBFlowField, KLBApiError } from '../../../dts/klb';
+import type { KLBUserFlow, KLBFlowField, KLBApiResult } from '../../../dts/klb';
 import type { ObjectS2Any } from '../../../dts';
 import { useFVStore } from '../../../utils/store';
 
@@ -37,14 +37,14 @@ const router = useRouter();
 const eventBus = useEventBus();
 const returnTo = ref<string>(props.returnDefault);
 const responseMessage = ref<string | null>(null);
-const responseError = ref<KLBApiError>();
+const responseError = ref<KLBApiResult>();
 const responseReq = ref<string[]>([]);
 const responseFields = ref<Array<KLBFlowField>>([]);
 const response = ref<KLBUserFlow>();
 const hasOauth = ref<boolean>(false);
 const fieldsError = ref<ObjectS2Any>({});
 const pwdRecoverMailSent = ref<boolean>(false);
-const pwdRecoverError = ref<KLBApiError>();
+const pwdRecoverError = ref<KLBApiResult>();
 const inputs = ref<InstanceType<typeof FyInput>[]>([]);
 
 const formData = ref<ObjectS2Any>({
@@ -57,7 +57,7 @@ const forgotPassword = async () => {
   if (await v$.value.$validate()) {
     const data = await rest('User:forgot_password', 'POST', {
       login: state.userEmail,
-    }).catch((err: KLBApiError) => {
+    }).catch((err: KLBApiResult) => {
       pwdRecoverError.value = err;
     });
 
@@ -106,7 +106,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
 
   formData.value.return_to = returnTo.value;
   response.value = await rest('User:flow', 'POST', formData.value).catch(
-    (err: KLBApiError) => {
+    (err: KLBApiResult) => {
       responseError.value = err;
       if (responseError.value.param) {
         fieldsError.value[responseError.value.param] =
@@ -227,7 +227,10 @@ onMounted(async () => {
               </a>
             </template>
           </div>
-          <div class="response-error" v-if="responseError">
+          <div
+            class="response-error"
+            v-if="responseError && responseError.token"
+          >
             {{ $t(responseError.token) }}
           </div>
           <div v-if="responseReq.includes('password') && 0" class="reset-pwd">
@@ -260,7 +263,10 @@ onMounted(async () => {
           type="email"
           :label="$t('recover_pwd_email_label')"
         ></FyInput>
-        <div class="response-error" v-if="pwdRecoverError">
+        <div
+          class="response-error"
+          v-if="pwdRecoverError && pwdRecoverError.token"
+        >
           {{ $t(pwdRecoverError.token) }}
         </div>
         <a

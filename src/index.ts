@@ -14,8 +14,9 @@ import {
   tailwindColors,
   jpZipcode,
 } from './utils/display';
-import { handleSSR, setupClient, useHistory } from './utils/ssr';
+import { handleSSR, setupClient, useHistory, isSSRRendered } from './utils/ssr';
 import { useFVStore } from './utils/store';
+import { rest } from './utils/rest';
 import type { FyvueOptions } from './dts';
 
 const components = { ...uiComponents, ...klbComponents };
@@ -52,6 +53,7 @@ const helpers = {
 const helpersSSR = {
   setupClient,
   handleSSR,
+  isSSRRendered,
 };
 
 export {
@@ -64,4 +66,5 @@ export {
   components,
   helpers,
   helpersSSR,
+  rest,
 };

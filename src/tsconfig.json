@@ -13,6 +13,7 @@
     "noUnusedLocals": false,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "types": ["vite/client"],
     "esModuleInterop": true,
     "removeComments": true,
     "paths": {
