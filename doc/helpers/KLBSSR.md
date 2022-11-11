@@ -46,9 +46,14 @@ import {
     createMemoryHistory,
 } from "vue-router";
 import { getPrefix } from "@karpeleslab/klbfw";
+import { createHead } from "@vueuse/head"
+import { createPinia } from 'pinia'
 // < Import routes, styles, App, plugins etc...
 
 export const createApp = async (isSSR = false) => {
+    const head = createHead()
+    const pinia = createPinia()
+
     const fyvue = createFyvue();
     const app = isSSR ? createSSRApp(App) : createRegularApp(App);
     const router = createRouter({
@@ -57,26 +62,24 @@ export const createApp = async (isSSR = false) => {
           : createWebHistory(getPrefix()),
         routes,
       });
-      
+
     app.use(router);
+    app.use(head);
+    app.use(pinia)
     app.use(fyvue);
-    
-    return { app, router, head: helpers.head };
+    return { app, router, head, pinia };
 }
+
 ```
 
 Create a ```entry-client.js``` in ```src/```
 ```js
-import { createApp } from "./main.ts";
-import { getInitialState } from "@karpeleslab/klbfw";
+import { createApp } from "./main";
+import { helpersSSR } from "@karpeleslab/fyvue";
 
-const isSSRRendered = () => {
-  const state = getInitialState()
-  return !!(state && state.isSSRRendered == true)
-}
-
-createApp(isSSRRendered()).then(({ app, router }) => {  
+createApp(helpersSSR.isSSRRendered()).then(({ app, router, pinia }) => {
   router.isReady().then(() => {
+    helpersSSR.setupClient(router, pinia)
     app.mount("#app");
   });
 });
@@ -84,13 +87,13 @@ createApp(isSSRRendered()).then(({ app, router }) => {
 
 Create a ```entry-server.js``` in ```src/```
 ```js
-import { handleSSR } from "@karpeleslab/fyvue";
-import { createApp } from "./main.ts";
+import { helpersSSR } from "@karpeleslab/fyvue";
+import { createApp } from "./main";
 
 export async function render(cb) {
-  await handleSSR(createApp, cb, { 
-    'routerNotFound': 'notFound', // <- 404 router route name
-    'router404Route': '/404' // <- Default 404 path
+  await helpersSSR.handleSSR(createApp, cb, {
+    'routerNotFound': 'notFound',
+    'router404Route': '/404'
     }
   );
 }
