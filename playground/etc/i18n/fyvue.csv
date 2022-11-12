@@ -49,4 +49,12 @@
 "add_payment_method_cta","Add a payment method",,,"KlbUpdatePaymentMethod component"
 "payment_method_label","Credit Card Information",,,"KlbUpdatePaymentMethod component"
 "cancel_save_payment_method","Cancel",,,"KlbUpdatePaymentMethod component"
-
+"billing_location_firstname_placeholder","Firstname",,,"KlbUpdatePaymentMethod component"
+"billing_location_firstname_label","Firstname",,,"KlbUpdatePaymentMethod component"
+"billing_location_lastname_placeholder","Lastname",,,"KlbUpdatePaymentMethod component"
+"billing_location_lastname_label","Lastname",,,"KlbUpdatePaymentMethod component"
+"billing_location_zip_placeholder","Zipcode",,,"KlbUpdatePaymentMethod component"
+"billing_location_zip_label","Zipcode",,,"KlbUpdatePaymentMethod component"
+"billing_location_country_label","Country",,,"KlbUpdatePaymentMethod component"
+"save_billing_location","Save",,,"KlbUpdatePaymentMethod component"
+"no_billing_location_yet","No billing location.",,,"KlbUpdatePaymentMethod component"

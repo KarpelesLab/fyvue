@@ -20,11 +20,14 @@ declare module "vue" {
     KlbDeleteAccount: typeof import("../src")["components"]["KlbDeleteAccount"];
     KlbBillingHistory: typeof import("../src")["components"]["KlbBillingHistory"];
     KlbUpdatePaymentMethod: typeof import("../src")["components"]["KlbUpdatePaymentMethod"];
+    KlbUpdateBillingLocation: typeof import("../src")["components"]["KlbUpdateBillingLocation"];
   }
   interface ComponentCustomProperties {
     $t: typeof import("i18next").t;
     $eventBus: typeof import("../src/")["eventBus"];
     $cropText: typeof import("../src")["helpers"]["cropText"];
-    $formatBytes: typeof import("../src")["helpers"]["formatBytes"]
+    $formatBytes: typeof import("../src")["helpers"]["formatBytes"];
+    $countries: typeof import("../src")["helpers"]["countries"];
+
   }
 }

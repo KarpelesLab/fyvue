@@ -134,7 +134,7 @@ interface KlbBillingHistory {
 
 }
 export interface KlbApiResultArray extends KlbApiResultBase {
-  data: Array<any>
+  data: []
 }
 
 export interface KlbBillingHistoryResult extends KlbApiResultBase {
@@ -143,7 +143,10 @@ export interface KlbBillingHistoryResult extends KlbApiResultBase {
 export  interface KlbUserLocation {
   Display_Name: string,
   First_Name: string,
-  Last_Name: string
+  Last_Name: string,
+  User_Location__: UUID,
+  Country__: UUID
+  Zip: string
 }
 export interface KlbUserLocationResult extends KlbApiResultBase {
   data: KlbUserLocation
@@ -165,4 +168,12 @@ export  interface KlbUserBilling {
 }
 export interface KlbUserBillingResult extends KlbApiResultBase {
   data: Array<KlbUserBilling>
+}
+
+export interface KlbCountry {
+  Country__: UUID;
+  Name: string;
+}
+export interface KlbCountriesResult extends KlbApiResultBase {
+  data: Array<KlbCountry>
 }

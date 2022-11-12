@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { i18nextPromise } from '@karpeleslab/fyvue';
+import { i18nextPromise, countriesPromise } from '@karpeleslab/fyvue';
+import { count } from 'console';
 await i18nextPromise;
+await countriesPromise();
 </script>
 
 <template>

@@ -5,8 +5,11 @@ import {
   eventBus,
   useEventBus,
   useTranslation,
+  useCountries,
   i18next,
   i18nextPromise,
+  countriesPromise,
+  countries
 } from './utils/helpers';
 import {
   cropText,
@@ -28,6 +31,7 @@ const createFyvue = () => {
     app.config.globalProperties.$cropText = cropText;
     app.config.globalProperties.$formatBytes = formatBytes;
     app.config.globalProperties.$jpZipcode = jpZipcode;
+    app.config.globalProperties.$countries = countries;
 
     let k: keyof typeof uiComponents;
     for (k in uiComponents) {
@@ -62,7 +66,9 @@ export {
   useTranslation,
   useFVStore,
   useHistory,
+  useCountries,
   i18nextPromise,
+  countriesPromise,
   components,
   helpers,
   helpersSSR,

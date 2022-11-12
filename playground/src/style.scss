@@ -13,6 +13,10 @@
     @apply flex container mx-auto;
     nav {
       @apply w-36 pr-0  pt-4 flex flex-col items-center justify-start border-r ;
+      .router-link-exact-active {
+        @apply font-bold;
+      }
+
     }
     main {
       @apply flex-grow;

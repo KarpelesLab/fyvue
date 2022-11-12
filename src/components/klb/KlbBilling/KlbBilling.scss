@@ -22,3 +22,9 @@
     @apply mt-2;
   }
 }
+.klb-update-billing-loc {
+  @apply border border-fv-neutral-200 bg-fv-primary-50 p-2;
+  .form-grid {
+    @apply grid grid-cols-2 gap-2;
+  }
+}
