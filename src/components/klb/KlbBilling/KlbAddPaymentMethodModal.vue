@@ -126,7 +126,11 @@ useHead({
 </script>
 <template>
   <div v-if="isAuth">
-    <FyModal id="AddPaymentMethod" :title="$t('add_pm_modal_title')">
+    <FyModal
+      id="AddPaymentMethod"
+      :title="$t('add_pm_modal_title')"
+      class="klb-add-method"
+    >
       <FyLoader id="modal-add-pm" size="6" :showLoadingText="false" />
       <form @submit.prevent="submitBillingCreate">
         <FyInput
@@ -139,7 +143,7 @@ useHead({
           :label="$t('add_pm_label_label')"
           type="text"
         ></FyInput>
-        <div class="grid grid-cols-2 gap-2">
+        <div class="form-grid">
           <FyInput
             id="billingFirstname"
             :req="true"
@@ -171,28 +175,24 @@ useHead({
             type="text"
           ></FyInput>
           <div class="input-group">
-            <div class="mr-4 w-16">
-              <label class="label-basic" for="typeDef"
-                >{{ $t('add_pm_country_label') }}
-              </label>
-            </div>
-            <div class="flex-1">
-              <div class="input-box">
-                <select class="input-basic" v-model="state.country">
-                  <option
-                    :value="country.Country__"
-                    v-for="country in $countries.countries"
-                    v-bind:key="country.Country__"
-                  >
-                    {{ country.Name }}
-                  </option>
-                </select>
-              </div>
+            <label class="label-basic" for="typeDef"
+              >{{ $t('add_pm_country_label') }}
+            </label>
+            <div class="input-box">
+              <select class="input-basic" v-model="state.country">
+                <option
+                  :value="country.Country__"
+                  v-for="country in $countries.countries"
+                  v-bind:key="country.Country__"
+                >
+                  {{ country.Name }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
         <div class="input-group">
-          <label class="label-basic" for="typeDef"
+          <label class="label-basic" for="theCard"
             >{{ $t('payment_method_label') }}
           </label>
           <div class="input-box">
@@ -202,12 +202,11 @@ useHead({
         <div v-if="errorMessage" class="response-error">
           {{ errorMessage }}
         </div>
-        <button
-          class="block text-lg font-extrabold mx-auto p-2 mt-4 btn primary"
-          type="submit"
-        >
-          {{ $t('create_billing_profile') }}
-        </button>
+        <div class="btn-center">
+          <button class="btn primary btn-defaults" type="submit">
+            {{ $t('create_billing_profile') }}
+          </button>
+        </div>
       </form>
     </FyModal>
   </div>

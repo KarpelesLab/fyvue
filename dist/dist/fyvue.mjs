@@ -963,7 +963,7 @@ const _hoisted_11$4 = {
     key: 2,
     class: "help-text"
 };
-const _hoisted_12$3 = {
+const _hoisted_12$2 = {
     key: 3,
     class: "form-error-label"
 };
@@ -1125,7 +1125,7 @@ var script$9 = defineComponent({
                     ? (openBlock(), createElementBlock("div", _hoisted_11$4, toDisplayString(__props.help), 1))
                     : createCommentVNode("v-if", true),
                 (unref(checkErrors))
-                    ? (openBlock(), createElementBlock("div", _hoisted_12$3, toDisplayString(unref(checkErrors)), 1))
+                    ? (openBlock(), createElementBlock("div", _hoisted_12$2, toDisplayString(unref(checkErrors)), 1))
                     : createCommentVNode("v-if", true)
             ]));
         };
@@ -2103,28 +2103,27 @@ script$3.__file = "src/components/klb/KlbBilling/KlbBillingHistory.vue";
 
 const _hoisted_1$2 = { key: 0 };
 const _hoisted_2$2 = ["onSubmit"];
-const _hoisted_3$2 = { class: "grid grid-cols-2 gap-2" };
+const _hoisted_3$2 = { class: "form-grid" };
 const _hoisted_4$2 = { class: "input-group" };
-const _hoisted_5$2 = { class: "mr-4 w-16" };
-const _hoisted_6$2 = {
+const _hoisted_5$2 = {
     class: "label-basic",
     for: "typeDef"
 };
-const _hoisted_7$2 = { class: "flex-1" };
-const _hoisted_8$2 = { class: "input-box" };
-const _hoisted_9$2 = ["value"];
-const _hoisted_10$2 = { class: "input-group" };
+const _hoisted_6$2 = { class: "input-box" };
+const _hoisted_7$2 = ["value"];
+const _hoisted_8$2 = { class: "input-group" };
+const _hoisted_9$2 = {
+    class: "label-basic",
+    for: "theCard"
+};
+const _hoisted_10$2 = { class: "input-box" };
 const _hoisted_11$2 = {
-    class: "label-basic",
-    for: "typeDef"
-};
-const _hoisted_12$2 = { class: "input-box" };
-const _hoisted_13$1 = {
     key: 0,
     class: "response-error"
 };
-const _hoisted_14$1 = {
-    class: "block text-lg font-extrabold mx-auto p-2 mt-4 btn primary",
+const _hoisted_12$1 = { class: "btn-center" };
+const _hoisted_13$1 = {
+    class: "btn primary btn-defaults",
     type: "submit"
 };
 var script$2 = defineComponent({
@@ -2236,7 +2235,8 @@ var script$2 = defineComponent({
                 ? (openBlock(), createElementBlock("div", _hoisted_1$2, [
                     createVNode(script$i, {
                         id: "AddPaymentMethod",
-                        title: _ctx.$t('add_pm_modal_title')
+                        title: _ctx.$t('add_pm_modal_title'),
+                        class: "klb-add-method"
                     }, {
                         default: withCtx(() => [
                             createVNode(_component_FyLoader, {
@@ -2293,31 +2293,27 @@ var script$2 = defineComponent({
                                         type: "text"
                                     }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
                                     createElementVNode("div", _hoisted_4$2, [
-                                        createElementVNode("div", _hoisted_5$2, [
-                                            createElementVNode("label", _hoisted_6$2, toDisplayString(_ctx.$t('add_pm_country_label')), 1)
-                                        ]),
-                                        createElementVNode("div", _hoisted_7$2, [
-                                            createElementVNode("div", _hoisted_8$2, [
-                                                withDirectives(createElementVNode("select", {
-                                                    class: "input-basic",
-                                                    "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => ((state.country) = $event))
-                                                }, [
-                                                    (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.$countries.countries, (country) => {
-                                                        return (openBlock(), createElementBlock("option", {
-                                                            value: country.Country__,
-                                                            key: country.Country__
-                                                        }, toDisplayString(country.Name), 9, _hoisted_9$2));
-                                                    }), 128))
-                                                ], 512), [
-                                                    [vModelSelect, state.country]
-                                                ])
+                                        createElementVNode("label", _hoisted_5$2, toDisplayString(_ctx.$t('add_pm_country_label')), 1),
+                                        createElementVNode("div", _hoisted_6$2, [
+                                            withDirectives(createElementVNode("select", {
+                                                class: "input-basic",
+                                                "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => ((state.country) = $event))
+                                            }, [
+                                                (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.$countries.countries, (country) => {
+                                                    return (openBlock(), createElementBlock("option", {
+                                                        value: country.Country__,
+                                                        key: country.Country__
+                                                    }, toDisplayString(country.Name), 9, _hoisted_7$2));
+                                                }), 128))
+                                            ], 512), [
+                                                [vModelSelect, state.country]
                                             ])
                                         ])
                                     ])
                                 ]),
-                                createElementVNode("div", _hoisted_10$2, [
-                                    createElementVNode("label", _hoisted_11$2, toDisplayString(_ctx.$t('payment_method_label')), 1),
-                                    createElementVNode("div", _hoisted_12$2, [
+                                createElementVNode("div", _hoisted_8$2, [
+                                    createElementVNode("label", _hoisted_9$2, toDisplayString(_ctx.$t('payment_method_label')), 1),
+                                    createElementVNode("div", _hoisted_10$2, [
                                         createElementVNode("div", {
                                             id: "theCard",
                                             class: "theCard",
@@ -2327,9 +2323,11 @@ var script$2 = defineComponent({
                                     ])
                                 ]),
                                 (errorMessage.value)
-                                    ? (openBlock(), createElementBlock("div", _hoisted_13$1, toDisplayString(errorMessage.value), 1))
+                                    ? (openBlock(), createElementBlock("div", _hoisted_11$2, toDisplayString(errorMessage.value), 1))
                                     : createCommentVNode("v-if", true),
-                                createElementVNode("button", _hoisted_14$1, toDisplayString(_ctx.$t('create_billing_profile')), 1)
+                                createElementVNode("div", _hoisted_12$1, [
+                                    createElementVNode("button", _hoisted_13$1, toDisplayString(_ctx.$t('create_billing_profile')), 1)
+                                ])
                             ], 40, _hoisted_2$2)
                         ]),
                         _: 1
@@ -2351,7 +2349,7 @@ const _hoisted_3$1 = ["onSubmit"];
 const _hoisted_4$1 = { class: "input-group w-full" };
 const _hoisted_5$1 = {
     class: "label-basic",
-    for: "typeDef"
+    for: "theCard"
 };
 const _hoisted_6$1 = { class: "input-box" };
 const _hoisted_7$1 = {
@@ -2368,7 +2366,7 @@ const _hoisted_10$1 = {
     class: ""
 };
 const _hoisted_11$1 = { key: 0 };
-const _hoisted_12$1 = createElementVNode("br", null, null, -1);
+const _hoisted_12 = createElementVNode("br", null, null, -1);
 const _hoisted_13 = { key: 1 };
 const _hoisted_14 = createElementVNode("br", null, null, -1);
 const _hoisted_15 = {
@@ -2498,11 +2496,11 @@ var script$1 = defineComponent({
                                             ? (openBlock(), createElementBlock("div", _hoisted_11$1, [
                                                 createTextVNode(toDisplayString(_ctx.$t('payment_method_billing')) + ": ", 1),
                                                 createElementVNode("b", null, toDisplayString(billing.value.Methods[0].Name), 1),
-                                                _hoisted_12$1,
+                                                _hoisted_12,
                                                 createTextVNode(" " + toDisplayString(_ctx.$t('payment_method_exp')) + ": ", 1),
                                                 createElementVNode("b", null, toDisplayString(billing.value.Methods[0].Expiration), 1),
                                                 createElementVNode("button", {
-                                                    class: "block font-extrabold mx-auto p-2 mt-4 btn primary",
+                                                    class: "btn-defaults btn primary",
                                                     onClick: switchToEdit
                                                 }, toDisplayString(_ctx.$t('edit_billing_method')), 1)
                                             ]))
@@ -2547,17 +2545,16 @@ const _hoisted_4 = { class: "input-group" };
 const _hoisted_5 = { class: "mr-4 w-16" };
 const _hoisted_6 = {
     class: "label-basic",
-    for: "typeDef"
+    for: "countryChoice"
 };
-const _hoisted_7 = { class: "flex-1" };
-const _hoisted_8 = { class: "input-box" };
-const _hoisted_9 = ["value"];
-const _hoisted_10 = {
+const _hoisted_7 = { class: "input-box" };
+const _hoisted_8 = ["value"];
+const _hoisted_9 = {
     class: "block font-extrabold mx-auto p-2 mt-4 btn primary",
     type: "submit"
 };
-const _hoisted_11 = { key: 1 };
-const _hoisted_12 = {
+const _hoisted_10 = { key: 1 };
+const _hoisted_11 = {
     key: 1,
     class: "self-loader-fyvue"
 };
@@ -2672,31 +2669,30 @@ var script = defineComponent({
                                             createElementVNode("label", _hoisted_6, toDisplayString(_ctx.$t('billing_location_country_label')), 1)
                                         ]),
                                         createElementVNode("div", _hoisted_7, [
-                                            createElementVNode("div", _hoisted_8, [
-                                                withDirectives(createElementVNode("select", {
-                                                    class: "input-basic",
-                                                    "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => ((state.country) = $event))
-                                                }, [
-                                                    (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.$countries.countries, (country) => {
-                                                        return (openBlock(), createElementBlock("option", {
-                                                            value: country.Country__,
-                                                            key: country.Country__
-                                                        }, toDisplayString(country.Name), 9, _hoisted_9));
-                                                    }), 128))
-                                                ], 512), [
-                                                    [vModelSelect, state.country]
-                                                ])
+                                            withDirectives(createElementVNode("select", {
+                                                class: "input-basic",
+                                                id: "countryChoice",
+                                                "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => ((state.country) = $event))
+                                            }, [
+                                                (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.$countries.countries, (country) => {
+                                                    return (openBlock(), createElementBlock("option", {
+                                                        value: country.Country__,
+                                                        key: country.Country__
+                                                    }, toDisplayString(country.Name), 9, _hoisted_8));
+                                                }), 128))
+                                            ], 512), [
+                                                [vModelSelect, state.country]
                                             ])
                                         ])
                                     ])
                                 ]),
-                                createElementVNode("button", _hoisted_10, toDisplayString(_ctx.$t('save_billing_location')), 1)
+                                createElementVNode("button", _hoisted_9, toDisplayString(_ctx.$t('save_billing_location')), 1)
                             ], 40, _hoisted_2))
-                            : (openBlock(), createElementBlock("div", _hoisted_11, toDisplayString(_ctx.$t('no_billing_location_yet')), 1))
+                            : (openBlock(), createElementBlock("div", _hoisted_10, toDisplayString(_ctx.$t('no_billing_location_yet')), 1))
                     ]))
                     : createCommentVNode("v-if", true),
                 (!isLoaded.value)
-                    ? (openBlock(), createElementBlock("div", _hoisted_12, [
+                    ? (openBlock(), createElementBlock("div", _hoisted_11, [
                         createVNode(script$a, {
                             id: "self-loader-fyvue",
                             force: true,

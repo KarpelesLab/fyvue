@@ -28,9 +28,13 @@
       @apply px-2;
     }
     select {
+      height: 2.559rem;
+    }
+    /*
+    select {
       padding-top: 14px;
       padding-bottom: 13px;
-    }
+    }*/
     textarea {
       @apply px-2;
     }

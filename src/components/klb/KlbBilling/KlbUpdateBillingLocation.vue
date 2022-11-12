@@ -131,22 +131,24 @@ onMounted(async () => {
         ></FyInput>
         <div class="input-group">
           <div class="mr-4 w-16">
-            <label class="label-basic" for="typeDef"
+            <label class="label-basic" for="countryChoice"
               >{{ $t('billing_location_country_label') }}
             </label>
           </div>
-          <div class="flex-1">
-            <div class="input-box">
-              <select class="input-basic" v-model="state.country">
-                <option
-                  :value="country.Country__"
-                  v-for="country in $countries.countries"
-                  v-bind:key="country.Country__"
-                >
-                  {{ country.Name }}
-                </option>
-              </select>
-            </div>
+          <div class="input-box">
+            <select
+              class="input-basic"
+              id="countryChoice"
+              v-model="state.country"
+            >
+              <option
+                :value="country.Country__"
+                v-for="country in $countries.countries"
+                v-bind:key="country.Country__"
+              >
+                {{ country.Name }}
+              </option>
+            </select>
           </div>
         </div>
       </div>

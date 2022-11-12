@@ -123,7 +123,7 @@ onMounted(async () => {
     <div v-if="hasBilling && isLoaded" class="klb-update-pm">
       <form @submit.prevent="submitEditPaymentInfo" v-if="isEditing">
         <div class="input-group w-full">
-          <label class="label-basic" for="typeDef"
+          <label class="label-basic" for="theCard"
             >{{ $t('payment_method_label') }}
           </label>
           <div class="input-box">
@@ -149,10 +149,7 @@ onMounted(async () => {
           ><br />
           {{ $t('payment_method_exp') }}:
           <b>{{ billing.Methods[0].Expiration }}</b>
-          <button
-            class="block font-extrabold mx-auto p-2 mt-4 btn primary"
-            @click="switchToEdit"
-          >
+          <button class="btn-defaults btn primary" @click="switchToEdit">
             {{ $t('edit_billing_method') }}
           </button>
         </div>

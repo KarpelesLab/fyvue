@@ -355,13 +355,17 @@
 }
 .input-group .input-box {
   @apply flex flex-1 border mb-4 md:mb-0;
+  /*
+  select {
+    padding-top: 14px;
+    padding-bottom: 13px;
+  }*/
 }
 .input-group .input-box input {
   @apply px-2;
 }
 .input-group .input-box select {
-  padding-top: 14px;
-  padding-bottom: 13px;
+  height: 2.559rem;
 }
 .input-group .input-box textarea {
   @apply px-2;
@@ -614,6 +618,13 @@
 }
 .klb-update-billing-loc .form-grid {
   @apply grid grid-cols-2 gap-2;
+}
+
+.klb-add-method .form-grid {
+  @apply grid grid-cols-2 gap-2;
+}
+.klb-add-method .btn-center {
+  @apply mt-4 text-center;
 }
 
 html, body {
