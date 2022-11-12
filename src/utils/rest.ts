@@ -47,7 +47,7 @@ export async function rest<ResultType extends KlbApiResultBase>(
   method: string = 'GET',
   params: object = {},
   ctx: object = {}
-) : Promise<ResultType> {
+): Promise<ResultType> {
   const requestHash = stringHashcode(url + method + JSON.stringify(params));
   const restState = useRestState();
   if (isSSRRendered() && restState.results[requestHash]) {
@@ -75,4 +75,4 @@ export async function rest<ResultType extends KlbApiResultBase>(
         reject(err);
       });
   });
-};
+}

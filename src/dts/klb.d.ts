@@ -11,7 +11,7 @@ export interface TimeUnit {
   unixms: string;
 }
 export interface MoneyUnit {
-  display: string
+  display: string;
 }
 // Users
 export interface UserAgreement {
@@ -131,43 +131,42 @@ interface KlbBillingHistory {
   Status: string;
   Total: MoneyUnit;
   Invoice_Url: URLString;
-
 }
 export interface KlbApiResultArray extends KlbApiResultBase {
-  data: []
+  data: [];
 }
 
 export interface KlbBillingHistoryResult extends KlbApiResultBase {
-  data: Array<KlbBillingHistory>
+  data: Array<KlbBillingHistory>;
 }
-export  interface KlbUserLocation {
-  Display_Name: string,
-  First_Name: string,
-  Last_Name: string,
-  User_Location__: UUID,
-  Country__: UUID
-  Zip: string
+export interface KlbUserLocation {
+  Display_Name: string;
+  First_Name: string;
+  Last_Name: string;
+  User_Location__: UUID;
+  Country__: UUID;
+  Zip: string;
 }
 export interface KlbUserLocationResult extends KlbApiResultBase {
-  data: KlbUserLocation
+  data: KlbUserLocation;
 }
-export  interface KlbPaymentMethod {
-  Name: string,
-  Expiration: string
-  Billing_Method: string,
-  User_Billing_Method__: UUID,
-  User_Billing__: UUID
+export interface KlbPaymentMethod {
+  Name: string;
+  Expiration: string;
+  Billing_Method: string;
+  User_Billing_Method__: UUID;
+  User_Billing__: UUID;
 }
-export  interface KlbUserBilling {
-  Created: TimeUnit,
-  Label?: string,
-  User_Billing__: UUID,
-  User_Location__: UUID
-  User__: UUID,
-  Methods: Array<KlbPaymentMethod>
+export interface KlbUserBilling {
+  Created: TimeUnit;
+  Label?: string;
+  User_Billing__: UUID;
+  User_Location__: UUID;
+  User__: UUID;
+  Methods: Array<KlbPaymentMethod>;
 }
 export interface KlbUserBillingResult extends KlbApiResultBase {
-  data: Array<KlbUserBilling>
+  data: Array<KlbUserBilling>;
 }
 
 export interface KlbCountry {
@@ -175,5 +174,5 @@ export interface KlbCountry {
   Name: string;
 }
 export interface KlbCountriesResult extends KlbApiResultBase {
-  data: Array<KlbCountry>
+  data: Array<KlbCountry>;
 }

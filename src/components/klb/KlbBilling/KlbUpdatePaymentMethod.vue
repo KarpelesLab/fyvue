@@ -1,85 +1,104 @@
 <script setup lang="ts">
 import { useScriptTag } from '@vueuse/core';
 import { useHead } from '@vueuse/head';
-import { ref, onMounted, computed, onUnmounted } from "vue";
+import { ref, onMounted, computed, onUnmounted } from 'vue';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 
-import type { KLBApiResult, KlbUserBilling, KlbUserLocation, KlbUserBillingResult, KlbUserLocationResult } from "../../../dts/klb";
+import type {
+  KLBApiResult,
+  KlbUserBilling,
+  KlbUserLocation,
+  KlbUserBillingResult,
+  KlbUserLocationResult,
+} from '../../../dts/klb';
 
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
-const isLoaded = ref<Boolean>(false)
+const isLoaded = ref<Boolean>(false);
 const billing = ref<KlbUserBilling>();
 const location = ref<KlbUserLocation>();
 const hasBilling = ref<boolean>(false);
 const isEditing = ref<boolean>(false);
-const stripeCard = ref()
-const theCard = ref()
+const stripeCard = ref();
+const theCard = ref();
 let stripe: any;
 
 const switchToEdit = async () => {
-  const _pms = await rest<KLBApiResult>("Realm/PaymentMethod:methodInfo", "GET", {
-    method: "Stripe",
-  })
+  const _pms = await rest<KLBApiResult>(
+    'Realm/PaymentMethod:methodInfo',
+    'GET',
+    {
+      method: 'Stripe',
+    }
+  );
   if (_pms && _pms.data) {
-    if (_pms.data.Fields && _pms.data.Fields.cc_token && _pms.data.Fields.cc_token.attributes?.key) {
-      stripe = (<any>window).Stripe(_pms.data.Fields.cc_token.attributes?.key, {});
+    if (_pms.data.Fields && _pms.data.Fields.cc_token) {
+      stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {});
     }
   }
 
   isEditing.value = true;
   if (stripe) {
-    stripeCard.value = stripe.elements().create("card", { hidePostalCode: true });
-    await theCard
-    stripeCard.value.mount(theCard.value)
+    stripeCard.value = stripe
+      .elements()
+      .create('card', { hidePostalCode: true });
+    await theCard;
+    stripeCard.value.mount(theCard.value);
   }
-}
+};
 const submitEditPaymentInfo = async () => {
-  let cardToken = await stripe.value.createToken(stripeCard.value, {
+  const cardToken = await stripe.value.createToken(stripeCard.value, {
     name: `${location.value?.First_Name} ${location.value?.Last_Name}`,
     email: store.user?.Email,
   });
 
-  let _updateBillingResult = await rest(`User/Billing/Method/${billing.value?.Methods[0].User_Billing_Method__}:change`, "POST", {
-    method: "Stripe",
-    cc_token: cardToken.token.id,
-  })
+  const _updateBillingResult = await rest(
+    `User/Billing/Method/${billing.value?.Methods[0].User_Billing_Method__}:change`,
+    'POST',
+    {
+      method: 'Stripe',
+      cc_token: cardToken.token.id,
+    }
+  );
   if (_updateBillingResult && _updateBillingResult.result == 'success') {
     await getUserBilling();
   }
   isEditing.value = false;
-}
+};
 useHead({
-  script: [
-    { src: 'https://js.stripe.com/v3' },
-  ],
-})
+  script: [{ src: 'https://js.stripe.com/v3' }],
+});
 
 const getUserBilling = async () => {
-  if (isAuth) {
-    isLoaded.value = false
-    const _userBilling = await rest<KlbUserBillingResult>('User/Billing', 'GET').catch(() => { })
+  if (isAuth.value) {
+    isLoaded.value = false;
+    const _userBilling = await rest<KlbUserBillingResult>(
+      'User/Billing',
+      'GET'
+    ).catch(() => {});
 
     if (_userBilling && _userBilling.data) {
       if (_userBilling.data.length != 0) {
-        hasBilling.value = true
-        const _userLocation = await rest<KlbUserLocationResult>(`User/Location/${_userBilling.data[0].User_Location__}`, "GET").catch(() => { })
+        hasBilling.value = true;
+        const _userLocation = await rest<KlbUserLocationResult>(
+          `User/Location/${_userBilling.data[0].User_Location__}`,
+          'GET'
+        ).catch(() => {});
         if (_userLocation && _userLocation.result == 'success') {
           location.value = _userLocation.data;
         }
         billing.value = _userBilling.data[0];
       }
     }
-    isLoaded.value = true
+    isLoaded.value = true;
   }
-}
+};
 
 onMounted(async () => {
   await getUserBilling();
-})
-
+});
 </script>
 
 <template>
@@ -88,7 +107,8 @@ onMounted(async () => {
       <form @submit.prevent="submitEditPaymentInfo" v-if="isEditing">
         <div class="input-group w-full">
           <div class="mr-4 w-16">
-            <label class="label-basic" for="typeDef">{{ $t("payment_method_label") }}
+            <label class="label-basic" for="typeDef"
+              >{{ $t('payment_method_label') }}
             </label>
           </div>
           <div class="w-full">
@@ -97,31 +117,51 @@ onMounted(async () => {
             </div>
           </div>
         </div>
-        <div class="btn-box ">
-          <a class="btn-defaults btn neutral" @click="isEditing=false">{{ $t('cancel_save_payment_method') }}</a>
+        <div class="btn-box">
+          <a class="btn-defaults btn neutral" @click="isEditing = false">{{
+            $t('cancel_save_payment_method')
+          }}</a>
           <button class="btn-defaults btn primary" type="submit">
-          {{ $t("save_payment_method") }}
-        </button>
+            {{ $t('save_payment_method') }}
+          </button>
         </div>
       </form>
       <div v-else class="">
         <div v-if="billing && billing.Methods && billing.Methods.length > 0">
-          {{ $t("payment_method_billing") }}:
-          <b>{{ billing.Methods[0].Name }}</b><br />
-          {{ $t("payment_method_exp") }}:
+          {{ $t('payment_method_billing') }}:
+          <b>{{ billing.Methods[0].Name }}</b
+          ><br />
+          {{ $t('payment_method_exp') }}:
           <b>{{ billing.Methods[0].Expiration }}</b>
-          <button class="block font-extrabold mx-auto p-2 mt-4 btn primary" @click="switchToEdit">
-            {{ $t("edit_billing_method") }}
+          <button
+            class="block font-extrabold mx-auto p-2 mt-4 btn primary"
+            @click="switchToEdit"
+          >
+            {{ $t('edit_billing_method') }}
           </button>
         </div>
       </div>
     </div>
-    <div v-if="!hasBilling && isLoaded">{{ $t("no_payment_method_yet") }}<br /> <button
-        @click="() => { $eventBus.emit('ShowCreateBillingProfile', true) }" class="btn primary btn-defaults">{{
-            $t('add_payment_method_cta')
-        }}</button></div>
+    <div v-if="!hasBilling && isLoaded">
+      {{ $t('no_payment_method_yet') }}<br />
+      <button
+        @click="
+          () => {
+            $eventBus.emit('ShowCreateBillingProfile', true);
+          }
+        "
+        class="btn primary btn-defaults"
+      >
+        {{ $t('add_payment_method_cta') }}
+      </button>
+    </div>
   </div>
   <div class="self-loader-fyvue" v-if="!isLoaded">
-    <FyLoader id="self-loader-fyvue" :force="true" size="6" :showLoadingText="false" />
+    <FyLoader
+      id="self-loader-fyvue"
+      :force="true"
+      size="6"
+      :showLoadingText="false"
+    />
   </div>
 </template>

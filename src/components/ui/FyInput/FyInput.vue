@@ -32,7 +32,7 @@ const props = withDefaults(
     checkboxFalseValue: false,
   }
 );
-const translate = useTranslation()
+const translate = useTranslation();
 const inputRef = ref<HTMLInputElement>();
 const errorProps = toRef(props, 'error');
 const errorVuelidateProps = toRef(props, 'errorVuelidate');

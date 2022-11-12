@@ -9,7 +9,7 @@ import {
   i18next,
   i18nextPromise,
   countriesPromise,
-  countries
+  countries,
 } from './utils/helpers';
 import {
   cropText,

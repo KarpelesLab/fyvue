@@ -3,20 +3,20 @@ import { getCurrentInstance } from 'vue';
 import { getLocale } from '@karpeleslab/klbfw';
 import Backend from '../lib/klb-i18n-backend.js';
 import i18next from 'i18next';
-import { rest } from './rest'
-import type {  KlbCountriesResult, KlbCountry } from '../dts/klb';
+import { rest } from './rest';
+import type { KlbCountriesResult, KlbCountry } from '../dts/klb';
 type Events = {
   [key: string]: any;
-}
+};
 
 type GlobalCountries = {
   countries: Array<KlbCountry>;
   byUuid: {
     [key: string]: KlbCountry;
-  }
-}
+  };
+};
 
-const countries : GlobalCountries = {
+const countries: GlobalCountries = {
   countries: new Array<KlbCountry>(),
   byUuid: {},
 };
@@ -29,16 +29,17 @@ const useCountries = () => {
 
 const countriesPromise = () => {
   return new Promise((resolve) => {
-    rest<KlbCountriesResult>('Country', 'GET').then((_countries) => {
-      console.log(_countries)
-      if (_countries && _countries.result == 'success') {
-        countries.countries = _countries.data;
-        _countries.data.forEach((_country) => {
-          countries.byUuid[_country.Country__]  = _country;
-        })
-      }
-      resolve(true)
-    }).catch((e)=>{ console.log(e) })
+    rest<KlbCountriesResult>('Country', 'GET')
+      .then((_countries) => {
+        if (_countries && _countries.result == 'success') {
+          countries.countries = _countries.data;
+          _countries.data.forEach((_country) => {
+            countries.byUuid[_country.Country__] = _country;
+          });
+        }
+        resolve(true);
+      })
+      .catch(() => {});
   });
 };
 
@@ -61,4 +62,13 @@ const useTranslation = () => {
   return vueInstance!.appContext.config.globalProperties.$t;
 };
 
-export { eventBus, useEventBus, i18next, i18nextPromise, useTranslation, countries, countriesPromise, useCountries };
+export {
+  eventBus,
+  useEventBus,
+  i18next,
+  i18nextPromise,
+  useTranslation,
+  countries,
+  countriesPromise,
+  useCountries,
+};

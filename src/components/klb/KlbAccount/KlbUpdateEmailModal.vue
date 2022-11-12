@@ -2,7 +2,7 @@
 import useVuelidate from '@vuelidate/core';
 import { required, email } from '@vuelidate/validators';
 import { ref, computed, reactive } from 'vue';
-import { PencilIcon } from "@heroicons/vue/24/solid";
+import { PencilIcon } from '@heroicons/vue/24/solid';
 
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
@@ -23,11 +23,13 @@ const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
 
 const errorOnSubmit = ref<string | undefined>(undefined);
-const rules = { updateEmail: {
-  email: { required, email },
-  pwd: { required },
-}};
-const state = reactive({ updateEmail: {email: '', pwd: ''} });
+const rules = {
+  updateEmail: {
+    email: { required, email },
+    pwd: { required },
+  },
+};
+const state = reactive({ updateEmail: { email: '', pwd: '' } });
 const v$ = useVuelidate(rules, state);
 
 const changeEmail = async () => {
@@ -40,7 +42,7 @@ const changeEmail = async () => {
       errorOnSubmit.value = err.token;
     });
     if (_updateResult && _updateResult.result == 'success') {
-      await store.refreshUser()
+      await store.refreshUser();
       eventBus.emit('UpdateEmailModal', false);
     }
   }
@@ -50,15 +52,15 @@ const changeEmail = async () => {
   <div v-if="isAuth" class="klb-account">
     <div v-if="showValueButton" class="input-group">
       <div class="label-basic">{{ $t('update_email_display_label') }}</div>
-        <div class="input-box-child">
-          <div class="main">{{ store.user?.Email }}</div>
+      <div class="input-box-child">
+        <div class="main">{{ store.user?.Email }}</div>
 
-          <button
-            @click="eventBus.emit('UpdateEmailModal', true)"
-            class="btn primary small"
-          >
-            <PencilIcon class="edit-icon" /> {{ $t('update_email_display_cta') }}
-          </button>
+        <button
+          @click="eventBus.emit('UpdateEmailModal', true)"
+          class="btn primary small"
+        >
+          <PencilIcon class="edit-icon" /> {{ $t('update_email_display_cta') }}
+        </button>
       </div>
     </div>
     <FyModal id="UpdateEmail" :title="$t('update_email_modal_title')">
