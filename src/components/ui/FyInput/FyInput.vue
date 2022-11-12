@@ -3,7 +3,7 @@ import { LinkIcon } from '@heroicons/vue/24/solid';
 import { computed, ref, toRef } from 'vue';
 import type { modelValueType, checkboxValueType } from '../../../dts/';
 import type { ErrorObject } from '@vuelidate/core';
-
+import { useTranslation } from '../../../utils/helpers';
 const props = withDefaults(
   defineProps<{
     id: string;
@@ -32,6 +32,7 @@ const props = withDefaults(
     checkboxFalseValue: false,
   }
 );
+const translate = useTranslation()
 const inputRef = ref<HTMLInputElement>();
 const errorProps = toRef(props, 'error');
 const errorVuelidateProps = toRef(props, 'errorVuelidate');
@@ -39,7 +40,8 @@ const errorVuelidateProps = toRef(props, 'errorVuelidate');
 const checkErrors = computed(() => {
   if (errorProps.value) return errorProps.value;
   if (errorVuelidateProps.value && errorVuelidateProps.value.length > 0) {
-    return errorVuelidateProps.value[0].$validator.toString();
+    const err = `vuelidate_validator_${errorVuelidateProps.value[0].$validator.toString()}`;
+    return translate(err);
   }
 
   return null;

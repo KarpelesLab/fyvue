@@ -12,6 +12,14 @@ export const routes = [
     component: () => import('./components/TKlbLogin.vue'),
   },
   {
+    path: '/tests/KlbAccount',
+    component: () => import('./components/TKlbAccount.vue'),
+  },
+  {
+    path: '/tests/KlbBilling',
+    component: () => import('./components/TKlbBilling.vue'),
+  },
+  {
     path: '/tests/Store',
     component: () => import('./components/TStore.vue'),
   },

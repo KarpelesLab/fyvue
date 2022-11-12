@@ -17,8 +17,8 @@ export const useFVStore = defineStore({
     },
   },
   actions: {
-    async refreshUser() {
-      const apiData: KLBApiResult = await rest('User:get', 'GET').catch(
+    async refreshUser(params={}) {
+      const apiData: KLBApiResult = await rest('User:get', 'GET', params).catch(
         (err: KLBApiResult) => {}
       ); // @todo
       if (apiData.result == 'success' && apiData.data != null) {

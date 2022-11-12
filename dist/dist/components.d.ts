@@ -2,6 +2,7 @@ export { }
 
 declare module "vue" {
   export interface GlobalComponents {
+    // Fyvue
     FyBreadcrumb: typeof import("@karpeleslab/fyvue")["components"]["FyBreadcrumb"];
     FyModal: typeof import("@karpeleslab/fyvue")["components"]["FyModal"];
     FyConfirm: typeof import("@karpeleslab/fyvue")["components"]["FyConfirm"];
@@ -12,12 +13,17 @@ declare module "vue" {
     FyLoader: typeof import("@karpeleslab/fyvue")["components"]["FyLoader"];
     FyInput: typeof import("@karpeleslab/fyvue")["components"]["FyInput"];
     FyPaging: typeof import("@karpeleslab/fyvue")["components"]["FyPaging"];
+    // KLB
     KlbLogin: typeof import("@karpeleslab/fyvue")["components"]["KlbLogin"];
+    KlbUpdateEmailModal: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdateEmailModal"];
+    KlbUpdatePasswordModal: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdatePasswordModal"];
+    KlbDeleteAccount: typeof import("@karpeleslab/fyvue")["components"]["KlbDeleteAccount"];
+    KlbBillingHistory: typeof import("@karpeleslab/fyvue")["components"]["KlbBillingHistory"];
+    KlbUpdatePaymentMethod: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdatePaymentMethod"];
   }
-
   interface ComponentCustomProperties {
-    $t: typeof import("@karpeleslab/fyvue")["helpers"]["i18next"];
-    $eventBus: typeof import("@karpeleslab/fyvue/")["useEventBus"];
+    $t: typeof import("i18next").t;
+    $eventBus: typeof import("@karpeleslab/fyvue/")["eventBus"];
     $cropText: typeof import("@karpeleslab/fyvue")["helpers"]["cropText"];
     $formatBytes: typeof import("@karpeleslab/fyvue")["helpers"]["formatBytes"]
   }

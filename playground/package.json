@@ -1,7 +1,6 @@
 {
   "name": "playground",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev:bundle": "vite --port 3000",
@@ -10,29 +9,43 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.41",
-    "@karpeleslab/klbfw": "^0.1.10",
+    "@headlessui/vue": "^1.7.4",
+    "@karpeleslab/fyvue": "^0.2.0-alpha.44",
+    "@karpeleslab/klbfw": "^0.1.12",
+    "@vue/server-renderer": "3.2.45",
     "@vuelidate/core": "^2.0.0",
     "@vuelidate/validators": "^2.0.0",
-    "@vueuse/core": "^9.3.1",
+    "@vueuse/core": "^9.5.0",
     "@vueuse/head": "^0.9.8",
-    "i18next": "^22.0.2",
-    "pinia": "^2.0.13",
-    "vue-router": "^4.1.5"
+    "i18next": "^22.0.4",
+    "pinia": "^2.0.23",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^3.2.0",
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.2",
-    "typescript": "^4.6.4",
-    "vite": "^3.2.0",
-    "vue-tsc": "^1.0.9",
-    "@heroicons/vue": "^2.0.13",
+    "@babel/types": "^7.20.2",
     "@headlessui/vue": "^1.7.4",
+    "@heroicons/vue": "^2.0.13",
+    "@rushstack/eslint-patch": "^1.1.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.7"
+    "@tailwindcss/typography": "^0.5.7",
+    "@types/node": "^16.11.27",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "@vue/server-renderer": "3.2.45",
+    "@vue/tsconfig": "^0.1.3",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.5.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "postcss": "^8.4.18",
+    "prettier": "^2.5.1",
+    "sass": "^1.56.0",
+    "tailwindcss": "^3.2.2",
+    "typescript": "~4.6.3",
+    "vite": "^2.9.5",
+    "vue-tsc": "^0.34.7"
   }
 }

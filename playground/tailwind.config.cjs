@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const tailwindColors = require('../dist/dist/fyvue.js')['helpers'][
+const tailwindColors = require('@karpeleslab/fyvue')['helpers'][
   'tailwindColors'
 ];
 module.exports = {

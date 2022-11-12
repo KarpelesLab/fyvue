@@ -4,21 +4,19 @@
 
 @import "@karpeleslab/fyvue/fyvue.scss";
 
-nav a {
-  @apply pl-2 inline-block;
-  &:hover {
-    @apply text-neutral-700;
+.website {
+  @apply flex flex-col w-full max-w-full;
+  min-height: 100vh;
+  max-height: 100vh;
+
+  .cols {
+    @apply flex container mx-auto;
+    nav {
+      @apply w-36 pr-0  pt-4 flex flex-col items-center justify-start border-r ;
+    }
+    main {
+      @apply flex-grow;
+      max-width: calc(100% - 9rem);
+    }
   }
 }
-
-.router-link-exact-active {
-  @apply font-bold;
-}
-main button {
-  @apply border bg-gray-100 text-neutral-900 border-0 inline-block m-2 px-2 py-1 rounded-lg;
-  &:hover {
-    @apply bg-gray-300;
-  }
-}
-
-

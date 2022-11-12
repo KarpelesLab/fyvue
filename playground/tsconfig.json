@@ -10,12 +10,16 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
     "lib": [
       "esnext",
       "dom"
     ],
     "types": [
-      "vite/client"
+      "vite/client",
+      "../dist/dist/components",
+      "../dist"
     ],
     "baseUrl": ".",
     "paths": {
@@ -31,21 +35,16 @@
     }
   },
   "include": [
-    "vite.config.*",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/main.ts",
     "../typings/env.d.ts",
     "../typings/components.d.ts",
     "../src/**/*.ts",
     "../src/**/*.d.ts",
     "../src/**/*.tsx",
     "../src/**/*.vue",
-  ],
-  "references": [
-    {
-      "path": "tsconfig.node.json"
-    }
-  ],
+  ]
 }

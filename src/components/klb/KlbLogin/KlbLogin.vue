@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { rest } from '@karpeleslab/klbfw';
 import { ref, onMounted, reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
@@ -9,6 +8,7 @@ import { useRoute, useRouter } from 'vue-router';
 import type { KLBUserFlow, KLBFlowField, KLBApiResult } from '../../../dts/klb';
 import type { ObjectS2Any } from '../../../dts';
 import { useFVStore } from '../../../utils/store';
+import { rest } from '../../../utils/rest';
 
 const props = withDefaults(
   defineProps<{
@@ -61,7 +61,7 @@ const forgotPassword = async () => {
       pwdRecoverError.value = err;
     });
 
-    if (data.result == 'success') {
+    if (data?.result == 'success') {
       pwdRecoverMailSent.value = true;
     } else {
       //
@@ -105,7 +105,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
   }
 
   formData.value.return_to = returnTo.value;
-  response.value = await rest('User:flow', 'POST', formData.value).catch(
+  response.value = (await rest('User:flow', 'POST', formData.value).catch(
     (err: KLBApiResult) => {
       responseError.value = err;
       if (responseError.value.param) {
@@ -115,7 +115,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
       eventBus.emit('klblogin-loading', false);
       return;
     }
-  );
+  )) as KLBUserFlow;
   if (response.value?.result == 'success') {
     if (response.value.data.url) {
       window.location.href = response.value.data.url;

@@ -569,8 +569,55 @@
   @apply text-fv-neutral-300;
 }
 
+.klb-account {
+  @apply border-b border-b-fv-neutral-300 py-1 my-2;
+}
+.klb-account .edit-icon {
+  @apply w-4 inline-block -mt-0.5;
+}
+.klb-account .input-box-child {
+  @apply flex items-center justify-start  w-full;
+}
+.klb-account .input-box-child .main {
+  @apply px-2;
+}
+.klb-account .input-box-child .btn {
+  @apply px-2;
+}
+
+.klb-account-grid-inputs {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.klb-billing-history .no-billing-history {
+  @apply text-center;
+}
+.klb-billing-history .download-icon {
+  @apply h-4 -mt-0.5 align-middle inline-block;
+}
+.klb-billing-history .download-btn {
+  @apply p-2;
+}
+.klb-billing-history .billing-history-paging {
+  @apply my-4;
+}
+.klb-billing-history .billing-history-tag {
+  @apply uppercase block mx-auto bg-fv-primary-200 rounded p-1 text-center text-sm font-bold;
+}
+
+.klb-update-pm {
+  @apply border border-fv-neutral-200 bg-fv-primary-50 p-2;
+}
+.klb-update-pm .btn-box {
+  @apply mt-2;
+}
+
 html, body {
   @apply antialiased;
+}
+
+.theCard {
+  @apply input-basic w-full px-2;
 }
 
 .is-sr {
@@ -581,10 +628,17 @@ html, body {
   @apply h-5 w-5;
 }
 
+.self-loader-fyvue {
+  @apply h-24  relative;
+}
+
 .btn {
   @apply text-white shadow  whitespace-nowrap;
   @apply transition duration-300 ease-in-out transform;
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+.btn.small {
+  @apply text-sm py-1;
 }
 .btn.neutral {
   @apply shadow-sm text-gray-50;

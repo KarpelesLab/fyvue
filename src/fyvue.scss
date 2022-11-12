@@ -7,9 +7,15 @@
 @import "./components/ui/FyInput/FyInput.scss";
 @import "./components/ui/FyPaging/FyPaging.scss";
 @import "./components/klb/KlbLogin/KlbLogin.scss";
+@import "./components/klb/KlbAccount/KlbAccount.scss";
+@import "./components/klb/KlbBilling/KlbBilling.scss";
 
 html, body {
   @apply antialiased
+}
+
+.theCard {
+  @apply input-basic w-full px-2;
 }
 .is-sr {
   @apply sr-only;
@@ -17,11 +23,17 @@ html, body {
 .fv-icon-base {
   @apply h-5 w-5
 }
+.self-loader-fyvue {
+  @apply h-24  relative;
+}
 .btn {
   @apply  text-white shadow  whitespace-nowrap ;
   @apply transition duration-300 ease-in-out transform;
   text-shadow: 2px 2px 0px rgba(0,0,0,.3);
 
+  &.small {
+    @apply text-sm py-1;
+  }
   &.neutral {
     @apply  shadow-sm text-gray-50  ;
     background: rgba(0,0,0,.7);

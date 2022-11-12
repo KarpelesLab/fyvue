@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { rest as _rest, getMode } from '@karpeleslab/klbfw';
-import { KLBApiResult } from '../dts/klb';
-import { ErrorCodes } from 'vue';
+import { KlbApiResultBase } from '../dts/klb';
+import { isSSRRendered } from './ssr';
 
 type RequestResult = {
-  [key: number]: KLBApiResult;
+  [key: number]: KlbApiResultBase | undefined;
 };
 
 type RestSharedState = {
@@ -17,7 +17,7 @@ export const useRestState = defineStore({
     results: {},
   }),
   actions: {
-    addResult(key: number, result: KLBApiResult) {
+    addResult(key: number, result: KlbApiResultBase | undefined) {
       this.results[key] = result;
     },
     delResult(key: number) {
@@ -42,39 +42,37 @@ const stringHashcode = (str: string) => {
   return hash;
 };
 
-export const rest = async (
+export async function rest<ResultType extends KlbApiResultBase>(
   url: string,
   method: string = 'GET',
   params: object = {},
   ctx: object = {}
-) => {
-  const requestHash = stringHashcode(
-    url + method + JSON.stringify(params) // + devalue(ctx)
-  );
+) : Promise<ResultType> {
+  const requestHash = stringHashcode(url + method + JSON.stringify(params));
   const restState = useRestState();
-  if (getMode() == 'ssr' && restState.results[requestHash]) {
-    const result = { ...restState.getByHash(requestHash) };
+  if (isSSRRendered() && restState.results[requestHash]) {
+    const result = { ...restState.getByHash(requestHash) } as ResultType;
     restState.delResult(requestHash);
-    return result;
+    return new Promise<ResultType>((resolve, reject) => {
+      if (result.fvReject) {
+        delete result.fvReject;
+        reject(result);
+      } else resolve(result);
+    });
   }
 
-  return new Promise((resolve) => {
+  return new Promise<ResultType>((resolve, reject) => {
     _rest(url, method, params, ctx)
-      .then((restResult: KLBApiResult | undefined) => {
-        if (restResult?.result == 'success') {
-          resolve(restResult);
-          if (getMode() == 'ssr') restState.addResult(requestHash, restResult);
-        } else {
-          if (restResult) {
-            resolve(restResult);
-            if (getMode() == 'ssr')
-              restState.addResult(requestHash, restResult);
-          }
-        }
+      .then((restResult: ResultType) => {
+        if (getMode() == 'ssr') restState.addResult(requestHash, restResult);
+        resolve(restResult);
       })
-      .catch((err: KLBApiResult) => {
-        resolve(err);
-        if (getMode() == 'ssr') restState.addResult(requestHash, err);
+      .catch((err: ResultType) => {
+        if (getMode() == 'ssr') {
+          err.fvReject = true;
+          restState.addResult(requestHash, err);
+        }
+        reject(err);
       });
   });
 };

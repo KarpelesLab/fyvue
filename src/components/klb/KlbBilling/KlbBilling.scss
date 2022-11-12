@@ -1,0 +1,24 @@
+.klb-billing-history {
+  .no-billing-history {
+    @apply text-center;
+  }
+  .download-icon {
+    @apply h-4 -mt-0.5 align-middle inline-block
+  }
+  .download-btn {
+    @apply  p-2;
+  }
+  .billing-history-paging {
+    @apply my-4;
+  }
+  .billing-history-tag {
+    @apply uppercase block mx-auto bg-fv-primary-200 rounded p-1 text-center text-sm font-bold;
+  }
+}
+.klb-update-pm {
+  @apply border border-fv-neutral-200 bg-fv-primary-50 p-2;
+
+  .btn-box {
+    @apply mt-2;
+  }
+}

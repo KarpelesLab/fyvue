@@ -16,6 +16,7 @@
     "types": ["vite/client"],
     "esModuleInterop": true,
     "removeComments": true,
+    "noImplicitAny": false,
     "paths": {
       "@karpeleslab/fyvue/*": [
         "./*"

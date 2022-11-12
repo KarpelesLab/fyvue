@@ -1,13 +1,19 @@
-import mitt from 'mitt';
+import mitt, { Emitter } from 'mitt';
 import { getCurrentInstance } from 'vue';
 import { getLocale } from '@karpeleslab/klbfw';
 import Backend from '../lib/klb-i18n-backend.js';
 import i18next from 'i18next';
 
-const eventBus = mitt();
+type Events = {
+  [key: string]: any;
+}
+
+const eventBus: Emitter<Events> = mitt<Events>();
+
+
 const useEventBus = () => {
   const vueInstance = getCurrentInstance();
-  return vueInstance?.appContext.config.globalProperties.$eventBus;
+  return vueInstance!.appContext.config.globalProperties.$eventBus;
 };
 
 const i18nextPromise = i18next.use(Backend).init({
@@ -21,7 +27,7 @@ const i18nextPromise = i18next.use(Backend).init({
 
 const useTranslation = () => {
   const vueInstance = getCurrentInstance();
-  return vueInstance?.appContext.config.globalProperties.$t;
+  return vueInstance!.appContext.config.globalProperties.$t;
 };
 
 export { eventBus, useEventBus, i18next, i18nextPromise, useTranslation };
