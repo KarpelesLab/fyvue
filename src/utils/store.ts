@@ -28,7 +28,7 @@ export const useFVStore = defineStore({
       }
     },
     async logout() {
-      const apiData: KLBApiResult = await rest('User:logout', 'Post').catch(
+      const apiData: KLBApiResult = await rest('User:logout', 'POST').catch(
         (err: KLBApiResult) => {}
       ); // @todo
 
