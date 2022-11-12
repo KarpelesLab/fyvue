@@ -29,6 +29,7 @@
     "./**/*.vue",
     "../typings/env.d.ts",
     "../typings/components.d.ts",
+    "../typings/global.d.ts",
     "../node_modules/vue-router/dist/vue-router.d.ts"
   ],
 }

@@ -23,6 +23,8 @@ const hasBilling = ref<boolean>(false);
 const isEditing = ref<boolean>(false);
 const stripeCard = ref();
 const theCard = ref();
+const errorMessage = ref<string>();
+
 let stripe: any;
 
 const switchToEdit = async () => {
@@ -36,23 +38,30 @@ const switchToEdit = async () => {
   }
 };
 const submitEditPaymentInfo = async () => {
-  const cardToken = await stripe.value.createToken(stripeCard.value, {
+  errorMessage.value = undefined;
+
+  const cardToken = await stripe.createToken(stripeCard.value, {
     name: `${location.value?.First_Name} ${location.value?.Last_Name}`,
     email: store.user?.Email,
   });
-
-  const _updateBillingResult = await rest(
-    `User/Billing/Method/${billing.value?.Methods[0].User_Billing_Method__}:change`,
-    'POST',
-    {
-      method: 'Stripe',
-      cc_token: cardToken.token.id,
+  if (cardToken.error) {
+    errorMessage.value = cardToken.error.message;
+  } else {
+    isLoaded.value = false;
+    const _updateBillingResult = await rest(
+      `User/Billing/Method/${billing.value?.Methods[0].User_Billing_Method__}:change`,
+      'POST',
+      {
+        method: 'Stripe',
+        cc_token: cardToken.token.id,
+      }
+    );
+    if (_updateBillingResult && _updateBillingResult.result == 'success') {
+      await getUserBilling();
     }
-  );
-  if (_updateBillingResult && _updateBillingResult.result == 'success') {
-    await getUserBilling();
+    isEditing.value = false;
+    isLoaded.value = true;
   }
-  isEditing.value = false;
 };
 useHead({
   script: [
@@ -120,6 +129,9 @@ onMounted(async () => {
           <div class="input-box">
             <div id="theCard" class="theCard" ref="theCard"></div>
           </div>
+        </div>
+        <div v-if="errorMessage" class="response-error">
+          {{ errorMessage }}
         </div>
         <div class="btn-box">
           <a class="btn-defaults btn neutral" @click="isEditing = false">{{

@@ -20,11 +20,15 @@ declare module "vue" {
     KlbDeleteAccount: typeof import("@karpeleslab/fyvue")["components"]["KlbDeleteAccount"];
     KlbBillingHistory: typeof import("@karpeleslab/fyvue")["components"]["KlbBillingHistory"];
     KlbUpdatePaymentMethod: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdatePaymentMethod"];
+    KlbUpdateBillingLocation: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdateBillingLocation"];
+    KlbAddPaymentMethodModal: typeof import("@karpeleslab/fyvue")["components"]["KlbAddPaymentMethodModal"];
   }
   interface ComponentCustomProperties {
     $t: typeof import("i18next").t;
     $eventBus: typeof import("@karpeleslab/fyvue/")["eventBus"];
     $cropText: typeof import("@karpeleslab/fyvue")["helpers"]["cropText"];
-    $formatBytes: typeof import("@karpeleslab/fyvue")["helpers"]["formatBytes"]
+    $formatBytes: typeof import("@karpeleslab/fyvue")["helpers"]["formatBytes"];
+    $countries: typeof import("@karpeleslab/fyvue")["helpers"]["countries"];
+
   }
 }
