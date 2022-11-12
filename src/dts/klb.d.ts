@@ -87,6 +87,7 @@ export interface KlbApiResultBase {
   time?: number;
   token?: string;
   paging?: KLBPaging;
+  message?: string;
   fvReject?: boolean;
 }
 export interface KLBApiResult extends KlbApiResultBase {

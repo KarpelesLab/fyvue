@@ -26,6 +26,9 @@ html, body {
 .self-loader-fyvue {
   @apply h-16  relative;
 }
+.response-error {
+  @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
+}
 .btn {
   @apply  text-white shadow  whitespace-nowrap ;
   @apply transition duration-300 ease-in-out transform;

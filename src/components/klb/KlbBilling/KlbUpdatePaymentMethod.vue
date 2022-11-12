@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useScriptTag } from '@vueuse/core';
 import { useHead } from '@vueuse/head';
-import { ref, onMounted, computed, onUnmounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { getLocale } from '@karpeleslab/klbfw';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
-
+import KlbAddPaymentMethodModal from './KlbAddPaymentMethodModal.vue';
 import type {
   KLBApiResult,
   KlbUserBilling,
@@ -26,19 +26,6 @@ const theCard = ref();
 let stripe: any;
 
 const switchToEdit = async () => {
-  const _pms = await rest<KLBApiResult>(
-    'Realm/PaymentMethod:methodInfo',
-    'GET',
-    {
-      method: 'Stripe',
-    }
-  );
-  if (_pms && _pms.data) {
-    if (_pms.data.Fields && _pms.data.Fields.cc_token) {
-      stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {});
-    }
-  }
-
   isEditing.value = true;
   if (stripe) {
     stripeCard.value = stripe
@@ -68,7 +55,12 @@ const submitEditPaymentInfo = async () => {
   isEditing.value = false;
 };
 useHead({
-  script: [{ src: 'https://js.stripe.com/v3' }],
+  script: [
+    {
+      src: 'https://js.stripe.com/v3',
+      key: 'stripe-script',
+    },
+  ],
 });
 
 const getUserBilling = async () => {
@@ -97,6 +89,22 @@ const getUserBilling = async () => {
 };
 
 onMounted(async () => {
+  const _pms = await rest<KLBApiResult>(
+    'Realm/PaymentMethod:methodInfo',
+    'GET',
+    {
+      method: 'Stripe',
+    }
+  );
+  if (_pms && _pms.data) {
+    if (_pms.data.Fields && _pms.data.Fields.cc_token) {
+      stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {
+        locale: getLocale(),
+        stripeAccount:
+          _pms.data.Fields.cc_token.attributes?.options?.stripe_account,
+      });
+    }
+  }
   await getUserBilling();
 });
 </script>
@@ -106,15 +114,11 @@ onMounted(async () => {
     <div v-if="hasBilling && isLoaded" class="klb-update-pm">
       <form @submit.prevent="submitEditPaymentInfo" v-if="isEditing">
         <div class="input-group w-full">
-          <div class="mr-4 w-16">
-            <label class="label-basic" for="typeDef"
-              >{{ $t('payment_method_label') }}
-            </label>
-          </div>
-          <div class="w-full">
-            <div class="input-box w-full pl-2">
-              <div id="theCard" class="theCard" ref="theCard"></div>
-            </div>
+          <label class="label-basic" for="typeDef"
+            >{{ $t('payment_method_label') }}
+          </label>
+          <div class="input-box">
+            <div id="theCard" class="theCard" ref="theCard"></div>
           </div>
         </div>
         <div class="btn-box">
@@ -145,11 +149,7 @@ onMounted(async () => {
     <div v-if="!hasBilling && isLoaded">
       {{ $t('no_payment_method_yet') }}<br />
       <button
-        @click="
-          () => {
-            $eventBus.emit('ShowCreateBillingProfile', true);
-          }
-        "
+        @click="$eventBus.emit('ShowAddPaymentMethodModal')"
         class="btn primary btn-defaults"
       >
         {{ $t('add_payment_method_cta') }}
@@ -164,4 +164,5 @@ onMounted(async () => {
       :showLoadingText="false"
     />
   </div>
+  <KlbAddPaymentMethodModal />
 </template>
