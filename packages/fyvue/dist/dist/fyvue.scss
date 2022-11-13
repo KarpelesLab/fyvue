@@ -1,0 +1,801 @@
+.fy-modal {
+  @apply fixed inset-0 overflow-y-auto;
+  z-index: 40;
+}
+.fy-modal .parent {
+  @apply flex items-center justify-center min-h-screen;
+}
+.fy-modal .modal-container {
+  @apply relative mx-1 md:mx-0 md:max-w-2xl w-11/12 shadow -mt-20;
+  z-index: 41;
+}
+.fy-modal .title {
+  @apply text-xl flex justify-between items-center px-2 py-1;
+}
+.fy-modal .close-icon {
+  @apply w-8;
+}
+.fy-modal .close-icon.is-alone {
+  @apply float-right mr-1 mt-1;
+}
+.fy-modal .modal-content {
+  @apply p-2 md:p-3 xl:p-4 2xl:p-5;
+}
+
+.light .fy-modal .parent {
+  @apply text-fv-neutral-800;
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+.light .fy-modal .modal-container {
+  @apply bg-fv-neutral-100;
+}
+.light .fy-modal .title {
+  @apply bg-fv-neutral-50;
+}
+.light .fy-modal .close-icon {
+  @apply text-fv-neutral-700;
+}
+.light .fy-modal .close-icon:hover {
+  @apply text-fv-neutral-800;
+}
+
+.dark .fy-modal .parent {
+  @apply text-fv-neutral-300;
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+.dark .fy-modal .modal-container {
+  @apply bg-fv-neutral-800;
+}
+.dark .fy-modal .title {
+  @apply bg-fv-neutral-900;
+}
+.dark .fy-modal .close-icon {
+  @apply text-fv-neutral-400;
+}
+.dark .fy-modal .close-icon:hover {
+  @apply text-fv-neutral-200;
+}
+
+.fy-circle-percent {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.fy-circle-percent .circular-chart {
+  display: block;
+  margin: 10px auto;
+}
+.fy-circle-percent .circle-bg {
+  fill: none;
+  stroke-width: 3.8;
+}
+.fy-circle-percent .circle {
+  fill: none;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  animation: progress 3s ease-out forwards;
+}
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+.fy-circle-percent .percentage {
+  font-size: 0.5em;
+  text-anchor: middle;
+}
+
+.light .circle-bg {
+  stroke: #ccc;
+}
+.light .percentage {
+  fill: #000;
+}
+
+.dark .circle-bg {
+  stroke: #404040;
+}
+.dark .percentage {
+  fill: #ebedf1;
+}
+
+.fy-step-bar {
+  @apply border-b mb-4 pb-4;
+}
+.fy-step-bar .bar-bg {
+  @apply overflow-hidden rounded-full;
+}
+.fy-step-bar .bar-bg .bar {
+  @apply h-2 rounded-full;
+}
+.fy-step-bar ol {
+  @apply mt-4 grid grid-cols-3 text-sm font-medium;
+}
+.fy-step-bar ol li {
+  @apply flex items-center justify-center;
+}
+.fy-step-bar .icon {
+  @apply h-6 w-6 sm:ml-2 sm:h-5 sm:w-5;
+}
+.fy-step-bar .label {
+  @apply hidden sm:inline;
+}
+
+.light .fy-step-bar .bar-bg {
+  @apply bg-fv-neutral-300;
+}
+.light .fy-step-bar .bar {
+  @apply bg-fv-primary-500;
+}
+.light .fy-step-bar ol {
+  @apply text-fv-neutral-500;
+}
+.light .fy-step-bar ol li.current-step {
+  @apply text-fv-primary-500;
+}
+.light .fy-step-bar ol li.past-step {
+  @apply text-fv-neutral-500;
+}
+.light .fy-step-bar ol li.future-step {
+  @apply text-fv-neutral-500;
+}
+
+.dark .fy-step-bar {
+  @apply border-b-fv-neutral-600;
+}
+.dark .fy-step-bar .bar-bg {
+  @apply bg-fv-neutral-900;
+}
+.dark .fy-step-bar .bar {
+  @apply bg-fv-primary-700;
+}
+.dark .fy-step-bar ol {
+  @apply text-fv-neutral-300;
+}
+.dark .fy-step-bar ol li.current-step {
+  @apply text-fv-primary-300;
+}
+.dark .fy-step-bar ol li.past-step {
+  @apply text-fv-neutral-300;
+}
+.dark .fy-step-bar ol li.future-step {
+  @apply text-fv-neutral-300;
+}
+
+.fy-breadcrumb {
+  @apply py-0 mr-auto  font-semibold  uppercase;
+}
+.fy-breadcrumb ol {
+  @apply list-none p-0 inline-flex flex-wrap;
+}
+.fy-breadcrumb ol li {
+  @apply flex items-center pr-2 break-words;
+}
+.fy-breadcrumb ol li .link {
+  @apply pr-2 break-words;
+}
+.fy-breadcrumb .icon {
+  @apply w-3;
+}
+.fy-breadcrumb .bc-innactive {
+  @apply break-words;
+}
+.fy-breadcrumb .bc-current {
+  @apply flex items-center;
+}
+
+.light .fy-breadcrumb {
+  @apply border-fv-primary-600;
+}
+.light .bc-innactive {
+  @apply text-fv-neutral-600;
+}
+.light .bc-active {
+  @apply text-fv-primary-600;
+}
+
+.dark .fy-breadcrumb {
+  @apply border-fv-primary-300;
+}
+.dark .bc-innactive {
+  @apply text-fv-neutral-300;
+}
+.dark .bc-active {
+  @apply text-fv-primary-300;
+}
+
+.fy-datatable td {
+  @apply text-xs;
+}
+.fy-datatable th {
+  @apply font-bold uppercase  text-sm hidden md:table-cell;
+}
+.fy-datatable .tr {
+  @apply flex md:table-row flex-row md:flex-row flex-wrap md:flex-nowrap md:border-0;
+}
+.fy-datatable .td {
+  @apply w-full  md:w-auto py-0.5 md:py-1 px-0 md:px-3  text-left md:text-center flex items-center md:table-cell relative md:static;
+}
+.fy-datatable .div {
+  @apply md:hidden px-2 py-1 text-xs font-bold uppercase mb-0.5 w-28;
+}
+.fy-datatable .div-cell {
+  @apply px-2 md:px-0 py-1;
+}
+
+.fy-table {
+  @apply my-2 py-2 overflow-x-auto sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4;
+}
+.fy-table .table-container {
+  @apply align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b;
+}
+.fy-table table {
+  @apply min-w-full;
+}
+.fy-table table thead th {
+  @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 border-b  text-left text-xs leading-4 font-medium  uppercase tracking-wider;
+}
+.fy-table table thead th button {
+  @apply flex items-center;
+}
+.fy-table table tbody td {
+  @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 whitespace-nowrap  border-b;
+}
+
+.light .fy-table .table-container {
+  @apply border-fv-neutral-200;
+}
+.light .fy-table table thead th {
+  @apply border-fv-neutral-300 bg-fv-neutral-50 text-fv-neutral-600;
+}
+.light .fy-table table td {
+  @apply bg-fv-neutral-200;
+}
+.light .fy-table table tbody td {
+  @apply border-b-fv-neutral-300;
+}
+.light .fy-datatable tbody {
+  @apply bg-white;
+}
+.light .fy-datatable td {
+  @apply text-fv-neutral-700 border-b-fv-neutral-300;
+}
+.light .fy-datatable th {
+  @apply bg-fv-neutral-300 text-black;
+}
+.light .fy-datatable .div {
+  @apply bg-transparent md:bg-fv-neutral-300 text-black;
+}
+.light .fy-datatable .bg-color-1 {
+  @apply bg-fv-neutral-200;
+}
+.light .fy-datatable .bg-color-2 {
+  @apply bg-fv-neutral-100;
+}
+
+.dark .fy-table .table-container {
+  @apply border-fv-neutral-900 text-white bg-fv-neutral-800;
+}
+.dark .fy-table table thead th {
+  @apply border-fv-neutral-900 bg-fv-neutral-900 text-fv-neutral-400;
+}
+.dark .fy-table table td {
+  @apply bg-fv-neutral-700;
+}
+.dark .fy-table table tbody td {
+  @apply border-b-fv-neutral-900;
+}
+.dark .fy-datatable tbody {
+  @apply bg-black;
+}
+.dark .fy-datatable td {
+  @apply text-fv-neutral-200 border-b-fv-neutral-900;
+}
+.dark .fy-datatable th {
+  @apply bg-fv-neutral-900 text-white;
+}
+.dark .fy-datatable .div {
+  @apply bg-transparent md:bg-fv-neutral-900 text-white;
+}
+.dark .fy-datatable .bg-color-1 {
+  @apply bg-fv-neutral-600;
+}
+.dark .fy-datatable .bg-color-2 {
+  @apply bg-fv-neutral-700;
+}
+
+.fy-loader {
+  @apply absolute  inset-0 flex items-center justify-center;
+  z-index: 60 !important;
+}
+.fy-loader .loader-container {
+  @apply flex items-center flex-col rounded-full flex-grow-0 justify-center  pt-2;
+}
+.fy-loader .loader-text {
+  @apply w-full text-center font-bold mx-auto uppercase  mt-4 text-xs;
+}
+
+.fy-self-loader {
+  z-index: 60 !important;
+}
+
+.light .fy-self-loader .default-loader, .light .fy-loader .default-loader {
+  @apply text-fv-neutral-200 mb-2 animate-spin fill-fv-primary-600;
+}
+.light .fy-self-loader .loader-container, .light .fy-loader .loader-container {
+  @apply bg-transparent;
+}
+.light .fy-self-loader .loader-text, .light .fy-loader .loader-text {
+  @apply text-fv-neutral-800;
+}
+.dark .fy-self-loader .default-loader, .dark .fy-loader .default-loader {
+  @apply text-fv-neutral-700 mb-2 animate-spin fill-fv-primary-400;
+}
+.dark .fy-self-loader .loader-container, .dark .fy-loader .loader-container {
+  @apply bg-transparent;
+}
+.dark .fy-self-loader .loader-text, .dark .fy-loader .loader-text {
+  @apply text-fv-neutral-300;
+}
+.input-group {
+  @apply w-full;
+}
+.input-group .is-req {
+  @apply text-red-700;
+}
+.input-group .form-error-label {
+  @apply text-xs text-center font-bold -mt-3.5 md:mt-0.5;
+}
+.input-group .link-icon svg {
+  @apply w-5 inline-block -mt-0.5 mr-2;
+}
+.input-group .input-basic {
+  @apply w-full py-3 text-xs placeholder-fv-neutral-400 font-semibold leading-none border-0 outline-none;
+}
+.input-group .input-basic:focus, .input-group .input-basic:active {
+  @apply outline-0 outline-1 outline-fv-primary-500;
+}
+.input-group .input-basic.is-textarea {
+  @apply h-32;
+}
+.input-group .input-box {
+  @apply flex flex-1 border  md:mb-0;
+  /*
+  select {
+    padding-top: 14px;
+    padding-bottom: 13px;
+  }*/
+}
+.input-group .input-box input {
+  @apply px-2;
+}
+.input-group .input-box select {
+  height: 2.559rem;
+}
+.input-group .input-box textarea {
+  @apply px-2;
+}
+.input-group .label-basic {
+  @apply block uppercase tracking-wide whitespace-nowrap text-xs  font-bold mb-2 text-left pt-0 md:pt-3;
+}
+.input-group .label-basic input[type=checkbox] {
+  @apply -mt-1;
+}
+.input-group .label-basic input[type=checkbox]:focus, .input-group .label-basic input[type=checkbox]:active {
+  @apply outline-0 outline-1 outline-fv-primary-500;
+}
+.input-group .label-basic input[type=checkbox]:checked {
+  @apply outline-0 outline-1 outline-fv-primary-500  bg-fv-primary-500;
+}
+.input-group .error-form {
+  @apply outline-1 outline-red-600;
+}
+.input-group .help-text {
+  @apply font-medium text-xs mt-0.5;
+}
+.input-group .help-icon {
+  @apply w-6 inline-block -mt-1;
+}
+
+.light .link-icon svg {
+  @apply text-fv-primary-600;
+}
+.light .link-icon svg:hover {
+  @apply text-fv-primary-900;
+}
+.light .input-group .input-box,
+.light .input-group .dp__input {
+  @apply bg-fv-neutral-50 border-fv-neutral-300;
+}
+.light .input-group .input-basic {
+  @apply bg-fv-neutral-50 text-black;
+}
+.light .input-group .label-basic,
+.light .input-group .help-icon,
+.light .input-group .help-text {
+  @apply text-fv-neutral-600;
+}
+.light .input-group .form-error-label {
+  @apply text-red-500;
+}
+
+.dark .link-icon svg {
+  @apply text-fv-neutral-300;
+}
+.dark .link-icon svg:hover {
+  @apply text-fv-primary-50;
+}
+.dark .input-group .input-box,
+.dark .input-group .dp__input {
+  @apply bg-fv-neutral-800 border-fv-neutral-700;
+}
+.dark .input-group .input-basic {
+  @apply bg-fv-neutral-800 text-fv-neutral-50;
+}
+.dark .input-group .modal-container .input-box,
+.dark .input-group .modal-container .dp__input,
+.dark .input-group .box .input-box,
+.dark .input-group .box .dp__input {
+  @apply bg-fv-neutral-900 border-fv-neutral-700;
+}
+.dark .input-group .modal-container .input-basic,
+.dark .input-group .box .input-basic {
+  @apply bg-fv-neutral-900 text-fv-neutral-50;
+}
+.dark .input-group .label-basic,
+.dark .input-group .help-icon,
+.dark .input-group .help-text {
+  @apply text-fv-neutral-200;
+}
+.dark .input-group .form-error-label {
+  @apply text-red-400;
+}
+
+.fy-paging {
+  @apply flex items-center justify-center;
+}
+.fy-paging nav {
+  @apply relative z-0 inline-flex rounded-md shadow-sm -space-x-px;
+}
+.fy-paging .prev-next {
+  @apply relative inline-flex items-center px-2 pt-2 pb-1.5  border text-sm font-medium;
+}
+.fy-paging .active {
+  @apply z-10 relative inline-flex items-center px-4 pt-2 pb-1.5 border text-sm font-medium font-bold;
+}
+.fy-paging .innactive {
+  @apply relative inline-flex items-center px-4 pt-2 pb-1.5 border text-sm font-medium;
+}
+.fy-paging .dots {
+  @apply relative inline-flex items-center px-2 pt-2 pb-1.5 border  text-sm font-medium;
+}
+.fy-paging .paging-text {
+  @apply text-xs text-center italic mt-0.5;
+}
+
+.light .fy-paging .prev-next {
+  @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-500 hover:bg-fv-neutral-200 hover:text-fv-neutral-600;
+}
+.light .fy-paging .active {
+  @apply bg-fv-primary-50 border-fv-primary-500 text-fv-primary-600 hover:text-fv-neutral-600;
+}
+.light .fy-paging .innactive {
+  @apply bg-fv-neutral-100 border-fv-neutral-300 text-fv-neutral-500 hover:bg-fv-neutral-200 hover:text-fv-neutral-600;
+}
+.light .fy-paging .dots {
+  @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-700 hover:text-fv-neutral-600;
+}
+.light .fy-paging .paging-text {
+  @apply text-fv-neutral-700;
+}
+
+.dark .fy-paging .prev-next {
+  @apply border-fv-neutral-600 bg-fv-neutral-800 text-fv-neutral-200 hover:bg-fv-neutral-800 hover:text-fv-neutral-100;
+}
+.dark .fy-paging .active {
+  @apply bg-fv-primary-900 border-fv-primary-500 text-fv-primary-200 hover:text-fv-neutral-100;
+}
+.dark .fy-paging .innactive {
+  @apply bg-fv-neutral-800 border-fv-neutral-600 text-fv-neutral-200 hover:bg-fv-neutral-800 hover:text-fv-neutral-100;
+}
+.dark .fy-paging .dots {
+  @apply border-fv-neutral-600 bg-fv-neutral-800 text-fv-neutral-700 hover:text-fv-neutral-100;
+}
+.dark .fy-paging .paging-text {
+  @apply text-fv-neutral-300;
+}
+
+.fy-navbar {
+  @apply bg-white border-fv-neutral-200 px-2 md:px-4 py-2.5 dark:bg-fv-neutral-900;
+}
+.fy-navbar .nav-container {
+  @apply flex flex-wrap justify-between items-center mx-auto max-w-screen-xl;
+}
+.fy-navbar .logo-image {
+  @apply flex items-center;
+}
+.fy-navbar .logo-image img {
+  @apply mr-3;
+}
+.fy-navbar .logo-image span {
+  @apply hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white;
+}
+.fy-navbar .nav-actions {
+  @apply flex items-center md:order-2 space-x-1;
+}
+.fy-navbar .nav-actions .open-nav-button {
+  @apply inline-flex items-center p-2 ml-1 text-sm text-fv-neutral-500 rounded-lg md:hidden hover:bg-fv-neutral-100 focus:outline-none focus:ring-2 focus:ring-fv-neutral-200 dark:text-fv-neutral-400 dark:hover:bg-fv-neutral-700 dark:focus:ring-fv-neutral-600;
+}
+.fy-navbar .nav-actions .open-nav-button svg {
+  @apply w-6 h-6;
+}
+.fy-navbar .nav-actions .light-dark {
+  @apply p-2 fround;
+}
+.fy-navbar .nav-actions .light-dark svg {
+  @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
+}
+.fy-navbar .nav-custom {
+  @apply flex items-center justify-center order-2 md:order-1 mt-2 md:mt-0 flex-1 scale-90 md:scale-100;
+}
+.fy-navbar .nav-menu {
+  @apply hidden justify-between items-center w-full text-sm md:flex md:w-auto md:order-1;
+}
+.fy-navbar .nav-menu.is-open {
+  @apply block;
+}
+.fy-navbar .nav-menu .main-ul {
+  @apply flex flex-col mt-4 font-medium md:flex-row md:space-x-8 md:mt-0;
+}
+.fy-navbar .nav-menu .main-ul li {
+  @apply relative;
+}
+.fy-navbar .nav-menu .main-ul .is-link {
+  @apply block py-2 pr-4 pl-3 text-fv-neutral-600 border-b border-fv-neutral-100 hover:bg-fv-neutral-50 md:hover:bg-transparent md:border-0 md:hover:text-fv-primary-600 md:p-0 dark:text-fv-neutral-500 md:dark:hover:text-fv-primary-500 dark:hover:bg-fv-neutral-700 dark:hover:text-fv-primary-500 md:dark:hover:bg-transparent dark:border-fv-neutral-700;
+}
+.fy-navbar .nav-menu .main-ul .is-link.router-link-exact-active {
+  @apply text-fv-primary-600 dark:text-fv-primary-400;
+}
+.fy-navbar .nav-menu .main-ul .is-link.has-childs {
+  @apply flex items-center;
+}
+.fy-navbar .nav-menu .main-ul .is-link.has-childs svg {
+  @apply ml-1 w-5 h-5 md:w-4 md:h-4;
+}
+.fy-navbar .nav-menu .main-ul .sub-nav {
+  @apply absolute z-10 w-36   text-sm bg-white  border border-fv-neutral-100 shadow-md dark:border-fv-neutral-700 dark:bg-fv-neutral-800;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translate(0px, 20px);
+}
+.fy-navbar .nav-menu .main-ul .sub-nav ul {
+  @apply p-2  text-fv-neutral-900  dark:text-white  w-full grid grid-cols-1 gap-1;
+}
+.klb-login {
+  @apply w-full  flex flex-col flex-grow  items-center justify-center relative;
+  min-height: 16rem;
+}
+.klb-login h1 {
+  @apply mt-0 text-2xl;
+}
+.klb-login .label {
+  @apply pt-2 pb-1  text-sm;
+}
+.klb-login .message {
+  @apply text-lg;
+}
+.klb-login .oauth-button {
+  @apply h-12 w-12 block  rounded  p-2 mr-3 rounded-full border-4 shadow;
+}
+.klb-login .oauth-button:hover {
+  @apply border;
+}
+.klb-login .oauth-container {
+  @apply flex items-center justify-center shadow py-2 rounded;
+}
+.klb-login .reset-pwd {
+  @apply text-xs underline block absolute mt-6 pt-1 h-12;
+}
+.klb-login .reset-pwd:hover {
+  @apply no-underline;
+}
+.klb-login .btn.primary {
+  @apply block mt-4 text-lg font-bold px-6 py-2;
+}
+
+.light .klb-login .label {
+  @apply text-fv-neutral-500;
+}
+.light .klb-login .checkbox-label {
+  @apply underline text-fv-neutral-600;
+}
+.light .klb-login .checkbox-label:hover {
+  @apply text-fv-neutral-600;
+}
+.light .klb-login .mandatory {
+  @apply text-red-700;
+}
+.light .klb-login .oauth-container {
+  @apply bg-fv-neutral-50;
+}
+.light .klb-login .message {
+  @apply text-fv-neutral-700;
+}
+
+.dark .klb-login .label {
+  @apply text-fv-neutral-400;
+}
+.dark .klb-login .checkbox-label {
+  @apply underline text-fv-neutral-300;
+}
+.dark .klb-login .checkbox-label:hover {
+  @apply text-fv-neutral-300;
+}
+.dark .klb-login .mandatory {
+  @apply text-red-400;
+}
+.dark .klb-login .oauth-container {
+  @apply bg-fv-neutral-800;
+}
+.dark .klb-login .message {
+  @apply text-fv-neutral-300;
+}
+
+.klb-account {
+  @apply border-b border-b-fv-neutral-300 py-1 my-2;
+}
+.klb-account .edit-icon {
+  @apply w-4 inline-block -mt-0.5;
+}
+.klb-account .input-box-child {
+  @apply flex items-center justify-start  w-full;
+}
+.klb-account .input-box-child .main {
+  @apply px-2;
+}
+.klb-account .input-box-child .btn {
+  @apply px-2;
+}
+
+.klb-account-grid-inputs {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.klb-billing-history .no-billing-history {
+  @apply text-center;
+}
+.klb-billing-history .download-icon {
+  @apply h-4 -mt-0.5 align-middle inline-block;
+}
+.klb-billing-history .download-btn {
+  @apply p-2;
+}
+.klb-billing-history .billing-history-paging {
+  @apply my-4;
+}
+.klb-billing-history .billing-history-tag {
+  @apply uppercase block mx-auto bg-fv-primary-200 rounded p-1 text-center text-sm font-bold;
+}
+
+.klb-update-pm {
+  @apply border border-fv-neutral-200 bg-fv-primary-50 p-2;
+}
+.klb-update-pm .btn-box {
+  @apply mt-2;
+}
+
+.klb-update-billing-loc {
+  @apply border border-fv-neutral-200 bg-fv-primary-50 p-2;
+}
+.klb-update-billing-loc .form-grid {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.klb-add-method .form-grid {
+  @apply grid grid-cols-2 gap-2;
+}
+.klb-add-method .btn-center {
+  @apply mt-4 text-center;
+}
+
+html, body {
+  @apply antialiased;
+}
+
+.container {
+  @apply max-w-screen-xl;
+}
+
+.theCard {
+  @apply input-basic w-full px-2;
+}
+
+.is-sr {
+  @apply sr-only;
+}
+
+.fv-icon-base {
+  @apply h-5 w-5;
+}
+
+.self-loader-fyvue {
+  @apply h-16  relative;
+}
+
+.response-error {
+  @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
+}
+
+.btn-box {
+  @apply inline-flex space-x-2;
+}
+
+button[type=submit] {
+  @apply mt-4;
+}
+
+.btn {
+  @apply font-medium text-sm focus:outline-none;
+  @apply transition duration-300 ease-in-out transform;
+}
+.btn.primary {
+  @apply text-white bg-fv-primary-700 hover:bg-fv-primary-900  dark:bg-fv-primary-600 dark:hover:bg-fv-primary-800;
+}
+.btn.neutral {
+  @apply text-fv-neutral-900 border-fv-neutral-200 hover:bg-fv-neutral-200 hover:text-fv-primary-800    dark:bg-fv-neutral-800 dark:text-fv-neutral-400 dark:border-fv-neutral-600 dark:hover:text-white dark:hover:bg-fv-neutral-700;
+}
+.btn.btn-defaults {
+  @apply px-3 py-2;
+}
+.btn.small {
+  @apply text-sm py-1;
+}
+.btn.fround, .btn.round {
+  @apply rounded-full;
+}
+
+/*
+<button type="button" class="
+py-2.5 px-5 mr-2 mb-2 text-sm font-medium  border  focus:z-10 focus:ring-4
+ focus:ring-fv-neutral-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Alternative</button>
+
+.btn {
+  @apply  text-white shadow  whitespace-nowrap ;
+  @apply transition duration-300 ease-in-out transform;
+  text-shadow: 2px 2px 0px rgba(0,0,0,.3);
+
+  &.small {
+    @apply text-sm py-1;
+  }
+  &.neutral {
+    @apply  shadow-sm text-gray-50  ;
+    background: rgba(0,0,0,.7);
+
+  }
+  &.neutral:hover {
+    @apply  shadow-sm text-white ;
+    background: rgba(60,60,60,.7);
+  }
+  &.primary {
+    @apply bg-fv-primary-500 shadow-sm text-gray-50 ;
+
+  }
+  &.primary:hover {
+    @apply bg-fv-primary-600 shadow-sm text-white ;
+  }
+
+  &.btn-defaults {
+    @apply mx-auto px-3 py-1.5 ;
+  }
+
+  &.fround, &.round {
+    @apply rounded-full;
+  }
+}
+.btn-box {
+  @apply flex space-x-2 justify-start;
+  button {
+    @apply flex-1;
+  }
+}
+*/
