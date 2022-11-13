@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 set -e
-
-pnpm run build
+yarn run lint:check --fix
+yarn run build
 cd dist/
 
 npm publish --tag alpha

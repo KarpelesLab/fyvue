@@ -12,6 +12,7 @@ const query = ref<string>();
     title="fyvue"
     :links="[
       { to: '/', name: 'Home' },
+      /*
       { to: '/tests/i18n', name: 'I18N' },
       { to: '/tests/Store', name: 'Store' },
       {
@@ -22,10 +23,14 @@ const query = ref<string>();
           { to: '/tests/KlbBilling', name: 'KlbBilling' },
           { to: '/tests/KlbAccount', name: 'KlbAccount' },
         ],
-      },
+      },*/
     ]"
   >
+    <template v-slot:logo>
+      <img src="@/assets/fyvue.svg" class="h-10" />
+    </template>
     <template v-slot:custom>
+      <!--
       <div class="search relative">
         <form class="flex items-center">
           <router-link
@@ -78,12 +83,14 @@ const query = ref<string>();
             />
           </div>
         </form>
-      </div>
+      </div>-->
     </template>
   </FyNavbar>
   <div class="website">
     <div class="cols">
       <nav class="website-nav">
+        Test build
+        <!--
         <div class="px-2">
           <RouterLink to="/"
             ><img src="@/assets/fyvue.svg" alt="fyvue" class="w-24 mb-6"
@@ -155,7 +162,7 @@ const query = ref<string>();
               <RouterLink to="/tests/FyPaging">FyPaging</RouterLink>
             </li>
           </ul>
-        </div>
+        </div>-->
       </nav>
       <main>
         <div class="px-2">

@@ -6,7 +6,6 @@ import {
 } from '@heroicons/vue/24/solid';
 </script>
 <template>
-
   <div class="p-4">
     <FySteps
       :steps="[

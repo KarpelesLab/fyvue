@@ -11,29 +11,41 @@
     </div>
     <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
-    </div>    <div class="w-32 p-2">
+    </div>
+    <div class="w-32 p-2">
       <FyCirclePercent :percent="100" color="#eeee00" />
     </div>
   </div>

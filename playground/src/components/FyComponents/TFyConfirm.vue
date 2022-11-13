@@ -13,6 +13,8 @@ const testFyConfirm = () => {
 };
 </script>
 <template>
-  <button class="btn primary btn-defaults" @click="testFyConfirm()">Test FyConfirm</button>
+  <button class="btn primary btn-defaults" @click="testFyConfirm()">
+    Test FyConfirm
+  </button>
   <FyConfirm />
 </template>

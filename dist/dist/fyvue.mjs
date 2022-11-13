@@ -990,7 +990,7 @@ const _hoisted_11$6 = {
     key: 2,
     class: "help-text"
 };
-const _hoisted_12$3 = {
+const _hoisted_12$2 = {
     key: 3,
     class: "form-error-label"
 };
@@ -1152,7 +1152,7 @@ var script$a = defineComponent({
                     ? (openBlock(), createElementBlock("div", _hoisted_11$6, toDisplayString(__props.help), 1))
                     : createCommentVNode("v-if", true),
                 (unref(checkErrors))
-                    ? (openBlock(), createElementBlock("div", _hoisted_12$3, toDisplayString(unref(checkErrors)), 1))
+                    ? (openBlock(), createElementBlock("div", _hoisted_12$2, toDisplayString(unref(checkErrors)), 1))
                     : createCommentVNode("v-if", true)
             ]));
         };
@@ -1340,13 +1340,11 @@ script$9.__file = "src/components/ui/FyPaging/FyPaging.vue";
 
 const _hoisted_1$8 = { class: "fy-navbar" };
 const _hoisted_2$8 = { class: "nav-container" };
-const _hoisted_3$8 = ["src", "alt"];
-const _hoisted_4$8 = { key: 0 };
-const _hoisted_5$7 = { class: "nav-actions" };
-const _hoisted_6$7 = createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
-const _hoisted_7$6 = createElementVNode("svg", {
+const _hoisted_3$8 = { key: 0 };
+const _hoisted_4$8 = { class: "nav-actions" };
+const _hoisted_5$7 = createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_6$7 = createElementVNode("svg", {
     "aria-hidden": "true",
-    class: "w-6 h-6",
     fill: "currentColor",
     viewBox: "0 0 20 20",
     xmlns: "http://www.w3.org/2000/svg"
@@ -1357,12 +1355,12 @@ const _hoisted_7$6 = createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_8$6 = [
-    _hoisted_6$7,
-    _hoisted_7$6
+const _hoisted_7$6 = [
+    _hoisted_5$7,
+    _hoisted_6$7
 ];
-const _hoisted_9$5 = { class: "main-ul" };
-const _hoisted_10$4 = createElementVNode("svg", {
+const _hoisted_8$6 = { class: "main-ul" };
+const _hoisted_9$5 = createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1374,12 +1372,11 @@ const _hoisted_10$4 = createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
+const _hoisted_10$4 = ["href", "title", "alt"];
 const _hoisted_11$4 = ["href", "title", "alt"];
-const _hoisted_12$2 = ["href", "title", "alt"];
 var script$8 = defineComponent({
     __name: 'FyNavbar',
     props: {
-        logo: { type: String, required: false },
         title: { type: String, required: true },
         showTitle: { type: Boolean, required: false, default: true },
         darkLight: { type: Boolean, required: false, default: true },
@@ -1397,32 +1394,23 @@ var script$8 = defineComponent({
         const isOpen = ref(false);
         const toggleDark = useToggle(isDark);
         const toggleNavbarOpen = useToggle(isOpen);
-        const getImage = (path) => {
-            return new URL(path, import.meta.url).href;
-        };
         return (_ctx, _cache) => {
             const _component_router_link = resolveComponent("router-link");
             return (openBlock(), createElementBlock("nav", _hoisted_1$8, [
                 createElementVNode("div", _hoisted_2$8, [
-                    (__props.logo)
-                        ? (openBlock(), createBlock(_component_router_link, {
-                            key: 0,
-                            to: "/",
-                            class: "logo-image"
-                        }, {
-                            default: withCtx(() => [
-                                createElementVNode("img", {
-                                    src: getImage(__props.logo),
-                                    alt: __props.title
-                                }, null, 8, _hoisted_3$8),
-                                (__props.title && __props.showTitle)
-                                    ? (openBlock(), createElementBlock("span", _hoisted_4$8, toDisplayString(__props.title), 1))
-                                    : createCommentVNode("v-if", true)
-                            ]),
-                            _: 1
-                        }))
-                        : createCommentVNode("v-if", true),
-                    createElementVNode("div", _hoisted_5$7, [
+                    createVNode(_component_router_link, {
+                        to: "/",
+                        class: "logo-image"
+                    }, {
+                        default: withCtx(() => [
+                            renderSlot(_ctx.$slots, "logo"),
+                            (__props.title && __props.showTitle)
+                                ? (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString(__props.title), 1))
+                                : createCommentVNode("v-if", true)
+                        ]),
+                        _: 3
+                    }),
+                    createElementVNode("div", _hoisted_4$8, [
                         renderSlot(_ctx.$slots, "custom"),
                         renderSlot(_ctx.$slots, "buttons", {}, () => [
                             createVNode(_component_router_link, {
@@ -1459,12 +1447,12 @@ var script$8 = defineComponent({
                             type: "button",
                             class: "open-nav-button",
                             onClick: _cache[1] || (_cache[1] = ($event) => (unref(toggleNavbarOpen)()))
-                        }, _hoisted_8$6)
+                        }, _hoisted_7$6)
                     ]),
                     createElementVNode("div", {
                         class: normalizeClass(["nav-menu", isOpen.value ? 'is-open' : ''])
                     }, [
-                        createElementVNode("ul", _hoisted_9$5, [
+                        createElementVNode("ul", _hoisted_8$6, [
                             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.links, (link, index) => {
                                 return (openBlock(), createElementBlock("li", {
                                     key: `link_${index.toString()}`
@@ -1475,7 +1463,7 @@ var script$8 = defineComponent({
                                                 createVNode(unref(MenuButton), { class: "is-link has-childs" }, {
                                                     default: withCtx(() => [
                                                         createTextVNode(toDisplayString(link.name) + " ", 1),
-                                                        _hoisted_10$4
+                                                        _hoisted_9$5
                                                     ]),
                                                     _: 2
                                                 }, 1024),
@@ -1507,7 +1495,7 @@ var script$8 = defineComponent({
                                                                                     title: children.name,
                                                                                     alt: children.name,
                                                                                     class: normalizeClass(["is-link", ''])
-                                                                                }, toDisplayString(children.name), 9, _hoisted_11$4))
+                                                                                }, toDisplayString(children.name), 9, _hoisted_10$4))
                                                                         ])
                                                                     ]),
                                                                     _: 2
@@ -1540,7 +1528,7 @@ var script$8 = defineComponent({
                                                     title: link.name,
                                                     alt: link.name,
                                                     class: normalizeClass(["is-link", ''])
-                                                }, toDisplayString(link.name), 9, _hoisted_12$2))
+                                                }, toDisplayString(link.name), 9, _hoisted_11$4))
                                         ], 64))
                                 ]));
                             }), 128))

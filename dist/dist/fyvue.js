@@ -992,7 +992,7 @@ const _hoisted_11$6 = {
     key: 2,
     class: "help-text"
 };
-const _hoisted_12$3 = {
+const _hoisted_12$2 = {
     key: 3,
     class: "form-error-label"
 };
@@ -1154,7 +1154,7 @@ var script$a = vue.defineComponent({
                     ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$6, vue.toDisplayString(__props.help), 1))
                     : vue.createCommentVNode("v-if", true),
                 (vue.unref(checkErrors))
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_12$3, vue.toDisplayString(vue.unref(checkErrors)), 1))
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_12$2, vue.toDisplayString(vue.unref(checkErrors)), 1))
                     : vue.createCommentVNode("v-if", true)
             ]));
         };
@@ -1342,13 +1342,11 @@ script$9.__file = "src/components/ui/FyPaging/FyPaging.vue";
 
 const _hoisted_1$8 = { class: "fy-navbar" };
 const _hoisted_2$8 = { class: "nav-container" };
-const _hoisted_3$8 = ["src", "alt"];
-const _hoisted_4$8 = { key: 0 };
-const _hoisted_5$7 = { class: "nav-actions" };
-const _hoisted_6$7 = vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
-const _hoisted_7$6 = vue.createElementVNode("svg", {
+const _hoisted_3$8 = { key: 0 };
+const _hoisted_4$8 = { class: "nav-actions" };
+const _hoisted_5$7 = vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_6$7 = vue.createElementVNode("svg", {
     "aria-hidden": "true",
-    class: "w-6 h-6",
     fill: "currentColor",
     viewBox: "0 0 20 20",
     xmlns: "http://www.w3.org/2000/svg"
@@ -1359,12 +1357,12 @@ const _hoisted_7$6 = vue.createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_8$6 = [
-    _hoisted_6$7,
-    _hoisted_7$6
+const _hoisted_7$6 = [
+    _hoisted_5$7,
+    _hoisted_6$7
 ];
-const _hoisted_9$5 = { class: "main-ul" };
-const _hoisted_10$4 = vue.createElementVNode("svg", {
+const _hoisted_8$6 = { class: "main-ul" };
+const _hoisted_9$5 = vue.createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1376,12 +1374,11 @@ const _hoisted_10$4 = vue.createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
+const _hoisted_10$4 = ["href", "title", "alt"];
 const _hoisted_11$4 = ["href", "title", "alt"];
-const _hoisted_12$2 = ["href", "title", "alt"];
 var script$8 = vue.defineComponent({
     __name: 'FyNavbar',
     props: {
-        logo: { type: String, required: false },
         title: { type: String, required: true },
         showTitle: { type: Boolean, required: false, default: true },
         darkLight: { type: Boolean, required: false, default: true },
@@ -1399,32 +1396,23 @@ var script$8 = vue.defineComponent({
         const isOpen = vue.ref(false);
         const toggleDark = core.useToggle(isDark);
         const toggleNavbarOpen = core.useToggle(isOpen);
-        const getImage = (path) => {
-            return new URL(path, (typeof document === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : (document.currentScript && document.currentScript.src || new URL('fyvue.js', document.baseURI).href))).href;
-        };
         return (_ctx, _cache) => {
             const _component_router_link = vue.resolveComponent("router-link");
             return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$8, [
                 vue.createElementVNode("div", _hoisted_2$8, [
-                    (__props.logo)
-                        ? (vue.openBlock(), vue.createBlock(_component_router_link, {
-                            key: 0,
-                            to: "/",
-                            class: "logo-image"
-                        }, {
-                            default: vue.withCtx(() => [
-                                vue.createElementVNode("img", {
-                                    src: getImage(__props.logo),
-                                    alt: __props.title
-                                }, null, 8, _hoisted_3$8),
-                                (__props.title && __props.showTitle)
-                                    ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_4$8, vue.toDisplayString(__props.title), 1))
-                                    : vue.createCommentVNode("v-if", true)
-                            ]),
-                            _: 1
-                        }))
-                        : vue.createCommentVNode("v-if", true),
-                    vue.createElementVNode("div", _hoisted_5$7, [
+                    vue.createVNode(_component_router_link, {
+                        to: "/",
+                        class: "logo-image"
+                    }, {
+                        default: vue.withCtx(() => [
+                            vue.renderSlot(_ctx.$slots, "logo"),
+                            (__props.title && __props.showTitle)
+                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$8, vue.toDisplayString(__props.title), 1))
+                                : vue.createCommentVNode("v-if", true)
+                        ]),
+                        _: 3
+                    }),
+                    vue.createElementVNode("div", _hoisted_4$8, [
                         vue.renderSlot(_ctx.$slots, "custom"),
                         vue.renderSlot(_ctx.$slots, "buttons", {}, () => [
                             vue.createVNode(_component_router_link, {
@@ -1461,12 +1449,12 @@ var script$8 = vue.defineComponent({
                             type: "button",
                             class: "open-nav-button",
                             onClick: _cache[1] || (_cache[1] = ($event) => (vue.unref(toggleNavbarOpen)()))
-                        }, _hoisted_8$6)
+                        }, _hoisted_7$6)
                     ]),
                     vue.createElementVNode("div", {
                         class: vue.normalizeClass(["nav-menu", isOpen.value ? 'is-open' : ''])
                     }, [
-                        vue.createElementVNode("ul", _hoisted_9$5, [
+                        vue.createElementVNode("ul", _hoisted_8$6, [
                             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.links, (link, index) => {
                                 return (vue.openBlock(), vue.createElementBlock("li", {
                                     key: `link_${index.toString()}`
@@ -1477,7 +1465,7 @@ var script$8 = vue.defineComponent({
                                                 vue.createVNode(vue.unref(vue$1.MenuButton), { class: "is-link has-childs" }, {
                                                     default: vue.withCtx(() => [
                                                         vue.createTextVNode(vue.toDisplayString(link.name) + " ", 1),
-                                                        _hoisted_10$4
+                                                        _hoisted_9$5
                                                     ]),
                                                     _: 2
                                                 }, 1024),
@@ -1509,7 +1497,7 @@ var script$8 = vue.defineComponent({
                                                                                     title: children.name,
                                                                                     alt: children.name,
                                                                                     class: vue.normalizeClass(["is-link", ''])
-                                                                                }, vue.toDisplayString(children.name), 9, _hoisted_11$4))
+                                                                                }, vue.toDisplayString(children.name), 9, _hoisted_10$4))
                                                                         ])
                                                                     ]),
                                                                     _: 2
@@ -1542,7 +1530,7 @@ var script$8 = vue.defineComponent({
                                                     title: link.name,
                                                     alt: link.name,
                                                     class: vue.normalizeClass(["is-link", ''])
-                                                }, vue.toDisplayString(link.name), 9, _hoisted_12$2))
+                                                }, vue.toDisplayString(link.name), 9, _hoisted_11$4))
                                         ], 64))
                                 ]));
                             }), 128))

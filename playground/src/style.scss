@@ -24,3 +24,9 @@
     }
   }
 }
+pre[class*="language-"] {
+  padding: 5px !important;
+}
+.dark pre[class*="language-"] {
+  background: #101010 !important;
+}

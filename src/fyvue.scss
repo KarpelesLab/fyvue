@@ -16,6 +16,9 @@ html, body {
   @apply antialiased
 }
 
+.container {
+  @apply max-w-screen-xl;
+}
 .theCard {
   @apply input-basic w-full px-2;
 }

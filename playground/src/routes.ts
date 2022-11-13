@@ -1,71 +1,73 @@
 export const routes = [
   {
     path: '/',
-    component: () => import('./components/HelloWorld.vue'),
+    component: () => import('./views/IndexView.vue'),
   },
   {
     path: '/tests/i18n',
-    component: () => import('./components/Ti18n.vue'),
+    component: () => import('./components/Helpers/TlocalesI18n.vue'),
   },
+
+  /* KLB */
   {
     path: '/tests/KlbLogin',
-    component: () => import('./components/TKlbLogin.vue'),
+    component: () => import('./components/KlbComponents/TKlbLogin.vue'),
   },
   {
     path: '/tests/KlbAccount',
-    component: () => import('./components/TKlbAccount.vue'),
+    component: () => import('./components/KlbComponents/TKlbAccount.vue'),
   },
   {
     path: '/tests/KlbBilling',
-    component: () => import('./components/TKlbBilling.vue'),
+    component: () => import('./components/KlbComponents/TKlbBilling.vue'),
   },
   {
     path: '/tests/Store',
-    component: () => import('./components/TStore.vue'),
+    component: () => import('./components/Helpers/TStore.vue'),
   },
   {
     path: '/tests/FyInputBase',
-    component: () => import('./components/TFyInputBase.vue'),
+    component: () => import('./components/FyComponents/TFyInputBase.vue'),
   },
   {
     path: '/tests/FyInput',
-    component: () => import('./components/TFyInput.vue'),
+    component: () => import('./components/FyComponents/TFyInput.vue'),
   },
   {
     path: '/tests/FyPaging',
-    component: () => import('./components/TFyPaging.vue'),
+    component: () => import('./components/FyComponents/TFyPaging.vue'),
   },
   {
     path: '/tests/FyCirclePercent',
-    component: () => import('./components/TFyCirclePercent.vue'),
+    component: () => import('./components/FyComponents/TFyCirclePercent.vue'),
   },
   {
     path: '/tests/FyModal',
-    component: () => import('./components/TFyModal.vue'),
+    component: () => import('./components/FyComponents/TFyModal.vue'),
   },
   {
     path: '/tests/FySteps',
-    component: () => import('./components/TFySteps.vue'),
+    component: () => import('./components/FyComponents/TFySteps.vue'),
   },
   {
     path: '/tests/FyBreadcrumb',
-    component: () => import('./components/TFyBreadcrumb.vue'),
+    component: () => import('./components/FyComponents/TFyBreadcrumb.vue'),
   },
   {
     path: '/tests/FyConfirm',
-    component: () => import('./components/TFyConfirm.vue'),
+    component: () => import('./components/FyComponents/TFyConfirm.vue'),
   },
 
   {
     path: '/tests/FyDatatable',
-    component: () => import('./components/TFyDatatable.vue'),
+    component: () => import('./components/FyComponents/TFyDatatable.vue'),
   },
   {
     path: '/tests/FyTable',
-    component: () => import('./components/TFyTable.vue'),
+    component: () => import('./components/FyComponents/TFyTable.vue'),
   },
   {
     path: '/tests/FyLoader',
-    component: () => import('./components/TFyLoader.vue'),
+    component: () => import('./components/FyComponents/TFyLoader.vue'),
   },
 ];

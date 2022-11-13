@@ -1,0 +1,114 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn
+
+PATH: 
+  /home/fy/fy.to/fyvue/env/lib/node_modules/.bin:/home/fy/fy.to/fyvue/env/bin:/home/fy/.local/share/pnpm:/opt/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/opt/cuda/nsight_compute:/opt/cuda/nsight_systems/bin:/home/fy/.dotnet/tools:/usr/lib/jvm/default/bin:/var/lib/snapd/snap/bin:/home/fy/Android/Sdk/emulator:/home/fy/Android/Sdk/tools:/home/fy/Android/Sdk/tools/bin:/home/fy/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  19.0.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/fy/fy.to/fyvue/package.json: Expected ',' or '}' after property value in JSON at position 130
+      at JSON.parse (<anonymous>)
+      at /usr/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/usr/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "@karpeleslab/fyvue",
+    "private": true,
+    "description": "Vue lib for KLB systems",
+    "workspaces": ["playground"]
+    "scripts": {
+      "build": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
+      "build:css": "npx tailwindcss -i ./src/global.scss -o ./dist/fyvue.css",
+      "lint": "eslint --ext .js,.vue,.ts src/",
+      "play": "pnpm run -C ./playground dev:live",
+      "play:bundle": "pnpm run -C ./playground dev:bundle",
+      "doc": "pnpm run -C ./doc docs:build",
+      "doc:dev": "pnpm run -C ./doc docs:dev",
+      "lint:check": "eslint src/ --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/KarpelesLab/fyvue.git"
+    },
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/KarpelesLab/fyvue/issues"
+    },
+    "homepage": "https://github.com/KarpelesLab/fyvue#readme",
+    "peerDependencies": {
+      "@headlessui/vue": "^1.7.4",
+      "@karpeleslab/klbfw": "^0.1.12",
+      "@vue/server-renderer": "3.2.45",
+      "@vuelidate/core": "^2.0.0",
+      "@vuelidate/validators": "^2.0.0",
+      "@vueuse/core": "^9.5.0",
+      "@vueuse/head": "^0.9.8",
+      "i18next": "^22.0.4",
+      "pinia": "^2.0.23",
+      "vue": "^3.2.45",
+      "vue-router": "^4.1.6"
+    },
+    "devDependencies": {
+      "@headlessui/vue": "^1.7.4",
+      "@heroicons/vue": "^2.0.13",
+      "@karpeleslab/klbfw": "^0.1.12",
+      "@nuxt/devalue": "^2.0.0",
+      "@rollup/plugin-commonjs": "^23.0.2",
+      "@rollup/plugin-node-resolve": "^15.0.1",
+      "@rollup/plugin-typescript": "^9.0.2",
+      "@tailwindcss/aspect-ratio": "^0.4.2",
+      "@tailwindcss/forms": "^0.5.3",
+      "@tailwindcss/line-clamp": "^0.4.2",
+      "@tailwindcss/typography": "^0.5.8",
+      "@types/node": "^18.11.9",
+      "@vue/compiler-sfc": "^3.2.45",
+      "@vue/server-renderer": "3.2.45",
+      "@vue/tsconfig": "^0.1.3",
+      "@vuelidate/core": "^2.0.0",
+      "@vuelidate/validators": "^2.0.0",
+      "@vueuse/core": "^9.5.0",
+      "@vueuse/head": "^0.9.8",
+      "i18next": "^22.0.4",
+      "mitt": "^3.0.0",
+      "pinia": "^2.0.23",
+      "postcss": "^8.4.19",
+      "rollup": "^3.2.5",
+      "rollup-plugin-cleanup": "^3.2.1",
+      "rollup-plugin-copy": "^3.4.0",
+      "rollup-plugin-dts": "^5.0.0",
+      "rollup-plugin-peer-deps-external": "^2.2.4",
+      "rollup-plugin-scss": "^3.0.0",
+      "rollup-plugin-typescript2": "^0.34.1",
+      "rollup-plugin-vue": "^6.0.0",
+      "tailwindcss": "^3.2.3",
+      "tslib": "^2.4.1",
+      "typescript": "^4.8.4",
+      "vite": "^3.2.3",
+      "vue": "^3.2.45",
+      "vue-router": "^4.1.6",
+      "vue-eslint-parser": "^9.1.0",
+      "@vue/eslint-config-prettier": "^7.0.0",
+      "@vue/eslint-config-typescript": "^10.0.0",
+      "eslint": "^8.5.0",
+      "eslint-plugin-vue": "^8.2.0",
+      "@rushstack/eslint-patch": "^1.1.0",
+      "prettier": "^2.5.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

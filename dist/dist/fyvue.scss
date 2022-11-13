@@ -327,10 +327,6 @@
 .light .fy-self-loader .loader-text, .light .fy-loader .loader-text {
   @apply text-fv-neutral-800;
 }
-.light .fy-self-loader, .light .fy-loader {
-  background: rgba(255, 255, 255, 0.9) !important;
-}
-
 .dark .fy-self-loader .default-loader, .dark .fy-loader .default-loader {
   @apply text-fv-neutral-700 mb-2 animate-spin fill-fv-primary-400;
 }
@@ -340,10 +336,6 @@
 .dark .fy-self-loader .loader-text, .dark .fy-loader .loader-text {
   @apply text-fv-neutral-300;
 }
-.dark .fy-self-loader, .dark .fy-loader {
-  background: rgba(0, 0, 0, 0.9) !important;
-}
-
 .input-group {
   @apply w-full;
 }
@@ -522,7 +514,7 @@
   @apply flex items-center;
 }
 .fy-navbar .logo-image img {
-  @apply mr-3 h-10;
+  @apply mr-3;
 }
 .fy-navbar .logo-image span {
   @apply hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white;
@@ -532,6 +524,9 @@
 }
 .fy-navbar .nav-actions .open-nav-button {
   @apply inline-flex items-center p-2 ml-1 text-sm text-fv-neutral-500 rounded-lg md:hidden hover:bg-fv-neutral-100 focus:outline-none focus:ring-2 focus:ring-fv-neutral-200 dark:text-fv-neutral-400 dark:hover:bg-fv-neutral-700 dark:focus:ring-fv-neutral-600;
+}
+.fy-navbar .nav-actions .open-nav-button svg {
+  @apply w-6 h-6;
 }
 .fy-navbar .nav-actions .light-dark {
   @apply p-2 fround;

@@ -9,8 +9,11 @@ import {
 import { createHead } from '@vueuse/head';
 import { createPinia } from 'pinia';
 import { routes } from './routes';
+import VueCodeHighlight from 'vue-code-highlight';
+
 import './style.scss';
-import App from './Suspender.vue';
+import 'vue-code-highlight/themes/prism-tomorrow.css';
+import App from './AppSuspender.vue';
 
 export const createApp = async (isSSR = false) => {
   const head = createHead();
@@ -29,11 +32,6 @@ export const createApp = async (isSSR = false) => {
   app.use(head);
   app.use(pinia);
   app.use(fyvue);
+  app.use(VueCodeHighlight);
   return { app, router, head, pinia };
 };
-
-createApp().then(({ app, router }) => {
-  router.isReady().then(() => {
-    app.mount('#app');
-  });
-});

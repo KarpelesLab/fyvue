@@ -7,9 +7,7 @@ await store.refreshUser();
   <br />
   <KlbUpdateBillingLocation />
   <hr class="my-8" />
-    <KlbUpdatePaymentMethod />
-    <hr class="my-8" />
+  <KlbUpdatePaymentMethod />
+  <hr class="my-8" />
   <KlbBillingHistory />
-
-
 </template>

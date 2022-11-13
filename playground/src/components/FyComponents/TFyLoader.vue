@@ -20,5 +20,4 @@ onMounted(() => {
   <div class="relative w-48 h-48 mx-auto">
     <FyLoader id="tiny" size="4" />
   </div>
-
 </template>

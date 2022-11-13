@@ -22,7 +22,6 @@ type NavLink = {
 
 withDefaults(
   defineProps<{
-    logo?: string;
     title: string;
     showTitle?: boolean;
     darkLight?: boolean;
@@ -37,15 +36,12 @@ withDefaults(
     signupLink: '/login',
   }
 );
-const getImage = (path: string) => {
-  return new URL(path, import.meta.url).href;
-};
 </script>
 <template>
   <nav class="fy-navbar">
     <div class="nav-container">
-      <router-link to="/" class="logo-image" v-if="logo">
-        <img :src="getImage(logo)" :alt="title" />
+      <router-link to="/" class="logo-image">
+        <slot name="logo"></slot>
         <span v-if="title && showTitle">{{ title }}</span>
       </router-link>
       <div class="nav-actions">
@@ -74,7 +70,6 @@ const getImage = (path: string) => {
           <span class="is-sr">Open main menu</span>
           <svg
             aria-hidden="true"
-            class="w-6 h-6"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
