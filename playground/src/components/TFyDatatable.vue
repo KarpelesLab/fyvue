@@ -8,35 +8,36 @@ const tableData = [
 </script>
 
 <template>
-  <FyDatatable
-    class="w-full"
-    :headers="{
-      nickname: $t('nickname'),
-      active: $t('active'),
-      created: $t('created'),
-    }"
-    :data="tableData"
-  >
-    <template v-slot:created_item="property">
-      {{
-        $t('global_datetime', {
-          val: new Date(property.data.prop),
-          formatParams: {
-            val: {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
+  <div class="p-4">
+    <FyDatatable
+      class="w-full"
+      :headers="{
+        nickname: $t('nickname'),
+        active: $t('active'),
+        created: $t('created'),
+      }"
+      :data="tableData"
+    >
+      <template v-slot:created_item="property">
+        {{
+          $t('global_datetime', {
+            val: new Date(property.data.prop),
+            formatParams: {
+              val: {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              },
             },
-          },
-        })
-      }}
-    </template>
-    <template v-slot:active_item="property">
-      {{ property.data.item.active ? $t('alive') : $t('dead') }}
-    </template>
-  </FyDatatable>
-
-  <div class="dark mt-4">
+          })
+        }}
+      </template>
+      <template v-slot:active_item="property">
+        {{ property.data.item.active ? $t('alive') : $t('dead') }}
+      </template>
+    </FyDatatable>
+  </div>
+  <div class="p-4">
     <FyDatatable
       class="w-full"
       :headers="{

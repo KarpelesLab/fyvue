@@ -13,6 +13,8 @@ declare module "vue" {
     FyLoader: typeof import("../src")["components"]["FyLoader"];
     FyInput: typeof import("../src")["components"]["FyInput"];
     FyPaging: typeof import("../src")["components"]["FyPaging"];
+    FyNavbar: typeof import("../src")["components"]["FyNavbar"];
+
     // KLB
     KlbLogin: typeof import("../src")["components"]["KlbLogin"];
     KlbUpdateEmailModal: typeof import("../src")["components"]["KlbUpdateEmailModal"];

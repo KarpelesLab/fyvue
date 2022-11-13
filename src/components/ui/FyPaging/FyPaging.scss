@@ -1,26 +1,27 @@
-.paging {
+.fy-paging {
   @apply flex items-center justify-center;
   nav {
     @apply relative z-0 inline-flex rounded-md shadow-sm -space-x-px;
+
   }
   .prev-next {
-      @apply relative inline-flex items-center px-2 py-2  border text-sm font-medium;
+      @apply relative inline-flex items-center px-2 pt-2 pb-1.5  border text-sm font-medium;
   }
   .active {
-      @apply z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium font-bold ;
+      @apply z-10 relative inline-flex items-center px-4 pt-2 pb-1.5 border text-sm font-medium font-bold ;
   }
   .innactive {
-      @apply   relative inline-flex items-center px-4 py-2 border text-sm font-medium ;
+      @apply   relative inline-flex items-center px-4 pt-2 pb-1.5 border text-sm font-medium ;
   }
   .dots {
-      @apply relative inline-flex items-center px-2 py-2 border  text-sm font-medium ;
+      @apply relative inline-flex items-center px-2 pt-2 pb-1.5 border  text-sm font-medium ;
   }
   .paging-text {
       @apply text-xs text-center italic mt-0.5 ;
   }
 }
 .light {
-  .paging {
+  .fy-paging {
     .prev-next {
       @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-500 hover:bg-fv-neutral-200 hover:text-fv-neutral-600;
     }
@@ -40,7 +41,7 @@
 }
 
 .dark {
-  .paging {
+  .fy-paging {
     .prev-next {
       @apply border-fv-neutral-600 bg-fv-neutral-800 text-fv-neutral-200 hover:bg-fv-neutral-800 hover:text-fv-neutral-100;
     }

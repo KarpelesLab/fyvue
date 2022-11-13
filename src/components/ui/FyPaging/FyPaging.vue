@@ -69,8 +69,8 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="paging" v-if="items && items.page_max > 1 && items.page_no">
-    <div>
+  <div class="fy-paging" v-if="items && items.page_max > 1 && items.page_no">
+    <div class="paging-container">
       <nav aria-label="Pagination">
         <a
           href="javascript:void(0);"

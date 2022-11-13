@@ -120,41 +120,44 @@
   @apply hidden sm:inline;
 }
 
-.light .bar-bg {
-  @apply bg-fv-neutral-200;
+.light .fy-step-bar .bar-bg {
+  @apply bg-fv-neutral-300;
 }
-.light .bar {
+.light .fy-step-bar .bar {
   @apply bg-fv-primary-500;
 }
-.light ol {
+.light .fy-step-bar ol {
   @apply text-fv-neutral-500;
 }
-.light ol li.current-step {
+.light .fy-step-bar ol li.current-step {
   @apply text-fv-primary-500;
 }
-.light ol li.past-step {
+.light .fy-step-bar ol li.past-step {
   @apply text-fv-neutral-500;
 }
-.light ol li.future-step {
+.light .fy-step-bar ol li.future-step {
   @apply text-fv-neutral-500;
 }
 
-.dark .bar-bg {
-  @apply bg-fv-neutral-800;
+.dark .fy-step-bar {
+  @apply border-b-fv-neutral-600;
 }
-.dark .bar {
+.dark .fy-step-bar .bar-bg {
+  @apply bg-fv-neutral-900;
+}
+.dark .fy-step-bar .bar {
   @apply bg-fv-primary-700;
 }
-.dark ol {
+.dark .fy-step-bar ol {
   @apply text-fv-neutral-300;
 }
-.dark ol li.current-step {
+.dark .fy-step-bar ol li.current-step {
   @apply text-fv-primary-300;
 }
-.dark ol li.past-step {
+.dark .fy-step-bar ol li.past-step {
   @apply text-fv-neutral-300;
 }
-.dark ol li.future-step {
+.dark .fy-step-bar ol li.future-step {
   @apply text-fv-neutral-300;
 }
 
@@ -242,7 +245,13 @@
   @apply border-fv-neutral-200;
 }
 .light .fy-table table thead th {
-  @apply border-fv-neutral-200 bg-fv-neutral-50 text-fv-neutral-600;
+  @apply border-fv-neutral-300 bg-fv-neutral-50 text-fv-neutral-600;
+}
+.light .fy-table table td {
+  @apply bg-fv-neutral-200;
+}
+.light .fy-table table tbody td {
+  @apply border-b-fv-neutral-300;
 }
 .light .fy-datatable tbody {
   @apply bg-white;
@@ -269,6 +278,9 @@
 .dark .fy-table table thead th {
   @apply border-fv-neutral-900 bg-fv-neutral-900 text-fv-neutral-400;
 }
+.dark .fy-table table td {
+  @apply bg-fv-neutral-700;
+}
 .dark .fy-table table tbody td {
   @apply border-b-fv-neutral-900;
 }
@@ -285,10 +297,10 @@
   @apply bg-transparent md:bg-fv-neutral-900 text-white;
 }
 .dark .fy-datatable .bg-color-1 {
-  @apply bg-fv-neutral-700;
+  @apply bg-fv-neutral-600;
 }
 .dark .fy-datatable .bg-color-2 {
-  @apply bg-fv-neutral-800;
+  @apply bg-fv-neutral-700;
 }
 
 .fy-loader {
@@ -354,7 +366,7 @@
   @apply h-32;
 }
 .input-group .input-box {
-  @apply flex flex-1 border mb-4 md:mb-0;
+  @apply flex flex-1 border  md:mb-0;
   /*
   select {
     padding-top: 14px;
@@ -446,60 +458,124 @@
   @apply text-red-400;
 }
 
-.paging {
+.fy-paging {
   @apply flex items-center justify-center;
 }
-.paging nav {
+.fy-paging nav {
   @apply relative z-0 inline-flex rounded-md shadow-sm -space-x-px;
 }
-.paging .prev-next {
-  @apply relative inline-flex items-center px-2 py-2  border text-sm font-medium;
+.fy-paging .prev-next {
+  @apply relative inline-flex items-center px-2 pt-2 pb-1.5  border text-sm font-medium;
 }
-.paging .active {
-  @apply z-10 relative inline-flex items-center px-4 py-2 border text-sm font-medium font-bold;
+.fy-paging .active {
+  @apply z-10 relative inline-flex items-center px-4 pt-2 pb-1.5 border text-sm font-medium font-bold;
 }
-.paging .innactive {
-  @apply relative inline-flex items-center px-4 py-2 border text-sm font-medium;
+.fy-paging .innactive {
+  @apply relative inline-flex items-center px-4 pt-2 pb-1.5 border text-sm font-medium;
 }
-.paging .dots {
-  @apply relative inline-flex items-center px-2 py-2 border  text-sm font-medium;
+.fy-paging .dots {
+  @apply relative inline-flex items-center px-2 pt-2 pb-1.5 border  text-sm font-medium;
 }
-.paging .paging-text {
+.fy-paging .paging-text {
   @apply text-xs text-center italic mt-0.5;
 }
 
-.light .paging .prev-next {
+.light .fy-paging .prev-next {
   @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-500 hover:bg-fv-neutral-200 hover:text-fv-neutral-600;
 }
-.light .paging .active {
+.light .fy-paging .active {
   @apply bg-fv-primary-50 border-fv-primary-500 text-fv-primary-600 hover:text-fv-neutral-600;
 }
-.light .paging .innactive {
+.light .fy-paging .innactive {
   @apply bg-fv-neutral-100 border-fv-neutral-300 text-fv-neutral-500 hover:bg-fv-neutral-200 hover:text-fv-neutral-600;
 }
-.light .paging .dots {
+.light .fy-paging .dots {
   @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-700 hover:text-fv-neutral-600;
 }
-.light .paging .paging-text {
+.light .fy-paging .paging-text {
   @apply text-fv-neutral-700;
 }
 
-.dark .paging .prev-next {
+.dark .fy-paging .prev-next {
   @apply border-fv-neutral-600 bg-fv-neutral-800 text-fv-neutral-200 hover:bg-fv-neutral-800 hover:text-fv-neutral-100;
 }
-.dark .paging .active {
+.dark .fy-paging .active {
   @apply bg-fv-primary-900 border-fv-primary-500 text-fv-primary-200 hover:text-fv-neutral-100;
 }
-.dark .paging .innactive {
+.dark .fy-paging .innactive {
   @apply bg-fv-neutral-800 border-fv-neutral-600 text-fv-neutral-200 hover:bg-fv-neutral-800 hover:text-fv-neutral-100;
 }
-.dark .paging .dots {
+.dark .fy-paging .dots {
   @apply border-fv-neutral-600 bg-fv-neutral-800 text-fv-neutral-700 hover:text-fv-neutral-100;
 }
-.dark .paging .paging-text {
+.dark .fy-paging .paging-text {
   @apply text-fv-neutral-300;
 }
 
+.fy-navbar {
+  @apply bg-white border-fv-neutral-200 px-2 md:px-4 py-2.5 dark:bg-fv-neutral-900;
+}
+.fy-navbar .nav-container {
+  @apply flex flex-wrap justify-between items-center mx-auto max-w-screen-xl;
+}
+.fy-navbar .logo-image {
+  @apply flex items-center;
+}
+.fy-navbar .logo-image img {
+  @apply mr-3 h-10;
+}
+.fy-navbar .logo-image span {
+  @apply hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white;
+}
+.fy-navbar .nav-actions {
+  @apply flex items-center md:order-2 space-x-1;
+}
+.fy-navbar .nav-actions .open-nav-button {
+  @apply inline-flex items-center p-2 ml-1 text-sm text-fv-neutral-500 rounded-lg md:hidden hover:bg-fv-neutral-100 focus:outline-none focus:ring-2 focus:ring-fv-neutral-200 dark:text-fv-neutral-400 dark:hover:bg-fv-neutral-700 dark:focus:ring-fv-neutral-600;
+}
+.fy-navbar .nav-actions .light-dark {
+  @apply p-2 fround;
+}
+.fy-navbar .nav-actions .light-dark svg {
+  @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
+}
+.fy-navbar .nav-custom {
+  @apply flex items-center justify-center order-2 md:order-1 mt-2 md:mt-0 flex-1 scale-90 md:scale-100;
+}
+.fy-navbar .nav-menu {
+  @apply hidden justify-between items-center w-full text-sm md:flex md:w-auto md:order-1;
+}
+.fy-navbar .nav-menu.is-open {
+  @apply block;
+}
+.fy-navbar .nav-menu .main-ul {
+  @apply flex flex-col mt-4 font-medium md:flex-row md:space-x-8 md:mt-0;
+}
+.fy-navbar .nav-menu .main-ul li {
+  @apply relative;
+}
+.fy-navbar .nav-menu .main-ul .is-link {
+  @apply block py-2 pr-4 pl-3 text-fv-neutral-600 border-b border-fv-neutral-100 hover:bg-fv-neutral-50 md:hover:bg-transparent md:border-0 md:hover:text-fv-primary-600 md:p-0 dark:text-fv-neutral-500 md:dark:hover:text-fv-primary-500 dark:hover:bg-fv-neutral-700 dark:hover:text-fv-primary-500 md:dark:hover:bg-transparent dark:border-fv-neutral-700;
+}
+.fy-navbar .nav-menu .main-ul .is-link.router-link-exact-active {
+  @apply text-fv-primary-600 dark:text-fv-primary-400;
+}
+.fy-navbar .nav-menu .main-ul .is-link.has-childs {
+  @apply flex items-center;
+}
+.fy-navbar .nav-menu .main-ul .is-link.has-childs svg {
+  @apply ml-1 w-5 h-5 md:w-4 md:h-4;
+}
+.fy-navbar .nav-menu .main-ul .sub-nav {
+  @apply absolute z-10 w-36   text-sm bg-white  border border-fv-neutral-100 shadow-md dark:border-fv-neutral-700 dark:bg-fv-neutral-800;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translate(0px, 20px);
+}
+.fy-navbar .nav-menu .main-ul .sub-nav ul {
+  @apply p-2  text-fv-neutral-900  dark:text-white  w-full grid grid-cols-1 gap-1;
+}
 .klb-login {
   @apply w-full  flex flex-col flex-grow  items-center justify-center relative;
   min-height: 16rem;
@@ -651,38 +727,76 @@ html, body {
   @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
 }
 
+.btn-box {
+  @apply inline-flex space-x-2;
+}
+
+button[type=submit] {
+  @apply mt-4;
+}
+
 .btn {
-  @apply text-white shadow  whitespace-nowrap;
+  @apply font-medium text-sm focus:outline-none;
   @apply transition duration-300 ease-in-out transform;
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+.btn.primary {
+  @apply text-white bg-fv-primary-700 hover:bg-fv-primary-900  dark:bg-fv-primary-600 dark:hover:bg-fv-primary-800;
+}
+.btn.neutral {
+  @apply text-fv-neutral-900 border-fv-neutral-200 hover:bg-fv-neutral-200 hover:text-fv-primary-800    dark:bg-fv-neutral-800 dark:text-fv-neutral-400 dark:border-fv-neutral-600 dark:hover:text-white dark:hover:bg-fv-neutral-700;
+}
+.btn.btn-defaults {
+  @apply px-3 py-2;
 }
 .btn.small {
   @apply text-sm py-1;
-}
-.btn.neutral {
-  @apply shadow-sm text-gray-50;
-  background: rgba(0, 0, 0, 0.7);
-}
-.btn.neutral:hover {
-  @apply shadow-sm text-white;
-  background: rgba(60, 60, 60, 0.7);
-}
-.btn.primary {
-  @apply bg-fv-primary-500 shadow-sm text-gray-50;
-}
-.btn.primary:hover {
-  @apply bg-fv-primary-600 shadow-sm text-white;
-}
-.btn.btn-defaults {
-  @apply mx-auto px-3 py-1.5;
 }
 .btn.fround, .btn.round {
   @apply rounded-full;
 }
 
+/*
+<button type="button" class="
+py-2.5 px-5 mr-2 mb-2 text-sm font-medium  border  focus:z-10 focus:ring-4
+ focus:ring-fv-neutral-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Alternative</button>
+
+.btn {
+  @apply  text-white shadow  whitespace-nowrap ;
+  @apply transition duration-300 ease-in-out transform;
+  text-shadow: 2px 2px 0px rgba(0,0,0,.3);
+
+  &.small {
+    @apply text-sm py-1;
+  }
+  &.neutral {
+    @apply  shadow-sm text-gray-50  ;
+    background: rgba(0,0,0,.7);
+
+  }
+  &.neutral:hover {
+    @apply  shadow-sm text-white ;
+    background: rgba(60,60,60,.7);
+  }
+  &.primary {
+    @apply bg-fv-primary-500 shadow-sm text-gray-50 ;
+
+  }
+  &.primary:hover {
+    @apply bg-fv-primary-600 shadow-sm text-white ;
+  }
+
+  &.btn-defaults {
+    @apply mx-auto px-3 py-1.5 ;
+  }
+
+  &.fround, &.round {
+    @apply rounded-full;
+  }
+}
 .btn-box {
   @apply flex space-x-2 justify-start;
+  button {
+    @apply flex-1;
+  }
 }
-.btn-box button {
-  @apply flex-1;
-}
+*/

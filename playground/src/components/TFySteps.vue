@@ -6,16 +6,8 @@ import {
 } from '@heroicons/vue/24/solid';
 </script>
 <template>
-  <FySteps
-    :steps="[
-      { name: 'steps_offer', icon: ListBulletIcon },
-      { name: 'steps_address', icon: MapPinIcon },
-      { name: 'steps_payment', icon: CreditCardIcon },
-    ]"
-    :currentStep="2"
-  />
 
-  <div class="dark bg-gray-700">
+  <div class="p-4">
     <FySteps
       :steps="[
         { name: 'steps_offer' },

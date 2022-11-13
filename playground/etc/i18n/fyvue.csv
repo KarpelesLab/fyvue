@@ -70,3 +70,6 @@
 "add_pm_zip_label","Zipcode",,,"KlbAdddPaymentMethodModal component"
 "payment_method_label","Credit Card Information",,,"KlbAdddPaymentMethodModal component"
 "create_billing_profile","Save payment method",,,"KlbAdddPaymentMethodModal component"
+"navbar_login_cta","Login",,,"FyNavbar component"
+"navbar_signup_cta","Sign up",,,"FyNavbar component"
+

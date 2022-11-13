@@ -46,7 +46,15 @@
     }
     table {
       thead th {
-        @apply border-fv-neutral-200 bg-fv-neutral-50 text-fv-neutral-600;
+        @apply border-fv-neutral-300 bg-fv-neutral-50 text-fv-neutral-600;
+      }
+      td {
+        @apply bg-fv-neutral-200 ;
+      }
+      tbody {
+        td {
+          @apply border-b-fv-neutral-300
+        }
       }
     }
   }
@@ -74,14 +82,15 @@
 
 .dark {
   .fy-table  {
-
-
     .table-container {
       @apply border-fv-neutral-900 text-white bg-fv-neutral-800;;
     }
     table {
       thead th {
         @apply border-fv-neutral-900 bg-fv-neutral-900 text-fv-neutral-400;
+      }
+      td {
+        @apply bg-fv-neutral-700 ;
       }
       tbody {
         td {
@@ -104,10 +113,10 @@
       @apply bg-transparent md:bg-fv-neutral-900 text-white;
     }
     .bg-color-1 {
-      @apply bg-fv-neutral-700
+      @apply bg-fv-neutral-600
     }
     .bg-color-2 {
-      @apply bg-fv-neutral-800
+      @apply bg-fv-neutral-700
     }
   }
 }

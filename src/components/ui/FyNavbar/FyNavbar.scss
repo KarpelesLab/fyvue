@@ -1,0 +1,70 @@
+.fy-navbar {
+  @apply bg-white border-fv-neutral-200 px-2 md:px-4 py-2.5 dark:bg-fv-neutral-900;
+
+  .nav-container {
+    @apply flex flex-wrap justify-between items-center mx-auto max-w-screen-xl;
+  }
+  .logo-image {
+    @apply flex items-center;
+    img {
+      @apply mr-3 h-10 ;
+    }
+    span {
+      @apply hidden md:block self-center text-xl font-semibold whitespace-nowrap dark:text-white;
+    }
+  }
+  .nav-actions {
+    @apply flex items-center md:order-2 space-x-1;
+    .open-nav-button {
+      @apply inline-flex items-center p-2 ml-1 text-sm text-fv-neutral-500 rounded-lg md:hidden hover:bg-fv-neutral-100 focus:outline-none focus:ring-2 focus:ring-fv-neutral-200 dark:text-fv-neutral-400 dark:hover:bg-fv-neutral-700 dark:focus:ring-fv-neutral-600;
+    }
+    .light-dark {
+      @apply p-2 fround;
+
+      svg {
+        @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
+      }
+    }
+  }
+  .nav-custom {
+    @apply flex items-center justify-center order-2 md:order-1 mt-2 md:mt-0 flex-1 scale-90 md:scale-100;
+  }
+  .nav-menu {
+    @apply hidden justify-between items-center w-full text-sm md:flex md:w-auto md:order-1;
+    &.is-open {
+      @apply block;
+    }
+    .main-ul {
+      @apply flex flex-col mt-4 font-medium md:flex-row md:space-x-8 md:mt-0;
+      li {
+        @apply relative;
+      }
+      .is-link {
+        @apply block py-2 pr-4 pl-3 text-fv-neutral-600 border-b border-fv-neutral-100 hover:bg-fv-neutral-50 md:hover:bg-transparent md:border-0 md:hover:text-fv-primary-600 md:p-0 dark:text-fv-neutral-500 md:dark:hover:text-fv-primary-500 dark:hover:bg-fv-neutral-700 dark:hover:text-fv-primary-500 md:dark:hover:bg-transparent dark:border-fv-neutral-700;
+        &.router-link-exact-active {
+          @apply text-fv-primary-600 dark:text-fv-primary-400;
+        }
+        &.has-childs {
+          @apply flex items-center;
+          svg {
+            @apply ml-1 w-5 h-5 md:w-4 md:h-4;
+          }
+
+
+        }
+      }
+      .sub-nav {
+        @apply   absolute z-10 w-36   text-sm bg-white  border border-fv-neutral-100 shadow-md dark:border-fv-neutral-700 dark:bg-fv-neutral-800;
+        position: absolute;
+        inset: 0px auto auto 0px;
+        margin: 0px;
+        transform: translate(0px, 20px);
+        ul {
+          @apply p-2  text-fv-neutral-900  dark:text-white  w-full grid grid-cols-1 gap-1;
+          li {
+          }
+        }
+      }
+    }
+  }
+}

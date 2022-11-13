@@ -9,7 +9,7 @@ const customMethod = () => {
 };
 </script>
 <template>
-  <div>
+  <div class="btn-box">
     <FyModal id="Test" title="Hey Title">
       <p>Hey</p>
     </FyModal>
@@ -17,9 +17,26 @@ const customMethod = () => {
       <p>Hey Test2</p>
     </FyModal>
 
-    <button @click="$eventBus.emit('TestModal', true)">Open TestModal</button>
-    <button @click="$eventBus.emit('TestModal', true)">Close TestModal</button>
-    <button @click="customMethod()">Close after 5 seconds</button>
-    <button @click="$eventBus.emit('Test2Modal', true)">Open Test2Modal</button>
+    <button
+      class="btn primary btn-defaults"
+      @click="$eventBus.emit('TestModal', true)"
+    >
+      Open TestModal
+    </button>
+    <button
+      class="btn primary btn-defaults"
+      @click="$eventBus.emit('TestModal', true)"
+    >
+      Close TestModal
+    </button>
+    <button class="btn primary btn-defaults" @click="customMethod()">
+      Close after 5 seconds
+    </button>
+    <button
+      class="btn primary btn-defaults"
+      @click="$eventBus.emit('Test2Modal', true)"
+    >
+      Open Test2Modal
+    </button>
   </div>
 </template>

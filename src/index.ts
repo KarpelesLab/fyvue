@@ -34,6 +34,7 @@ const createFyvue = () => {
     app.config.globalProperties.$countries = countries;
 
     let k: keyof typeof uiComponents;
+    console.log(uiComponents)
     for (k in uiComponents) {
       app.component(uiComponents[k].__name!, uiComponents[k]);
     }

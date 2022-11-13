@@ -35,7 +35,4 @@ onUnmounted(() => {
   <template v-if="results">
     <pre class="text-xs">{{ results }}</pre>
   </template>
-  <div class="dark bg-neutral-800 p-4">
-    <FyPaging id="myPaging" :items="paging" v-if="paging" />
-  </div>
 </template>

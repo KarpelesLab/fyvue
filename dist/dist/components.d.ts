@@ -13,6 +13,8 @@ declare module "vue" {
     FyLoader: typeof import("@karpeleslab/fyvue")["components"]["FyLoader"];
     FyInput: typeof import("@karpeleslab/fyvue")["components"]["FyInput"];
     FyPaging: typeof import("@karpeleslab/fyvue")["components"]["FyPaging"];
+    FyNavbar: typeof import("@karpeleslab/fyvue")["components"]["FyNavbar"];
+
     // KLB
     KlbLogin: typeof import("@karpeleslab/fyvue")["components"]["KlbLogin"];
     KlbUpdateEmailModal: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdateEmailModal"];

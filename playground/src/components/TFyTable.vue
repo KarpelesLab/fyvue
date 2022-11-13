@@ -32,17 +32,4 @@ const tableData = [
       }}
     </template>
   </FyTable>
-
-  <div class="dark mt-4">
-    <FyTable
-      class="w-full"
-      :headers="{
-        nickname: $t('nickname'),
-        active: $t('active'),
-        created: $t('created'),
-      }"
-      :data="tableData"
-    >
-    </FyTable>
-  </div>
 </template>

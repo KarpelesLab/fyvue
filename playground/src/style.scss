@@ -5,13 +5,13 @@
 @import "@karpeleslab/fyvue/fyvue.scss";
 
 .website {
-  @apply flex flex-col w-full max-w-full;
+  @apply flex flex-col w-full max-w-full bg-fv-neutral-100 pt-5 dark:bg-fv-neutral-800 text-black dark:text-white;
   min-height: 100vh;
   max-height: 100vh;
 
   .cols {
     @apply flex container mx-auto;
-    nav {
+    .website-nav {
       @apply w-36 pr-0  pt-4 flex flex-col items-center justify-start border-r ;
       .router-link-exact-active {
         @apply font-bold;
