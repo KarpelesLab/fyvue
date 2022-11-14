@@ -152,9 +152,19 @@ async function handleSSR(createApp, cb, options = {}) {
     }
     const html = await serverRenderer.renderToString(app, {});
     const { headTags, htmlAttrs, bodyAttrs, bodyTags } = head.renderHeadToString(head$1);
+    console.log('\n--------------------------------\n');
+    console.log('HTML: \n', html);
+    console.log('\n--------------------------------\n');
+    console.log('headTags: \n', headTags);
+    console.log('\n--------------------------------\n');
+    console.log('htmlAttrs: \n', htmlAttrs);
+    console.log('\n--------------------------------\n');
+    console.log('bodyAttrs: \n', bodyAttrs);
+    console.log('\n--------------------------------\n');
+    console.log('bodyTags: \n', bodyTags);
+    console.log('\n--------------------------------\n');
     result.meta = headTags;
     result.bodyAttributes = bodyAttrs;
-    console.log(bodyAttrs);
     result.htmlAttributes = htmlAttrs;
     result.bodyTags = bodyTags;
     result.app = html;
