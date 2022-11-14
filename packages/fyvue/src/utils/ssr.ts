@@ -4,6 +4,8 @@ import { getUuid, getPath, getInitialState } from '@karpeleslab/klbfw';
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
 import { defineStore } from 'pinia';
+//import { decode } from 'he';
+
 //import { NavigationCallback } from "vue-router"
 
 export interface KlbSSR {
@@ -90,11 +92,15 @@ export const setupClient = (router: Router, pinia: Pinia) => {
 export async function handleSSR(
   createApp: Function,
   cb: Function,
-  options = {}
+  options = { url: null }
 ) {
   // options is useless atm.
   const { app, router, head, pinia } = await createApp(true);
-  const url = `${getPath()}`;
+  let url;
+  if (options.url) url = options.url;
+  else {
+    url = `${getPath()}`;
+  }
 
   await router.push(url);
   await router.isReady();
@@ -117,24 +123,12 @@ export async function handleSSR(
   }
 
   const html = await renderToString(app, {});
-  const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head)
-
-  console.log('\n--------------------------------\n');
-  console.log('HTML: \n', html);
-  console.log('\n--------------------------------\n');
-  console.log('headTags: \n', headTags);
-  console.log('\n--------------------------------\n');
-  console.log('htmlAttrs: \n', htmlAttrs);
-  console.log('\n--------------------------------\n');
-  console.log('bodyAttrs: \n', bodyAttrs);
-  console.log('\n--------------------------------\n');
-  console.log('bodyTags: \n', bodyTags);
-  console.log('\n--------------------------------\n');
+  const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head);
 
   result.meta = headTags;
   result.bodyAttributes = bodyAttrs;
   result.htmlAttributes = htmlAttrs;
-  result.bodyTags = bodyTags;
+  result.bodyTags = bodyTags.replaceAll('\\n', '');
   result.app = html;
 
   if (historyStore.status != 200) {

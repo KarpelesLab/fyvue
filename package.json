@@ -11,5 +11,8 @@
         "build:play": "yarn workspace playground build",
         "lint:play": "yarn workspace playground lint:check --fix"
     },
-    "packageManager": "yarn@3.2.4"
+    "packageManager": "yarn@3.2.4",
+    "devDependencies": {
+        "he": "^1.2.0"
+    }
 }

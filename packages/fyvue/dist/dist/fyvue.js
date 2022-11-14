@@ -131,9 +131,14 @@ const setupClient = (router, pinia) => {
     }
     useHistory(pinia)._setRouter(router);
 };
-async function handleSSR(createApp, cb, options = {}) {
+async function handleSSR(createApp, cb, options = { url: null }) {
     const { app, router, head: head$1, pinia } = await createApp(true);
-    const url = `${klbfw.getPath()}`;
+    let url;
+    if (options.url)
+        url = options.url;
+    else {
+        url = `${klbfw.getPath()}`;
+    }
     await router.push(url);
     await router.isReady();
     const result = {
@@ -152,21 +157,10 @@ async function handleSSR(createApp, cb, options = {}) {
     }
     const html = await serverRenderer.renderToString(app, {});
     const { headTags, htmlAttrs, bodyAttrs, bodyTags } = head.renderHeadToString(head$1);
-    console.log('\n--------------------------------\n');
-    console.log('HTML: \n', html);
-    console.log('\n--------------------------------\n');
-    console.log('headTags: \n', headTags);
-    console.log('\n--------------------------------\n');
-    console.log('htmlAttrs: \n', htmlAttrs);
-    console.log('\n--------------------------------\n');
-    console.log('bodyAttrs: \n', bodyAttrs);
-    console.log('\n--------------------------------\n');
-    console.log('bodyTags: \n', bodyTags);
-    console.log('\n--------------------------------\n');
     result.meta = headTags;
     result.bodyAttributes = bodyAttrs;
     result.htmlAttributes = htmlAttrs;
-    result.bodyTags = bodyTags;
+    result.bodyTags = bodyTags.replaceAll('\\n', '');
     result.app = html;
     if (historyStore.status != 200) {
         if ([301, 302, 303, 307].includes(historyStore.status)) {

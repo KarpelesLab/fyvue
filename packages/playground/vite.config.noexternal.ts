@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
+import { SchemaOrg } from '@vueuse/schema-org-vite';
 
 const fyvueRoot = '../fyvue/dist';
 
@@ -10,9 +11,6 @@ const fyvueRoot = '../fyvue/dist';
 export default defineConfig({
   ssr: {
     noExternal: /./,
-  },
-  legacy: {
-    buildSsrCjsExternalHeuristics: true,
   },
   build: {
     rollupOptions: {
@@ -24,7 +22,7 @@ export default defineConfig({
   plugins: [
     vue({
       template: {
-        //ssr: true,
+        ssr: true,
         compilerOptions: {
           // https://github.com/vuejs/vue-next/issues/3298
           // Used so that the compiler doesn't complain about v-maska during SSR transform
@@ -36,6 +34,11 @@ export default defineConfig({
           img: ['src'],
         },
       },
+    }),
+    SchemaOrg({
+      mock: false,
+      full: false,
+      dts: true,
     }),
   ],
   resolve: {

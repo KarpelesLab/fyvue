@@ -4,6 +4,7 @@ import { Head } from "@vueuse/head";
 import {
   SchemaOrgWebSite,
   SchemaOrgOrganization,
+  SchemaOrgDebug
 } from '@vueuse/schema-org/runtime';
 import { ref } from 'vue';
 await i18nextPromise;
@@ -24,6 +25,8 @@ const query = ref<string>();
     same-as="['https://twitter.com/ungeek']"
   />
   <SchemaOrgWebSite name="fyvue" />
+
+  <SchemaOrgDebug />
   <FyNavbar
     logo="/src/assets/fyvue.svg"
     title="fyvue"
