@@ -19,10 +19,9 @@ jobs:
     - run: zip -9r final.zip dist etc
       working-directory: packages/playground
     - uses: actions/upload-artifact@v1
-      working-directory: packages/playground
       with:
         name: build
-        path: final.zip
+        path: packages/playground/final.zip
 
   deploy:
 
