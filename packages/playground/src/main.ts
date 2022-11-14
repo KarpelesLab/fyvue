@@ -10,6 +10,7 @@ import { createHead } from '@vueuse/head';
 import { createPinia } from 'pinia';
 import { routes } from './routes';
 import VueCodeHighlight from 'vue-code-highlight';
+import { installSchemaOrg } from '@vueuse/schema-org-vite/vite';
 
 import './style.scss';
 import 'vue-code-highlight/themes/prism-tomorrow.css';
@@ -31,6 +32,12 @@ export const createApp = async (isSSR = false) => {
   app.use(router);
   app.use(head);
   app.use(pinia);
+  installSchemaOrg(
+    { app, router },
+    {
+      canonicalHost: 'https://fy-vue.com',
+    }
+  );
   app.use(fyvue);
   app.use(VueCodeHighlight);
   return { app, router, head, pinia };

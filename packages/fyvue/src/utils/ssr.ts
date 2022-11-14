@@ -121,6 +121,7 @@ export async function handleSSR(
 
   result.meta = headTags;
   result.bodyAttributes = bodyAttrs;
+  console.log(bodyAttrs);
   result.htmlAttributes = htmlAttrs;
   result.bodyTags = bodyTags;
   result.app = html;

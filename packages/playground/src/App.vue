@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { i18nextPromise, countriesPromise } from '@karpeleslab/fyvue';
+import {
+  SchemaOrgWebSite,
+  SchemaOrgOrganization,
+} from '@vueuse/schema-org/runtime';
 import { ref } from 'vue';
 await i18nextPromise;
 await countriesPromise();
@@ -7,6 +11,12 @@ const query = ref<string>();
 </script>
 
 <template>
+  <SchemaOrgOrganization
+    name="fyvue"
+    logo="https://www.fy-vue.com/fyvue.svg"
+    same-as="['https://twitter.com/ungeek']"
+  />
+  <SchemaOrgWebSite name="fyvue" />
   <FyNavbar
     logo="/src/assets/fyvue.svg"
     title="fyvue"

@@ -334,10 +334,10 @@ button[type=submit] {
   @apply border-fv-neutral-200;
 }
 .light .fy-table table thead th {
-  @apply border-fv-neutral-300 bg-fv-neutral-50 text-fv-neutral-600;
+  @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-600;
 }
 .light .fy-table table td {
-  @apply bg-fv-neutral-200;
+  @apply bg-fv-neutral-50;
 }
 .light .fy-table table tbody td {
   @apply border-b-fv-neutral-300;

@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.20
+  * @karpeleslab/fyvue v0.2.0-beta.22
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -152,6 +152,7 @@ async function handleSSR(createApp, cb, options = {}) {
     const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head);
     result.meta = headTags;
     result.bodyAttributes = bodyAttrs;
+    console.log(bodyAttrs);
     result.htmlAttributes = htmlAttrs;
     result.bodyTags = bodyTags;
     result.app = html;

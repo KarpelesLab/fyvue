@@ -1,6 +1,6 @@
 {
     "name": "@karpeleslab/fyvue",
-    "version": "0.2.0-beta.20",
+    "version": "0.2.0-beta.22",
     "description": "Vue lib for KLB systems",
     "main": "dist/fyvue.js",
     "module": "dist/fyvue.mjs",
@@ -21,8 +21,7 @@
         }
     },
     "files": [
-        "README.md",
-        "dist/"
+        "README.md", "dist/"
     ],
     "repository": {
         "type": "git",
