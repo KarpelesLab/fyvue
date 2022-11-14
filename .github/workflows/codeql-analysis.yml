@@ -24,7 +24,9 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    working-directory: packages/playground
+    defaults:
+      run:
+        working-directory: packages/playground
 
     strategy:
       fail-fast: false

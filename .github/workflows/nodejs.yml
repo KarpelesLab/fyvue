@@ -6,7 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    working-directory: packages/playground
+    defaults:
+      run:
+        working-directory: packages/playground
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -26,10 +28,10 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
-    working-directory: packages/playground
-
     needs: build
-
+    defaults:
+      run:
+        working-directory: packages/playground
     env:
       API_PREFIX: "https://ws.atonline.com/_special/rest/"
       CT_HEADER: "Content-Type: application/zip"
