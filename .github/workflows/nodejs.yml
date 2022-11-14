@@ -1,0 +1,50 @@
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    working-directory: packages/playground
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: npm install
+    - run: npm run build
+    - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install zip
+    - run: mv build dist
+    - run: zip -9r final.zip dist etc
+    - uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: final.zip
+
+  deploy:
+
+    runs-on: ubuntu-latest
+    working-directory: packages/playground
+
+    needs: build
+
+    env:
+      API_PREFIX: "https://ws.atonline.com/_special/rest/"
+      CT_HEADER: "Content-Type: application/zip"
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v1
+      with:
+        name: build
+    - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install jq curl
+    - run: curl >API_INFO -s --data-urlencode "site=${DEPLOY_SERVER}" --data-urlencode "token=${DEPLOY_TOKEN}" --data-urlencode "branch=${GITHUB_REF}" --data-urlencode "commit=${GITHUB_SHA}" --data-urlencode "login=${GITHUB_ACTOR}" --data-urlencode "email=$(git show -s --format=%ce "${GITHUB_SHA}")" --data-urlencode "user_id=${GITHUB_ACTOR}" --data-urlencode "user_name=$(git show -s --format=%cn "${GITHUB_SHA}")" --data-urlencode "project=https://github.com/${GITHUB_REPOSITORY}" --data-urlencode "commit_date=$(git show -s --format=%ci "${GITHUB_SHA}")" "${API_PREFIX}Site/Version:upload"
+      env:
+        DEPLOY_SERVER: ${{ secrets.DEPLOY_SERVER }}
+        DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+    - run: cat API_INFO | jq -r .data.PUT - >API_PUT
+    - run: cat API_INFO | jq -r .data.Complete - >API_COMP
+    - run: curl "-#" -T "build/final.zip" -H "$CT_HEADER" "$(cat API_PUT)" >/dev/null # upload file
+    - run: curl -s "${API_PREFIX}$(cat API_COMP)"; echo # notify upload complete
