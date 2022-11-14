@@ -16,7 +16,8 @@ jobs:
     - run: yarn install
     - run: yarn run build:play
     - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install zip
-    - run: zip -9r final.zip packages/playground/dist packages/playground/etc
+    - run: cd packages/playground
+    - run: zip -9r final.zip dist etc
     - uses: actions/upload-artifact@v1
       with:
         name: build
