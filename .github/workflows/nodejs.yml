@@ -16,20 +16,21 @@ jobs:
     - run: npm install
     - run: npm run build:play
     - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install zip
+    - run: cd packages/playground
     - run: mv build dist
-      working-directory: packages/playground
     - run: zip -9r final.zip dist etc
-      working-directory: packages/playground
     - uses: actions/upload-artifact@v1
       with:
         name: build
         path: final.zip
-      working-directory: packages/playground
 
   deploy:
 
     runs-on: ubuntu-latest
     needs: build
+    defaults:
+      run:
+        working-directory: packages/playground
 
     env:
       API_PREFIX: "https://ws.atonline.com/_special/rest/"
