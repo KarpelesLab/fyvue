@@ -5,22 +5,21 @@
 @import "../../fyvue/src/fyvue.scss";
 
 .website {
-  @apply flex flex-col w-full max-w-full bg-fv-neutral-100 pt-5 dark:bg-fv-neutral-800 text-black dark:text-white;
+  @apply flex flex-col w-full max-w-full bg-fv-neutral-100 dark:bg-fv-neutral-800 text-black dark:text-white;
   min-height: 100vh;
-  max-height: 100vh;
 
   .cols {
     @apply flex container mx-auto;
     .website-nav {
-      @apply w-36 pr-0  pt-4 flex flex-col items-center justify-start border-r ;
+      @apply hidden md:flex md:w-36 pr-0  pt-4 flex-col items-center justify-start border-r border-t border-fv-neutral-200 dark:border-fv-neutral-700;
       .router-link-exact-active {
         @apply font-bold;
       }
 
     }
     main {
-      @apply flex-grow;
-      max-width: calc(100% - 9rem);
+      @apply w-full bg-white dark:bg-fv-neutral-900 px-4 py-4;
+      //max-width: calc(100% - 9rem);
     }
   }
 }

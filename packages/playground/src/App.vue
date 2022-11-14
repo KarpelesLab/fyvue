@@ -11,7 +11,7 @@ const query = ref<string>();
     logo="/src/assets/fyvue.svg"
     title="fyvue"
     :links="[
-      { to: '/', name: 'Home' },
+      { to: '/', name: 'Getting Started' },
       /*
       { to: '/tests/i18n', name: 'I18N' },
       { to: '/tests/Store', name: 'Store' },

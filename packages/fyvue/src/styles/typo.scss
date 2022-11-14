@@ -1,0 +1,38 @@
+.fv-typo {
+  h1 {
+    @apply text-[2rem] font-extrabold dark:text-white border-b-2 border-b-fv-primary-200 dark:border-b-fv-primary-900 mb-3;
+  }
+  h2 {
+    @apply text-[1.9rem] font-bold dark:text-white;
+  }
+  h3 {
+    @apply text-[1.8rem] font-bold dark:text-white;
+  }
+  h4 {
+    @apply text-[1.7rem] font-bold dark:text-white;
+  }
+  h5 {
+    @apply text-[1.6rem] font-bold dark:text-white;
+  }
+  h6 {
+    @apply text-[1.5rem] font-bold dark:text-white;
+  }
+  p {
+    @apply font-light text-fv-neutral-700 dark:text-fv-neutral-200;
+  }
+  blockquote {
+    @apply p-4  bg-fv-primary-100 border-l-4 border-fv-primary-300 dark:border-fv-primary-600 dark:bg-fv-primary-900 text-xl italic font-medium leading-relaxed text-fv-neutral-900 dark:text-white;
+  }
+  ul {
+    @apply ml-4 space-y-0.5 max-w-md list-disc list-inside text-fv-neutral-600 dark:text-fv-neutral-300 text-[.95rem];
+  }
+  a {
+    @apply font-medium text-fv-primary-700 dark:text-fv-primary-400 hover:underline;
+  }
+  hr {
+    @apply my-4 mx-auto w-48 h-1 bg-fv-neutral-100 rounded border-0 md:my-10 dark:bg-fv-neutral-700;
+  }
+  code {
+  //  @apply bg-fv-neutral-300 dark:bg-fv-neutral-900;
+  }
+}

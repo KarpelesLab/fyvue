@@ -1,3 +1,7 @@
+@import "./styles/helpers.scss";
+@import "./styles/buttons.scss";
+@import "./styles/typo.scss";
+
 @import "./components/ui/FyModal/FyModal.scss";
 @import "./components/ui/FyCirclePercent/FyCirclePercent.scss";
 @import "./components/ui/FySteps/FySteps.scss";
@@ -12,98 +16,3 @@
 @import "./components/klb/KlbAccount/KlbAccount.scss";
 @import "./components/klb/KlbBilling/KlbBilling.scss";
 
-html, body {
-  @apply antialiased
-}
-
-.container {
-  @apply max-w-screen-xl;
-}
-.theCard {
-  @apply input-basic w-full px-2;
-}
-.is-sr {
-  @apply sr-only;
-}
-.fv-icon-base {
-  @apply h-5 w-5
-}
-.self-loader-fyvue {
-  @apply h-16  relative;
-}
-.response-error {
-  @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
-}
-
-.btn-box {
-  @apply inline-flex space-x-2;
-}
-button[type=submit] {
-  @apply mt-4;
-}
-.btn {
-  @apply font-medium text-sm focus:outline-none ;
-  @apply transition duration-300 ease-in-out transform;
-
-  &.primary {
-    @apply text-white bg-fv-primary-700 hover:bg-fv-primary-900  dark:bg-fv-primary-600 dark:hover:bg-fv-primary-800 ;
-  }
-  &.neutral {
-    @apply text-fv-neutral-900 border-fv-neutral-200 hover:bg-fv-neutral-200 hover:text-fv-primary-800    dark:bg-fv-neutral-800 dark:text-fv-neutral-400 dark:border-fv-neutral-600 dark:hover:text-white dark:hover:bg-fv-neutral-700;
-  }
-  &.btn-defaults {
-    @apply px-3 py-2;
-  }
-  &.small {
-    @apply text-sm py-1;
-  }
-  &.fround, &.round {
-    @apply rounded-full;
-  }
-}//px-5 py-2.5 mr-2 mb-2
-
-/*
-<button type="button" class="
-py-2.5 px-5 mr-2 mb-2 text-sm font-medium  border  focus:z-10 focus:ring-4
- focus:ring-fv-neutral-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Alternative</button>
-
-.btn {
-  @apply  text-white shadow  whitespace-nowrap ;
-  @apply transition duration-300 ease-in-out transform;
-  text-shadow: 2px 2px 0px rgba(0,0,0,.3);
-
-  &.small {
-    @apply text-sm py-1;
-  }
-  &.neutral {
-    @apply  shadow-sm text-gray-50  ;
-    background: rgba(0,0,0,.7);
-
-  }
-  &.neutral:hover {
-    @apply  shadow-sm text-white ;
-    background: rgba(60,60,60,.7);
-  }
-  &.primary {
-    @apply bg-fv-primary-500 shadow-sm text-gray-50 ;
-
-  }
-  &.primary:hover {
-    @apply bg-fv-primary-600 shadow-sm text-white ;
-  }
-
-  &.btn-defaults {
-    @apply mx-auto px-3 py-1.5 ;
-  }
-
-  &.fround, &.round {
-    @apply rounded-full;
-  }
-}
-.btn-box {
-  @apply flex space-x-2 justify-start;
-  button {
-    @apply flex-1;
-  }
-}
-*/
