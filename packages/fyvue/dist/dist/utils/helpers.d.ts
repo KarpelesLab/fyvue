@@ -17,4 +17,4 @@ declare const countriesPromise: () => Promise<unknown>;
 declare const useEventBus: () => any;
 declare const i18nextPromise: Promise<import("i18next").TFunction<"translation", undefined>>;
 declare const useTranslation: () => import("i18next").TFunction<string[], undefined>;
-export { eventBus, useEventBus, i18next, i18nextPromise, useTranslation, countriesPromise, useCountries, countries };
+export { eventBus, useEventBus, i18next, i18nextPromise, useTranslation, countriesPromise, useCountries, countries, };

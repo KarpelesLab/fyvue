@@ -33,11 +33,12 @@ export type HistoryState = {
 
 export const useHistory = defineStore({
   id: 'historyStore',
-  state: () => ({
-    _router: null,
-    status: 200,
-    redirect: undefined,
-  }) as HistoryState,
+  state: () =>
+    ({
+      _router: null,
+      status: 200,
+      redirect: undefined,
+    } as HistoryState),
   getters: {
     currentRoute: (state) => state._router!.currentRoute,
   },

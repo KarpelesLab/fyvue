@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.15
+  * @karpeleslab/fyvue v0.2.0-beta.20
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -983,21 +983,17 @@ const _hoisted_5$9 = {
     key: 2,
     class: "is-req"
 };
-const _hoisted_6$9 = {
-    key: 1,
-    class: "input-box"
-};
-const _hoisted_7$8 = ["aria-label", "placeholder", "autocomplete", "id", "type"];
-const _hoisted_8$8 = ["aria-label", "placeholder", "autocomplete", "id"];
-const _hoisted_9$7 = ["aria-label", "id"];
-const _hoisted_10$6 = ["value"];
-const _hoisted_11$6 = {
+const _hoisted_6$9 = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
+const _hoisted_7$8 = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
+const _hoisted_8$8 = ["aria-label", "id"];
+const _hoisted_9$7 = ["value"];
+const _hoisted_10$6 = {
     key: 2,
-    class: "help-text"
-};
-const _hoisted_12$2 = {
-    key: 3,
     class: "form-error-label"
+};
+const _hoisted_11$6 = {
+    key: 3,
+    class: "help-text"
 };
 var script$a = defineComponent({
     __name: 'FyInput',
@@ -1017,7 +1013,8 @@ var script$a = defineComponent({
         options: { type: Array, required: false, default: () => [] },
         help: { type: String, required: false },
         error: { type: String, required: false },
-        errorVuelidate: { type: Array, required: false }
+        errorVuelidate: { type: Array, required: false },
+        disabled: { type: Boolean, required: false, default: false }
     },
     emits: ['update:modelValue', 'update:checkboxValue'],
     setup(__props, { expose, emit }) {
@@ -1097,7 +1094,10 @@ var script$a = defineComponent({
                     ], 8, _hoisted_2$a))
                     : createCommentVNode("v-if", true),
                 (!['checkbox', 'radiobox'].includes(__props.type))
-                    ? (openBlock(), createElementBlock("div", _hoisted_6$9, [
+                    ? (openBlock(), createElementBlock("div", {
+                        key: 1,
+                        class: normalizeClass(["input-box", { error: unref(checkErrors), disabled: __props.disabled }])
+                    }, [
                         renderSlot(_ctx.$slots, "before"),
                         (['text', 'password', 'email', 'search'].includes(__props.type))
                             ? withDirectives((openBlock(), createElementBlock("input", {
@@ -1105,13 +1105,14 @@ var script$a = defineComponent({
                                 ref_key: "inputRef",
                                 ref: inputRef,
                                 "aria-label": __props.label,
-                                class: normalizeClass(["input-basic", { 'error-form': __props.error }]),
+                                class: "input-basic",
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
                                 id: __props.id,
                                 "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (isRef(model) ? (model).value = $event : null)),
-                                type: __props.type
-                            }, null, 10, _hoisted_7$8)), [
+                                type: __props.type,
+                                disabled: __props.disabled
+                            }, null, 8, _hoisted_6$9)), [
                                 [vModelDynamic, unref(model)]
                             ])
                             : createCommentVNode("v-if", true),
@@ -1121,12 +1122,13 @@ var script$a = defineComponent({
                                 "aria-label": __props.label,
                                 ref_key: "inputRef",
                                 ref: inputRef,
-                                class: normalizeClass(["input-basic is-textarea", { 'error-form': unref(checkErrors) }]),
+                                class: "input-basic is-textarea",
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
                                 id: __props.id,
-                                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (isRef(model) ? (model).value = $event : null))
-                            }, null, 10, _hoisted_8$8)), [
+                                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (isRef(model) ? (model).value = $event : null)),
+                                disabled: __props.disabled
+                            }, null, 8, _hoisted_7$8)), [
                                 [vModelText, unref(model)]
                             ])
                             : createCommentVNode("v-if", true),
@@ -1144,20 +1146,20 @@ var script$a = defineComponent({
                                     return (openBlock(), createElementBlock("option", {
                                         value: opt[0],
                                         key: opt[0].toString()
-                                    }, toDisplayString(opt[1]), 9, _hoisted_10$6));
+                                    }, toDisplayString(opt[1]), 9, _hoisted_9$7));
                                 }), 128))
-                            ], 8, _hoisted_9$7)), [
+                            ], 8, _hoisted_8$8)), [
                                 [vModelSelect, unref(model)]
                             ])
                             : createCommentVNode("v-if", true),
                         renderSlot(_ctx.$slots, "after")
-                    ]))
+                    ], 2))
+                    : createCommentVNode("v-if", true),
+                (unref(checkErrors))
+                    ? (openBlock(), createElementBlock("div", _hoisted_10$6, toDisplayString(unref(checkErrors)), 1))
                     : createCommentVNode("v-if", true),
                 (__props.help)
                     ? (openBlock(), createElementBlock("div", _hoisted_11$6, toDisplayString(__props.help), 1))
-                    : createCommentVNode("v-if", true),
-                (unref(checkErrors))
-                    ? (openBlock(), createElementBlock("div", _hoisted_12$2, toDisplayString(unref(checkErrors)), 1))
                     : createCommentVNode("v-if", true)
             ]));
         };
@@ -3015,7 +3017,6 @@ const createFyvue = () => {
         app.config.globalProperties.$jpZipcode = jpZipcode;
         app.config.globalProperties.$countries = countries;
         let k;
-        console.log(uiComponents);
         for (k in uiComponents) {
             app.component(uiComponents[k].__name, uiComponents[k]);
         }

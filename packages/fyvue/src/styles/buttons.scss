@@ -5,7 +5,7 @@ button[type=submit] {
   @apply mt-4;
 }
 .btn {
-  @apply font-medium text-sm focus:outline-none ;
+  @apply focus:outline-none ;
   @apply transition duration-300 ease-in-out transform;
 
   &.primary {
@@ -15,7 +15,7 @@ button[type=submit] {
     @apply text-fv-neutral-900 border-fv-neutral-200 hover:bg-fv-neutral-200 hover:text-fv-primary-800    dark:bg-fv-neutral-800 dark:text-fv-neutral-400 dark:border-fv-neutral-600 dark:hover:text-white dark:hover:bg-fv-neutral-700;
   }
   &.btn-defaults {
-    @apply px-3 py-2;
+    @apply px-3 py-2 font-medium text-sm;
   }
   &.small {
     @apply text-sm py-1;

@@ -22,6 +22,7 @@ const props = withDefaults(
     help?: string;
     error?: string;
     errorVuelidate?: ErrorObject[];
+    disabled?: boolean;
   }>(),
   {
     showLabel: true,
@@ -30,6 +31,7 @@ const props = withDefaults(
     options: () => [],
     checkboxTrueValue: true,
     checkboxFalseValue: false,
+    disabled: false,
   }
 );
 const translate = useTranslation();
@@ -94,30 +96,34 @@ defineExpose({ focus, getInputRef });
         <sup class="is-req" v-if="req">*</sup>
       </label>
     </template>
-    <div v-if="!['checkbox', 'radiobox'].includes(type)" class="input-box">
+    <div
+      v-if="!['checkbox', 'radiobox'].includes(type)"
+      class="input-box"
+      :class="{ error: checkErrors, disabled: disabled }"
+    >
       <slot name="before"></slot>
       <input
         ref="inputRef"
         :aria-label="label"
         v-if="['text', 'password', 'email', 'search'].includes(type)"
         class="input-basic"
-        :class="{ 'error-form': error }"
         :placeholder="placeholder"
         :autocomplete="autocomplete"
         :id="id"
         v-model="model"
         :type="type"
+        :disabled="disabled"
       />
       <textarea
         :aria-label="label"
         ref="inputRef"
         v-if="type == 'textarea'"
         class="input-basic is-textarea"
-        :class="{ 'error-form': checkErrors }"
         :placeholder="placeholder"
         :autocomplete="autocomplete"
         :id="id"
         v-model="model"
+        :disabled="disabled"
       />
 
       <select
@@ -134,11 +140,12 @@ defineExpose({ focus, getInputRef });
       </select>
       <slot name="after"></slot>
     </div>
-    <div class="help-text" v-if="help">
-      {{ help }}
-    </div>
+
     <div v-if="checkErrors" class="form-error-label">
       {{ checkErrors }}
+    </div>
+    <div class="help-text" v-if="help">
+      {{ help }}
     </div>
   </div>
 </template>

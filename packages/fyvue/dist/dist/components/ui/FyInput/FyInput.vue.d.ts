@@ -69,6 +69,11 @@ declare const _default: import("vue").DefineComponent<{
         type: ArrayConstructor;
         required: false;
     };
+    disabled: {
+        type: BooleanConstructor;
+        required: false;
+        default: boolean;
+    };
 }, (_ctx: any, _cache: any) => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
     [key: string]: any;
 }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "update:checkboxValue")[], "update:modelValue" | "update:checkboxValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -142,11 +147,17 @@ declare const _default: import("vue").DefineComponent<{
         type: ArrayConstructor;
         required: false;
     };
+    disabled: {
+        type: BooleanConstructor;
+        required: false;
+        default: boolean;
+    };
 }>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
     "onUpdate:checkboxValue"?: ((...args: any[]) => any) | undefined;
 }, {
     type: string;
+    disabled: boolean;
     showLabel: boolean;
     checkboxTrueValue: string | boolean;
     checkboxFalseValue: string | boolean;

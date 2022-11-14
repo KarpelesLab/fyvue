@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.15
+  * @karpeleslab/fyvue v0.2.0-beta.20
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -985,21 +985,17 @@ const _hoisted_5$9 = {
     key: 2,
     class: "is-req"
 };
-const _hoisted_6$9 = {
-    key: 1,
-    class: "input-box"
-};
-const _hoisted_7$8 = ["aria-label", "placeholder", "autocomplete", "id", "type"];
-const _hoisted_8$8 = ["aria-label", "placeholder", "autocomplete", "id"];
-const _hoisted_9$7 = ["aria-label", "id"];
-const _hoisted_10$6 = ["value"];
-const _hoisted_11$6 = {
+const _hoisted_6$9 = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
+const _hoisted_7$8 = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
+const _hoisted_8$8 = ["aria-label", "id"];
+const _hoisted_9$7 = ["value"];
+const _hoisted_10$6 = {
     key: 2,
-    class: "help-text"
-};
-const _hoisted_12$2 = {
-    key: 3,
     class: "form-error-label"
+};
+const _hoisted_11$6 = {
+    key: 3,
+    class: "help-text"
 };
 var script$a = vue.defineComponent({
     __name: 'FyInput',
@@ -1019,7 +1015,8 @@ var script$a = vue.defineComponent({
         options: { type: Array, required: false, default: () => [] },
         help: { type: String, required: false },
         error: { type: String, required: false },
-        errorVuelidate: { type: Array, required: false }
+        errorVuelidate: { type: Array, required: false },
+        disabled: { type: Boolean, required: false, default: false }
     },
     emits: ['update:modelValue', 'update:checkboxValue'],
     setup(__props, { expose, emit }) {
@@ -1099,7 +1096,10 @@ var script$a = vue.defineComponent({
                     ], 8, _hoisted_2$a))
                     : vue.createCommentVNode("v-if", true),
                 (!['checkbox', 'radiobox'].includes(__props.type))
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$9, [
+                    ? (vue.openBlock(), vue.createElementBlock("div", {
+                        key: 1,
+                        class: vue.normalizeClass(["input-box", { error: vue.unref(checkErrors), disabled: __props.disabled }])
+                    }, [
                         vue.renderSlot(_ctx.$slots, "before"),
                         (['text', 'password', 'email', 'search'].includes(__props.type))
                             ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("input", {
@@ -1107,13 +1107,14 @@ var script$a = vue.defineComponent({
                                 ref_key: "inputRef",
                                 ref: inputRef,
                                 "aria-label": __props.label,
-                                class: vue.normalizeClass(["input-basic", { 'error-form': __props.error }]),
+                                class: "input-basic",
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
                                 id: __props.id,
                                 "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (vue.isRef(model) ? (model).value = $event : null)),
-                                type: __props.type
-                            }, null, 10, _hoisted_7$8)), [
+                                type: __props.type,
+                                disabled: __props.disabled
+                            }, null, 8, _hoisted_6$9)), [
                                 [vue.vModelDynamic, vue.unref(model)]
                             ])
                             : vue.createCommentVNode("v-if", true),
@@ -1123,12 +1124,13 @@ var script$a = vue.defineComponent({
                                 "aria-label": __props.label,
                                 ref_key: "inputRef",
                                 ref: inputRef,
-                                class: vue.normalizeClass(["input-basic is-textarea", { 'error-form': vue.unref(checkErrors) }]),
+                                class: "input-basic is-textarea",
                                 placeholder: __props.placeholder,
                                 autocomplete: __props.autocomplete,
                                 id: __props.id,
-                                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (vue.isRef(model) ? (model).value = $event : null))
-                            }, null, 10, _hoisted_8$8)), [
+                                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (vue.isRef(model) ? (model).value = $event : null)),
+                                disabled: __props.disabled
+                            }, null, 8, _hoisted_7$8)), [
                                 [vue.vModelText, vue.unref(model)]
                             ])
                             : vue.createCommentVNode("v-if", true),
@@ -1146,20 +1148,20 @@ var script$a = vue.defineComponent({
                                     return (vue.openBlock(), vue.createElementBlock("option", {
                                         value: opt[0],
                                         key: opt[0].toString()
-                                    }, vue.toDisplayString(opt[1]), 9, _hoisted_10$6));
+                                    }, vue.toDisplayString(opt[1]), 9, _hoisted_9$7));
                                 }), 128))
-                            ], 8, _hoisted_9$7)), [
+                            ], 8, _hoisted_8$8)), [
                                 [vue.vModelSelect, vue.unref(model)]
                             ])
                             : vue.createCommentVNode("v-if", true),
                         vue.renderSlot(_ctx.$slots, "after")
-                    ]))
+                    ], 2))
+                    : vue.createCommentVNode("v-if", true),
+                (vue.unref(checkErrors))
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_10$6, vue.toDisplayString(vue.unref(checkErrors)), 1))
                     : vue.createCommentVNode("v-if", true),
                 (__props.help)
                     ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$6, vue.toDisplayString(__props.help), 1))
-                    : vue.createCommentVNode("v-if", true),
-                (vue.unref(checkErrors))
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_12$2, vue.toDisplayString(vue.unref(checkErrors)), 1))
                     : vue.createCommentVNode("v-if", true)
             ]));
         };
@@ -3017,7 +3019,6 @@ const createFyvue = () => {
         app.config.globalProperties.$jpZipcode = jpZipcode;
         app.config.globalProperties.$countries = countries;
         let k;
-        console.log(uiComponents);
         for (k in uiComponents) {
             app.component(uiComponents[k].__name, uiComponents[k]);
         }

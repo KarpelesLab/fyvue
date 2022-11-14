@@ -12,10 +12,11 @@ const state = reactive({
   testEmail: 'yo@fy.to',
   testUsername: 'Fy',
   testTextarea: 'Blabla \nBlabla',
-  testCheckbox: [],
+  testCheckbox: null,
   testUsername2: '',
   testError2: 'Error :(',
   testSelect: '2',
+  testDisabled: 'lol',
 });
 </script>
 <template>
@@ -26,6 +27,14 @@ const state = reactive({
     :showLabel="true"
     :label="$t('test_label')"
     type="text"
+  />
+  <FyInput
+    v-model="state.testDisabled"
+    id="testDisabled"
+    :showLabel="true"
+    :label="$t('test_disabled')"
+    type="text"
+    :disabled="true"
   />
   <FyInput
     v-model="state.testErr"
@@ -93,31 +102,29 @@ const state = reactive({
     type="checkbox"
     linkIcon="https://google.fr"
   />
-  <div class="dark bg-neutral-800 p-4">
-    <FyInput
-      v-model="state.testUsername2"
-      id="test_username2"
-      :req="true"
-      :showLabel="true"
-      :placeholder="$t('test_username2_placeholder')"
-      :label="$t('test_username2_label')"
-      autocomplete="email"
-      type="text"
-    >
-      <template v-slot:before>
-        <UserCircleIcon class="inline-block w-5 text-fv-primary-300 mx-2" />
-      </template>
-    </FyInput>
-    <FyInput
-      v-model="state.testError2"
-      id="test-error2"
-      :req="true"
-      :showLabel="true"
-      :placeholder="$t('test-error2_placeholder')"
-      :label="$t('test-error2_label')"
-      type="text"
-      help="/!\ You need to do better bro."
-      error="This is an error"
-    />
-  </div>
+  <FyInput
+    v-model="state.testUsername2"
+    id="test_username2"
+    :req="true"
+    :showLabel="true"
+    :placeholder="$t('test_username2_placeholder')"
+    :label="$t('test_username2_label')"
+    autocomplete="email"
+    type="text"
+  >
+    <template v-slot:before>
+      <UserCircleIcon class="inline-block w-5 text-fv-primary-300 mx-2" />
+    </template>
+  </FyInput>
+  <FyInput
+    v-model="state.testError2"
+    id="test-error2"
+    :req="true"
+    :showLabel="true"
+    :placeholder="$t('test-error2_placeholder')"
+    :label="$t('test-error2_label')"
+    type="text"
+    help="/!\ You need to do better bro."
+    error="This is an error"
+  />
 </template>

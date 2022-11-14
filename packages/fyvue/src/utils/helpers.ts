@@ -71,5 +71,5 @@ export {
   useTranslation,
   countriesPromise,
   useCountries,
-  countries
+  countries,
 };
