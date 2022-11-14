@@ -1,24 +1,10 @@
 <script setup lang="ts">
 import { i18nextPromise, countriesPromise } from '@karpeleslab/fyvue';
-import { Head } from '@vueuse/head';
+import { Head } from "@vueuse/head";
 import {
-  useSchemaOrg,
-  defineWebPage,
-  defineOrganization,
-  defineWebSite,
-  SchemaOrgDebug,
+  SchemaOrgWebSite,
+  SchemaOrgOrganization,
 } from '@vueuse/schema-org/runtime';
-useSchemaOrg([
-  defineOrganization({
-    name: 'fyvue',
-    logo: 'https://fy-vue.com/logo.svg',
-    sameAs: ['https://twitter.com/un_geek'],
-  }),
-  defineWebSite({
-    name: 'fyvue',
-  }),
-  defineWebPage(),
-]);
 import { ref } from 'vue';
 await i18nextPromise;
 await countriesPromise();
@@ -32,7 +18,12 @@ const query = ref<string>();
     <meta property="og:site_name" content="fyvue" />
     <meta property="og:url" :content="`https://fy-vue.com/`" />
   </Head>
-
+  <SchemaOrgOrganization
+    name="fyvue"
+    logo="https://www.fy-vue.com/fyvue.svg"
+    same-as="['https://twitter.com/ungeek']"
+  />
+  <SchemaOrgWebSite name="fyvue" />
   <FyNavbar
     logo="/src/assets/fyvue.svg"
     title="fyvue"
