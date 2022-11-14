@@ -4,10 +4,8 @@ import { getUuid, getPath, getInitialState } from '@karpeleslab/klbfw';
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
 import { defineStore } from 'pinia';
-//import { decode } from 'he';
-
+import { decode } from '../lib/he';
 //import { NavigationCallback } from "vue-router"
-
 export interface KlbSSR {
   initial?: any;
   uuid?: string;
@@ -128,7 +126,7 @@ export async function handleSSR(
   result.meta = headTags;
   result.bodyAttributes = bodyAttrs;
   result.htmlAttributes = htmlAttrs;
-  result.bodyTags = decodeHTMLEntities(bodyTags.replaceAll('\\n', ''));
+  result.bodyTags = decode(bodyTags.replaceAll('\\n', ''));
   result.app = html;
 
   if (historyStore.status != 200) {
@@ -145,11 +143,4 @@ export async function handleSSR(
   result.initial.piniaState = JSON.stringify(pinia.state.value);
 
   return cb(result);
-}
-
-function decodeHTMLEntities(rawStr: string) {
-  return rawStr.replace(
-    /&#(\d+);/g,
-    (match, dec) => `${String.fromCharCode(dec)}`
-  );
 }
