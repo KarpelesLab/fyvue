@@ -160,7 +160,7 @@ async function handleSSR(createApp, cb, options = { url: null }) {
     result.meta = headTags;
     result.bodyAttributes = bodyAttrs;
     result.htmlAttributes = htmlAttrs;
-    result.bodyTags = bodyTags.replaceAll('\\n', '');
+    result.bodyTags = decodeHTMLEntities(bodyTags.replaceAll('\\n', ''));
     result.app = html;
     if (historyStore.status != 200) {
         if ([301, 302, 303, 307].includes(historyStore.status)) {
@@ -176,6 +176,9 @@ async function handleSSR(createApp, cb, options = { url: null }) {
     useHistory(pinia)._setRouter(null);
     result.initial.piniaState = JSON.stringify(pinia.state.value);
     return cb(result);
+}
+function decodeHTMLEntities(rawStr) {
+    return rawStr.replace(/&#(\d+);/g, (match, dec) => `${String.fromCharCode(dec)}`);
 }
 
 const useRestState = pinia.defineStore({

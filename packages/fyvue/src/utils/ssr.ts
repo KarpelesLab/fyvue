@@ -128,7 +128,7 @@ export async function handleSSR(
   result.meta = headTags;
   result.bodyAttributes = bodyAttrs;
   result.htmlAttributes = htmlAttrs;
-  result.bodyTags = bodyTags.replaceAll('\\n', '');
+  result.bodyTags = decodeHTMLEntities(bodyTags.replaceAll('\\n', ''));
   result.app = html;
 
   if (historyStore.status != 200) {
@@ -145,4 +145,11 @@ export async function handleSSR(
   result.initial.piniaState = JSON.stringify(pinia.state.value);
 
   return cb(result);
+}
+
+function decodeHTMLEntities(rawStr: string) {
+  return rawStr.replace(
+    /&#(\d+);/g,
+    (match, dec) => `${String.fromCharCode(dec)}`
+  );
 }
