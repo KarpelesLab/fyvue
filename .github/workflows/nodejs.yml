@@ -39,7 +39,7 @@ jobs:
     - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install jq curl
     - run: curl >API_INFO -s --data-urlencode "site=${DEPLOY_SITE}" --data-urlencode "token=${DEPLOY_TOKEN}" --data-urlencode "branch=${GITHUB_REF}" --data-urlencode "commit=${GITHUB_SHA}" --data-urlencode "login=${GITHUB_ACTOR}" --data-urlencode "email=$(git show -s --format=%ce "${GITHUB_SHA}")" --data-urlencode "user_id=${GITHUB_ACTOR}" --data-urlencode "user_name=$(git show -s --format=%cn "${GITHUB_SHA}")" --data-urlencode "project=https://github.com/${GITHUB_REPOSITORY}" --data-urlencode "commit_date=$(git show -s --format=%ci "${GITHUB_SHA}")" "${API_PREFIX}Site/Version:upload"
       env:
-        DEPLOY_SERVER: ${{ secrets.DEPLOY_SITE }}
+        DEPLOY_SITE: ${{ secrets.DEPLOY_SITE }}
         DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
     - run: cat API_INFO | jq -r .data.PUT - >API_PUT
     - run: cat API_INFO | jq -r .data.Complete - >API_COMP
