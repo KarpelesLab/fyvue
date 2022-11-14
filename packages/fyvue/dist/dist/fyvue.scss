@@ -1,3 +1,92 @@
+html, body {
+  @apply antialiased;
+}
+
+.container {
+  @apply max-w-screen-xl;
+}
+
+.theCard {
+  @apply input-basic w-full px-2;
+}
+
+.is-sr {
+  @apply sr-only;
+}
+
+.fv-icon-base {
+  @apply h-5 w-5;
+}
+
+.self-loader-fyvue {
+  @apply h-16  relative;
+}
+
+.response-error {
+  @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
+}
+
+.btn-box {
+  @apply inline-flex space-x-2;
+}
+
+button[type=submit] {
+  @apply mt-4;
+}
+
+.btn {
+  @apply font-medium text-sm focus:outline-none;
+  @apply transition duration-300 ease-in-out transform;
+}
+.btn.primary {
+  @apply text-white bg-fv-primary-700 hover:bg-fv-primary-900  dark:bg-fv-primary-600 dark:hover:bg-fv-primary-800;
+}
+.btn.neutral {
+  @apply text-fv-neutral-900 border-fv-neutral-200 hover:bg-fv-neutral-200 hover:text-fv-primary-800    dark:bg-fv-neutral-800 dark:text-fv-neutral-400 dark:border-fv-neutral-600 dark:hover:text-white dark:hover:bg-fv-neutral-700;
+}
+.btn.btn-defaults {
+  @apply px-3 py-2;
+}
+.btn.small {
+  @apply text-sm py-1;
+}
+.btn.fround, .btn.round {
+  @apply rounded-full;
+}
+
+.fv-typo h1 {
+  @apply text-[2rem] font-extrabold dark:text-white border-b-2 border-b-fv-primary-200 dark:border-b-fv-primary-900 mb-3;
+}
+.fv-typo h2 {
+  @apply text-[1.9rem] font-bold dark:text-white;
+}
+.fv-typo h3 {
+  @apply text-[1.8rem] font-bold dark:text-white;
+}
+.fv-typo h4 {
+  @apply text-[1.7rem] font-bold dark:text-white;
+}
+.fv-typo h5 {
+  @apply text-[1.6rem] font-bold dark:text-white;
+}
+.fv-typo h6 {
+  @apply text-[1.5rem] font-bold dark:text-white;
+}
+.fv-typo p {
+  @apply font-light text-fv-neutral-700 dark:text-fv-neutral-200;
+}
+.fv-typo blockquote {
+  @apply p-4  bg-fv-primary-100 border-l-4 border-fv-primary-300 dark:border-fv-primary-600 dark:bg-fv-primary-900 text-xl italic font-medium leading-relaxed text-fv-neutral-900 dark:text-white;
+}
+.fv-typo ul {
+  @apply ml-4 space-y-0.5 max-w-md list-disc list-inside text-fv-neutral-600 dark:text-fv-neutral-300 text-[.95rem];
+}
+.fv-typo a {
+  @apply font-medium text-fv-primary-700 dark:text-fv-primary-400 hover:underline;
+}
+.fv-typo hr {
+  @apply my-4 mx-auto w-48 h-1 bg-fv-neutral-100 rounded border-0 md:my-10 dark:bg-fv-neutral-700;
+}
 .fy-modal {
   @apply fixed inset-0 overflow-y-auto;
   z-index: 40;
@@ -697,105 +786,3 @@
 .klb-add-method .btn-center {
   @apply mt-4 text-center;
 }
-
-html, body {
-  @apply antialiased;
-}
-
-.container {
-  @apply max-w-screen-xl;
-}
-
-.theCard {
-  @apply input-basic w-full px-2;
-}
-
-.is-sr {
-  @apply sr-only;
-}
-
-.fv-icon-base {
-  @apply h-5 w-5;
-}
-
-.self-loader-fyvue {
-  @apply h-16  relative;
-}
-
-.response-error {
-  @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
-}
-
-.btn-box {
-  @apply inline-flex space-x-2;
-}
-
-button[type=submit] {
-  @apply mt-4;
-}
-
-.btn {
-  @apply font-medium text-sm focus:outline-none;
-  @apply transition duration-300 ease-in-out transform;
-}
-.btn.primary {
-  @apply text-white bg-fv-primary-700 hover:bg-fv-primary-900  dark:bg-fv-primary-600 dark:hover:bg-fv-primary-800;
-}
-.btn.neutral {
-  @apply text-fv-neutral-900 border-fv-neutral-200 hover:bg-fv-neutral-200 hover:text-fv-primary-800    dark:bg-fv-neutral-800 dark:text-fv-neutral-400 dark:border-fv-neutral-600 dark:hover:text-white dark:hover:bg-fv-neutral-700;
-}
-.btn.btn-defaults {
-  @apply px-3 py-2;
-}
-.btn.small {
-  @apply text-sm py-1;
-}
-.btn.fround, .btn.round {
-  @apply rounded-full;
-}
-
-/*
-<button type="button" class="
-py-2.5 px-5 mr-2 mb-2 text-sm font-medium  border  focus:z-10 focus:ring-4
- focus:ring-fv-neutral-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Alternative</button>
-
-.btn {
-  @apply  text-white shadow  whitespace-nowrap ;
-  @apply transition duration-300 ease-in-out transform;
-  text-shadow: 2px 2px 0px rgba(0,0,0,.3);
-
-  &.small {
-    @apply text-sm py-1;
-  }
-  &.neutral {
-    @apply  shadow-sm text-gray-50  ;
-    background: rgba(0,0,0,.7);
-
-  }
-  &.neutral:hover {
-    @apply  shadow-sm text-white ;
-    background: rgba(60,60,60,.7);
-  }
-  &.primary {
-    @apply bg-fv-primary-500 shadow-sm text-gray-50 ;
-
-  }
-  &.primary:hover {
-    @apply bg-fv-primary-600 shadow-sm text-white ;
-  }
-
-  &.btn-defaults {
-    @apply mx-auto px-3 py-1.5 ;
-  }
-
-  &.fround, &.round {
-    @apply rounded-full;
-  }
-}
-.btn-box {
-  @apply flex space-x-2 justify-start;
-  button {
-    @apply flex-1;
-  }
-}
-*/
