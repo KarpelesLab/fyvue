@@ -12,9 +12,9 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
-    - run: npm install
-    - run: npm run build:play
+        node-version: 18.x
+    - run: yarn install
+    - run: yarn run build:play
     - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install zip
     - run: cd packages/playground
     - run: mv build dist
