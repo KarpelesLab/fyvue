@@ -1,0 +1,77 @@
+.klb-login {
+  @apply w-full  flex flex-col flex-grow  items-center justify-center relative;
+  min-height: 16rem;
+  h1 {
+    @apply mt-0 text-2xl;
+  }
+  .label {
+    @apply pt-2 pb-1  text-sm;
+  }
+  .message {
+    @apply text-lg;
+  }
+  .oauth-button {
+    @apply h-12 w-12 block  rounded  p-2 mr-3 rounded-full border-4 shadow;
+    &:hover {
+      @apply border;
+    }
+  }
+  .oauth-container {
+    @apply flex items-center justify-center shadow py-2 rounded;
+  }
+  .reset-pwd {
+    @apply text-xs underline block absolute mt-6 pt-1 h-12 ;
+    &:hover {
+      @apply no-underline;
+    }
+  }
+  .btn {
+    &.primary {
+      @apply block mt-4 text-lg font-bold px-6 py-2;
+    }
+  }
+}
+.light {
+  .klb-login {
+    .label {
+      @apply text-fv-neutral-500;
+    }
+    .checkbox-label {
+      @apply underline text-fv-neutral-600;
+      &:hover {
+        @apply text-fv-neutral-600;
+      }
+    }
+    .mandatory {
+      @apply text-red-700;
+    }
+    .oauth-container {
+      @apply bg-fv-neutral-50;
+    }
+    .message {
+      @apply text-fv-neutral-700;
+    }
+  }
+}
+.dark {
+  .klb-login {
+    .label {
+      @apply text-fv-neutral-400;
+    }
+    .checkbox-label {
+      @apply underline text-fv-neutral-300;
+      &:hover {
+        @apply text-fv-neutral-300;
+      }
+    }
+    .mandatory {
+      @apply text-red-400;
+    }
+    .oauth-container {
+      @apply bg-fv-neutral-800;
+    }
+    .message {
+      @apply text-fv-neutral-300;
+    }
+  }
+}
