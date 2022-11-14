@@ -105,7 +105,10 @@ export async function createServer(root = process.cwd(), hmrPort) {
         console.log(data);
       };
       await render(cb, req.originalUrl);
-      res.status(200).set({ 'Content-Type': 'text/html' }).end('<html><body><p>Yo</p></body></html>');
+      res
+        .status(200)
+        .set({ 'Content-Type': 'text/html' })
+        .end('<html><body><p>Yo</p></body></html>');
       /*
       const html = template
         .replace(`<!--preload-links-->`, preloadLinks)

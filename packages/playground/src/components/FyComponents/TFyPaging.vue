@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useEventBus } from '@karpeleslab/fyvue';
-import type { KLBPaging } from "@karpeleslab/fyvue/src/dts/klb"
+import type { KLBPaging } from '@karpeleslab/fyvue/src/dts/klb';
 const testPaging = [
   [{ text: 'Message 1' }, { text: 'Message 2' }, { text: 'Message 3' }],
   [{ text: 'Message 4' }, { text: 'Message 5' }, { text: 'Message 6' }],

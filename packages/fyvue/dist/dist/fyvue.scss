@@ -55,7 +55,7 @@ button[type=submit] {
 }
 
 .fv-typo h1 {
-  @apply text-[2rem] font-extrabold dark:text-white border-b-2 border-b-fv-primary-200 dark:border-b-fv-primary-900 mb-3;
+  @apply text-[2rem] font-bold dark:text-white border-b-2 border-b-fv-primary-200 dark:border-b-fv-primary-800 mb-3;
 }
 .fv-typo h2 {
   @apply text-[1.9rem] font-bold dark:text-white;
@@ -565,13 +565,13 @@ button[type=submit] {
   @apply block;
 }
 .fy-navbar .nav-menu .main-ul {
-  @apply flex flex-col mt-4 font-medium md:flex-row md:space-x-8 md:mt-0;
+  @apply flex flex-col mt-4 font-medium md:flex-row md:space-x-4 md:mt-0;
 }
 .fy-navbar .nav-menu .main-ul li {
   @apply relative;
 }
 .fy-navbar .nav-menu .main-ul .is-link {
-  @apply block py-2 pr-4 pl-3 text-fv-neutral-600 border-b border-fv-neutral-100 hover:bg-fv-neutral-50 md:hover:bg-transparent md:border-0 md:hover:text-fv-primary-600 md:p-0 dark:text-fv-neutral-500 md:dark:hover:text-fv-primary-500 dark:hover:bg-fv-neutral-700 dark:hover:text-fv-primary-500 md:dark:hover:bg-transparent dark:border-fv-neutral-700;
+  @apply block py-2 pr-4 pl-3 text-fv-neutral-600 border-b border-fv-neutral-100 hover:bg-fv-neutral-50 md:hover:bg-transparent md:border-0 md:hover:text-fv-primary-600 md:p-0 dark:text-fv-neutral-400 md:dark:hover:text-fv-primary-300 dark:hover:bg-fv-neutral-700 dark:hover:text-fv-primary-500 md:dark:hover:bg-transparent dark:border-fv-neutral-700;
 }
 .fy-navbar .nav-menu .main-ul .is-link.router-link-exact-active {
   @apply text-fv-primary-600 dark:text-fv-primary-400;

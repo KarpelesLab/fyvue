@@ -4,24 +4,21 @@
 
 @import "../../fyvue/src/fyvue.scss";
 
-.website {
-  @apply flex flex-col w-full max-w-full bg-fv-neutral-100 dark:bg-fv-neutral-800 text-black dark:text-white;
-  min-height: 100vh;
 
-  .cols {
-    @apply flex container mx-auto;
-    .website-nav {
-      @apply hidden md:flex md:w-36 pr-0  pt-4 flex-col items-center justify-start border-r border-t border-fv-neutral-200 dark:border-fv-neutral-700;
-      .router-link-exact-active {
-        @apply font-bold;
-      }
-
-    }
-    main {
-      @apply w-full bg-white dark:bg-fv-neutral-900 px-4 py-4;
-      //max-width: calc(100% - 9rem);
+.link-group {
+  @apply overflow-hidden text-sm font-medium text-fv-neutral-900 bg-white rounded-lg border border-fv-neutral-200 dark:bg-fv-neutral-700 dark:border-fv-neutral-600 dark:text-white;
+  a {
+    @apply block py-0.5 px-1 w-full font-medium text-left border-b border-fv-neutral-200 cursor-pointer hover:bg-fv-neutral-100 hover:text-fv-primary-700 focus:outline-none focus:ring-2 focus:ring-fv-primary-700 focus:text-fv-primary-700 dark:border-fv-neutral-600 dark:hover:bg-fv-neutral-600 dark:hover:text-white dark:focus:ring-fv-neutral-500 dark:focus:text-white;
+    &.router-link-exact-active {
+      @apply py-0.5 px-1 w-full font-medium text-left text-white bg-fv-primary-700 rounded-t-lg border-b border-fv-neutral-200 cursor-pointer focus:outline-none dark:bg-fv-neutral-800 dark:border-fv-neutral-600;
     }
   }
+}
+
+
+
+body {
+  @apply bg-fv-neutral-100 dark:bg-fv-neutral-800 text-black dark:text-white ;
 }
 pre[class*="language-"] {
   padding: 5px !important;
