@@ -12,7 +12,12 @@ const query = ref<string>();
 </script>
 
 <template>
-  <Head><title>Fyvue</title></Head>
+  <Head>
+    <title>fyvue</title>
+    <meta property="og:title" content="fyvue" />
+    <meta property="og:site_name" content="fyvue" />
+    <meta property="og:url" :content="`https://fy-vue.com/`" />
+  </Head>
   <SchemaOrgOrganization
     name="fyvue"
     logo="https://www.fy-vue.com/fyvue.svg"
