@@ -151,22 +151,8 @@ async function handleSSR(createApp, cb, options = {}) {
         return cb(result);
     }
     const html = await serverRenderer.renderToString(app, {});
-    const { headTags, htmlAttrs, bodyAttrs, bodyTags } = head.renderHeadToString(head$1);
-    console.log('\n--------------------------------\n');
-    console.log('HTML: \n', html);
-    console.log('\n--------------------------------\n');
-    console.log('headTags: \n', headTags);
-    console.log('\n--------------------------------\n');
-    console.log('htmlAttrs: \n', htmlAttrs);
-    console.log('\n--------------------------------\n');
-    console.log('bodyAttrs: \n', bodyAttrs);
-    console.log('\n--------------------------------\n');
-    console.log('bodyTags: \n', bodyTags);
-    console.log('\n--------------------------------\n');
-    result.meta = headTags;
-    result.bodyAttributes = bodyAttrs;
-    result.htmlAttributes = htmlAttrs;
-    result.bodyTags = bodyTags;
+    const test = head.renderHeadToString(head$1);
+    console.log(test);
     result.app = html;
     if (historyStore.status != 200) {
         if ([301, 302, 303, 307].includes(historyStore.status)) {
