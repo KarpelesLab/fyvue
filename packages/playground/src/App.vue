@@ -81,8 +81,8 @@ onMounted(async () => {
         class="fixed shadow right-2 top-1/2 -translate-y-1/2 max-h-screen overflow-y-auto"
         :class="
           sideBarOpen
-            ? 'w-64 rounded-xl  bg-fv-neutral-100 dark:bg-fv-neutral-900 border-2 border-fv-primary-500'
-            : 'w-12 h-12 rounded-full bg-fv-primary-800 dark:bg-fv-primary-100'
+            ? 'w-64 rounded-xl  bg-fv-neutral-100 dark:bg-fv-neutral-900 border-2 border-fv-primary-500 z-20'
+            : 'w-12 h-12 rounded-full bg-fv-primary-800 dark:bg-fv-primary-100 z-20'
         "
         aria-label="Sidebar"
       >
