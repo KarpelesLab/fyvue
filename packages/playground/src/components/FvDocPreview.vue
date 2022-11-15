@@ -87,7 +87,7 @@ const componentFormated = () => {
         </div>
       </TabPanel>
       <TabPanel class="tab-compo">
-       <div class="p-2 pb-0 pt-0.5"> <FvHL><pre>{{ componentFormated() }}</pre></FvHL></div>
+       <div class=""> <FvHL ><pre>{{ componentFormated() }}</pre></FvHL></div>
       </TabPanel>
       <TabPanel class="tab-compo" v-if="props.length > 0">
         <div class="p-0">
