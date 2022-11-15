@@ -111,7 +111,7 @@ const componentFormated = () => {
       <TabPanel class="tab-compo" v-if="slots.length > 0">
         <div class="p-0">
           <FyDatatable
-            :data="props"
+            :data="slots"
             :headers="{
               name: 'Name',
               info: 'Role',
