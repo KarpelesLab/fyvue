@@ -8,6 +8,8 @@ import {
 import { onMounted, ref } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { useToggle } from '@vueuse/core';
+import ComponentIndex from '@/componentIndex';
+
 await i18nextPromise;
 const query = ref<string>();
 const sideBarOpen = ref<boolean>(false);
@@ -47,6 +49,16 @@ onMounted(async () => {
         },
         {
           to: '#',
+          name: 'Components',
+          childrens: [
+            { to: '/components', name: 'Index' },
+            { to: '/components/ui', name: 'UI' },
+            { to: '/components/klb', name: 'Klb' },
+            { to: '/components/css', name: 'CSS' },
+          ],
+        },
+        {
+          to: '#',
           name: 'Helpers',
           childrens: [
             { to: '/helpers', name: 'Summary' },
@@ -69,7 +81,7 @@ onMounted(async () => {
         class="fixed shadow right-2 top-1/2 -translate-y-1/2 max-h-screen overflow-y-auto"
         :class="
           sideBarOpen
-            ? 'w-64 rounded-xl  bg-fv-neutral-50 dark:bg-fv-neutral-800 border-2 border-fv-primary-500'
+            ? 'w-64 rounded-xl  bg-fv-neutral-100 dark:bg-fv-neutral-900 border-2 border-fv-primary-500'
             : 'w-12 h-12 rounded-full bg-fv-primary-800 dark:bg-fv-primary-100'
         "
         aria-label="Sidebar"
@@ -84,57 +96,33 @@ onMounted(async () => {
             </button>
             <h2 class="font-bold">UI Components</h2>
             <div class="link-group">
-              <router-link to="/components/ui/FyBreadcrumb">
-                FyBreadcrumb
+              <router-link
+                v-for="(c, i) in ComponentIndex.ui"
+                :key="`${i.toString()}_${c}`"
+                :to="`/components/ui/${c}`"
+              >
+                {{ c }}
               </router-link>
-              <router-link to="/components/ui/FyCirclePercent">
-                FyCirclePercent
-              </router-link>
-              <router-link to="/components/ui/FyConfirm">
-                FyConfirm
-              </router-link>
-              <router-link to="/components/ui/FyDatatable">
-                FyDatatable
-              </router-link>
-              <router-link to="/components/ui/FyInput"> FyInput </router-link>
-              <router-link to="/components/ui/FyLoader"> FyLoader </router-link>
-              <router-link to="/components/ui/FyNavbar"> FyNavbar </router-link>
-              <router-link to="/components/ui/FyPaging"> FyPaging </router-link>
-              <router-link to="/components/ui/FySteps"> FySteps </router-link>
-              <router-link to="/components/ui/FyTable"> FyTable </router-link>
             </div>
             <h2 class="font-bold mt-2">Klb Components</h2>
             <div class="link-group">
-              <router-link to="/components/klb/KlbDeleteAccount">
-                KlbDeleteAccount
-              </router-link>
-              <router-link to="/components/klb/KlbUpdateEmailModal">
-                KlbUpdateEmailModal
-              </router-link>
-              <router-link to="/components/klb/KlbUpdatePasswordPModal">
-                KlbUpdatePasswordPModal
-              </router-link>
-              <router-link to="/components/klb/KlbAddPaymentMethodModal">
-                KlbAddPaymentMethodModal
-              </router-link>
-              <router-link to="/components/klb/KlbBillingHistory">
-                KlbBillingHistory
-              </router-link>
-              <router-link to="/components/klb/KlbUpdateBillingLocation">
-                KlbUpdateBillingLocation
-              </router-link>
-              <router-link to="/components/klb/KilbUpdatePaymentMethod">
-                KilbUpdatePaymentMethod
-              </router-link>
-              <router-link to="/components/klb/KlbLogin">
-                KlbLogin
+              <router-link
+                v-for="(c, i) in ComponentIndex.klb"
+                :key="`${i.toString()}_${c}`"
+                :to="`/components/ui/${c}`"
+              >
+                {{ c }}
               </router-link>
             </div>
             <h2 class="font-bold mt-2">CSS Components</h2>
             <div class="link-group">
-              <router-link to="/components/css/button"> Button </router-link>
-              <router-link to="/components/css/typo"> Typo </router-link>
-              <router-link to="/components/css/helpers"> Helpers </router-link>
+              <router-link
+                v-for="(c, i) in ComponentIndex.css"
+                :key="`${i.toString()}_${c}`"
+                :to="`/components/ui/${c}`"
+              >
+                {{ c }}
+              </router-link>
             </div>
           </nav>
         </div>
@@ -148,7 +136,12 @@ onMounted(async () => {
           />
         </button>
       </aside>
-      <main class="bg-white dark:bg-fv-neutral-900 p-2 md:p-4 xl:-6">
+      <FyBreadcrumb
+        v-if="$route.meta.breadcrumb"
+        :nav="$route.meta.breadcrumb"
+        class="mb-2"
+      />
+      <main class="bg-white dark:bg-fv-neutral-900 p-2 md:p-4 xl:-6 rounded">
         <div class="px-2">
           <RouterView v-slot="{ Component }">
             <Suspense timeout="0">

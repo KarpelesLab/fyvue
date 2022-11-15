@@ -4,11 +4,40 @@ export const routes = [
     component: () => import('./views/IndexView.vue'),
   },
   {
+    path: '/components',
+    component: () => import('./views/components/IndexView.vue'),
+    meta: {
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Components' }],
+    },
+  },
+  {
+    path: '/components/klb',
+    component: () => import('./views/components/klb/IndexView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb' },
+      ],
+    },
+  },
+  {
+    path: '/components/klb/KlbLogin',
+    component: () => import('./views/components/klb/KlbLoginView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbLogin' },
+      ],
+    },
+  },
+  /*
+    {
     path: '/tests/i18n',
     component: () => import('./components/Helpers/TlocalesI18n.vue'),
   },
-
-  /* KLB */
   {
     path: '/tests/KlbLogin',
     component: () => import('./components/KlbComponents/TKlbLogin.vue'),
@@ -57,7 +86,6 @@ export const routes = [
     path: '/tests/FyConfirm',
     component: () => import('./components/FyComponents/TFyConfirm.vue'),
   },
-
   {
     path: '/tests/FyDatatable',
     component: () => import('./components/FyComponents/TFyDatatable.vue'),
@@ -70,4 +98,5 @@ export const routes = [
     path: '/tests/FyLoader',
     component: () => import('./components/FyComponents/TFyLoader.vue'),
   },
+  */
 ];

@@ -557,7 +557,7 @@ function render$8(_ctx, _cache) {
   }, [
     createElementVNode("path", {
       "fill-rule": "evenodd",
-      d: "M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z",
+      d: "M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z",
       "clip-rule": "evenodd"
     })
   ]))
@@ -572,7 +572,7 @@ function render$7(_ctx, _cache) {
   }, [
     createElementVNode("path", {
       "fill-rule": "evenodd",
-      d: "M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z",
+      d: "M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z",
       "clip-rule": "evenodd"
     })
   ]))
@@ -587,7 +587,7 @@ function render$6(_ctx, _cache) {
   }, [
     createElementVNode("path", {
       "fill-rule": "evenodd",
-      d: "M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z",
+      d: "M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z",
       "clip-rule": "evenodd"
     })
   ]))
@@ -600,11 +600,8 @@ function render$5(_ctx, _cache) {
     fill: "currentColor",
     "aria-hidden": "true"
   }, [
-    createElementVNode("path", {
-      "fill-rule": "evenodd",
-      d: "M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z",
-      "clip-rule": "evenodd"
-    })
+    createElementVNode("path", { d: "M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" }),
+    createElementVNode("path", { d: "M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" })
   ]))
 }
 
@@ -776,7 +773,7 @@ const _hoisted_2$i = {
     viewBox: "0 0 36 36",
     class: "circular-chart"
 };
-const _hoisted_3$g = createElementVNode("path", {
+const _hoisted_3$h = createElementVNode("path", {
     class: "circle-bg",
     d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1);
@@ -793,7 +790,7 @@ var script$i = defineComponent({
         return (_ctx, _cache) => {
             return (openBlock(), createElementBlock("div", _hoisted_1$i, [
                 (openBlock(), createElementBlock("svg", _hoisted_2$i, [
-                    _hoisted_3$g,
+                    _hoisted_3$h,
                     createElementVNode("path", {
                         class: "circle",
                         "stroke-dasharray": `${__props.percent}, 100`,
@@ -818,7 +815,7 @@ const _hoisted_2$h = {
     class: "modal-container",
     style: { "width": "350px !important" }
 };
-const _hoisted_3$f = { class: "modal-content" };
+const _hoisted_3$g = { class: "modal-content" };
 const _hoisted_4$d = {
     key: 0,
     class: "confirm-modal-desc default-p"
@@ -878,7 +875,7 @@ var script$h = defineComponent({
                                         ]),
                                         _: 1
                                     }),
-                                    createElementVNode("div", _hoisted_3$f, [
+                                    createElementVNode("div", _hoisted_3$g, [
                                         (desc.value)
                                             ? (openBlock(), createElementBlock("div", _hoisted_4$d, toDisplayString(desc.value), 1))
                                             : createCommentVNode("v-if", true),
@@ -911,7 +908,8 @@ const _hoisted_1$g = {
     class: "fy-breadcrumb",
     "aria-label": "Breadcrumb"
 };
-const _hoisted_2$g = { class: "bc-innactive" };
+const _hoisted_2$g = { class: "home-li" };
+const _hoisted_3$f = { key: 1 };
 var script$g = defineComponent({
     __name: 'FyBreadcrumb',
     props: {
@@ -923,32 +921,37 @@ var script$g = defineComponent({
             const _component_router_link = resolveComponent("router-link");
             return (openBlock(), createElementBlock("nav", _hoisted_1$g, [
                 createElementVNode("ol", null, [
-                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item) => {
-                        return (openBlock(), createElementBlock(Fragment, null, [
-                            (item.to)
-                                ? (openBlock(), createElementBlock("li", {
-                                    key: item.to,
-                                    class: "bc-innactive"
-                                }, [
-                                    createVNode(_component_router_link, {
-                                        to: item.to,
-                                        class: "bc-active link"
+                    createElementVNode("li", _hoisted_2$g, [
+                        createVNode(_component_router_link, { to: "/" }, {
+                            default: withCtx(() => [
+                                createVNode(unref(render$5)),
+                                createTextVNode(" Home ")
+                            ]),
+                            _: 1
+                        })
+                    ]),
+                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item, index) => {
+                        return (openBlock(), createElementBlock("li", {
+                            key: `bc_${index.toString()}`
+                        }, [
+                            createElementVNode("div", {
+                                class: normalizeClass(item.to ? 'li' : 'li-current')
+                            }, [
+                                createVNode(unref(render$7)),
+                                (item.to)
+                                    ? (openBlock(), createBlock(_component_router_link, {
+                                        key: 0,
+                                        to: item.to
                                     }, {
                                         default: withCtx(() => [
                                             createTextVNode(toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
                                         ]),
                                         _: 2
-                                    }, 1032, ["to"]),
-                                    createVNode(unref(render$8), { class: "icon bc-innactive" })
-                                ]))
-                                : (openBlock(), createElementBlock("li", {
-                                    key: `e-${item.to}`,
-                                    class: "bc-current"
-                                }, [
-                                    createElementVNode("span", _hoisted_2$g, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
-                                ]))
-                        ], 64));
-                    }), 256))
+                                    }, 1032, ["to"]))
+                                    : (openBlock(), createElementBlock("span", _hoisted_3$f, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+                            ], 2)
+                        ]));
+                    }), 128))
                 ])
             ]));
         };
@@ -1530,7 +1533,7 @@ var script$9 = defineComponent({
                                     class: "prev-next"
                                 }, [
                                     createElementVNode("span", _hoisted_4$9, toDisplayString(_ctx.$t('previous_paging')), 1),
-                                    createVNode(unref(render$7), { class: "fv-icon-base" })
+                                    createVNode(unref(render$8), { class: "fv-icon-base" })
                                 ]))
                                 : createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 1)
@@ -1588,7 +1591,7 @@ var script$9 = defineComponent({
                                     class: "prev-next"
                                 }, [
                                     createElementVNode("span", _hoisted_10$5, toDisplayString(_ctx.$t('next_paging')), 1),
-                                    createVNode(unref(render$6), { class: "fv-icon-base" })
+                                    createVNode(unref(render$7), { class: "fv-icon-base" })
                                 ]))
                                 : createCommentVNode("v-if", true)
                         ]),
@@ -2452,7 +2455,7 @@ var script$4 = defineComponent({
                                 class: "btn primary small"
                             }, {
                                 default: withCtx(() => [
-                                    createVNode(unref(render$5), { class: "edit-icon" }),
+                                    createVNode(unref(render$6), { class: "edit-icon" }),
                                     createTextVNode(" " + toDisplayString(_ctx.$t('delete_account_display_cta')), 1)
                                 ]),
                                 _: 1

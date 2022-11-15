@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { FyVueBreadcrumb } from '../../../dts';
-import { ArrowRightIcon } from '@heroicons/vue/24/solid';
+import { HomeIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
 
 withDefaults(
   defineProps<{
@@ -16,17 +16,22 @@ withDefaults(
 <template>
   <nav class="fy-breadcrumb" aria-label="Breadcrumb">
     <ol>
-      <template v-for="item in nav">
-        <li v-if="item.to" :key="item.to" class="bc-innactive">
-          <router-link :to="item.to" class="bc-active link">
+      <template v-for="(item, index) in nav" :key="`bc_${index.toString()}`">
+        <li
+          :class="
+            item.to ? (index == 0 ? 'li-home' : 'li-normal') : 'li-current'
+          "
+          :aria-current="item.to ? undefined : 'page'"
+        >
+          <ChevronRightIcon v-if="index != 0" />
+
+          <router-link :to="item.to" v-if="item.to">
+            <HomeIcon v-if="index === 0" />
             {{ $cropText($t(item.name).toString(), maxLength) }}
           </router-link>
-          <ArrowRightIcon class="icon bc-innactive" />
-        </li>
-        <li v-else v-bind:key="`e-${item.to}`" class="bc-current">
-          <span class="bc-innactive">{{
-            $cropText($t(item.name).toString(), maxLength)
-          }}</span>
+          <span v-else>
+            {{ $cropText($t(item.name).toString(), maxLength) }}
+          </span>
         </li>
       </template>
     </ol>

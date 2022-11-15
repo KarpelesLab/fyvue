@@ -1,45 +1,35 @@
 .fy-breadcrumb {
-    @apply  py-0 mr-auto  font-semibold  uppercase;
-    ol {
-      @apply list-none p-0 inline-flex flex-wrap;
-      li {
-          @apply flex items-center pr-2 break-words;
-
-          .link {
-              @apply pr-2 break-words;
-          }
-
+  @apply flex px-5 py-2 text-fv-neutral-700 rounded-lg bg-fv-neutral-50 dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
+  ol {
+    @apply inline-flex items-center ;
+    li {
+      &.li-home {
+        @apply inline-flex items-center;
+        a {
+          @apply inline-flex items-center text-sm font-medium text-fv-neutral-700 hover:text-fv-neutral-900 dark:text-fv-neutral-400 dark:hover:text-white;
+        }
+        svg {
+          @apply w-4 h-4 mr-2  inline-block;
+        }
       }
-  }
-  .icon {
-    @apply w-3;
-  }
-  .bc-innactive {
-    @apply break-words;
-  }
-  .bc-current {
-    @apply flex items-center;
-  }
-}
-.light {
-  .fy-breadcrumb {
-    @apply border-fv-primary-600;
-  }
-  .bc-innactive {
-    @apply text-fv-neutral-600;
-  }
-  .bc-active {
-      @apply text-fv-primary-600;
-  }
-}
-.dark {
-  .fy-breadcrumb {
-    @apply border-fv-primary-300;
-  }
-  .bc-innactive {
-    @apply text-fv-neutral-300;
-  }
-  .bc-active {
-      @apply text-fv-primary-300;
+      &.li-normal {
+        @apply flex items-center;
+        svg {
+          @apply w-5 h-5 text-fv-neutral-400 inline-block mx-0.5 md:mx-1.5;
+        }
+        a {
+          @apply text-sm font-medium text-fv-neutral-700 hover:text-fv-neutral-900  dark:text-fv-neutral-400 dark:hover:text-white;
+        }
+      }
+      &.li-current {
+        @apply flex items-center;
+        svg {
+          @apply w-5 h-5 text-fv-neutral-400 inline-block mx-0.5 md:mx-1.5;
+        }
+        span {
+          @apply text-sm font-medium text-fv-neutral-500  dark:text-fv-neutral-400;
+        }
+      }
+    }
   }
 }

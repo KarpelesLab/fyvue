@@ -559,7 +559,7 @@ function render$8(_ctx, _cache) {
   }, [
     vue.createElementVNode("path", {
       "fill-rule": "evenodd",
-      d: "M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z",
+      d: "M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z",
       "clip-rule": "evenodd"
     })
   ]))
@@ -574,7 +574,7 @@ function render$7(_ctx, _cache) {
   }, [
     vue.createElementVNode("path", {
       "fill-rule": "evenodd",
-      d: "M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z",
+      d: "M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z",
       "clip-rule": "evenodd"
     })
   ]))
@@ -589,7 +589,7 @@ function render$6(_ctx, _cache) {
   }, [
     vue.createElementVNode("path", {
       "fill-rule": "evenodd",
-      d: "M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z",
+      d: "M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z",
       "clip-rule": "evenodd"
     })
   ]))
@@ -602,11 +602,8 @@ function render$5(_ctx, _cache) {
     fill: "currentColor",
     "aria-hidden": "true"
   }, [
-    vue.createElementVNode("path", {
-      "fill-rule": "evenodd",
-      d: "M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z",
-      "clip-rule": "evenodd"
-    })
+    vue.createElementVNode("path", { d: "M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" }),
+    vue.createElementVNode("path", { d: "M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" })
   ]))
 }
 
@@ -778,7 +775,7 @@ const _hoisted_2$i = {
     viewBox: "0 0 36 36",
     class: "circular-chart"
 };
-const _hoisted_3$g = vue.createElementVNode("path", {
+const _hoisted_3$h = vue.createElementVNode("path", {
     class: "circle-bg",
     d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1);
@@ -795,7 +792,7 @@ var script$i = vue.defineComponent({
         return (_ctx, _cache) => {
             return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$i, [
                 (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$i, [
-                    _hoisted_3$g,
+                    _hoisted_3$h,
                     vue.createElementVNode("path", {
                         class: "circle",
                         "stroke-dasharray": `${__props.percent}, 100`,
@@ -820,7 +817,7 @@ const _hoisted_2$h = {
     class: "modal-container",
     style: { "width": "350px !important" }
 };
-const _hoisted_3$f = { class: "modal-content" };
+const _hoisted_3$g = { class: "modal-content" };
 const _hoisted_4$d = {
     key: 0,
     class: "confirm-modal-desc default-p"
@@ -880,7 +877,7 @@ var script$h = vue.defineComponent({
                                         ]),
                                         _: 1
                                     }),
-                                    vue.createElementVNode("div", _hoisted_3$f, [
+                                    vue.createElementVNode("div", _hoisted_3$g, [
                                         (desc.value)
                                             ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$d, vue.toDisplayString(desc.value), 1))
                                             : vue.createCommentVNode("v-if", true),
@@ -913,7 +910,8 @@ const _hoisted_1$g = {
     class: "fy-breadcrumb",
     "aria-label": "Breadcrumb"
 };
-const _hoisted_2$g = { class: "bc-innactive" };
+const _hoisted_2$g = { class: "home-li" };
+const _hoisted_3$f = { key: 1 };
 var script$g = vue.defineComponent({
     __name: 'FyBreadcrumb',
     props: {
@@ -925,32 +923,37 @@ var script$g = vue.defineComponent({
             const _component_router_link = vue.resolveComponent("router-link");
             return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$g, [
                 vue.createElementVNode("ol", null, [
-                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item) => {
-                        return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-                            (item.to)
-                                ? (vue.openBlock(), vue.createElementBlock("li", {
-                                    key: item.to,
-                                    class: "bc-innactive"
-                                }, [
-                                    vue.createVNode(_component_router_link, {
-                                        to: item.to,
-                                        class: "bc-active link"
+                    vue.createElementVNode("li", _hoisted_2$g, [
+                        vue.createVNode(_component_router_link, { to: "/" }, {
+                            default: vue.withCtx(() => [
+                                vue.createVNode(vue.unref(render$5)),
+                                vue.createTextVNode(" Home ")
+                            ]),
+                            _: 1
+                        })
+                    ]),
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item, index) => {
+                        return (vue.openBlock(), vue.createElementBlock("li", {
+                            key: `bc_${index.toString()}`
+                        }, [
+                            vue.createElementVNode("div", {
+                                class: vue.normalizeClass(item.to ? 'li' : 'li-current')
+                            }, [
+                                vue.createVNode(vue.unref(render$7)),
+                                (item.to)
+                                    ? (vue.openBlock(), vue.createBlock(_component_router_link, {
+                                        key: 0,
+                                        to: item.to
                                     }, {
                                         default: vue.withCtx(() => [
                                             vue.createTextVNode(vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
                                         ]),
                                         _: 2
-                                    }, 1032, ["to"]),
-                                    vue.createVNode(vue.unref(render$8), { class: "icon bc-innactive" })
-                                ]))
-                                : (vue.openBlock(), vue.createElementBlock("li", {
-                                    key: `e-${item.to}`,
-                                    class: "bc-current"
-                                }, [
-                                    vue.createElementVNode("span", _hoisted_2$g, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
-                                ]))
-                        ], 64));
-                    }), 256))
+                                    }, 1032, ["to"]))
+                                    : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$f, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+                            ], 2)
+                        ]));
+                    }), 128))
                 ])
             ]));
         };
@@ -1532,7 +1535,7 @@ var script$9 = vue.defineComponent({
                                     class: "prev-next"
                                 }, [
                                     vue.createElementVNode("span", _hoisted_4$9, vue.toDisplayString(_ctx.$t('previous_paging')), 1),
-                                    vue.createVNode(vue.unref(render$7), { class: "fv-icon-base" })
+                                    vue.createVNode(vue.unref(render$8), { class: "fv-icon-base" })
                                 ]))
                                 : vue.createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 1)
@@ -1590,7 +1593,7 @@ var script$9 = vue.defineComponent({
                                     class: "prev-next"
                                 }, [
                                     vue.createElementVNode("span", _hoisted_10$5, vue.toDisplayString(_ctx.$t('next_paging')), 1),
-                                    vue.createVNode(vue.unref(render$6), { class: "fv-icon-base" })
+                                    vue.createVNode(vue.unref(render$7), { class: "fv-icon-base" })
                                 ]))
                                 : vue.createCommentVNode("v-if", true)
                         ]),
@@ -2454,7 +2457,7 @@ var script$4 = vue.defineComponent({
                                 class: "btn primary small"
                             }, {
                                 default: vue.withCtx(() => [
-                                    vue.createVNode(vue.unref(render$5), { class: "edit-icon" }),
+                                    vue.createVNode(vue.unref(render$6), { class: "edit-icon" }),
                                     vue.createTextVNode(" " + vue.toDisplayString(_ctx.$t('delete_account_display_cta')), 1)
                                 ]),
                                 _: 1
