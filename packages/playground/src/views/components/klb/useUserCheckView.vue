@@ -23,7 +23,7 @@
     </p>
     <h3>Example</h3>
     <p>(In setup context)</p>
-    <FvHL>import { useUserCheck } from "@karpeleslab/fyvue";
-useUserCheck()</FvHL>
+    <FvHL><pre>import { useUserCheck } from "@karpeleslab/fyvue";
+useUserCheck()</pre></FvHL>
   </div>
 </template>
