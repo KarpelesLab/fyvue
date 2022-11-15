@@ -251,85 +251,39 @@ button[type=submit] {
 }
 
 .fy-breadcrumb {
-  @apply flex px-5 py-3 text-fv-neutral-700 border border-fv-neutral-200 rounded-lg bg-fv-neutral-50 dark:bg-fv-neutral-800 dark:border-fv-neutral-700;
+  @apply flex px-5 py-2 text-fv-neutral-700 rounded-lg bg-fv-neutral-50 dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
 }
 .fy-breadcrumb ol {
-  @apply inline-flex items-center space-x-1 md:space-x-3;
-}
-.fy-breadcrumb ol li.home-li {
   @apply inline-flex items-center;
 }
-.fy-breadcrumb ol li.home-li a {
+.fy-breadcrumb ol li.li-home {
+  @apply inline-flex items-center;
+}
+.fy-breadcrumb ol li.li-home a {
   @apply inline-flex items-center text-sm font-medium text-fv-neutral-700 hover:text-fv-neutral-900 dark:text-fv-neutral-400 dark:hover:text-white;
 }
-.fy-breadcrumb ol li.home-li a svg {
-  @apply w-4 h-4 mr-2;
+.fy-breadcrumb ol li.li-home svg {
+  @apply w-4 h-4 mr-2  inline-block;
 }
-.fy-breadcrumb ol li.li {
+.fy-breadcrumb ol li.li-normal {
   @apply flex items-center;
 }
-.fy-breadcrumb ol li.li svg {
-  @apply w-6 h-6 text-fv-neutral-400 inline-block;
+.fy-breadcrumb ol li.li-normal svg {
+  @apply w-5 h-5 text-fv-neutral-400 inline-block mx-0.5 md:mx-1.5;
 }
-.fy-breadcrumb ol li.li a {
-  @apply ml-1 text-sm font-medium text-fv-neutral-700 hover:text-fv-neutral-900 md:ml-2 dark:text-fv-neutral-400 dark:hover:text-white;
+.fy-breadcrumb ol li.li-normal a {
+  @apply text-sm font-medium text-fv-neutral-700 hover:text-fv-neutral-900  dark:text-fv-neutral-400 dark:hover:text-white;
 }
 .fy-breadcrumb ol li.li-current {
   @apply flex items-center;
 }
 .fy-breadcrumb ol li.li-current svg {
-  @apply w-6 h-6 text-fv-neutral-400 inline-block;
+  @apply w-5 h-5 text-fv-neutral-400 inline-block mx-0.5 md:mx-1.5;
 }
 .fy-breadcrumb ol li.li-current span {
-  @apply ml-1 text-sm font-medium text-fv-neutral-500 md:ml-2 dark:text-fv-neutral-400;
+  @apply text-sm font-medium text-fv-neutral-500  dark:text-fv-neutral-400;
 }
 
-/*.fy-breadcrumb {
-    @apply  py-0 mr-auto  font-semibold  uppercase;
-    ol {
-      @apply list-none p-0 inline-flex flex-wrap;
-      li {
-          @apply flex items-center pr-2 break-words;
-
-          .link {
-              @apply pr-2 break-words;
-          }
-
-      }
-  }
-  .icon {
-    @apply w-3;
-  }
-  .bc-innactive {
-    @apply break-words;
-  }
-  .bc-current {
-    @apply flex items-center;
-  }
-}
-.light {
-  .fy-breadcrumb {
-    @apply border-fv-primary-600;
-  }
-  .bc-innactive {
-    @apply text-fv-neutral-600;
-  }
-  .bc-active {
-      @apply text-fv-primary-600;
-  }
-}
-.dark {
-  .fy-breadcrumb {
-    @apply border-fv-primary-300;
-  }
-  .bc-innactive {
-    @apply text-fv-neutral-300;
-  }
-  .bc-active {
-      @apply text-fv-primary-300;
-  }
-}
-*/
 .fy-datatable td {
   @apply text-xs;
 }
@@ -476,10 +430,10 @@ button[type=submit] {
   @apply outline-0 outline-1 outline-fv-primary-500  bg-fv-primary-500;
 }
 .input-group .input-basic {
-  @apply bg-transparent p-2  border-0 focus:ring-fv-primary-500 focus:border-fv-primary-500 w-full dark:focus:ring-fv-primary-500 dark:focus:border-fv-primary-500;
+  @apply bg-transparent p-2  border-0 focus:ring-fv-primary-500 focus:border-fv-primary-500 w-full dark:focus:ring-fv-primary-500 dark:focus:border-fv-primary-500 dark:placeholder-fv-neutral-300 dark:text-white;
 }
 .input-group .input-box {
-  @apply rounded flex bg-fv-neutral-50 border border-fv-neutral-300 text-fv-neutral-900 text-sm  block w-full   dark:bg-fv-neutral-700 dark:border-fv-neutral-600 dark:placeholder-fv-neutral-400 dark:text-white;
+  @apply rounded flex bg-fv-neutral-50 border border-fv-neutral-300 text-fv-neutral-900 text-sm  block w-full   dark:bg-fv-neutral-700 dark:border-fv-neutral-600;
 }
 .input-group .input-box.error {
   @apply bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm focus:ring-red-500 focus:border-red-500   dark:bg-red-100 dark:border-red-400;
@@ -625,7 +579,7 @@ button[type=submit] {
   position: absolute;
   inset: 0px auto auto 0px;
   margin: 0px;
-  transform: translate(0px, 20px);
+  transform: translate(0px, 24px);
 }
 .fy-navbar .nav-menu .main-ul .sub-nav ul {
   @apply p-2  text-fv-neutral-900  dark:text-white  w-full grid grid-cols-1 gap-1;

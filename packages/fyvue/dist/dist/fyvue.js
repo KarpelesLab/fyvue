@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.24
+  * @karpeleslab/fyvue v0.2.0-beta.25
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -910,8 +910,8 @@ const _hoisted_1$g = {
     class: "fy-breadcrumb",
     "aria-label": "Breadcrumb"
 };
-const _hoisted_2$g = { class: "home-li" };
-const _hoisted_3$f = { key: 1 };
+const _hoisted_2$g = ["aria-current"];
+const _hoisted_3$f = { key: 2 };
 var script$g = vue.defineComponent({
     __name: 'FyBreadcrumb',
     props: {
@@ -923,36 +923,30 @@ var script$g = vue.defineComponent({
             const _component_router_link = vue.resolveComponent("router-link");
             return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$g, [
                 vue.createElementVNode("ol", null, [
-                    vue.createElementVNode("li", _hoisted_2$g, [
-                        vue.createVNode(_component_router_link, { to: "/" }, {
-                            default: vue.withCtx(() => [
-                                vue.createVNode(vue.unref(render$5)),
-                                vue.createTextVNode(" Home ")
-                            ]),
-                            _: 1
-                        })
-                    ]),
                     (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item, index) => {
                         return (vue.openBlock(), vue.createElementBlock("li", {
-                            key: `bc_${index.toString()}`
+                            key: `bc_${index.toString()}`,
+                            class: vue.normalizeClass(item.to ? (index == 0 ? 'li-home' : 'li-normal') : 'li-current'),
+                            "aria-current": item.to ? undefined : 'page'
                         }, [
-                            vue.createElementVNode("div", {
-                                class: vue.normalizeClass(item.to ? 'li' : 'li-current')
-                            }, [
-                                vue.createVNode(vue.unref(render$7)),
-                                (item.to)
-                                    ? (vue.openBlock(), vue.createBlock(_component_router_link, {
-                                        key: 0,
-                                        to: item.to
-                                    }, {
-                                        default: vue.withCtx(() => [
-                                            vue.createTextVNode(vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
-                                        ]),
-                                        _: 2
-                                    }, 1032, ["to"]))
-                                    : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$f, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
-                            ], 2)
-                        ]));
+                            (index != 0)
+                                ? (vue.openBlock(), vue.createBlock(vue.unref(render$7), { key: 0 }))
+                                : vue.createCommentVNode("v-if", true),
+                            (item.to)
+                                ? (vue.openBlock(), vue.createBlock(_component_router_link, {
+                                    key: 1,
+                                    to: item.to
+                                }, {
+                                    default: vue.withCtx(() => [
+                                        (index === 0)
+                                            ? (vue.openBlock(), vue.createBlock(vue.unref(render$5), { key: 0 }))
+                                            : vue.createCommentVNode("v-if", true),
+                                        vue.createTextVNode(" " + vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
+                                    ]),
+                                    _: 2
+                                }, 1032, ["to"]))
+                                : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$f, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+                        ], 10, _hoisted_2$g));
                     }), 128))
                 ])
             ]));

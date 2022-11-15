@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.24
+  * @karpeleslab/fyvue v0.2.0-beta.25
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -908,8 +908,8 @@ const _hoisted_1$g = {
     class: "fy-breadcrumb",
     "aria-label": "Breadcrumb"
 };
-const _hoisted_2$g = { class: "home-li" };
-const _hoisted_3$f = { key: 1 };
+const _hoisted_2$g = ["aria-current"];
+const _hoisted_3$f = { key: 2 };
 var script$g = defineComponent({
     __name: 'FyBreadcrumb',
     props: {
@@ -921,36 +921,30 @@ var script$g = defineComponent({
             const _component_router_link = resolveComponent("router-link");
             return (openBlock(), createElementBlock("nav", _hoisted_1$g, [
                 createElementVNode("ol", null, [
-                    createElementVNode("li", _hoisted_2$g, [
-                        createVNode(_component_router_link, { to: "/" }, {
-                            default: withCtx(() => [
-                                createVNode(unref(render$5)),
-                                createTextVNode(" Home ")
-                            ]),
-                            _: 1
-                        })
-                    ]),
                     (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item, index) => {
                         return (openBlock(), createElementBlock("li", {
-                            key: `bc_${index.toString()}`
+                            key: `bc_${index.toString()}`,
+                            class: normalizeClass(item.to ? (index == 0 ? 'li-home' : 'li-normal') : 'li-current'),
+                            "aria-current": item.to ? undefined : 'page'
                         }, [
-                            createElementVNode("div", {
-                                class: normalizeClass(item.to ? 'li' : 'li-current')
-                            }, [
-                                createVNode(unref(render$7)),
-                                (item.to)
-                                    ? (openBlock(), createBlock(_component_router_link, {
-                                        key: 0,
-                                        to: item.to
-                                    }, {
-                                        default: withCtx(() => [
-                                            createTextVNode(toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
-                                        ]),
-                                        _: 2
-                                    }, 1032, ["to"]))
-                                    : (openBlock(), createElementBlock("span", _hoisted_3$f, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
-                            ], 2)
-                        ]));
+                            (index != 0)
+                                ? (openBlock(), createBlock(unref(render$7), { key: 0 }))
+                                : createCommentVNode("v-if", true),
+                            (item.to)
+                                ? (openBlock(), createBlock(_component_router_link, {
+                                    key: 1,
+                                    to: item.to
+                                }, {
+                                    default: withCtx(() => [
+                                        (index === 0)
+                                            ? (openBlock(), createBlock(unref(render$5), { key: 0 }))
+                                            : createCommentVNode("v-if", true),
+                                        createTextVNode(" " + toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
+                                    ]),
+                                    _: 2
+                                }, 1032, ["to"]))
+                                : (openBlock(), createElementBlock("span", _hoisted_3$f, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+                        ], 10, _hoisted_2$g));
                     }), 128))
                 ])
             ]));
