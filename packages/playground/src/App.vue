@@ -1,5 +1,11 @@
 <script setup>
-import { i18nextPromise, countriesPromise } from '@karpeleslab/fyvue';
+import {
+  i18nextPromise,
+  countriesPromise,
+  useFVStore,
+  useHistory,
+  useUserCheck,
+} from '@karpeleslab/fyvue';
 import { Head, useHead } from '@vueuse/head';
 import {
   SchemaOrgWebSite,
@@ -7,14 +13,19 @@ import {
 } from '@vueuse/schema-org/runtime';
 import { onMounted, ref, computed } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
-import { useToggle } from '@vueuse/core';
 import { useRoute } from 'vue-router';
 import ComponentIndex from '@/componentIndex';
 
 await i18nextPromise;
 const route = useRoute();
 const sideBarOpen = ref(false);
-const toggleSidebar = useToggle(sideBarOpen);
+const store = useFVStore();
+const isAuth = computed(() => store.isAuth);
+const logout = async () => {
+  await store.logout();
+  useHistory().push('/', 302);
+};
+useUserCheck();
 onMounted(async () => {
   await countriesPromise();
 });
@@ -83,6 +94,24 @@ useHead({
         <img src="@/assets/fyvue.svg" class="h-10" />
       </template>
       <template v-slot:custom> </template>
+      <template v-slot:buttons>
+        <template v-if="isAuth">
+          <a
+            href="javascript:void(0)"
+            @click="logout()"
+            class="btn neutral btn-defaults"
+            >Logout</a
+          >
+        </template>
+        <template v-else>
+          <router-link to="/login" class="btn neutral btn-defaults"
+            >Login</router-link
+          >
+          <router-link to="/login" class="btn primary btn-defaults"
+            >Sign up</router-link
+          >
+        </template>
+      </template>
     </FyNavbar>
     <div class="relative w-full p-2 md:p-4 lg:p-6 flex-grow">
       <aside
@@ -149,14 +178,14 @@ useHead({
         :nav="$route.meta.breadcrumb"
         class="mb-2"
       />
-      <main class="bg-white dark:bg-fv-neutral-900 p-2 md:p-4 xl:-6 rounded">
+      <main
+        class="bg-white dark:bg-fv-neutral-900 px-2 md:px-4 xl:-6 rounded py-2 md:py-4"
+      >
         <div class="px-2">
           <RouterView v-slot="{ Component }">
             <Suspense timeout="0">
-              <component :is="Component" />
-              <template #fallback>
-                <div>Loading...</div>
-              </template>
+              <template #default><component :is="Component" /></template>
+              <template #fallback><div>Loading...</div></template>
             </Suspense>
           </RouterView>
         </div>

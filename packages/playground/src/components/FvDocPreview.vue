@@ -5,21 +5,36 @@ import {
   EyeIcon,
   SwatchIcon,
   ListBulletIcon,
+  ExclamationTriangleIcon,
 } from '@heroicons/vue/24/solid';
+import { useFVStore } from '@karpeleslab/fyvue';
+import { computed } from 'vue';
 
-defineProps({
+const props = defineProps({
   component: {
     type: String,
   },
   props: {
     type: Array,
-    default: [],
+    default: () => [],
   },
   slots: {
     type: Array,
-    default: [],
+    default: () => [],
+  },
+  reqAuth: {
+    type: Boolean,
+    default: false,
   },
 });
+const store = useFVStore();
+const isAuth = computed(() => store.isAuth);
+const componentFormated = () => {
+  let cp = props.component.trim();
+  cp = cp.replace('_script_', '<script setup>');
+  cp = cp.replace('_script_end_', '<\/script>');
+  return cp;
+};
 </script>
 <template>
   <TabGroup class="compo-view" as="div">
@@ -56,18 +71,26 @@ defineProps({
     <TabPanels>
       <TabPanel class="tab-compo">
         <div class="p-4">
-          <slot name="component"></slot>
+          <slot name="component" v-if="!reqAuth || isAuth"></slot>
+          <div v-else>
+            <div class="fv-typo">
+              <p>
+                <ExclamationTriangleIcon class="w-5 h-5 inline-block -mt-0.5" />
+                Preview requires authentication.
+              </p>
+              <br />
+              <router-link to="/login" class="btn primary btn-defaults">
+                Login / Create account
+              </router-link>
+            </div>
+          </div>
         </div>
       </TabPanel>
       <TabPanel class="tab-compo">
-        <div v-highlight class="-my-2">
-          <pre
-            class="language-html"
-          ><code>{{ component.trim().replace('_script_','<script setup>').replace('_script_end_', '</script>\n') }}</code></pre>
-        </div>
+       <div class="p-2 pb-0 pt-0.5"> <FvHL>{{ componentFormated() }}</FvHL></div>
       </TabPanel>
       <TabPanel class="tab-compo" v-if="props.length > 0">
-        <div class="p-4">
+        <div class="p-0">
           <FyDatatable
             :data="props"
             :headers="{
@@ -85,7 +108,18 @@ defineProps({
           </FyDatatable>
         </div>
       </TabPanel>
-      <TabPanel class="tab-compo" v-if="slots.length > 0"></TabPanel>
+      <TabPanel class="tab-compo" v-if="slots.length > 0">
+        <div class="p-0">
+          <FyDatatable
+            :data="props"
+            :headers="{
+              name: 'Name',
+              info: 'Role',
+            }"
+          >
+          </FyDatatable>
+        </div>
+      </TabPanel>
     </TabPanels>
   </TabGroup>
 </template>

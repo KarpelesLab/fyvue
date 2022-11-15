@@ -4,11 +4,42 @@ export const routes = [
     component: () => import('./views/IndexView.vue'),
   },
   {
+    path: '/login',
+    component: () => import('./views/LoginView.vue'),
+    meta: {
+      title: 'Login - fyvue',
+    },
+  },
+  {
+    path: '/ssr',
+    component: () => import('./views/ssr/IndexView.vue'),
+    meta: {
+      title: 'SSR - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'SSR' }],
+    },
+  },
+  {
+    path: '/ssr/rest',
+    component: () => import('./views/ssr/RestView.vue'),
+    meta: {
+      title: 'Rest - SSR - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'SSR', to: '/ssr' }, { name: 'Rest'}],
+    },
+  },
+  {
+    path: '/ssr/router',
+    component: () => import('./views/ssr/RouterView.vue'),
+    meta: {
+      title: 'Router - SSR - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'SSR', to: '/ssr' }, { name: 'Router'}],
+    },
+  },
+  {
     path: '/components',
     component: () => import('./views/components/IndexView.vue'),
     meta: {
       breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Components' }],
-      title: 'Components - Fyvue',
+      title: 'Components - fyvue',
     },
   },
   {
@@ -20,7 +51,7 @@ export const routes = [
         { name: 'Components', to: '/components' },
         { name: 'UI' },
       ],
-      title: 'UI - Components - Fyvue',
+      title: 'UI - Components - fyvue',
     },
   },
   {
@@ -33,7 +64,7 @@ export const routes = [
         { name: 'UI', to: '/components/ui' },
         { name: 'FyBreadcrumb' },
       ],
-      title: 'FyBreadcrumb - UI - Components - Fyvue',
+      title: 'FyBreadcrumb - UI - Components - fyvue',
     },
   },
   {
@@ -46,7 +77,7 @@ export const routes = [
         { name: 'UI', to: '/components/ui' },
         { name: 'FyCirclePercent' },
       ],
-      title: 'FyCirclePercent - UI - Components - Fyvue',
+      title: 'FyCirclePercent - UI - Components - fyvue',
     },
   },
   {
@@ -59,7 +90,7 @@ export const routes = [
         { name: 'UI', to: '/components/ui' },
         { name: 'FyConfirm' },
       ],
-      title: 'FyConfirm - UI - Components - Fyvue',
+      title: 'FyConfirm - UI - Components - fyvue',
     },
   },
   {
@@ -72,7 +103,7 @@ export const routes = [
         { name: 'UI', to: '/components/ui' },
         { name: 'FyDatatable' },
       ],
-      title: 'FyDatatable - UI - Components - Fyvue',
+      title: 'FyDatatable - UI - Components - fyvue',
     },
   },
   {
@@ -85,7 +116,7 @@ export const routes = [
         { name: 'UI', to: '/components/ui' },
         { name: 'FyTable' },
       ],
-      title: 'FyTable - UI - Components - Fyvue',
+      title: 'FyTable - UI - Components - fyvue',
     },
   },
   {
@@ -98,7 +129,7 @@ export const routes = [
         { name: 'UI', to: '/components/ui' },
         { name: 'FyInput' },
       ],
-      title: 'FyInput - UI - Components - Fyvue',
+      title: 'FyInput - UI - Components - fyvue',
     },
   },
   {
@@ -111,7 +142,143 @@ export const routes = [
         { name: 'UI', to: '/components/ui' },
         { name: 'FyLoader' },
       ],
-      title: 'FyLoader - UI - Components - Fyvue',
+      title: 'FyLoader - UI - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyNavbar',
+    component: () => import('./views/components/ui/FyNavbarView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyNavbar' },
+      ],
+      title: 'FyNavbar - UI - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyPaging',
+    component: () => import('./views/components/ui/FyPagingView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyPaging' },
+      ],
+      title: 'FyPaging - UI - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FySteps',
+    component: () => import('./views/components/ui/FyStepsView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FySteps' },
+      ],
+      title: 'FySteps - UI - Components - fyvue',
+    },
+  },
+
+  // KLB compos
+  {
+    path: '/components/klb',
+    component: () => import('./views/components/klb/IndexView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb' },
+      ],
+      title: 'Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/KlbLogin',
+    component: () => import('./views/components/klb/KlbLoginView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbLogin' },
+      ],
+      title: 'KlbLogin - Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/KlbAddPaymentMethodModal',
+    component: () =>
+      import('./views/components/klb/KlbAddPaymentMethodModalView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbAddPaymentMethodModal' },
+      ],
+      title: 'KlbAddPaymentMethodModal - Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/KlbDeleteAccount',
+    component: () =>
+      import('./views/components/klb/KlbDeleteAccountView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbDeleteAccount' },
+      ],
+      title: 'KlbDeleteAccount - Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/KlbUpdatePasswordModal',
+    component: () =>
+      import('./views/components/klb/KlbUpdatePasswordModalView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbUpdatePasswordModal' },
+      ],
+      title: 'KlbUpdatePasswordModal - Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/KlbUpdateEmailModal',
+    component: () =>
+      import('./views/components/klb/KlbUpdateEmailModalView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbUpdateEmailModal' },
+      ],
+      title: 'KlbUpdateEmailModal - Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/useUserCheck',
+    component: () =>
+      import('./views/components/klb/useUserCheckView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'useUserCheck' },
+      ],
+      title: 'useUserCheck - Klb - Components - fyvue',
     },
   },
   // CSS compos
@@ -124,100 +291,11 @@ export const routes = [
         { name: 'Components', to: '/components' },
         { name: 'CSS' },
       ],
-      title: 'CSS - Components - Fyvue',
+      title: 'CSS - Components - fyvue',
     },
   },
-  // KLB compos
   {
-    path: '/components/klb',
-    component: () => import('./views/components/klb/IndexView.vue'),
-    meta: {
-      breadcrumb: [
-        { name: 'fyvue', to: '/' },
-        { name: 'Components', to: '/components' },
-        { name: 'Klb' },
-      ],
-      title: 'Klb - Components - Fyvue',
-    },
+    path: "/:path(.*)",
+    component: () => import("./views/404View.vue"),
   },
-
-  {
-    path: '/components/klb/KlbLogin',
-    component: () => import('./views/components/klb/KlbLoginView.vue'),
-    meta: {
-      breadcrumb: [
-        { name: 'fyvue', to: '/' },
-        { name: 'Components', to: '/components' },
-        { name: 'Klb', to: '/components/klb' },
-        { name: 'KlbLogin' },
-      ],
-      title: 'KlbLogin - Klb - Components - Fyvue',
-    },
-  },
-  /*
-    {
-    path: '/tests/i18n',
-    component: () => import('./components/Helpers/TlocalesI18n.vue'),
-  },
-  {
-    path: '/tests/KlbLogin',
-    component: () => import('./components/KlbComponents/TKlbLogin.vue'),
-  },
-  {
-    path: '/tests/KlbAccount',
-    component: () => import('./components/KlbComponents/TKlbAccount.vue'),
-  },
-  {
-    path: '/tests/KlbBilling',
-    component: () => import('./components/KlbComponents/TKlbBilling.vue'),
-  },
-  {
-    path: '/tests/Store',
-    component: () => import('./components/Helpers/TStore.vue'),
-  },
-  {
-    path: '/tests/FyInputBase',
-    component: () => import('./components/FyComponents/TFyInputBase.vue'),
-  },
-  {
-    path: '/tests/FyInput',
-    component: () => import('./components/FyComponents/TFyInput.vue'),
-  },
-  {
-    path: '/tests/FyPaging',
-    component: () => import('./components/FyComponents/TFyPaging.vue'),
-  },
-  {
-    path: '/tests/FyCirclePercent',
-    component: () => import('./components/FyComponents/TFyCirclePercent.vue'),
-  },
-  {
-    path: '/tests/FyModal',
-    component: () => import('./components/FyComponents/TFyModal.vue'),
-  },
-  {
-    path: '/tests/FySteps',
-    component: () => import('./components/FyComponents/TFySteps.vue'),
-  },
-  {
-    path: '/tests/FyBreadcrumb',
-    component: () => import('./components/FyComponents/TFyBreadcrumb.vue'),
-  },
-  {
-    path: '/tests/FyConfirm',
-    component: () => import('./components/FyComponents/TFyConfirm.vue'),
-  },
-  {
-    path: '/tests/FyDatatable',
-    component: () => import('./components/FyComponents/TFyDatatable.vue'),
-  },
-  {
-    path: '/tests/FyTable',
-    component: () => import('./components/FyComponents/TFyTable.vue'),
-  },
-  {
-    path: '/tests/FyLoader',
-    component: () => import('./components/FyComponents/TFyLoader.vue'),
-  },
-  */
 ];

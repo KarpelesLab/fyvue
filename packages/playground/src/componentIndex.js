@@ -13,13 +13,13 @@ const uiComponents = [
 const KlbComponents = [
   'KlbDeleteAccount',
   'KlbUpdateEmailModal',
-  'KlbUpdatePasswordPModal',
+  'KlbUpdatePasswordModal',
   'KlbAddPaymentMethodModal',
   'KlbBillingHistory',
   'KlbUpdateBillingLocation',
   'KlbUpdatePaymentMethod',
   'KlbLogin',
-  'KlbUserCheck',
+  'useUserCheck',
 ];
 
 const CSSComponents = ['Button', 'Typo', 'Helpers'];

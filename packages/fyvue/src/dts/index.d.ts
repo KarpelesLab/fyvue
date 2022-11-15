@@ -32,3 +32,9 @@ export interface FyVuevalidate {
 
 export type modelValueType = string | number | string[] | undefined;
 export type checkboxValueType = any[] | Set<any> | undefined | boolean;
+export type NavLink = {
+  to: string;
+  isExternal?: boolean;
+  name: string;
+  childrens?: NavLink[];
+};

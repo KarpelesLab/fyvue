@@ -21,7 +21,7 @@ import { handleSSR, setupClient, useHistory, isSSRRendered } from './utils/ssr';
 import { useFVStore } from './utils/store';
 import { rest } from './utils/rest';
 import type { FyvueOptions } from './dts';
-
+import { useUserCheck } from './components/klb/KlbUser/KlbUserCheck';
 const components = { ...uiComponents, ...klbComponents };
 
 const createFyvue = () => {
@@ -59,11 +59,11 @@ const helpersSSR = {
   handleSSR,
   isSSRRendered,
 };
-
 export {
   createFyvue,
   useEventBus,
   useTranslation,
+  useUserCheck,
   useFVStore,
   useHistory,
   useCountries,

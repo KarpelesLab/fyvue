@@ -9,7 +9,7 @@ const props = withDefaults(
     id: string;
     showLabel?: boolean;
     label?: string;
-    type: string;
+    type?: string;
     placeholder?: string;
     autocomplete?: string;
     checkboxTrueValue?: string | boolean;

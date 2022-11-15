@@ -24,6 +24,7 @@ declare module "vue" {
     KlbUpdatePaymentMethod: typeof import("../src")["components"]["KlbUpdatePaymentMethod"];
     KlbUpdateBillingLocation: typeof import("../src")["components"]["KlbUpdateBillingLocation"];
     KlbAddPaymentMethodModal: typeof import("../src")["components"]["KlbAddPaymentMethodModal"];
+    KlbUserCheck: typeof import("../src")["components"]["KlbUserCheck"];
   }
   interface ComponentCustomProperties {
     $t: typeof import("i18next").t;

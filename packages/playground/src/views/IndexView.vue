@@ -19,10 +19,7 @@ const store = useFVStore();
     </div>
     <p>Then activate <b>fyvue</b> plugin in <code>main.ts</code></p>
 
-    <div v-highlight>
-      <pre
-        class="language-javascript"
-      ><code>import { createFyvue } from "@karpeleslab/fyvue";
+    <FvHL>import { createFyvue } from "@karpeleslab/fyvue";
 import { createHead } from '@vueuse/head';
 import { createPinia } from 'pinia';
 import { createApp } from "vue";
@@ -32,17 +29,13 @@ app.use(head);
 app.use(pinia);
 app.use(fyvue);
 //...
-app.mount('#app')</code></pre>
-    </div>
+app.mount('#app')</FvHL>
 
     <p>
       A little bit of <b>Tailwind</b> config is required for <b>fyvue</b> to
       work correctly.
     </p>
-    <div v-highlight>
-      <pre
-        class="language-javascript"
-      ><code>const colors = require("tailwindcss/colors");
+    <FvHL>const colors = require("tailwindcss/colors");
 module.exports = {
   // add darkMode:"" if you want dark mode support,
   // if not just add class="light" to your index.html.
@@ -58,8 +51,8 @@ module.exports = {
     },
   },
   //...
-};</code></pre>
-    </div>
+};</FvHL>
+
     <p>
       For <b>typescript</b> you can add the following to your
       <code>tsconfig.json</code>

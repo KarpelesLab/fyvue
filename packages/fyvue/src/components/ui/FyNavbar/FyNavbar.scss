@@ -1,4 +1,14 @@
 .fy-navbar {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
   @apply bg-white border-fv-neutral-200 px-2 md:px-4 py-2.5 dark:bg-fv-neutral-900;
 
   .nav-container {

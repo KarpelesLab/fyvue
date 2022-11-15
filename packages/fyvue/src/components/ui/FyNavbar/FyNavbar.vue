@@ -2,8 +2,9 @@
 import { useDark, useToggle } from '@vueuse/core';
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
-
 import { ref } from 'vue';
+import type { NavLink } from '../../../dts/index';
+
 const isDark = useDark({
   selector: 'html',
   attribute: 'class',
@@ -13,12 +14,6 @@ const isDark = useDark({
 const isOpen = ref<boolean>(false);
 const toggleDark = useToggle(isDark);
 const toggleNavbarOpen = useToggle(isOpen);
-type NavLink = {
-  to: string;
-  isExternal?: boolean;
-  name: string;
-  childrens?: NavLink[];
-};
 
 withDefaults(
   defineProps<{
@@ -26,14 +21,10 @@ withDefaults(
     showTitle?: boolean;
     darkLight?: boolean;
     links: NavLink[];
-    loginLink?: string;
-    signupLink?: string;
   }>(),
   {
     showTitle: true,
     darkLight: true,
-    loginLink: '/login',
-    signupLink: '/login',
   }
 );
 </script>
@@ -46,14 +37,7 @@ withDefaults(
       </router-link>
       <div class="nav-actions">
         <slot name="custom"></slot>
-        <slot name="buttons">
-          <router-link :to="loginLink" class="btn neutral btn-defaults">{{
-            $t('navbar_login_cta')
-          }}</router-link>
-          <router-link :to="signupLink" class="btn primary btn-defaults">{{
-            $t('navbar_signup_cta')
-          }}</router-link>
-        </slot>
+        <slot name="buttons"> </slot>
         <button
           @click="toggleDark()"
           class="btn neutral light-dark"
@@ -102,37 +86,37 @@ withDefaults(
                     ></path>
                   </svg>
                 </MenuButton>
-                <MenuItems class="sub-nav">
-                  <ul>
-                    <MenuItem
-                      v-for="(children, index) in link.childrens"
-                      :key="`link_children_${index.toString()}`"
-                    >
-                      <li>
-                        <router-link
-                          v-if="!children.isExternal"
-                          :to="children.to"
-                          :title="children.name"
-                          :alt="children.name"
-                          class="is-link"
-                          :class="false ? 'is-active' : ''"
-                        >
-                          {{ children.name }}
-                        </router-link>
-                        <a
-                          v-else
-                          :href="children.to"
-                          :title="children.name"
-                          :alt="children.name"
-                          class="is-link"
-                          :class="false ? 'is-active' : ''"
-                        >
-                          {{ children.name }}
-                        </a>
-                      </li>
-                    </MenuItem>
-                  </ul>
-                </MenuItems>
+                <transition name="fade">
+                  <MenuItems class="sub-nav">
+                    <ul>
+                      <MenuItem
+                        v-for="(children, index) in link.childrens"
+                        :key="`link_children_${index.toString()}`"
+                      >
+                        <li>
+                          <router-link
+                            v-if="!children.isExternal"
+                            :to="children.to"
+                            :title="children.name"
+                            :alt="children.name"
+                            class="is-link"
+                          >
+                            {{ children.name }}
+                          </router-link>
+                          <a
+                            v-else
+                            :href="children.to"
+                            :title="children.name"
+                            :alt="children.name"
+                            class="is-link"
+                          >
+                            {{ children.name }}
+                          </a>
+                        </li>
+                      </MenuItem>
+                    </ul>
+                  </MenuItems>
+                </transition>
               </Menu>
             </template>
             <template v-else>
