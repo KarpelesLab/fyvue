@@ -8,8 +8,126 @@ export const routes = [
     component: () => import('./views/components/IndexView.vue'),
     meta: {
       breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Components' }],
+      title: 'Components - Fyvue',
     },
   },
+  {
+    path: '/components/ui',
+    component: () => import('./views/components/ui/IndexView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI' },
+      ],
+      title: 'UI - Components - Fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyBreadcrumb',
+    component: () => import('./views/components/ui/FyBreadcrumbView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyBreadcrumb' },
+      ],
+      title: 'FyBreadcrumb - UI - Components - Fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyCirclePercent',
+    component: () => import('./views/components/ui/FyCirclePercentView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyCirclePercent' },
+      ],
+      title: 'FyCirclePercent - UI - Components - Fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyConfirm',
+    component: () => import('./views/components/ui/FyConfirmView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyConfirm' },
+      ],
+      title: 'FyConfirm - UI - Components - Fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyDatatable',
+    component: () => import('./views/components/ui/FyDatatableView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyDatatable' },
+      ],
+      title: 'FyDatatable - UI - Components - Fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyTable',
+    component: () => import('./views/components/ui/FyTableView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyTable' },
+      ],
+      title: 'FyTable - UI - Components - Fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyInput',
+    component: () => import('./views/components/ui/FyInputView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyInput' },
+      ],
+      title: 'FyInput - UI - Components - Fyvue',
+    },
+  },
+  {
+    path: '/components/ui/FyLoader',
+    component: () => import('./views/components/ui/FyLoaderView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'UI', to: '/components/ui' },
+        { name: 'FyLoader' },
+      ],
+      title: 'FyLoader - UI - Components - Fyvue',
+    },
+  },
+  // CSS compos
+  {
+    path: '/components/css',
+    component: () => import('./views/components/css/IndexView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'CSS' },
+      ],
+      title: 'CSS - Components - Fyvue',
+    },
+  },
+  // KLB compos
   {
     path: '/components/klb',
     component: () => import('./views/components/klb/IndexView.vue'),
@@ -19,8 +137,10 @@ export const routes = [
         { name: 'Components', to: '/components' },
         { name: 'Klb' },
       ],
+      title: 'Klb - Components - Fyvue',
     },
   },
+
   {
     path: '/components/klb/KlbLogin',
     component: () => import('./views/components/klb/KlbLoginView.vue'),
@@ -31,6 +151,7 @@ export const routes = [
         { name: 'Klb', to: '/components/klb' },
         { name: 'KlbLogin' },
       ],
+      title: 'KlbLogin - Klb - Components - Fyvue',
     },
   },
   /*

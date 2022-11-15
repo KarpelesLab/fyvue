@@ -3,12 +3,12 @@ import ComponentIndex from '@/componentIndex';
 </script>
 <template>
   <div class="fv-typo">
-    <h1 class="font-bold mt-2">Klb Components</h1>
+    <h1 class="font-bold mt-2">CSS Components</h1>
     <div class="grid grid-cols-1 md:grid-cols-3">
       <router-link
-        v-for="(c, i) in ComponentIndex.klb"
+        v-for="(c, i) in ComponentIndex.css"
         :key="`${i.toString()}_${c}`"
-        :to="`/components/klb/${c}`"
+        :to="`/components/css/${c}`"
       >
         {{ c }}
       </router-link>

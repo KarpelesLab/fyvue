@@ -9,7 +9,7 @@
     @apply flex md:table-row flex-row md:flex-row flex-wrap md:flex-nowrap md:border-0;
   }
   .td {
-    @apply w-full  md:w-auto py-0.5 md:py-1 px-0 md:px-3  text-left md:text-center flex items-center md:table-cell relative md:static;
+    @apply w-full  md:w-auto py-0.5 md:py-1 px-0 md:px-3  text-left flex items-center md:table-cell relative md:static;
   }
   .div {
     @apply md:hidden px-2 py-1 text-xs font-bold uppercase mb-0.5 w-28;

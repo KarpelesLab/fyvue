@@ -1,28 +1,36 @@
-<script setup lang="ts">
+<script setup>
 import { i18nextPromise, countriesPromise } from '@karpeleslab/fyvue';
-import { Head } from '@vueuse/head';
+import { Head, useHead } from '@vueuse/head';
 import {
   SchemaOrgWebSite,
   SchemaOrgOrganization,
 } from '@vueuse/schema-org/runtime';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { useToggle } from '@vueuse/core';
+import { useRoute } from 'vue-router';
 import ComponentIndex from '@/componentIndex';
 
 await i18nextPromise;
-const query = ref<string>();
-const sideBarOpen = ref<boolean>(false);
+const route = useRoute();
+const sideBarOpen = ref(false);
 const toggleSidebar = useToggle(sideBarOpen);
 onMounted(async () => {
   await countriesPromise();
+});
+useHead({
+  title: computed(() => (route.meta.title ? route.meta.title : 'fyvue')),
+  meta: [
+    {
+      name: 'og:title',
+      content: computed(() => (route.meta.title ? route.meta.title : 'fyvue')),
+    },
+  ],
 });
 </script>
 
 <template>
   <Head>
-    <title>fyvue</title>
-    <meta property="og:title" content="fyvue" />
     <meta property="og:site_name" content="fyvue" />
     <meta property="og:url" :content="`https://fy-vue.com/`" />
   </Head>
@@ -109,7 +117,7 @@ onMounted(async () => {
               <router-link
                 v-for="(c, i) in ComponentIndex.klb"
                 :key="`${i.toString()}_${c}`"
-                :to="`/components/ui/${c}`"
+                :to="`/components/klb/${c}`"
               >
                 {{ c }}
               </router-link>
@@ -119,7 +127,7 @@ onMounted(async () => {
               <router-link
                 v-for="(c, i) in ComponentIndex.css"
                 :key="`${i.toString()}_${c}`"
-                :to="`/components/ui/${c}`"
+                :to="`/components/css/${c}`"
               >
                 {{ c }}
               </router-link>
@@ -160,4 +168,5 @@ onMounted(async () => {
       <div>&copy; 2022 - made with &hearts; by <b>Florian Gasquez</b></div>
     </footer>
   </div>
+  <FyConfirm />
 </template>

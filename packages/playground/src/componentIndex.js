@@ -19,6 +19,7 @@ const KlbComponents = [
   'KlbUpdateBillingLocation',
   'KlbUpdatePaymentMethod',
   'KlbLogin',
+  'KlbUserCheck',
 ];
 
 const CSSComponents = ['Button', 'Typo', 'Helpers'];

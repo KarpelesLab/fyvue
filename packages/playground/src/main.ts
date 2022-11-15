@@ -15,6 +15,7 @@ import { installSchemaOrg } from '@vueuse/schema-org-vite/vite';
 import './style.scss';
 import 'vue-code-highlight/themes/prism-tomorrow.css';
 import App from './AppSuspender.vue';
+import FyDocPreview from "@/components/FvDocPreview.vue";
 
 export const createApp = async (isSSR = false) => {
   const head = createHead();
@@ -40,5 +41,6 @@ export const createApp = async (isSSR = false) => {
   );
   app.use(fyvue);
   app.use(VueCodeHighlight);
+  app.component('FyDocPreview', FyDocPreview);
   return { app, router, head, pinia };
 };
