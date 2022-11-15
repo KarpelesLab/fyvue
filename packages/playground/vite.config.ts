@@ -13,22 +13,13 @@ export default defineConfig({
       template: {
         //ssr: true,
         compilerOptions: {
-          // https://github.com/vuejs/vue-next/issues/3298
-          // Used so that the compiler doesn't complain about v-maska during SSR transform
-          // directiveTransforms: {
-          //     'maska': () => { console.log("Nothing in maska") }
-          // }
         },
         transformAssetUrls: {
           img: ['src'],
         },
       },
     }),
-    SchemaOrg({
-      mock: false,
-      full: false,
-      dts: true,
-    }),
+    SchemaOrg(),
   ],
   resolve: {
     alias: {
