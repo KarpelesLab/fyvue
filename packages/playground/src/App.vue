@@ -23,6 +23,7 @@ const route = useRoute();
 const sideBarOpen = ref(false);
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
+const computedRoute = computed(() => route)
 const aside = ref()
 onClickOutside(ref, () => sideBarOpen.value = false)
 
@@ -35,11 +36,11 @@ onMounted(async () => {
   await countriesPromise();
 });
 useHead({
-  title: computed(() => (route.meta.title ? route.meta.title : 'fyvue')),
+  title: computed(() => (computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue')),
   meta: [
     {
       name: 'og:title',
-      content: computed(() => (route.meta.title ? route.meta.title : 'fyvue')),
+      content: computed(() => (computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue')),
     },
   ],
 });
