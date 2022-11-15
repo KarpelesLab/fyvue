@@ -24,7 +24,6 @@ export default defineConfig({
       template: {
         ssr: true,
         compilerOptions: {
-          whitespace: 'preserve',
           // https://github.com/vuejs/vue-next/issues/3298
           // Used so that the compiler doesn't complain about v-maska during SSR transform
           // directiveTransforms: {
