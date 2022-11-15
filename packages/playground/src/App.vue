@@ -14,6 +14,8 @@ import {
 import { onMounted, ref, computed } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
+import { onClickOutside } from '@vueuse/core'
+
 import ComponentIndex from '@/componentIndex';
 
 await i18nextPromise;
@@ -21,6 +23,9 @@ const route = useRoute();
 const sideBarOpen = ref(false);
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
+const aside = ref()
+onClickOutside(ref, () => sideBarOpen.value = false)
+
 const logout = async () => {
   await store.logout();
   useHistory().push('/', 302);
@@ -121,6 +126,7 @@ useHead({
             : 'w-12 h-12 rounded-full bg-fv-primary-800 dark:bg-fv-primary-100 z-20'
         "
         aria-label="Sidebar"
+        ref="aside"
       >
         <div class="py-4 px-4" v-if="sideBarOpen">
           <nav class="website-nav">
