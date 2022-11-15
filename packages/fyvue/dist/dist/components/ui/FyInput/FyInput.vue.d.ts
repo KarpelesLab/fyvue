@@ -14,7 +14,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     type: {
         type: StringConstructor;
-        required: true;
+        required: false;
         default: string;
     };
     placeholder: {
@@ -92,7 +92,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     type: {
         type: StringConstructor;
-        required: true;
+        required: false;
         default: string;
     };
     placeholder: {

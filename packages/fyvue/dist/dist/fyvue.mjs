@@ -1,9 +1,9 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.25
+  * @karpeleslab/fyvue v0.2.0-beta.26
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
-import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, reactive, withModifiers } from 'vue';
+import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale } from '@karpeleslab/klbfw';
 import i18next from 'i18next';
@@ -1259,7 +1259,7 @@ var script$a = defineComponent({
         id: { type: String, required: true },
         showLabel: { type: Boolean, required: false, default: true },
         label: { type: String, required: false },
-        type: { type: String, required: true, default: 'text' },
+        type: { type: String, required: false, default: 'text' },
         placeholder: { type: String, required: false },
         autocomplete: { type: String, required: false },
         checkboxTrueValue: { type: [String, Boolean], required: false, default: true },
@@ -1645,9 +1645,7 @@ var script$8 = defineComponent({
         title: { type: String, required: true },
         showTitle: { type: Boolean, required: false, default: true },
         darkLight: { type: Boolean, required: false, default: true },
-        links: { type: Array, required: true },
-        loginLink: { type: String, required: false, default: '/login' },
-        signupLink: { type: String, required: false, default: '/login' }
+        links: { type: Array, required: true }
     },
     setup(__props) {
         const isDark = useDark({
@@ -1677,26 +1675,7 @@ var script$8 = defineComponent({
                     }),
                     createElementVNode("div", _hoisted_4$8, [
                         renderSlot(_ctx.$slots, "custom"),
-                        renderSlot(_ctx.$slots, "buttons", {}, () => [
-                            createVNode(_component_router_link, {
-                                to: __props.loginLink,
-                                class: "btn neutral btn-defaults"
-                            }, {
-                                default: withCtx(() => [
-                                    createTextVNode(toDisplayString(_ctx.$t('navbar_login_cta')), 1)
-                                ]),
-                                _: 1
-                            }, 8, ["to"]),
-                            createVNode(_component_router_link, {
-                                to: __props.signupLink,
-                                class: "btn primary btn-defaults"
-                            }, {
-                                default: withCtx(() => [
-                                    createTextVNode(toDisplayString(_ctx.$t('navbar_signup_cta')), 1)
-                                ]),
-                                _: 1
-                            }, 8, ["to"])
-                        ]),
+                        renderSlot(_ctx.$slots, "buttons"),
                         (__props.darkLight)
                             ? (openBlock(), createElementBlock("button", {
                                 key: 0,
@@ -1732,41 +1711,46 @@ var script$8 = defineComponent({
                                                     ]),
                                                     _: 2
                                                 }, 1024),
-                                                createVNode(unref(MenuItems), { class: "sub-nav" }, {
+                                                createVNode(Transition, { name: "fade" }, {
                                                     default: withCtx(() => [
-                                                        createElementVNode("ul", null, [
-                                                            (openBlock(true), createElementBlock(Fragment, null, renderList(link.childrens, (children, index) => {
-                                                                return (openBlock(), createBlock(unref(MenuItem), {
-                                                                    key: `link_children_${index.toString()}`
-                                                                }, {
-                                                                    default: withCtx(() => [
-                                                                        createElementVNode("li", null, [
-                                                                            (!children.isExternal)
-                                                                                ? (openBlock(), createBlock(_component_router_link, {
-                                                                                    key: 0,
-                                                                                    to: children.to,
-                                                                                    title: children.name,
-                                                                                    alt: children.name,
-                                                                                    class: normalizeClass(["is-link", ''])
-                                                                                }, {
-                                                                                    default: withCtx(() => [
-                                                                                        createTextVNode(toDisplayString(children.name), 1)
-                                                                                    ]),
-                                                                                    _: 2
-                                                                                }, 1032, ["to", "title", "alt"]))
-                                                                                : (openBlock(), createElementBlock("a", {
-                                                                                    key: 1,
-                                                                                    href: children.to,
-                                                                                    title: children.name,
-                                                                                    alt: children.name,
-                                                                                    class: normalizeClass(["is-link", ''])
-                                                                                }, toDisplayString(children.name), 9, _hoisted_10$4))
-                                                                        ])
-                                                                    ]),
-                                                                    _: 2
-                                                                }, 1024));
-                                                            }), 128))
-                                                        ])
+                                                        createVNode(unref(MenuItems), { class: "sub-nav" }, {
+                                                            default: withCtx(() => [
+                                                                createElementVNode("ul", null, [
+                                                                    (openBlock(true), createElementBlock(Fragment, null, renderList(link.childrens, (children, index) => {
+                                                                        return (openBlock(), createBlock(unref(MenuItem), {
+                                                                            key: `link_children_${index.toString()}`
+                                                                        }, {
+                                                                            default: withCtx(() => [
+                                                                                createElementVNode("li", null, [
+                                                                                    (!children.isExternal)
+                                                                                        ? (openBlock(), createBlock(_component_router_link, {
+                                                                                            key: 0,
+                                                                                            to: children.to,
+                                                                                            title: children.name,
+                                                                                            alt: children.name,
+                                                                                            class: "is-link"
+                                                                                        }, {
+                                                                                            default: withCtx(() => [
+                                                                                                createTextVNode(toDisplayString(children.name), 1)
+                                                                                            ]),
+                                                                                            _: 2
+                                                                                        }, 1032, ["to", "title", "alt"]))
+                                                                                        : (openBlock(), createElementBlock("a", {
+                                                                                            key: 1,
+                                                                                            href: children.to,
+                                                                                            title: children.name,
+                                                                                            alt: children.name,
+                                                                                            class: "is-link"
+                                                                                        }, toDisplayString(children.name), 9, _hoisted_10$4))
+                                                                                ])
+                                                                            ]),
+                                                                            _: 2
+                                                                        }, 1024));
+                                                                    }), 128))
+                                                                ])
+                                                            ]),
+                                                            _: 2
+                                                        }, 1024)
                                                     ]),
                                                     _: 2
                                                 }, 1024)
@@ -2982,8 +2966,9 @@ var script$1 = defineComponent({
                                             ? (openBlock(), createElementBlock("div", _hoisted_7$1, toDisplayString(errorMessage.value), 1))
                                             : createCommentVNode("v-if", true),
                                         createElementVNode("div", _hoisted_8$1, [
-                                            createElementVNode("a", {
-                                                class: "btn-defaults btn neutral",
+                                            createElementVNode("button", {
+                                                type: "reset",
+                                                class: "btn-defaults btn neutral mt-4",
                                                 onClick: _cache[0] || (_cache[0] = ($event) => (isEditing.value = false))
                                             }, toDisplayString(_ctx.$t('cancel_save_payment_method')), 1),
                                             createElementVNode("button", _hoisted_9$1, toDisplayString(_ctx.$t('save_payment_method')), 1)
@@ -3265,6 +3250,29 @@ const jpZipcode = (zip) => {
     return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 
+function useUserCheck(onMount = true) {
+    const store = useFVStore();
+    const isAuth = computed(() => store.isAuth);
+    const checkUser = () => {
+        if (!isAuth.value)
+            useHistory().push('/login', 302);
+    };
+    onMounted(async () => {
+        if (onMount) {
+            store.refreshUser().then(() => {
+                if (useHistory().currentRoute.meta.reqLogin)
+                    checkUser();
+            });
+        }
+    });
+    if (onMount === false) {
+        store.refreshUser().then(() => {
+            if (useHistory().currentRoute.meta.reqLogin)
+                checkUser();
+        });
+    }
+}
+
 const components = { ...uiComponents, ...klbComponents };
 const createFyvue = () => {
     const install = (app, options) => {
@@ -3300,5 +3308,5 @@ const helpersSSR = {
     isSSRRendered,
 };
 
-export { components, countriesPromise, createFyvue, helpers, helpersSSR, i18nextPromise, rest, useCountries, useEventBus, useFVStore, useHistory, useTranslation };
+export { components, countriesPromise, createFyvue, helpers, helpersSSR, i18nextPromise, rest, useCountries, useEventBus, useFVStore, useHistory, useTranslation, useUserCheck };
 //# sourceMappingURL=fyvue.mjs.map

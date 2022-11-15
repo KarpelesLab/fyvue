@@ -24,6 +24,7 @@ declare module "vue" {
     KlbUpdatePaymentMethod: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdatePaymentMethod"];
     KlbUpdateBillingLocation: typeof import("@karpeleslab/fyvue")["components"]["KlbUpdateBillingLocation"];
     KlbAddPaymentMethodModal: typeof import("@karpeleslab/fyvue")["components"]["KlbAddPaymentMethodModal"];
+    KlbUserCheck: typeof import("@karpeleslab/fyvue")["components"]["KlbUserCheck"];
   }
   interface ComponentCustomProperties {
     $t: typeof import("i18next").t;

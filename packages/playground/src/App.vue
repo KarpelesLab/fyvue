@@ -80,14 +80,13 @@ useHead({
           to: '#',
           name: 'Helpers',
           childrens: [
-            { to: '/helpers', name: 'Summary' },
-            { to: '/helpers/formatting', name: 'Formatting' },
             { to: '/helpers/events', name: 'Events' },
             { to: '/helpers/i18n', name: 'i18n' },
+            { to: '/helpers/formatting', name: 'Formatting' },
             { to: '/helpers/store', name: 'Store' },
           ],
         },
-        { to: '/contact', name: 'Contact' },
+       // { to: '/contact', name: 'Contact' },
       ]"
     >
       <template v-slot:logo>

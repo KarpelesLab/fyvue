@@ -11,6 +11,22 @@ export const routes = [
     },
   },
   {
+    path: '/helpers/events',
+    component: () => import('./views/helpers/EventBusView.vue'),
+    meta: {
+      title: 'Events - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Events' }],
+    },
+  },
+  {
+    path: '/helpers/i18n',
+    component: () => import('./views/helpers/I18N.vue'),
+    meta: {
+      title: 'Events - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Klb i18next' }],
+    },
+  },
+  {
     path: '/ssr',
     component: () => import('./views/ssr/IndexView.vue'),
     meta: {
@@ -279,6 +295,34 @@ export const routes = [
         { name: 'useUserCheck' },
       ],
       title: 'useUserCheck - Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/KlbUpdateBillingLocation',
+    component: () =>
+      import('./views/components/klb/KlbUpdateBillingLocationView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbUpdateBillingLocation' },
+      ],
+      title: 'KlbUpdateBillingLocation - Klb - Components - fyvue',
+    },
+  },
+  {
+    path: '/components/klb/KlbUpdatePaymentMethod',
+    component: () =>
+      import('./views/components/klb/KlbUpdatePaymentMethodView.vue'),
+    meta: {
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbUpdatePaymentMethod' },
+      ],
+      title: 'KlbUpdatePaymentMethod - Klb - Components - fyvue',
     },
   },
   // CSS compos

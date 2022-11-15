@@ -87,14 +87,14 @@ import { createApp } from './main';
 export async function render(cb) {
   await helpersSSR.handleSSR(createApp, cb, {});
 }</FvHL>
-<p>Add this to your registry.ini</p>
+<p>Add this to your <b>etc/registry.ini</b></p>
 <FvHL lang="ini">Javascript_Dist_Dir=dist/client
 Javascript_SSR_Bundle=dist/server/entry-server.js
 Javascript_SSR_Endpoint=exports.render
 Javascript_Manifest=dist/client/ssr-manifest.json</FvHL>
-<p>and this to you registry_dev.ini</p>
+<p>and this to you <b>etc/registry_dev.ini</b></p>
 <FvHL lang="ini">Javascript_Manifest=</FvHL>
-<p>Change your package.json scripts accordingly, this is what I use:</p>
+<p>Change your <b>package.json</b> scripts accordingly, this is what I use:</p>
 <FvHL>{
   //...
   "scripts": {

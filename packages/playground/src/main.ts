@@ -13,7 +13,7 @@ import VueCodeHighlight from 'vue-code-highlight';
 import { installSchemaOrg } from '@vueuse/schema-org-vite/vite';
 
 import './style.scss';
-import 'vue-code-highlight/themes/prism-okaidia.css';
+import 'vue-code-highlight/themes/prism-tomorrow.css';
 import App from './AppSuspender.vue';
 import FyDocPreview from "@/components/FvDocPreview.vue";
 import FvHL from "@/components/FvHL.vue";

@@ -1,13 +1,25 @@
 <template>
     <div class="fv-typo">
-      <h1>Klb SSR &gt; Router</h1>
-      <p><b>fyvue</b> provides a
-        <a href="https://router.vuejs.org/" target="_blank">vue-router</a> wrapper with an internal pinia store, this way you can add statusCode or redirect directly.</p>
-      <FvHL>// setup context
-import { useHistory } from '@karpeleslab/fyvue';
-useHistory().status = 404;
-// or
-useHistory().push('/login', 302)
-// etc...</FvHL>
+      <h1>EventBus</h1>
+      <p>Shortcut to <a href="https://github.com/developit/mitt" target="_blank">mitt</a> (event emitter / pubsub)</p>
+      <FvHL>// composition API
+import { useEventBus } from "@karpeleslab/fyvue"
+const eventBus = useEventBus();
+eventBus.emit('xxx',()=>{});
+eventBus.on('xxx',()=>{});
+
+// option API
+this.$eventBus.emit('xxx',()=>{});
+this.$eventBus.on('xxx'),()=>{});</FvHL>
+<p>Don't forget to unregister events!</p>
+<FvHL>const yo = () => { console.log('Yo world!'); }
+onMounted(() => {
+  eventBus.on('yo', yo)
+})
+onUnmounted(() => {
+  eventBus.off('yo', yo)
+})</FvHL>
+<p>Or the lazy way...</p>
+<FvHL>router.afterEach(() => { eventBus.all.clear() }) // ** mesad **</FvHL>
 </div>
 </template>

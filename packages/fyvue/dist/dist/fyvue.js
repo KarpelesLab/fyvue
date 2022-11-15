@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.25
+  * @karpeleslab/fyvue v0.2.0-beta.26
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -1261,7 +1261,7 @@ var script$a = vue.defineComponent({
         id: { type: String, required: true },
         showLabel: { type: Boolean, required: false, default: true },
         label: { type: String, required: false },
-        type: { type: String, required: true, default: 'text' },
+        type: { type: String, required: false, default: 'text' },
         placeholder: { type: String, required: false },
         autocomplete: { type: String, required: false },
         checkboxTrueValue: { type: [String, Boolean], required: false, default: true },
@@ -1647,9 +1647,7 @@ var script$8 = vue.defineComponent({
         title: { type: String, required: true },
         showTitle: { type: Boolean, required: false, default: true },
         darkLight: { type: Boolean, required: false, default: true },
-        links: { type: Array, required: true },
-        loginLink: { type: String, required: false, default: '/login' },
-        signupLink: { type: String, required: false, default: '/login' }
+        links: { type: Array, required: true }
     },
     setup(__props) {
         const isDark = core.useDark({
@@ -1679,26 +1677,7 @@ var script$8 = vue.defineComponent({
                     }),
                     vue.createElementVNode("div", _hoisted_4$8, [
                         vue.renderSlot(_ctx.$slots, "custom"),
-                        vue.renderSlot(_ctx.$slots, "buttons", {}, () => [
-                            vue.createVNode(_component_router_link, {
-                                to: __props.loginLink,
-                                class: "btn neutral btn-defaults"
-                            }, {
-                                default: vue.withCtx(() => [
-                                    vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_login_cta')), 1)
-                                ]),
-                                _: 1
-                            }, 8, ["to"]),
-                            vue.createVNode(_component_router_link, {
-                                to: __props.signupLink,
-                                class: "btn primary btn-defaults"
-                            }, {
-                                default: vue.withCtx(() => [
-                                    vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_signup_cta')), 1)
-                                ]),
-                                _: 1
-                            }, 8, ["to"])
-                        ]),
+                        vue.renderSlot(_ctx.$slots, "buttons"),
                         (__props.darkLight)
                             ? (vue.openBlock(), vue.createElementBlock("button", {
                                 key: 0,
@@ -1734,41 +1713,46 @@ var script$8 = vue.defineComponent({
                                                     ]),
                                                     _: 2
                                                 }, 1024),
-                                                vue.createVNode(vue.unref(vue$1.MenuItems), { class: "sub-nav" }, {
+                                                vue.createVNode(vue.Transition, { name: "fade" }, {
                                                     default: vue.withCtx(() => [
-                                                        vue.createElementVNode("ul", null, [
-                                                            (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(link.childrens, (children, index) => {
-                                                                return (vue.openBlock(), vue.createBlock(vue.unref(vue$1.MenuItem), {
-                                                                    key: `link_children_${index.toString()}`
-                                                                }, {
-                                                                    default: vue.withCtx(() => [
-                                                                        vue.createElementVNode("li", null, [
-                                                                            (!children.isExternal)
-                                                                                ? (vue.openBlock(), vue.createBlock(_component_router_link, {
-                                                                                    key: 0,
-                                                                                    to: children.to,
-                                                                                    title: children.name,
-                                                                                    alt: children.name,
-                                                                                    class: vue.normalizeClass(["is-link", ''])
-                                                                                }, {
-                                                                                    default: vue.withCtx(() => [
-                                                                                        vue.createTextVNode(vue.toDisplayString(children.name), 1)
-                                                                                    ]),
-                                                                                    _: 2
-                                                                                }, 1032, ["to", "title", "alt"]))
-                                                                                : (vue.openBlock(), vue.createElementBlock("a", {
-                                                                                    key: 1,
-                                                                                    href: children.to,
-                                                                                    title: children.name,
-                                                                                    alt: children.name,
-                                                                                    class: vue.normalizeClass(["is-link", ''])
-                                                                                }, vue.toDisplayString(children.name), 9, _hoisted_10$4))
-                                                                        ])
-                                                                    ]),
-                                                                    _: 2
-                                                                }, 1024));
-                                                            }), 128))
-                                                        ])
+                                                        vue.createVNode(vue.unref(vue$1.MenuItems), { class: "sub-nav" }, {
+                                                            default: vue.withCtx(() => [
+                                                                vue.createElementVNode("ul", null, [
+                                                                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(link.childrens, (children, index) => {
+                                                                        return (vue.openBlock(), vue.createBlock(vue.unref(vue$1.MenuItem), {
+                                                                            key: `link_children_${index.toString()}`
+                                                                        }, {
+                                                                            default: vue.withCtx(() => [
+                                                                                vue.createElementVNode("li", null, [
+                                                                                    (!children.isExternal)
+                                                                                        ? (vue.openBlock(), vue.createBlock(_component_router_link, {
+                                                                                            key: 0,
+                                                                                            to: children.to,
+                                                                                            title: children.name,
+                                                                                            alt: children.name,
+                                                                                            class: "is-link"
+                                                                                        }, {
+                                                                                            default: vue.withCtx(() => [
+                                                                                                vue.createTextVNode(vue.toDisplayString(children.name), 1)
+                                                                                            ]),
+                                                                                            _: 2
+                                                                                        }, 1032, ["to", "title", "alt"]))
+                                                                                        : (vue.openBlock(), vue.createElementBlock("a", {
+                                                                                            key: 1,
+                                                                                            href: children.to,
+                                                                                            title: children.name,
+                                                                                            alt: children.name,
+                                                                                            class: "is-link"
+                                                                                        }, vue.toDisplayString(children.name), 9, _hoisted_10$4))
+                                                                                ])
+                                                                            ]),
+                                                                            _: 2
+                                                                        }, 1024));
+                                                                    }), 128))
+                                                                ])
+                                                            ]),
+                                                            _: 2
+                                                        }, 1024)
                                                     ]),
                                                     _: 2
                                                 }, 1024)
@@ -2984,8 +2968,9 @@ var script$1 = vue.defineComponent({
                                             ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$1, vue.toDisplayString(errorMessage.value), 1))
                                             : vue.createCommentVNode("v-if", true),
                                         vue.createElementVNode("div", _hoisted_8$1, [
-                                            vue.createElementVNode("a", {
-                                                class: "btn-defaults btn neutral",
+                                            vue.createElementVNode("button", {
+                                                type: "reset",
+                                                class: "btn-defaults btn neutral mt-4",
                                                 onClick: _cache[0] || (_cache[0] = ($event) => (isEditing.value = false))
                                             }, vue.toDisplayString(_ctx.$t('cancel_save_payment_method')), 1),
                                             vue.createElementVNode("button", _hoisted_9$1, vue.toDisplayString(_ctx.$t('save_payment_method')), 1)
@@ -3267,6 +3252,29 @@ const jpZipcode = (zip) => {
     return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 
+function useUserCheck(onMount = true) {
+    const store = useFVStore();
+    const isAuth = vue.computed(() => store.isAuth);
+    const checkUser = () => {
+        if (!isAuth.value)
+            useHistory().push('/login', 302);
+    };
+    vue.onMounted(async () => {
+        if (onMount) {
+            store.refreshUser().then(() => {
+                if (useHistory().currentRoute.meta.reqLogin)
+                    checkUser();
+            });
+        }
+    });
+    if (onMount === false) {
+        store.refreshUser().then(() => {
+            if (useHistory().currentRoute.meta.reqLogin)
+                checkUser();
+        });
+    }
+}
+
 const components = { ...uiComponents, ...klbComponents };
 const createFyvue = () => {
     const install = (app, options) => {
@@ -3314,4 +3322,5 @@ exports.useEventBus = useEventBus;
 exports.useFVStore = useFVStore;
 exports.useHistory = useHistory;
 exports.useTranslation = useTranslation;
+exports.useUserCheck = useUserCheck;
 //# sourceMappingURL=fyvue.js.map

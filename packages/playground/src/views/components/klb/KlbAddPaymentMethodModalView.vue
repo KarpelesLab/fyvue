@@ -1,12 +1,14 @@
 <script setup>
 const klbLogin = `
-<button
-  @click="$eventBus.emit('ShowAddPaymentMethodModal', true)"
-  class="btn primary btn-defaults"
->
-  Open modal
-</button>
-<KlbAddPaymentMethodModal />
+<template>
+  <button
+    @click="$eventBus.emit('ShowAddPaymentMethodModal', true)"
+    class="btn primary btn-defaults"
+  >
+    Open modal
+  </button>
+  <KlbAddPaymentMethodModal />
+</template>
 `;
 const props = [];
 </script>

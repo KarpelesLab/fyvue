@@ -134,9 +134,13 @@ onMounted(async () => {
           {{ errorMessage }}
         </div>
         <div class="btn-box">
-          <a class="btn-defaults btn neutral" @click="isEditing = false">{{
-            $t('cancel_save_payment_method')
-          }}</a>
+          <button
+            type="reset"
+            class="btn-defaults btn neutral mt-4"
+            @click="isEditing = false"
+          >
+            {{ $t('cancel_save_payment_method') }}
+          </button>
           <button class="btn-defaults btn primary" type="submit">
             {{ $t('save_payment_method') }}
           </button>
