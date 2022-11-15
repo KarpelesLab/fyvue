@@ -25,10 +25,10 @@ pre[class*="language-"] {
 }
 
 .compo-view {
-  @apply border-2 border-fv-neutral-300 dark:border-fv-neutral-500  rounded-lg overflow-hidden;
+  @apply border-2 border-fv-neutral-300 dark:border-fv-neutral-700  rounded-lg overflow-hidden;
 
   .tabs-compo {
-    @apply border-b font-medium bg-white dark:bg-fv-neutral-800;
+    @apply border-b font-medium bg-white dark:border-b-fv-neutral-700 dark:bg-fv-neutral-800;
     button {
       span {
         @apply px-3 block py-2 text-fv-neutral-700 dark:text-fv-neutral-50;
