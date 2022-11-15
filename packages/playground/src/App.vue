@@ -73,14 +73,8 @@ useHead({
           ],
         },
         {
-          to: '#',
+          to: '/components',
           name: 'Components',
-          childrens: [
-            { to: '/components', name: 'Index' },
-            { to: '/components/ui', name: 'UI' },
-            { to: '/components/klb', name: 'Klb' },
-            { to: '/components/css', name: 'CSS' },
-          ],
         },
         {
           to: '#',
