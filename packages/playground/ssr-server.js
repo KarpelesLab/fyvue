@@ -92,7 +92,7 @@ export async function createServer(root = process.cwd(), hmrPort) {
     try {
       const url = req.originalUrl.replace('/test/', '/');
 
-      let template, render;
+      let template;
 
       /*
         template = indexProd
@@ -100,7 +100,7 @@ export async function createServer(root = process.cwd(), hmrPort) {
         */
       template = fs.readFileSync(resolve('index.html'), 'utf-8');
       template = await vite.transformIndexHtml(url, template);
-      render = (await vite.ssrLoadModule('/src/entry-server.ts')).renderByURL;
+      const render = (await vite.ssrLoadModule('/src/entry-server.ts')).renderByURL;
       const cb = (data) => {
         console.log(data);
       };

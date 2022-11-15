@@ -1,5 +1,5 @@
 import type { User } from '../dts/klb';
-export declare type RootState = {
+export type RootState = {
     user: User | null;
 };
 export declare const useFVStore: import("pinia").StoreDefinition<"fVStore", RootState, {

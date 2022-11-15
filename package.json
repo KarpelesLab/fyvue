@@ -12,7 +12,5 @@
         "lint:play": "yarn workspace playground lint:check --fix"
     },
     "packageManager": "yarn@3.2.4",
-    "devDependencies": {
-        "html-entities": "^2.3.3"
-    }
+    "devDependencies": {}
 }

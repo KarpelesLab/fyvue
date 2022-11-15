@@ -1,3 +1,4 @@
+/*
 const entityMap = {
   "'": '&apos;',
   '&lt;': '&lt;',
@@ -265,3 +266,4 @@ export const encode = function (string) {
   }
   return string;
 };
+*/

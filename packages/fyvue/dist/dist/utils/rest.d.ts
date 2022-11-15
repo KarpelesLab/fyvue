@@ -1,8 +1,8 @@
 import { KlbApiResultBase } from '../dts/klb';
-declare type RequestResult = {
+type RequestResult = {
     [key: number]: KlbApiResultBase | undefined;
 };
-declare type RestSharedState = {
+type RestSharedState = {
     results: RequestResult;
 };
 export declare const useRestState: import("pinia").StoreDefinition<"restState", RestSharedState, {}, {

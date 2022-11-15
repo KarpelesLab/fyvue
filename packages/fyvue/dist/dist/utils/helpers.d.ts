@@ -1,10 +1,10 @@
 import { Emitter } from 'mitt';
 import i18next from 'i18next';
 import type { KlbCountry } from '../dts/klb';
-declare type Events = {
+type Events = {
     [key: string]: any;
 };
-export declare type GlobalCountries = {
+export type GlobalCountries = {
     countries: Array<KlbCountry>;
     byUuid: {
         [key: string]: KlbCountry;

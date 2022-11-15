@@ -12,7 +12,7 @@ export interface KlbSSR {
     statusCode?: number;
     redirect?: string;
 }
-export declare type HistoryState = {
+export type HistoryState = {
     _router: any | null;
     status: number;
     redirect?: string;

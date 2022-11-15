@@ -4,7 +4,7 @@ import { getUuid, getPath, getInitialState } from '@karpeleslab/klbfw';
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
 import { defineStore } from 'pinia';
-import { decode } from '../lib/he';
+//import { decode } from '../lib/he';
 //import { NavigationCallback } from "vue-router"
 export interface KlbSSR {
   initial?: any;
@@ -121,12 +121,14 @@ export async function handleSSR(
   }
 
   const html = await renderToString(app, {});
-  const { headTags, htmlAttrs, bodyAttrs, bodyTags } = renderHeadToString(head);
+  const { headTags, htmlAttrs, bodyAttrs, bodyTags } = await renderHeadToString(
+    head
+  );
 
   result.meta = headTags;
   result.bodyAttributes = bodyAttrs;
   result.htmlAttributes = htmlAttrs;
-  result.bodyTags = decode(bodyTags.replaceAll('\\n', ''));
+  result.bodyTags = bodyTags;
   result.app = html;
 
   if (historyStore.status != 200) {
