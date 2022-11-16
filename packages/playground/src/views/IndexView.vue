@@ -12,14 +12,10 @@ const store = useFVStore();
     </p>
     <h2>Getting started</h2>
     <p>First you'll need to install <b>fyvue</b>.</p>
-    <div v-highlight>
-      <pre
-        class="language-bash"
-      ><code>yarn add @karpeleslab/fyvue@alpha</code></pre>
-    </div>
+    <!-- prettier-ignore --><FvHL lang="bash"><pre>yarn add @karpeleslab/fyvue@alpha</pre></FvHL>
     <p>Then activate <b>fyvue</b> plugin in <code>main.ts</code></p>
 
-    <FvHL><pre>import { createFyvue } from "@karpeleslab/fyvue";
+    <!-- prettier-ignore --><FvHL><pre>import { createFyvue } from "@karpeleslab/fyvue";
 import { createHead } from '@vueuse/head';
 import { createPinia } from 'pinia';
 import { createApp } from "vue";
@@ -35,7 +31,7 @@ app.mount('#app')</pre></FvHL>
       A little bit of <b>Tailwind</b> config is required for <b>fyvue</b> to
       work correctly.
     </p>
-    <FvHL><pre>const colors = require("tailwindcss/colors");
+    <!-- prettier-ignore --><FvHL><pre>const colors = require("tailwindcss/colors");
 module.exports = {
   // add darkMode:"" if you want dark mode support,
   // if not just add class="light" to your index.html.
@@ -57,11 +53,6 @@ module.exports = {
       For <b>typescript</b> you can add the following to your
       <code>tsconfig.json</code>
     </p>
-    <div v-highlight>
-      <pre
-        class="language-json"
-      ><code>"types": ["vite/client", "@karpeleslab/fyvue/dist/components"],
-</code></pre>
-    </div>
+    <!-- prettier-ignore --><FvHL><pre>"types": ["vite/client", "@karpeleslab/fyvue/dist/components"],</pre></FvHL>
   </div>
 </template>

@@ -12,8 +12,7 @@ export default defineConfig({
     vue({
       template: {
         ssr: true,
-        compilerOptions: {
-        },
+        compilerOptions: {},
         transformAssetUrls: {
           img: ['src'],
         },

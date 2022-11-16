@@ -87,12 +87,15 @@ export const setupClient = (router: Router, pinia: Pinia) => {
   useHistory(pinia)._setRouter(router);
 };
 
+export interface SSROptions {
+  url: string | null;
+}
+
 export async function handleSSR(
   createApp: Function,
   cb: Function,
-  options = { url: null }
+  options: SSROptions = { url: null }
 ) {
-  // options is useless atm.
   const { app, router, head, pinia } = await createApp(true);
   let url;
   if (options.url) url = options.url;

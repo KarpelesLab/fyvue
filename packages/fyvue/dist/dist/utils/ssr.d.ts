@@ -34,6 +34,7 @@ export declare const useHistory: import("pinia").StoreDefinition<"historyStore",
 }>;
 export declare const isSSRRendered: () => boolean;
 export declare const setupClient: (router: Router, pinia: Pinia) => void;
-export declare function handleSSR(createApp: Function, cb: Function, options?: {
-    url: null;
-}): Promise<any>;
+export interface SSROptions {
+    url: string | null;
+}
+export declare function handleSSR(createApp: Function, cb: Function, options?: SSROptions): Promise<any>;

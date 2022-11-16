@@ -9,31 +9,38 @@ import {
   SchemaOrgWebSite,
   SchemaOrgOrganization,
 } from '@vueuse/schema-org/runtime';
+import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
+
 import { onMounted, ref, computed } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
-import { onClickOutside } from '@vueuse/core'
-
+import { onClickOutside } from '@vueuse/core';
+import { Backend } from '@karpeleslab/i18next-klb-backend';
 import ComponentIndex from '@/componentIndex';
 
-await i18nextPromise;
+await i18nextPromise(Backend);
 const route = useRoute();
 const sideBarOpen = ref(false);
-const computedRoute = computed(() => route)
-const aside = ref()
-onClickOutside(ref, () => sideBarOpen.value = false)
-
+const computedRoute = computed(() => route);
+const aside = ref();
+onClickOutside(ref, () => (sideBarOpen.value = false));
 
 useUserCheck();
 onMounted(async () => {
   await countriesPromise();
 });
 useHead({
-  title: computed(() => (computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue')),
+  title: computed(() =>
+    computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
+  ),
   meta: [
     {
       name: 'og:title',
-      content: computed(() => (computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue')),
+      content: computed(() =>
+        computedRoute.value.meta.title
+          ? computedRoute.value.meta.title
+          : 'fyvue'
+      ),
     },
   ],
 });
@@ -43,6 +50,7 @@ useHead({
   <Head>
     <meta property="og:site_name" content="fyvue" />
     <meta property="og:url" :content="`https://fy-vue.com/`" />
+    <meta property="og:image" :content="`https://fy-vue.com/fyvue.svg`" />
   </Head>
   <SchemaOrgOrganization
     name="fyvue"
@@ -50,10 +58,11 @@ useHead({
     same-as="['https://twitter.com/ungeek']"
   />
   <SchemaOrgWebSite name="fyvue" />
+  <SchemaOrgWebPage v-if="$route.meta.title" :name="$route.meta.title" />
   <div class="flex flex-col min-h-screen">
     <FyNavbar
-      logo="/src/assets/fyvue.svg"
       title="fyvue"
+      :showDashboardLink="false"
       :links="[
         { to: '/', name: 'Getting Started' },
         {
@@ -77,9 +86,10 @@ useHead({
             { to: '/helpers/i18n', name: 'i18n' },
             { to: '/helpers/formatting', name: 'Formatting' },
             { to: '/helpers/store', name: 'Store' },
+            { to: '/helpers/styles', name: 'Styles' },
           ],
         },
-       // { to: '/contact', name: 'Contact' },
+        // { to: '/contact', name: 'Contact' },
       ]"
     >
       <template v-slot:logo>
@@ -148,23 +158,30 @@ useHead({
           />
         </button>
       </aside>
-      <FyBreadcrumb
-        v-if="$route.meta.breadcrumb"
-        :nav="$route.meta.breadcrumb"
-        class="mb-2"
-      />
-      <main
-        class="bg-white dark:bg-fv-neutral-900 px-2 md:px-4 xl:-6 rounded py-2 md:py-4"
-      >
-        <div class="px-2">
-          <RouterView v-slot="{ Component }">
-            <Suspense timeout="0">
-              <template #default><component :is="Component" /></template>
-              <template #fallback><div>Loading...</div></template>
-            </Suspense>
-          </RouterView>
-        </div>
-      </main>
+      <div class="container mx-auto max-w-screen-xl">
+        <FyBreadcrumb
+          v-if="$route.meta.breadcrumb"
+          :nav="$route.meta.breadcrumb"
+          class="mb-2"
+        />
+        <main
+          class="bg-white dark:bg-fv-neutral-900 px-2 md:px-4 xl:-6 rounded py-2 md:py-4"
+        >
+          <div class="px-2">
+            <RouterView v-slot="{ Component }">
+              <Suspense timeout="0">
+                <template #default><component :is="Component" /></template>
+                <template #fallback
+                  ><FyLoader
+                    id="app-suspender"
+                    :force="true"
+                    :show-loading-text="false"
+                /></template>
+              </Suspense>
+            </RouterView>
+          </div>
+        </main>
+      </div>
     </div>
     <footer
       class="flex items-center justify-center h-12 bg-white dark:bg-fv-neutral-900"

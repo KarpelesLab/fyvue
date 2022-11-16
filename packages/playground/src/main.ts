@@ -15,8 +15,8 @@ import { installSchemaOrg } from '@vueuse/schema-org-vite/vite';
 import './style.scss';
 import 'vue-code-highlight/themes/prism-tomorrow.css';
 import App from './AppSuspender.vue';
-import FyDocPreview from "@/components/FvDocPreview.vue";
-import FvHL from "@/components/FvHL.vue";
+import FyDocPreview from '@/components/FvDocPreview.vue';
+import FvHL from '@/components/FvHL.vue';
 
 export const createApp = async (isSSR = false) => {
   const head = createHead();
@@ -40,9 +40,9 @@ export const createApp = async (isSSR = false) => {
       canonicalHost: 'https://fy-vue.com',
     }
   );
-  app.use(fyvue);
+  app.use(fyvue, { loadKlb: true });
   app.use(VueCodeHighlight);
   app.component('FyDocPreview', FyDocPreview);
-  app.component('FvHL', FvHL)
+  app.component('FvHL', FvHL);
   return { app, router, head, pinia };
 };

@@ -18,7 +18,8 @@
       "dom"
     ],
     "types": [
-      "vite/client"
+      "vite/client",
+      "../fyvue/typings/components"
     ],
     "paths": {
       "@/*": [

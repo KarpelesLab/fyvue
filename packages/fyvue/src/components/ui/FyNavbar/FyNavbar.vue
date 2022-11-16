@@ -61,9 +61,12 @@ withDefaults(
                 class="btn neutral btn-defaults"
                 >{{ $t('navbar_logout_cta') }}</a
               >
-              <router-link to="/user" class="btn primary btn-defaults">{{
-                $t('navbar_dashboard_cta')
-              }}</router-link>
+              <router-link
+                v-if="showDashboardLink"
+                to="/user"
+                class="btn primary btn-defaults"
+                >{{ $t('navbar_dashboard_cta') }}</router-link
+              >
             </div>
             <div v-else>
               <router-link to="/login" class="btn neutral btn-defaults">{{

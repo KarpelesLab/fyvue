@@ -48,7 +48,26 @@ const props = [
     info: 'Add a switch dark/light theme button',
     def: 'true',
   },
+  {
+    name: 'loginPath?',
+    type: 'string',
+    info: 'Login URL for default button',
+    def: '/login',
+  },
+  {
+    name: 'accountPath?',
+    type: 'string',
+    info: 'Account/User dashboard URL from default button',
+    def: '/user',
+  },
+  {
+    name: 'showDashboardLink?',
+    type: 'boolean',
+    info: 'Show default Dashboard button',
+    def: 'true',
+  },
 ];
+
 const slots = [
   {
     name: 'buttons',
@@ -67,6 +86,10 @@ const slots = [
 <template>
   <div class="fv-typo mb-2">
     <h1>FyNavbar</h1>
+    <p>
+      Note if you're using the "buttons" slot the following props are ignored:
+      loginPath, accountPath, showDashboardLink.
+    </p>
   </div>
 
   <FyDocPreview :component="fvComponent" :props="props" :slots="slots">

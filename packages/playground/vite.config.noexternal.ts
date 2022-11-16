@@ -1,4 +1,4 @@
-import config from './vite.config.bundle'
+import config from './vite.config.bundle';
 
 export default Object.assign(config, {
   ssr: {

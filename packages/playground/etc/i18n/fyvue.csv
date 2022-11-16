@@ -6,6 +6,7 @@
 "vuelidate_validator_minLength","Value is too short.",,,"Fyvue Forms"
 "vuelidate_validator_maxLength","Value is too long.",,,"Fyvue Forms"
 "global_datetime","{{val, datetime}}","{{val, datetime}}","{{val, datetime}}","Fyvue globals"
+"global_timeago","{{val, relativetime}}","{{val, relativetime}}","{{val, relativetime}}","Fyvue globals"
 "global_paging","Showing {{start, number}} to {{end, number}} of {{total, number}} results",,,"Fyvue globals"
 "unknown_error","Unknown error",,,"Fyvue globals"
 "global_loading_text","Loading...",,,"Fyvue globals"

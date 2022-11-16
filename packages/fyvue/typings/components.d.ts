@@ -33,6 +33,10 @@ declare module 'vue' {
     $eventBus: typeof import('../src/utils/helpers')['eventBus'];
     $cropText: typeof import('../src')['helpers']['cropText'];
     $formatBytes: typeof import('../src')['helpers']['formatBytes'];
+    $formatJPZipcode: typeof import('../src')['helpers']['formatJPZipcode'];
+    $formatDate: typeof import('../src')['helpers']['formatDate'];
+    $formatTimeago: typeof import('../src')['helpers']['formatTimeago'];
+    $formatDatetime: typeof import('../src')['helpers']['formatDatetime'];
     $countries: GlobalCountries;
   }
 }

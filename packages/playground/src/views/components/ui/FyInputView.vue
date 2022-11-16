@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { minLength, maxLength, required, email } from '@vuelidate/validators';
-import { ref } from "vue";
+import { ref } from 'vue';
 // Vuelidate Usage
 const isFormValid = ref(false);
 const vuelidateState = reactive({
@@ -29,7 +29,7 @@ const resetForm = () => {
   vuelidateState.user.email = '';
   vuelidateState.user.username = '';
   isFormValid.value = false;
-}
+};
 const testSubmit = async () => {
   if (await $v.value.user.$validate()) {
     isFormValid.value = true;
@@ -271,7 +271,6 @@ const props = [
 <template>
   <div class="fv-typo mb-2">
     <h1>FyInput</h1>
-    <p></p>
   </div>
 
   <FyDocPreview :component="fvComponent" :props="props">

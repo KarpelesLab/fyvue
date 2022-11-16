@@ -26,14 +26,30 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  lang: {
+    type: String,
+    default: 'javascript',
+  },
 });
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
 const componentFormated = () => {
   let cp = props.component.trim();
-  cp = cp.replace('_script_', '<script setup>');
-  cp = cp.replace('_script_end_', '<\/script>');
-  return cp;
+  if (cp.includes('_script_end_') && cp.includes('<template>')) {
+    const cpSplit = cp.split('_script_end_');
+    cpSplit[0] = cpSplit[0].replace('_script_', '');
+    cpSplit[0] = cpSplit[0].replace('_script_end_', '<\/script>');
+    return [
+      { lang: 'javascript', content: cpSplit[0].trim() },
+      { lang: 'html', content: cpSplit[1].trim() },
+    ];
+  } else if (cp.includes('_script_end_')) {
+    cp = cp.replace('_script_', '');
+    cp = cp.replace('_script_end_', '');
+    return [{ lang: 'javascript', cp }];
+  }
+
+  return [{ lang: 'html', content: cp }];
 };
 </script>
 <template>
@@ -87,7 +103,21 @@ const componentFormated = () => {
         </div>
       </TabPanel>
       <TabPanel class="tab-compo">
-       <div class=""> <FvHL ><pre>{{ componentFormated() }}</pre></FvHL></div>
+        <div class="pt-1">
+          <template
+            v-for="(code, index) in componentFormated()"
+            :key="`code_${index}`"
+          >
+            <h2 class="font-bold px-2 uppercase">
+              {{
+                code.lang
+                  .replace('html', 'template')
+                  .replace('javascript', 'Composition API')
+              }}
+            </h2>
+            <FvHL class="mx-2" :lang="code.lang">{{ code.content }}</FvHL>
+          </template>
+        </div>
       </TabPanel>
       <TabPanel class="tab-compo" v-if="props.length > 0">
         <div class="p-0">

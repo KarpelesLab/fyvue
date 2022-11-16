@@ -1,5 +1,5 @@
 import type { Plugin } from 'vue';
-import { useEventBus, useTranslation, useCountries, i18nextPromise, countriesPromise } from './utils/helpers';
+import { useEventBus, useTranslation, useCountries, countriesPromise } from './utils/helpers';
 import { handleSSR, useHistory } from './utils/ssr';
 import { useFVStore } from './utils/store';
 import { rest } from './utils/rest';
@@ -28,42 +28,19 @@ declare const components: {
     FyPaging: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     FyNavbar: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
 };
+export declare const i18nextPromise: (backend: any) => Promise<import("i18next").TFunction<"translation", undefined>>;
 declare const createFyvue: () => Plugin;
 declare const helpers: {
-    i18next: import("i18next").TFunction<string[], undefined>;
     cropText: (str: string, ml?: number, end?: string) => string;
     formatBytes: (bytes: number, decimals?: number) => string;
-    tailwindColors: {
-        'fv-primary': {
-            '50': string;
-            '100': string;
-            '200': string;
-            '300': string;
-            '400': string;
-            '500': string;
-            '600': string;
-            '700': string;
-            '800': string;
-            '900': string;
-        };
-        'fv-neutral': {
-            '50': string;
-            '100': string;
-            '200': string;
-            '300': string;
-            '400': string;
-            '500': string;
-            '600': string;
-            '700': string;
-            '800': string;
-            '900': string;
-        };
-    };
-    jpZipcode: (zip: string | number) => string;
+    formatJPZipcode: (zip: string | number) => string;
+    formatDate: (dt: string | Date) => string;
+    formatDatetime: (dt: string | Date) => string;
+    formatTimeago: (dt: string | Date) => string;
 };
 declare const helpersSSR: {
     setupClient: (router: import("vue-router").Router, pinia: import("pinia").Pinia) => void;
     handleSSR: typeof handleSSR;
     isSSRRendered: () => boolean;
 };
-export { createFyvue, useEventBus, useTranslation, useUserCheck, useFVStore, useHistory, useCountries, i18nextPromise, countriesPromise, components, helpers, helpersSSR, rest, };
+export { createFyvue, useEventBus, useTranslation, useUserCheck, useFVStore, useHistory, useCountries, countriesPromise, components, helpers, helpersSSR, rest, };

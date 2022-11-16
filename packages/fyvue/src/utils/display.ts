@@ -1,3 +1,7 @@
+import { useTranslation } from './helpers';
+import { format as formatDateTimeago } from 'timeago.js';
+import { getLocale } from '@karpeleslab/klbfw';
+
 const cropText = (str: string, ml = 100, end = '...') => {
   if (str.length > ml) {
     return `${str.slice(0, ml)}${end}`;
@@ -50,4 +54,50 @@ const jpZipcode = (zip: string | number) => {
   return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 
-export { cropText, formatBytes, tailwindColors, jpZipcode };
+const formatDate = (dt: Date | string) => {
+  if (typeof dt == 'string') dt = new Date(dt);
+
+  const translate = useTranslation();
+  return translate('global_datetime', {
+    val: dt,
+    formatParams: {
+      val: {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      },
+    },
+  });
+};
+const formatDatetime = (dt: Date | string) => {
+  if (typeof dt == 'string') dt = new Date(dt);
+
+  const translate = useTranslation();
+  return translate('global_datetime', {
+    val: dt,
+    formatParams: {
+      val: {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      },
+    },
+  });
+};
+const formatTimeago = (dt: Date | string) => {
+  if (typeof dt == 'string') dt = new Date(dt);
+
+  return formatDateTimeago(dt, getLocale().replace('_', '-'));
+};
+
+export {
+  cropText,
+  formatBytes,
+  formatTimeago,
+  formatDatetime,
+  jpZipcode,
+  formatDate,
+};

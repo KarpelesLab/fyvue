@@ -33,6 +33,6 @@ module.exports = {
       { allowNamedFunctions: false, allowUnboundThis: true },
     ],
     // prettier
-    //'prettier/prettier': 'error',
+    'prettier/prettier': 'error',
   },
 };

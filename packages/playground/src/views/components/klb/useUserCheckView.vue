@@ -23,11 +23,12 @@
     </p>
     <h3>Example</h3>
     <p>(In setup context, in your root template)</p>
-    <FvHL><pre>import { useUserCheck } from "@karpeleslab/fyvue";
+    <!-- prettier-ignore --><FvHL><pre>import { useUserCheck } from "@karpeleslab/fyvue";
 useUserCheck()</pre></FvHL>
     <h3>Usage</h3>
-    Just add a <b>reqLogin</b> meta on the routes you want to protect, for example:
-  <FvHL><pre>{
+    Just add a <b>reqLogin</b> meta on the routes you want to protect, for
+    example:
+    <!-- prettier-ignore --><FvHL><pre>{
   path: "/user",
   component: () => import("@/layouts/dashboardLayout.vue"),
   meta: {

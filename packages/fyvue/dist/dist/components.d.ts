@@ -33,6 +33,10 @@ declare module 'vue' {
     $eventBus: typeof import('@karpeleslab/fyvue/dist/utils/helpers')['eventBus'];
     $cropText: typeof import('@karpeleslab/fyvue')['helpers']['cropText'];
     $formatBytes: typeof import('@karpeleslab/fyvue')['helpers']['formatBytes'];
+    $formatJPZipcode: typeof import('@karpeleslab/fyvue')['helpers']['formatJPZipcode'];
+    $formatDate: typeof import('@karpeleslab/fyvue')['helpers']['formatDate'];
+    $formatTimeago: typeof import('@karpeleslab/fyvue')['helpers']['formatTimeago'];
+    $formatDatetime: typeof import('@karpeleslab/fyvue')['helpers']['formatDatetime'];
     $countries: GlobalCountries;
   }
 }

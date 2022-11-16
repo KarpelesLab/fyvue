@@ -61,7 +61,7 @@ const props = [
   <div class="fv-typo mb-2">
     <h1>FyTable</h1>
     <p>
-      Note <b>FyTable</b> and <b>FyDatatable</b> are almost similar except for
+      Note: <b>FyTable</b> and <b>FyDatatable</b> are almost similar except for
       their behavior on small resolutions. <b>FyTable</b> will just add a
       scrolling on x and <b>FyDatatable</b> will change the layout and use
       divs/flexbox instead of a table.

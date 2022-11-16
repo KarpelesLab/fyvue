@@ -1,11 +1,18 @@
 <template>
   <div class="fv-typo">
     <h1>Klb <b>SSR</b></h1>
-    <p>This is a basic guide to setup SSR on Klb with vue/vite and fyvue. You should also check the <b><RouterLink to="/components/misc/ClientOnly">ClientOnly</RouterLink></b> component provided in <b>fyvue</b>.</p>
+    <p>
+      This is a basic guide to setup SSR on Klb with vue/vite and fyvue. You
+      should also check the
+      <b
+        ><RouterLink to="/components/misc/ClientOnly">ClientOnly</RouterLink></b
+      >
+      component provided in <b>fyvue</b>.
+    </p>
     <p class="mt-2">
       Let's start by editing the vite config <small>(vite.config.js)</small>
     </p>
-    <FvHL><pre>{
+    <!-- prettier-ignore --><FvHL><pre>{
   //...
   plugins: [
     vue({
@@ -21,7 +28,7 @@
 }</pre></FvHL>
 
     <p>Create a <b>vite.config.noexternal.js</b> in your vue directory.</p>
-    <FvHL><pre>const config = require("./vite.config.js"); // Base vite config file
+    <!-- prettier-ignore --><FvHL><pre>const config = require("./vite.config.js"); // Base vite config file
 module.exports = Object.assign(config.default, {
   ssr: {
     noExternal: /./,
@@ -37,8 +44,8 @@ module.exports = Object.assign(config.default, {
     },
   },
 });</pre></FvHL>
-  <p>Wrap your createApp in <b>main.js</b> into a function, for example:</p>
-  <FvHL><pre>import { createSSRApp, createApp as createRegularApp } from 'vue';
+    <p>Wrap your createApp in <b>main.js</b> into a function, for example:</p>
+    <!-- prettier-ignore --><FvHL><pre>import { createSSRApp, createApp as createRegularApp } from 'vue';
 import { createFyvue } from '@karpeleslab/fyvue';
 import { getPrefix } from '@karpeleslab/klbfw';
 import {
@@ -71,8 +78,8 @@ export const createApp = async (isSSR = false) => {
   // ...
   return { app, router, head, pinia };
 };</pre></FvHL>
-  <p>Create a <b>entry-client.js</b> in src/</p>
-<FvHL><pre>import { helpersSSR } from '@karpeleslab/fyvue';
+    <p>Create a <b>entry-client.js</b> in src/</p>
+    <!-- prettier-ignore --><FvHL><pre>import { helpersSSR } from '@karpeleslab/fyvue';
 import { createApp } from './main';
 
 createApp(helpersSSR.isSSRRendered()).then(({ app, router, pinia }) => {
@@ -81,22 +88,24 @@ createApp(helpersSSR.isSSRRendered()).then(({ app, router, pinia }) => {
     app.mount('#app');
   });
 });</pre></FvHL>
-  <p>Create a <b>entry-server.js</b> in src/</p>
-<FvHL><pre>import { helpersSSR } from '@karpeleslab/fyvue';
+    <p>Create a <b>entry-server.js</b> in src/</p>
+    <!-- prettier-ignore --><FvHL><pre>import { helpersSSR } from '@karpeleslab/fyvue';
 import { createApp } from './main';
 
 export async function render(cb) {
   await helpersSSR.handleSSR(createApp, cb, {});
 }</pre></FvHL>
-<p>Add this to your <b>etc/registry.ini</b></p>
-<FvHL lang="ini"><pre>Javascript_Dist_Dir=dist/client
+    <p>Add this to your <b>etc/registry.ini</b></p>
+    <!-- prettier-ignore --><FvHL lang="ini"><pre>Javascript_Dist_Dir=dist/client
 Javascript_SSR_Bundle=dist/server/entry-server.js
 Javascript_SSR_Endpoint=exports.render
 Javascript_Manifest=dist/client/ssr-manifest.json</pre></FvHL>
-<p>and this to you <b>etc/registry_dev.ini</b></p>
-<FvHL lang="ini"><pre>Javascript_Manifest=</pre></FvHL>
-<p>Change your <b>package.json</b> scripts accordingly, this is what I use:</p>
-<FvHL><pre>{
+    <p>and this to you <b>etc/registry_dev.ini</b></p>
+    <!-- prettier-ignore --><FvHL lang="ini"><pre>Javascript_Manifest=</pre></FvHL>
+    <p>
+      Change your <b>package.json</b> scripts accordingly, this is what I use:
+    </p>
+    <!-- prettier-ignore --><FvHL><pre>{
   //...
   "scripts": {
     "dev": "vite --force --port 3000",
@@ -108,6 +117,5 @@ Javascript_Manifest=dist/client/ssr-manifest.json</pre></FvHL>
     "lint:check": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore"
   }
 }</pre></FvHL>
-</div>
-
+  </div>
 </template>

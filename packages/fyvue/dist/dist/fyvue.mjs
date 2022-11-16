@@ -3,11 +3,11 @@
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
+import i18next from 'i18next';
 import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
-import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale } from '@karpeleslab/klbfw';
-import i18next from 'i18next';
 import { defineStore } from 'pinia';
+import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale as getLocale$1 } from '@karpeleslab/klbfw';
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString, useHead } from '@vueuse/head';
 import { useRoute, useRouter } from 'vue-router';
@@ -16,65 +16,6 @@ import useVuelidate from '@vuelidate/core';
 import { required, email, sameAs } from '@vuelidate/validators';
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
-
-const defaults = {
-  allowMultiLoading: false,
-};
-class Backend {
-  constructor(services, options) {
-    this.init(services, options);
-    this.type = 'backend';
-  }
-  init(services, options = {}) {
-    this.services = services;
-    this.options = {
-      ...defaults,
-      ...this.options,
-      ...options,
-    };
-  }
-  read(language, namespace, callback) {
-    if (language.length != 5) {
-      callback(null, {});
-      return;
-    }
-    if (
-      typeof FW !== 'undefined' &&
-      language == FW.Locale &&
-      typeof FW.i18n !== 'undefined'
-    ) {
-      callback(null, FW.i18n);
-      return;
-    }
-    var pfx = '';
-    if (typeof FW !== 'undefined') {
-      pfx = FW.prefix;
-    }
-    var newpfx = pfx.replace(/\/l\/[a-z]{2}-[A-Z]{2}/, '/l/' + language);
-    if (newpfx == pfx) {
-      newpfx = newpfx = '/l/' + language;
-    }
-    fetch(newpfx + '/_special/locale.json')
-      .catch((err) => {
-        return fetch('/_special/locale/' + language + '.json');
-      })
-      .then((res) => {
-        if (!res.ok) {
-          const retry = res.status >= 500 && res.status < 600;
-          callback(`failed loading i18n`, retry);
-          return;
-        }
-        return res.json();
-      })
-      .then((res) => {
-        callback(null, res);
-      })
-      .catch((err) => {
-        callback(err, false);
-      });
-  }
-}
-Backend.type = 'backend';
 
 const useHistory = defineStore({
     id: 'historyStore',
@@ -264,14 +205,6 @@ const useEventBus = () => {
     const vueInstance = getCurrentInstance();
     return vueInstance.appContext.config.globalProperties.$eventBus;
 };
-const i18nextPromise = i18next.use(Backend).init({
-    ns: ['translation'],
-    defaultNS: 'translation',
-    debug: false,
-    lng: getLocale(),
-    load: 'currentOnly',
-    initImmediate: false,
-});
 const useTranslation = () => {
     const vueInstance = getCurrentInstance();
     return vueInstance.appContext.config.globalProperties.$t;
@@ -1483,15 +1416,18 @@ var script$8 = defineComponent({
                                                 onClick: _cache[0] || (_cache[0] = ($event) => (logout())),
                                                 class: "btn neutral btn-defaults"
                                             }, toDisplayString(_ctx.$t('navbar_logout_cta')), 1),
-                                            createVNode(_component_router_link, {
-                                                to: "/user",
-                                                class: "btn primary btn-defaults"
-                                            }, {
-                                                default: withCtx(() => [
-                                                    createTextVNode(toDisplayString(_ctx.$t('navbar_dashboard_cta')), 1)
-                                                ]),
-                                                _: 1
-                                            })
+                                            (__props.showDashboardLink)
+                                                ? (openBlock(), createBlock(_component_router_link, {
+                                                    key: 0,
+                                                    to: "/user",
+                                                    class: "btn primary btn-defaults"
+                                                }, {
+                                                    default: withCtx(() => [
+                                                        createTextVNode(toDisplayString(_ctx.$t('navbar_dashboard_cta')), 1)
+                                                    ]),
+                                                    _: 1
+                                                }))
+                                                : createCommentVNode("v-if", true)
                                         ]))
                                         : (openBlock(), createElementBlock("div", _hoisted_6$7, [
                                             createVNode(_component_router_link, {
@@ -2501,7 +2437,7 @@ var script$2 = defineComponent({
             if (_pms && _pms.data) {
                 if (_pms.data.Fields && _pms.data.Fields.cc_token) {
                     stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {
-                        locale: getLocale(),
+                        locale: getLocale$1(),
                         stripeAccount: _pms.data.Fields.cc_token.attributes?.options?.stripe_account,
                     });
                 }
@@ -2742,7 +2678,7 @@ var script$1 = defineComponent({
             if (_pms && _pms.data) {
                 if (_pms.data.Fields && _pms.data.Fields.cc_token) {
                     stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {
-                        locale: getLocale(),
+                        locale: getLocale$1(),
                         stripeAccount: _pms.data.Fields.cc_token.attributes?.options?.stripe_account,
                     });
                 }
@@ -3015,37 +2951,87 @@ var helpersComponents = {
     ClientOnly: ClientOnly,
 };
 
+var EN_US = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];
+function en_US (diff, idx) {
+    if (idx === 0)
+        return ['just now', 'right now'];
+    var unit = EN_US[Math.floor(idx / 2)];
+    if (diff > 1)
+        unit += 's';
+    return [diff + " " + unit + " ago", "in " + diff + " " + unit];
+}
+
+var ZH_CN = ['秒', '分钟', '小时', '天', '周', '个月', '年'];
+function zh_CN (diff, idx) {
+    if (idx === 0)
+        return ['刚刚', '片刻后'];
+    var unit = ZH_CN[~~(idx / 2)];
+    return [diff + " " + unit + "\u524D", diff + " " + unit + "\u540E"];
+}
+
+var Locales = {};
+var register = function (locale, func) {
+    Locales[locale] = func;
+};
+var getLocale = function (locale) {
+    return Locales[locale] || Locales['en_US'];
+};
+
+var SEC_ARRAY = [
+    60,
+    60,
+    24,
+    7,
+    365 / 7 / 12,
+    12,
+];
+function toDate(input) {
+    if (input instanceof Date)
+        return input;
+    if (!isNaN(input) || /^\d+$/.test(input))
+        return new Date(parseInt(input));
+    input = (input || '')
+        .trim()
+        .replace(/\.\d+/, '')
+        .replace(/-/, '/')
+        .replace(/-/, '/')
+        .replace(/(\d)T(\d)/, '$1 $2')
+        .replace(/Z/, ' UTC')
+        .replace(/([+-]\d\d):?(\d\d)/, ' $1$2');
+    return new Date(input);
+}
+function formatDiff(diff, localeFunc) {
+    var agoIn = diff < 0 ? 1 : 0;
+    diff = Math.abs(diff);
+    var totalSec = diff;
+    var idx = 0;
+    for (; diff >= SEC_ARRAY[idx] && idx < SEC_ARRAY.length; idx++) {
+        diff /= SEC_ARRAY[idx];
+    }
+    diff = Math.floor(diff);
+    idx *= 2;
+    if (diff > (idx === 0 ? 9 : 1))
+        idx += 1;
+    return localeFunc(diff, idx, totalSec)[agoIn].replace('%s', diff.toString());
+}
+function diffSec(date, relativeDate) {
+    var relDate = relativeDate ? toDate(relativeDate) : new Date();
+    return (+relDate - +toDate(date)) / 1000;
+}
+
+var format = function (date, locale, opts) {
+    var sec = diffSec(date, opts && opts.relativeDate);
+    return formatDiff(sec, getLocale(locale));
+};
+
+register('en_US', en_US);
+register('zh_CN', zh_CN);
+
 const cropText = (str, ml = 100, end = '...') => {
     if (str.length > ml) {
         return `${str.slice(0, ml)}${end}`;
     }
     return str;
-};
-const tailwindColors = {
-    'fv-primary': {
-        '50': '#f5f3ff',
-        '100': '#ede9fe',
-        '200': '#ddd6fe',
-        '300': '#c4b5fd',
-        '400': '#a78bfa',
-        '500': '#8b5cf6',
-        '600': '#7c3aed',
-        '700': '#6d28d9',
-        '800': '#5b21b6',
-        '900': '#4c1d95',
-    },
-    'fv-neutral': {
-        '50': '#f8fafc',
-        '100': '#f1f5f9',
-        '200': '#e2e8f0',
-        '300': '#cbd5e1',
-        '400': '#94a3b8',
-        '500': '#64748b',
-        '600': '#475569',
-        '700': '#334155',
-        '800': '#1e293b',
-        '900': '#0f172a',
-    },
 };
 const formatBytes = (bytes, decimals = 2) => {
     if (!+bytes)
@@ -3061,6 +3047,44 @@ const jpZipcode = (zip) => {
     if (_zip.length != 7)
         return '';
     return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
+};
+const formatDate = (dt) => {
+    if (typeof dt == 'string')
+        dt = new Date(dt);
+    const translate = useTranslation();
+    return translate('global_datetime', {
+        val: dt,
+        formatParams: {
+            val: {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            },
+        },
+    });
+};
+const formatDatetime = (dt) => {
+    if (typeof dt == 'string')
+        dt = new Date(dt);
+    const translate = useTranslation();
+    return translate('global_datetime', {
+        val: dt,
+        formatParams: {
+            val: {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+            },
+        },
+    });
+};
+const formatTimeago = (dt) => {
+    if (typeof dt == 'string')
+        dt = new Date(dt);
+    return format(dt, getLocale$1().replace('_', '-'));
 };
 
 function useUserCheck(onMount = true) {
@@ -3087,21 +3111,39 @@ function useUserCheck(onMount = true) {
 }
 
 const components = { ...uiComponents, ...klbComponents, ...helpersComponents };
+const i18nextPromise = (backend) => {
+    return i18next.use(backend).init({
+        ns: ['translation'],
+        defaultNS: 'translation',
+        debug: false,
+        lng: getLocale$1(),
+        load: 'currentOnly',
+        initImmediate: false,
+    });
+};
 const createFyvue = () => {
     const install = (app, options) => {
+        if (!options)
+            options = { loadKlb: true };
         app.config.globalProperties.$eventBus = eventBus;
         app.config.globalProperties.$t = i18next.t;
         app.config.globalProperties.$cropText = cropText;
         app.config.globalProperties.$formatBytes = formatBytes;
+        app.config.globalProperties.$formatDate = formatDate;
+        app.config.globalProperties.$formatTimeago = formatTimeago;
+        app.config.globalProperties.$formatDatetime = formatDatetime;
+        app.config.globalProperties.$formatJPZipcode = jpZipcode;
         app.config.globalProperties.$jpZipcode = jpZipcode;
-        app.config.globalProperties.$countries = countries;
         let k;
         for (k in uiComponents) {
             app.component(uiComponents[k].__name, uiComponents[k]);
         }
-        let klb;
-        for (klb in klbComponents) {
-            app.component(klbComponents[klb].__name, klbComponents[klb]);
+        if (options.loadKlb) {
+            app.config.globalProperties.$countries = countries;
+            let klb;
+            for (klb in klbComponents) {
+                app.component(klbComponents[klb].__name, klbComponents[klb]);
+            }
         }
         let hlp;
         for (hlp in helpersComponents) {
@@ -3113,11 +3155,12 @@ const createFyvue = () => {
     };
 };
 const helpers = {
-    i18next: i18next.t,
     cropText,
     formatBytes,
-    tailwindColors,
-    jpZipcode,
+    formatJPZipcode: jpZipcode,
+    formatDate,
+    formatDatetime,
+    formatTimeago,
 };
 const helpersSSR = {
     setupClient,

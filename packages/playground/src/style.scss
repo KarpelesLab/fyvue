@@ -46,6 +46,9 @@ pre[class*="language-"] {
   }
 }
 
-code[class*="language-"]{
+pre[class*="language-"] {
   line-height: 1.5 !important;
+  margin: 0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }

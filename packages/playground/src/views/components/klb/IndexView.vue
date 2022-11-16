@@ -22,5 +22,4 @@ import ComponentIndex from '@/componentIndex';
       </router-link>
     </div>
   </div>
-
 </template>

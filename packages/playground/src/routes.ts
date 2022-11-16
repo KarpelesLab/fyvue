@@ -11,6 +11,30 @@ export const routes = [
     },
   },
   {
+    path: '/helpers/formatting',
+    component: () => import('./views/helpers/formattingView.vue'),
+    meta: {
+      title: 'Formatting - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Formatting' }],
+    },
+  },
+  {
+    path: '/helpers/store',
+    component: () => import('./views/helpers/StoreView.vue'),
+    meta: {
+      title: 'store - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'store' }],
+    },
+  },
+  {
+    path: '/helpers/styles',
+    component: () => import('./views/helpers/StylingView.vue'),
+    meta: {
+      title: 'Styles - fyvue',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Styles' }],
+    },
+  },
+  {
     path: '/helpers/events',
     component: () => import('./views/helpers/EventBusView.vue'),
     meta: {
@@ -39,7 +63,11 @@ export const routes = [
     component: () => import('./views/ssr/RestView.vue'),
     meta: {
       title: 'Rest - SSR - fyvue',
-      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'SSR', to: '/ssr' }, { name: 'Rest'}],
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'SSR', to: '/ssr' },
+        { name: 'Rest' },
+      ],
     },
   },
   {
@@ -47,7 +75,11 @@ export const routes = [
     component: () => import('./views/ssr/RouterView.vue'),
     meta: {
       title: 'Router - SSR - fyvue',
-      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'SSR', to: '/ssr' }, { name: 'Router'}],
+      breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'SSR', to: '/ssr' },
+        { name: 'Router' },
+      ],
     },
   },
   {
@@ -85,7 +117,8 @@ export const routes = [
       },
       {
         path: '/components/ui/FyCirclePercent',
-        component: () => import('./views/components/ui/FyCirclePercentView.vue'),
+        component: () =>
+          import('./views/components/ui/FyCirclePercentView.vue'),
         meta: {
           breadcrumb: [
             { name: 'fyvue', to: '/' },
@@ -200,9 +233,8 @@ export const routes = [
           title: 'FySteps - UI - Components - fyvue',
         },
       },
-    ]
+    ],
   },
-
 
   // KLB compos
   {
@@ -288,8 +320,7 @@ export const routes = [
       },
       {
         path: '/components/klb/useUserCheck',
-        component: () =>
-          import('./views/components/klb/useUserCheckView.vue'),
+        component: () => import('./views/components/klb/useUserCheckView.vue'),
         meta: {
           breadcrumb: [
             { name: 'fyvue', to: '/' },
@@ -328,7 +359,7 @@ export const routes = [
           title: 'KlbUpdatePaymentMethod - Klb - Components - fyvue',
         },
       },
-    ]
+    ],
   },
 
   // CSS compos
@@ -346,8 +377,7 @@ export const routes = [
     children: [
       {
         path: '/components/misc/ClientOnly',
-        component: () =>
-          import('./views/components/misc/ClientOnlyView.vue'),
+        component: () => import('./views/components/misc/ClientOnlyView.vue'),
         meta: {
           breadcrumb: [
             { name: 'fyvue', to: '/' },
@@ -358,10 +388,36 @@ export const routes = [
           title: 'ClientOnly - MISC - Components - fyvue',
         },
       },
-    ]
+      {
+        path: '/components/misc/typo',
+        component: () => import('./views/components/misc/FyTypoView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Misc', to: '/components/misc' },
+            { name: 'FyTypo' },
+          ],
+          title: 'FyTypo - MISC - Components - fyvue',
+        },
+      },
+      {
+        path: '/components/misc/button',
+        component: () => import('./views/components/misc/ButtonView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Misc', to: '/components/misc' },
+            { name: 'Button' },
+          ],
+          title: 'Button - MISC - Components - fyvue',
+        },
+      },
+    ],
   },
   {
-    path: "/:path(.*)",
-    component: () => import("./views/404View.vue"),
+    path: '/:path(.*)',
+    component: () => import('./views/404View.vue'),
   },
 ];

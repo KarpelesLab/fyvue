@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from 'url';
-import config from './vite.config'
+import config from './vite.config';
 const fyvueRoot = '../fyvue/dist';
-
 
 export default Object.assign(config, {
   resolve: {

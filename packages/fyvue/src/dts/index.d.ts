@@ -1,7 +1,9 @@
 //import '../../typings/env';
 //import '../../typings/components';
 
-export interface FyvueOptions {}
+export interface FyvueOptions {
+  loadKlb: boolean;
+}
 
 export interface FyVueStep {
   name: string;

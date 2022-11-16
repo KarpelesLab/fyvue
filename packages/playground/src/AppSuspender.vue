@@ -4,6 +4,8 @@ import App from './App.vue';
 <template>
   <Suspense>
     <template #default><App /></template>
-    <template #fallback><div>Loading...</div></template>
+    <template #fallback
+      ><FyLoader id="app-suspender" :force="true" :show-loading-text="false"
+    /></template>
   </Suspense>
 </template>

@@ -1,8 +1,5 @@
 import mitt, { Emitter } from 'mitt';
 import { getCurrentInstance } from 'vue';
-import { getLocale } from '@karpeleslab/klbfw';
-import Backend from '../lib/klb-i18n-backend.js';
-import i18next from 'i18next';
 import { rest } from './rest';
 import type { KlbCountriesResult, KlbCountry } from '../dts/klb';
 type Events = {
@@ -49,15 +46,6 @@ const useEventBus = () => {
   return vueInstance!.appContext.config.globalProperties.$eventBus;
 };
 
-const i18nextPromise = i18next.use(Backend).init({
-  ns: ['translation'],
-  defaultNS: 'translation',
-  debug: false,
-  lng: getLocale(),
-  load: 'currentOnly',
-  initImmediate: false,
-});
-
 const useTranslation = () => {
   const vueInstance = getCurrentInstance();
   return vueInstance!.appContext.config.globalProperties.$t;
@@ -66,8 +54,6 @@ const useTranslation = () => {
 export {
   eventBus,
   useEventBus,
-  i18next,
-  i18nextPromise,
   useTranslation,
   countriesPromise,
   useCountries,
