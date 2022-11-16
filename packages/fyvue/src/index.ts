@@ -44,7 +44,6 @@ const createFyvue = () => {
     }
     let hlp: keyof typeof helpersComponents;
     for (hlp in helpersComponents) {
-      console.log(helpersComponents[hlp].__name!, helpersComponents[hlp]);
       app.component(helpersComponents[hlp].__name!, helpersComponents[hlp]);
     }
   };

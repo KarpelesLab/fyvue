@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.33
+  * @karpeleslab/fyvue v0.2.0-beta.34
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -3105,7 +3105,6 @@ const createFyvue = () => {
         }
         let hlp;
         for (hlp in helpersComponents) {
-            console.log(helpersComponents[hlp].__name, helpersComponents[hlp]);
             app.component(helpersComponents[hlp].__name, helpersComponents[hlp]);
         }
     };
