@@ -2,8 +2,6 @@
 import {
   i18nextPromise,
   countriesPromise,
-  useFVStore,
-  useHistory,
   useUserCheck,
 } from '@karpeleslab/fyvue';
 import { Head, useHead } from '@vueuse/head';
@@ -21,16 +19,11 @@ import ComponentIndex from '@/componentIndex';
 await i18nextPromise;
 const route = useRoute();
 const sideBarOpen = ref(false);
-const store = useFVStore();
-const isAuth = computed(() => store.isAuth);
 const computedRoute = computed(() => route)
 const aside = ref()
 onClickOutside(ref, () => sideBarOpen.value = false)
 
-const logout = async () => {
-  await store.logout();
-  useHistory().push('/', 302);
-};
+
 useUserCheck();
 onMounted(async () => {
   await countriesPromise();
@@ -93,24 +86,6 @@ useHead({
         <img src="@/assets/fyvue.svg" class="h-10" />
       </template>
       <template v-slot:custom> </template>
-      <template v-slot:buttons>
-        <template v-if="isAuth">
-          <a
-            href="javascript:void(0)"
-            @click="logout()"
-            class="btn neutral btn-defaults"
-            >Logout</a
-          >
-        </template>
-        <template v-else>
-          <router-link to="/login" class="btn neutral btn-defaults"
-            >Login</router-link
-          >
-          <router-link to="/login" class="btn primary btn-defaults"
-            >Sign up</router-link
-          >
-        </template>
-      </template>
     </FyNavbar>
     <div class="relative w-full p-2 md:p-4 lg:p-6 flex-grow">
       <aside
@@ -131,7 +106,7 @@ useHead({
             >
               <XMarkIcon class="m-1 w-6"></XMarkIcon>
             </button>
-            <h2 class="font-bold">UI Components</h2>
+            <h2 class="font-bold">UI</h2>
             <div class="link-group">
               <router-link
                 v-for="(c, i) in ComponentIndex.ui"
@@ -141,7 +116,7 @@ useHead({
                 {{ c }}
               </router-link>
             </div>
-            <h2 class="font-bold mt-2">Klb Components</h2>
+            <h2 class="font-bold mt-2">Klb</h2>
             <div class="link-group">
               <router-link
                 v-for="(c, i) in ComponentIndex.klb"
@@ -151,12 +126,12 @@ useHead({
                 {{ c }}
               </router-link>
             </div>
-            <h2 class="font-bold mt-2">CSS Components</h2>
+            <h2 class="font-bold mt-2">Misc</h2>
             <div class="link-group">
               <router-link
-                v-for="(c, i) in ComponentIndex.css"
+                v-for="(c, i) in ComponentIndex.misc"
                 :key="`${i.toString()}_${c}`"
-                :to="`/components/css/${c}`"
+                :to="`/components/misc/${c}`"
               >
                 {{ c }}
               </router-link>

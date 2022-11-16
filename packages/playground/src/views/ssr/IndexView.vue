@@ -1,7 +1,8 @@
 <template>
   <div class="fv-typo">
     <h1>Klb <b>SSR</b></h1>
-    <p>
+    <p>This is a basic guide to setup SSR on Klb with vue/vite and fyvue. You should also check the <b><RouterLink to="/components/misc/ClientOnly">ClientOnly</RouterLink></b> component provided in <b>fyvue</b>.</p>
+    <p class="mt-2">
       Let's start by editing the vite config <small>(vite.config.js)</small>
     </p>
     <FvHL><pre>{

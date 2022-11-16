@@ -11,7 +11,7 @@ import ComponentIndex from '@/componentIndex';
     </RouterView>
   </div>
   <div class="fv-typo mt-5">
-    <h1 class="font-bold mt-2">Klb Components</h1>
+    <h1 class="font-bold mt-2">Klb</h1>
     <div class="grid grid-cols-1 md:grid-cols-3">
       <router-link
         v-for="(c, i) in ComponentIndex.klb"

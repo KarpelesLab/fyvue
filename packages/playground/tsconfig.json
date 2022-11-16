@@ -23,6 +23,9 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@vueuse/schema-org/runtime": [
+        "./../../node_modules/@vueuse/schema-org/dist/runtime-simple/index"
       ]
     }
   },

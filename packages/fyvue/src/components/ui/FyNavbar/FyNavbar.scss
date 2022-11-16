@@ -32,8 +32,7 @@
       }
     }
     .light-dark {
-      @apply p-2 fround;
-
+      @apply p-1.5 rounded-full;
       svg {
         @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
       }

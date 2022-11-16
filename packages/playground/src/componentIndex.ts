@@ -22,10 +22,10 @@ const KlbComponents = [
   'useUserCheck',
 ];
 
-const CSSComponents = ['Button', 'Typo', 'Helpers'];
+const miscComponents = ['Button', 'Typo', 'ClientOnly'];
 
 export default {
   ui: uiComponents.sort(),
   klb: KlbComponents.sort(),
-  css: CSSComponents.sort(),
+  misc: miscComponents.sort(),
 };

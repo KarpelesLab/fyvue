@@ -6,7 +6,7 @@ import ComponentIndex from '@/componentIndex';
     <h1 class="font-bold mt-2">Components Index</h1>
 
     <h2 class="font-bold">
-      <router-link to="/components/ui">UI Components</router-link>
+      <router-link to="/components/ui">UI</router-link>
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3">
       <router-link
@@ -18,7 +18,7 @@ import ComponentIndex from '@/componentIndex';
       </router-link>
     </div>
     <h2 class="font-bold mt-4">
-      <router-link to="/components/klb">Klb Components</router-link>
+      <router-link to="/components/klb">Klb</router-link>
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3">
       <router-link
@@ -30,13 +30,13 @@ import ComponentIndex from '@/componentIndex';
       </router-link>
     </div>
     <h2 class="font-bold mt-4">
-      <router-link to="/components/css">CSS Components</router-link>
+      <router-link to="/components/misc">Misc</router-link>
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3">
       <router-link
-        v-for="(c, i) in ComponentIndex.css"
+        v-for="(c, i) in ComponentIndex.misc"
         :key="`${i.toString()}_${c}`"
-        :to="`/components/css/${c}`"
+        :to="`/components/misc/${c}`"
       >
         {{ c }}
       </router-link>

@@ -11,12 +11,12 @@ import ComponentIndex from '@/componentIndex';
     </RouterView>
   </div>
   <div class="fv-typo mt-5">
-    <h1 class="font-bold mt-2">CSS Components</h1>
+    <h1 class="font-bold mt-2">Misc</h1>
     <div class="grid grid-cols-1 md:grid-cols-3">
       <router-link
-        v-for="(c, i) in ComponentIndex.css"
+        v-for="(c, i) in ComponentIndex.misc"
         :key="`${i.toString()}_${c}`"
-        :to="`/components/css/${c}`"
+        :to="`/components/misc/${c}`"
       >
         {{ c }}
       </router-link>

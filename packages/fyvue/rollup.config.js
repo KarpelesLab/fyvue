@@ -87,9 +87,15 @@ export default [
             src: 'typings/components.d.ts',
             dest: 'dist/dist/',
             transform: (contents, filename) => {
-              return contents
+              let _contents = contents
                 .toString()
                 .replaceAll('../src', '@karpeleslab/fyvue');
+              _contents = _contents.replaceAll(
+                '@karpeleslab/fyvue/utils/helpers',
+                '@karpeleslab/fyvue/dist/utils/helpers'
+              );
+
+              return _contents;
             },
           },
         ],

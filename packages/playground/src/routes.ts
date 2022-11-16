@@ -333,16 +333,32 @@ export const routes = [
 
   // CSS compos
   {
-    path: '/components/css',
-    component: () => import('./views/components/css/IndexView.vue'),
+    path: '/components/misc',
+    component: () => import('./views/components/misc/IndexView.vue'),
     meta: {
       breadcrumb: [
         { name: 'fyvue', to: '/' },
         { name: 'Components', to: '/components' },
-        { name: 'CSS' },
+        { name: 'MISC' },
       ],
-      title: 'CSS - Components - fyvue',
+      title: 'MISC - Components - fyvue',
     },
+    children: [
+      {
+        path: '/components/misc/ClientOnly',
+        component: () =>
+          import('./views/components/misc/ClientOnlyView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Misc', to: '/components/misc' },
+            { name: 'ClientOnly' },
+          ],
+          title: 'ClientOnly - MISC - Components - fyvue',
+        },
+      },
+    ]
   },
   {
     path: "/:path(.*)",

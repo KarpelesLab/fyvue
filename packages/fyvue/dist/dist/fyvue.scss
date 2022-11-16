@@ -550,7 +550,7 @@ button[type=submit] {
   @apply w-6 h-6;
 }
 .fy-navbar .nav-actions .light-dark {
-  @apply p-2 fround;
+  @apply p-1.5 rounded-full;
 }
 .fy-navbar .nav-actions .light-dark svg {
   @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;

@@ -72,4 +72,5 @@
 "create_billing_profile","Save payment method",,,"KlbAdddPaymentMethodModal component"
 "navbar_login_cta","Login",,,"FyNavbar component"
 "navbar_signup_cta","Sign up",,,"FyNavbar component"
-
+"navbar_dashboard_cta","Dashboard",,,"FyNavbar component"
+"navbar_logout_cta","Logout",,,"FyNavbar component"

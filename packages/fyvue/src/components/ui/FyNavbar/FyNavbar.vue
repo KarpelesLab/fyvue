@@ -2,7 +2,10 @@
 import { useDark, useToggle } from '@vueuse/core';
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useFVStore } from '../../../utils/store';
+import { useHistory } from '../../../utils/ssr';
+import { ClientOnly } from '../../helpers/ClientOnly';
 import type { NavLink } from '../../../dts/index';
 
 const isDark = useDark({
@@ -14,6 +17,12 @@ const isDark = useDark({
 const isOpen = ref<boolean>(false);
 const toggleDark = useToggle(isDark);
 const toggleNavbarOpen = useToggle(isOpen);
+const store = useFVStore();
+const isAuth = computed(() => store.isAuth);
+const logout = async () => {
+  await store.logout();
+  useHistory().push('/', 302);
+};
 
 withDefaults(
   defineProps<{
@@ -21,10 +30,16 @@ withDefaults(
     showTitle?: boolean;
     darkLight?: boolean;
     links: NavLink[];
+    loginPath?: string;
+    accountPath?: string;
+    showDashboardLink?: boolean;
   }>(),
   {
     showTitle: true,
     darkLight: true,
+    loginPath: '/login',
+    accountPath: '/user',
+    showDashboardLink: true,
   }
 );
 </script>
@@ -37,7 +52,29 @@ withDefaults(
       </router-link>
       <div class="nav-actions">
         <slot name="custom"></slot>
-        <slot name="buttons"> </slot>
+        <ClientOnly>
+          <slot name="buttons">
+            <div v-if="isAuth">
+              <a
+                href="javascript:void(0)"
+                @click="logout()"
+                class="btn neutral btn-defaults"
+                >{{ $t('navbar_logout_cta') }}</a
+              >
+              <router-link to="/user" class="btn primary btn-defaults">{{
+                $t('navbar_dashboard_cta')
+              }}</router-link>
+            </div>
+            <div v-else>
+              <router-link to="/login" class="btn neutral btn-defaults">{{
+                $t('navbar_login_cta')
+              }}</router-link>
+              <router-link to="/login" class="btn primary btn-defaults">{{
+                $t('navbar_signup_cta')
+              }}</router-link>
+            </div>
+          </slot>
+        </ClientOnly>
         <button
           @click="toggleDark()"
           class="btn neutral light-dark"

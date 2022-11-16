@@ -12,9 +12,9 @@ export type GlobalCountries = {
 };
 declare const countries: GlobalCountries;
 declare const eventBus: Emitter<Events>;
-declare const useCountries: () => any;
+declare const useCountries: () => GlobalCountries;
 declare const countriesPromise: () => Promise<unknown>;
-declare const useEventBus: () => any;
+declare const useEventBus: () => Emitter<Events>;
 declare const i18nextPromise: Promise<import("i18next").TFunction<"translation", undefined>>;
 declare const useTranslation: () => import("i18next").TFunction<string[], undefined>;
 export { eventBus, useEventBus, i18next, i18nextPromise, useTranslation, countriesPromise, useCountries, countries, };

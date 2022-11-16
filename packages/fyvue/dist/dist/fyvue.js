@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.28
+  * @karpeleslab/fyvue v0.2.0-beta.33
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -1349,12 +1349,57 @@ var script$9 = vue.defineComponent({
 
 script$9.__file = "src/components/ui/FyPaging/FyPaging.vue";
 
+const useFVStore = pinia.defineStore({
+    id: 'fVStore',
+    state: () => ({
+        user: null,
+    }),
+    getters: {
+        isAuth: (state) => {
+            return !(state.user === null);
+        },
+    },
+    actions: {
+        async refreshUser(params = {}) {
+            const apiData = await klbfw.rest('User:get', 'GET', params).catch((err) => { });
+            if (apiData.result == 'success' && apiData.data != null) {
+                this.user = apiData.data;
+            }
+            else {
+                this.user = null;
+            }
+        },
+        async logout() {
+            const apiData = await klbfw.rest('User:logout', 'POST').catch((err) => { });
+            if (apiData.result == 'success') {
+                this.setUser(null);
+            }
+        },
+        setUser(user) {
+            this.user = user;
+        },
+    },
+});
+
+const ClientOnly = vue.defineComponent({
+    __name: 'ClientOnly',
+    setup(_, { slots }) {
+        const show = vue.ref(false);
+        vue.onMounted(() => {
+            show.value = true;
+        });
+        return () => (show.value && slots.default ? slots.default() : null);
+    },
+});
+
 const _hoisted_1$8 = { class: "fy-navbar" };
 const _hoisted_2$8 = { class: "nav-container" };
 const _hoisted_3$8 = { key: 0 };
 const _hoisted_4$8 = { class: "nav-actions" };
-const _hoisted_5$7 = vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
-const _hoisted_6$7 = vue.createElementVNode("svg", {
+const _hoisted_5$7 = { key: 0 };
+const _hoisted_6$7 = { key: 1 };
+const _hoisted_7$6 = vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_8$6 = vue.createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1366,12 +1411,12 @@ const _hoisted_6$7 = vue.createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_7$6 = [
-    _hoisted_5$7,
-    _hoisted_6$7
+const _hoisted_9$5 = [
+    _hoisted_7$6,
+    _hoisted_8$6
 ];
-const _hoisted_8$6 = { class: "main-ul" };
-const _hoisted_9$5 = vue.createElementVNode("svg", {
+const _hoisted_10$4 = { class: "main-ul" };
+const _hoisted_11$4 = vue.createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1383,15 +1428,18 @@ const _hoisted_9$5 = vue.createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_10$4 = ["href", "title", "alt"];
-const _hoisted_11$4 = ["href", "title", "alt"];
+const _hoisted_12$2 = ["href", "title", "alt"];
+const _hoisted_13$2 = ["href", "title", "alt"];
 var script$8 = vue.defineComponent({
     __name: 'FyNavbar',
     props: {
         title: { type: String, required: true },
         showTitle: { type: Boolean, required: false, default: true },
         darkLight: { type: Boolean, required: false, default: true },
-        links: { type: Array, required: true }
+        links: { type: Array, required: true },
+        loginPath: { type: String, required: false, default: '/login' },
+        accountPath: { type: String, required: false, default: '/user' },
+        showDashboardLink: { type: Boolean, required: false, default: true }
     },
     setup(__props) {
         const isDark = core.useDark({
@@ -1403,6 +1451,12 @@ var script$8 = vue.defineComponent({
         const isOpen = vue.ref(false);
         const toggleDark = core.useToggle(isDark);
         const toggleNavbarOpen = core.useToggle(isOpen);
+        const store = useFVStore();
+        const isAuth = vue.computed(() => store.isAuth);
+        const logout = async () => {
+            await store.logout();
+            useHistory().push('/', 302);
+        };
         return (_ctx, _cache) => {
             const _component_router_link = vue.resolveComponent("router-link");
             return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$8, [
@@ -1421,11 +1475,54 @@ var script$8 = vue.defineComponent({
                     }),
                     vue.createElementVNode("div", _hoisted_4$8, [
                         vue.renderSlot(_ctx.$slots, "custom"),
-                        vue.renderSlot(_ctx.$slots, "buttons"),
+                        vue.createVNode(vue.unref(ClientOnly), null, {
+                            default: vue.withCtx(() => [
+                                vue.renderSlot(_ctx.$slots, "buttons", {}, () => [
+                                    (vue.unref(isAuth))
+                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$7, [
+                                            vue.createElementVNode("a", {
+                                                href: "javascript:void(0)",
+                                                onClick: _cache[0] || (_cache[0] = ($event) => (logout())),
+                                                class: "btn neutral btn-defaults"
+                                            }, vue.toDisplayString(_ctx.$t('navbar_logout_cta')), 1),
+                                            vue.createVNode(_component_router_link, {
+                                                to: "/user",
+                                                class: "btn primary btn-defaults"
+                                            }, {
+                                                default: vue.withCtx(() => [
+                                                    vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_dashboard_cta')), 1)
+                                                ]),
+                                                _: 1
+                                            })
+                                        ]))
+                                        : (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$7, [
+                                            vue.createVNode(_component_router_link, {
+                                                to: "/login",
+                                                class: "btn neutral btn-defaults"
+                                            }, {
+                                                default: vue.withCtx(() => [
+                                                    vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_login_cta')), 1)
+                                                ]),
+                                                _: 1
+                                            }),
+                                            vue.createVNode(_component_router_link, {
+                                                to: "/login",
+                                                class: "btn primary btn-defaults"
+                                            }, {
+                                                default: vue.withCtx(() => [
+                                                    vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_signup_cta')), 1)
+                                                ]),
+                                                _: 1
+                                            })
+                                        ]))
+                                ])
+                            ]),
+                            _: 3
+                        }),
                         (__props.darkLight)
                             ? (vue.openBlock(), vue.createElementBlock("button", {
                                 key: 0,
-                                onClick: _cache[0] || (_cache[0] = ($event) => (vue.unref(toggleDark)())),
+                                onClick: _cache[1] || (_cache[1] = ($event) => (vue.unref(toggleDark)())),
                                 class: "btn neutral light-dark"
                             }, [
                                 (!vue.unref(isDark))
@@ -1436,13 +1533,13 @@ var script$8 = vue.defineComponent({
                         vue.createElementVNode("button", {
                             type: "button",
                             class: "open-nav-button",
-                            onClick: _cache[1] || (_cache[1] = ($event) => (vue.unref(toggleNavbarOpen)()))
-                        }, _hoisted_7$6)
+                            onClick: _cache[2] || (_cache[2] = ($event) => (vue.unref(toggleNavbarOpen)()))
+                        }, _hoisted_9$5)
                     ]),
                     vue.createElementVNode("div", {
                         class: vue.normalizeClass(["nav-menu", isOpen.value ? 'is-open' : ''])
                     }, [
-                        vue.createElementVNode("ul", _hoisted_8$6, [
+                        vue.createElementVNode("ul", _hoisted_10$4, [
                             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.links, (link, index) => {
                                 return (vue.openBlock(), vue.createElementBlock("li", {
                                     key: `link_${index.toString()}`
@@ -1453,7 +1550,7 @@ var script$8 = vue.defineComponent({
                                                 vue.createVNode(vue.unref(vue$1.MenuButton), { class: "is-link has-childs" }, {
                                                     default: vue.withCtx(() => [
                                                         vue.createTextVNode(vue.toDisplayString(link.name) + " ", 1),
-                                                        _hoisted_9$5
+                                                        _hoisted_11$4
                                                     ]),
                                                     _: 2
                                                 }, 1024),
@@ -1487,7 +1584,7 @@ var script$8 = vue.defineComponent({
                                                                                             title: children.name,
                                                                                             alt: children.name,
                                                                                             class: "is-link"
-                                                                                        }, vue.toDisplayString(children.name), 9, _hoisted_10$4))
+                                                                                        }, vue.toDisplayString(children.name), 9, _hoisted_12$2))
                                                                                 ])
                                                                             ]),
                                                                             _: 2
@@ -1523,7 +1620,7 @@ var script$8 = vue.defineComponent({
                                                     title: link.name,
                                                     alt: link.name,
                                                     class: vue.normalizeClass(["is-link", ''])
-                                                }, vue.toDisplayString(link.name), 9, _hoisted_11$4))
+                                                }, vue.toDisplayString(link.name), 9, _hoisted_13$2))
                                         ], 64))
                                 ]));
                             }), 128))
@@ -1550,38 +1647,6 @@ var uiComponents = {
     FyPaging: script$9,
     FyNavbar: script$8,
 };
-
-const useFVStore = pinia.defineStore({
-    id: 'fVStore',
-    state: () => ({
-        user: null,
-    }),
-    getters: {
-        isAuth: (state) => {
-            return !(state.user === null);
-        },
-    },
-    actions: {
-        async refreshUser(params = {}) {
-            const apiData = await klbfw.rest('User:get', 'GET', params).catch((err) => { });
-            if (apiData.result == 'success' && apiData.data != null) {
-                this.user = apiData.data;
-            }
-            else {
-                this.user = null;
-            }
-        },
-        async logout() {
-            const apiData = await klbfw.rest('User:logout', 'POST').catch((err) => { });
-            if (apiData.result == 'success') {
-                this.setUser(null);
-            }
-        },
-        setUser(user) {
-            this.user = user;
-        },
-    },
-});
 
 const _hoisted_1$7 = { class: "w-full" };
 const _hoisted_2$7 = {
@@ -2948,6 +3013,10 @@ var klbComponents = {
     KlbAddPaymentMethodModal: script$2,
 };
 
+var helpersComponents = {
+    ClientOnly: ClientOnly,
+};
+
 const cropText = (str, ml = 100, end = '...') => {
     if (str.length > ml) {
         return `${str.slice(0, ml)}${end}`;
@@ -3019,7 +3088,7 @@ function useUserCheck(onMount = true) {
     }
 }
 
-const components = { ...uiComponents, ...klbComponents };
+const components = { ...uiComponents, ...klbComponents, ...helpersComponents };
 const createFyvue = () => {
     const install = (app, options) => {
         app.config.globalProperties.$eventBus = eventBus;
@@ -3035,6 +3104,11 @@ const createFyvue = () => {
         let klb;
         for (klb in klbComponents) {
             app.component(klbComponents[klb].__name, klbComponents[klb]);
+        }
+        let hlp;
+        for (hlp in helpersComponents) {
+            console.log(helpersComponents[hlp].__name, helpersComponents[hlp]);
+            app.component(helpersComponents[hlp].__name, helpersComponents[hlp]);
         }
     };
     return {

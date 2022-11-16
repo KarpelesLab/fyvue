@@ -1,6 +1,7 @@
 import type { App, Plugin } from 'vue';
 import uiComponents from './components/ui';
 import klbComponents from './components/klb';
+import helpersComponents from './components/helpers';
 import {
   eventBus,
   useEventBus,
@@ -22,7 +23,7 @@ import { useFVStore } from './utils/store';
 import { rest } from './utils/rest';
 import type { FyvueOptions } from './dts';
 import { useUserCheck } from './components/klb/KlbUser/KlbUserCheck';
-const components = { ...uiComponents, ...klbComponents };
+const components = { ...uiComponents, ...klbComponents, ...helpersComponents };
 
 const createFyvue = () => {
   const install = (app: App, options?: FyvueOptions) => {
@@ -40,6 +41,11 @@ const createFyvue = () => {
     let klb: keyof typeof klbComponents;
     for (klb in klbComponents) {
       app.component(klbComponents[klb].__name!, klbComponents[klb]);
+    }
+    let hlp: keyof typeof helpersComponents;
+    for (hlp in helpersComponents) {
+      console.log(helpersComponents[hlp].__name!, helpersComponents[hlp]);
+      app.component(helpersComponents[hlp].__name!, helpersComponents[hlp]);
     }
   };
   return <Plugin>{
