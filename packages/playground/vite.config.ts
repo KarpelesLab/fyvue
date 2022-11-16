@@ -11,7 +11,7 @@ export default defineConfig({
   plugins: [
     vue({
       template: {
-        //ssr: true,
+        ssr: true,
         compilerOptions: {
         },
         transformAssetUrls: {
@@ -19,7 +19,11 @@ export default defineConfig({
         },
       },
     }),
-    SchemaOrg(),
+    SchemaOrg({
+      mock: false,
+      full: false,
+      dts: true,
+    }),
   ],
   resolve: {
     alias: {
