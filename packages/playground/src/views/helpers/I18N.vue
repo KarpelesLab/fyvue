@@ -9,9 +9,6 @@
       <FvHL><pre>// composition API, this should be in your root template
 import { i18nextPromise } from '@karpeleslab/fyvue';
 await i18nextPromise;
-
-// or if you want to do this on the client side (no need for suspense here)
-onMounted(async() => { await i18nextPromise })
 </pre></FvHL>
 <h2>Using translations</h2>
 <p>You can use <b>useTranslation</b> for the composition API or <b>this.$t</b> for the options API.</p>
