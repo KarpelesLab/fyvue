@@ -12,6 +12,7 @@ const formatBytes = `{{ $formatBytes(10000) }}<br />
 {{ $formatBytes(1000000000000000) }}<br />
 {{ $formatBytes(1337, 10) }}`;
 const countriesCode = `<pre class="text-xs h-44 overflow-y-scroll">{{ $countries }}</pre>`;
+const formatDate = '{{ $formatDate(Date.now()) }}';
 const formatDatetime = '{{ $formatDatetime(Date.now()) }}';
 const formatTimeago = `{{ $formatDatetime(getTime5MinutesAgo()) }} &gtcc; {{ $formatTimeago(getTime5MinutesAgo()) }}`;
 const formatJPZipcode = ' {{$formatJPZipcode(1610032) }}';
@@ -36,7 +37,7 @@ const getTime5MinutesAgo = () => {
     </p>
 
     <h4>$formatDate <small>(dt: Date|string)</small></h4>
-    <FyDocPreview :component="formatBytes" lang="html">
+    <FyDocPreview :component="formatDate" lang="html">
       <template #component>
         {{ $formatDate(Date.now()) }}
       </template>
