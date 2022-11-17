@@ -6,6 +6,7 @@ import KlbBillingHistory from './KlbBilling/KlbBillingHistory.vue';
 import KlbUpdatePaymentMethod from './KlbBilling/KlbUpdatePaymentMethod.vue';
 import KlbUpdateBillingLocation from './KlbBilling/KlbUpdateBillingLocation.vue';
 import KlbAddPaymentMethodModal from './KlbBilling/KlbAddPaymentMethodModal.vue';
+import KlbCatalog from './KlbOrder/KlbCatalog.vue';
 
 export default {
   KlbLogin,
@@ -16,4 +17,5 @@ export default {
   KlbUpdatePaymentMethod,
   KlbUpdateBillingLocation,
   KlbAddPaymentMethodModal,
+  KlbCatalog,
 };

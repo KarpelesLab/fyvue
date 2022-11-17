@@ -3,12 +3,7 @@ import ComponentIndex from '@/componentIndex';
 </script>
 <template>
   <div>
-    <RouterView v-slot="{ Component }">
-      <Suspense timeout="0">
-        <template #default><component :is="Component" /></template>
-        <template #fallback><div>Loading...</div></template>
-      </Suspense>
-    </RouterView>
+    <RouterView />
   </div>
   <div class="fv-typo mt-5">
     <h1 class="font-bold mt-2">Misc</h1>

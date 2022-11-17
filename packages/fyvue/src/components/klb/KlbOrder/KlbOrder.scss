@@ -1,0 +1,82 @@
+.klb-product {
+  @apply w-full;
+  .subs {
+    @apply block md:flex md:items-start md:justify-center md:space-x-3 w-full;
+    .card {
+      @apply  w-full max-w-sm p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-fv-neutral-800 dark:border-fv-neutral-700;
+    }
+    h5 {
+      @apply mb-1 text-2xl font-medium text-fv-neutral-500 dark:text-fv-neutral-400;
+    }
+    .price {
+      @apply flex items-baseline text-fv-neutral-900 dark:text-white;
+      .curr {
+        @apply text-3xl font-semibold;
+      }
+      .price {
+        @apply text-xl font-extrabold tracking-tight;
+      }
+      .cycle {
+        @apply ml-1 text-lg font-normal text-fv-neutral-500 dark:text-fv-neutral-400;
+      }
+    }
+    .product-image {
+      @apply max-h-36 mx-auto mt-4;
+    }
+    .btn {
+      @apply text-xl font-bold px-8 text-center py-3 block;
+    }
+    ul {
+      @apply space-y-5 my-7;
+      li {
+        @apply flex space-x-3;
+
+        svg {
+          @apply flex-shrink-0 w-5 h-5 text-fv-primary-600 dark:text-fv-primary-500;
+        }
+        &.disabled {
+          @apply flex space-x-3 line-through decoration-fv-neutral-500;
+          svg {
+            @apply text-fv-neutral-400 dark:text-fv-neutral-500;
+          }
+        }
+        span {
+          @apply text-base font-normal leading-tight text-fv-neutral-500 dark:text-fv-neutral-400;
+        }
+      }
+    }
+  }
+  .shop {
+    @apply block md:flex md:items-start md:justify-center md:space-x-3 w-full;
+    .card {
+      @apply w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-fv-neutral-800 dark:border-fv-neutral-700;
+    }
+    .product-image {
+      @apply  p-8 rounded-t-lg  mx-auto;
+    }
+    .inside {
+        @apply px-5 pb-5
+    }
+    h5 {
+      @apply text-xl font-semibold tracking-tight text-fv-neutral-900 dark:text-white ;
+    }
+    .rating {
+      @apply flex items-center mt-2.5 mb-5;
+      svg {
+        @apply w-5 h-5 text-yellow-300;
+      }
+      span {
+        @apply bg-fv-primary-100 text-fv-primary-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-fv-primary-200 dark:text-fv-primary-800 ml-3;
+      }
+    }
+    .price-btn {
+      @apply flex items-center justify-between mt-4;
+      span {
+        @apply text-2xl font-bold text-fv-neutral-900 dark:text-white;
+        .cycle {
+          @apply ml-1 text-lg font-normal text-fv-neutral-500 dark:text-fv-neutral-400;
+        }
+      }
+    }
+  }
+}

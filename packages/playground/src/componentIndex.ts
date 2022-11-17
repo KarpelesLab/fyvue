@@ -9,6 +9,7 @@ const uiComponents = [
   'FyPaging',
   'FySteps',
   'FyTable',
+  'FyTabs',
 ];
 const KlbComponents = [
   'KlbDeleteAccount',
@@ -20,6 +21,7 @@ const KlbComponents = [
   'KlbUpdatePaymentMethod',
   'KlbLogin',
   'useUserCheck',
+  'KlbCatalog',
 ];
 
 const miscComponents = ['Button', 'Typo', 'ClientOnly'];

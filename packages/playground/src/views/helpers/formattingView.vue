@@ -15,6 +15,13 @@ const countriesCode = `<pre class="text-xs h-44 overflow-y-scroll">{{ $countries
 const formatDatetime = '{{ $formatDatetime(Date.now()) }}';
 const formatTimeago = `{{ $formatDatetime(getTime5MinutesAgo()) }} &gtcc; {{ $formatTimeago(getTime5MinutesAgo()) }}`;
 const formatJPZipcode = ' {{$formatJPZipcode(1610032) }}';
+const formatKlbRecurringPaymentCycle = `/{{ $formatKlbRecurringPaymentCycle('1m') }}<br />
+/{{ $formatKlbRecurringPaymentCycle('3m') }}<br />
+/{{ $formatKlbRecurringPaymentCycle() }}<br />
+/{{ $formatKlbRecurringPaymentCycle('1h') }}<br />
+/{{ $formatKlbRecurringPaymentCycle('2y') }}<br />
+/{{ $formatKlbRecurringPaymentCycle('12h') }}<br />`;
+
 const getTime5MinutesAgo = () => {
   const dt = new Date();
   return dt.setMinutes(dt.getMinutes() - 5);
@@ -47,6 +54,18 @@ const getTime5MinutesAgo = () => {
         {{ $formatTimeago(getTime5MinutesAgo()) }}
       </template>
     </FyDocPreview>
+    <h4>$formatKlbRecurringPaymentCycle <small>(cycle: string)</small></h4>
+    <FyDocPreview :component="formatKlbRecurringPaymentCycle" lang="html">
+      <template #component>
+        /{{ $formatKlbRecurringPaymentCycle('1m') }}<br />
+        /{{ $formatKlbRecurringPaymentCycle('3m') }}<br />
+        /{{ $formatKlbRecurringPaymentCycle() }}<br />
+        /{{ $formatKlbRecurringPaymentCycle('1h') }}<br />
+        /{{ $formatKlbRecurringPaymentCycle('2y') }}<br />
+        /{{ $formatKlbRecurringPaymentCycle('12h') }}<br />
+      </template>
+    </FyDocPreview>
+
     <h4>$formatJPZipcode <small>(zipcode: number|string)</small></h4>
     <FyDocPreview :component="formatJPZipcode" lang="html">
       <template #component>

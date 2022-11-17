@@ -1,17 +1,5 @@
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
-export interface KlbSSR {
-    initial?: any;
-    uuid?: string;
-    meta?: string;
-    link?: string;
-    bodyAttributes?: string;
-    htmlAttributes?: string;
-    bodyTags?: string;
-    app?: string;
-    statusCode?: number;
-    redirect?: string;
-}
 export type HistoryState = {
     _router: any | null;
     status: number;

@@ -7,11 +7,11 @@ import { rest } from '../../../utils/rest';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 import KlbAddPaymentMethodModal from './KlbAddPaymentMethodModal.vue';
 import type {
-  KLBApiResult,
   KlbUserBilling,
   KlbUserLocation,
-  KlbUserBillingResult,
-  KlbUserLocationResult,
+  KlbAPIBillingHistory,
+  KlbAPIUserLocation,
+  KlbAPIResultUnknown,
 } from '../../../dts/klb';
 
 const store = useFVStore();
@@ -75,7 +75,7 @@ useHead({
 const getUserBilling = async () => {
   if (isAuth.value) {
     isLoaded.value = false;
-    const _userBilling = await rest<KlbUserBillingResult>(
+    const _userBilling = await rest<KlbAPIBillingHistory>(
       'User/Billing',
       'GET'
     ).catch(() => {});
@@ -83,7 +83,7 @@ const getUserBilling = async () => {
     if (_userBilling && _userBilling.data) {
       if (_userBilling.data.length != 0) {
         hasBilling.value = true;
-        const _userLocation = await rest<KlbUserLocationResult>(
+        const _userLocation = await rest<KlbAPIUserLocation>(
           `User/Location/${_userBilling.data[0].User_Location__}`,
           'GET'
         ).catch(() => {});
@@ -98,7 +98,7 @@ const getUserBilling = async () => {
 };
 
 onMounted(async () => {
-  const _pms = await rest<KLBApiResult>(
+  const _pms = await rest<KlbAPIResultUnknown>(
     'Realm/PaymentMethod:methodInfo',
     'GET',
     {

@@ -18,6 +18,7 @@ import {
   formatDate,
   formatTimeago,
   formatDatetime,
+  formatKlbRecurringPaymentCycle,
   jpZipcode,
 } from './utils/display';
 import { handleSSR, setupClient, useHistory, isSSRRendered } from './utils/ssr';
@@ -50,6 +51,8 @@ const createFyvue = () => {
     app.config.globalProperties.$formatTimeago = formatTimeago;
     app.config.globalProperties.$formatDatetime = formatDatetime;
     app.config.globalProperties.$formatJPZipcode = jpZipcode;
+    app.config.globalProperties.$formatKlbRecurringPaymentCycle =
+      formatKlbRecurringPaymentCycle;
     app.config.globalProperties.$jpZipcode = jpZipcode;
 
     let k: keyof typeof uiComponents;
@@ -81,6 +84,7 @@ const helpers = {
   formatDate,
   formatDatetime,
   formatTimeago,
+  formatKlbRecurringPaymentCycle,
 };
 const helpersSSR = {
   setupClient,

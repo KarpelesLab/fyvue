@@ -169,6 +169,19 @@ export const routes = [
         },
       },
       {
+        path: '/components/ui/FyTabs',
+        component: () => import('./views/components/ui/FyTabsView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'UI', to: '/components/ui' },
+            { name: 'FyTabs' },
+          ],
+          title: 'FyTabs - UI - Components - fyvue',
+        },
+      },
+      {
         path: '/components/ui/FyInput',
         component: () => import('./views/components/ui/FyInputView.vue'),
         meta: {
@@ -357,6 +370,19 @@ export const routes = [
             { name: 'KlbUpdatePaymentMethod' },
           ],
           title: 'KlbUpdatePaymentMethod - Klb - Components - fyvue',
+        },
+      },
+      {
+        path: '/components/klb/KlbCatalog',
+        component: () => import('./views/components/klb/KlbCatalogView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Klb', to: '/components/klb' },
+            { name: 'KlbCatalog' },
+          ],
+          title: 'KlbCatalog - Klb - Components - fyvue',
         },
       },
     ],

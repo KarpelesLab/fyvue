@@ -40,8 +40,8 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <div v-if="loading || force">
-    <div class="fy-loader">
+  <div>
+    <div class="fy-loader" v-if="loading || force">
       <div
         class="loader-container"
         role="status"

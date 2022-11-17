@@ -4,20 +4,10 @@ import { getUuid, getPath, getInitialState } from '@karpeleslab/klbfw';
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
 import { defineStore } from 'pinia';
+import type { KlbSSR } from '../dts/klb';
 //import { decode } from '../lib/he';
 //import { NavigationCallback } from "vue-router"
-export interface KlbSSR {
-  initial?: any;
-  uuid?: string;
-  meta?: string;
-  link?: string;
-  bodyAttributes?: string;
-  htmlAttributes?: string;
-  bodyTags?: string;
-  app?: string;
-  statusCode?: number;
-  redirect?: string;
-}
+
 /*
 interface AppContext {
   pinia: Pinia

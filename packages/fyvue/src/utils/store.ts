@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { rest } from '@karpeleslab/klbfw';
-import type { KLBApiResult, User } from '../dts/klb';
+import type { KlbAPIResultUnknown, KlbUser } from '../dts/klb';
 
 export type RootState = {
-  user: User | null;
+  user: KlbUser | null;
 };
 
 export const useFVStore = defineStore({
@@ -18,25 +18,28 @@ export const useFVStore = defineStore({
   },
   actions: {
     async refreshUser(params = {}) {
-      const apiData: KLBApiResult = await rest('User:get', 'GET', params).catch(
-        (err: KLBApiResult) => {}
-      ); // @todo
+      const apiData: KlbAPIResultUnknown = await rest(
+        'User:get',
+        'GET',
+        params
+      ).catch((err: KlbAPIResultUnknown) => {}); // @todo
       if (apiData.result == 'success' && apiData.data != null) {
-        this.user = apiData.data as User;
+        this.user = apiData.data as KlbUser;
       } else {
         this.user = null;
       }
     },
     async logout() {
-      const apiData: KLBApiResult = await rest('User:logout', 'POST').catch(
-        (err: KLBApiResult) => {}
-      ); // @todo
+      const apiData: KlbAPIResultUnknown = await rest(
+        'User:logout',
+        'POST'
+      ).catch((err: KlbAPIResultUnknown) => {}); // @todo
 
       if (apiData.result == 'success') {
         this.setUser(null);
       }
     },
-    setUser(user: User | null): void {
+    setUser(user: KlbUser | null): void {
       this.user = user;
     },
   },

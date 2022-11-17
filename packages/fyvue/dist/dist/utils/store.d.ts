@@ -1,59 +1,118 @@
-import type { User } from '../dts/klb';
+import type { KlbUser } from '../dts/klb';
 export type RootState = {
-    user: User | null;
+    user: KlbUser | null;
 };
 export declare const useFVStore: import("pinia").StoreDefinition<"fVStore", RootState, {
     isAuth: (state: {
         user: {
-            Agreements: {
-                tos?: boolean | undefined;
-            };
-            Created: {
+            Agreements?: "tos" | "privacy" | undefined;
+            Created?: {
                 unix: number;
                 us: number;
                 iso: string;
                 tz: string;
                 full: string;
                 unixms: string;
-            };
-            Current_Group: {
-                Name: string;
-                Nickname: string | null;
-                Owner: {
-                    _key: string;
-                    type: string;
-                };
-                Type: "user" | "group";
-                Status: "released" | "beta" | "alpha" | "private";
-                User_Group__: string;
-                User__: string;
-            };
-            Default_Billing_User_Location__: string | null;
-            Default_License_User_Location__: string | null;
-            Default_Shipping_User_Location__: string | null;
-            Email: string;
-            Has_Password: boolean;
-            Language__: string;
+            } | undefined;
+            Default_Billing_User_Location__?: string | undefined;
+            Default_License_User_Location__?: string | undefined;
+            Default_Shipping_User_Location__?: string | undefined;
+            Display_Name?: string | undefined;
+            Drive_Item__?: string | undefined;
+            Email?: string | undefined;
+            External_Id?: string | undefined;
+            Flags: "partner" | "merchant" | "under18" | "shadow" | "phone_req";
+            Id_Key?: string | undefined;
+            Index?: number | undefined;
+            Language__?: string | undefined;
+            Last_Completed_Password_Recover?: {
+                unix: number;
+                us: number;
+                iso: string;
+                tz: string;
+                full: string;
+                unixms: string;
+            } | undefined;
+            Last_Email_Change?: {
+                unix: number;
+                us: number;
+                iso: string;
+                tz: string;
+                full: string;
+                unixms: string;
+            } | undefined;
+            Last_Login?: {
+                unix: number;
+                us: number;
+                iso: string;
+                tz: string;
+                full: string;
+                unixms: string;
+            } | undefined;
+            Last_Password_Recover?: {
+                unix: number;
+                us: number;
+                iso: string;
+                tz: string;
+                full: string;
+                unixms: string;
+            } | undefined;
+            Login?: string | undefined;
+            Media_Image__?: string | undefined;
+            OAuth2_App__?: string | undefined;
+            Parent_User__: string;
+            Password: string;
+            Phone?: string | undefined;
+            Realm__: string;
+            Referral_User__: string;
+            Site__?: string | undefined;
+            Status: "shadow" | "valid" | "sub" | "banned" | "delete_pending" | "deleted" | "validating" | "compromised" | "frozen" | "expired" | "purged";
+            Timezone?: string | undefined;
+            User_Group__?: string | undefined;
+            User__: string;
+            Validation_Code?: string | undefined;
             Profile: {
-                User_Profile__: string;
-                Birthdate: string;
-                Display_Name: string;
-                Gender: "M" | "F" | "NB" | null;
-                Birthdate_Visibility: "full" | "hidden" | "year_only" | "month_day_only";
                 Allow_Mature_Content: "Y" | "N";
+                Banner_Drive_Item__?: string | undefined;
+                Birthdate: {
+                    unix: number;
+                    us: number;
+                    iso: string;
+                    tz: string;
+                    full: string;
+                    unixms: string;
+                };
+                Birthdate_Visibility: "full" | "hidden" | "year_only" | "month_day_only";
+                Display_Name: string;
+                Drive_Item__?: string | undefined;
+                Gender?: "M" | "F" | "NB" | undefined;
+                Realm__: string;
+                User_Profile__: string;
+                User__: string;
+                Username?: string | undefined;
                 Media_Image?: {
-                    Media_Image__: string;
-                    Url: string;
-                    Variation?: unknown;
+                    sizes?: string | undefined;
+                    src: string;
+                    type?: string | undefined;
+                } | undefined;
+                Banner_Image?: {
+                    sizes?: string | undefined;
+                    src: string;
+                    type?: string | undefined;
                 } | undefined;
             };
-            User_Profile__: string;
-            User__: string;
-            Status: "shadow" | "valid" | "sub" | "banned" | "delete_pending" | "deleted" | "validating" | "compromised" | "frozen" | "expired" | "purged";
+            Current_Group: {
+                Name?: string | undefined;
+                Nickname?: string | undefined;
+                Status: "released" | "beta" | "alpha" | "private";
+                Type: "user" | "group";
+                User_Group__: string;
+                User__?: string | undefined;
+            };
         } | null;
     } & import("pinia").PiniaCustomStateProperties<RootState>) => boolean;
 }, {
     refreshUser(params?: {}): Promise<void>;
     logout(): Promise<void>;
-    setUser(user: User | null): void;
+    setUser(user: KlbUser | null): void;
 }>;

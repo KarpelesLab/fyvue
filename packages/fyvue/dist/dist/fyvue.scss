@@ -736,3 +736,85 @@ button[type=submit] {
 .klb-add-method .btn-center {
   @apply mt-4 text-center;
 }
+
+.klb-product {
+  @apply w-full;
+}
+.klb-product .subs {
+  @apply block md:flex md:items-start md:justify-center md:space-x-3 w-full;
+}
+.klb-product .subs .card {
+  @apply w-full max-w-sm p-4 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-fv-neutral-800 dark:border-fv-neutral-700;
+}
+.klb-product .subs h5 {
+  @apply mb-1 text-2xl font-medium text-fv-neutral-500 dark:text-fv-neutral-400;
+}
+.klb-product .subs .price {
+  @apply flex items-baseline text-fv-neutral-900 dark:text-white;
+}
+.klb-product .subs .price .curr {
+  @apply text-3xl font-semibold;
+}
+.klb-product .subs .price .price {
+  @apply text-xl font-extrabold tracking-tight;
+}
+.klb-product .subs .price .cycle {
+  @apply ml-1 text-lg font-normal text-fv-neutral-500 dark:text-fv-neutral-400;
+}
+.klb-product .subs .product-image {
+  @apply max-h-36 mx-auto mt-4;
+}
+.klb-product .subs .btn {
+  @apply text-xl font-bold px-8 text-center py-3 block;
+}
+.klb-product .subs ul {
+  @apply space-y-5 my-7;
+}
+.klb-product .subs ul li {
+  @apply flex space-x-3;
+}
+.klb-product .subs ul li svg {
+  @apply flex-shrink-0 w-5 h-5 text-fv-primary-600 dark:text-fv-primary-500;
+}
+.klb-product .subs ul li.disabled {
+  @apply flex space-x-3 line-through decoration-fv-neutral-500;
+}
+.klb-product .subs ul li.disabled svg {
+  @apply text-fv-neutral-400 dark:text-fv-neutral-500;
+}
+.klb-product .subs ul li span {
+  @apply text-base font-normal leading-tight text-fv-neutral-500 dark:text-fv-neutral-400;
+}
+.klb-product .shop {
+  @apply block md:flex md:items-start md:justify-center md:space-x-3 w-full;
+}
+.klb-product .shop .card {
+  @apply w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-fv-neutral-800 dark:border-fv-neutral-700;
+}
+.klb-product .shop .product-image {
+  @apply p-8 rounded-t-lg  mx-auto;
+}
+.klb-product .shop .inside {
+  @apply px-5 pb-5;
+}
+.klb-product .shop h5 {
+  @apply text-xl font-semibold tracking-tight text-fv-neutral-900 dark:text-white;
+}
+.klb-product .shop .rating {
+  @apply flex items-center mt-2.5 mb-5;
+}
+.klb-product .shop .rating svg {
+  @apply w-5 h-5 text-yellow-300;
+}
+.klb-product .shop .rating span {
+  @apply bg-fv-primary-100 text-fv-primary-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-fv-primary-200 dark:text-fv-primary-800 ml-3;
+}
+.klb-product .shop .price-btn {
+  @apply flex items-center justify-between mt-4;
+}
+.klb-product .shop .price-btn span {
+  @apply text-2xl font-bold text-fv-neutral-900 dark:text-white;
+}
+.klb-product .shop .price-btn span .cycle {
+  @apply ml-1 text-lg font-normal text-fv-neutral-500 dark:text-fv-neutral-400;
+}

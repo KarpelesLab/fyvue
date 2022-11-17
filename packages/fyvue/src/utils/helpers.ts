@@ -1,7 +1,7 @@
 import mitt, { Emitter } from 'mitt';
 import { getCurrentInstance } from 'vue';
 import { rest } from './rest';
-import type { KlbCountriesResult, KlbCountry } from '../dts/klb';
+import type { KlbAPICountry, KlbCountry } from '../dts/klb';
 type Events = {
   [key: string]: any;
 };
@@ -27,7 +27,7 @@ const useCountries = () => {
 
 const countriesPromise = () => {
   return new Promise((resolve) => {
-    rest<KlbCountriesResult>('Country', 'GET')
+    rest<KlbAPICountry>('Country', 'GET')
       .then((_countries) => {
         if (_countries && _countries.result == 'success') {
           countries.countries = _countries.data;

@@ -5,7 +5,11 @@ import { required } from '@vuelidate/validators';
 import FyInput from '../../ui/FyInput/FyInput.vue';
 import { useEventBus } from '../../../utils/helpers';
 import { useRoute, useRouter } from 'vue-router';
-import type { KLBUserFlow, KLBFlowField, KLBApiResult } from '../../../dts/klb';
+import type {
+  KlbUserFlow,
+  KlbUserFlowField,
+  KlbAPIResultUnknown,
+} from '../../../dts/klb';
 import type { ObjectS2Any } from '../../../dts';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
@@ -37,14 +41,14 @@ const router = useRouter();
 const eventBus = useEventBus();
 const returnTo = ref<string>(props.returnDefault);
 const responseMessage = ref<string | null>(null);
-const responseError = ref<KLBApiResult>();
+const responseError = ref<KlbAPIResultUnknown>();
 const responseReq = ref<string[]>([]);
-const responseFields = ref<Array<KLBFlowField>>([]);
-const response = ref<KLBUserFlow>();
+const responseFields = ref<Array<KlbUserFlowField>>([]);
+const response = ref<KlbUserFlow>();
 const hasOauth = ref<boolean>(false);
 const fieldsError = ref<ObjectS2Any>({});
 const pwdRecoverMailSent = ref<boolean>(false);
-const pwdRecoverError = ref<KLBApiResult>();
+const pwdRecoverError = ref<KlbAPIResultUnknown>();
 const inputs = ref<InstanceType<typeof FyInput>[]>([]);
 
 const formData = ref<ObjectS2Any>({
@@ -57,7 +61,7 @@ const forgotPassword = async () => {
   if (await v$.value.$validate()) {
     const data = await rest('User:forgot_password', 'POST', {
       login: state.userEmail,
-    }).catch((err: KLBApiResult) => {
+    }).catch((err: KlbAPIResultUnknown) => {
       pwdRecoverError.value = err;
     });
 
@@ -106,7 +110,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
 
   formData.value.return_to = returnTo.value;
   response.value = (await rest('User:flow', 'POST', formData.value).catch(
-    (err: KLBApiResult) => {
+    (err: KlbAPIResultUnknown) => {
       responseError.value = err;
       if (responseError.value.param) {
         fieldsError.value[responseError.value.param] =
@@ -115,7 +119,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
       eventBus.emit('klblogin-loading', false);
       return;
     }
-  )) as KLBUserFlow;
+  )) as KlbUserFlow;
   if (response.value?.result == 'success') {
     if (response.value.data.url) {
       window.location.href = response.value.data.url;

@@ -8,13 +8,7 @@ import { rest } from '../../../utils/rest';
 import FyModal from '../../ui/FyModal/FyModal.vue';
 import { useEventBus } from '../../../utils/helpers';
 import { getLocale } from '@karpeleslab/klbfw';
-import type {
-  KLBApiResult,
-  KlbUserBilling,
-  KlbUserLocation,
-  KlbUserBillingResult,
-  KlbUserLocationResult,
-} from '../../../dts/klb';
+import type { KlbAPIResultUnknown } from '../../../dts/klb';
 
 const props = defineProps({
   onComplete: { type: Function, default: () => {} },
@@ -93,7 +87,7 @@ const showAddPaymentMethodModal = async () => {
 };
 
 onMounted(async () => {
-  const _pms = await rest<KLBApiResult>(
+  const _pms = await rest<KlbAPIResultUnknown>(
     'Realm/PaymentMethod:methodInfo',
     'GET',
     {

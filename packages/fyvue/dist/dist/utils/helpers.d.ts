@@ -14,5 +14,5 @@ declare const eventBus: Emitter<Events>;
 declare const useCountries: () => GlobalCountries;
 declare const countriesPromise: () => Promise<unknown>;
 declare const useEventBus: () => Emitter<Events>;
-declare const useTranslation: () => import("i18next").TFunction<string[], undefined>;
+declare const useTranslation: () => (key: string, v?: any) => string;
 export { eventBus, useEventBus, useTranslation, countriesPromise, useCountries, countries, };

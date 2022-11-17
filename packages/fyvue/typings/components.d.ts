@@ -14,6 +14,7 @@ declare module 'vue' {
     FyInput: typeof import('../src')['components']['FyInput'];
     FyPaging: typeof import('../src')['components']['FyPaging'];
     FyNavbar: typeof import('../src')['components']['FyNavbar'];
+    FyTabs: typeof import('../src')['components']['FyTabs'];
 
     // KLB
     KlbLogin: typeof import('../src')['components']['KlbLogin'];
@@ -24,19 +25,22 @@ declare module 'vue' {
     KlbUpdatePaymentMethod: typeof import('../src')['components']['KlbUpdatePaymentMethod'];
     KlbUpdateBillingLocation: typeof import('../src')['components']['KlbUpdateBillingLocation'];
     KlbAddPaymentMethodModal: typeof import('../src')['components']['KlbAddPaymentMethodModal'];
+    KlbCatalog: typeof import('../src')['components']['KlbCatalog'];
 
     // Helpers
     ClientOnly: typeof import('../src')['components']['ClientOnly'];
   }
   interface ComponentCustomProperties {
-    $t: typeof import('i18next').t;
+    $t: (key: string, v?: any | undefined) => string;
     $eventBus: typeof import('../src/utils/helpers')['eventBus'];
     $cropText: typeof import('../src')['helpers']['cropText'];
     $formatBytes: typeof import('../src')['helpers']['formatBytes'];
     $formatJPZipcode: typeof import('../src')['helpers']['formatJPZipcode'];
     $formatDate: typeof import('../src')['helpers']['formatDate'];
     $formatTimeago: typeof import('../src')['helpers']['formatTimeago'];
+    $formatKlbRecurringPaymentCycle: typeof import('../src')['helpers']['formatKlbRecurringPaymentCycle'];
     $formatDatetime: typeof import('../src')['helpers']['formatDatetime'];
+
     $countries: GlobalCountries;
   }
 }

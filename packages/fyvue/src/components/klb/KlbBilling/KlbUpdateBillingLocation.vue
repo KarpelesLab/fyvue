@@ -6,11 +6,10 @@ import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 import type {
-  KLBApiResult,
   KlbUserBilling,
   KlbUserLocation,
-  KlbUserBillingResult,
-  KlbUserLocationResult,
+  KlbAPIBillingHistory,
+  KlbAPIUserLocation,
 } from '../../../dts/klb';
 
 const store = useFVStore();
@@ -36,7 +35,7 @@ const v$ = useVuelidate(rules, state);
 const getUserBilling = async () => {
   if (isAuth.value) {
     isLoaded.value = false;
-    const _userBilling = await rest<KlbUserBillingResult>(
+    const _userBilling = await rest<KlbAPIBillingHistory>(
       'User/Billing',
       'GET'
     ).catch(() => {});
@@ -44,7 +43,7 @@ const getUserBilling = async () => {
     if (_userBilling && _userBilling.data) {
       if (_userBilling.data.length != 0) {
         hasBilling.value = true;
-        const _userLocation = await rest<KlbUserLocationResult>(
+        const _userLocation = await rest<KlbAPIUserLocation>(
           `User/Location/${_userBilling.data[0].User_Location__}`,
           'GET'
         ).catch(() => {});
@@ -52,7 +51,7 @@ const getUserBilling = async () => {
           location.value = _userLocation.data;
           state.firstname = location.value.First_Name;
           state.lastname = location.value.Last_Name;
-          state.zip = location.value.Zip;
+          if (location.value.Zip) state.zip = location.value.Zip;
           state.country = location.value.Country__;
         }
         billing.value = _userBilling.data[0];
@@ -62,7 +61,7 @@ const getUserBilling = async () => {
   }
 };
 const submitEditBillingAddress = async () => {
-  const _updateLocation = await rest<KlbUserLocationResult>(
+  const _updateLocation = await rest<KlbAPIUserLocation>(
     `User/Location/${billing.value?.User_Location__}`,
     'PATCH',
     {

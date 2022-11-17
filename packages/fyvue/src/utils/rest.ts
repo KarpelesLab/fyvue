@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { rest as _rest, getMode } from '@karpeleslab/klbfw';
-import { KlbApiResultBase } from '../dts/klb';
+import type { KlbAPIResult } from '../dts/klb';
 import { isSSRRendered } from './ssr';
 
 type RequestResult = {
-  [key: number]: KlbApiResultBase | undefined;
+  [key: number]: KlbAPIResult | undefined;
 };
 
 type RestSharedState = {
@@ -17,7 +17,7 @@ export const useRestState = defineStore({
     results: {},
   }),
   actions: {
-    addResult(key: number, result: KlbApiResultBase | undefined) {
+    addResult(key: number, result: KlbAPIResult | undefined) {
       this.results[key] = result;
     },
     delResult(key: number) {
@@ -42,7 +42,7 @@ const stringHashcode = (str: string) => {
   return hash;
 };
 
-export async function rest<ResultType extends KlbApiResultBase>(
+export async function rest<ResultType extends KlbAPIResult>(
   url: string,
   method: string = 'GET',
   params: object = {},

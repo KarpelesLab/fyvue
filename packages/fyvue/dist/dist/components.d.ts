@@ -14,6 +14,7 @@ declare module 'vue' {
     FyInput: typeof import('@karpeleslab/fyvue')['components']['FyInput'];
     FyPaging: typeof import('@karpeleslab/fyvue')['components']['FyPaging'];
     FyNavbar: typeof import('@karpeleslab/fyvue')['components']['FyNavbar'];
+    FyTabs: typeof import('@karpeleslab/fyvue')['components']['FyTabs'];
 
     // KLB
     KlbLogin: typeof import('@karpeleslab/fyvue')['components']['KlbLogin'];
@@ -24,19 +25,22 @@ declare module 'vue' {
     KlbUpdatePaymentMethod: typeof import('@karpeleslab/fyvue')['components']['KlbUpdatePaymentMethod'];
     KlbUpdateBillingLocation: typeof import('@karpeleslab/fyvue')['components']['KlbUpdateBillingLocation'];
     KlbAddPaymentMethodModal: typeof import('@karpeleslab/fyvue')['components']['KlbAddPaymentMethodModal'];
+    KlbCatalog: typeof import('@karpeleslab/fyvue')['components']['KlbCatalog'];
 
     // Helpers
     ClientOnly: typeof import('@karpeleslab/fyvue')['components']['ClientOnly'];
   }
   interface ComponentCustomProperties {
-    $t: typeof import('i18next').t;
+    $t: (key: string, v?: any | undefined) => string;
     $eventBus: typeof import('@karpeleslab/fyvue/dist/utils/helpers')['eventBus'];
     $cropText: typeof import('@karpeleslab/fyvue')['helpers']['cropText'];
     $formatBytes: typeof import('@karpeleslab/fyvue')['helpers']['formatBytes'];
     $formatJPZipcode: typeof import('@karpeleslab/fyvue')['helpers']['formatJPZipcode'];
     $formatDate: typeof import('@karpeleslab/fyvue')['helpers']['formatDate'];
     $formatTimeago: typeof import('@karpeleslab/fyvue')['helpers']['formatTimeago'];
+    $formatKlbRecurringPaymentCycle: typeof import('@karpeleslab/fyvue')['helpers']['formatKlbRecurringPaymentCycle'];
     $formatDatetime: typeof import('@karpeleslab/fyvue')['helpers']['formatDatetime'];
+
     $countries: GlobalCountries;
   }
 }

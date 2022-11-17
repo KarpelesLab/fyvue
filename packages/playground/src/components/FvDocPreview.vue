@@ -10,7 +10,7 @@ import {
 import { useFVStore } from '@karpeleslab/fyvue';
 import { computed } from 'vue';
 
-const props = defineProps({
+const _props = defineProps({
   component: {
     type: String,
   },
@@ -34,7 +34,7 @@ const props = defineProps({
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
 const componentFormated = () => {
-  let cp = props.component.trim();
+  let cp = _props.component.trim();
   if (cp.includes('_script_end_') && cp.includes('<template>')) {
     const cpSplit = cp.split('_script_end_');
     cpSplit[0] = cpSplit[0].replace('_script_', '');
@@ -103,7 +103,7 @@ const componentFormated = () => {
         </div>
       </TabPanel>
       <TabPanel class="tab-compo">
-        <div class="pt-1">
+        <div class="pt-1 pb-2">
           <template
             v-for="(code, index) in componentFormated()"
             :key="`code_${index}`"

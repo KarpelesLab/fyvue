@@ -9,6 +9,7 @@ import FyLoader from './FyLoader/FyLoader.vue';
 import FyInput from './FyInput/FyInput.vue';
 import FyPaging from './FyPaging/FyPaging.vue';
 import FyNavbar from './FyNavbar/FyNavbar.vue';
+import FyTabs from './FyTabs/FyTabs.vue';
 
 export default {
   FyModal,
@@ -22,4 +23,5 @@ export default {
   FyInput,
   FyPaging,
   FyNavbar,
+  FyTabs,
 };

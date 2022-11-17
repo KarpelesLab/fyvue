@@ -7,13 +7,13 @@ import FyPaging from '../../ui/FyPaging/FyPaging.vue';
 import FyTable from '../../ui/FyTable/FyTable.vue';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 
-import type { KlbBillingHistoryResult } from '../../../dts/klb';
+import type { KlbAPIBillingHistory } from '../../../dts/klb';
 
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
-const billingHistory = ref<KlbBillingHistoryResult>();
+const billingHistory = ref<KlbAPIBillingHistory>();
 const getPaymentHistory = async (page = 1) => {
-  const _billingHistory = await rest<KlbBillingHistoryResult>('Order', 'GET', {
+  const _billingHistory = await rest<KlbAPIBillingHistory>('Order', 'GET', {
     page_no: page,
     results_per_page: 10,
     Status: 'completed',
