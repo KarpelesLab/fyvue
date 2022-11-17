@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100px" src="https://karpeleslab.github.io/fyvue/fyvue.svg">
+  <img width="100px" src="https://www.fy-vue.com/fyvue.svg">
 </p>
 
 <p align="center">
@@ -11,4 +11,4 @@
   </a>
   <br />
 </p>
-<p align="center">Vue lib for KLB systems<br /> <a href="https://karpeleslab.github.io/fyvue/">Get Started!</a> </p>
+<p align="center">Vue lib for KLB systems<br /> <a href="https://www.fy-vue.com/">Get Started!</a> </p>
