@@ -38,7 +38,9 @@
       }
     }
     .nav-cart {
-      @apply mx-4 relative;
+      @apply relative;
+      margin-left: 1rem !important;
+      margin-right: 1rem !important;
       .badge {
         @apply inline-flex absolute -bottom-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-fv-primary-500 rounded-full;
       }

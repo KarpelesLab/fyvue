@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.42
+  * @karpeleslab/fyvue v0.2.0-beta.44
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -1414,6 +1414,17 @@ const useFVStore = pinia.defineStore({
     },
 });
 
+const ClientOnly = vue.defineComponent({
+    __name: 'ClientOnly',
+    setup(_, { slots }) {
+        const show = vue.ref(false);
+        vue.onMounted(() => {
+            show.value = true;
+        });
+        return () => (show.value && slots.default ? slots.default() : null);
+    },
+});
+
 const _hoisted_1$b = { class: "fy-navbar" };
 const _hoisted_2$b = { class: "nav-container" };
 const _hoisted_3$b = { key: 0 };
@@ -1501,20 +1512,26 @@ var script$c = vue.defineComponent({
                     }),
                     vue.createElementVNode("div", _hoisted_4$b, [
                         vue.renderSlot(_ctx.$slots, "custom"),
-                        (__props.showCart)
-                            ? vue.renderSlot(_ctx.$slots, "cart", { key: 0 }, () => [
-                                vue.createVNode(_component_router_link, {
-                                    to: __props.cartPath,
-                                    class: "nav-cart"
-                                }, {
-                                    default: vue.withCtx(() => [
-                                        vue.createVNode(vue.unref(render$3)),
-                                        vue.createElementVNode("div", _hoisted_5$a, vue.toDisplayString(vue.unref(cartCount).toString()), 1)
-                                    ]),
-                                    _: 1
-                                }, 8, ["to"])
-                            ])
-                            : vue.createCommentVNode("v-if", true),
+                        vue.createVNode(vue.unref(ClientOnly), null, {
+                            default: vue.withCtx(() => [
+                                vue.renderSlot(_ctx.$slots, "cart", {}, () => [
+                                    (__props.showCart)
+                                        ? (vue.openBlock(), vue.createBlock(_component_router_link, {
+                                            key: 0,
+                                            to: __props.cartPath,
+                                            class: "nav-cart"
+                                        }, {
+                                            default: vue.withCtx(() => [
+                                                vue.createVNode(vue.unref(render$3)),
+                                                vue.createElementVNode("div", _hoisted_5$a, vue.toDisplayString(vue.unref(cartCount).toString()), 1)
+                                            ]),
+                                            _: 1
+                                        }, 8, ["to"]))
+                                        : vue.createCommentVNode("v-if", true)
+                                ])
+                            ]),
+                            _: 3
+                        }),
                         vue.renderSlot(_ctx.$slots, "buttons", {}, () => [
                             (vue.unref(isAuth))
                                 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$a, [
@@ -1559,7 +1576,7 @@ var script$c = vue.defineComponent({
                         ]),
                         (__props.darkLight)
                             ? (vue.openBlock(), vue.createElementBlock("button", {
-                                key: 1,
+                                key: 0,
                                 onClick: _cache[1] || (_cache[1] = ($event) => (vue.unref(toggleDark)())),
                                 class: "btn neutral light-dark"
                             }, [
@@ -4148,17 +4165,6 @@ var klb = {
         useBilling,
     },
 };
-
-const ClientOnly = vue.defineComponent({
-    __name: 'ClientOnly',
-    setup(_, { slots }) {
-        const show = vue.ref(false);
-        vue.onMounted(() => {
-            show.value = true;
-        });
-        return () => (show.value && slots.default ? slots.default() : null);
-    },
-});
 
 var helpersComponents = {
     ClientOnly: ClientOnly,

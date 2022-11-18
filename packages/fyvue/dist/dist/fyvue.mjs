@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.42
+  * @karpeleslab/fyvue v0.2.0-beta.44
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -1412,6 +1412,17 @@ const useFVStore = defineStore({
     },
 });
 
+const ClientOnly = defineComponent({
+    __name: 'ClientOnly',
+    setup(_, { slots }) {
+        const show = ref(false);
+        onMounted(() => {
+            show.value = true;
+        });
+        return () => (show.value && slots.default ? slots.default() : null);
+    },
+});
+
 const _hoisted_1$b = { class: "fy-navbar" };
 const _hoisted_2$b = { class: "nav-container" };
 const _hoisted_3$b = { key: 0 };
@@ -1499,20 +1510,26 @@ var script$c = defineComponent({
                     }),
                     createElementVNode("div", _hoisted_4$b, [
                         renderSlot(_ctx.$slots, "custom"),
-                        (__props.showCart)
-                            ? renderSlot(_ctx.$slots, "cart", { key: 0 }, () => [
-                                createVNode(_component_router_link, {
-                                    to: __props.cartPath,
-                                    class: "nav-cart"
-                                }, {
-                                    default: withCtx(() => [
-                                        createVNode(unref(render$3)),
-                                        createElementVNode("div", _hoisted_5$a, toDisplayString(unref(cartCount).toString()), 1)
-                                    ]),
-                                    _: 1
-                                }, 8, ["to"])
-                            ])
-                            : createCommentVNode("v-if", true),
+                        createVNode(unref(ClientOnly), null, {
+                            default: withCtx(() => [
+                                renderSlot(_ctx.$slots, "cart", {}, () => [
+                                    (__props.showCart)
+                                        ? (openBlock(), createBlock(_component_router_link, {
+                                            key: 0,
+                                            to: __props.cartPath,
+                                            class: "nav-cart"
+                                        }, {
+                                            default: withCtx(() => [
+                                                createVNode(unref(render$3)),
+                                                createElementVNode("div", _hoisted_5$a, toDisplayString(unref(cartCount).toString()), 1)
+                                            ]),
+                                            _: 1
+                                        }, 8, ["to"]))
+                                        : createCommentVNode("v-if", true)
+                                ])
+                            ]),
+                            _: 3
+                        }),
                         renderSlot(_ctx.$slots, "buttons", {}, () => [
                             (unref(isAuth))
                                 ? (openBlock(), createElementBlock("div", _hoisted_6$a, [
@@ -1557,7 +1574,7 @@ var script$c = defineComponent({
                         ]),
                         (__props.darkLight)
                             ? (openBlock(), createElementBlock("button", {
-                                key: 1,
+                                key: 0,
                                 onClick: _cache[1] || (_cache[1] = ($event) => (unref(toggleDark)())),
                                 class: "btn neutral light-dark"
                             }, [
@@ -4146,17 +4163,6 @@ var klb = {
         useBilling,
     },
 };
-
-const ClientOnly = defineComponent({
-    __name: 'ClientOnly',
-    setup(_, { slots }) {
-        const show = ref(false);
-        onMounted(() => {
-            show.value = true;
-        });
-        return () => (show.value && slots.default ? slots.default() : null);
-    },
-});
 
 var helpersComponents = {
     ClientOnly: ClientOnly,

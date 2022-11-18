@@ -6,7 +6,7 @@ import { ref, computed } from 'vue';
 import { useFVStore } from '../../../utils/store';
 import { useHistory } from '../../../utils/ssr';
 import type { NavLink } from '../../../dts/index';
-
+import { ClientOnly } from '../../helpers/ClientOnly';
 const isDark = useDark({
   selector: 'html',
   attribute: 'class',
@@ -56,14 +56,16 @@ withDefaults(
       </router-link>
       <div class="nav-actions">
         <slot name="custom"></slot>
-        <template v-if="showCart">
+        <ClientOnly>
           <slot name="cart">
-            <router-link :to="cartPath" class="nav-cart">
-              <ShoppingCartIcon />
-              <div class="badge">{{ cartCount.toString() }}</div>
-            </router-link>
+            <template v-if="showCart">
+              <router-link :to="cartPath" class="nav-cart">
+                <ShoppingCartIcon />
+                <div class="badge">{{ cartCount.toString() }}</div>
+              </router-link>
+            </template>
           </slot>
-        </template>
+        </ClientOnly>
         <slot name="buttons">
           <div v-if="isAuth">
             <a

@@ -596,7 +596,9 @@ button[type=submit] {
   @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
 }
 .fy-navbar .nav-actions .nav-cart {
-  @apply mx-4 relative;
+  @apply relative;
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
 }
 .fy-navbar .nav-actions .nav-cart .badge {
   @apply inline-flex absolute -bottom-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-fv-primary-500 rounded-full;
