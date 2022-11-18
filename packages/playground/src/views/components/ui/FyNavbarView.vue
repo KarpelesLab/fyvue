@@ -66,6 +66,18 @@ const props = [
     info: 'Show default Dashboard button',
     def: 'true',
   },
+  {
+    name: 'cartPath?',
+    type: 'string',
+    info: 'Path to createOrder',
+    def: '/user/order',
+  },
+  {
+    name: 'showCart?',
+    type: 'boolean',
+    info: 'Show cart icon in navbar',
+    def: 'false',
+  },
 ];
 
 const slots = [

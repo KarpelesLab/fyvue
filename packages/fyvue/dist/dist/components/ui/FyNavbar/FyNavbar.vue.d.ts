@@ -27,7 +27,17 @@ declare const _default: import("vue").DefineComponent<{
         required: false;
         default: string;
     };
+    cartPath: {
+        type: StringConstructor;
+        required: false;
+        default: string;
+    };
     showDashboardLink: {
+        type: BooleanConstructor;
+        required: false;
+        default: boolean;
+    };
+    showCart: {
         type: BooleanConstructor;
         required: false;
         default: boolean;
@@ -63,7 +73,17 @@ declare const _default: import("vue").DefineComponent<{
         required: false;
         default: string;
     };
+    cartPath: {
+        type: StringConstructor;
+        required: false;
+        default: string;
+    };
     showDashboardLink: {
+        type: BooleanConstructor;
+        required: false;
+        default: boolean;
+    };
+    showCart: {
         type: BooleanConstructor;
         required: false;
         default: boolean;
@@ -73,6 +93,8 @@ declare const _default: import("vue").DefineComponent<{
     darkLight: boolean;
     loginPath: string;
     accountPath: string;
+    cartPath: string;
     showDashboardLink: boolean;
+    showCart: boolean;
 }>;
 export default _default;

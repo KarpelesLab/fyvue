@@ -37,6 +37,15 @@
         @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
       }
     }
+    .nav-cart {
+      @apply mx-4 relative;
+      .badge {
+        @apply inline-flex absolute -bottom-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-fv-primary-500 rounded-full;
+      }
+      svg {
+        @apply w-7 h-7 text-fv-neutral-600 dark:text-fv-neutral-300;
+      }
+    }
   }
   .nav-custom {
     @apply flex items-center justify-center order-2 md:order-1 mt-2 md:mt-0 flex-1 scale-90 md:scale-100;

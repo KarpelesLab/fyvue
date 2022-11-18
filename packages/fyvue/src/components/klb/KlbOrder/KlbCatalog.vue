@@ -5,7 +5,9 @@ import type { KlbAPICatalog } from '../../../dts/klb';
 import { rest } from '../../../utils/rest';
 import { useCart } from '../KlbOrder/useCart';
 import { useHistory } from '../../../utils/ssr';
+import { useFVStore } from '../../../utils/store';
 const products = ref<KlbAPICatalog>();
+const store = useFVStore();
 const props = withDefaults(
   defineProps<{
     options?: ObjectS2Any;
@@ -49,13 +51,12 @@ const addProductToCart = async (productUuid: string) => {
       props.productMeta
     );
     if (_addResult) {
+      await store.refreshCart();
       useHistory().push(props.startOrderPath);
     }
   } else if (props.displayType == 'shop') {
-    const _addResult = await useCart().addProduct(
-      productUuid,
-      props.productMeta
-    );
+    await useCart().addProduct(productUuid, props.productMeta);
+    await store.refreshCart();
   }
 };
 </script>

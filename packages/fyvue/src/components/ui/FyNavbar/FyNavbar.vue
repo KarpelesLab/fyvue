@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core';
-import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid';
+import { MoonIcon, SunIcon, ShoppingCartIcon } from '@heroicons/vue/24/solid';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { ref, computed } from 'vue';
 import { useFVStore } from '../../../utils/store';
 import { useHistory } from '../../../utils/ssr';
-import { ClientOnly } from '../../helpers/ClientOnly';
 import type { NavLink } from '../../../dts/index';
 
 const isDark = useDark({
@@ -19,6 +18,7 @@ const toggleDark = useToggle(isDark);
 const toggleNavbarOpen = useToggle(isOpen);
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
+const cartCount = computed(() => store.cartCount);
 const logout = async () => {
   await store.logout();
   useHistory().push('/', 302);
@@ -32,14 +32,18 @@ withDefaults(
     links: NavLink[];
     loginPath?: string;
     accountPath?: string;
+    cartPath?: string;
     showDashboardLink?: boolean;
+    showCart?: boolean;
   }>(),
   {
     showTitle: true,
     darkLight: true,
     loginPath: '/login',
     accountPath: '/user',
+    cartPath: '/user/order',
     showDashboardLink: true,
+    showCart: false,
   }
 );
 </script>
@@ -52,6 +56,14 @@ withDefaults(
       </router-link>
       <div class="nav-actions">
         <slot name="custom"></slot>
+        <template v-if="showCart">
+          <slot name="cart">
+            <router-link :to="cartPath" class="nav-cart">
+              <ShoppingCartIcon />
+              <div class="badge">{{ cartCount.toString() }}</div>
+            </router-link>
+          </slot>
+        </template>
         <slot name="buttons">
           <div v-if="isAuth">
             <a

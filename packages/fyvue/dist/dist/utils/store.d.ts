@@ -1,6 +1,7 @@
 import type { KlbUser } from '../dts/klb';
 export type RootState = {
     user: KlbUser | null;
+    cartCount: number;
 };
 export declare const useFVStore: import("pinia").StoreDefinition<"fVStore", RootState, {
     isAuth: (state: {
@@ -110,8 +111,10 @@ export declare const useFVStore: import("pinia").StoreDefinition<"fVStore", Root
                 User__?: string | undefined;
             };
         } | null;
+        cartCount: number;
     } & import("pinia").PiniaCustomStateProperties<RootState>) => boolean;
 }, {
+    refreshCart(): Promise<void>;
     refreshUser(params?: {}): Promise<void>;
     logout(): Promise<void>;
     setUser(user: KlbUser | null): void;

@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.41
+  * @karpeleslab/fyvue v0.2.0-beta.42
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -210,7 +210,7 @@ const useTranslation = () => {
     return vueInstance.appContext.config.globalProperties.$t;
 };
 
-function render$a(_ctx, _cache) {
+function render$b(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -225,7 +225,7 @@ function render$a(_ctx, _cache) {
   ]))
 }
 
-function render$9(_ctx, _cache) {
+function render$a(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -240,7 +240,7 @@ function render$9(_ctx, _cache) {
   ]))
 }
 
-function render$8(_ctx, _cache) {
+function render$9(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -255,7 +255,7 @@ function render$8(_ctx, _cache) {
   ]))
 }
 
-function render$7(_ctx, _cache) {
+function render$8(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -270,7 +270,7 @@ function render$7(_ctx, _cache) {
   ]))
 }
 
-function render$6(_ctx, _cache) {
+function render$7(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -282,7 +282,7 @@ function render$6(_ctx, _cache) {
   ]))
 }
 
-function render$5(_ctx, _cache) {
+function render$6(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -297,7 +297,7 @@ function render$5(_ctx, _cache) {
   ]))
 }
 
-function render$4(_ctx, _cache) {
+function render$5(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -312,7 +312,7 @@ function render$4(_ctx, _cache) {
   ]))
 }
 
-function render$3(_ctx, _cache) {
+function render$4(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -320,6 +320,17 @@ function render$3(_ctx, _cache) {
     "aria-hidden": "true"
   }, [
     createElementVNode("path", { d: "M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" })
+  ]))
+}
+
+function render$3(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", { d: "M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" })
   ]))
 }
 
@@ -620,7 +631,7 @@ var script$k = defineComponent({
                             "aria-current": item.to ? undefined : 'page'
                         }, [
                             (index != 0)
-                                ? (openBlock(), createBlock(unref(render$8), { key: 0 }))
+                                ? (openBlock(), createBlock(unref(render$9), { key: 0 }))
                                 : createCommentVNode("v-if", true),
                             (item.to)
                                 ? (openBlock(), createBlock(_component_router_link, {
@@ -629,7 +640,7 @@ var script$k = defineComponent({
                                 }, {
                                     default: withCtx(() => [
                                         (index === 0)
-                                            ? (openBlock(), createBlock(unref(render$6), { key: 0 }))
+                                            ? (openBlock(), createBlock(unref(render$7), { key: 0 }))
                                             : createCommentVNode("v-if", true),
                                         createTextVNode(" " + toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
                                     ]),
@@ -1037,7 +1048,7 @@ var script$e = defineComponent({
                                 href: __props.linkIcon,
                                 target: "_blank"
                             }, [
-                                createVNode(unref(render$5))
+                                createVNode(unref(render$6))
                             ], 8, _hoisted_4$d))
                             : createCommentVNode("v-if", true),
                         (__props.req)
@@ -1221,7 +1232,7 @@ var script$d = defineComponent({
                                     class: "prev-next"
                                 }, [
                                     createElementVNode("span", _hoisted_4$c, toDisplayString(_ctx.$t('previous_paging')), 1),
-                                    createVNode(unref(render$9), { class: "fv-icon-base" })
+                                    createVNode(unref(render$a), { class: "fv-icon-base" })
                                 ]))
                                 : createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 1)
@@ -1279,7 +1290,7 @@ var script$d = defineComponent({
                                     class: "prev-next"
                                 }, [
                                     createElementVNode("span", _hoisted_10$8, toDisplayString(_ctx.$t('next_paging')), 1),
-                                    createVNode(unref(render$8), { class: "fv-icon-base" })
+                                    createVNode(unref(render$9), { class: "fv-icon-base" })
                                 ]))
                                 : createCommentVNode("v-if", true)
                         ]),
@@ -1297,10 +1308,76 @@ var script$d = defineComponent({
 
 script$d.__file = "src/components/ui/FyPaging/FyPaging.vue";
 
+function useCart() {
+    return {
+        resetCart: () => {
+            return new Promise((resolve, reject) => {
+                rest('Catalog/Cart/@:reset', 'POST', {})
+                    .then((_resetResult) => {
+                    if (_resetResult && _resetResult.result == 'success') {
+                        resolve(true);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                })
+                    .catch(() => {
+                    reject(false);
+                });
+            });
+        },
+        createOrder(billingLocation) {
+            return rest('Catalog/Cart/@:createOrder', 'POST', {
+                Billing: billingLocation,
+            });
+        },
+        getCart() {
+            return rest('/Catalog/Cart/@', 'GET');
+        },
+        delProduct: (productKey) => {
+            return new Promise((resolve, reject) => {
+                rest('Catalog/Cart/@:process', 'POST', {
+                    request: productKey + `=0`,
+                })
+                    .then((_addProductCartResult) => {
+                    if (_addProductCartResult &&
+                        _addProductCartResult.result == 'success') {
+                        resolve(true);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                })
+                    .catch(() => {
+                    reject(false);
+                });
+            });
+        },
+        addProduct: (productUuid, meta) => {
+            return new Promise((resolve, reject) => {
+                rest('Catalog/Cart/@:process', 'POST', { request: productUuid + meta })
+                    .then((_addProductCartResult) => {
+                    if (_addProductCartResult &&
+                        _addProductCartResult.result == 'success') {
+                        resolve(true);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                })
+                    .catch(() => {
+                    reject(false);
+                });
+            });
+        },
+    };
+}
+
 const useFVStore = defineStore({
     id: 'fVStore',
     state: () => ({
         user: null,
+        cartCount: 0,
     }),
     getters: {
         isAuth: (state) => {
@@ -1308,6 +1385,12 @@ const useFVStore = defineStore({
         },
     },
     actions: {
+        async refreshCart() {
+            const _cart = await useCart().getCart();
+            if (_cart && _cart.result == 'success') {
+                this.cartCount = _cart.data.products.length;
+            }
+        },
         async refreshUser(params = {}) {
             const apiData = await rest$1('User:get', 'GET', params).catch((err) => { });
             if (apiData.result == 'success' && apiData.data != null) {
@@ -1333,10 +1416,11 @@ const _hoisted_1$b = { class: "fy-navbar" };
 const _hoisted_2$b = { class: "nav-container" };
 const _hoisted_3$b = { key: 0 };
 const _hoisted_4$b = { class: "nav-actions" };
-const _hoisted_5$a = { key: 0 };
-const _hoisted_6$a = { key: 1 };
-const _hoisted_7$9 = createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
-const _hoisted_8$9 = createElementVNode("svg", {
+const _hoisted_5$a = { class: "badge" };
+const _hoisted_6$a = { key: 0 };
+const _hoisted_7$9 = { key: 1 };
+const _hoisted_8$9 = createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_9$8 = createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1348,12 +1432,12 @@ const _hoisted_8$9 = createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_9$8 = [
-    _hoisted_7$9,
-    _hoisted_8$9
+const _hoisted_10$7 = [
+    _hoisted_8$9,
+    _hoisted_9$8
 ];
-const _hoisted_10$7 = { class: "main-ul" };
-const _hoisted_11$7 = createElementVNode("svg", {
+const _hoisted_11$7 = { class: "main-ul" };
+const _hoisted_12$5 = createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1365,8 +1449,8 @@ const _hoisted_11$7 = createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_12$5 = ["href", "title", "alt"];
 const _hoisted_13$5 = ["href", "title", "alt"];
+const _hoisted_14$4 = ["href", "title", "alt"];
 var script$c = defineComponent({
     __name: 'FyNavbar',
     props: {
@@ -1376,7 +1460,9 @@ var script$c = defineComponent({
         links: { type: Array, required: true },
         loginPath: { type: String, required: false, default: '/login' },
         accountPath: { type: String, required: false, default: '/user' },
-        showDashboardLink: { type: Boolean, required: false, default: true }
+        cartPath: { type: String, required: false, default: '/user/order' },
+        showDashboardLink: { type: Boolean, required: false, default: true },
+        showCart: { type: Boolean, required: false, default: false }
     },
     setup(__props) {
         const isDark = useDark({
@@ -1390,6 +1476,7 @@ var script$c = defineComponent({
         const toggleNavbarOpen = useToggle(isOpen);
         const store = useFVStore();
         const isAuth = computed(() => store.isAuth);
+        const cartCount = computed(() => store.cartCount);
         const logout = async () => {
             await store.logout();
             useHistory().push('/', 302);
@@ -1412,9 +1499,23 @@ var script$c = defineComponent({
                     }),
                     createElementVNode("div", _hoisted_4$b, [
                         renderSlot(_ctx.$slots, "custom"),
+                        (__props.showCart)
+                            ? renderSlot(_ctx.$slots, "cart", { key: 0 }, () => [
+                                createVNode(_component_router_link, {
+                                    to: __props.cartPath,
+                                    class: "nav-cart"
+                                }, {
+                                    default: withCtx(() => [
+                                        createVNode(unref(render$3)),
+                                        createElementVNode("div", _hoisted_5$a, toDisplayString(unref(cartCount).toString()), 1)
+                                    ]),
+                                    _: 1
+                                }, 8, ["to"])
+                            ])
+                            : createCommentVNode("v-if", true),
                         renderSlot(_ctx.$slots, "buttons", {}, () => [
                             (unref(isAuth))
-                                ? (openBlock(), createElementBlock("div", _hoisted_5$a, [
+                                ? (openBlock(), createElementBlock("div", _hoisted_6$a, [
                                     createElementVNode("a", {
                                         href: "javascript:void(0)",
                                         onClick: _cache[0] || (_cache[0] = ($event) => (logout())),
@@ -1433,7 +1534,7 @@ var script$c = defineComponent({
                                         }))
                                         : createCommentVNode("v-if", true)
                                 ]))
-                                : (openBlock(), createElementBlock("div", _hoisted_6$a, [
+                                : (openBlock(), createElementBlock("div", _hoisted_7$9, [
                                     createVNode(_component_router_link, {
                                         to: "/login",
                                         class: "btn neutral btn-defaults"
@@ -1456,12 +1557,12 @@ var script$c = defineComponent({
                         ]),
                         (__props.darkLight)
                             ? (openBlock(), createElementBlock("button", {
-                                key: 0,
+                                key: 1,
                                 onClick: _cache[1] || (_cache[1] = ($event) => (unref(toggleDark)())),
                                 class: "btn neutral light-dark"
                             }, [
                                 (!unref(isDark))
-                                    ? (openBlock(), createBlock(unref(render$4), { key: 0 }))
+                                    ? (openBlock(), createBlock(unref(render$5), { key: 0 }))
                                     : (openBlock(), createBlock(unref(render$2), { key: 1 }))
                             ]))
                             : createCommentVNode("v-if", true),
@@ -1469,12 +1570,12 @@ var script$c = defineComponent({
                             type: "button",
                             class: "open-nav-button",
                             onClick: _cache[2] || (_cache[2] = ($event) => (unref(toggleNavbarOpen)()))
-                        }, _hoisted_9$8)
+                        }, _hoisted_10$7)
                     ]),
                     createElementVNode("div", {
                         class: normalizeClass(["nav-menu", isOpen.value ? 'is-open' : ''])
                     }, [
-                        createElementVNode("ul", _hoisted_10$7, [
+                        createElementVNode("ul", _hoisted_11$7, [
                             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.links, (link, index) => {
                                 return (openBlock(), createElementBlock("li", {
                                     key: `link_${index.toString()}`
@@ -1485,7 +1586,7 @@ var script$c = defineComponent({
                                                 createVNode(unref(MenuButton), { class: "is-link has-childs" }, {
                                                     default: withCtx(() => [
                                                         createTextVNode(toDisplayString(link.name) + " ", 1),
-                                                        _hoisted_11$7
+                                                        _hoisted_12$5
                                                     ]),
                                                     _: 2
                                                 }, 1024),
@@ -1519,7 +1620,7 @@ var script$c = defineComponent({
                                                                                             title: children.name,
                                                                                             alt: children.name,
                                                                                             class: "is-link"
-                                                                                        }, toDisplayString(children.name), 9, _hoisted_12$5))
+                                                                                        }, toDisplayString(children.name), 9, _hoisted_13$5))
                                                                                 ])
                                                                             ]),
                                                                             _: 2
@@ -1555,7 +1656,7 @@ var script$c = defineComponent({
                                                     title: link.name,
                                                     alt: link.name,
                                                     class: normalizeClass(["is-link", ''])
-                                                }, toDisplayString(link.name), 9, _hoisted_13$5))
+                                                }, toDisplayString(link.name), 9, _hoisted_14$4))
                                         ], 64))
                                 ]));
                             }), 128))
@@ -1974,7 +2075,7 @@ var script$9 = defineComponent({
                                     onClick: _cache[0] || (_cache[0] = ($event) => (unref(eventBus).emit('UpdateEmailModal', true))),
                                     class: "btn primary small"
                                 }, [
-                                    createVNode(unref(render$3), { class: "edit-icon" }),
+                                    createVNode(unref(render$4), { class: "edit-icon" }),
                                     createTextVNode(" " + toDisplayString(_ctx.$t('update_email_display_cta')), 1)
                                 ])
                             ])
@@ -2096,7 +2197,7 @@ var script$8 = defineComponent({
                                     onClick: _cache[0] || (_cache[0] = ($event) => (unref(eventBus).emit('updatePwdModal', true))),
                                     class: "btn primary small"
                                 }, [
-                                    createVNode(unref(render$3), { class: "edit-icon" }),
+                                    createVNode(unref(render$4), { class: "edit-icon" }),
                                     createTextVNode(" " + toDisplayString(_ctx.$t('update_pwd_display_cta')), 1)
                                 ])
                             ])
@@ -2191,7 +2292,7 @@ var script$7 = defineComponent({
                                 class: "btn primary small"
                             }, {
                                 default: withCtx(() => [
-                                    createVNode(unref(render$7), { class: "edit-icon" }),
+                                    createVNode(unref(render$8), { class: "edit-icon" }),
                                     createTextVNode(" " + toDisplayString(_ctx.$t('delete_account_display_cta')), 1)
                                 ]),
                                 _: 1
@@ -2270,7 +2371,7 @@ var script$6 = defineComponent({
                                         target: "_blank",
                                         class: "btn neutral download-btn"
                                     }, [
-                                        createVNode(unref(render$a), {
+                                        createVNode(unref(render$b), {
                                             stroke: "currentColor",
                                             class: "download-icon"
                                         }),
@@ -3198,71 +3299,6 @@ var script$3 = defineComponent({
 
 script$3.__file = "src/components/klb/KlbUser/KlbUserBilling.vue";
 
-function useCart() {
-    return {
-        resetCart: () => {
-            return new Promise((resolve, reject) => {
-                rest('Catalog/Cart/@:reset', 'POST', {})
-                    .then((_resetResult) => {
-                    if (_resetResult && _resetResult.result == 'success') {
-                        resolve(true);
-                    }
-                    else {
-                        resolve(false);
-                    }
-                })
-                    .catch(() => {
-                    reject(false);
-                });
-            });
-        },
-        createOrder(billingLocation) {
-            return rest('Catalog/Cart/@:createOrder', 'POST', {
-                Billing: billingLocation,
-            });
-        },
-        getCart() {
-            return rest('/Catalog/Cart/@', 'GET');
-        },
-        delProduct: (productKey) => {
-            return new Promise((resolve, reject) => {
-                rest('Catalog/Cart/@:process', 'POST', {
-                    request: productKey + `=0`,
-                })
-                    .then((_addProductCartResult) => {
-                    if (_addProductCartResult &&
-                        _addProductCartResult.result == 'success') {
-                        resolve(true);
-                    }
-                    else {
-                        resolve(false);
-                    }
-                })
-                    .catch(() => {
-                    reject(false);
-                });
-            });
-        },
-        addProduct: (productUuid, meta) => {
-            return new Promise((resolve, reject) => {
-                rest('Catalog/Cart/@:process', 'POST', { request: productUuid + meta })
-                    .then((_addProductCartResult) => {
-                    if (_addProductCartResult &&
-                        _addProductCartResult.result == 'success') {
-                        resolve(true);
-                    }
-                    else {
-                        resolve(false);
-                    }
-                })
-                    .catch(() => {
-                    reject(false);
-                });
-            });
-        },
-    };
-}
-
 const _hoisted_1$2 = { class: "klb-product" };
 const _hoisted_2$2 = {
     key: 0,
@@ -3303,6 +3339,7 @@ var script$2 = defineComponent({
     setup(__props) {
         const props = __props;
         const products = ref();
+        const store = useFVStore();
         onMounted(async () => {
             const _products = await rest('/Catalog/Product:search', 'GET', {
                 ...props.options,
@@ -3320,11 +3357,13 @@ var script$2 = defineComponent({
                 await useCart().resetCart();
                 const _addResult = await useCart().addProduct(productUuid, props.productMeta);
                 if (_addResult) {
+                    await store.refreshCart();
                     useHistory().push(props.startOrderPath);
                 }
             }
             else if (props.displayType == 'shop') {
                 await useCart().addProduct(productUuid, props.productMeta);
+                await store.refreshCart();
             }
         };
         return (_ctx, _cache) => {
