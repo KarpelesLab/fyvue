@@ -65,7 +65,7 @@ const addProductToCart = async (productUuid: string) => {
       <div
         v-for="product in products?.data.data"
         :key="product.Catalog_Product__"
-        class="card"
+        class="card-container card-defaults"
       >
         <div>
           <h5>{{ product['Basic.Name'] }}</h5>
@@ -106,7 +106,7 @@ const addProductToCart = async (productUuid: string) => {
       <div
         v-for="product in products?.data.data"
         :key="product.Catalog_Product__"
-        class="card"
+        class="card-container card-defaults"
       >
         <img
           v-if="

@@ -11,22 +11,25 @@ import type {
   KlbUserLocation,
   KlbAPIUserLocation,
 } from '../../../dts/klb';
-import { useEventBus } from '../../../utils/helpers';
+import { useTranslation } from '../../../utils/helpers';
 
 const props = withDefaults(
   defineProps<{
     displayOnly?: boolean;
     locationUuid?: string;
     modelValue?: string;
+    selectedLocation?: string;
   }>(),
   {
     displayOnly: false,
+    selectedLocation: undefined,
   }
 );
 interface KlbLocationsByUuid {
   [key: string]: KlbUserLocation;
 }
 const store = useFVStore();
+const translate = useTranslation();
 const isAuth = computed(() => store.isAuth);
 const location = ref<KlbUserLocation>();
 const locationsSelectOptions = ref<Array<string[]>>([]);
@@ -126,8 +129,14 @@ const getUserLocation = async () => {
     if (_locations && _locations.result == 'success') {
       if (_locations.data.length > 0) {
         location.value = _locations.data[0];
-        selectedLocation.value = location.value.User_Location__;
+        if (props.selectedLocation) {
+          selectedLocation.value = props.selectedLocation;
+        } else {
+          selectedLocation.value = _locations.data[0].User_Location__;
+        }
+
         locationsSelectOptions.value = [];
+        locations.value = {};
         _locations.data.forEach((loc) => {
           locations.value[loc.User_Location__] = loc;
           locationsSelectOptions.value.push([
@@ -135,13 +144,20 @@ const getUserLocation = async () => {
             loc.Display.join(', '),
           ]);
         });
-        locationsSelectOptions.value.push(['new', 'New']);
+        if (!props.displayOnly)
+          locationsSelectOptions.value.push([
+            'new',
+            translate('klb_location_new_cta'),
+          ]);
 
         editMode.value = false;
       } else {
+        locations.value = {};
         locationsSelectOptions.value = [];
-        locationsSelectOptions.value.push(['new', 'New']);
-        selectedLocation.value = 'new';
+        if (!props.displayOnly) {
+          locationsSelectOptions.value.push(['new', 'New']);
+          selectedLocation.value = 'new';
+        }
         editMode.value = true;
       }
     }
@@ -158,37 +174,54 @@ onMounted(async () => {
 <template>
   <div
     v-if="isAuth && isLoaded"
-    class="klb-update-billing-loc klb-user-location"
+    :class="displayOnly ? '' : 'card-container card-defaults klb-user-location'"
   >
     <div class="location-select">
-      <FyInput
-        id="selectLocation"
-        :options="locationsSelectOptions"
-        type="select"
-        v-model="selectedLocation"
-      />
-      <button
-        class="btn primary btn-defaults"
-        v-if="editMode == false"
-        @click="editMode = true"
-      >
-        {{ $t('klb_edit_location') }}
-      </button>
-      <button
-        class="btn danger btn-defaults"
-        v-if="editMode == true && location && selectedLocation != 'new'"
-        @click="deleteLocation()"
-      >
-        {{ $t('klb_delete_location') }}
-      </button>
-      <button
-        class="btn-defaults btn neutral"
-        type="reset"
-        @click="editMode = false"
-        v-if="editMode == true"
-      >
-        {{ $t('klb_locations_reset_cta') }}
-      </button>
+      <div class="input-group">
+        <label class="label-basic" for="selectLocation" v-if="displayOnly"
+          >{{ $t('klb_user_location_label') }}
+        </label>
+        <div class="input-box">
+          <FyInput
+            id="selectLocation"
+            :options="locationsSelectOptions"
+            type="select"
+            v-model="selectedLocation"
+          />
+        </div>
+      </div>
+      <template v-if="!displayOnly">
+        <button
+          class="btn primary btn-defaults"
+          v-if="editMode == false"
+          @click="editMode = true"
+        >
+          {{ $t('klb_edit_location') }}
+        </button>
+        <button
+          class="btn danger btn-defaults"
+          v-if="editMode == true && location && selectedLocation != 'new'"
+          @click="deleteLocation()"
+        >
+          {{ $t('klb_delete_location') }}
+        </button>
+        <button
+          class="btn-defaults btn neutral"
+          type="reset"
+          @click="editMode = false"
+          v-if="editMode == true"
+        >
+          {{ $t('klb_locations_reset_cta') }}
+        </button>
+        <button
+          class="btn-defaults btn primary"
+          type="reset"
+          @click="selectedLocation = 'new'"
+          v-if="editMode == false"
+        >
+          {{ $t('klb_location_new_cta') }}
+        </button>
+      </template>
     </div>
     <div v-if="editMode">
       <div>
@@ -247,6 +280,7 @@ onMounted(async () => {
               </div>
             </div>
           </div>
+          <br />
           <div class="btn-box">
             <button class="btn-defaults btn primary" type="submit">
               {{ $t('klb_locations_save_cta') }}

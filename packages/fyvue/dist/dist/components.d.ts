@@ -22,8 +22,8 @@ declare module 'vue' {
     KlbUpdatePasswordModal: typeof import('@karpeleslab/fyvue')['components']['KlbUpdatePasswordModal'];
     KlbDeleteAccount: typeof import('@karpeleslab/fyvue')['components']['KlbDeleteAccount'];
     KlbBillingHistory: typeof import('@karpeleslab/fyvue')['components']['KlbBillingHistory'];
-    KlbUpdatePaymentMethod: typeof import('@karpeleslab/fyvue')['components']['KlbUpdatePaymentMethod'];
-    KlbUpdateBillingLocation: typeof import('@karpeleslab/fyvue')['components']['KlbUpdateBillingLocation'];
+    KlbUserBilling: typeof import('@karpeleslab/fyvue')['components']['KlbUserBilling'];
+    KlbUserLocation: typeof import('@karpeleslab/fyvue')['components']['KlbUserLocation'];
     KlbAddPaymentMethodModal: typeof import('@karpeleslab/fyvue')['components']['KlbAddPaymentMethodModal'];
     KlbCatalog: typeof import('@karpeleslab/fyvue')['components']['KlbCatalog'];
     KlbOrder: typeof import('@karpeleslab/fyvue')['components']['KlbOrder'];

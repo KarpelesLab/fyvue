@@ -22,8 +22,8 @@ declare module 'vue' {
     KlbUpdatePasswordModal: typeof import('../src')['components']['KlbUpdatePasswordModal'];
     KlbDeleteAccount: typeof import('../src')['components']['KlbDeleteAccount'];
     KlbBillingHistory: typeof import('../src')['components']['KlbBillingHistory'];
-    KlbUpdatePaymentMethod: typeof import('../src')['components']['KlbUpdatePaymentMethod'];
-    KlbUpdateBillingLocation: typeof import('../src')['components']['KlbUpdateBillingLocation'];
+    KlbUserBilling: typeof import('../src')['components']['KlbUserBilling'];
+    KlbUserLocation: typeof import('../src')['components']['KlbUserLocation'];
     KlbAddPaymentMethodModal: typeof import('../src')['components']['KlbAddPaymentMethodModal'];
     KlbCatalog: typeof import('../src')['components']['KlbCatalog'];
     KlbOrder: typeof import('../src')['components']['KlbOrder'];

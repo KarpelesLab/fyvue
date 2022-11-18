@@ -20,4 +20,21 @@ html, body {
 .response-error {
   @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
 }
-
+.card-container {
+  @apply block  border border-fv-neutral-200 rounded dark:border-fv-neutral-700;
+  background: rgba($color: #eee, $alpha: .3);
+  :first-child {
+    @apply mt-0;
+  }
+  &.card-defaults {
+    @apply p-2 md:p-3 lg:p-4 xl:p-5 2xl:p-6;
+  }
+  &.card-defaults-static {
+    @apply p-2 ;
+  }
+}
+.dark {
+  .card-container {
+    background: rgba($color: #000, $alpha: .3);
+  }
+}

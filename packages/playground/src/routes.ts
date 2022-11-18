@@ -345,31 +345,31 @@ export const routes = [
         },
       },
       {
-        path: '/components/klb/KlbUpdateBillingLocation',
+        path: '/components/klb/KlbUserLocation',
         component: () =>
-          import('./views/components/klb/KlbUpdateBillingLocationView.vue'),
+          import('./views/components/klb/KlbUserLocationView.vue'),
         meta: {
           breadcrumb: [
             { name: 'fyvue', to: '/' },
             { name: 'Components', to: '/components' },
             { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbUpdateBillingLocation' },
+            { name: 'KlbUserLocation' },
           ],
-          title: 'KlbUpdateBillingLocation - Klb - Components - fyvue',
+          title: 'KlbUserLocation - Klb - Components - fyvue',
         },
       },
       {
-        path: '/components/klb/KlbUpdatePaymentMethod',
+        path: '/components/klb/KlbUserBilling',
         component: () =>
-          import('./views/components/klb/KlbUpdatePaymentMethodView.vue'),
+          import('./views/components/klb/KlbUserBillingView.vue'),
         meta: {
           breadcrumb: [
             { name: 'fyvue', to: '/' },
             { name: 'Components', to: '/components' },
             { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbUpdatePaymentMethod' },
+            { name: 'KlbUserBilling' },
           ],
-          title: 'KlbUpdatePaymentMethod - Klb - Components - fyvue',
+          title: 'KlbUserBilling - Klb - Components - fyvue',
         },
       },
       {

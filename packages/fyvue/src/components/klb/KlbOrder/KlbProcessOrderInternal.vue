@@ -229,7 +229,7 @@ onMounted(async () => {
               {{ $t('klb_order_option_stripe') }}
             </button>
             <div class="klb-order-button">
-              <button class="btn primary btn-defaults">
+              <button class="btn primary btn-defaults big">
                 {{ $t('klb_order_process_cta') }}
               </button>
             </div>

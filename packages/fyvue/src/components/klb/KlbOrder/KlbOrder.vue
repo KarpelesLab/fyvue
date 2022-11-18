@@ -98,7 +98,7 @@ onMounted(async () => {
   <div class="klb-order" v-if="isReady">
     <FyLoader id="klb-order-main" />
     <h2>{{ $t('klb_order_cart_summary') }}</h2>
-    <div class="order-summary" v-if="cart && !hasOrder">
+    <div class="card-container card-defaults" v-if="cart && !hasOrder">
       <div class="fv-typo mb-2" v-if="cart.data.products.length == 0">
         <p>
           {{ $t('klb_order_cart_is_empty') }}
@@ -189,7 +189,7 @@ onMounted(async () => {
         </template>
       </div>
     </div>
-    <div class="order-summary" v-if="hasOrder">
+    <div class="card-container card-defaults" v-if="hasOrder">
       <div
         v-for="product in hasOrder.Items"
         :key="`cart_summary_${product.Catalog_Product.Catalog_Product__}`"
@@ -285,7 +285,7 @@ onMounted(async () => {
       <p v-if="error">{{ error }}</p>
       <button
         @click="createOrder()"
-        class="btn primary btn-defaults"
+        class="btn primary btn-defaults big"
         v-if="!hasOrder"
       >
         {{ $t('klb_order_create_cta') }}

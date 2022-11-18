@@ -3,8 +3,8 @@ import KlbUpdateEmailModal from './KlbAccount/KlbUpdateEmailModal.vue';
 import KlbUpdatePasswordModal from './KlbAccount/KlbUpdatePasswordModal.vue';
 import KlbDeleteAccount from './KlbAccount/KlbDeleteAccount.vue';
 import KlbBillingHistory from './KlbBilling/KlbBillingHistory.vue';
-import KlbUpdatePaymentMethod from './KlbBilling/KlbUpdatePaymentMethod.vue';
-import KlbUpdateBillingLocation from './KlbBilling/KlbUpdateBillingLocation.vue';
+import KlbUserLocation from './KlbUser/KlbUserLocation.vue';
+import KlbUserBilling from './KlbUser/KlbUserBilling.vue';
 import KlbAddPaymentMethodModal from './KlbBilling/KlbAddPaymentMethodModal.vue';
 import KlbCatalog from './KlbOrder/KlbCatalog.vue';
 import KlbOrder from './KlbOrder/KlbOrder.vue';
@@ -20,11 +20,11 @@ export default {
     KlbUpdatePasswordModal,
     KlbDeleteAccount,
     KlbBillingHistory,
-    KlbUpdatePaymentMethod,
-    KlbUpdateBillingLocation,
+    KlbUserLocation,
     KlbAddPaymentMethodModal,
     KlbCatalog,
     KlbOrder,
+    KlbUserBilling,
   },
   composables: {
     useCart,
