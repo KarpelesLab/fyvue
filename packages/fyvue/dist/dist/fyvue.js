@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.35
+  * @karpeleslab/fyvue v0.2.0-beta.36
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -212,7 +212,7 @@ const useTranslation = () => {
     return vueInstance.appContext.config.globalProperties.$t;
 };
 
-function render$9(_ctx, _cache) {
+function render$a(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -227,7 +227,7 @@ function render$9(_ctx, _cache) {
   ]))
 }
 
-function render$8(_ctx, _cache) {
+function render$9(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -242,7 +242,7 @@ function render$8(_ctx, _cache) {
   ]))
 }
 
-function render$7(_ctx, _cache) {
+function render$8(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -257,7 +257,7 @@ function render$7(_ctx, _cache) {
   ]))
 }
 
-function render$6(_ctx, _cache) {
+function render$7(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -272,7 +272,7 @@ function render$6(_ctx, _cache) {
   ]))
 }
 
-function render$5(_ctx, _cache) {
+function render$6(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -284,7 +284,7 @@ function render$5(_ctx, _cache) {
   ]))
 }
 
-function render$4(_ctx, _cache) {
+function render$5(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -299,7 +299,7 @@ function render$4(_ctx, _cache) {
   ]))
 }
 
-function render$3(_ctx, _cache) {
+function render$4(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -314,7 +314,7 @@ function render$3(_ctx, _cache) {
   ]))
 }
 
-function render$2(_ctx, _cache) {
+function render$3(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -325,7 +325,7 @@ function render$2(_ctx, _cache) {
   ]))
 }
 
-function render$1(_ctx, _cache) {
+function render$2(_ctx, _cache) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -333,6 +333,21 @@ function render$1(_ctx, _cache) {
     "aria-hidden": "true"
   }, [
     vue.createElementVNode("path", { d: "M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" })
+  ]))
+}
+
+function render$1(_ctx, _cache) {
+  return (vue.openBlock(), vue.createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    vue.createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z",
+      "clip-rule": "evenodd"
+    })
   ]))
 }
 
@@ -351,8 +366,8 @@ function render(_ctx, _cache) {
   ]))
 }
 
-const _hoisted_1$k = { class: "parent" };
-var script$l = vue.defineComponent({
+const _hoisted_1$m = { class: "parent" };
+var script$o = vue.defineComponent({
     __name: 'FyModal',
     props: {
         id: { type: String, required: true },
@@ -400,7 +415,7 @@ var script$l = vue.defineComponent({
                         class: "fy-modal"
                     }, {
                         default: vue.withCtx(() => [
-                            vue.createElementVNode("div", _hoisted_1$k, [
+                            vue.createElementVNode("div", _hoisted_1$m, [
                                 vue.createVNode(vue.unref(vue$1.DialogPanel), { class: "modal-container" }, {
                                     default: vue.withCtx(() => [
                                         (__props.title)
@@ -445,20 +460,20 @@ var script$l = vue.defineComponent({
     }
 });
 
-script$l.__file = "src/components/ui/FyModal/FyModal.vue";
+script$o.__file = "src/components/ui/FyModal/FyModal.vue";
 
-const _hoisted_1$j = { class: "fy-circle-percent" };
-const _hoisted_2$i = {
+const _hoisted_1$l = { class: "fy-circle-percent" };
+const _hoisted_2$k = {
     viewBox: "0 0 36 36",
     class: "circular-chart"
 };
-const _hoisted_3$i = vue.createElementVNode("path", {
+const _hoisted_3$k = vue.createElementVNode("path", {
     class: "circle-bg",
     d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1);
-const _hoisted_4$f = ["stroke-dasharray", "stroke"];
-const _hoisted_5$e = ["x", "y"];
-var script$k = vue.defineComponent({
+const _hoisted_4$h = ["stroke-dasharray", "stroke"];
+const _hoisted_5$g = ["x", "y"];
+var script$n = vue.defineComponent({
     __name: 'FyCirclePercent',
     props: {
         percent: { type: Number, required: true, default: 100 },
@@ -467,41 +482,41 @@ var script$k = vue.defineComponent({
     },
     setup(__props) {
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$j, [
-                (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$i, [
-                    _hoisted_3$i,
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$l, [
+                (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$k, [
+                    _hoisted_3$k,
                     vue.createElementVNode("path", {
                         class: "circle",
                         "stroke-dasharray": `${__props.percent}, 100`,
                         stroke: __props.color,
                         d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                    }, null, 8, _hoisted_4$f),
+                    }, null, 8, _hoisted_4$h),
                     vue.createElementVNode("text", {
                         x: __props.textXY[0].toString(),
                         y: __props.textXY[1].toString(),
                         class: "percentage"
-                    }, vue.toDisplayString(__props.percent) + "% ", 9, _hoisted_5$e)
+                    }, vue.toDisplayString(__props.percent) + "% ", 9, _hoisted_5$g)
                 ]))
             ]));
         };
     }
 });
 
-script$k.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
+script$n.__file = "src/components/ui/FyCirclePercent/FyCirclePercent.vue";
 
-const _hoisted_1$i = { class: "parent" };
-const _hoisted_2$h = {
+const _hoisted_1$k = { class: "parent" };
+const _hoisted_2$j = {
     class: "modal-container",
     style: { "width": "350px !important" }
 };
-const _hoisted_3$h = { class: "modal-content" };
-const _hoisted_4$e = {
+const _hoisted_3$j = { class: "modal-content" };
+const _hoisted_4$g = {
     key: 0,
     class: "confirm-modal-desc default-p"
 };
-const _hoisted_5$d = vue.createElementVNode("br", null, null, -1);
-const _hoisted_6$c = { class: "btn-box" };
-var script$j = vue.defineComponent({
+const _hoisted_5$f = vue.createElementVNode("br", null, null, -1);
+const _hoisted_6$e = { class: "btn-box" };
+var script$m = vue.defineComponent({
     __name: 'FyConfirm',
     setup(__props) {
         const eventBus = useEventBus();
@@ -544,9 +559,9 @@ var script$j = vue.defineComponent({
                     style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "43 !important" }
                 }, {
                     default: vue.withCtx(() => [
-                        vue.createElementVNode("div", _hoisted_1$i, [
+                        vue.createElementVNode("div", _hoisted_1$k, [
                             vue.createVNode(vue.unref(vue$1.DialogOverlay)),
-                            vue.createElementVNode("div", _hoisted_2$h, [
+                            vue.createElementVNode("div", _hoisted_2$j, [
                                 vue.createElementVNode("div", null, [
                                     vue.createVNode(vue.unref(vue$1.DialogTitle), { class: "title" }, {
                                         default: vue.withCtx(() => [
@@ -554,12 +569,12 @@ var script$j = vue.defineComponent({
                                         ]),
                                         _: 1
                                     }),
-                                    vue.createElementVNode("div", _hoisted_3$h, [
+                                    vue.createElementVNode("div", _hoisted_3$j, [
                                         (desc.value)
-                                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$e, vue.toDisplayString(desc.value), 1))
+                                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$g, vue.toDisplayString(desc.value), 1))
                                             : vue.createCommentVNode("v-if", true),
-                                        _hoisted_5$d,
-                                        vue.createElementVNode("div", _hoisted_6$c, [
+                                        _hoisted_5$f,
+                                        vue.createElementVNode("div", _hoisted_6$e, [
                                             vue.createElementVNode("button", {
                                                 onClick: _cache[0] || (_cache[0] = ($event) => (confirm.value = false)),
                                                 class: "btn neutral btn-defaults"
@@ -581,15 +596,15 @@ var script$j = vue.defineComponent({
     }
 });
 
-script$j.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
+script$m.__file = "src/components/ui/FyConfirm/FyConfirm.vue";
 
-const _hoisted_1$h = {
+const _hoisted_1$j = {
     class: "fy-breadcrumb",
     "aria-label": "Breadcrumb"
 };
-const _hoisted_2$g = ["aria-current"];
-const _hoisted_3$g = { key: 2 };
-var script$i = vue.defineComponent({
+const _hoisted_2$i = ["aria-current"];
+const _hoisted_3$i = { key: 2 };
+var script$l = vue.defineComponent({
     __name: 'FyBreadcrumb',
     props: {
         nav: { type: Array, required: true, default: () => [] },
@@ -598,7 +613,7 @@ var script$i = vue.defineComponent({
     setup(__props) {
         return (_ctx, _cache) => {
             const _component_router_link = vue.resolveComponent("router-link");
-            return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$h, [
+            return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$j, [
                 vue.createElementVNode("ol", null, [
                     (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item, index) => {
                         return (vue.openBlock(), vue.createElementBlock("li", {
@@ -607,7 +622,7 @@ var script$i = vue.defineComponent({
                             "aria-current": item.to ? undefined : 'page'
                         }, [
                             (index != 0)
-                                ? (vue.openBlock(), vue.createBlock(vue.unref(render$7), { key: 0 }))
+                                ? (vue.openBlock(), vue.createBlock(vue.unref(render$8), { key: 0 }))
                                 : vue.createCommentVNode("v-if", true),
                             (item.to)
                                 ? (vue.openBlock(), vue.createBlock(_component_router_link, {
@@ -616,14 +631,14 @@ var script$i = vue.defineComponent({
                                 }, {
                                     default: vue.withCtx(() => [
                                         (index === 0)
-                                            ? (vue.openBlock(), vue.createBlock(vue.unref(render$5), { key: 0 }))
+                                            ? (vue.openBlock(), vue.createBlock(vue.unref(render$6), { key: 0 }))
                                             : vue.createCommentVNode("v-if", true),
                                         vue.createTextVNode(" " + vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
                                     ]),
                                     _: 2
                                 }, 1032, ["to"]))
-                                : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$g, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
-                        ], 10, _hoisted_2$g));
+                                : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$i, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+                        ], 10, _hoisted_2$i));
                     }), 128))
                 ])
             ]));
@@ -631,12 +646,12 @@ var script$i = vue.defineComponent({
     }
 });
 
-script$i.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
+script$l.__file = "src/components/ui/FyBreadcrumb/FyBreadcrumb.vue";
 
-const _hoisted_1$g = { class: "fy-step-bar" };
-const _hoisted_2$f = { class: "bar-bg" };
-const _hoisted_3$f = { class: "label" };
-var script$h = vue.defineComponent({
+const _hoisted_1$i = { class: "fy-step-bar" };
+const _hoisted_2$h = { class: "bar-bg" };
+const _hoisted_3$h = { class: "label" };
+var script$k = vue.defineComponent({
     __name: 'FySteps',
     props: {
         steps: { type: Array, required: false, default: () => [] },
@@ -653,8 +668,8 @@ var script$h = vue.defineComponent({
             return 'past-step';
         };
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$g, [
-                vue.createElementVNode("div", _hoisted_2$f, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$i, [
+                vue.createElementVNode("div", _hoisted_2$h, [
                     vue.createElementVNode("div", {
                         class: "bar",
                         style: vue.normalizeStyle(`width:${vue.unref(barWidth)}%`)
@@ -666,7 +681,7 @@ var script$h = vue.defineComponent({
                             key: index,
                             class: vue.normalizeClass(getStepClass(index))
                         }, [
-                            vue.createElementVNode("span", _hoisted_3$f, vue.toDisplayString(_ctx.$t(step.name)), 1),
+                            vue.createElementVNode("span", _hoisted_3$h, vue.toDisplayString(_ctx.$t(step.name)), 1),
                             (step.icon)
                                 ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(step.icon), {
                                     key: 0,
@@ -681,18 +696,18 @@ var script$h = vue.defineComponent({
     }
 });
 
-script$h.__file = "src/components/ui/FySteps/FySteps.vue";
+script$k.__file = "src/components/ui/FySteps/FySteps.vue";
 
-const _hoisted_1$f = {
+const _hoisted_1$h = {
     key: 0,
     class: "border-collapse w-full md:mx-0 fy-datatable"
 };
-const _hoisted_2$e = { key: 0 };
-const _hoisted_3$e = { class: "div" };
-const _hoisted_4$d = { class: "div-cell" };
-const _hoisted_5$c = { key: 0 };
-const _hoisted_6$b = { key: 1 };
-var script$g = vue.defineComponent({
+const _hoisted_2$g = { key: 0 };
+const _hoisted_3$g = { class: "div" };
+const _hoisted_4$f = { class: "div-cell" };
+const _hoisted_5$e = { key: 0 };
+const _hoisted_6$d = { key: 1 };
+var script$j = vue.defineComponent({
     __name: 'FyDatatable',
     props: {
         showHeaders: { type: Boolean, required: false, default: true },
@@ -705,9 +720,9 @@ var script$g = vue.defineComponent({
         };
         return (_ctx, _cache) => {
             return (__props.data && __props.data.length > 0)
-                ? (vue.openBlock(), vue.createElementBlock("table", _hoisted_1$f, [
+                ? (vue.openBlock(), vue.createElementBlock("table", _hoisted_1$h, [
                     (__props.showHeaders)
-                        ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_2$e, [
+                        ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_2$g, [
                             vue.createElementVNode("tr", null, [
                                 (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.headers, (title) => {
                                     return (vue.openBlock(), vue.createElementBlock("th", {
@@ -729,14 +744,14 @@ var script$g = vue.defineComponent({
                                             key: title,
                                             class: "td"
                                         }, [
-                                            vue.createElementVNode("div", _hoisted_3$e, vue.toDisplayString(title), 1),
-                                            vue.createElementVNode("div", _hoisted_4$d, [
+                                            vue.createElementVNode("div", _hoisted_3$g, vue.toDisplayString(title), 1),
+                                            vue.createElementVNode("div", _hoisted_4$f, [
                                                 vue.renderSlot(_ctx.$slots, `${property}_item`, {
                                                     data: { prop: item[property], item: item, idx: index }
                                                 }, () => [
                                                     (item[property])
-                                                        ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$c, vue.toDisplayString(item[property].toString()), 1))
-                                                        : (vue.openBlock(), vue.createElementBlock("span", _hoisted_6$b, "n/a"))
+                                                        ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$e, vue.toDisplayString(item[property].toString()), 1))
+                                                        : (vue.openBlock(), vue.createElementBlock("span", _hoisted_6$d, "n/a"))
                                                 ])
                                             ])
                                         ]));
@@ -751,17 +766,17 @@ var script$g = vue.defineComponent({
     }
 });
 
-script$g.__file = "src/components/ui/FyDatatable/FyDatatable.vue";
+script$j.__file = "src/components/ui/FyDatatable/FyDatatable.vue";
 
-const _hoisted_1$e = {
+const _hoisted_1$g = {
     key: 0,
     class: "fy-table"
 };
-const _hoisted_2$d = { class: "table-container" };
-const _hoisted_3$d = { key: 0 };
-const _hoisted_4$c = { key: 0 };
-const _hoisted_5$b = { key: 1 };
-var script$f = vue.defineComponent({
+const _hoisted_2$f = { class: "table-container" };
+const _hoisted_3$f = { key: 0 };
+const _hoisted_4$e = { key: 0 };
+const _hoisted_5$d = { key: 1 };
+var script$i = vue.defineComponent({
     __name: 'FyTable',
     props: {
         showHeaders: { type: Boolean, required: false, default: true },
@@ -771,11 +786,11 @@ var script$f = vue.defineComponent({
     setup(__props) {
         return (_ctx, _cache) => {
             return (__props.data && __props.data.length)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$e, [
-                    vue.createElementVNode("div", _hoisted_2$d, [
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$g, [
+                    vue.createElementVNode("div", _hoisted_2$f, [
                         vue.createElementVNode("table", null, [
                             (__props.showHeaders)
-                                ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_3$d, [
+                                ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_3$f, [
                                     vue.createElementVNode("tr", null, [
                                         (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.headers, (title, property) => {
                                             return (vue.openBlock(), vue.createElementBlock("th", { key: property }, vue.toDisplayString(title), 1));
@@ -798,8 +813,8 @@ var script$f = vue.defineComponent({
                                                     }
                                                 }, () => [
                                                     (item[property])
-                                                        ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_4$c, vue.toDisplayString(item[property]), 1))
-                                                        : (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$b, "n/a"))
+                                                        ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_4$e, vue.toDisplayString(item[property]), 1))
+                                                        : (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$d, "n/a"))
                                                 ])
                                             ]));
                                         }), 128))
@@ -814,21 +829,21 @@ var script$f = vue.defineComponent({
     }
 });
 
-script$f.__file = "src/components/ui/FyTable/FyTable.vue";
+script$i.__file = "src/components/ui/FyTable/FyTable.vue";
 
-const _hoisted_1$d = vue.createElementVNode("path", {
+const _hoisted_1$f = vue.createElementVNode("path", {
     d: "M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z",
     fill: "currentColor"
 }, null, -1);
-const _hoisted_2$c = vue.createElementVNode("path", {
+const _hoisted_2$e = vue.createElementVNode("path", {
     d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
     fill: "currentFill"
 }, null, -1);
-const _hoisted_3$c = [
-    _hoisted_1$d,
-    _hoisted_2$c
+const _hoisted_3$e = [
+    _hoisted_1$f,
+    _hoisted_2$e
 ];
-var script$e = vue.defineComponent({
+var script$h = vue.defineComponent({
     __name: 'DefaultLoader',
     props: {
         size: { type: String, required: false, default: '16' },
@@ -844,7 +859,7 @@ var script$e = vue.defineComponent({
                     viewBox: "0 0 100 101",
                     fill: "none",
                     xmlns: "http://www.w3.org/2000/svg"
-                }, _hoisted_3$c, 4)),
+                }, _hoisted_3$e, 4)),
                 vue.createElementVNode("span", {
                     class: vue.normalizeClass(!__props.showLoadingText ? 'is-sr' : 'loader-text')
                 }, vue.toDisplayString(_ctx.$t('global_loading_text')), 3)
@@ -853,17 +868,17 @@ var script$e = vue.defineComponent({
     }
 });
 
-script$e.__file = "src/components/ui/FyLoader/DefaultLoader.vue";
+script$h.__file = "src/components/ui/FyLoader/DefaultLoader.vue";
 
-const _hoisted_1$c = {
+const _hoisted_1$e = {
     key: 0,
     class: "fy-loader"
 };
-var script$d = vue.defineComponent({
+var script$g = vue.defineComponent({
     __name: 'FyLoader',
     props: {
         id: { type: String, required: false },
-        loader: { type: Object, required: false, default: () => script$e },
+        loader: { type: Object, required: false, default: () => script$h },
         showLoadingText: { type: Boolean, required: false, default: true },
         size: { type: String, required: false, default: '16' },
         force: { type: Boolean, required: false, default: false }
@@ -894,7 +909,7 @@ var script$d = vue.defineComponent({
         return (_ctx, _cache) => {
             return (vue.openBlock(), vue.createElementBlock("div", null, [
                 (loading.value || __props.force)
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$c, [
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$e, [
                         vue.createElementVNode("div", {
                             class: "loader-container",
                             role: "status",
@@ -912,29 +927,29 @@ var script$d = vue.defineComponent({
     }
 });
 
-script$d.__file = "src/components/ui/FyLoader/FyLoader.vue";
+script$g.__file = "src/components/ui/FyLoader/FyLoader.vue";
 
-const _hoisted_1$b = { class: "input-group" };
-const _hoisted_2$b = ["for"];
-const _hoisted_3$b = ["aria-label", "id", "true-value", "false-value"];
-const _hoisted_4$b = ["href"];
-const _hoisted_5$a = {
+const _hoisted_1$d = { class: "input-group" };
+const _hoisted_2$d = ["for"];
+const _hoisted_3$d = ["aria-label", "id", "true-value", "false-value"];
+const _hoisted_4$d = ["href"];
+const _hoisted_5$c = {
     key: 2,
     class: "is-req"
 };
-const _hoisted_6$a = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
-const _hoisted_7$9 = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
-const _hoisted_8$9 = ["aria-label", "id"];
-const _hoisted_9$8 = ["value"];
-const _hoisted_10$7 = {
+const _hoisted_6$c = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
+const _hoisted_7$b = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
+const _hoisted_8$b = ["aria-label", "id"];
+const _hoisted_9$a = ["value"];
+const _hoisted_10$9 = {
     key: 2,
     class: "form-error-label"
 };
-const _hoisted_11$7 = {
+const _hoisted_11$9 = {
     key: 3,
     class: "help-text"
 };
-var script$c = vue.defineComponent({
+var script$f = vue.defineComponent({
     __name: 'FyInput',
     props: {
         id: { type: String, required: true },
@@ -993,7 +1008,7 @@ var script$c = vue.defineComponent({
         });
         expose({ focus, getInputRef });
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$b, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$d, [
                 (__props.showLabel && __props.id && __props.label)
                     ? (vue.openBlock(), vue.createElementBlock("label", {
                         key: 0,
@@ -1012,7 +1027,7 @@ var script$c = vue.defineComponent({
                                 "true-value": __props.checkboxTrueValue,
                                 "false-value": __props.checkboxFalseValue,
                                 "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => (vue.isRef(modelCheckbox) ? (modelCheckbox).value = $event : null))
-                            }, null, 10, _hoisted_3$b)), [
+                            }, null, 10, _hoisted_3$d)), [
                                 [vue.vModelCheckbox, vue.unref(modelCheckbox)]
                             ])
                             : vue.createCommentVNode("v-if", true),
@@ -1024,13 +1039,13 @@ var script$c = vue.defineComponent({
                                 href: __props.linkIcon,
                                 target: "_blank"
                             }, [
-                                vue.createVNode(vue.unref(render$4))
-                            ], 8, _hoisted_4$b))
+                                vue.createVNode(vue.unref(render$5))
+                            ], 8, _hoisted_4$d))
                             : vue.createCommentVNode("v-if", true),
                         (__props.req)
-                            ? (vue.openBlock(), vue.createElementBlock("sup", _hoisted_5$a, "*"))
+                            ? (vue.openBlock(), vue.createElementBlock("sup", _hoisted_5$c, "*"))
                             : vue.createCommentVNode("v-if", true)
-                    ], 8, _hoisted_2$b))
+                    ], 8, _hoisted_2$d))
                     : vue.createCommentVNode("v-if", true),
                 (!['checkbox', 'radiobox'].includes(__props.type))
                     ? (vue.openBlock(), vue.createElementBlock("div", {
@@ -1051,7 +1066,7 @@ var script$c = vue.defineComponent({
                                 "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => (vue.isRef(model) ? (model).value = $event : null)),
                                 type: __props.type,
                                 disabled: __props.disabled
-                            }, null, 8, _hoisted_6$a)), [
+                            }, null, 8, _hoisted_6$c)), [
                                 [vue.vModelDynamic, vue.unref(model)]
                             ])
                             : vue.createCommentVNode("v-if", true),
@@ -1067,7 +1082,7 @@ var script$c = vue.defineComponent({
                                 id: __props.id,
                                 "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => (vue.isRef(model) ? (model).value = $event : null)),
                                 disabled: __props.disabled
-                            }, null, 8, _hoisted_7$9)), [
+                            }, null, 8, _hoisted_7$b)), [
                                 [vue.vModelText, vue.unref(model)]
                             ])
                             : vue.createCommentVNode("v-if", true),
@@ -1085,9 +1100,9 @@ var script$c = vue.defineComponent({
                                     return (vue.openBlock(), vue.createElementBlock("option", {
                                         value: opt[0],
                                         key: opt[0].toString()
-                                    }, vue.toDisplayString(opt[1]), 9, _hoisted_9$8));
+                                    }, vue.toDisplayString(opt[1]), 9, _hoisted_9$a));
                                 }), 128))
-                            ], 8, _hoisted_8$9)), [
+                            ], 8, _hoisted_8$b)), [
                                 [vue.vModelSelect, vue.unref(model)]
                             ])
                             : vue.createCommentVNode("v-if", true),
@@ -1095,43 +1110,43 @@ var script$c = vue.defineComponent({
                     ], 2))
                     : vue.createCommentVNode("v-if", true),
                 (vue.unref(checkErrors))
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_10$7, vue.toDisplayString(vue.unref(checkErrors)), 1))
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_10$9, vue.toDisplayString(vue.unref(checkErrors)), 1))
                     : vue.createCommentVNode("v-if", true),
                 (__props.help)
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$7, vue.toDisplayString(__props.help), 1))
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$9, vue.toDisplayString(__props.help), 1))
                     : vue.createCommentVNode("v-if", true)
             ]));
         };
     }
 });
 
-script$c.__file = "src/components/ui/FyInput/FyInput.vue";
+script$f.__file = "src/components/ui/FyInput/FyInput.vue";
 
-const _hoisted_1$a = {
+const _hoisted_1$c = {
     key: 0,
     class: "fy-paging"
 };
-const _hoisted_2$a = { class: "paging-container" };
-const _hoisted_3$a = { "aria-label": "Pagination" };
-const _hoisted_4$a = { class: "is-sr" };
-const _hoisted_5$9 = {
+const _hoisted_2$c = { class: "paging-container" };
+const _hoisted_3$c = { "aria-label": "Pagination" };
+const _hoisted_4$c = { class: "is-sr" };
+const _hoisted_5$b = {
     key: 2,
     class: "dots"
 };
-const _hoisted_6$9 = ["onClick"];
-const _hoisted_7$8 = {
+const _hoisted_6$b = ["onClick"];
+const _hoisted_7$a = {
     href: "#",
     "aria-current": "page",
     class: "active"
 };
-const _hoisted_8$8 = ["onClick"];
-const _hoisted_9$7 = {
+const _hoisted_8$a = ["onClick"];
+const _hoisted_9$9 = {
     key: 3,
     class: "dots"
 };
-const _hoisted_10$6 = { class: "is-sr" };
-const _hoisted_11$6 = { class: "paging-text" };
-var script$b = vue.defineComponent({
+const _hoisted_10$8 = { class: "is-sr" };
+const _hoisted_11$8 = { class: "paging-text" };
+var script$e = vue.defineComponent({
     __name: 'FyPaging',
     props: {
         items: { type: null, required: true },
@@ -1197,9 +1212,9 @@ var script$b = vue.defineComponent({
         });
         return (_ctx, _cache) => {
             return (__props.items && __props.items.page_max > 1 && __props.items.page_no)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$a, [
-                    vue.createElementVNode("div", _hoisted_2$a, [
-                        vue.createElementVNode("nav", _hoisted_3$a, [
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$c, [
+                    vue.createElementVNode("div", _hoisted_2$c, [
+                        vue.createElementVNode("nav", _hoisted_3$c, [
                             (__props.items.page_no >= 2)
                                 ? (vue.openBlock(), vue.createElementBlock("a", {
                                     key: 0,
@@ -1207,8 +1222,8 @@ var script$b = vue.defineComponent({
                                     onClick: _cache[0] || (_cache[0] = ($event) => (prev())),
                                     class: "prev-next"
                                 }, [
-                                    vue.createElementVNode("span", _hoisted_4$a, vue.toDisplayString(_ctx.$t('previous_paging')), 1),
-                                    vue.createVNode(vue.unref(render$8), { class: "fv-icon-base" })
+                                    vue.createElementVNode("span", _hoisted_4$c, vue.toDisplayString(_ctx.$t('previous_paging')), 1),
+                                    vue.createVNode(vue.unref(render$9), { class: "fv-icon-base" })
                                 ]))
                                 : vue.createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 1)
@@ -1220,7 +1235,7 @@ var script$b = vue.defineComponent({
                                 }, " 1 "))
                                 : vue.createCommentVNode("v-if", true),
                             (__props.items.page_no - 2 > 2)
-                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$9, " ... "))
+                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$b, " ... "))
                                 : vue.createCommentVNode("v-if", true),
                             (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, vue.renderList(2, (i) => {
                                 return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
@@ -1230,11 +1245,11 @@ var script$b = vue.defineComponent({
                                             href: "javascript:void(0);",
                                             key: `${i}-sm`,
                                             onClick: ($event) => (page(__props.items.page_no - (3 - i)))
-                                        }, vue.toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_6$9))
+                                        }, vue.toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_6$b))
                                         : vue.createCommentVNode("v-if", true)
                                 ], 64));
                             }), 64)),
-                            vue.createElementVNode("a", _hoisted_7$8, vue.toDisplayString(__props.items.page_no), 1),
+                            vue.createElementVNode("a", _hoisted_7$a, vue.toDisplayString(__props.items.page_no), 1),
                             (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, vue.renderList(2, (i) => {
                                 return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
                                     (__props.items.page_no + i <= __props.items.page_max)
@@ -1243,12 +1258,12 @@ var script$b = vue.defineComponent({
                                             href: "javascript:void(0);",
                                             key: `${i}-md`,
                                             onClick: ($event) => (page(__props.items.page_no + i))
-                                        }, vue.toDisplayString(__props.items.page_no + i), 9, _hoisted_8$8))
+                                        }, vue.toDisplayString(__props.items.page_no + i), 9, _hoisted_8$a))
                                         : vue.createCommentVNode("v-if", true)
                                 ], 64));
                             }), 64)),
                             (__props.items.page_no + 2 < __props.items.page_max - 1)
-                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_9$7, " ... "))
+                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_9$9, " ... "))
                                 : vue.createCommentVNode("v-if", true),
                             (__props.items.page_no + 2 < __props.items.page_max)
                                 ? (vue.openBlock(), vue.createElementBlock("a", {
@@ -1265,12 +1280,12 @@ var script$b = vue.defineComponent({
                                     onClick: _cache[3] || (_cache[3] = ($event) => (next())),
                                     class: "prev-next"
                                 }, [
-                                    vue.createElementVNode("span", _hoisted_10$6, vue.toDisplayString(_ctx.$t('next_paging')), 1),
-                                    vue.createVNode(vue.unref(render$7), { class: "fv-icon-base" })
+                                    vue.createElementVNode("span", _hoisted_10$8, vue.toDisplayString(_ctx.$t('next_paging')), 1),
+                                    vue.createVNode(vue.unref(render$8), { class: "fv-icon-base" })
                                 ]))
                                 : vue.createCommentVNode("v-if", true)
                         ]),
-                        vue.createElementVNode("p", _hoisted_11$6, vue.toDisplayString(_ctx.$t('global_paging', {
+                        vue.createElementVNode("p", _hoisted_11$8, vue.toDisplayString(_ctx.$t('global_paging', {
                             start: __props.items.results_per_page * (__props.items.page_no - 1),
                             end: __props.items.results_per_page * __props.items.page_no,
                             total: __props.items.count >= 10000 ? _ctx.$t('paging_a_lot_of') : __props.items.count,
@@ -1282,7 +1297,7 @@ var script$b = vue.defineComponent({
     }
 });
 
-script$b.__file = "src/components/ui/FyPaging/FyPaging.vue";
+script$e.__file = "src/components/ui/FyPaging/FyPaging.vue";
 
 const useFVStore = pinia.defineStore({
     id: 'fVStore',
@@ -1316,25 +1331,14 @@ const useFVStore = pinia.defineStore({
     },
 });
 
-const ClientOnly = vue.defineComponent({
-    __name: 'ClientOnly',
-    setup(_, { slots }) {
-        const show = vue.ref(false);
-        vue.onMounted(() => {
-            show.value = true;
-        });
-        return () => (show.value && slots.default ? slots.default() : null);
-    },
-});
-
-const _hoisted_1$9 = { class: "fy-navbar" };
-const _hoisted_2$9 = { class: "nav-container" };
-const _hoisted_3$9 = { key: 0 };
-const _hoisted_4$9 = { class: "nav-actions" };
-const _hoisted_5$8 = { key: 0 };
-const _hoisted_6$8 = { key: 1 };
-const _hoisted_7$7 = vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
-const _hoisted_8$7 = vue.createElementVNode("svg", {
+const _hoisted_1$b = { class: "fy-navbar" };
+const _hoisted_2$b = { class: "nav-container" };
+const _hoisted_3$b = { key: 0 };
+const _hoisted_4$b = { class: "nav-actions" };
+const _hoisted_5$a = { key: 0 };
+const _hoisted_6$a = { key: 1 };
+const _hoisted_7$9 = vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_8$9 = vue.createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1346,12 +1350,12 @@ const _hoisted_8$7 = vue.createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_9$6 = [
-    _hoisted_7$7,
-    _hoisted_8$7
+const _hoisted_9$8 = [
+    _hoisted_7$9,
+    _hoisted_8$9
 ];
-const _hoisted_10$5 = { class: "main-ul" };
-const _hoisted_11$5 = vue.createElementVNode("svg", {
+const _hoisted_10$7 = { class: "main-ul" };
+const _hoisted_11$7 = vue.createElementVNode("svg", {
     "aria-hidden": "true",
     fill: "currentColor",
     viewBox: "0 0 20 20",
@@ -1363,9 +1367,9 @@ const _hoisted_11$5 = vue.createElementVNode("svg", {
         "clip-rule": "evenodd"
     })
 ], -1);
-const _hoisted_12$3 = ["href", "title", "alt"];
-const _hoisted_13$3 = ["href", "title", "alt"];
-var script$a = vue.defineComponent({
+const _hoisted_12$5 = ["href", "title", "alt"];
+const _hoisted_13$5 = ["href", "title", "alt"];
+var script$d = vue.defineComponent({
     __name: 'FyNavbar',
     props: {
         title: { type: String, required: true },
@@ -1394,8 +1398,8 @@ var script$a = vue.defineComponent({
         };
         return (_ctx, _cache) => {
             const _component_router_link = vue.resolveComponent("router-link");
-            return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$9, [
-                vue.createElementVNode("div", _hoisted_2$9, [
+            return (vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$b, [
+                vue.createElementVNode("div", _hoisted_2$b, [
                     vue.createVNode(_component_router_link, {
                         to: "/",
                         class: "logo-image"
@@ -1403,60 +1407,55 @@ var script$a = vue.defineComponent({
                         default: vue.withCtx(() => [
                             vue.renderSlot(_ctx.$slots, "logo"),
                             (__props.title && __props.showTitle)
-                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$9, vue.toDisplayString(__props.title), 1))
+                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$b, vue.toDisplayString(__props.title), 1))
                                 : vue.createCommentVNode("v-if", true)
                         ]),
                         _: 3
                     }),
-                    vue.createElementVNode("div", _hoisted_4$9, [
+                    vue.createElementVNode("div", _hoisted_4$b, [
                         vue.renderSlot(_ctx.$slots, "custom"),
-                        vue.createVNode(vue.unref(ClientOnly), null, {
-                            default: vue.withCtx(() => [
-                                vue.renderSlot(_ctx.$slots, "buttons", {}, () => [
-                                    (vue.unref(isAuth))
-                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$8, [
-                                            vue.createElementVNode("a", {
-                                                href: "javascript:void(0)",
-                                                onClick: _cache[0] || (_cache[0] = ($event) => (logout())),
-                                                class: "btn neutral btn-defaults"
-                                            }, vue.toDisplayString(_ctx.$t('navbar_logout_cta')), 1),
-                                            (__props.showDashboardLink)
-                                                ? (vue.openBlock(), vue.createBlock(_component_router_link, {
-                                                    key: 0,
-                                                    to: "/user",
-                                                    class: "btn primary btn-defaults"
-                                                }, {
-                                                    default: vue.withCtx(() => [
-                                                        vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_dashboard_cta')), 1)
-                                                    ]),
-                                                    _: 1
-                                                }))
-                                                : vue.createCommentVNode("v-if", true)
-                                        ]))
-                                        : (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$8, [
-                                            vue.createVNode(_component_router_link, {
-                                                to: "/login",
-                                                class: "btn neutral btn-defaults"
-                                            }, {
-                                                default: vue.withCtx(() => [
-                                                    vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_login_cta')), 1)
-                                                ]),
-                                                _: 1
-                                            }),
-                                            vue.createVNode(_component_router_link, {
-                                                to: "/login",
-                                                class: "btn primary btn-defaults"
-                                            }, {
-                                                default: vue.withCtx(() => [
-                                                    vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_signup_cta')), 1)
-                                                ]),
-                                                _: 1
-                                            })
-                                        ]))
-                                ])
-                            ]),
-                            _: 3
-                        }),
+                        vue.renderSlot(_ctx.$slots, "buttons", {}, () => [
+                            (vue.unref(isAuth))
+                                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$a, [
+                                    vue.createElementVNode("a", {
+                                        href: "javascript:void(0)",
+                                        onClick: _cache[0] || (_cache[0] = ($event) => (logout())),
+                                        class: "btn neutral btn-defaults"
+                                    }, vue.toDisplayString(_ctx.$t('navbar_logout_cta')), 1),
+                                    (__props.showDashboardLink)
+                                        ? (vue.openBlock(), vue.createBlock(_component_router_link, {
+                                            key: 0,
+                                            to: "/user",
+                                            class: "btn primary btn-defaults"
+                                        }, {
+                                            default: vue.withCtx(() => [
+                                                vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_dashboard_cta')), 1)
+                                            ]),
+                                            _: 1
+                                        }))
+                                        : vue.createCommentVNode("v-if", true)
+                                ]))
+                                : (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$a, [
+                                    vue.createVNode(_component_router_link, {
+                                        to: "/login",
+                                        class: "btn neutral btn-defaults"
+                                    }, {
+                                        default: vue.withCtx(() => [
+                                            vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_login_cta')), 1)
+                                        ]),
+                                        _: 1
+                                    }),
+                                    vue.createVNode(_component_router_link, {
+                                        to: "/login",
+                                        class: "btn primary btn-defaults"
+                                    }, {
+                                        default: vue.withCtx(() => [
+                                            vue.createTextVNode(vue.toDisplayString(_ctx.$t('navbar_signup_cta')), 1)
+                                        ]),
+                                        _: 1
+                                    })
+                                ]))
+                        ]),
                         (__props.darkLight)
                             ? (vue.openBlock(), vue.createElementBlock("button", {
                                 key: 0,
@@ -1464,20 +1463,20 @@ var script$a = vue.defineComponent({
                                 class: "btn neutral light-dark"
                             }, [
                                 (!vue.unref(isDark))
-                                    ? (vue.openBlock(), vue.createBlock(vue.unref(render$3), { key: 0 }))
-                                    : (vue.openBlock(), vue.createBlock(vue.unref(render$1), { key: 1 }))
+                                    ? (vue.openBlock(), vue.createBlock(vue.unref(render$4), { key: 0 }))
+                                    : (vue.openBlock(), vue.createBlock(vue.unref(render$2), { key: 1 }))
                             ]))
                             : vue.createCommentVNode("v-if", true),
                         vue.createElementVNode("button", {
                             type: "button",
                             class: "open-nav-button",
                             onClick: _cache[2] || (_cache[2] = ($event) => (vue.unref(toggleNavbarOpen)()))
-                        }, _hoisted_9$6)
+                        }, _hoisted_9$8)
                     ]),
                     vue.createElementVNode("div", {
                         class: vue.normalizeClass(["nav-menu", isOpen.value ? 'is-open' : ''])
                     }, [
-                        vue.createElementVNode("ul", _hoisted_10$5, [
+                        vue.createElementVNode("ul", _hoisted_10$7, [
                             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.links, (link, index) => {
                                 return (vue.openBlock(), vue.createElementBlock("li", {
                                     key: `link_${index.toString()}`
@@ -1488,7 +1487,7 @@ var script$a = vue.defineComponent({
                                                 vue.createVNode(vue.unref(vue$1.MenuButton), { class: "is-link has-childs" }, {
                                                     default: vue.withCtx(() => [
                                                         vue.createTextVNode(vue.toDisplayString(link.name) + " ", 1),
-                                                        _hoisted_11$5
+                                                        _hoisted_11$7
                                                     ]),
                                                     _: 2
                                                 }, 1024),
@@ -1522,7 +1521,7 @@ var script$a = vue.defineComponent({
                                                                                             title: children.name,
                                                                                             alt: children.name,
                                                                                             class: "is-link"
-                                                                                        }, vue.toDisplayString(children.name), 9, _hoisted_12$3))
+                                                                                        }, vue.toDisplayString(children.name), 9, _hoisted_12$5))
                                                                                 ])
                                                                             ]),
                                                                             _: 2
@@ -1558,7 +1557,7 @@ var script$a = vue.defineComponent({
                                                     title: link.name,
                                                     alt: link.name,
                                                     class: vue.normalizeClass(["is-link", ''])
-                                                }, vue.toDisplayString(link.name), 9, _hoisted_13$3))
+                                                }, vue.toDisplayString(link.name), 9, _hoisted_13$5))
                                         ], 64))
                                 ]));
                             }), 128))
@@ -1570,9 +1569,9 @@ var script$a = vue.defineComponent({
     }
 });
 
-script$a.__file = "src/components/ui/FyNavbar/FyNavbar.vue";
+script$d.__file = "src/components/ui/FyNavbar/FyNavbar.vue";
 
-var script$9 = vue.defineComponent({
+var script$c = vue.defineComponent({
     __name: 'FyTabs',
     setup(__props) {
         return (_ctx, _cache) => {
@@ -1581,50 +1580,50 @@ var script$9 = vue.defineComponent({
     }
 });
 
-script$9.__file = "src/components/ui/FyTabs/FyTabs.vue";
+script$c.__file = "src/components/ui/FyTabs/FyTabs.vue";
 
 var uiComponents = {
-    FyModal: script$l,
-    FyCirclePercent: script$k,
-    FyConfirm: script$j,
-    FyBreadcrumb: script$i,
-    FySteps: script$h,
-    FyDatatable: script$g,
-    FyTable: script$f,
-    FyLoader: script$d,
-    FyInput: script$c,
-    FyPaging: script$b,
-    FyNavbar: script$a,
-    FyTabs: script$9,
+    FyModal: script$o,
+    FyCirclePercent: script$n,
+    FyConfirm: script$m,
+    FyBreadcrumb: script$l,
+    FySteps: script$k,
+    FyDatatable: script$j,
+    FyTable: script$i,
+    FyLoader: script$g,
+    FyInput: script$f,
+    FyPaging: script$e,
+    FyNavbar: script$d,
+    FyTabs: script$c,
 };
 
-const _hoisted_1$8 = { class: "w-full" };
-const _hoisted_2$8 = {
+const _hoisted_1$a = { class: "w-full" };
+const _hoisted_2$a = {
     key: 0,
     class: "message"
 };
-const _hoisted_3$8 = {
+const _hoisted_3$a = {
     key: 0,
     class: "oauth-container"
 };
-const _hoisted_4$8 = ["onClick"];
-const _hoisted_5$7 = ["alt", "src"];
-const _hoisted_6$7 = {
+const _hoisted_4$a = ["onClick"];
+const _hoisted_5$9 = ["alt", "src"];
+const _hoisted_6$9 = {
     key: 1,
     class: "response-error"
 };
-const _hoisted_7$6 = {
+const _hoisted_7$8 = {
     key: 2,
     class: "reset-pwd"
 };
-const _hoisted_8$6 = { class: "btn primary btn-defaults" };
-const _hoisted_9$5 = {
+const _hoisted_8$8 = { class: "btn primary btn-defaults" };
+const _hoisted_9$7 = {
     key: 0,
     class: "response-error"
 };
-const _hoisted_10$4 = vue.createElementVNode("br", { style: { "clear": "both" } }, null, -1);
-const _hoisted_11$4 = { key: 1 };
-var script$8 = vue.defineComponent({
+const _hoisted_10$6 = vue.createElementVNode("br", { style: { "clear": "both" } }, null, -1);
+const _hoisted_11$6 = { key: 1 };
+var script$b = vue.defineComponent({
     __name: 'KlbLogin',
     props: {
         returnDefault: { type: String, required: false, default: '/' },
@@ -1762,9 +1761,9 @@ var script$8 = vue.defineComponent({
                         class: "klb-login"
                     }, [
                         vue.createVNode(_component_FyLoader, { id: "klblogin" }),
-                        vue.createElementVNode("div", _hoisted_1$8, [
+                        vue.createElementVNode("div", _hoisted_1$a, [
                             (responseMessage.value)
-                                ? (vue.openBlock(), vue.createElementBlock("h2", _hoisted_2$8, vue.toDisplayString(responseMessage.value), 1))
+                                ? (vue.openBlock(), vue.createElementBlock("h2", _hoisted_2$a, vue.toDisplayString(responseMessage.value), 1))
                                 : vue.createCommentVNode("v-if", true),
                             (responseFields.value.length > 0)
                                 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
@@ -1785,7 +1784,7 @@ var script$8 = vue.defineComponent({
                                                         field.type == 'email')
                                                         ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
                                                             (field.name)
-                                                                ? (vue.openBlock(), vue.createBlock(script$c, {
+                                                                ? (vue.openBlock(), vue.createBlock(script$f, {
                                                                     key: 0,
                                                                     id: field.name,
                                                                     label: field.label,
@@ -1807,7 +1806,7 @@ var script$8 = vue.defineComponent({
                                             (field.type == 'checkbox')
                                                 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 2 }, [
                                                     (field.name)
-                                                        ? (vue.openBlock(), vue.createBlock(script$c, {
+                                                        ? (vue.openBlock(), vue.createBlock(script$f, {
                                                             key: 0,
                                                             id: field.name,
                                                             label: field.label,
@@ -1824,7 +1823,7 @@ var script$8 = vue.defineComponent({
                                         ], 64));
                                     }), 128)),
                                     (hasOauth.value)
-                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$8, [
+                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$a, [
                                             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(responseFields.value, (field) => {
                                                 return (vue.openBlock(), vue.createElementBlock(vue.Fragment, {
                                                     key: field.id
@@ -1843,18 +1842,18 @@ var script$8 = vue.defineComponent({
                                                                 alt: field.info.Name,
                                                                 src: field.button.logo,
                                                                 style: vue.normalizeStyle(`background: ${field.button['background-color']}`)
-                                                            }, null, 12, _hoisted_5$7))
-                                                        ], 8, _hoisted_4$8))
+                                                            }, null, 12, _hoisted_5$9))
+                                                        ], 8, _hoisted_4$a))
                                                         : vue.createCommentVNode("v-if", true)
                                                 ], 64));
                                             }), 128))
                                         ]))
                                         : vue.createCommentVNode("v-if", true),
                                     (responseError.value && responseError.value.token)
-                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$7, vue.toDisplayString(_ctx.$t(responseError.value.token)), 1))
+                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$9, vue.toDisplayString(_ctx.$t(responseError.value.token)), 1))
                                         : vue.createCommentVNode("v-if", true),
                                     (responseReq.value.includes('password') && 0)
-                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$6, [
+                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$8, [
                                             vue.createElementVNode("a", {
                                                 href: "javascript:void(0)",
                                                 onClick: _cache[0] || (_cache[0] =
@@ -1865,7 +1864,7 @@ var script$8 = vue.defineComponent({
                                             }, vue.toDisplayString(_ctx.$t('recover_pwd_link')), 1)
                                         ]))
                                         : vue.createCommentVNode("v-if", true),
-                                    vue.createElementVNode("button", _hoisted_8$6, vue.toDisplayString(_ctx.$t('cta_login_next')), 1)
+                                    vue.createElementVNode("button", _hoisted_8$8, vue.toDisplayString(_ctx.$t('cta_login_next')), 1)
                                 ], 64))
                                 : vue.createCommentVNode("v-if", true)
                         ])
@@ -1878,7 +1877,7 @@ var script$8 = vue.defineComponent({
                     default: vue.withCtx(() => [
                         (!pwdRecoverMailSent.value)
                             ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
-                                vue.createVNode(script$c, {
+                                vue.createVNode(script$f, {
                                     id: "emailRecover",
                                     req: true,
                                     showLabel: true,
@@ -1890,16 +1889,16 @@ var script$8 = vue.defineComponent({
                                     label: _ctx.$t('recover_pwd_email_label')
                                 }, null, 8, ["placeholder", "modelValue", "errorVuelidate", "label"]),
                                 (pwdRecoverError.value && pwdRecoverError.value.token)
-                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$5, vue.toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1))
+                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$7, vue.toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1))
                                     : vue.createCommentVNode("v-if", true),
                                 vue.createElementVNode("a", {
                                     href: "javascript:void(0)",
                                     onClick: _cache[3] || (_cache[3] = ($event) => (forgotPassword())),
                                     class: "mt-2 float-right btn px-5 py-2 primary"
                                 }, vue.toDisplayString(_ctx.$t('recover_pwd_cta')), 1),
-                                _hoisted_10$4
+                                _hoisted_10$6
                             ], 64))
-                            : (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$4, vue.toDisplayString(_ctx.$t('pwd_recover_confirm')), 1))
+                            : (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$6, vue.toDisplayString(_ctx.$t('pwd_recover_confirm')), 1))
                     ]),
                     _: 1
                 }, 8, ["title"])
@@ -1908,30 +1907,30 @@ var script$8 = vue.defineComponent({
     }
 });
 
-script$8.__file = "src/components/klb/KlbLogin/KlbLogin.vue";
+script$b.__file = "src/components/klb/KlbLogin/KlbLogin.vue";
 
-const _hoisted_1$7 = {
+const _hoisted_1$9 = {
     key: 0,
     class: "klb-account"
 };
-const _hoisted_2$7 = {
+const _hoisted_2$9 = {
     key: 0,
     class: "input-group"
 };
-const _hoisted_3$7 = { class: "label-basic" };
-const _hoisted_4$7 = { class: "input-box-child" };
-const _hoisted_5$6 = { class: "main" };
-const _hoisted_6$6 = ["onSubmit"];
-const _hoisted_7$5 = { class: "klb-account-grid-inputs" };
-const _hoisted_8$5 = {
+const _hoisted_3$9 = { class: "label-basic" };
+const _hoisted_4$9 = { class: "input-box-child" };
+const _hoisted_5$8 = { class: "main" };
+const _hoisted_6$8 = ["onSubmit"];
+const _hoisted_7$7 = { class: "klb-account-grid-inputs" };
+const _hoisted_8$7 = {
     key: 0,
     class: "form-error-label"
 };
-const _hoisted_9$4 = {
+const _hoisted_9$6 = {
     class: "btn-defaults mt-4 btn primary",
     type: "submit"
 };
-var script$7 = vue.defineComponent({
+var script$a = vue.defineComponent({
     __name: 'KlbUpdateEmailModal',
     props: {
         showValueButton: { type: Boolean, required: false, default: true }
@@ -1967,17 +1966,17 @@ var script$7 = vue.defineComponent({
         return (_ctx, _cache) => {
             const _component_FyModal = vue.resolveComponent("FyModal");
             return (vue.unref(isAuth))
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$7, [
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$9, [
                     (__props.showValueButton)
-                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$7, [
-                            vue.createElementVNode("div", _hoisted_3$7, vue.toDisplayString(_ctx.$t('update_email_display_label')), 1),
-                            vue.createElementVNode("div", _hoisted_4$7, [
-                                vue.createElementVNode("div", _hoisted_5$6, vue.toDisplayString(vue.unref(store).user?.Email), 1),
+                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$9, [
+                            vue.createElementVNode("div", _hoisted_3$9, vue.toDisplayString(_ctx.$t('update_email_display_label')), 1),
+                            vue.createElementVNode("div", _hoisted_4$9, [
+                                vue.createElementVNode("div", _hoisted_5$8, vue.toDisplayString(vue.unref(store).user?.Email), 1),
                                 vue.createElementVNode("button", {
                                     onClick: _cache[0] || (_cache[0] = ($event) => (vue.unref(eventBus).emit('UpdateEmailModal', true))),
                                     class: "btn primary small"
                                 }, [
-                                    vue.createVNode(vue.unref(render$2), { class: "edit-icon" }),
+                                    vue.createVNode(vue.unref(render$3), { class: "edit-icon" }),
                                     vue.createTextVNode(" " + vue.toDisplayString(_ctx.$t('update_email_display_cta')), 1)
                                 ])
                             ])
@@ -1991,8 +1990,8 @@ var script$7 = vue.defineComponent({
                             vue.createElementVNode("form", {
                                 onSubmit: vue.withModifiers(changeEmail, ["prevent"])
                             }, [
-                                vue.createElementVNode("div", _hoisted_7$5, [
-                                    vue.createVNode(script$c, {
+                                vue.createElementVNode("div", _hoisted_7$7, [
+                                    vue.createVNode(script$f, {
                                         id: "currPwd",
                                         req: true,
                                         showLabel: true,
@@ -2004,7 +2003,7 @@ var script$7 = vue.defineComponent({
                                         type: "password",
                                         autocomplete: "off"
                                     }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                                    vue.createVNode(script$c, {
+                                    vue.createVNode(script$f, {
                                         id: "newEmail",
                                         req: true,
                                         showLabel: true,
@@ -2018,10 +2017,10 @@ var script$7 = vue.defineComponent({
                                     }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"])
                                 ]),
                                 (errorOnSubmit.value)
-                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$5, vue.toDisplayString(errorOnSubmit.value), 1))
+                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$7, vue.toDisplayString(errorOnSubmit.value), 1))
                                     : vue.createCommentVNode("v-if", true),
-                                vue.createElementVNode("button", _hoisted_9$4, vue.toDisplayString(_ctx.$t('update_email_cta')), 1)
-                            ], 40, _hoisted_6$6)
+                                vue.createElementVNode("button", _hoisted_9$6, vue.toDisplayString(_ctx.$t('update_email_cta')), 1)
+                            ], 40, _hoisted_6$8)
                         ]),
                         _: 1
                     }, 8, ["title"])
@@ -2031,29 +2030,29 @@ var script$7 = vue.defineComponent({
     }
 });
 
-script$7.__file = "src/components/klb/KlbAccount/KlbUpdateEmailModal.vue";
+script$a.__file = "src/components/klb/KlbAccount/KlbUpdateEmailModal.vue";
 
-const _hoisted_1$6 = {
+const _hoisted_1$8 = {
     key: 0,
     class: "klb-account"
 };
-const _hoisted_2$6 = {
+const _hoisted_2$8 = {
     key: 0,
     class: "input-group"
 };
-const _hoisted_3$6 = { class: "label-basic" };
-const _hoisted_4$6 = { class: "input-box-child" };
-const _hoisted_5$5 = ["onSubmit"];
-const _hoisted_6$5 = { class: "klb-account-grid-inputs" };
-const _hoisted_7$4 = {
+const _hoisted_3$8 = { class: "label-basic" };
+const _hoisted_4$8 = { class: "input-box-child" };
+const _hoisted_5$7 = ["onSubmit"];
+const _hoisted_6$7 = { class: "klb-account-grid-inputs" };
+const _hoisted_7$6 = {
     key: 0,
     class: "form-error-label"
 };
-const _hoisted_8$4 = {
+const _hoisted_8$6 = {
     class: "btn-defaults mt-4 btn primary",
     type: "submit"
 };
-var script$6 = vue.defineComponent({
+var script$9 = vue.defineComponent({
     __name: 'KlbUpdatePasswordModal',
     props: {
         showValueButton: { type: Boolean, required: false, default: true }
@@ -2090,16 +2089,16 @@ var script$6 = vue.defineComponent({
         return (_ctx, _cache) => {
             const _component_FyModal = vue.resolveComponent("FyModal");
             return (vue.unref(isAuth))
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$6, [
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$8, [
                     (__props.showValueButton)
-                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$6, [
-                            vue.createElementVNode("div", _hoisted_3$6, vue.toDisplayString(_ctx.$t('update_pwd_display_label')), 1),
-                            vue.createElementVNode("div", _hoisted_4$6, [
+                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$8, [
+                            vue.createElementVNode("div", _hoisted_3$8, vue.toDisplayString(_ctx.$t('update_pwd_display_label')), 1),
+                            vue.createElementVNode("div", _hoisted_4$8, [
                                 vue.createElementVNode("button", {
                                     onClick: _cache[0] || (_cache[0] = ($event) => (vue.unref(eventBus).emit('updatePwdModal', true))),
                                     class: "btn primary small"
                                 }, [
-                                    vue.createVNode(vue.unref(render$2), { class: "edit-icon" }),
+                                    vue.createVNode(vue.unref(render$3), { class: "edit-icon" }),
                                     vue.createTextVNode(" " + vue.toDisplayString(_ctx.$t('update_pwd_display_cta')), 1)
                                 ])
                             ])
@@ -2113,8 +2112,8 @@ var script$6 = vue.defineComponent({
                             vue.createElementVNode("form", {
                                 onSubmit: vue.withModifiers(changeEmail, ["prevent"])
                             }, [
-                                vue.createElementVNode("div", _hoisted_6$5, [
-                                    vue.createVNode(script$c, {
+                                vue.createElementVNode("div", _hoisted_6$7, [
+                                    vue.createVNode(script$f, {
                                         id: "newPwd",
                                         req: true,
                                         showLabel: true,
@@ -2126,7 +2125,7 @@ var script$6 = vue.defineComponent({
                                         type: "password",
                                         autocomplete: "off"
                                     }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                                    vue.createVNode(script$c, {
+                                    vue.createVNode(script$f, {
                                         id: "newPwdConfirm",
                                         req: true,
                                         showLabel: true,
@@ -2139,7 +2138,7 @@ var script$6 = vue.defineComponent({
                                         autocomplete: "off"
                                     }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"])
                                 ]),
-                                vue.createVNode(script$c, {
+                                vue.createVNode(script$f, {
                                     id: "oldPwd",
                                     req: true,
                                     showLabel: true,
@@ -2152,10 +2151,10 @@ var script$6 = vue.defineComponent({
                                     autocomplete: "off"
                                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
                                 (errorOnSubmit.value)
-                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$4, vue.toDisplayString(errorOnSubmit.value), 1))
+                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$6, vue.toDisplayString(errorOnSubmit.value), 1))
                                     : vue.createCommentVNode("v-if", true),
-                                vue.createElementVNode("button", _hoisted_8$4, vue.toDisplayString(_ctx.$t('update_pwd_cta')), 1)
-                            ], 40, _hoisted_5$5)
+                                vue.createElementVNode("button", _hoisted_8$6, vue.toDisplayString(_ctx.$t('update_pwd_cta')), 1)
+                            ], 40, _hoisted_5$7)
                         ]),
                         _: 1
                     }, 8, ["title"])
@@ -2165,16 +2164,16 @@ var script$6 = vue.defineComponent({
     }
 });
 
-script$6.__file = "src/components/klb/KlbAccount/KlbUpdatePasswordModal.vue";
+script$9.__file = "src/components/klb/KlbAccount/KlbUpdatePasswordModal.vue";
 
-const _hoisted_1$5 = {
+const _hoisted_1$7 = {
     key: 0,
     class: "klb-account"
 };
-const _hoisted_2$5 = { class: "input-group" };
-const _hoisted_3$5 = { class: "label-basic" };
-const _hoisted_4$5 = { class: "input-box-child" };
-var script$5 = vue.defineComponent({
+const _hoisted_2$7 = { class: "input-group" };
+const _hoisted_3$7 = { class: "label-basic" };
+const _hoisted_4$7 = { class: "input-box-child" };
+var script$8 = vue.defineComponent({
     __name: 'KlbDeleteAccount',
     props: {
         url: { type: String, required: false, default: '/login' }
@@ -2185,16 +2184,16 @@ var script$5 = vue.defineComponent({
         return (_ctx, _cache) => {
             const _component_router_link = vue.resolveComponent("router-link");
             return (vue.unref(isAuth))
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$5, [
-                    vue.createElementVNode("div", _hoisted_2$5, [
-                        vue.createElementVNode("div", _hoisted_3$5, vue.toDisplayString(_ctx.$t('delete_account_display_label')), 1),
-                        vue.createElementVNode("div", _hoisted_4$5, [
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$7, [
+                    vue.createElementVNode("div", _hoisted_2$7, [
+                        vue.createElementVNode("div", _hoisted_3$7, vue.toDisplayString(_ctx.$t('delete_account_display_label')), 1),
+                        vue.createElementVNode("div", _hoisted_4$7, [
                             vue.createVNode(_component_router_link, {
                                 to: `${__props.url}?act=delete_account`,
                                 class: "btn primary small"
                             }, {
                                 default: vue.withCtx(() => [
-                                    vue.createVNode(vue.unref(render$6), { class: "edit-icon" }),
+                                    vue.createVNode(vue.unref(render$7), { class: "edit-icon" }),
                                     vue.createTextVNode(" " + vue.toDisplayString(_ctx.$t('delete_account_display_cta')), 1)
                                 ]),
                                 _: 1
@@ -2207,21 +2206,21 @@ var script$5 = vue.defineComponent({
     }
 });
 
-script$5.__file = "src/components/klb/KlbAccount/KlbDeleteAccount.vue";
+script$8.__file = "src/components/klb/KlbAccount/KlbDeleteAccount.vue";
 
-const _hoisted_1$4 = { class: "klb-billing-history" };
-const _hoisted_2$4 = ["href"];
-const _hoisted_3$4 = { class: "billing-history-tag" };
-const _hoisted_4$4 = { class: "billing-history-tag" };
-const _hoisted_5$4 = {
+const _hoisted_1$6 = { class: "klb-billing-history" };
+const _hoisted_2$6 = ["href"];
+const _hoisted_3$6 = { class: "billing-history-tag" };
+const _hoisted_4$6 = { class: "billing-history-tag" };
+const _hoisted_5$6 = {
     key: 1,
     class: "self-loader-fyvue"
 };
-const _hoisted_6$4 = {
+const _hoisted_6$6 = {
     key: 2,
     class: "no-billing-history"
 };
-var script$4 = vue.defineComponent({
+var script$7 = vue.defineComponent({
     __name: 'KlbBillingHistory',
     setup(__props) {
         const store = useFVStore();
@@ -2243,18 +2242,18 @@ var script$4 = vue.defineComponent({
             }
         });
         return (_ctx, _cache) => {
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$4, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$6, [
                 (billingHistory.value)
                     ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
                         (billingHistory.value.paging && billingHistory.value.paging.page_no)
-                            ? (vue.openBlock(), vue.createBlock(script$b, {
+                            ? (vue.openBlock(), vue.createBlock(script$e, {
                                 key: 0,
                                 id: "billingHistory",
                                 items: billingHistory.value.paging,
                                 class: "billing-history-paging"
                             }, null, 8, ["items"]))
                             : vue.createCommentVNode("v-if", true),
-                        vue.createVNode(script$f, {
+                        vue.createVNode(script$i, {
                             data: billingHistory.value.data,
                             headers: {
                                 Invoice_Number: _ctx.$t('billing_history_headers_invoice_number'),
@@ -2273,19 +2272,19 @@ var script$4 = vue.defineComponent({
                                         target: "_blank",
                                         class: "btn neutral download-btn"
                                     }, [
-                                        vue.createVNode(vue.unref(render$9), {
+                                        vue.createVNode(vue.unref(render$a), {
                                             stroke: "currentColor",
                                             class: "download-icon"
                                         }),
                                         vue.createTextVNode(" " + vue.toDisplayString(_ctx.$t('billing_history_download_cta')), 1)
-                                    ], 8, _hoisted_2$4))
+                                    ], 8, _hoisted_2$6))
                                     : vue.createCommentVNode("v-if", true)
                             ]),
                             Total_item: vue.withCtx((property) => [
-                                vue.createElementVNode("span", _hoisted_3$4, vue.toDisplayString(property.data.item.Total.display), 1)
+                                vue.createElementVNode("span", _hoisted_3$6, vue.toDisplayString(property.data.item.Total.display), 1)
                             ]),
                             Status_item: vue.withCtx((property) => [
-                                vue.createElementVNode("span", _hoisted_4$4, vue.toDisplayString(property.data.item.Status), 1)
+                                vue.createElementVNode("span", _hoisted_4$6, vue.toDisplayString(property.data.item.Status), 1)
                             ]),
                             Invoice_Date_item: vue.withCtx((property) => [
                                 vue.createTextVNode(vue.toDisplayString(_ctx.$t('global_datetime', {
@@ -2318,7 +2317,7 @@ var script$4 = vue.defineComponent({
                             _: 1
                         }, 8, ["data", "headers"]),
                         (billingHistory.value.paging && billingHistory.value.paging.page_no)
-                            ? (vue.openBlock(), vue.createBlock(script$b, {
+                            ? (vue.openBlock(), vue.createBlock(script$e, {
                                 key: 1,
                                 id: "billingHistory",
                                 items: billingHistory.value.paging,
@@ -2326,8 +2325,8 @@ var script$4 = vue.defineComponent({
                             }, null, 8, ["items"]))
                             : vue.createCommentVNode("v-if", true)
                     ], 64))
-                    : (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$4, [
-                        vue.createVNode(script$d, {
+                    : (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$6, [
+                        vue.createVNode(script$g, {
                             id: "self-loader-fyvue",
                             force: true,
                             size: "6",
@@ -2335,41 +2334,41 @@ var script$4 = vue.defineComponent({
                         })
                     ])),
                 (billingHistory.value && billingHistory.value.data?.length == 0)
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$4, vue.toDisplayString(_ctx.$t('billing_history_empty')), 1))
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$6, vue.toDisplayString(_ctx.$t('billing_history_empty')), 1))
                     : vue.createCommentVNode("v-if", true)
             ]));
         };
     }
 });
 
-script$4.__file = "src/components/klb/KlbBilling/KlbBillingHistory.vue";
+script$7.__file = "src/components/klb/KlbBilling/KlbBillingHistory.vue";
 
-const _hoisted_1$3 = { key: 0 };
-const _hoisted_2$3 = ["onSubmit"];
-const _hoisted_3$3 = { class: "form-grid" };
-const _hoisted_4$3 = { class: "input-group" };
-const _hoisted_5$3 = {
+const _hoisted_1$5 = { key: 0 };
+const _hoisted_2$5 = ["onSubmit"];
+const _hoisted_3$5 = { class: "form-grid" };
+const _hoisted_4$5 = { class: "input-group" };
+const _hoisted_5$5 = {
     class: "label-basic",
     for: "typeDef"
 };
-const _hoisted_6$3 = { class: "input-box" };
-const _hoisted_7$3 = ["value"];
-const _hoisted_8$3 = { class: "input-group" };
-const _hoisted_9$3 = {
+const _hoisted_6$5 = { class: "input-box" };
+const _hoisted_7$5 = ["value"];
+const _hoisted_8$5 = { class: "input-group" };
+const _hoisted_9$5 = {
     class: "label-basic",
     for: "theCard"
 };
-const _hoisted_10$3 = { class: "input-box" };
-const _hoisted_11$3 = {
+const _hoisted_10$5 = { class: "input-box" };
+const _hoisted_11$5 = {
     key: 0,
     class: "response-error"
 };
-const _hoisted_12$2 = { class: "btn-center" };
-const _hoisted_13$2 = {
+const _hoisted_12$4 = { class: "btn-center" };
+const _hoisted_13$4 = {
     class: "btn primary btn-defaults",
     type: "submit"
 };
-var script$3 = vue.defineComponent({
+var script$6 = vue.defineComponent({
     __name: 'KlbAddPaymentMethodModal',
     props: {
         onComplete: { type: Function, default: () => { } },
@@ -2475,8 +2474,8 @@ var script$3 = vue.defineComponent({
             const _component_FyLoader = vue.resolveComponent("FyLoader");
             const _component_FyInput = vue.resolveComponent("FyInput");
             return (vue.unref(isAuth))
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, [
-                    vue.createVNode(script$l, {
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$5, [
+                    vue.createVNode(script$o, {
                         id: "AddPaymentMethod",
                         title: _ctx.$t('add_pm_modal_title'),
                         class: "klb-add-method"
@@ -2501,7 +2500,7 @@ var script$3 = vue.defineComponent({
                                     label: _ctx.$t('add_pm_label_label'),
                                     type: "text"
                                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                                vue.createElementVNode("div", _hoisted_3$3, [
+                                vue.createElementVNode("div", _hoisted_3$5, [
                                     vue.createVNode(_component_FyInput, {
                                         id: "billingFirstname",
                                         req: true,
@@ -2535,9 +2534,9 @@ var script$3 = vue.defineComponent({
                                         label: _ctx.$t('add_pm_zip_label'),
                                         type: "text"
                                     }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                                    vue.createElementVNode("div", _hoisted_4$3, [
-                                        vue.createElementVNode("label", _hoisted_5$3, vue.toDisplayString(_ctx.$t('add_pm_country_label')), 1),
-                                        vue.createElementVNode("div", _hoisted_6$3, [
+                                    vue.createElementVNode("div", _hoisted_4$5, [
+                                        vue.createElementVNode("label", _hoisted_5$5, vue.toDisplayString(_ctx.$t('add_pm_country_label')), 1),
+                                        vue.createElementVNode("div", _hoisted_6$5, [
                                             vue.withDirectives(vue.createElementVNode("select", {
                                                 class: "input-basic",
                                                 "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => ((state.country) = $event))
@@ -2546,7 +2545,7 @@ var script$3 = vue.defineComponent({
                                                     return (vue.openBlock(), vue.createElementBlock("option", {
                                                         value: country.Country__,
                                                         key: country.Country__
-                                                    }, vue.toDisplayString(country.Name), 9, _hoisted_7$3));
+                                                    }, vue.toDisplayString(country.Name), 9, _hoisted_7$5));
                                                 }), 128))
                                             ], 512), [
                                                 [vue.vModelSelect, state.country]
@@ -2554,9 +2553,9 @@ var script$3 = vue.defineComponent({
                                         ])
                                     ])
                                 ]),
-                                vue.createElementVNode("div", _hoisted_8$3, [
-                                    vue.createElementVNode("label", _hoisted_9$3, vue.toDisplayString(_ctx.$t('payment_method_label')), 1),
-                                    vue.createElementVNode("div", _hoisted_10$3, [
+                                vue.createElementVNode("div", _hoisted_8$5, [
+                                    vue.createElementVNode("label", _hoisted_9$5, vue.toDisplayString(_ctx.$t('payment_method_label')), 1),
+                                    vue.createElementVNode("div", _hoisted_10$5, [
                                         vue.createElementVNode("div", {
                                             id: "theCard",
                                             class: "theCard",
@@ -2566,12 +2565,12 @@ var script$3 = vue.defineComponent({
                                     ])
                                 ]),
                                 (errorMessage.value)
-                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$3, vue.toDisplayString(errorMessage.value), 1))
+                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$5, vue.toDisplayString(errorMessage.value), 1))
                                     : vue.createCommentVNode("v-if", true),
-                                vue.createElementVNode("div", _hoisted_12$2, [
-                                    vue.createElementVNode("button", _hoisted_13$2, vue.toDisplayString(_ctx.$t('create_billing_profile')), 1)
+                                vue.createElementVNode("div", _hoisted_12$4, [
+                                    vue.createElementVNode("button", _hoisted_13$4, vue.toDisplayString(_ctx.$t('create_billing_profile')), 1)
                                 ])
-                            ], 40, _hoisted_2$3)
+                            ], 40, _hoisted_2$5)
                         ]),
                         _: 1
                     }, 8, ["title"])
@@ -2581,42 +2580,42 @@ var script$3 = vue.defineComponent({
     }
 });
 
-script$3.__file = "src/components/klb/KlbBilling/KlbAddPaymentMethodModal.vue";
+script$6.__file = "src/components/klb/KlbBilling/KlbAddPaymentMethodModal.vue";
 
-const _hoisted_1$2 = { key: 0 };
-const _hoisted_2$2 = {
+const _hoisted_1$4 = { key: 0 };
+const _hoisted_2$4 = {
     key: 0,
     class: "klb-update-pm"
 };
-const _hoisted_3$2 = ["onSubmit"];
-const _hoisted_4$2 = { class: "input-group w-full" };
-const _hoisted_5$2 = {
+const _hoisted_3$4 = ["onSubmit"];
+const _hoisted_4$4 = { class: "input-group w-full" };
+const _hoisted_5$4 = {
     class: "label-basic",
     for: "theCard"
 };
-const _hoisted_6$2 = { class: "input-box" };
-const _hoisted_7$2 = {
+const _hoisted_6$4 = { class: "input-box" };
+const _hoisted_7$4 = {
     key: 0,
     class: "response-error"
 };
-const _hoisted_8$2 = { class: "btn-box" };
-const _hoisted_9$2 = {
+const _hoisted_8$4 = { class: "btn-box" };
+const _hoisted_9$4 = {
     class: "btn-defaults btn primary",
     type: "submit"
 };
-const _hoisted_10$2 = {
+const _hoisted_10$4 = {
     key: 1,
     class: ""
 };
-const _hoisted_11$2 = { key: 0 };
-const _hoisted_12$1 = vue.createElementVNode("br", null, null, -1);
-const _hoisted_13$1 = { key: 1 };
-const _hoisted_14 = vue.createElementVNode("br", null, null, -1);
-const _hoisted_15 = {
+const _hoisted_11$4 = { key: 0 };
+const _hoisted_12$3 = vue.createElementVNode("br", null, null, -1);
+const _hoisted_13$3 = { key: 1 };
+const _hoisted_14$2 = vue.createElementVNode("br", null, null, -1);
+const _hoisted_15$1 = {
     key: 1,
     class: "self-loader-fyvue"
 };
-var script$2 = vue.defineComponent({
+var script$5 = vue.defineComponent({
     __name: 'KlbUpdatePaymentMethod',
     setup(__props) {
         const store = useFVStore();
@@ -2704,17 +2703,17 @@ var script$2 = vue.defineComponent({
         return (_ctx, _cache) => {
             return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
                 (vue.unref(isAuth))
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$4, [
                         (hasBilling.value && isLoaded.value)
-                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$2, [
+                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$4, [
                                 (isEditing.value)
                                     ? (vue.openBlock(), vue.createElementBlock("form", {
                                         key: 0,
                                         onSubmit: vue.withModifiers(submitEditPaymentInfo, ["prevent"])
                                     }, [
-                                        vue.createElementVNode("div", _hoisted_4$2, [
-                                            vue.createElementVNode("label", _hoisted_5$2, vue.toDisplayString(_ctx.$t('payment_method_label')), 1),
-                                            vue.createElementVNode("div", _hoisted_6$2, [
+                                        vue.createElementVNode("div", _hoisted_4$4, [
+                                            vue.createElementVNode("label", _hoisted_5$4, vue.toDisplayString(_ctx.$t('payment_method_label')), 1),
+                                            vue.createElementVNode("div", _hoisted_6$4, [
                                                 vue.createElementVNode("div", {
                                                     id: "theCard",
                                                     class: "theCard",
@@ -2724,23 +2723,23 @@ var script$2 = vue.defineComponent({
                                             ])
                                         ]),
                                         (errorMessage.value)
-                                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$2, vue.toDisplayString(errorMessage.value), 1))
+                                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$4, vue.toDisplayString(errorMessage.value), 1))
                                             : vue.createCommentVNode("v-if", true),
-                                        vue.createElementVNode("div", _hoisted_8$2, [
+                                        vue.createElementVNode("div", _hoisted_8$4, [
                                             vue.createElementVNode("button", {
                                                 type: "reset",
                                                 class: "btn-defaults btn neutral mt-4",
                                                 onClick: _cache[0] || (_cache[0] = ($event) => (isEditing.value = false))
                                             }, vue.toDisplayString(_ctx.$t('cancel_save_payment_method')), 1),
-                                            vue.createElementVNode("button", _hoisted_9$2, vue.toDisplayString(_ctx.$t('save_payment_method')), 1)
+                                            vue.createElementVNode("button", _hoisted_9$4, vue.toDisplayString(_ctx.$t('save_payment_method')), 1)
                                         ])
-                                    ], 40, _hoisted_3$2))
-                                    : (vue.openBlock(), vue.createElementBlock("div", _hoisted_10$2, [
+                                    ], 40, _hoisted_3$4))
+                                    : (vue.openBlock(), vue.createElementBlock("div", _hoisted_10$4, [
                                         (billing.value && billing.value.Methods && billing.value.Methods.length > 0)
-                                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$2, [
+                                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$4, [
                                                 vue.createTextVNode(vue.toDisplayString(_ctx.$t('payment_method_billing')) + ": ", 1),
                                                 vue.createElementVNode("b", null, vue.toDisplayString(billing.value.Methods[0].Name), 1),
-                                                _hoisted_12$1,
+                                                _hoisted_12$3,
                                                 vue.createTextVNode(" " + vue.toDisplayString(_ctx.$t('payment_method_exp')) + ": ", 1),
                                                 vue.createElementVNode("b", null, vue.toDisplayString(billing.value.Methods[0].Expiration), 1),
                                                 vue.createElementVNode("button", {
@@ -2753,9 +2752,9 @@ var script$2 = vue.defineComponent({
                             ]))
                             : vue.createCommentVNode("v-if", true),
                         (!hasBilling.value && isLoaded.value)
-                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_13$1, [
+                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_13$3, [
                                 vue.createTextVNode(vue.toDisplayString(_ctx.$t('no_payment_method_yet')), 1),
-                                _hoisted_14,
+                                _hoisted_14$2,
                                 vue.createElementVNode("button", {
                                     onClick: _cache[1] || (_cache[1] = ($event) => (_ctx.$eventBus.emit('ShowAddPaymentMethodModal'))),
                                     class: "btn primary btn-defaults"
@@ -2765,8 +2764,8 @@ var script$2 = vue.defineComponent({
                     ]))
                     : vue.createCommentVNode("v-if", true),
                 (!isLoaded.value)
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_15, [
-                        vue.createVNode(script$d, {
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_15$1, [
+                        vue.createVNode(script$g, {
                             id: "self-loader-fyvue",
                             force: true,
                             size: "6",
@@ -2774,205 +2773,122 @@ var script$2 = vue.defineComponent({
                         })
                     ]))
                     : vue.createCommentVNode("v-if", true),
-                vue.createVNode(script$3)
+                vue.createVNode(script$6)
             ], 64));
         };
     }
 });
 
-script$2.__file = "src/components/klb/KlbBilling/KlbUpdatePaymentMethod.vue";
+script$5.__file = "src/components/klb/KlbBilling/KlbUpdatePaymentMethod.vue";
 
-const _hoisted_1$1 = { key: 0 };
-const _hoisted_2$1 = ["onSubmit"];
-const _hoisted_3$1 = { class: "form-grid" };
-const _hoisted_4$1 = { class: "input-group" };
-const _hoisted_5$1 = { class: "mr-4 w-16" };
-const _hoisted_6$1 = {
-    class: "label-basic",
-    for: "countryChoice"
-};
-const _hoisted_7$1 = { class: "input-box" };
-const _hoisted_8$1 = ["value"];
-const _hoisted_9$1 = {
-    class: "block font-extrabold mx-auto p-2 mt-4 btn primary",
-    type: "submit"
-};
-const _hoisted_10$1 = { key: 1 };
-const _hoisted_11$1 = {
-    key: 1,
-    class: "self-loader-fyvue"
-};
-var script$1 = vue.defineComponent({
+var script$4 = vue.defineComponent({
     __name: 'KlbUpdateBillingLocation',
+    props: {
+        displayOnly: { type: Boolean, required: false, default: false }
+    },
     setup(__props) {
-        const store = useFVStore();
-        const isAuth = vue.computed(() => store.isAuth);
-        const billing = vue.ref();
-        const location = vue.ref();
-        const hasBilling = vue.ref(false);
-        const isLoaded = vue.ref(false);
-        const state = vue.reactive({
-            firstname: '',
-            lastname: '',
-            country: '',
-            zip: '',
-        });
-        const rules = {
-            firstname: { required: validators.required },
-            lastname: { required: validators.required },
-            country: { required: validators.required },
-            zip: { required: validators.required },
-        };
-        const v$ = useVuelidate(rules, state);
-        const getUserBilling = async () => {
-            if (isAuth.value) {
-                isLoaded.value = false;
-                const _userBilling = await rest('User/Billing', 'GET').catch(() => { });
-                if (_userBilling && _userBilling.data) {
-                    if (_userBilling.data.length != 0) {
-                        hasBilling.value = true;
-                        const _userLocation = await rest(`User/Location/${_userBilling.data[0].User_Location__}`, 'GET').catch(() => { });
-                        if (_userLocation && _userLocation.result == 'success') {
-                            location.value = _userLocation.data;
-                            state.firstname = location.value.First_Name;
-                            state.lastname = location.value.Last_Name;
-                            if (location.value.Zip)
-                                state.zip = location.value.Zip;
-                            state.country = location.value.Country__;
-                        }
-                        billing.value = _userBilling.data[0];
-                    }
-                }
-                isLoaded.value = true;
-            }
-        };
-        const submitEditBillingAddress = async () => {
-            const _updateLocation = await rest(`User/Location/${billing.value?.User_Location__}`, 'PATCH', {
-                First_Name: state.firstname,
-                Last_Name: state.lastname,
-                Zip: state.zip,
-                Country__: state.country,
-            }).catch(() => { });
-            if (_updateLocation && _updateLocation.result == 'success') {
-                await rest(`User/Billing/${billing.value?.User_Billing__}`, 'PATCH', {
-                    User_Location__: _updateLocation.data.User_Location__,
-                    Label: billing.value?.Label,
-                });
-                await getUserBilling();
-            }
-        };
-        vue.onMounted(async () => {
-            await getUserBilling();
-        });
         return (_ctx, _cache) => {
-            const _component_FyInput = vue.resolveComponent("FyInput");
-            return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
-                (vue.unref(isAuth))
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
-                        (hasBilling.value)
-                            ? (vue.openBlock(), vue.createElementBlock("form", {
-                                key: 0,
-                                onSubmit: vue.withModifiers(submitEditBillingAddress, ["prevent"]),
-                                class: "klb-update-billing-loc"
-                            }, [
-                                vue.createElementVNode("div", _hoisted_3$1, [
-                                    vue.createVNode(_component_FyInput, {
-                                        id: "billingFirstname",
-                                        req: true,
-                                        showLabel: true,
-                                        type: "text",
-                                        placeholder: _ctx.$t('billing_location_firstname_placeholder'),
-                                        errorVuelidate: vue.unref(v$).firstname.$errors,
-                                        modelValue: state.firstname,
-                                        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => ((state.firstname) = $event)),
-                                        label: _ctx.$t('billing_location_firstname_label')
-                                    }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                                    vue.createVNode(_component_FyInput, {
-                                        id: "billingLastname",
-                                        req: true,
-                                        type: "text",
-                                        showLabel: true,
-                                        placeholder: _ctx.$t('billing_location_lastname_placeholder'),
-                                        errorVuelidate: vue.unref(v$).lastname.$errors,
-                                        modelValue: state.lastname,
-                                        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => ((state.lastname) = $event)),
-                                        label: _ctx.$t('billing_location_lastname_label')
-                                    }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                                    vue.createVNode(_component_FyInput, {
-                                        id: "billingZip",
-                                        req: true,
-                                        type: "text",
-                                        showLabel: true,
-                                        placeholder: _ctx.$t('billing_location_zip_placeholder'),
-                                        errorVuelidate: vue.unref(v$).zip.$errors,
-                                        modelValue: state.zip,
-                                        "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => ((state.zip) = $event)),
-                                        label: _ctx.$t('billing_location_zip_label')
-                                    }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                                    vue.createElementVNode("div", _hoisted_4$1, [
-                                        vue.createElementVNode("div", _hoisted_5$1, [
-                                            vue.createElementVNode("label", _hoisted_6$1, vue.toDisplayString(_ctx.$t('billing_location_country_label')), 1)
-                                        ]),
-                                        vue.createElementVNode("div", _hoisted_7$1, [
-                                            vue.withDirectives(vue.createElementVNode("select", {
-                                                class: "input-basic",
-                                                id: "countryChoice",
-                                                "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => ((state.country) = $event))
-                                            }, [
-                                                (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.$countries.countries, (country) => {
-                                                    return (vue.openBlock(), vue.createElementBlock("option", {
-                                                        value: country.Country__,
-                                                        key: country.Country__
-                                                    }, vue.toDisplayString(country.Name), 9, _hoisted_8$1));
-                                                }), 128))
-                                            ], 512), [
-                                                [vue.vModelSelect, state.country]
-                                            ])
-                                        ])
-                                    ])
-                                ]),
-                                vue.createElementVNode("button", _hoisted_9$1, vue.toDisplayString(_ctx.$t('save_billing_location')), 1)
-                            ], 40, _hoisted_2$1))
-                            : (vue.openBlock(), vue.createElementBlock("div", _hoisted_10$1, vue.toDisplayString(_ctx.$t('no_billing_location_yet')), 1))
-                    ]))
-                    : vue.createCommentVNode("v-if", true),
-                (!isLoaded.value)
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$1, [
-                        vue.createVNode(script$d, {
-                            id: "self-loader-fyvue",
-                            force: true,
-                            size: "6",
-                            showLoadingText: false
-                        })
-                    ]))
-                    : vue.createCommentVNode("v-if", true)
-            ], 64));
+            return (vue.openBlock(), vue.createElementBlock("div", null, [
+                vue.createCommentVNode(" this component does not exist, use FyUserLocation instead ")
+            ]));
         };
     }
 });
 
-script$1.__file = "src/components/klb/KlbBilling/KlbUpdateBillingLocation.vue";
+script$4.__file = "src/components/klb/KlbBilling/KlbUpdateBillingLocation.vue";
 
-const _hoisted_1 = { class: "klb-product" };
-const _hoisted_2 = {
+function useCart() {
+    return {
+        resetCart: () => {
+            return new Promise((resolve, reject) => {
+                rest('Catalog/Cart/@:reset', 'POST', {})
+                    .then((_resetResult) => {
+                    if (_resetResult && _resetResult.result == 'success') {
+                        resolve(true);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                })
+                    .catch(() => {
+                    reject(false);
+                });
+            });
+        },
+        createOrder(billingLocation) {
+            return rest('Catalog/Cart/@:createOrder', 'POST', {
+                Billing: billingLocation,
+            });
+        },
+        getCart() {
+            return rest('/Catalog/Cart/@', 'GET');
+        },
+        delProduct: (productKey) => {
+            return new Promise((resolve, reject) => {
+                rest('Catalog/Cart/@:process', 'POST', {
+                    request: productKey + `=0`,
+                })
+                    .then((_addProductCartResult) => {
+                    if (_addProductCartResult &&
+                        _addProductCartResult.result == 'success') {
+                        resolve(true);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                })
+                    .catch(() => {
+                    reject(false);
+                });
+            });
+        },
+        addProduct: (productUuid, meta) => {
+            return new Promise((resolve, reject) => {
+                rest('Catalog/Cart/@:process', 'POST', { request: productUuid + meta })
+                    .then((_addProductCartResult) => {
+                    if (_addProductCartResult &&
+                        _addProductCartResult.result == 'success') {
+                        resolve(true);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                })
+                    .catch(() => {
+                    reject(false);
+                });
+            });
+        },
+    };
+}
+
+const _hoisted_1$3 = { class: "klb-product" };
+const _hoisted_2$3 = {
     key: 0,
     class: "subs"
 };
-const _hoisted_3 = { class: "price" };
-const _hoisted_4 = { class: "price" };
-const _hoisted_5 = { class: "cycle" };
-const _hoisted_6 = ["src"];
-const _hoisted_7 = { role: "list" };
-const _hoisted_8 = {
+const _hoisted_3$3 = { class: "price" };
+const _hoisted_4$3 = { class: "price" };
+const _hoisted_5$3 = {
+    key: 0,
+    class: "cycle"
+};
+const _hoisted_6$3 = ["src"];
+const _hoisted_7$3 = { role: "list" };
+const _hoisted_8$3 = ["onClick"];
+const _hoisted_9$3 = {
     key: 1,
     class: "shop"
 };
-const _hoisted_9 = ["src"];
-const _hoisted_10 = { class: "inside" };
-const _hoisted_11 = { class: "price-btn" };
-const _hoisted_12 = { class: "cycle" };
-const _hoisted_13 = { class: "btn primary btn-defaults" };
-var script = vue.defineComponent({
+const _hoisted_10$3 = ["src"];
+const _hoisted_11$3 = { class: "inside" };
+const _hoisted_12$2 = { class: "price-btn" };
+const _hoisted_13$2 = {
+    key: 0,
+    class: "cycle"
+};
+const _hoisted_14$1 = ["onClick"];
+var script$3 = vue.defineComponent({
     __name: 'KlbCatalog',
     props: {
         options: { type: null, required: false, default: () => {
@@ -2980,7 +2896,8 @@ var script = vue.defineComponent({
             } },
         displayType: { type: String, required: false, default: 'subs' },
         features: { type: Array, required: false, default: () => [] },
-        startOrderPath: { type: String, required: false, default: '/user/order/start' }
+        startOrderPath: { type: String, required: false, default: '/user/order/start' },
+        productMeta: { type: String, required: false, default: '' }
     },
     setup(__props) {
         const props = __props;
@@ -2997,11 +2914,22 @@ var script = vue.defineComponent({
                 products.value = _products;
             }
         });
+        const addProductToCart = async (productUuid) => {
+            if (props.displayType == 'subs') {
+                await useCart().resetCart();
+                const _addResult = await useCart().addProduct(productUuid, props.productMeta);
+                if (_addResult) {
+                    useHistory().push(props.startOrderPath);
+                }
+            }
+            else if (props.displayType == 'shop') {
+                await useCart().addProduct(productUuid, props.productMeta);
+            }
+        };
         return (_ctx, _cache) => {
-            const _component_router_link = vue.resolveComponent("router-link");
-            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$3, [
                 (products.value && __props.displayType == 'subs')
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2, [
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$3, [
                         (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(products.value?.data.data, (product) => {
                             return (vue.openBlock(), vue.createElementBlock("div", {
                                 key: product.Catalog_Product__,
@@ -3009,59 +2937,65 @@ var script = vue.defineComponent({
                             }, [
                                 vue.createElementVNode("div", null, [
                                     vue.createElementVNode("h5", null, vue.toDisplayString(product['Basic.Name']), 1),
-                                    vue.createElementVNode("div", _hoisted_3, [
-                                        vue.createElementVNode("span", _hoisted_4, vue.toDisplayString(product.Price.display), 1),
-                                        vue.createElementVNode("span", _hoisted_5, "/" + vue.toDisplayString(_ctx.$formatKlbRecurringPaymentCycle(product['Basic.ServiceLifetime'])), 1)
+                                    vue.createElementVNode("div", _hoisted_3$3, [
+                                        vue.createElementVNode("span", _hoisted_4$3, vue.toDisplayString(product.Price.display), 1),
+                                        (product['Basic.ServiceLifetime'])
+                                            ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$3, "/" + vue.toDisplayString(_ctx.$formatKlbRecurringPaymentCycle(product['Basic.ServiceLifetime'])), 1))
+                                            : vue.createCommentVNode("v-if", true)
                                     ]),
-                                    (product.Image.list.length > 0 &&
+                                    (product.Image &&
+                                        product.Image.list &&
+                                        product.Image.list.length > 0 &&
                                         product.Image.list[0].Variation?.subs)
                                         ? (vue.openBlock(), vue.createElementBlock("img", {
                                             key: 0,
                                             src: product.Image.list[0].Variation?.subs,
                                             class: "product-image"
-                                        }, null, 8, _hoisted_6))
+                                        }, null, 8, _hoisted_6$3))
                                         : vue.createCommentVNode("v-if", true),
-                                    vue.createElementVNode("ul", _hoisted_7, [
+                                    vue.createElementVNode("ul", _hoisted_7$3, [
                                         vue.renderSlot(_ctx.$slots, product.Catalog_Product__)
                                     ]),
-                                    vue.createVNode(_component_router_link, {
-                                        to: `${__props.startOrderPath}?Catalog_Product__=${product.Catalog_Product__}`,
+                                    vue.createElementVNode("button", {
+                                        onClick: ($event) => (addProductToCart(product.Catalog_Product__)),
                                         class: "btn primary"
-                                    }, {
-                                        default: vue.withCtx(() => [
-                                            vue.createTextVNode(vue.toDisplayString(_ctx.$t('klb_catalog_choose_plan')), 1)
-                                        ]),
-                                        _: 2
-                                    }, 1032, ["to"])
+                                    }, vue.toDisplayString(_ctx.$t('klb_catalog_choose_plan')), 9, _hoisted_8$3)
                                 ])
                             ]));
                         }), 128))
                     ]))
                     : vue.createCommentVNode("v-if", true),
                 (products.value && __props.displayType == 'shop')
-                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8, [
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$3, [
                         (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(products.value?.data.data, (product) => {
                             return (vue.openBlock(), vue.createElementBlock("div", {
                                 key: product.Catalog_Product__,
                                 class: "card"
                             }, [
-                                (product.Image.list.length > 0 &&
+                                (product.Image &&
+                                    product.Image.list &&
+                                    product.Image.list.length > 0 &&
                                     product.Image.list[0].Variation?.shop)
                                     ? (vue.openBlock(), vue.createElementBlock("img", {
                                         key: 0,
                                         src: product.Image.list[0].Variation?.shop,
                                         class: "product-image"
-                                    }, null, 8, _hoisted_9))
+                                    }, null, 8, _hoisted_10$3))
                                     : vue.createCommentVNode("v-if", true),
-                                vue.createElementVNode("div", _hoisted_10, [
+                                vue.createElementVNode("div", _hoisted_11$3, [
                                     vue.createElementVNode("h5", null, vue.toDisplayString(product['Basic.Name']), 1),
                                     vue.renderSlot(_ctx.$slots, product.Catalog_Product__),
-                                    vue.createElementVNode("div", _hoisted_11, [
+                                    vue.createElementVNode("div", _hoisted_12$2, [
                                         vue.createElementVNode("span", null, [
                                             vue.createTextVNode(vue.toDisplayString(product.Price.display) + " ", 1),
-                                            vue.createElementVNode("span", _hoisted_12, "/" + vue.toDisplayString(_ctx.$formatKlbRecurringPaymentCycle(product['Basic.ServiceLifetime'])), 1)
+                                            (product['Basic.ServiceLifetime'])
+                                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_13$2, "/" + vue.toDisplayString(_ctx.$formatKlbRecurringPaymentCycle(product['Basic.ServiceLifetime'])), 1))
+                                                : vue.createCommentVNode("v-if", true)
                                         ]),
-                                        vue.createElementVNode("button", _hoisted_13, vue.toDisplayString(_ctx.$t('klb_catalog_add_to_cart')), 1)
+                                        vue.createElementVNode("button", {
+                                            class: "btn primary btn-defaults",
+                                            onClick: ($event) => (addProductToCart(product.Catalog_Product__))
+                                        }, vue.toDisplayString(_ctx.$t('klb_catalog_add_to_cart')), 9, _hoisted_14$1)
                                     ])
                                 ])
                             ]));
@@ -3073,19 +3007,991 @@ var script = vue.defineComponent({
     }
 });
 
-script.__file = "src/components/klb/KlbOrder/KlbCatalog.vue";
+script$3.__file = "src/components/klb/KlbOrder/KlbCatalog.vue";
 
-var klbComponents = {
-    KlbLogin: script$8,
-    KlbUpdateEmailModal: script$7,
-    KlbUpdatePasswordModal: script$6,
-    KlbDeleteAccount: script$5,
-    KlbBillingHistory: script$4,
-    KlbUpdatePaymentMethod: script$2,
-    KlbUpdateBillingLocation: script$1,
-    KlbAddPaymentMethodModal: script$3,
-    KlbCatalog: script,
+function useOrder() {
+    return {
+        process(data, orderUuid) {
+            return rest(`Order/${orderUuid}:process`, 'POST', data);
+        },
+        getOrder(orderUuid) {
+            return rest(`Order/${orderUuid}`, 'GET');
+        },
+        getOrders() {
+            return rest('Order/', 'GET');
+        },
+        getLastUnfinishedOrder() {
+            return new Promise((resolve) => {
+                rest('Order/', 'GET', {
+                    results_per_page: 1,
+                    sort: 'Created',
+                    Status: 'pending',
+                })
+                    .then((_result) => {
+                    if (_result &&
+                        _result.result == 'success' &&
+                        _result.data.length > 0) {
+                        resolve(_result.data[0]);
+                    }
+                    resolve(null);
+                })
+                    .catch(() => {
+                    resolve(null);
+                });
+            });
+        },
+    };
+}
+
+const _hoisted_1$2 = {
+    key: 0,
+    class: "klb-update-billing-loc klb-user-location"
 };
+const _hoisted_2$2 = { class: "location-select" };
+const _hoisted_3$2 = { key: 0 };
+const _hoisted_4$2 = ["onSubmit"];
+const _hoisted_5$2 = { class: "form-grid" };
+const _hoisted_6$2 = { class: "input-group" };
+const _hoisted_7$2 = { class: "mr-4 w-16" };
+const _hoisted_8$2 = {
+    class: "label-basic",
+    for: "countryChoice"
+};
+const _hoisted_9$2 = { class: "input-box" };
+const _hoisted_10$2 = ["value"];
+const _hoisted_11$2 = { class: "btn-box" };
+const _hoisted_12$1 = {
+    class: "btn-defaults btn primary",
+    type: "submit"
+};
+const _hoisted_13$1 = {
+    key: 1,
+    class: "self-loader-fyvue"
+};
+var script$2 = vue.defineComponent({
+    __name: 'KlbUserLocation',
+    props: {
+        displayOnly: { type: Boolean, required: false, default: false },
+        locationUuid: { type: String, required: false },
+        modelValue: { type: String, required: false }
+    },
+    emits: ['update:modelValue'],
+    setup(__props, { emit }) {
+        const props = __props;
+        const store = useFVStore();
+        const isAuth = vue.computed(() => store.isAuth);
+        const location = vue.ref();
+        const locationsSelectOptions = vue.ref([]);
+        const locations = vue.ref({});
+        const isLoaded = vue.ref(false);
+        const editMode = vue.ref(false);
+        const selectedLocation = vue.ref();
+        const model = vue.computed({
+            get: () => props.modelValue,
+            set: (items) => {
+                emit('update:modelValue', items);
+            },
+        });
+        vue.watch(selectedLocation, (v) => {
+            if (v == 'new') {
+                state.firstname = '';
+                state.lastname = '';
+                state.zip = '';
+                state.country = '';
+                editMode.value = true;
+                location.value = undefined;
+                model.value = undefined;
+            }
+            else {
+                if (v && locations.value[v]) {
+                    location.value = locations.value[v];
+                    state.firstname = location.value.First_Name;
+                    state.lastname = location.value.Last_Name;
+                    state.zip = location.value.Zip ? location.value.Zip : '';
+                    state.country = location.value.Country__;
+                    model.value = location.value.User_Location__;
+                }
+            }
+        });
+        const state = vue.reactive({
+            firstname: '',
+            lastname: '',
+            country: '',
+            zip: '',
+        });
+        const rules = {
+            firstname: { required: validators.required },
+            lastname: { required: validators.required },
+            country: { required: validators.required },
+            zip: { required: validators.required },
+        };
+        const v$ = useVuelidate(rules, state);
+        const deleteLocation = async () => {
+            await rest(`User/Location/${location.value?.User_Location__}`, 'DELETE', {}).catch(() => { });
+            await getUserLocation();
+        };
+        const submitLocation = async () => {
+            if (location.value) {
+                await rest(`User/Location/${location.value?.User_Location__}`, 'PATCH', {
+                    First_Name: state.firstname,
+                    Last_Name: state.lastname,
+                    Zip: state.zip,
+                    Country__: state.country,
+                }).catch(() => { });
+                editMode.value = false;
+                await getUserLocation();
+            }
+            else {
+                await rest(`User/Location`, 'POST', {
+                    First_Name: state.firstname,
+                    Last_Name: state.lastname,
+                    Zip: state.zip,
+                    Country__: state.country,
+                }).catch(() => { });
+                editMode.value = false;
+                await getUserLocation();
+            }
+        };
+        const getUserLocation = async () => {
+            state.country = '';
+            state.firstname = '';
+            state.lastname = '';
+            state.zip = '';
+            if (isAuth.value) {
+                const _locations = await rest(`User/Location`, 'GET', {
+                    sort: 'Created',
+                }).catch(() => { });
+                if (_locations && _locations.result == 'success') {
+                    if (_locations.data.length > 0) {
+                        location.value = _locations.data[0];
+                        selectedLocation.value = location.value.User_Location__;
+                        locationsSelectOptions.value = [];
+                        _locations.data.forEach((loc) => {
+                            locations.value[loc.User_Location__] = loc;
+                            locationsSelectOptions.value.push([
+                                loc.User_Location__,
+                                loc.Display.join(', '),
+                            ]);
+                        });
+                        locationsSelectOptions.value.push(['new', 'New']);
+                        editMode.value = false;
+                    }
+                    else {
+                        locationsSelectOptions.value = [];
+                        locationsSelectOptions.value.push(['new', 'New']);
+                        selectedLocation.value = 'new';
+                        editMode.value = true;
+                    }
+                }
+            }
+            isLoaded.value = true;
+        };
+        vue.onMounted(async () => {
+            if (isAuth.value) {
+                await getUserLocation();
+            }
+        });
+        return (_ctx, _cache) => {
+            const _component_FyInput = vue.resolveComponent("FyInput");
+            return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+                (vue.unref(isAuth) && isLoaded.value)
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
+                        vue.createElementVNode("div", _hoisted_2$2, [
+                            vue.createVNode(_component_FyInput, {
+                                id: "selectLocation",
+                                options: locationsSelectOptions.value,
+                                type: "select",
+                                modelValue: selectedLocation.value,
+                                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => ((selectedLocation).value = $event))
+                            }, null, 8, ["options", "modelValue"]),
+                            (editMode.value == false)
+                                ? (vue.openBlock(), vue.createElementBlock("button", {
+                                    key: 0,
+                                    class: "btn primary btn-defaults",
+                                    onClick: _cache[1] || (_cache[1] = ($event) => (editMode.value = true))
+                                }, vue.toDisplayString(_ctx.$t('klb_edit_location')), 1))
+                                : vue.createCommentVNode("v-if", true),
+                            (editMode.value == true && location.value && selectedLocation.value != 'new')
+                                ? (vue.openBlock(), vue.createElementBlock("button", {
+                                    key: 1,
+                                    class: "btn danger btn-defaults",
+                                    onClick: _cache[2] || (_cache[2] = ($event) => (deleteLocation()))
+                                }, vue.toDisplayString(_ctx.$t('klb_delete_location')), 1))
+                                : vue.createCommentVNode("v-if", true),
+                            (editMode.value == true)
+                                ? (vue.openBlock(), vue.createElementBlock("button", {
+                                    key: 2,
+                                    class: "btn-defaults btn neutral",
+                                    type: "reset",
+                                    onClick: _cache[3] || (_cache[3] = ($event) => (editMode.value = false))
+                                }, vue.toDisplayString(_ctx.$t('klb_locations_reset_cta')), 1))
+                                : vue.createCommentVNode("v-if", true)
+                        ]),
+                        (editMode.value)
+                            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$2, [
+                                vue.createElementVNode("div", null, [
+                                    vue.createElementVNode("form", {
+                                        onSubmit: vue.withModifiers(submitLocation, ["prevent"])
+                                    }, [
+                                        vue.createElementVNode("div", _hoisted_5$2, [
+                                            vue.createVNode(_component_FyInput, {
+                                                id: "billingFirstname",
+                                                req: true,
+                                                showLabel: true,
+                                                type: "text",
+                                                placeholder: _ctx.$t('klb_location_firstname_placeholder'),
+                                                errorVuelidate: vue.unref(v$).firstname.$errors,
+                                                modelValue: state.firstname,
+                                                "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => ((state.firstname) = $event)),
+                                                label: _ctx.$t('klb_location_firstname_label')
+                                            }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
+                                            vue.createVNode(_component_FyInput, {
+                                                id: "billingLastname",
+                                                req: true,
+                                                type: "text",
+                                                showLabel: true,
+                                                placeholder: _ctx.$t('klb_location_lastname_placeholder'),
+                                                errorVuelidate: vue.unref(v$).lastname.$errors,
+                                                modelValue: state.lastname,
+                                                "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => ((state.lastname) = $event)),
+                                                label: _ctx.$t('klb_location_lastname_label')
+                                            }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
+                                            vue.createVNode(_component_FyInput, {
+                                                id: "billingZip",
+                                                req: true,
+                                                type: "text",
+                                                showLabel: true,
+                                                placeholder: _ctx.$t('klb_location_zip_placeholder'),
+                                                errorVuelidate: vue.unref(v$).zip.$errors,
+                                                modelValue: state.zip,
+                                                "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => ((state.zip) = $event)),
+                                                label: _ctx.$t('klb_location_zip_label')
+                                            }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
+                                            vue.createElementVNode("div", _hoisted_6$2, [
+                                                vue.createElementVNode("div", _hoisted_7$2, [
+                                                    vue.createElementVNode("label", _hoisted_8$2, vue.toDisplayString(_ctx.$t('klb_location_country_label')), 1)
+                                                ]),
+                                                vue.createElementVNode("div", _hoisted_9$2, [
+                                                    vue.withDirectives(vue.createElementVNode("select", {
+                                                        class: "input-basic",
+                                                        id: "countryChoice",
+                                                        "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => ((state.country) = $event))
+                                                    }, [
+                                                        (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(_ctx.$countries.countries, (country) => {
+                                                            return (vue.openBlock(), vue.createElementBlock("option", {
+                                                                value: country.Country__,
+                                                                key: country.Country__
+                                                            }, vue.toDisplayString(country.Name), 9, _hoisted_10$2));
+                                                        }), 128))
+                                                    ], 512), [
+                                                        [vue.vModelSelect, state.country]
+                                                    ])
+                                                ])
+                                            ])
+                                        ]),
+                                        vue.createElementVNode("div", _hoisted_11$2, [
+                                            vue.createElementVNode("button", _hoisted_12$1, vue.toDisplayString(_ctx.$t('klb_locations_save_cta')), 1)
+                                        ])
+                                    ], 40, _hoisted_4$2)
+                                ])
+                            ]))
+                            : vue.createCommentVNode("v-if", true)
+                    ]))
+                    : vue.createCommentVNode("v-if", true),
+                (!isLoaded.value && vue.unref(isAuth))
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_13$1, [
+                        vue.createVNode(script$g, {
+                            id: "self-loader-fyvue",
+                            force: true,
+                            size: "6",
+                            showLoadingText: false
+                        })
+                    ]))
+                    : vue.createCommentVNode("v-if", true)
+            ], 64));
+        };
+    }
+});
+
+script$2.__file = "src/components/klb/KlbUser/KlbUserLocation.vue";
+
+const _hoisted_1$1 = { class: "klb-order-internal" };
+const _hoisted_2$1 = ["onSubmit"];
+const _hoisted_3$1 = { class: "input-group" };
+const _hoisted_4$1 = {
+    class: "label-basic",
+    for: "theCard"
+};
+const _hoisted_5$1 = { class: "input-box" };
+const _hoisted_6$1 = { class: "klb-order-button" };
+const _hoisted_7$1 = { class: "btn primary btn-defaults" };
+const _hoisted_8$1 = {
+    key: 1,
+    class: "klb-order-button"
+};
+const _hoisted_9$1 = { class: "btn primary btn-defaults" };
+const _hoisted_10$1 = { class: "klb-order-button" };
+const _hoisted_11$1 = { class: "btn primary btn-defaults" };
+var script$1 = vue.defineComponent({
+    __name: 'KlbProcessOrderInternal',
+    props: {
+        orderUuid: { type: String, required: true }
+    },
+    setup(__props) {
+        const props = __props;
+        let stripe;
+        head.useHead({
+            script: [
+                {
+                    src: 'https://js.stripe.com/v3',
+                    key: 'stripe-script',
+                },
+            ],
+        });
+        const currentMethod = vue.ref();
+        const eventBus = useEventBus();
+        const store = useFVStore();
+        const session = vue.ref();
+        const theCard = vue.ref();
+        const stripeCard = vue.ref();
+        const errorMessage = vue.ref();
+        const order = vue.ref();
+        const formData = vue.reactive({});
+        const process = vue.ref();
+        const onFileSelectOptions = vue.ref([]);
+        const selectedOnFile = vue.ref();
+        const processOrder = async () => {
+            eventBus.emit('klb-order-loading', true);
+            errorMessage.value = undefined;
+            if (currentMethod.value == 'Stripe') {
+                const cardToken = await stripe.createToken(stripeCard.value, {
+                    name: `${order.value?.Billing_User_Location.First_Name} ${order.value?.Billing_User_Location.Last_Name}`,
+                    email: store.user?.Email,
+                });
+                if (cardToken.error) {
+                    errorMessage.value = cardToken.error.message;
+                }
+                else {
+                    const data = { ...formData };
+                    data.session = session.value;
+                    data.cc_token = cardToken.token.id;
+                    data.method = currentMethod.value;
+                    const _process = await useOrder()
+                        .process(data, props.orderUuid)
+                        .catch(() => { });
+                    await getOrderProcess(_process);
+                }
+            }
+            else if (currentMethod.value == 'Free') {
+                const data = { ...formData };
+                data.session = session.value;
+                data.method = currentMethod.value;
+                const _process = await useOrder()
+                    .process(data, props.orderUuid)
+                    .catch(() => { });
+                await getOrderProcess(_process);
+            }
+            else if (currentMethod.value == 'OnFile') {
+                const data = { ...formData };
+                data.session = session.value;
+                data.method = currentMethod.value;
+                data.user_billing = selectedOnFile.value;
+                const _process = await useOrder()
+                    .process(data, props.orderUuid)
+                    .catch(() => { });
+                await getOrderProcess(_process);
+            }
+            eventBus.emit('klb-order-loading', false);
+        };
+        const activatePM = async (method) => {
+            eventBus.emit('klb-order-loading', true);
+            if (process.value) {
+                if (method == 'Stripe') {
+                    currentMethod.value = method;
+                    const _ccToken = process.value.methods[method].fields.cc_token;
+                    if (_ccToken.attributes && _ccToken.attributes.key) {
+                        stripe = window.Stripe(_ccToken.attributes?.key, {
+                            locale: klbfw.getLocale(),
+                            stripeAccount: _ccToken.attributes.options?.stripe_account,
+                        });
+                    }
+                    session.value = process.value.methods[method].session;
+                    if (stripe) {
+                        stripeCard.value = stripe
+                            .elements()
+                            .create('card', { hidePostalCode: true });
+                        await theCard;
+                        if (theCard.value) {
+                            stripeCard.value.mount(theCard.value);
+                        }
+                    }
+                }
+                else if (method == 'OnFile') {
+                    currentMethod.value = method;
+                    session.value = process.value.methods[method].session;
+                    onFileSelectOptions.value = [];
+                    const _userBilling = process.value.methods[method].fields.user_billing
+                        .values;
+                    if (_userBilling) {
+                        let i = 0;
+                        for (const userBilling of _userBilling) {
+                            if (i == 0)
+                                selectedOnFile.value = userBilling.User_Billing__;
+                            const displayUserBilling = `${userBilling.Label}`;
+                            onFileSelectOptions.value.push([
+                                userBilling.User_Billing__,
+                                displayUserBilling,
+                            ]);
+                            i++;
+                        }
+                    }
+                }
+                else if (method == 'Free') {
+                    currentMethod.value = method;
+                    session.value = process.value.methods[method].session;
+                }
+            }
+            eventBus.emit('klb-order-loading', false);
+        };
+        const getOrderProcess = async (__process = undefined) => {
+            eventBus.emit('klb-order-loading', true);
+            const _process = __process
+                ? __process
+                : await useOrder()
+                    .process(null, props.orderUuid)
+                    .catch(() => { });
+            if (_process && _process.result == 'success') {
+                process.value = _process.data;
+                order.value = process.value.order;
+                for (const method of process.value.methods_order) {
+                    if (['Free', 'Stripe', 'OnFile'].includes(method)) {
+                        currentMethod.value = method;
+                        break;
+                    }
+                }
+                if (currentMethod.value) {
+                    for (const [k, v] of Object.entries(process.value.methods[currentMethod.value].fields)) {
+                        if (k != 'user_billing' && v) {
+                            if (v.attributes) {
+                                formData[k] = v.attributes.value
+                                    ? v.attributes.value.toString()
+                                    : null;
+                            }
+                        }
+                    }
+                    await activatePM(currentMethod.value);
+                }
+            }
+            eventBus.emit('klb-order-loading', false);
+        };
+        vue.onMounted(async () => {
+            await getOrderProcess();
+        });
+        return (_ctx, _cache) => {
+            const _component_FyInput = vue.resolveComponent("FyInput");
+            return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
+                vue.createVNode(script$g, { id: "klb-order" }),
+                (process.value)
+                    ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                        vue.createElementVNode("form", {
+                            onSubmit: vue.withModifiers(processOrder, ["prevent"])
+                        }, [
+                            (process.value.order_payable)
+                                ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                                    (currentMethod.value == 'Stripe')
+                                        ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                                            vue.createElementVNode("div", _hoisted_3$1, [
+                                                vue.createElementVNode("label", _hoisted_4$1, vue.toDisplayString(_ctx.$t('klb_order_payment_card_label')), 1),
+                                                vue.createElementVNode("div", _hoisted_5$1, [
+                                                    vue.createElementVNode("div", {
+                                                        id: "theCard",
+                                                        class: "theCard",
+                                                        ref_key: "theCard",
+                                                        ref: theCard
+                                                    }, null, 512)
+                                                ])
+                                            ]),
+                                            (process.value.methods_order.includes('OnFile'))
+                                                ? (vue.openBlock(), vue.createElementBlock("button", {
+                                                    key: 0,
+                                                    onClick: _cache[0] || (_cache[0] = ($event) => (activatePM('OnFile'))),
+                                                    type: "button",
+                                                    class: "klb-switch-method"
+                                                }, vue.toDisplayString(_ctx.$t('klb_order_option_on_file')), 1))
+                                                : vue.createCommentVNode("v-if", true),
+                                            vue.createElementVNode("div", _hoisted_6$1, [
+                                                vue.createElementVNode("button", _hoisted_7$1, vue.toDisplayString(_ctx.$t('klb_order_process_cta')), 1)
+                                            ])
+                                        ], 64))
+                                        : vue.createCommentVNode("v-if", true),
+                                    (currentMethod.value == 'Free')
+                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$1, [
+                                            vue.createElementVNode("button", _hoisted_9$1, vue.toDisplayString(_ctx.$t('klb_order_process_cta')), 1)
+                                        ]))
+                                        : vue.createCommentVNode("v-if", true),
+                                    (currentMethod.value == 'OnFile')
+                                        ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 2 }, [
+                                            vue.createVNode(_component_FyInput, {
+                                                id: "selectLocation",
+                                                options: onFileSelectOptions.value,
+                                                type: "select",
+                                                modelValue: selectedOnFile.value,
+                                                "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => ((selectedOnFile).value = $event))
+                                            }, null, 8, ["options", "modelValue"]),
+                                            (process.value.methods_order.includes('Stripe'))
+                                                ? (vue.openBlock(), vue.createElementBlock("button", {
+                                                    key: 0,
+                                                    onClick: _cache[2] || (_cache[2] = ($event) => (activatePM('Stripe'))),
+                                                    type: "button",
+                                                    class: "klb-switch-method"
+                                                }, vue.toDisplayString(_ctx.$t('klb_order_option_stripe')), 1))
+                                                : vue.createCommentVNode("v-if", true),
+                                            vue.createElementVNode("div", _hoisted_10$1, [
+                                                vue.createElementVNode("button", _hoisted_11$1, vue.toDisplayString(_ctx.$t('klb_order_process_cta')), 1)
+                                            ])
+                                        ], 64))
+                                        : vue.createCommentVNode("v-if", true)
+                                ], 64))
+                                : vue.createCommentVNode("v-if", true)
+                        ], 40, _hoisted_2$1),
+                        (process.value.order.Status == 'completed')
+                            ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                                vue.createTextVNode(vue.toDisplayString(_ctx.$t('klb_order_paid_text', {
+                                    date: process.value.order.Paid
+                                        ? _ctx.$formatDatetime(process.value.order.Paid.iso)
+                                        : '',
+                                })), 1)
+                            ], 64))
+                            : vue.createCommentVNode("v-if", true)
+                    ], 64))
+                    : vue.createCommentVNode("v-if", true)
+            ]));
+        };
+    }
+});
+
+script$1.__file = "src/components/klb/KlbOrder/KlbProcessOrderInternal.vue";
+
+const _hoisted_1 = {
+    key: 0,
+    class: "klb-order"
+};
+const _hoisted_2 = {
+    key: 0,
+    class: "order-summary"
+};
+const _hoisted_3 = {
+    key: 0,
+    class: "fv-typo mb-2"
+};
+const _hoisted_4 = { class: "cart-summary" };
+const _hoisted_5 = { class: "price" };
+const _hoisted_6 = {
+    key: 0,
+    class: "cycle"
+};
+const _hoisted_7 = ["onClick"];
+const _hoisted_8 = {
+    key: 0,
+    class: "cart-summary is-tax"
+};
+const _hoisted_9 = { class: "price" };
+const _hoisted_10 = { class: "cart-total" };
+const _hoisted_11 = {
+    key: 0,
+    class: "cart-summary"
+};
+const _hoisted_12 = { class: "price" };
+const _hoisted_13 = { class: "cart-summary vat" };
+const _hoisted_14 = { class: "price" };
+const _hoisted_15 = { class: "cart-summary vat" };
+const _hoisted_16 = { class: "price" };
+const _hoisted_17 = { class: "cart-summary total" };
+const _hoisted_18 = { class: "price" };
+const _hoisted_19 = {
+    key: 1,
+    class: "order-summary"
+};
+const _hoisted_20 = { class: "cart-summary" };
+const _hoisted_21 = { class: "price" };
+const _hoisted_22 = {
+    key: 0,
+    class: "cycle"
+};
+const _hoisted_23 = {
+    key: 0,
+    class: "cart-summary is-tax"
+};
+const _hoisted_24 = { class: "price" };
+const _hoisted_25 = { class: "cart-total" };
+const _hoisted_26 = {
+    key: 0,
+    class: "cart-summary"
+};
+const _hoisted_27 = { class: "price" };
+const _hoisted_28 = { class: "cart-summary vat" };
+const _hoisted_29 = { class: "price" };
+const _hoisted_30 = { class: "cart-summary vat" };
+const _hoisted_31 = { class: "price" };
+const _hoisted_32 = { class: "cart-summary total" };
+const _hoisted_33 = { class: "price" };
+const _hoisted_34 = { class: "mt-4" };
+const _hoisted_35 = { key: 1 };
+const _hoisted_36 = {
+    key: 2,
+    class: "mt-4"
+};
+const _hoisted_37 = { class: "mt-4 flex items-center justify-center" };
+const _hoisted_38 = { key: 0 };
+var script = vue.defineComponent({
+    __name: 'KlbOrder',
+    props: {
+        shopPath: { type: String, required: false, default: '/shop' },
+        mode: { type: String, required: false, default: 'b2c' }
+    },
+    setup(__props) {
+        const cart = vue.ref();
+        const store = useFVStore();
+        const router = vueRouter.useRouter();
+        const route = vueRouter.useRoute();
+        const routeOrderUuid = vue.computed(() => route.query.Order__);
+        const translate = useTranslation();
+        vue.computed(() => store.isAuth);
+        const isReady = vue.ref(false);
+        const error = vue.ref();
+        const hasOrder = vue.ref();
+        const eventBus = useEventBus();
+        vue.watch(routeOrderUuid, async (v) => {
+            if (v) {
+                const _order = await useOrder()
+                    .getOrder(v.toString())
+                    .catch(() => { });
+                if (_order && _order.result == 'success')
+                    hasOrder.value = _order.data;
+            }
+            else {
+                hasOrder.value = undefined;
+            }
+        });
+        const state = vue.reactive({
+            location: undefined,
+        });
+        const delProduct = async (productUuid) => {
+            eventBus.emit('klb-order-main-loading', true);
+            const _result = await useCart().delProduct(productUuid);
+            if (_result) {
+                cart.value = await useCart().getCart();
+            }
+            eventBus.emit('klb-order-main-loading', false);
+        };
+        const createOrder = async () => {
+            eventBus.emit('klb-order-main-loading', true);
+            if (!state.location) {
+                error.value = translate('klb_error_order_create_location_empty');
+                return;
+            }
+            const _result = await useCart().createOrder({
+                User_Location__: state.location,
+            });
+            if (_result && _result.result == 'success') {
+                hasOrder.value = _result.data;
+                router.push({
+                    path: router.currentRoute.value.path,
+                    query: { Order__: hasOrder.value.Order__ },
+                });
+            }
+            eventBus.emit('klb-order-main-loading', false);
+        };
+        vue.onMounted(async () => {
+            eventBus.emit('klb-order-main-loading', true);
+            if (!routeOrderUuid.value) {
+                cart.value = await useCart().getCart();
+            }
+            else {
+                const _order = await useOrder()
+                    .getOrder(routeOrderUuid.value.toString())
+                    .catch(() => { });
+                if (_order && _order.result == 'success') {
+                    hasOrder.value = _order.data;
+                }
+            }
+            isReady.value = true;
+            eventBus.emit('klb-order-main-loading', false);
+        });
+        return (_ctx, _cache) => {
+            const _component_RouterLink = vue.resolveComponent("RouterLink");
+            return (isReady.value)
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+                    vue.createVNode(script$g, { id: "klb-order-main" }),
+                    vue.createElementVNode("h2", null, vue.toDisplayString(_ctx.$t('klb_order_cart_summary')), 1),
+                    (cart.value && !hasOrder.value)
+                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2, [
+                            (cart.value.data.products.length == 0)
+                                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3, [
+                                    vue.createElementVNode("p", null, [
+                                        vue.createTextVNode(vue.toDisplayString(_ctx.$t('klb_order_cart_is_empty')) + " ", 1),
+                                        vue.createVNode(_component_RouterLink, {
+                                            to: __props.shopPath,
+                                            class: "btn px-2 py-1 primary"
+                                        }, {
+                                            default: vue.withCtx(() => [
+                                                vue.createTextVNode(vue.toDisplayString(_ctx.$t('klb_order_cart_is_empty_back_cta')), 1)
+                                            ]),
+                                            _: 1
+                                        }, 8, ["to"])
+                                    ])
+                                ]))
+                                : vue.createCommentVNode("v-if", true),
+                            (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(cart.value.data.products, (product) => {
+                                return (vue.openBlock(), vue.createElementBlock("div", {
+                                    key: `cart_summary_${product.data.Catalog_Product__}`
+                                }, [
+                                    vue.createElementVNode("div", _hoisted_4, [
+                                        vue.createElementVNode("h3", null, vue.toDisplayString(product.data['Basic.Name']), 1),
+                                        vue.createElementVNode("div", _hoisted_5, [
+                                            vue.createTextVNode(vue.toDisplayString(__props.mode == 'b2c'
+                                                ? product.data.Price.tax.display
+                                                : product.data.Price.raw.display) + " ", 1),
+                                            (product.data['Basic.ServiceLifetime'])
+                                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_6, "/" + vue.toDisplayString(_ctx.$formatKlbRecurringPaymentCycle(product.data['Basic.ServiceLifetime'])), 1))
+                                                : vue.createCommentVNode("v-if", true),
+                                            vue.createElementVNode("button", {
+                                                class: "btn danger trash-icon",
+                                                onClick: ($event) => (delProduct(product.key))
+                                            }, [
+                                                vue.createVNode(vue.unref(render$1))
+                                            ], 8, _hoisted_7)
+                                        ])
+                                    ]),
+                                    (__props.mode == 'b2b')
+                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_vat')) + " (" + vue.toDisplayString(product.data.Price.tax_rate) + "%) ", 1),
+                                            vue.createElementVNode("div", _hoisted_9, vue.toDisplayString(product.data.Price.tax_only.display), 1)
+                                        ]))
+                                        : vue.createCommentVNode("v-if", true)
+                                ]));
+                            }), 128)),
+                            vue.createElementVNode("div", _hoisted_10, [
+                                (__props.mode == 'b2c')
+                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_11, [
+                                        vue.createElementVNode("h3", null, [
+                                            vue.createTextVNode(vue.toDisplayString(_ctx.$t('klb_order_cart_total')) + " ", 1),
+                                            vue.createElementVNode("small", null, "(" + vue.toDisplayString(_ctx.$t('klb_order_tv_included', {
+                                                val: cart.value.data.total_vat_only.display,
+                                            })) + ")", 1)
+                                        ]),
+                                        vue.createElementVNode("div", _hoisted_12, [
+                                            vue.createElementVNode("b", null, vue.toDisplayString(cart.value.data.total_vat.display), 1)
+                                        ])
+                                    ]))
+                                    : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+                                        vue.createElementVNode("div", _hoisted_13, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_total_products')), 1),
+                                            vue.createElementVNode("div", _hoisted_14, [
+                                                vue.createElementVNode("b", null, vue.toDisplayString(cart.value.data.total.display), 1)
+                                            ])
+                                        ]),
+                                        vue.createElementVNode("div", _hoisted_15, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_total_taxes')), 1),
+                                            vue.createElementVNode("div", _hoisted_16, [
+                                                vue.createElementVNode("b", null, vue.toDisplayString(cart.value.data.total_vat_only.display), 1)
+                                            ])
+                                        ]),
+                                        vue.createElementVNode("div", _hoisted_17, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_total')), 1),
+                                            vue.createElementVNode("div", _hoisted_18, [
+                                                vue.createElementVNode("b", null, vue.toDisplayString(cart.value.data.total_vat.display), 1)
+                                            ])
+                                        ])
+                                    ], 64))
+                            ])
+                        ]))
+                        : vue.createCommentVNode("v-if", true),
+                    (hasOrder.value)
+                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_19, [
+                            (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(hasOrder.value.Items, (product) => {
+                                return (vue.openBlock(), vue.createElementBlock("div", {
+                                    key: `cart_summary_${product.Catalog_Product.Catalog_Product__}`
+                                }, [
+                                    vue.createElementVNode("div", _hoisted_20, [
+                                        vue.createElementVNode("h3", null, vue.toDisplayString(product.Catalog_Product['Basic.Name']), 1),
+                                        vue.createElementVNode("div", _hoisted_21, [
+                                            vue.createTextVNode(vue.toDisplayString(__props.mode == 'b2c'
+                                                ? product.Catalog_Product.Price.tax.display
+                                                : product.Catalog_Product.Price.raw.display) + " ", 1),
+                                            (product.Catalog_Product['Basic.ServiceLifetime'])
+                                                ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_22, "/" + vue.toDisplayString(_ctx.$formatKlbRecurringPaymentCycle(product.Catalog_Product['Basic.ServiceLifetime'])), 1))
+                                                : vue.createCommentVNode("v-if", true)
+                                        ])
+                                    ]),
+                                    (__props.mode == 'b2b')
+                                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_23, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_vat')) + " (" + vue.toDisplayString(product.Catalog_Product.Price.tax_rate) + "%) ", 1),
+                                            vue.createElementVNode("div", _hoisted_24, vue.toDisplayString(product.Catalog_Product.Price.tax_only.display), 1)
+                                        ]))
+                                        : vue.createCommentVNode("v-if", true)
+                                ]));
+                            }), 128)),
+                            vue.createElementVNode("div", _hoisted_25, [
+                                (__props.mode == 'b2c')
+                                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_26, [
+                                        vue.createElementVNode("h3", null, [
+                                            vue.createTextVNode(vue.toDisplayString(_ctx.$t('klb_order_cart_total')) + " ", 1),
+                                            vue.createElementVNode("small", null, "(" + vue.toDisplayString(_ctx.$t('klb_order_tv_included', {
+                                                val: hasOrder.value.Vat_Amount.display,
+                                            })) + ")", 1)
+                                        ]),
+                                        vue.createElementVNode("div", _hoisted_27, [
+                                            vue.createElementVNode("b", null, vue.toDisplayString(hasOrder.value.Total_Vat.display), 1)
+                                        ])
+                                    ]))
+                                    : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+                                        vue.createElementVNode("div", _hoisted_28, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_total_products')), 1),
+                                            vue.createElementVNode("div", _hoisted_29, [
+                                                vue.createElementVNode("b", null, vue.toDisplayString(hasOrder.value.Total.display), 1)
+                                            ])
+                                        ]),
+                                        vue.createElementVNode("div", _hoisted_30, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_total_taxes')), 1),
+                                            vue.createElementVNode("div", _hoisted_31, [
+                                                vue.createElementVNode("b", null, vue.toDisplayString(hasOrder.value.Vat_Amount.display), 1)
+                                            ])
+                                        ]),
+                                        vue.createElementVNode("div", _hoisted_32, [
+                                            vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t('klb_order_cart_total')), 1),
+                                            vue.createElementVNode("div", _hoisted_33, [
+                                                vue.createElementVNode("b", null, vue.toDisplayString(hasOrder.value.Total_Vat.display), 1)
+                                            ])
+                                        ])
+                                    ], 64))
+                            ])
+                        ]))
+                        : vue.createCommentVNode("v-if", true),
+                    vue.createElementVNode("div", _hoisted_34, [
+                        vue.createElementVNode("h2", null, vue.toDisplayString(_ctx.$t('klb_order_billing_location')), 1),
+                        (!hasOrder.value)
+                            ? (vue.openBlock(), vue.createBlock(script$2, {
+                                key: 0,
+                                modelValue: state.location,
+                                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => ((state.location) = $event))
+                            }, null, 8, ["modelValue"]))
+                            : (vue.openBlock(), vue.createElementBlock("div", _hoisted_35, vue.toDisplayString(hasOrder.value.Billing_User_Location.Display.join(', ')), 1))
+                    ]),
+                    (vue.unref(routeOrderUuid))
+                        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_36, [
+                            vue.createElementVNode("h2", null, vue.toDisplayString(_ctx.$t('klb_order_process')), 1),
+                            vue.createVNode(script$1, {
+                                orderUuid: vue.unref(routeOrderUuid)?.toString()
+                            }, null, 8, ["orderUuid"])
+                        ]))
+                        : vue.createCommentVNode("v-if", true),
+                    vue.createElementVNode("div", _hoisted_37, [
+                        (error.value)
+                            ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_38, vue.toDisplayString(error.value), 1))
+                            : vue.createCommentVNode("v-if", true),
+                        (!hasOrder.value)
+                            ? (vue.openBlock(), vue.createElementBlock("button", {
+                                key: 1,
+                                onClick: _cache[1] || (_cache[1] = ($event) => (createOrder())),
+                                class: "btn primary btn-defaults"
+                            }, vue.toDisplayString(_ctx.$t('klb_order_create_cta')), 1))
+                            : vue.createCommentVNode("v-if", true)
+                    ])
+                ]))
+                : vue.createCommentVNode("v-if", true);
+        };
+    }
+});
+
+script.__file = "src/components/klb/KlbOrder/KlbOrder.vue";
+
+function useUser() {
+    return {
+        userCheck: async () => {
+            const store = useFVStore();
+            const isAuth = vue.computed(() => store.isAuth);
+            const checkUser = () => {
+                if (!isAuth.value)
+                    useHistory().push('/login', 302);
+            };
+            if (!undefined.SSR) {
+                await store.refreshUser();
+                console.log('called');
+                checkUser();
+            }
+        },
+    };
+}
+
+function useBilling() {
+    return {
+        getUserBillingAndLoc: () => {
+            return new Promise((resolve) => {
+                rest('User/Billing', 'GET')
+                    .then((_userBilling) => {
+                    if (_userBilling &&
+                        _userBilling.data &&
+                        _userBilling.data.length != 0) {
+                        rest(`User/Location/${_userBilling.data[0].User_Location__}`, 'GET')
+                            .then((_userLocation) => {
+                            if (_userLocation && _userLocation.result == 'success') {
+                                resolve({
+                                    location: _userLocation.data,
+                                    billing: _userBilling.data[0],
+                                });
+                            }
+                            else {
+                                resolve(null);
+                            }
+                        })
+                            .catch(() => {
+                            resolve(null);
+                        });
+                    }
+                    else {
+                        resolve(null);
+                    }
+                })
+                    .catch(() => {
+                    resolve(null);
+                });
+            });
+        },
+    };
+}
+
+var klb = {
+    components: {
+        KlbLogin: script$b,
+        KlbUpdateEmailModal: script$a,
+        KlbUpdatePasswordModal: script$9,
+        KlbDeleteAccount: script$8,
+        KlbBillingHistory: script$7,
+        KlbUpdatePaymentMethod: script$5,
+        KlbUpdateBillingLocation: script$4,
+        KlbAddPaymentMethodModal: script$6,
+        KlbCatalog: script$3,
+        KlbOrder: script,
+    },
+    composables: {
+        useCart,
+        useUserCheck: useUser,
+        useOrder,
+        useBilling,
+    },
+};
+
+const ClientOnly = vue.defineComponent({
+    __name: 'ClientOnly',
+    setup(_, { slots }) {
+        const show = vue.ref(false);
+        vue.onMounted(() => {
+            show.value = true;
+        });
+        return () => (show.value && slots.default ? slots.default() : null);
+    },
+});
 
 var helpersComponents = {
     ClientOnly: ClientOnly,
@@ -3246,30 +4152,7 @@ const formatTimeago = (dt) => {
     return format(dt, klbfw.getLocale().replace('_', '-'));
 };
 
-function useUserCheck(onMount = true) {
-    const store = useFVStore();
-    const isAuth = vue.computed(() => store.isAuth);
-    const checkUser = () => {
-        if (!isAuth.value)
-            useHistory().push('/login', 302);
-    };
-    vue.onMounted(async () => {
-        if (onMount) {
-            store.refreshUser().then(() => {
-                if (useHistory().currentRoute.meta.reqLogin)
-                    checkUser();
-            });
-        }
-    });
-    if (onMount === false) {
-        store.refreshUser().then(() => {
-            if (useHistory().currentRoute.meta.reqLogin)
-                checkUser();
-        });
-    }
-}
-
-const components = { ...uiComponents, ...klbComponents, ...helpersComponents };
+const components = { ...uiComponents, ...klb.components, ...helpersComponents };
 const i18nextPromise = (backend) => {
     return i18next.use(backend).init({
         ns: ['translation'],
@@ -3301,9 +4184,9 @@ const createFyvue = () => {
         }
         if (options.loadKlb) {
             app.config.globalProperties.$countries = countries;
-            let klb;
-            for (klb in klbComponents) {
-                app.component(klbComponents[klb].__name, klbComponents[klb]);
+            let klbComponent;
+            for (klbComponent in klb.components) {
+                app.component(klb.components[klbComponent].__name, klb.components[klbComponent]);
             }
         }
         let hlp;
@@ -3329,7 +4212,11 @@ const helpersSSR = {
     handleSSR,
     isSSRRendered,
 };
+const KlbUse = {
+    ...klb.composables,
+};
 
+exports.KlbUse = KlbUse;
 exports.components = components;
 exports.countriesPromise = countriesPromise;
 exports.createFyvue = createFyvue;
@@ -3342,5 +4229,5 @@ exports.useEventBus = useEventBus;
 exports.useFVStore = useFVStore;
 exports.useHistory = useHistory;
 exports.useTranslation = useTranslation;
-exports.useUserCheck = useUserCheck;
+exports.useUser = useUser;
 //# sourceMappingURL=fyvue.js.map

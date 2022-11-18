@@ -19,7 +19,12 @@ export interface KlbPrice {
   value_disp: number;
   value_int: number;
 }
-
+export interface KlbPriceTaxes extends KlbPrice {
+  raw: KlbPrice;
+  tax: KlbPrice;
+  tax_only: KlbPrice;
+  tax_rate: number;
+}
 export interface KlbMediaImage {
   Media_Image__: KlbUUID;
   Url: string;
@@ -56,17 +61,39 @@ export interface KlbAPIResultUnknown extends KlbAPIResult {
 export interface KlbAPIResultArray extends KlbAPIResult {
   data: unknown[];
 }
+export interface KlbAPIOrderProcess extends KlbAPIResult {
+  data: KlbOrderProcess;
+}
 export interface KlbAPIBillingHistory extends KlbAPIResult {
+  data: Array<KlbUserBilling>;
+}
+export interface KlbAPIUserBilling extends KlbAPIResult {
   data: Array<KlbUserBilling>;
 }
 export interface KlbAPIUserLocation extends KlbAPIResult {
   data: KlbUserLocation;
+}
+export interface KlbAPIUserLocations extends KlbAPIResult {
+  data: Array<KlbUserLocation>;
 }
 export interface KlbAPICountry extends KlbAPIResult {
   data: Array<KlbCountry>;
 }
 export interface KlbAPICatalog extends KlbAPIResult {
   data: { data: Array<KlbCatalogProduct> };
+}
+export interface KlbAPICatalogCart extends KlbAPIResult {
+  data: KlbCatalogCart;
+}
+export interface KlbAPIOrder extends KlbAPIResult {
+  data: KlbOrder;
+}
+export interface KlbAPIOrders extends KlbAPIResult {
+  data: Array<KlbOrder>;
+}
+export interface KlbBillingAndLocation {
+  location: KlbUserLocation;
+  billing: KlbUserBilling;
 }
 /*
   USER FLOW
@@ -257,6 +284,7 @@ export interface KlbUserLocation {
     | 'verified';
   Visible: 'Y' | 'C' | 'P' | 'N';
   Zip?: string;
+  Display: string[];
 }
 
 // KlbUserBilling (https://ws.atonline.com/_special/rest/User/Billing)
@@ -334,7 +362,7 @@ export interface KlbUserBilling {
 // Klb_Catalog_Product (https://ws.atonline.com/_special/rest/Catalog/Product/Field?pretty&results_per_page=100)
 export interface KlbCatalogProduct {
   Catalog_Product__: KlbUUID;
-  Price: KlbPrice;
+  Price: KlbPriceTaxes;
   'Affiliate.PaymentRate': string;
   'Basic.Created': KlbDate;
   'Basic.Date_Release': KlbDate;
@@ -398,7 +426,33 @@ export interface KlbCatalogProduct {
   'Shipping.Type': 'package' | 'letter' | 'cool' | 'freeze';
   'Shipping.Volumetric_Weight': number;
   'Shipping.Weight': number;
-  Image: { list: Array<KlbMediaImage> };
+  Image?: { list?: Array<KlbMediaImage> };
+}
+
+// KlbCatalogCart (https://ws.atonline.com/_special/rest/Catalog/Cart)
+export interface KlbCatalogCart {
+  products: Array<{
+    data: KlbCatalogProduct;
+    key: string;
+    quantity: number;
+    price: KlbPrice;
+    id: KlbUUID;
+    meta: {
+      quantity: number;
+    };
+  }>;
+  total: KlbPrice;
+  total_vat: KlbPrice;
+  total_vat_only: KlbPrice;
+  total_vat_rate: number;
+  total_no_coupon: KlbPrice;
+  total_no_coupon_no_vat: KlbPrice;
+  subtotals: {
+    regular: KlbPrice;
+    discount: KlbPrice;
+    shipping: KlbPrice;
+    tax: KlbPrice;
+  };
 }
 
 /*
@@ -415,4 +469,117 @@ export interface KlbSSR {
   app?: string;
   statusCode?: number;
   redirect?: string;
+}
+
+// KlbOrder (https://ws.atonline.com/_special/rest/Order)
+export interface KlbOrder {
+  Affiliate_Currency__?: string;
+  Affiliate_Status: 'none' | 'waiting' | 'credited' | 'error';
+  Affiliate_Surfer?: string;
+  Affiliate_Total?: number;
+  Affiliate__: KlbUUID;
+  Billing_User_Location__?: KlbUUID;
+  Check_Accept_Language?: string;
+  Check_Ip?: string;
+  Check_User_Agent?: string;
+  Created: KlbDate;
+  Currency__: string;
+  Flags:
+    | 'autorenew_record'
+    | 'autorenew'
+    | 'trivial'
+    | 'refund'
+    | 'can_pay_later';
+  Fraud_Score?: number;
+  Invoice_Blob__: KlbUUID;
+  Invoice_Date?: KlbDate;
+  Invoice_Number?: number;
+  Invoice_Prefix?: string;
+  Invoice_Status: 'pending' | 'todo' | 'none' | 'done';
+  Language__: string;
+  License_User_Location__?: KlbUUID;
+  Order__: KlbUUID;
+  Owner_Realm__?: KlbUUID;
+  Paid?: KlbDate;
+  Parent_Order__?: KlbUUID;
+  Payment_Card?: string;
+  Payment_Card_Hash?: string;
+  Payment_Class?: string;
+  Payment_Class_Set?: string;
+  Payment_Country__?: string;
+  Payment_Fee?: number;
+  Payment_Last4?: string;
+  Payment_Method?: string;
+  Payment_Reference?: string;
+  Payment_Test: 'Y' | 'N';
+  Realm__: KlbUUID;
+  Referer?: string;
+  Remind_Date?: KlbDate;
+  Remind_Status: 'pending' | 'send' | 'sent' | 'none' | 'giveup';
+  Shipping_User_Location__?: KlbUUID;
+  Site__: KlbUUID;
+  Status:
+    | 'open'
+    | 'pending'
+    | 'pending-initiated'
+    | 'unpaid'
+    | 'pending-paid'
+    | 'paid'
+    | 'completed'
+    | 'cancelled'
+    | 'chargeback'
+    | 'chargeback-reversed'
+    | 'forcedcollection'
+    | 'settled'
+    | 'refunded'
+    | 'expired';
+  Total: KlbPrice;
+  Total_Vat: KlbPrice;
+  User_Billing__?: KlbUUID;
+  User__?: KlbUUID;
+  Utm_Campaign?: string;
+  Utm_Content?: string;
+  Utm_Medium?: string;
+  Utm_Source?: string;
+  Utm_Term?: string;
+  Vat_Amount: KlbPrice;
+  Vat_Engine: string;
+  Vat_Rate: number;
+  Items: Array<KlbOrderItem>;
+  Subtotals: {
+    discount: KlbPrice;
+    regular: KlbPrice;
+    shipping: KlbPrice;
+    tax: KlbPrice;
+  };
+  Billing_User_Location: KlbUserLocation;
+}
+
+export interface KlbOrderItem {
+  Catalog_Product__: KlbUUID;
+  Catalog_Product: KlbCatalogProduct;
+}
+export interface KlbOrderProcess {
+  methods_order: Array<string>;
+  order: KlbOrder;
+  order_payable: boolean;
+  methods: {
+    [key: string]: {
+      session: string;
+      fields: {
+        [key: string]: {
+          attributes?: {
+            value?: string;
+            options?: any;
+            key?: string;
+          };
+          caption?: string;
+          type?: string;
+          mode?: string;
+          result?: boolean;
+          values?: [];
+        };
+      };
+    };
+  };
 }

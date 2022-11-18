@@ -1,9 +1,5 @@
 <script setup>
-import {
-  i18nextPromise,
-  countriesPromise,
-  useUserCheck,
-} from '@karpeleslab/fyvue';
+import { i18nextPromise, countriesPromise, useUser } from '@karpeleslab/fyvue';
 import { Head, useHead } from '@vueuse/head';
 import {
   SchemaOrgWebSite,
@@ -11,7 +7,7 @@ import {
 } from '@vueuse/schema-org/runtime';
 import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 
-import { onMounted, ref, computed } from 'vue';
+import { onBeforeMount, ref, computed } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
 import { onClickOutside } from '@vueuse/core';
@@ -24,9 +20,8 @@ const sideBarOpen = ref(false);
 const computedRoute = computed(() => route);
 const aside = ref();
 onClickOutside(ref, () => (sideBarOpen.value = false));
-
-useUserCheck();
-onMounted(async () => {
+await useUser().userCheck();
+onBeforeMount(async () => {
   await countriesPromise();
 });
 useHead({

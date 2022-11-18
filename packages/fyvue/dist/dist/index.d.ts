@@ -3,7 +3,7 @@ import { useEventBus, useTranslation, useCountries, countriesPromise } from './u
 import { handleSSR, useHistory } from './utils/ssr';
 import { useFVStore } from './utils/store';
 import { rest } from './utils/rest';
-import { useUserCheck } from './components/klb/KlbUser/KlbUserCheck';
+import { useUser } from './components/klb/KlbUser/useUser';
 declare const components: {
     ClientOnly: import("vue").DefineComponent<{}, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
@@ -17,6 +17,7 @@ declare const components: {
     KlbUpdateBillingLocation: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     KlbAddPaymentMethodModal: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     KlbCatalog: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
+    KlbOrder: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     FyModal: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     FyCirclePercent: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
     FyConfirm: import("vue").DefineComponent<{}, {}, any, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
@@ -46,4 +47,10 @@ declare const helpersSSR: {
     handleSSR: typeof handleSSR;
     isSSRRendered: () => boolean;
 };
-export { createFyvue, useEventBus, useTranslation, useUserCheck, useFVStore, useHistory, useCountries, countriesPromise, components, helpers, helpersSSR, rest, };
+declare const KlbUse: {
+    useCart: typeof import("./components/klb/KlbOrder/useCart").useCart;
+    useUserCheck: typeof useUser;
+    useOrder: typeof import("./components/klb/KlbOrder/userOrder").useOrder;
+    useBilling: typeof import("./components/klb/KlbBilling/useBilling").useBilling;
+};
+export { createFyvue, useEventBus, useTranslation, useUser, useFVStore, useHistory, useCountries, countriesPromise, components, helpers, helpersSSR, rest, KlbUse, };

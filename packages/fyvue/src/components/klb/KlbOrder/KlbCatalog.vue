@@ -3,13 +3,16 @@ import { onMounted, ref } from 'vue';
 import type { ObjectS2Any } from '../../../dts';
 import type { KlbAPICatalog } from '../../../dts/klb';
 import { rest } from '../../../utils/rest';
+import { useCart } from '../KlbOrder/useCart';
+import { useHistory } from '../../../utils/ssr';
 const products = ref<KlbAPICatalog>();
 const props = withDefaults(
   defineProps<{
     options?: ObjectS2Any;
-    displayType?: string;
+    displayType?: 'subs' | 'shop';
     features?: string[];
     startOrderPath?: string;
+    productMeta?: string;
   }>(),
   {
     options: (): ObjectS2Any => {
@@ -18,6 +21,7 @@ const props = withDefaults(
     displayType: 'subs',
     features: () => [],
     startOrderPath: '/user/order/start',
+    productMeta: '',
   }
 );
 onMounted(async () => {
@@ -32,10 +36,28 @@ onMounted(async () => {
       ],
     }
   ).catch(() => {});
+
   if (_products && _products.result == 'success') {
     products.value = _products;
   }
 });
+const addProductToCart = async (productUuid: string) => {
+  if (props.displayType == 'subs') {
+    await useCart().resetCart();
+    const _addResult = await useCart().addProduct(
+      productUuid,
+      props.productMeta
+    );
+    if (_addResult) {
+      useHistory().push(props.startOrderPath);
+    }
+  } else if (props.displayType == 'shop') {
+    const _addResult = await useCart().addProduct(
+      productUuid,
+      props.productMeta
+    );
+  }
+};
 </script>
 <template>
   <div class="klb-product">
@@ -49,7 +71,7 @@ onMounted(async () => {
           <h5>{{ product['Basic.Name'] }}</h5>
           <div class="price">
             <span class="price">{{ product.Price.display }}</span>
-            <span class="cycle"
+            <span class="cycle" v-if="product['Basic.ServiceLifetime']"
               >/{{
                 $formatKlbRecurringPaymentCycle(
                   product['Basic.ServiceLifetime']
@@ -59,6 +81,8 @@ onMounted(async () => {
           </div>
           <img
             v-if="
+              product.Image &&
+              product.Image.list &&
               product.Image.list.length > 0 &&
               product.Image.list[0].Variation?.subs
             "
@@ -69,12 +93,12 @@ onMounted(async () => {
           <ul role="list">
             <slot :name="product.Catalog_Product__" />
           </ul>
-          <router-link
-            :to="`${startOrderPath}?Catalog_Product__=${product.Catalog_Product__}`"
+          <button
+            @click="addProductToCart(product.Catalog_Product__)"
             class="btn primary"
           >
             {{ $t('klb_catalog_choose_plan') }}
-          </router-link>
+          </button>
         </div>
       </div>
     </div>
@@ -86,6 +110,8 @@ onMounted(async () => {
       >
         <img
           v-if="
+            product.Image &&
+            product.Image.list &&
             product.Image.list.length > 0 &&
             product.Image.list[0].Variation?.shop
           "
@@ -98,7 +124,7 @@ onMounted(async () => {
           <div class="price-btn">
             <span
               >{{ product.Price.display }}
-              <span class="cycle"
+              <span class="cycle" v-if="product['Basic.ServiceLifetime']"
                 >/{{
                   $formatKlbRecurringPaymentCycle(
                     product['Basic.ServiceLifetime']
@@ -106,7 +132,10 @@ onMounted(async () => {
                 }}</span
               ></span
             >
-            <button class="btn primary btn-defaults">
+            <button
+              class="btn primary btn-defaults"
+              @click="addProductToCart(product.Catalog_Product__)"
+            >
               {{ $t('klb_catalog_add_to_cart') }}
             </button>
           </div>

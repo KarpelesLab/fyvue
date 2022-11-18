@@ -20,6 +20,11 @@ declare const _default: import("vue").DefineComponent<{
         required: false;
         default: string;
     };
+    productMeta: {
+        type: StringConstructor;
+        required: false;
+        default: string;
+    };
 }, (_ctx: any, _cache: any) => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
     [key: string]: any;
 }>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
@@ -43,10 +48,16 @@ declare const _default: import("vue").DefineComponent<{
         required: false;
         default: string;
     };
+    productMeta: {
+        type: StringConstructor;
+        required: false;
+        default: string;
+    };
 }>>, {
     options: any;
     displayType: string;
     features: unknown[];
     startOrderPath: string;
+    productMeta: string;
 }>;
 export default _default;

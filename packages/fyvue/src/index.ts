@@ -2,7 +2,7 @@ import type { App, Plugin } from 'vue';
 //import Backend from '../lib/klb-i18n-backend.js';
 import i18next from 'i18next';
 import uiComponents from './components/ui';
-import klbComponents from './components/klb';
+import klb from './components/klb';
 import helpersComponents from './components/helpers';
 import {
   eventBus,
@@ -25,10 +25,10 @@ import { handleSSR, setupClient, useHistory, isSSRRendered } from './utils/ssr';
 import { useFVStore } from './utils/store';
 import { rest } from './utils/rest';
 import type { FyvueOptions } from './dts';
-import { useUserCheck } from './components/klb/KlbUser/KlbUserCheck';
+import { useUser } from './components/klb/KlbUser/useUser';
 import { getLocale } from '@karpeleslab/klbfw';
 
-const components = { ...uiComponents, ...klbComponents, ...helpersComponents };
+const components = { ...uiComponents, ...klb.components, ...helpersComponents };
 export const i18nextPromise = (backend) => {
   return i18next.use(backend).init({
     ns: ['translation'],
@@ -62,9 +62,12 @@ const createFyvue = () => {
 
     if (options.loadKlb) {
       app.config.globalProperties.$countries = countries;
-      let klb: keyof typeof klbComponents;
-      for (klb in klbComponents) {
-        app.component(klbComponents[klb].__name!, klbComponents[klb]);
+      let klbComponent: keyof typeof klb.components;
+      for (klbComponent in klb.components) {
+        app.component(
+          klb.components[klbComponent].__name!,
+          klb.components[klbComponent]
+        );
       }
     }
     let hlp: keyof typeof helpersComponents;
@@ -91,11 +94,14 @@ const helpersSSR = {
   handleSSR,
   isSSRRendered,
 };
+const KlbUse = {
+  ...klb.composables,
+};
 export {
   createFyvue,
   useEventBus,
   useTranslation,
-  useUserCheck,
+  useUser,
   useFVStore,
   useHistory,
   useCountries,
@@ -104,4 +110,5 @@ export {
   helpers,
   helpersSSR,
   rest,
+  KlbUse,
 };

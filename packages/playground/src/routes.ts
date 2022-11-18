@@ -385,6 +385,32 @@ export const routes = [
           title: 'KlbCatalog - Klb - Components - fyvue',
         },
       },
+      {
+        path: '/components/klb/KlbOrder',
+        component: () => import('./views/components/klb/KlbOrderView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Klb', to: '/components/klb' },
+            { name: 'KlbOrder' },
+          ],
+          title: 'KlbOrder - Klb - Components - fyvue',
+        },
+      },
+      {
+        path: '/components/klb/KlbBillingHistory',
+        component: () => import('./views/components/klb/KlbBillingHistoryView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Klb', to: '/components/klb' },
+            { name: 'KlbBillingHistory' },
+          ],
+          title: 'KlbBillingHistory - Klb - Components - fyvue',
+        },
+      },
     ],
   },
 

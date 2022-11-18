@@ -22,6 +22,7 @@ const KlbComponents = [
   'KlbLogin',
   'useUserCheck',
   'KlbCatalog',
+  'KlbOrder',
 ];
 
 const miscComponents = ['Button', 'Typo', 'ClientOnly'];

@@ -69,7 +69,7 @@ const props = [
 </script>
 <template>
   <div class="fv-typo mb-2">
-    <h1>KlbCatalogView</h1>
+    <h1>KlbCatalog</h1>
   </div>
 
   <FyDocPreview :component="fvComponent" :props="props">
@@ -79,7 +79,7 @@ const props = [
         <KlbCatalog
           :options="{ sort: 'Basic.Priority:asc' }"
           displayType="subs"
-          startOrderPath="/components/klb/KlbOrderStart"
+          startOrderPath="/components/klb/KlbOrder"
         >
           <template #cpr-phkom6-ib7v-bsbg-t72a-sjlzvrya>
             <li><CheckBadgeIcon /> <span>My Super feature</span></li>
@@ -102,7 +102,7 @@ const props = [
         <KlbCatalog
           :options="{ sort: 'Basic.Priority:asc' }"
           displayType="shop"
-          startOrderPath="/components/klb/KlbOrderStart"
+          startOrderPath="/components/klb/KlbOrder"
         >
           <template #cpr-phkom6-ib7v-bsbg-t72a-sjlzvrya>
             <div class="fv-typo">

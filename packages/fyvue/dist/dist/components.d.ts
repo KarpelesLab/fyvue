@@ -26,6 +26,7 @@ declare module 'vue' {
     KlbUpdateBillingLocation: typeof import('@karpeleslab/fyvue')['components']['KlbUpdateBillingLocation'];
     KlbAddPaymentMethodModal: typeof import('@karpeleslab/fyvue')['components']['KlbAddPaymentMethodModal'];
     KlbCatalog: typeof import('@karpeleslab/fyvue')['components']['KlbCatalog'];
+    KlbOrder: typeof import('@karpeleslab/fyvue')['components']['KlbOrder'];
 
     // Helpers
     ClientOnly: typeof import('@karpeleslab/fyvue')['components']['ClientOnly'];
