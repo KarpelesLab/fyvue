@@ -7,7 +7,7 @@ import {
 } from '@vueuse/schema-org/runtime';
 import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 
-import { onBeforeMount, ref, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
 import { onClickOutside } from '@vueuse/core';
@@ -20,10 +20,12 @@ const sideBarOpen = ref(false);
 const computedRoute = computed(() => route);
 const aside = ref();
 onClickOutside(ref, () => (sideBarOpen.value = false));
-await useUser().userCheck();
-onBeforeMount(async () => {
+
+if (!import.meta.env.SSR) {
+  await useUser().userCheck();
   await countriesPromise();
-});
+}
+
 useHead({
   title: computed(() =>
     computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'

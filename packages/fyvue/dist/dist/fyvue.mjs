@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.36
+  * @karpeleslab/fyvue v0.2.0-beta.37
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -3913,11 +3913,8 @@ function useUser() {
                 if (!isAuth.value)
                     useHistory().push('/login', 302);
             };
-            if (!import.meta.env.SSR) {
-                await store.refreshUser();
-                console.log('called');
-                checkUser();
-            }
+            await store.refreshUser();
+            checkUser();
         },
     };
 }

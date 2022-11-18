@@ -12,11 +12,8 @@ export function useUser() {
         if (!isAuth.value) useHistory().push('/login', 302);
       };
 
-      if (!import.meta.env.SSR) {
-        await store.refreshUser();
-        console.log('called');
-        checkUser();
-      }
+      await store.refreshUser();
+      checkUser();
     },
   };
 }
