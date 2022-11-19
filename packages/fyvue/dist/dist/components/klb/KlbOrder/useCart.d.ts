@@ -4,5 +4,5 @@ export declare function useCart(): {
     createOrder(billingLocation: any): Promise<KlbAPIOrder>;
     getCart(): Promise<KlbAPICatalogCart>;
     delProduct: (productKey: string) => Promise<boolean>;
-    addProduct: (productUuid: string, meta: string) => Promise<boolean>;
+    addProduct: (productUuid: string, meta: string) => Promise<KlbAPICatalogCart>;
 };

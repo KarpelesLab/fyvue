@@ -25,7 +25,7 @@ import { handleSSR, setupClient, useHistory, isSSRRendered } from './utils/ssr';
 import { useFVStore } from './utils/store';
 import { rest } from './utils/rest';
 import type { FyvueOptions } from './dts';
-import { useUser } from './components/klb/KlbUser/useUser';
+import { useUserCheck } from './components/klb/KlbUser/useUserCheck';
 import { getLocale } from '@karpeleslab/klbfw';
 
 const components = { ...uiComponents, ...klb.components, ...helpersComponents };
@@ -101,7 +101,7 @@ export {
   createFyvue,
   useEventBus,
   useTranslation,
-  useUser,
+  useUserCheck,
   useFVStore,
   useHistory,
   useCountries,

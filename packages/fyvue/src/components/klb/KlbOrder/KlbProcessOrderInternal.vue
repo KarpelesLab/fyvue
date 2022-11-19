@@ -13,8 +13,11 @@ import { useFVStore } from '../../../utils/store';
 import { ObjectS2Any } from '../../../dts';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 import { useEventBus } from '../../../utils/helpers';
+import FyInput from '../../ui/FyInput/FyInput.vue';
+import { getHostname, getUrl } from '@karpeleslab/klbfw';
+import { useHistory } from '../../../utils/ssr';
 let stripe: any;
-
+let stripeElements: any;
 useHead({
   script: [
     {
@@ -25,6 +28,7 @@ useHead({
 });
 
 const currentMethod = ref<string>();
+const stripeElementsRef = ref();
 const eventBus = useEventBus();
 const store = useFVStore();
 const props = withDefaults(
@@ -34,8 +38,6 @@ const props = withDefaults(
   {}
 );
 const session = ref<string>();
-const theCard = ref();
-const stripeCard = ref();
 const errorMessage = ref<string>();
 const order = ref<KlbOrder>();
 const formData = reactive({} as ObjectS2Any);
@@ -46,21 +48,46 @@ const selectedOnFile = ref<string>();
 const processOrder = async () => {
   eventBus.emit('klb-order-loading', true);
   errorMessage.value = undefined;
-  if (currentMethod.value == 'Stripe') {
-    const cardToken = await stripe.createToken(stripeCard.value, {
-      name: `${order.value?.Billing_User_Location.First_Name} ${order.value?.Billing_User_Location.Last_Name}`,
-      email: store.user?.Email,
-    });
-    if (cardToken.error) {
-      errorMessage.value = cardToken.error.message;
+  if (currentMethod.value == 'Stripe' && process.value) {
+    const _stripeResult = await stripe.confirmCardPayment(
+      process.value.methods['Stripe'].fields.stripe_intent?.attributes
+        ?.client_secret,
+      {
+        return_url: getUrl().full,
+        setup_future_usage:
+          formData.cc_remember == '1' ? 'off_session' : undefined,
+        payment_method: {
+          card: stripeElements,
+          billing_details: {
+            name: `${process.value.order.Billing_User_Location.First_Name} ${process.value.order.Billing_User_Location.Last_Name}`,
+            email: store.user?.Email,
+            address: {
+              country: process.value.order.Billing_User_Location.Country__,
+              postal_code: process.value.order.Billing_User_Location.Zip,
+              state: '',
+              city: '',
+              line1: '',
+              line2: '',
+            },
+          },
+        },
+      }
+    );
+    if (_stripeResult.error) {
+      errorMessage.value = _stripeResult.error.message;
     } else {
       const data = { ...formData };
       data.session = session.value;
-      data.cc_token = cardToken.token.id;
       data.method = currentMethod.value;
+      data.stripe_intent = 1;
       const _process = await useOrder()
         .process(data, props.orderUuid)
-        .catch(() => {});
+        .catch((err) => {
+          errorMessage.value = err.message;
+        })
+        .catch((err) => {
+          errorMessage.value = err.message;
+        });
 
       await getOrderProcess(_process);
     }
@@ -70,9 +97,12 @@ const processOrder = async () => {
     data.method = currentMethod.value;
     const _process = await useOrder()
       .process(data, props.orderUuid)
-      .catch(() => {});
+      .catch((err) => {
+        errorMessage.value = err.message;
+      });
 
-    await getOrderProcess(_process);
+    if (!errorMessage.value) await getOrderProcess(_process);
+    else await getOrderProcess();
   } else if (currentMethod.value == 'OnFile') {
     const data = { ...formData };
     data.session = session.value;
@@ -80,12 +110,14 @@ const processOrder = async () => {
     data.user_billing = selectedOnFile.value;
     const _process = await useOrder()
       .process(data, props.orderUuid)
-      .catch(() => {});
+      .catch((err) => {
+        errorMessage.value = err.message;
+      });
 
-    await getOrderProcess(_process);
+    if (!errorMessage.value) await getOrderProcess(_process);
+    else await getOrderProcess();
   }
   eventBus.emit('klb-order-loading', false);
-  //await getOrderProcess();
 };
 
 const activatePM = async (method: string) => {
@@ -103,12 +135,23 @@ const activatePM = async (method: string) => {
       session.value = process.value.methods[method].session;
 
       if (stripe) {
-        stripeCard.value = stripe
-          .elements()
-          .create('card', { hidePostalCode: true });
-        await theCard;
-        if (theCard.value) {
-          stripeCard.value.mount(theCard.value);
+        await stripeElementsRef;
+        if (
+          process.value.methods[method].fields.stripe_intent?.attributes
+            ?.client_secret
+        ) {
+          stripeElements = stripe.elements({
+            clientSecret:
+              process.value.methods[method].fields.stripe_intent?.attributes
+                ?.client_secret,
+          });
+
+          if (stripeElementsRef.value) {
+            stripeElements = stripeElements.create('card', {
+              hidePostalCode: true,
+            });
+            stripeElements.mount(stripeElementsRef.value);
+          }
         }
       }
     } else if (method == 'OnFile') {
@@ -134,6 +177,19 @@ const activatePM = async (method: string) => {
       currentMethod.value = method;
       session.value = process.value.methods[method].session;
     }
+    if (method) {
+      for (const [k, v] of Object.entries(
+        process.value.methods[method].fields
+      )) {
+        if (k != 'user_billing' && v) {
+          if (v.attributes) {
+            formData[k] = v.attributes.value
+              ? v.attributes.value.toString()
+              : null;
+          }
+        }
+      }
+    }
   }
   eventBus.emit('klb-order-loading', false);
 };
@@ -141,10 +197,14 @@ const getOrderProcess = async (
   __process: void | KlbAPIOrderProcess = undefined
 ) => {
   eventBus.emit('klb-order-loading', true);
+  let processParams: null | { stripe_intent: number } = null;
+  if (useHistory().currentRoute.query.payment_intent) {
+    processParams = { stripe_intent: 1 };
+  }
   const _process = __process
     ? __process
     : await useOrder()
-        .process(null, props.orderUuid)
+        .process(processParams, props.orderUuid)
         .catch(() => {});
 
   if (_process && _process.result == 'success') {
@@ -157,17 +217,6 @@ const getOrderProcess = async (
       }
     }
     if (currentMethod.value) {
-      for (const [k, v] of Object.entries(
-        process.value.methods[currentMethod.value].fields
-      )) {
-        if (k != 'user_billing' && v) {
-          if (v.attributes) {
-            formData[k] = v.attributes.value
-              ? v.attributes.value.toString()
-              : null;
-          }
-        }
-      }
       await activatePM(currentMethod.value);
     }
   }
@@ -184,6 +233,7 @@ onMounted(async () => {
       <form @submit.prevent="processOrder">
         <template v-if="process.order_payable">
           <template v-if="currentMethod == 'Stripe'">
+            <!--
             <div class="input-group">
               <label class="label-basic" for="theCard"
                 >{{ $t('klb_order_payment_card_label') }}
@@ -200,19 +250,21 @@ onMounted(async () => {
             >
               {{ $t('klb_order_option_on_file') }}
             </button>
-            <div class="klb-order-button">
-              <button class="btn primary btn-defaults">
-                {{ $t('klb_order_process_cta') }}
-              </button>
+            -->
+            <div class="input-group">
+              <label class="label-basic" for="stripeElementsRef"
+                >{{ $t('klb_order_payment_card_label') }}
+              </label>
+              <div class="input-box">
+                <div
+                  id="stripeElementsRef"
+                  class="theCard"
+                  ref="stripeElementsRef"
+                ></div>
+              </div>
             </div>
           </template>
-          <template v-if="currentMethod == 'Free'">
-            <div class="klb-order-button">
-              <button class="btn primary btn-defaults">
-                {{ $t('klb_order_process_cta') }}
-              </button>
-            </div>
-          </template>
+          <template v-if="currentMethod == 'Free'"> </template>
           <template v-if="currentMethod == 'OnFile'">
             <FyInput
               id="selectLocation"
@@ -228,12 +280,51 @@ onMounted(async () => {
             >
               {{ $t('klb_order_option_stripe') }}
             </button>
-            <div class="klb-order-button">
-              <button class="btn primary btn-defaults big">
-                {{ $t('klb_order_process_cta') }}
-              </button>
+          </template>
+          <template v-if="currentMethod">
+            <div
+              v-for="(field, key) in process.methods[currentMethod].fields"
+              v-bind:key="`field_method_${key}`"
+            >
+              <template
+                v-if="
+                  field.type == 'input' ||
+                  field.type == 'password' ||
+                  field.type == 'email' ||
+                  field.type == 'checkbox'
+                "
+              >
+                <FyInput
+                  :placeholder="field.caption"
+                  :type="field.type"
+                  :label="field.caption"
+                  v-model:checkboxValue="formData[key]"
+                  :id="`form_${key}`"
+                  checkboxTrueValue="1"
+                  checkboxFalseValue="0"
+                  v-if="field.type == 'checkbox'"
+                >
+                </FyInput>
+                <FyInput
+                  :placeholder="field.caption"
+                  :type="field.type"
+                  :label="field.caption"
+                  v-model="formData[key]"
+                  :id="`form_${key}`"
+                  v-else
+                >
+                </FyInput>
+              </template>
             </div>
           </template>
+          <div v-if="errorMessage" class="response-error">
+            {{ errorMessage }}
+          </div>
+          <div class="klb-order-button">
+            <button class="btn primary btn-defaults">
+              {{ $t('klb_order_process_cta') }}
+            </button>
+          </div>
         </template>
       </form>
       <template v-if="process.order.Status == 'completed'">

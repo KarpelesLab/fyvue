@@ -1,3 +1,1 @@
-export declare function useUser(): {
-    userCheck: () => Promise<void>;
-};
+export declare function useUser(): {};

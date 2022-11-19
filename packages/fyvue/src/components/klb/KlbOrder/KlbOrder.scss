@@ -18,15 +18,21 @@
     @apply p-3 bg-white border rounded-lg shadow-md  dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
   }
   .cart-total {
-    @apply border-t mt-1 ;
+    @apply  mt-1 ;
+  }
+  .cart-product {
+    @apply border-b border-fv-neutral-200 dark:border-fv-neutral-700;
   }
   .cart-summary {
-    @apply flex justify-between h-8 items-center ;
+    @apply flex justify-between my-1 items-center ;
     &.vat {
       @apply -mb-3 text-base;
     }
     &.is-tax {
-      @apply -mt-2 text-sm;
+      @apply  -mt-1 text-sm text-fv-neutral-700 dark:text-fv-neutral-400;
+    }
+    &.is-desc {
+      @apply  -mt-1 text-sm text-fv-neutral-700 dark:text-fv-neutral-400;
     }
     &.total {
       @apply text-xl;

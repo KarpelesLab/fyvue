@@ -160,6 +160,7 @@ const switchToEdit = async () => {
 };
 
 const getPaymentMethods = async () => {
+  /*
   const _pms = await rest<KlbAPIResultUnknown>(
     'Realm/PaymentMethod:methodInfo',
     'GET',
@@ -175,7 +176,7 @@ const getPaymentMethods = async () => {
           _pms.data.Fields.cc_token.attributes?.options?.stripe_account,
       });
     }
-  }
+  }*/
 };
 
 onMounted(async () => {

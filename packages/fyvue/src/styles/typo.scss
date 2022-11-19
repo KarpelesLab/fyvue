@@ -41,4 +41,29 @@
   code {
   //  @apply bg-fv-neutral-300 dark:bg-fv-neutral-900;
   }
+  &.margins {
+    p {
+      @apply mt-2 mb-4;
+    }
+  }
+  table {
+      @apply align-middle inline-block min-w-full max-w-full shadow overflow-hidden overflow-x-auto sm:rounded-lg  ;
+      th {
+          @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 whitespace-nowrap text-right;
+          button {
+              @apply flex items-center;
+          }
+      }
+      td {
+          @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3   ;
+      }
+      tbody {
+          @apply my-2 py-2  min-w-fit sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4 ;
+          
+      }
+      tr td {
+         min-width: 28rem;
+         
+      }
+  }
 }

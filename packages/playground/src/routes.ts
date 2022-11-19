@@ -400,7 +400,8 @@ export const routes = [
       },
       {
         path: '/components/klb/KlbBillingHistory',
-        component: () => import('./views/components/klb/KlbBillingHistoryView.vue'),
+        component: () =>
+          import('./views/components/klb/KlbBillingHistoryView.vue'),
         meta: {
           breadcrumb: [
             { name: 'fyvue', to: '/' },
@@ -409,6 +410,45 @@ export const routes = [
             { name: 'KlbBillingHistory' },
           ],
           title: 'KlbBillingHistory - Klb - Components - fyvue',
+        },
+      },
+      {
+        path: '/components/klb/KlbPage',
+        component: () => import('./views/components/klb/KlbPageView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Klb', to: '/components/klb' },
+            { name: 'KlbPage' },
+          ],
+          title: 'KlbPage - Klb - Components - fyvue',
+        },
+      },
+      {
+        path: '/components/klb/KlbSupport',
+        component: () => import('./views/components/klb/KlbSupportView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Klb', to: '/components/klb' },
+            { name: 'KlbSupport' },
+          ],
+          title: 'KlbSupport - Klb - Components - fyvue',
+        },
+      },
+      {
+        path: '/components/klb/KlbPage/:slug',
+        component: () => import('./views/components/klb/KlbPageView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'Klb', to: '/components/klb' },
+            { name: 'KlbPage' },
+          ],
+          title: 'KlbPage - Klb - Components - fyvue',
         },
       },
     ],

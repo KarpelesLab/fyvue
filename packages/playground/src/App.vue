@@ -1,5 +1,9 @@
 <script setup>
-import { i18nextPromise, countriesPromise, useUser } from '@karpeleslab/fyvue';
+import {
+  i18nextPromise,
+  countriesPromise,
+  useUserCheck,
+} from '@karpeleslab/fyvue';
 import { Head, useHead } from '@vueuse/head';
 import {
   SchemaOrgWebSite,
@@ -22,7 +26,7 @@ const aside = ref();
 onClickOutside(ref, () => (sideBarOpen.value = false));
 
 if (!import.meta.env.SSR) {
-  await useUser().userCheck();
+  await useUserCheck();
   await countriesPromise();
 }
 
@@ -185,7 +189,15 @@ useHead({
     <footer
       class="flex items-center justify-center h-12 bg-white dark:bg-fv-neutral-900"
     >
-      <div>&copy; 2022 - made with &hearts; by <b>Florian Gasquez</b></div>
+      <div class="text-center text-xs fv-typo">
+        &copy; 2022 - made with &hearts; by
+        <b
+          ><a href="https://twitter.com/un_geek" target="_blank"
+            >Florian Gasquez</a
+          ></b
+        >
+        - Powered by vue/vite/fyvue &amp; tailwindcss.
+      </div>
     </footer>
   </div>
   <FyConfirm />

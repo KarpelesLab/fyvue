@@ -38,3 +38,6 @@ html, body {
     background: rgba($color: #000, $alpha: .3);
   }
 }
+.fv-tag {
+  @apply bg-fv-neutral-200 text-fv-neutral-800 font-semibold text-xs px-2.5 py-0.5 rounded dark:bg-fv-neutral-700 dark:text-fv-neutral-300;
+}

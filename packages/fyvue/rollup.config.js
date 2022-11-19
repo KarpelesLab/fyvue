@@ -1,4 +1,4 @@
-import vue from 'rollup-plugin-vue';
+import vue from '@vitejs/plugin-vue';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 //import typescript from '@rollup/plugin-typescript';
@@ -59,7 +59,6 @@ export default [
     plugins: [
       resolve(),
       peerDepsExternal(),
-      vue(),
       typescript({
         tsconfig: 'tsconfig.json',
       }),
@@ -100,12 +99,14 @@ export default [
           },
         ],
       }),
+      vue({
+      ssr: true,
+      isProduction: true,
+      template: {
+        ssr: true,
+        isProd: true,
+      }}),
       cleanup(),
     ],
   },
 ];
-
-/*
-    "main": "dist/fyvue.js",
-  "module": "dist/fyvue.mjs",
-  "typings": "dist/index.d.ts",*/

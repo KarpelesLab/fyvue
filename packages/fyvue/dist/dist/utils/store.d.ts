@@ -1,4 +1,4 @@
-import type { KlbUser } from '../dts/klb';
+import type { KlbAPICatalogCart, KlbUser } from '../dts/klb';
 export type RootState = {
     user: KlbUser | null;
     cartCount: number;
@@ -115,6 +115,7 @@ export declare const useFVStore: import("pinia").StoreDefinition<"fVStore", Root
     } & import("pinia").PiniaCustomStateProperties<RootState>) => boolean;
 }, {
     refreshCart(): Promise<void>;
+    refreshCartData(_cart: KlbAPICatalogCart): Promise<void>;
     refreshUser(params?: {}): Promise<void>;
     logout(): Promise<void>;
     setUser(user: KlbUser | null): void;

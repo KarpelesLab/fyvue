@@ -1,6 +1,5 @@
 <script setup>
-const fvComponent = `
-`;
+const fvComponent = `<KlbOrder shopPath="/components/klb/KlbCatalog" mode="b2b" />`;
 
 const props = [
   {
@@ -30,7 +29,11 @@ const props = [
 
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
-      <KlbOrder shopPath="/components/klb/KlbCatalog" mode="b2b" />
+      <KlbOrder
+        shopPath="/components/klb/KlbCatalog"
+        mode="b2b"
+        loginPath="/components/klb/KlbLogin"
+      />
     </template>
   </FyDocPreview>
 </template>

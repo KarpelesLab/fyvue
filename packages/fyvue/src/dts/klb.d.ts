@@ -428,7 +428,6 @@ export interface KlbCatalogProduct {
   'Shipping.Weight': number;
   Image?: { list?: Array<KlbMediaImage> };
 }
-
 // KlbCatalogCart (https://ws.atonline.com/_special/rest/Catalog/Cart)
 export interface KlbCatalogCart {
   products: Array<{
@@ -439,6 +438,7 @@ export interface KlbCatalogCart {
     id: KlbUUID;
     meta: {
       quantity: number;
+      [key: string]: any;
     };
   }>;
   total: KlbPrice;
@@ -558,6 +558,23 @@ export interface KlbOrder {
 export interface KlbOrderItem {
   Catalog_Product__: KlbUUID;
   Catalog_Product: KlbCatalogProduct;
+  Status:
+    | 'pending'
+    | 'deliver-wait'
+    | 'deliver-pending'
+    | 'deliver-done'
+    | 'deliver-failed'
+    | 'cancel-pending'
+    | 'cancel-done'
+    | 'recover-pending'
+    | 'recover-done'
+    | 'refund-pending'
+    | 'refund-done'
+    | 'test';
+  meta: {
+    quantity: number;
+    [key: string]: any;
+  };
 }
 export interface KlbOrderProcess {
   methods_order: Array<string>;
@@ -572,6 +589,7 @@ export interface KlbOrderProcess {
             value?: string;
             options?: any;
             key?: string;
+            [key: string]: any;
           };
           caption?: string;
           type?: string;

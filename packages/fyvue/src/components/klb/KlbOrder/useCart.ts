@@ -47,20 +47,22 @@ export function useCart() {
       });
     },
     addProduct: (productUuid: string, meta: string) => {
-      return new Promise<boolean>((resolve, reject) => {
-        rest('Catalog/Cart/@:process', 'POST', { request: productUuid + meta })
+      return new Promise<KlbAPICatalogCart>((resolve, reject) => {
+        rest<KlbAPICatalogCart>('Catalog/Cart/@:process', 'POST', {
+          request: productUuid + meta,
+        })
           .then((_addProductCartResult) => {
             if (
               _addProductCartResult &&
               _addProductCartResult.result == 'success'
             ) {
-              resolve(true);
+              resolve(_addProductCartResult);
             } else {
-              resolve(false);
+              resolve(_addProductCartResult);
             }
           })
-          .catch(() => {
-            reject(false);
+          .catch((err) => {
+            reject(err);
           });
       });
     },

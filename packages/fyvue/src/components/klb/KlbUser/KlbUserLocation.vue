@@ -5,11 +5,11 @@ import { rest } from '../../../utils/rest';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
-import { useBilling } from '../KlbBilling/useBilling';
-import type {
+import {
   KlbAPIUserLocations,
   KlbUserLocation,
   KlbAPIUserLocation,
+  KlbAPIResultUnknown,
 } from '../../../dts/klb';
 import { useTranslation } from '../../../utils/helpers';
 
@@ -44,7 +44,7 @@ const model = computed({
     emit('update:modelValue', items);
   },
 });
-watch(selectedLocation, (v) => {
+watch(selectedLocation, async (v) => {
   if (v == 'new') {
     state.firstname = '';
     state.lastname = '';
@@ -53,6 +53,7 @@ watch(selectedLocation, (v) => {
     editMode.value = true;
     location.value = undefined;
     model.value = undefined;
+    await getUserGeolocation();
   } else {
     if (v && locations.value[v]) {
       location.value = locations.value[v];
@@ -80,6 +81,15 @@ const rules = {
 
 const v$ = useVuelidate(rules, state);
 
+const getUserGeolocation = async () => {
+  const _userLoc = await rest<KlbAPIResultUnknown>(
+    '/ThirdParty/Geoip:lookup',
+    'GET'
+  ).catch(() => {});
+  if (_userLoc && _userLoc.result == 'success') {
+    state.country = _userLoc.data.country.iso_code;
+  }
+};
 const deleteLocation = async () => {
   await rest<KlbAPIUserLocation>(
     `User/Location/${location.value?.User_Location__}`,
@@ -159,6 +169,9 @@ const getUserLocation = async () => {
           selectedLocation.value = 'new';
         }
         editMode.value = true;
+        if (!state.country) {
+          await getUserGeolocation();
+        }
       }
     }
   }

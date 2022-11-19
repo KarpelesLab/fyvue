@@ -27,6 +27,8 @@ declare module 'vue' {
     KlbAddPaymentMethodModal: typeof import('../src')['components']['KlbAddPaymentMethodModal'];
     KlbCatalog: typeof import('../src')['components']['KlbCatalog'];
     KlbOrder: typeof import('../src')['components']['KlbOrder'];
+    KlbPage: typeof import('../src')['components']['KlbPage'];
+    KlbSupport: typeof import('../src')['components']['KlbSupport'];
 
     // Helpers
     ClientOnly: typeof import('../src')['components']['ClientOnly'];

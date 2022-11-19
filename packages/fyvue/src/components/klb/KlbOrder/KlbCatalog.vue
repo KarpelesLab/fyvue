@@ -51,12 +51,15 @@ const addProductToCart = async (productUuid: string) => {
       props.productMeta
     );
     if (_addResult) {
-      await store.refreshCart();
+      await store.refreshCartData(_addResult);
       useHistory().push(props.startOrderPath);
     }
   } else if (props.displayType == 'shop') {
-    await useCart().addProduct(productUuid, props.productMeta);
-    await store.refreshCart();
+    const _addResult = await useCart().addProduct(
+      productUuid,
+      props.productMeta
+    );
+    await store.refreshCartData(_addResult);
   }
 };
 </script>

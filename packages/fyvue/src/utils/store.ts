@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia';
 import { rest } from '@karpeleslab/klbfw';
-import type { KlbAPIResultUnknown, KlbUser } from '../dts/klb';
+import type {
+  KlbAPICatalogCart,
+  KlbAPIResultUnknown,
+  KlbUser,
+} from '../dts/klb';
 import { useCart } from '../components/klb/KlbOrder/useCart';
 export type RootState = {
   user: KlbUser | null;
@@ -21,6 +25,11 @@ export const useFVStore = defineStore({
   actions: {
     async refreshCart() {
       const _cart = await useCart().getCart();
+      if (_cart && _cart.result == 'success') {
+        this.cartCount = _cart.data.products.length;
+      }
+    },
+    async refreshCartData(_cart: KlbAPICatalogCart) {
       if (_cart && _cart.result == 'success') {
         this.cartCount = _cart.data.products.length;
       }
