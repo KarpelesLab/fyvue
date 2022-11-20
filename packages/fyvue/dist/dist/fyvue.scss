@@ -350,104 +350,54 @@ button[type=submit] {
   @apply text-sm font-medium text-fv-neutral-500  dark:text-fv-neutral-400;
 }
 
+.fy-table .table-container {
+  @apply overflow-x-auto relative shadow-md sm:rounded-lg;
+}
+.fy-table table {
+  @apply w-full text-sm text-left text-fv-neutral-500 dark:text-fv-neutral-400;
+}
+.fy-table table thead {
+  @apply text-xs text-fv-neutral-700 uppercase bg-fv-neutral-50 dark:bg-fv-neutral-700 dark:text-fv-neutral-400;
+}
+.fy-table table thead th {
+  @apply py-3 px-6;
+}
+.fy-table table tbody tr {
+  @apply bg-white border-b dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
+}
+.fy-table table tbody th {
+  @apply py-4 px-6 font-medium text-fv-neutral-900 whitespace-nowrap dark:text-white;
+}
+.fy-table table tbody td {
+  @apply py-4 px-6;
+}
+
+.fy-datatable tbody {
+  @apply bg-fv-neutral-50 dark:bg-fv-neutral-800;
+}
 .fy-datatable td {
-  @apply text-xs;
+  @apply border-b-fv-neutral-300 dark:text-fv-neutral-200 dark:border-b-fv-neutral-900;
 }
 .fy-datatable th {
-  @apply font-bold uppercase  text-sm hidden md:table-cell;
+  @apply text-xs text-fv-neutral-700 dark:bg-fv-neutral-900 dark:text-white font-bold uppercase  text-sm hidden md:table-cell;
 }
 .fy-datatable .tr {
-  @apply flex md:table-row flex-row md:flex-row flex-wrap md:flex-nowrap md:border-0;
+  @apply bg-fv-neutral-300 text-black flex md:table-row flex-row md:flex-row flex-wrap md:flex-nowrap md:border-0;
 }
 .fy-datatable .td {
   @apply w-full  md:w-auto py-0.5 md:py-1 px-0 md:px-3  text-left flex items-center md:table-cell relative md:static;
 }
 .fy-datatable .div {
-  @apply md:hidden px-2 py-1 text-xs font-bold uppercase mb-0.5 w-28;
+  @apply dark:bg-transparent dark:md:bg-fv-neutral-900 dark:text-white bg-transparent md:bg-fv-neutral-300 text-black md:hidden px-2 py-1 text-xs font-bold uppercase mb-0.5 w-28;
 }
 .fy-datatable .div-cell {
   @apply px-2 md:px-0 py-1;
 }
-
-.fy-table {
-  @apply my-2 py-2 overflow-x-auto sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4;
+.fy-datatable .bg-color-1 {
+  @apply bg-fv-neutral-200 dark:bg-fv-neutral-600;
 }
-.fy-table .table-container {
-  @apply align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b;
-}
-.fy-table table {
-  @apply min-w-full;
-}
-.fy-table table thead th {
-  @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 border-b  text-left text-xs leading-4 font-medium  uppercase tracking-wider;
-}
-.fy-table table thead th button {
-  @apply flex items-center;
-}
-.fy-table table tbody td {
-  @apply px-2 md:px-4 lg:px-6 py-1 md:py-2 lg:py-3 whitespace-nowrap  border-b;
-}
-
-.light .fy-table .table-container {
-  @apply border-fv-neutral-200;
-}
-.light .fy-table table thead th {
-  @apply border-fv-neutral-300 bg-fv-neutral-100 text-fv-neutral-600;
-}
-.light .fy-table table td {
-  @apply bg-fv-neutral-50;
-}
-.light .fy-table table tbody td {
-  @apply border-b-fv-neutral-300;
-}
-.light .fy-datatable tbody {
-  @apply bg-white;
-}
-.light .fy-datatable td {
-  @apply text-fv-neutral-700 border-b-fv-neutral-300;
-}
-.light .fy-datatable th {
-  @apply bg-fv-neutral-300 text-black;
-}
-.light .fy-datatable .div {
-  @apply bg-transparent md:bg-fv-neutral-300 text-black;
-}
-.light .fy-datatable .bg-color-1 {
-  @apply bg-fv-neutral-200;
-}
-.light .fy-datatable .bg-color-2 {
-  @apply bg-fv-neutral-100;
-}
-
-.dark .fy-table .table-container {
-  @apply border-fv-neutral-900 text-white bg-fv-neutral-800;
-}
-.dark .fy-table table thead th {
-  @apply border-fv-neutral-900 bg-fv-neutral-900 text-fv-neutral-400;
-}
-.dark .fy-table table td {
-  @apply bg-fv-neutral-700;
-}
-.dark .fy-table table tbody td {
-  @apply border-b-fv-neutral-900;
-}
-.dark .fy-datatable tbody {
-  @apply bg-black;
-}
-.dark .fy-datatable td {
-  @apply text-fv-neutral-200 border-b-fv-neutral-900;
-}
-.dark .fy-datatable th {
-  @apply bg-fv-neutral-900 text-white;
-}
-.dark .fy-datatable .div {
-  @apply bg-transparent md:bg-fv-neutral-900 text-white;
-}
-.dark .fy-datatable .bg-color-1 {
-  @apply bg-fv-neutral-600;
-}
-.dark .fy-datatable .bg-color-2 {
-  @apply bg-fv-neutral-700;
+.fy-datatable .bg-color-2 {
+  @apply bg-fv-neutral-100 dark:bg-fv-neutral-700;
 }
 
 .fy-loader {
