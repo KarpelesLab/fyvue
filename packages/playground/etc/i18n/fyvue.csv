@@ -139,5 +139,10 @@
 "klb_contact_form_place_holder_message","Message",,,"KlbSupport Component"
 "klb_contact_cta","Send",,,"KlbSupport Component"
 "klb_contact_thanks","Thanks for contacting us.",,,"KlbSupport Component"
-"payment_remember_card","Remember card",,,"Klb Order API"
+"edit_pm_modal_title","Update billing informations",,,"KlbUserBilling Component"
+"edit_billing_method","Save",,,"KlbUserBilling Component"
+"klb_billing_edit_pm_cta","Edit",,,"KlbUserBilling Component"
+"payment_remember_card","Remember this card for future payments",,,"KlbOrder Component"
+"klb_order_non_payable","This order is not payable.",,,"KlbOrder Component"
+
 

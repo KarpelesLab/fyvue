@@ -932,7 +932,7 @@ button[type=submit] {
   @apply flex space-x-2;
 }
 .klb-user-billing .billing-method-summary {
-  @apply my-2 p-1.5;
+  @apply my-2 p-1.5 flex justify-between items-center;
 }
 
 .klb-contact-form {

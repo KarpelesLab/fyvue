@@ -1,12 +1,30 @@
 import { rest } from '../../../utils/rest';
-import type {
+import {
   KlbAPIBillingHistory,
+  KlbAPISetupIntent,
   KlbAPIUserLocation,
   KlbBillingAndLocation,
 } from '../../../dts/klb';
 
 export function useBilling() {
   return {
+    setupPaymentIntent: (method = 'Stripe') => {
+      return new Promise<KlbAPISetupIntent | null>((resolve) => {
+        rest<KlbAPISetupIntent>('Realm/PaymentMethod:setup', 'POST', {
+          method: method,
+        })
+          .then((_result) => {
+            if (_result && _result.result == 'success') {
+              resolve(_result);
+            } else {
+              resolve(null);
+            }
+          })
+          .catch(() => {
+            resolve(null);
+          });
+      });
+    },
     getUserBillingAndLoc: () => {
       return new Promise<KlbBillingAndLocation | null>((resolve) => {
         rest<KlbAPIBillingHistory>('User/Billing', 'GET')

@@ -79,6 +79,9 @@ export interface KlbAPIUserLocations extends KlbAPIResult {
 export interface KlbAPICountry extends KlbAPIResult {
   data: Array<KlbCountry>;
 }
+export interface KlbAPISetupIntent extends KlbAPIResult {
+  data: KlbSetupIntent;
+}
 export interface KlbAPICatalog extends KlbAPIResult {
   data: { data: Array<KlbCatalogProduct> };
 }
@@ -484,12 +487,13 @@ export interface KlbOrder {
   Check_User_Agent?: string;
   Created: KlbDate;
   Currency__: string;
-  Flags:
-    | 'autorenew_record'
-    | 'autorenew'
-    | 'trivial'
-    | 'refund'
-    | 'can_pay_later';
+  Flags: {
+    autorenew_record?: any;
+    autorenew?: any;
+    trivial?: any;
+    refund?: any;
+    can_pay_later?: any;
+  };
   Fraud_Score?: number;
   Invoice_Blob__: KlbUUID;
   Invoice_Date?: KlbDate;
@@ -598,6 +602,27 @@ export interface KlbOrderProcess {
           values?: [];
         };
       };
+    };
+  };
+}
+export interface KlbSetupIntent {
+  Capabilities: {
+    Autorenew: boolean;
+    CancelDelay: number;
+    DirectPayement: boolean;
+    DirectRequiresExternal: boolean;
+    ExternalLink: boolean;
+    ExternalPost: boolean;
+    PaymentCancel: boolean;
+    PaymentKind: string;
+    TwoSteps: boolean;
+  };
+  Setup: {
+    client_secret: string;
+    stripe_intent?: string;
+    key?: string;
+    options: {
+      [key: string]: string;
     };
   };
 }

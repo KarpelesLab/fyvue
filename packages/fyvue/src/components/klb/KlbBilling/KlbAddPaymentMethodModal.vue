@@ -7,20 +7,24 @@ import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import FyModal from '../../ui/FyModal/FyModal.vue';
 import { useEventBus } from '../../../utils/helpers';
-import { getLocale } from '@karpeleslab/klbfw';
-import type { KlbAPIResultUnknown } from '../../../dts/klb';
+import { getLocale, getUrl, getPath } from '@karpeleslab/klbfw';
+import type { KlbAPISetupIntent } from '../../../dts/klb';
+import { useBilling } from './useBilling';
+import { useHistory } from '../../../utils/ssr';
+import { useStorage } from '@vueuse/core';
 
 const props = defineProps({
   onComplete: { type: Function, default: () => {} },
 });
 
-const state = reactive({
+const state = useStorage('state-store-klb-addpm', {
   label: '',
   firstname: '',
   lastname: '',
   country: '',
   zip: '',
 });
+
 const rules = {
   label: { required },
   firstname: { required },
@@ -31,77 +35,116 @@ const rules = {
 const v$ = useVuelidate(rules, state);
 
 const store = useFVStore();
+const paymentSetupIntent = ref<KlbAPISetupIntent>();
 const isAuth = computed(() => store.isAuth);
 const eventBus = useEventBus();
-const stripeCard = ref();
-const theCard = ref();
+const history = useHistory();
+const stripePayment = ref();
 const errorMessage = ref<string>();
 let stripe: any;
+let stripeElements: any;
 
 const submitBillingCreate = async () => {
   if (await v$.value.$validate()) {
     errorMessage.value = undefined;
-    if (stripeCard.value) {
+    if (stripe && stripeElements) {
       eventBus.emit('modal-add-pm-loading', true);
-      const cardToken = await stripe.createToken(stripeCard.value, {
-        name: `${state.firstname} ${state.lastname}`,
-        email: store.user?.Email,
+      const _stripeResult = await stripe.confirmSetup({
+        elements: stripeElements,
+        confirmParams: {
+          return_url: `${getUrl().scheme}://${getUrl().host}${
+            history.currentRoute.path
+          }?newMode=1`,
+          payment_method_data: {
+            billing_details: {
+              name: `${state.value.firstname} ${state.value.lastname}`,
+              email: store.user?.Email,
+              address: {
+                country: state.value.country,
+                postal_code: state.value.zip,
+                state: '',
+                city: '',
+                line1: '',
+                line2: '',
+              },
+            },
+          },
+        },
       });
-      if (cardToken.error) {
-        errorMessage.value = cardToken.error.message;
-        eventBus.emit('modal-add-pm-loading', false);
-      } else {
-        const _result = await rest('User/Billing:create', 'POST', {
-          Label: state.label,
-          First_Name: state.firstname,
-          Last_Name: state.lastname,
-          Zip: state.zip,
-          Country__: state.country,
-          method: 'Stripe',
-          cc_token: cardToken.token.id,
-        }).catch((err) => {
-          errorMessage.value = err.message;
-          eventBus.emit('modal-add-pm-loading', false);
-        });
 
-        if (_result && _result.result == 'success') {
-          eventBus.emit('AddPaymentMethodModal', false);
-          props.onComplete(_result);
-        } else {
-          errorMessage.value = _result?.message;
-        }
-        eventBus.emit('modal-add-pm-loading', false);
+      if (_stripeResult.error) {
+        errorMessage.value = _stripeResult.error.message;
       }
+      eventBus.emit('modal-add-pm-loading', false);
     }
   }
 };
 const showAddPaymentMethodModal = async () => {
   eventBus.emit('AddPaymentMethodModal', true);
+  const _setupIntent = await useBilling().setupPaymentIntent();
+  if (_setupIntent) {
+    paymentSetupIntent.value = _setupIntent;
+    if (paymentSetupIntent.value.data.Setup.key) {
+      stripe = window.Stripe(paymentSetupIntent.value.data.Setup.key, {
+        locale: getLocale(),
+        stripeAccount: paymentSetupIntent.value.data.Setup.options
+          .stripe_account
+          ? paymentSetupIntent.value.data.Setup.options.stripe_account
+          : undefined,
+      });
+    }
+  }
   if (stripe) {
-    stripeCard.value = stripe
-      .elements()
-      .create('card', { hidePostalCode: true });
-    await theCard;
-    stripeCard.value.mount(theCard.value);
+    stripeElements = stripe.elements({
+      clientSecret: paymentSetupIntent.value?.data.Setup.client_secret,
+    });
+
+    await stripePayment.value;
+    stripeElements
+      .create('payment', {
+        fields: {
+          billingDetails: {
+            address: 'never',
+            name: 'never',
+            email: 'never',
+          },
+        },
+      })
+      .mount(stripePayment.value);
   }
 };
 
 onMounted(async () => {
-  const _pms = await rest<KlbAPIResultUnknown>(
-    'Realm/PaymentMethod:methodInfo',
-    'GET',
-    {
+  if (
+    history.currentRoute.query.setup_intent &&
+    history.currentRoute.query.setup_intent_client_secret &&
+    state.value &&
+    history.currentRoute.query.newMode == '1'
+  ) {
+    eventBus.emit('modal-add-pm-loading', true);
+    const _result = await rest('User/Billing:create', 'POST', {
+      Label: state.value.label,
+      First_Name: state.value.firstname,
+      Last_Name: state.value.lastname,
+      Zip: state.value.zip,
+      Country__: state.value.country,
       method: 'Stripe',
+      stripe_intent: history.currentRoute.query.setup_intent,
+    }).catch((err) => {
+      errorMessage.value = err.message;
+      eventBus.emit('modal-add-pm-loading', false);
+      history.push(getPath());
+    });
+
+    if (_result && _result.result == 'success') {
+      eventBus.emit('AddPaymentMethodModal', false);
+      props.onComplete(_result);
+      state.value = null;
+      history.push(getPath());
+    } else {
+      errorMessage.value = _result?.message;
     }
-  );
-  if (_pms && _pms.data) {
-    if (_pms.data.Fields && _pms.data.Fields.cc_token) {
-      stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {
-        locale: getLocale(),
-        stripeAccount:
-          _pms.data.Fields.cc_token.attributes?.options?.stripe_account,
-      });
-    }
+    eventBus.emit('modal-add-pm-loading', false);
   }
 
   eventBus.on('ShowAddPaymentMethodModal', showAddPaymentMethodModal);
@@ -186,12 +229,14 @@ useHead({
           </div>
         </div>
         <div class="input-group">
-          <label class="label-basic" for="theCard"
+          <label class="label-basic" for="typeDef"
             >{{ $t('payment_method_label') }}
           </label>
-          <div class="input-box">
-            <div id="theCard" class="theCard" ref="theCard"></div>
-          </div>
+          <div
+            id="stripePayment"
+            class="stripePayment"
+            ref="stripePayment"
+          ></div>
         </div>
         <div v-if="errorMessage" class="response-error">
           {{ errorMessage }}

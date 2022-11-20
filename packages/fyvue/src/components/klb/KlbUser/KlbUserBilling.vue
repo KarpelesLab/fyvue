@@ -6,17 +6,19 @@ import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 import { useBilling } from '../KlbBilling/useBilling';
-import { getLocale } from '@karpeleslab/klbfw';
+import { getLocale, getUrl, getPath } from '@karpeleslab/klbfw';
 import KlbAddPaymentMethodModal from '../KlbBilling/KlbAddPaymentMethodModal.vue';
 import KlbUserLocation from './KlbUserLocation.vue';
 import type {
   KlbAPIUserBilling,
   KlbUserBilling,
-  KlbAPIResultUnknown,
+  KlbAPISetupIntent,
+  KlbAPIUserLocation,
 } from '../../../dts/klb';
-import { useEventBus } from '../../../utils/helpers';
+import { eventBus, useEventBus } from '../../../utils/helpers';
 import { useHead } from '@vueuse/head';
-
+import FyModal from '../../ui/FyModal/FyModal.vue';
+import { useHistory } from '../../../utils/ssr';
 const props = withDefaults(
   defineProps<{
     displayOnly?: boolean;
@@ -32,6 +34,7 @@ interface KlbBillingProfileByUuid {
 }
 
 const store = useFVStore();
+const history = useHistory();
 const isAuth = computed(() => store.isAuth);
 const billingProfile = ref<KlbUserBilling>();
 const billingProfileSelectOptions = ref<Array<string[]>>([]);
@@ -45,6 +48,9 @@ const theCard = ref();
 const errorMessage = ref<string>();
 const billingEmpty = ref<boolean>();
 let stripe: any;
+let stripeElements: any;
+const paymentSetupIntent = ref<KlbAPISetupIntent>();
+const stripePayment = ref();
 
 const model = computed({
   get: () => props.modelValue,
@@ -85,24 +91,54 @@ const rules = {
 };
 const v$ = useVuelidate(rules, state);
 
+const submitBillingEdit = async () => {
+  eventBus.emit('modal-edit-pm-loading', true);
+  errorMessage.value = undefined;
+  const _userLocation = await rest<KlbAPIUserLocation>(
+    `User/Location/${billingProfile.value?.User_Location__}`,
+    'GET'
+  ).catch(() => {});
+  if (
+    _userLocation &&
+    _userLocation.result == 'success' &&
+    _userLocation.data
+  ) {
+    const _stripeResult = await stripe.confirmSetup({
+      elements: stripeElements,
+      confirmParams: {
+        return_url: `${getUrl().scheme}://${getUrl().host}${
+          history.currentRoute.path
+        }?editMode=1&editUuid=${
+          billingProfile.value?.Methods[0].User_Billing_Method__
+        }&billingProfile=${billingProfile.value?.User_Billing__}`,
+        payment_method_data: {
+          billing_details: {
+            name: `${_userLocation.data.First_Name} ${_userLocation.data.Last_Name}`,
+            email: store.user?.Email,
+            address: {
+              country: _userLocation.data.Country__,
+              postal_code: _userLocation.data.Country__,
+              state: '',
+              city: '',
+              line1: '',
+              line2: '',
+            },
+          },
+        },
+      },
+    });
+
+    if (_stripeResult.error) {
+      errorMessage.value = _stripeResult.error.message;
+      eventBus.emit('modal-edit-pm-loading', false);
+    }
+    eventBus.emit('EditPaymentMethodModal', false);
+    eventBus.emit('modal-edit-pm-loading', false);
+  }
+};
 const submitUserBilling = async () => {
   errorMessage.value = undefined;
   if ((await v$.value.billingProfile.$validate()) && billingProfile.value) {
-    const cardToken = await stripe.createToken(stripeCard.value, {
-      name: `${billingProfile.value.Label}`,
-      email: store.user?.Email,
-    });
-    isLoaded.value = false;
-    if (!cardToken.error) {
-      const _updateBillingResult = await rest(
-        `User/Billing/Method/${billingProfile.value?.Methods[0].User_Billing_Method__}:change`,
-        'POST',
-        {
-          method: 'Stripe',
-          cc_token: cardToken.token.id,
-        }
-      ).catch(() => {});
-    }
     await rest(`User/Billing/${billingProfile.value.User_Billing__}`, 'PATCH', {
       User_Location__: state.billingProfile.location,
       Label: state.billingProfile.label,
@@ -159,30 +195,70 @@ const switchToEdit = async () => {
   }
 };
 
-const getPaymentMethods = async () => {
-  /*
-  const _pms = await rest<KlbAPIResultUnknown>(
-    'Realm/PaymentMethod:methodInfo',
-    'GET',
-    {
-      method: 'Stripe',
-    }
-  );
-  if (_pms && _pms.data) {
-    if (_pms.data.Fields && _pms.data.Fields.cc_token) {
-      stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {
+const openEditModal = async () => {
+  eventBus.emit('EditPaymentMethodModal', true);
+  const _setupIntent = await useBilling().setupPaymentIntent();
+  if (_setupIntent) {
+    paymentSetupIntent.value = _setupIntent;
+    if (paymentSetupIntent.value.data.Setup.key) {
+      stripe = window.Stripe(paymentSetupIntent.value.data.Setup.key, {
         locale: getLocale(),
-        stripeAccount:
-          _pms.data.Fields.cc_token.attributes?.options?.stripe_account,
+        stripeAccount: paymentSetupIntent.value.data.Setup.options
+          .stripe_account
+          ? paymentSetupIntent.value.data.Setup.options.stripe_account
+          : undefined,
       });
     }
-  }*/
+  }
+  if (stripe) {
+    stripeElements = stripe.elements({
+      clientSecret: paymentSetupIntent.value?.data.Setup.client_secret,
+    });
+
+    await stripePayment.value;
+    stripeElements
+      .create('payment', {
+        fields: {
+          billingDetails: {
+            address: 'never',
+            name: 'never',
+            email: 'never',
+          },
+        },
+      })
+      .mount(stripePayment.value);
+  }
 };
 
 onMounted(async () => {
   if (isAuth.value) {
-    await getPaymentMethods();
     await getUserBilling();
+    if (
+      history.currentRoute.query.setup_intent &&
+      history.currentRoute.query.setup_intent_client_secret &&
+      history.currentRoute.query.editMode == '1' &&
+      history.currentRoute.query.editUuid &&
+      history.currentRoute.query.billingProfile
+    ) {
+      await rest(
+        `User/Billing/Method/${history.currentRoute.query.editUuid}:change`,
+        'POST',
+        {
+          method: 'Stripe',
+          stripe_intent: history.currentRoute.query.setup_intent,
+        }
+      ).catch(() => {});
+      await getUserBilling();
+      history.push(
+        `${getPath()}?billingProfile=${
+          history.currentRoute.query.billingProfile
+        }`
+      );
+    }
+    if (history.currentRoute.query.billingProfile) {
+      selectedBillingProfile.value = history.currentRoute.query.billingProfile;
+      editMode.value = true;
+    }
   }
 });
 
@@ -200,6 +276,34 @@ useHead({
     v-if="isAuth && isLoaded"
     class="card-container card-defaults klb-user-billing"
   >
+    <FyModal
+      id="EditPaymentMethod"
+      :title="$t('edit_pm_modal_title')"
+      class="klb-edit-method"
+    >
+      <FyLoader id="modal-edit-pm" size="6" :showLoadingText="false" />
+      <form @submit.prevent="submitBillingEdit">
+        <div class="input-group">
+          <label class="label-basic" for="typeDef"
+            >{{ $t('payment_method_label') }}
+          </label>
+          <div
+            id="stripePayment"
+            class="stripePayment"
+            ref="stripePayment"
+          ></div>
+        </div>
+        <div v-if="errorMessage" class="response-error">
+          {{ errorMessage }}
+        </div>
+        <div class="btn-center">
+          <button class="btn primary btn-defaults" type="submit">
+            {{ $t('edit_billing_method') }}
+          </button>
+        </div>
+      </form>
+    </FyModal>
+
     <KlbAddPaymentMethodModal
       :onComplete="
         () => {
@@ -222,15 +326,6 @@ useHead({
       >
         {{ $t('klb_edit_billing_profile') }}
       </button>
-      <!--<button
-        class="btn danger btn-defaults"
-        v-if="
-          editMode == true && billingProfile && selectedBillingProfile != 'new'
-        "
-        @click="deleteLocation()"
-      >
-        {{ $t('klb_delete_location') }}
-      </button>-->
       <button
         class="btn-defaults btn neutral"
         type="reset"
@@ -273,17 +368,21 @@ useHead({
                 billingProfile.Methods.length > 0
               "
             >
-              <b>{{ $t('klb_billing_current_credit_card') }}</b>
-              {{ $t('payment_method_billing') }}:
-              <b>{{ billingProfile.Methods[0].Name }}</b
-              >, {{ $t('payment_method_exp') }}:
-              <b>{{ billingProfile.Methods[0].Expiration }}</b>
-            </div>
-            <div class="input-box">
-              <div id="theCard" class="theCard" ref="theCard"></div>
-            </div>
-            <div class="help-text">
-              {{ $t('klb_billing_credit_card_edit_help') }}
+              <span
+                ><b>{{ $t('klb_billing_current_credit_card') }}</b>
+                {{ $t('payment_method_billing') }}:
+                <b>{{ billingProfile.Methods[0].Name }}</b></span
+              ><span>
+                {{ $t('payment_method_exp') }}:
+                <b>{{ billingProfile.Methods[0].Expiration }}</b>
+              </span>
+              <button
+                class="btn primary btn-defaults"
+                type="button"
+                @click="openEditModal()"
+              >
+                {{ $t('klb_billing_edit_pm_cta') }}
+              </button>
             </div>
           </div>
           <KlbUserLocation

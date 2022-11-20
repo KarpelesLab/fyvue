@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.67
+  * @karpeleslab/fyvue v0.2.0-beta.69
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -11,7 +11,7 @@ import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale a
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString, useHead } from '@vueuse/head';
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
-import { useDark, useToggle } from '@vueuse/core';
+import { useDark, useToggle, useStorage } from '@vueuse/core';
 import useVuelidate, { useVuelidate as useVuelidate$1 } from '@vuelidate/core';
 import { required, email, sameAs } from '@vuelidate/validators';
 
@@ -919,7 +919,7 @@ const _hoisted_5$c = {
 };
 const _hoisted_6$c = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
 const _hoisted_7$b = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
-const _hoisted_8$b = ["aria-label", "id"];
+const _hoisted_8$a = ["aria-label", "id"];
 const _hoisted_9$9 = ["value"];
 const _hoisted_10$8 = {
   key: 2,
@@ -1068,7 +1068,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
                 key: opt[0].toString()
               }, toDisplayString(opt[1]), 9, _hoisted_9$9);
             }), 128))
-          ], 8, _hoisted_8$b)), [
+          ], 8, _hoisted_8$a)), [
             [vModelSelect, unref(model)]
           ]) : createCommentVNode("v-if", true),
           renderSlot(_ctx.$slots, "after")
@@ -1098,7 +1098,7 @@ const _hoisted_7$a = {
   "aria-current": "page",
   class: "active"
 };
-const _hoisted_8$a = ["onClick"];
+const _hoisted_8$9 = ["onClick"];
 const _hoisted_9$8 = {
   key: 3,
   class: "dots"
@@ -1201,7 +1201,7 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
                   href: "javascript:void(0);",
                   key: `${i}-md`,
                   onClick: ($event) => page(__props.items.page_no + i)
-                }, toDisplayString(__props.items.page_no + i), 9, _hoisted_8$a)) : createCommentVNode("v-if", true)
+                }, toDisplayString(__props.items.page_no + i), 9, _hoisted_8$9)) : createCommentVNode("v-if", true)
               ], 64);
             }), 64)),
             __props.items.page_no + 2 < __props.items.page_max - 1 ? (openBlock(), createElementBlock("span", _hoisted_9$8, " ... ")) : createCommentVNode("v-if", true),
@@ -1362,7 +1362,7 @@ const _hoisted_4$c = { class: "nav-actions" };
 const _hoisted_5$a = { class: "badge" };
 const _hoisted_6$a = { key: 0 };
 const _hoisted_7$9 = { key: 1 };
-const _hoisted_8$9 = /* @__PURE__ */ createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_8$8 = /* @__PURE__ */ createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
 const _hoisted_9$7 = /* @__PURE__ */ createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
@@ -1376,7 +1376,7 @@ const _hoisted_9$7 = /* @__PURE__ */ createElementVNode("svg", {
   })
 ], -1);
 const _hoisted_10$6 = [
-  _hoisted_8$9,
+  _hoisted_8$8,
   _hoisted_9$7
 ];
 const _hoisted_11$6 = { class: "main-ul" };
@@ -1392,7 +1392,7 @@ const _hoisted_12$5 = /* @__PURE__ */ createElementVNode("svg", {
     "clip-rule": "evenodd"
   })
 ], -1);
-const _hoisted_13$5 = ["href", "title", "alt"];
+const _hoisted_13$4 = ["href", "title", "alt"];
 const _hoisted_14$4 = ["href", "title", "alt"];
 const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "FyNavbar",
@@ -1554,7 +1554,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                                           title: children.name,
                                           alt: children.name,
                                           class: "is-link"
-                                        }, toDisplayString(children.name), 9, _hoisted_13$5))
+                                        }, toDisplayString(children.name), 9, _hoisted_13$4))
                                       ])
                                     ]),
                                     _: 2
@@ -1644,7 +1644,7 @@ const _hoisted_7$8 = {
   key: 2,
   class: "reset-pwd"
 };
-const _hoisted_8$8 = { class: "btn primary btn-defaults" };
+const _hoisted_8$7 = { class: "btn primary btn-defaults" };
 const _hoisted_9$6 = {
   key: 0,
   class: "response-error"
@@ -1862,7 +1862,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                   })
                 }, toDisplayString(_ctx.$t("recover_pwd_link")), 1)
               ])) : createCommentVNode("v-if", true),
-              createElementVNode("button", _hoisted_8$8, toDisplayString(_ctx.$t("cta_login_next")), 1)
+              createElementVNode("button", _hoisted_8$7, toDisplayString(_ctx.$t("cta_login_next")), 1)
             ], 64)) : createCommentVNode("v-if", true)
           ])
         ], 32)) : createCommentVNode("v-if", true),
@@ -1913,7 +1913,7 @@ const _hoisted_4$a = { class: "input-box-child" };
 const _hoisted_5$8 = { class: "main" };
 const _hoisted_6$8 = ["onSubmit"];
 const _hoisted_7$7 = { class: "klb-account-grid-inputs" };
-const _hoisted_8$7 = {
+const _hoisted_8$6 = {
   key: 0,
   class: "form-error-label"
 };
@@ -2004,7 +2004,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
                   type: "email"
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"])
               ]),
-              errorOnSubmit.value ? (openBlock(), createElementBlock("div", _hoisted_8$7, toDisplayString(errorOnSubmit.value), 1)) : createCommentVNode("v-if", true),
+              errorOnSubmit.value ? (openBlock(), createElementBlock("div", _hoisted_8$6, toDisplayString(errorOnSubmit.value), 1)) : createCommentVNode("v-if", true),
               createElementVNode("button", _hoisted_9$5, toDisplayString(_ctx.$t("update_email_cta")), 1)
             ], 40, _hoisted_6$8)
           ]),
@@ -2032,7 +2032,7 @@ const _hoisted_7$6 = {
   key: 0,
   class: "form-error-label"
 };
-const _hoisted_8$6 = {
+const _hoisted_8$5 = {
   class: "btn-defaults mt-4 btn primary",
   type: "submit"
 };
@@ -2132,7 +2132,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                 autocomplete: "off"
               }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
               errorOnSubmit.value ? (openBlock(), createElementBlock("div", _hoisted_7$6, toDisplayString(errorOnSubmit.value), 1)) : createCommentVNode("v-if", true),
-              createElementVNode("button", _hoisted_8$6, toDisplayString(_ctx.$t("update_pwd_cta")), 1)
+              createElementVNode("button", _hoisted_8$5, toDisplayString(_ctx.$t("update_pwd_cta")), 1)
             ], 40, _hoisted_5$7)
           ]),
           _: 1
@@ -2318,7 +2318,7 @@ const _hoisted_4$6 = { class: "input-box" };
 const _hoisted_5$5 = { key: 0 };
 const _hoisted_6$5 = ["onSubmit"];
 const _hoisted_7$5 = { class: "form-grid" };
-const _hoisted_8$5 = { class: "input-group" };
+const _hoisted_8$4 = { class: "input-group" };
 const _hoisted_9$4 = { class: "mr-4 w-16" };
 const _hoisted_10$4 = {
   class: "label-basic",
@@ -2326,13 +2326,13 @@ const _hoisted_10$4 = {
 };
 const _hoisted_11$4 = { class: "input-box" };
 const _hoisted_12$4 = ["value"];
-const _hoisted_13$4 = /* @__PURE__ */ createElementVNode("br", null, null, -1);
+const _hoisted_13$3 = /* @__PURE__ */ createElementVNode("br", null, null, -1);
 const _hoisted_14$3 = { class: "btn-box" };
-const _hoisted_15$1 = {
+const _hoisted_15$2 = {
   class: "btn-defaults btn primary",
   type: "submit"
 };
-const _hoisted_16$1 = {
+const _hoisted_16$2 = {
   key: 1,
   class: "self-loader-fyvue"
 };
@@ -2584,7 +2584,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                     "onUpdate:modelValue": _cache[7] || (_cache[7] = ($event) => state.zip = $event),
                     label: _ctx.$t("klb_location_zip_label")
                   }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                  createElementVNode("div", _hoisted_8$5, [
+                  createElementVNode("div", _hoisted_8$4, [
                     createElementVNode("div", _hoisted_9$4, [
                       createElementVNode("label", _hoisted_10$4, toDisplayString(_ctx.$t("klb_location_country_label")), 1)
                     ]),
@@ -2606,15 +2606,15 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                     ])
                   ])
                 ]),
-                _hoisted_13$4,
+                _hoisted_13$3,
                 createElementVNode("div", _hoisted_14$3, [
-                  createElementVNode("button", _hoisted_15$1, toDisplayString(_ctx.$t("klb_locations_save_cta")), 1)
+                  createElementVNode("button", _hoisted_15$2, toDisplayString(_ctx.$t("klb_locations_save_cta")), 1)
                 ])
               ], 40, _hoisted_6$5)
             ])
           ])) : createCommentVNode("v-if", true)
         ], 2)) : createCommentVNode("v-if", true),
-        !isLoaded.value && unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_16$1, [
+        !isLoaded.value && unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_16$2, [
           createVNode(FyLoader, {
             id: "self-loader-fyvue",
             force: true,
@@ -2628,6 +2628,61 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
 });
 var KlbUserLocation = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "KlbUserLocation.vue"]]);
 
+function useBilling() {
+    return {
+        setupPaymentIntent: (method = 'Stripe') => {
+            return new Promise((resolve) => {
+                rest('Realm/PaymentMethod:setup', 'POST', {
+                    method: method,
+                })
+                    .then((_result) => {
+                    if (_result && _result.result == 'success') {
+                        resolve(_result);
+                    }
+                    else {
+                        resolve(null);
+                    }
+                })
+                    .catch(() => {
+                    resolve(null);
+                });
+            });
+        },
+        getUserBillingAndLoc: () => {
+            return new Promise((resolve) => {
+                rest('User/Billing', 'GET')
+                    .then((_userBilling) => {
+                    if (_userBilling &&
+                        _userBilling.data &&
+                        _userBilling.data.length != 0) {
+                        rest(`User/Location/${_userBilling.data[0].User_Location__}`, 'GET')
+                            .then((_userLocation) => {
+                            if (_userLocation && _userLocation.result == 'success') {
+                                resolve({
+                                    location: _userLocation.data,
+                                    billing: _userBilling.data[0],
+                                });
+                            }
+                            else {
+                                resolve(null);
+                            }
+                        })
+                            .catch(() => {
+                            resolve(null);
+                        });
+                    }
+                    else {
+                        resolve(null);
+                    }
+                })
+                    .catch(() => {
+                    resolve(null);
+                });
+            });
+        },
+    };
+}
+
 const _hoisted_1$6 = { key: 0 };
 const _hoisted_2$6 = ["onSubmit"];
 const _hoisted_3$6 = { class: "form-grid" };
@@ -2638,18 +2693,17 @@ const _hoisted_5$4 = {
 };
 const _hoisted_6$4 = { class: "input-box" };
 const _hoisted_7$4 = ["value"];
-const _hoisted_8$4 = { class: "input-group" };
+const _hoisted_8$3 = { class: "input-group" };
 const _hoisted_9$3 = {
   class: "label-basic",
-  for: "theCard"
+  for: "typeDef"
 };
-const _hoisted_10$3 = { class: "input-box" };
-const _hoisted_11$3 = {
+const _hoisted_10$3 = {
   key: 0,
   class: "response-error"
 };
-const _hoisted_12$3 = { class: "btn-center" };
-const _hoisted_13$3 = {
+const _hoisted_11$3 = { class: "btn-center" };
+const _hoisted_12$3 = {
   class: "btn primary btn-defaults",
   type: "submit"
 };
@@ -2661,7 +2715,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
   },
   setup(__props) {
     const props = __props;
-    const state = reactive({
+    const state = useStorage("state-store-klb-addpm", {
       label: "",
       firstname: "",
       lastname: "",
@@ -2677,71 +2731,99 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
     const v$ = useVuelidate(rules, state);
     const store = useFVStore();
+    const paymentSetupIntent = ref();
     const isAuth = computed(() => store.isAuth);
     const eventBus = useEventBus();
-    const stripeCard = ref();
-    const theCard = ref();
+    const history = useHistory();
+    const stripePayment = ref();
     const errorMessage = ref();
     let stripe;
+    let stripeElements;
     const submitBillingCreate = async () => {
       if (await v$.value.$validate()) {
         errorMessage.value = void 0;
-        if (stripeCard.value) {
+        if (stripe && stripeElements) {
           eventBus.emit("modal-add-pm-loading", true);
-          const cardToken = await stripe.createToken(stripeCard.value, {
-            name: `${state.firstname} ${state.lastname}`,
-            email: store.user?.Email
-          });
-          if (cardToken.error) {
-            errorMessage.value = cardToken.error.message;
-            eventBus.emit("modal-add-pm-loading", false);
-          } else {
-            const _result = await rest("User/Billing:create", "POST", {
-              Label: state.label,
-              First_Name: state.firstname,
-              Last_Name: state.lastname,
-              Zip: state.zip,
-              Country__: state.country,
-              method: "Stripe",
-              cc_token: cardToken.token.id
-            }).catch((err) => {
-              errorMessage.value = err.message;
-              eventBus.emit("modal-add-pm-loading", false);
-            });
-            if (_result && _result.result == "success") {
-              eventBus.emit("AddPaymentMethodModal", false);
-              props.onComplete(_result);
-            } else {
-              errorMessage.value = _result?.message;
+          const _stripeResult = await stripe.confirmSetup({
+            elements: stripeElements,
+            confirmParams: {
+              return_url: `${getUrl().scheme}://${getUrl().host}${history.currentRoute.path}?newMode=1`,
+              payment_method_data: {
+                billing_details: {
+                  name: `${state.value.firstname} ${state.value.lastname}`,
+                  email: store.user?.Email,
+                  address: {
+                    country: state.value.country,
+                    postal_code: state.value.zip,
+                    state: "",
+                    city: "",
+                    line1: "",
+                    line2: ""
+                  }
+                }
+              }
             }
-            eventBus.emit("modal-add-pm-loading", false);
+          });
+          if (_stripeResult.error) {
+            errorMessage.value = _stripeResult.error.message;
           }
+          eventBus.emit("modal-add-pm-loading", false);
         }
       }
     };
     const showAddPaymentMethodModal = async () => {
       eventBus.emit("AddPaymentMethodModal", true);
+      const _setupIntent = await useBilling().setupPaymentIntent();
+      if (_setupIntent) {
+        paymentSetupIntent.value = _setupIntent;
+        if (paymentSetupIntent.value.data.Setup.key) {
+          stripe = window.Stripe(paymentSetupIntent.value.data.Setup.key, {
+            locale: getLocale$1(),
+            stripeAccount: paymentSetupIntent.value.data.Setup.options.stripe_account ? paymentSetupIntent.value.data.Setup.options.stripe_account : void 0
+          });
+        }
+      }
       if (stripe) {
-        stripeCard.value = stripe.elements().create("card", { hidePostalCode: true });
-        await theCard;
-        stripeCard.value.mount(theCard.value);
+        stripeElements = stripe.elements({
+          clientSecret: paymentSetupIntent.value?.data.Setup.client_secret
+        });
+        await stripePayment.value;
+        stripeElements.create("payment", {
+          fields: {
+            billingDetails: {
+              address: "never",
+              name: "never",
+              email: "never"
+            }
+          }
+        }).mount(stripePayment.value);
       }
     };
     onMounted(async () => {
-      const _pms = await rest(
-        "Realm/PaymentMethod:methodInfo",
-        "GET",
-        {
-          method: "Stripe"
+      if (history.currentRoute.query.setup_intent && history.currentRoute.query.setup_intent_client_secret && state.value && history.currentRoute.query.newMode == "1") {
+        eventBus.emit("modal-add-pm-loading", true);
+        const _result = await rest("User/Billing:create", "POST", {
+          Label: state.value.label,
+          First_Name: state.value.firstname,
+          Last_Name: state.value.lastname,
+          Zip: state.value.zip,
+          Country__: state.value.country,
+          method: "Stripe",
+          stripe_intent: history.currentRoute.query.setup_intent
+        }).catch((err) => {
+          errorMessage.value = err.message;
+          eventBus.emit("modal-add-pm-loading", false);
+          history.push(getPath());
+        });
+        if (_result && _result.result == "success") {
+          eventBus.emit("AddPaymentMethodModal", false);
+          props.onComplete(_result);
+          state.value = null;
+          history.push(getPath());
+        } else {
+          errorMessage.value = _result?.message;
         }
-      );
-      if (_pms && _pms.data) {
-        if (_pms.data.Fields && _pms.data.Fields.cc_token) {
-          stripe = window.Stripe(_pms.data.Fields.cc_token.attributes?.key, {
-            locale: getLocale$1(),
-            stripeAccount: _pms.data.Fields.cc_token.attributes?.options?.stripe_account
-          });
-        }
+        eventBus.emit("modal-add-pm-loading", false);
       }
       eventBus.on("ShowAddPaymentMethodModal", showAddPaymentMethodModal);
     });
@@ -2780,8 +2862,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                 showLabel: true,
                 placeholder: _ctx.$t("add_pm_label_placeholder"),
                 errorVuelidate: unref(v$).label.$errors,
-                modelValue: state.label,
-                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => state.label = $event),
+                modelValue: unref(state).label,
+                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => unref(state).label = $event),
                 label: _ctx.$t("add_pm_label_label"),
                 type: "text"
               }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
@@ -2792,8 +2874,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                   showLabel: true,
                   placeholder: _ctx.$t("add_pm_firstname_placeholder"),
                   errorVuelidate: unref(v$).firstname.$errors,
-                  modelValue: state.firstname,
-                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => state.firstname = $event),
+                  modelValue: unref(state).firstname,
+                  "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => unref(state).firstname = $event),
                   label: _ctx.$t("add_pm_firstname_label"),
                   type: "text"
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
@@ -2803,8 +2885,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                   showLabel: true,
                   placeholder: _ctx.$t("add_pm_lastname_placeholder"),
                   errorVuelidate: unref(v$).lastname.$errors,
-                  modelValue: state.lastname,
-                  "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => state.lastname = $event),
+                  modelValue: unref(state).lastname,
+                  "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => unref(state).lastname = $event),
                   label: _ctx.$t("add_pm_lastname_label"),
                   type: "text"
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
@@ -2814,8 +2896,8 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                   showLabel: true,
                   placeholder: _ctx.$t("add_pm_zip_placeholder"),
                   errorVuelidate: unref(v$).zip.$errors,
-                  modelValue: state.zip,
-                  "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => state.zip = $event),
+                  modelValue: unref(state).zip,
+                  "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => unref(state).zip = $event),
                   label: _ctx.$t("add_pm_zip_label"),
                   type: "text"
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
@@ -2824,7 +2906,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                   createElementVNode("div", _hoisted_6$4, [
                     withDirectives(createElementVNode("select", {
                       class: "input-basic",
-                      "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => state.country = $event)
+                      "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => unref(state).country = $event)
                     }, [
                       (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.$countries.countries, (country) => {
                         return openBlock(), createElementBlock("option", {
@@ -2833,25 +2915,23 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                         }, toDisplayString(country.Name), 9, _hoisted_7$4);
                       }), 128))
                     ], 512), [
-                      [vModelSelect, state.country]
+                      [vModelSelect, unref(state).country]
                     ])
                   ])
                 ])
               ]),
-              createElementVNode("div", _hoisted_8$4, [
+              createElementVNode("div", _hoisted_8$3, [
                 createElementVNode("label", _hoisted_9$3, toDisplayString(_ctx.$t("payment_method_label")), 1),
-                createElementVNode("div", _hoisted_10$3, [
-                  createElementVNode("div", {
-                    id: "theCard",
-                    class: "theCard",
-                    ref_key: "theCard",
-                    ref: theCard
-                  }, null, 512)
-                ])
+                createElementVNode("div", {
+                  id: "stripePayment",
+                  class: "stripePayment",
+                  ref_key: "stripePayment",
+                  ref: stripePayment
+                }, null, 512)
               ]),
-              errorMessage.value ? (openBlock(), createElementBlock("div", _hoisted_11$3, toDisplayString(errorMessage.value), 1)) : createCommentVNode("v-if", true),
-              createElementVNode("div", _hoisted_12$3, [
-                createElementVNode("button", _hoisted_13$3, toDisplayString(_ctx.$t("create_billing_profile")), 1)
+              errorMessage.value ? (openBlock(), createElementBlock("div", _hoisted_10$3, toDisplayString(errorMessage.value), 1)) : createCommentVNode("v-if", true),
+              createElementVNode("div", _hoisted_11$3, [
+                createElementVNode("button", _hoisted_12$3, toDisplayString(_ctx.$t("create_billing_profile")), 1)
               ])
             ], 40, _hoisted_2$6)
           ]),
@@ -2867,31 +2947,44 @@ const _hoisted_1$5 = {
   key: 0,
   class: "card-container card-defaults klb-user-billing"
 };
-const _hoisted_2$5 = { class: "billing-select" };
-const _hoisted_3$5 = { key: 0 };
-const _hoisted_4$4 = ["onSubmit"];
-const _hoisted_5$3 = { class: "input-group" };
-const _hoisted_6$3 = {
+const _hoisted_2$5 = ["onSubmit"];
+const _hoisted_3$5 = { class: "input-group" };
+const _hoisted_4$4 = {
   class: "label-basic",
-  for: "theCard"
+  for: "typeDef"
 };
-const _hoisted_7$3 = {
-  key: 0,
-  class: "card-container billing-method-summary"
-};
-const _hoisted_8$3 = { class: "input-box" };
-const _hoisted_9$2 = { class: "help-text" };
-const _hoisted_10$2 = {
+const _hoisted_5$3 = {
   key: 0,
   class: "response-error"
 };
-const _hoisted_11$2 = /* @__PURE__ */ createElementVNode("br", null, null, -1);
-const _hoisted_12$2 = { class: "btn-box" };
+const _hoisted_6$3 = { class: "btn-center" };
+const _hoisted_7$3 = {
+  class: "btn primary btn-defaults",
+  type: "submit"
+};
+const _hoisted_8$2 = { class: "billing-select" };
+const _hoisted_9$2 = { key: 0 };
+const _hoisted_10$2 = ["onSubmit"];
+const _hoisted_11$2 = { class: "input-group" };
+const _hoisted_12$2 = {
+  class: "label-basic",
+  for: "theCard"
+};
 const _hoisted_13$2 = {
+  key: 0,
+  class: "card-container billing-method-summary"
+};
+const _hoisted_14$2 = {
+  key: 0,
+  class: "response-error"
+};
+const _hoisted_15$1 = /* @__PURE__ */ createElementVNode("br", null, null, -1);
+const _hoisted_16$1 = { class: "btn-box" };
+const _hoisted_17$1 = {
   class: "btn-defaults btn primary",
   type: "submit"
 };
-const _hoisted_14$2 = {
+const _hoisted_18$1 = {
   key: 1,
   class: "self-loader-fyvue"
 };
@@ -2906,6 +2999,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   setup(__props, { emit }) {
     const props = __props;
     const store = useFVStore();
+    const history = useHistory();
     const isAuth = computed(() => store.isAuth);
     const billingProfile = ref();
     const billingProfileSelectOptions = ref([]);
@@ -2918,6 +3012,9 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const errorMessage = ref();
     const billingEmpty = ref();
     let stripe;
+    let stripeElements;
+    const paymentSetupIntent = ref();
+    const stripePayment = ref();
     const model = computed({
       get: () => props.modelValue,
       set: (items) => {
@@ -2953,25 +3050,46 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       }
     };
     const v$ = useVuelidate(rules, state);
+    const submitBillingEdit = async () => {
+      eventBus.emit("modal-edit-pm-loading", true);
+      errorMessage.value = void 0;
+      const _userLocation = await rest(
+        `User/Location/${billingProfile.value?.User_Location__}`,
+        "GET"
+      ).catch(() => {
+      });
+      if (_userLocation && _userLocation.result == "success" && _userLocation.data) {
+        const _stripeResult = await stripe.confirmSetup({
+          elements: stripeElements,
+          confirmParams: {
+            return_url: `${getUrl().scheme}://${getUrl().host}${history.currentRoute.path}?editMode=1&editUuid=${billingProfile.value?.Methods[0].User_Billing_Method__}&billingProfile=${billingProfile.value?.User_Billing__}`,
+            payment_method_data: {
+              billing_details: {
+                name: `${_userLocation.data.First_Name} ${_userLocation.data.Last_Name}`,
+                email: store.user?.Email,
+                address: {
+                  country: _userLocation.data.Country__,
+                  postal_code: _userLocation.data.Country__,
+                  state: "",
+                  city: "",
+                  line1: "",
+                  line2: ""
+                }
+              }
+            }
+          }
+        });
+        if (_stripeResult.error) {
+          errorMessage.value = _stripeResult.error.message;
+          eventBus.emit("modal-edit-pm-loading", false);
+        }
+        eventBus.emit("EditPaymentMethodModal", false);
+        eventBus.emit("modal-edit-pm-loading", false);
+      }
+    };
     const submitUserBilling = async () => {
       errorMessage.value = void 0;
       if (await v$.value.billingProfile.$validate() && billingProfile.value) {
-        const cardToken = await stripe.createToken(stripeCard.value, {
-          name: `${billingProfile.value.Label}`,
-          email: store.user?.Email
-        });
-        isLoaded.value = false;
-        if (!cardToken.error) {
-          await rest(
-            `User/Billing/Method/${billingProfile.value?.Methods[0].User_Billing_Method__}:change`,
-            "POST",
-            {
-              method: "Stripe",
-              cc_token: cardToken.token.id
-            }
-          ).catch(() => {
-          });
-        }
         await rest(`User/Billing/${billingProfile.value.User_Billing__}`, "PATCH", {
           User_Location__: state.billingProfile.location,
           Label: state.billingProfile.label
@@ -3020,13 +3138,62 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
     const switchToEdit = async () => {
       editMode.value = true;
+      if (stripe) {
+        stripeCard.value = stripe.elements().create("card", { hidePostalCode: true });
+        await theCard;
+        stripeCard.value.mount(theCard.value);
+      }
     };
-    const getPaymentMethods = async () => {
+    const openEditModal = async () => {
+      eventBus.emit("EditPaymentMethodModal", true);
+      const _setupIntent = await useBilling().setupPaymentIntent();
+      if (_setupIntent) {
+        paymentSetupIntent.value = _setupIntent;
+        if (paymentSetupIntent.value.data.Setup.key) {
+          stripe = window.Stripe(paymentSetupIntent.value.data.Setup.key, {
+            locale: getLocale$1(),
+            stripeAccount: paymentSetupIntent.value.data.Setup.options.stripe_account ? paymentSetupIntent.value.data.Setup.options.stripe_account : void 0
+          });
+        }
+      }
+      if (stripe) {
+        stripeElements = stripe.elements({
+          clientSecret: paymentSetupIntent.value?.data.Setup.client_secret
+        });
+        await stripePayment.value;
+        stripeElements.create("payment", {
+          fields: {
+            billingDetails: {
+              address: "never",
+              name: "never",
+              email: "never"
+            }
+          }
+        }).mount(stripePayment.value);
+      }
     };
     onMounted(async () => {
       if (isAuth.value) {
-        await getPaymentMethods();
         await getUserBilling();
+        if (history.currentRoute.query.setup_intent && history.currentRoute.query.setup_intent_client_secret && history.currentRoute.query.editMode == "1" && history.currentRoute.query.editUuid && history.currentRoute.query.billingProfile) {
+          await rest(
+            `User/Billing/Method/${history.currentRoute.query.editUuid}:change`,
+            "POST",
+            {
+              method: "Stripe",
+              stripe_intent: history.currentRoute.query.setup_intent
+            }
+          ).catch(() => {
+          });
+          await getUserBilling();
+          history.push(
+            `${getPath()}?billingProfile=${history.currentRoute.query.billingProfile}`
+          );
+        }
+        if (history.currentRoute.query.billingProfile) {
+          selectedBillingProfile.value = history.currentRoute.query.billingProfile;
+          editMode.value = true;
+        }
       }
     });
     useHead({
@@ -3041,12 +3208,43 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       const _component_FyInput = resolveComponent("FyInput");
       return openBlock(), createElementBlock(Fragment, null, [
         unref(isAuth) && isLoaded.value ? (openBlock(), createElementBlock("div", _hoisted_1$5, [
+          createVNode(FyModal, {
+            id: "EditPaymentMethod",
+            title: _ctx.$t("edit_pm_modal_title"),
+            class: "klb-edit-method"
+          }, {
+            default: withCtx(() => [
+              createVNode(FyLoader, {
+                id: "modal-edit-pm",
+                size: "6",
+                showLoadingText: false
+              }),
+              createElementVNode("form", {
+                onSubmit: withModifiers(submitBillingEdit, ["prevent"])
+              }, [
+                createElementVNode("div", _hoisted_3$5, [
+                  createElementVNode("label", _hoisted_4$4, toDisplayString(_ctx.$t("payment_method_label")), 1),
+                  createElementVNode("div", {
+                    id: "stripePayment",
+                    class: "stripePayment",
+                    ref_key: "stripePayment",
+                    ref: stripePayment
+                  }, null, 512)
+                ]),
+                errorMessage.value ? (openBlock(), createElementBlock("div", _hoisted_5$3, toDisplayString(errorMessage.value), 1)) : createCommentVNode("v-if", true),
+                createElementVNode("div", _hoisted_6$3, [
+                  createElementVNode("button", _hoisted_7$3, toDisplayString(_ctx.$t("edit_billing_method")), 1)
+                ])
+              ], 40, _hoisted_2$5)
+            ]),
+            _: 1
+          }, 8, ["title"]),
           createVNode(KlbAddPaymentMethodModal, {
             onComplete: () => {
               getUserBilling();
             }
           }, null, 8, ["onComplete"]),
-          createElementVNode("div", _hoisted_2$5, [
+          createElementVNode("div", _hoisted_8$2, [
             !billingEmpty.value ? (openBlock(), createBlock(_component_FyInput, {
               key: 0,
               id: "selectBillingProfile",
@@ -3060,15 +3258,6 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               class: "btn primary btn-defaults",
               onClick: _cache[1] || (_cache[1] = ($event) => switchToEdit())
             }, toDisplayString(_ctx.$t("klb_edit_billing_profile")), 1)) : createCommentVNode("v-if", true),
-            createCommentVNode(`<button
-        class="btn danger btn-defaults"
-        v-if="
-          editMode == true && billingProfile && selectedBillingProfile != 'new'
-        "
-        @click="deleteLocation()"
-      >
-        {{ $t('klb_delete_location') }}
-      </button>`),
             editMode.value == true ? (openBlock(), createElementBlock("button", {
               key: 2,
               class: "btn-defaults btn neutral",
@@ -3081,7 +3270,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
               onClick: _cache[3] || (_cache[3] = ($event) => _ctx.$eventBus.emit("ShowAddPaymentMethodModal", true))
             }, toDisplayString(_ctx.$t("klb_add_new_billing_profile")), 1)) : createCommentVNode("v-if", true)
           ]),
-          editMode.value ? (openBlock(), createElementBlock("div", _hoisted_3$5, [
+          editMode.value ? (openBlock(), createElementBlock("div", _hoisted_9$2, [
             createElementVNode("div", null, [
               createElementVNode("form", {
                 onSubmit: withModifiers(submitUserBilling, ["prevent"])
@@ -3097,43 +3286,43 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                   label: _ctx.$t("add_pm_label_label"),
                   type: "text"
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                createElementVNode("div", _hoisted_5$3, [
-                  createElementVNode("label", _hoisted_6$3, toDisplayString(_ctx.$t("klb_billing_payment_method_label")), 1),
-                  billingProfile.value && billingProfile.value.Methods && billingProfile.value.Methods.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_7$3, [
-                    createElementVNode("b", null, toDisplayString(_ctx.$t("klb_billing_current_credit_card")), 1),
-                    createTextVNode(" " + toDisplayString(_ctx.$t("payment_method_billing")) + ": ", 1),
-                    createElementVNode("b", null, toDisplayString(billingProfile.value.Methods[0].Name), 1),
-                    createTextVNode(", " + toDisplayString(_ctx.$t("payment_method_exp")) + ": ", 1),
-                    createElementVNode("b", null, toDisplayString(billingProfile.value.Methods[0].Expiration), 1)
-                  ])) : createCommentVNode("v-if", true),
-                  createElementVNode("div", _hoisted_8$3, [
-                    createElementVNode("div", {
-                      id: "theCard",
-                      class: "theCard",
-                      ref_key: "theCard",
-                      ref: theCard
-                    }, null, 512)
-                  ]),
-                  createElementVNode("div", _hoisted_9$2, toDisplayString(_ctx.$t("klb_billing_credit_card_edit_help")), 1)
+                createElementVNode("div", _hoisted_11$2, [
+                  createElementVNode("label", _hoisted_12$2, toDisplayString(_ctx.$t("klb_billing_payment_method_label")), 1),
+                  billingProfile.value && billingProfile.value.Methods && billingProfile.value.Methods.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_13$2, [
+                    createElementVNode("span", null, [
+                      createElementVNode("b", null, toDisplayString(_ctx.$t("klb_billing_current_credit_card")), 1),
+                      createTextVNode(" " + toDisplayString(_ctx.$t("payment_method_billing")) + ": ", 1),
+                      createElementVNode("b", null, toDisplayString(billingProfile.value.Methods[0].Name), 1)
+                    ]),
+                    createElementVNode("span", null, [
+                      createTextVNode(toDisplayString(_ctx.$t("payment_method_exp")) + ": ", 1),
+                      createElementVNode("b", null, toDisplayString(billingProfile.value.Methods[0].Expiration), 1)
+                    ]),
+                    createElementVNode("button", {
+                      class: "btn primary btn-defaults",
+                      type: "button",
+                      onClick: _cache[5] || (_cache[5] = ($event) => openEditModal())
+                    }, toDisplayString(_ctx.$t("klb_billing_edit_pm_cta")), 1)
+                  ])) : createCommentVNode("v-if", true)
                 ]),
                 createVNode(KlbUserLocation, {
                   displayOnly: true,
                   selectedLocation: state.billingProfile.location,
                   modelValue: state.billingProfile.location,
-                  "onUpdate:modelValue": _cache[5] || (_cache[5] = ($event) => state.billingProfile.location = $event)
+                  "onUpdate:modelValue": _cache[6] || (_cache[6] = ($event) => state.billingProfile.location = $event)
                 }, null, 8, ["selectedLocation", "modelValue"]),
-                unref(v$).billingProfile.location.$errors.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_10$2, toDisplayString(_ctx.$t(
+                unref(v$).billingProfile.location.$errors.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_14$2, toDisplayString(_ctx.$t(
                   `vuelidate_validator_${unref(v$).billingProfile.location.$errors[0].$validator.toString()}`
                 )), 1)) : createCommentVNode("v-if", true),
-                _hoisted_11$2,
-                createElementVNode("div", _hoisted_12$2, [
-                  createElementVNode("button", _hoisted_13$2, toDisplayString(_ctx.$t("klb_billing_save_payment_method")), 1)
+                _hoisted_15$1,
+                createElementVNode("div", _hoisted_16$1, [
+                  createElementVNode("button", _hoisted_17$1, toDisplayString(_ctx.$t("klb_billing_save_payment_method")), 1)
                 ])
-              ], 40, _hoisted_4$4)
+              ], 40, _hoisted_10$2)
             ])
           ])) : createCommentVNode("v-if", true)
         ])) : createCommentVNode("v-if", true),
-        !isLoaded.value && unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_14$2, [
+        !isLoaded.value && unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_18$1, [
           createVNode(FyLoader, {
             id: "self-loader-fyvue",
             force: true,
@@ -3160,7 +3349,7 @@ const _hoisted_5$2 = {
 };
 const _hoisted_6$2 = ["src"];
 const _hoisted_7$2 = { role: "list" };
-const _hoisted_8$2 = ["onClick"];
+const _hoisted_8$1 = ["onClick"];
 const _hoisted_9$1 = {
   key: 1,
   class: "shop"
@@ -3251,7 +3440,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                 createElementVNode("button", {
                   onClick: ($event) => addProductToCart(product.Catalog_Product__),
                   class: "btn primary"
-                }, toDisplayString(_ctx.$t("klb_catalog_choose_plan")), 9, _hoisted_8$2)
+                }, toDisplayString(_ctx.$t("klb_catalog_choose_plan")), 9, _hoisted_8$1)
               ])
             ]);
           }), 128))
@@ -3328,18 +3517,20 @@ function useOrder() {
 
 const _hoisted_1$3 = { class: "klb-order-internal" };
 const _hoisted_2$3 = ["onSubmit"];
-const _hoisted_3$3 = { class: "input-group" };
+const _hoisted_3$3 = {
+  key: 0,
+  class: "input-group"
+};
 const _hoisted_4$2 = {
   class: "label-basic",
   for: "stripeElementsRef"
 };
-const _hoisted_5$1 = { class: "input-box" };
-const _hoisted_6$1 = {
+const _hoisted_5$1 = {
   key: 4,
   class: "response-error"
 };
-const _hoisted_7$1 = { class: "klb-order-button" };
-const _hoisted_8$1 = { class: "btn primary btn-defaults" };
+const _hoisted_6$1 = { class: "klb-order-button" };
+const _hoisted_7$1 = { class: "btn primary btn-defaults" };
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "KlbProcessOrderInternal",
   props: {
@@ -3359,6 +3550,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     });
     const currentMethod = ref();
     const stripeElementsRef = ref();
+    const history = useHistory();
     const eventBus = useEventBus();
     const store = useFVStore();
     const session = ref();
@@ -3368,17 +3560,38 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     const process = ref();
     const onFileSelectOptions = ref([]);
     const selectedOnFile = ref();
+    const isAuth = computed(() => store.isAuth);
+    watch(formData, async (v) => {
+      if (v.cc_remember) {
+        if (isAuth.value && currentMethod.value) {
+          if (order.value?.Flags.autorenew_record == true && v.cc_remember == "0" || (!order.value?.Flags.autorenew_record || order.value?.Flags.autorenew_record == false) && v.cc_remember == "1") {
+            const _process = await useOrder().process(
+              {
+                cc_remember: v.cc_remember,
+                session: session.value,
+                method: currentMethod.value,
+                stripe_intent: 1
+              },
+              props.orderUuid
+            );
+            if (_process && _process.result == "success") {
+              process.value = _process.data;
+              order.value = process.value.order;
+              session.value = process.value.methods[currentMethod.value].session;
+            }
+          }
+        }
+      }
+    });
     const processOrder = async () => {
       eventBus.emit("klb-order-loading", true);
       errorMessage.value = void 0;
       if (currentMethod.value == "Stripe" && process.value) {
-        const _stripeResult = await stripe.confirmCardPayment(
-          process.value.methods["Stripe"].fields.stripe_intent?.attributes?.client_secret,
-          {
-            return_url: getUrl().full,
-            setup_future_usage: formData.cc_remember == "1" ? "off_session" : void 0,
-            payment_method: {
-              card: stripeElements,
+        const _stripeResult = await stripe.confirmPayment({
+          elements: stripeElements,
+          confirmParams: {
+            return_url: `${getUrl().scheme}://${getUrl().host}${history.currentRoute.path}?Order__=${props.orderUuid}&session=${session.value}`,
+            payment_method_data: {
               billing_details: {
                 name: `${process.value.order.Billing_User_Location.First_Name} ${process.value.order.Billing_User_Location.Last_Name}`,
                 email: store.user?.Email,
@@ -3393,20 +3606,9 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               }
             }
           }
-        );
+        });
         if (_stripeResult.error) {
           errorMessage.value = _stripeResult.error.message;
-        } else {
-          const data = { ...formData };
-          data.session = session.value;
-          data.method = currentMethod.value;
-          data.stripe_intent = 1;
-          const _process = await useOrder().process(data, props.orderUuid).catch((err) => {
-            errorMessage.value = err.message;
-          }).catch((err) => {
-            errorMessage.value = err.message;
-          });
-          await getOrderProcess(_process);
         }
       } else if (currentMethod.value == "Free") {
         const data = { ...formData };
@@ -3448,16 +3650,21 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           }
           session.value = process.value.methods[method].session;
           if (stripe) {
-            await stripeElementsRef;
+            await stripeElementsRef.value;
             if (process.value.methods[method].fields.stripe_intent?.attributes?.client_secret) {
               stripeElements = stripe.elements({
                 clientSecret: process.value.methods[method].fields.stripe_intent?.attributes?.client_secret
               });
               if (stripeElementsRef.value) {
-                stripeElements = stripeElements.create("card", {
-                  hidePostalCode: true
-                });
-                stripeElements.mount(stripeElementsRef.value);
+                stripeElements.create("payment", {
+                  fields: {
+                    billingDetails: {
+                      address: "never",
+                      name: "never",
+                      email: "never"
+                    }
+                  }
+                }).mount(stripeElementsRef.value);
               }
             }
           }
@@ -3482,17 +3689,6 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         } else if (method == "Free") {
           currentMethod.value = method;
           session.value = process.value.methods[method].session;
-        }
-        if (method) {
-          for (const [k, v] of Object.entries(
-            process.value.methods[method].fields
-          )) {
-            if (k != "user_billing" && v) {
-              if (v.attributes) {
-                formData[k] = v.attributes.value ? v.attributes.value.toString() : null;
-              }
-            }
-          }
         }
       }
       eventBus.emit("klb-order-loading", false);
@@ -3521,7 +3717,25 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       eventBus.emit("klb-order-loading", false);
     };
     onMounted(async () => {
-      await getOrderProcess();
+      if (history.currentRoute.query.payment_intent && history.currentRoute.query.payment_intent_client_secret && history.currentRoute.query.session) {
+        const _process = await useOrder().process(
+          {
+            session: history.currentRoute.query.session,
+            stripe_intent: 1,
+            method: "Stripe"
+          },
+          props.orderUuid
+        ).catch((err) => {
+          errorMessage.value = err.message;
+        });
+        if (!errorMessage.value)
+          await getOrderProcess(_process);
+        else
+          await getOrderProcess();
+        history.push(`${getPath()}?Order__=${props.orderUuid}`);
+      } else {
+        await getOrderProcess();
+      }
     });
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$3, [
@@ -3531,37 +3745,15 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             onSubmit: withModifiers(processOrder, ["prevent"])
           }, [
             process.value.order_payable ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-              currentMethod.value == "Stripe" ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                createCommentVNode(`
-            <div class="input-group">
-              <label class="label-basic" for="theCard"
-                >{{ $t('klb_order_payment_card_label') }}
-              </label>
-              <div class="input-box">
-                <div id="theCard" class="theCard" ref="theCard"></div>
-              </div>
-            </div>
-            <button
-              @click="activatePM('OnFile')"
-              type="button"
-              class="klb-switch-method"
-              v-if="process.methods_order.includes('OnFile')"
-            >
-              {{ $t('klb_order_option_on_file') }}
-            </button>
-            `),
-                createElementVNode("div", _hoisted_3$3, [
-                  createElementVNode("label", _hoisted_4$2, toDisplayString(_ctx.$t("klb_order_payment_card_label")), 1),
-                  createElementVNode("div", _hoisted_5$1, [
-                    createElementVNode("div", {
-                      id: "stripeElementsRef",
-                      class: "theCard",
-                      ref_key: "stripeElementsRef",
-                      ref: stripeElementsRef
-                    }, null, 512)
-                  ])
-                ])
-              ], 64)) : createCommentVNode("v-if", true),
+              currentMethod.value == "Stripe" ? (openBlock(), createElementBlock("div", _hoisted_3$3, [
+                createElementVNode("label", _hoisted_4$2, toDisplayString(_ctx.$t("klb_order_payment_card_label")), 1),
+                createElementVNode("div", {
+                  id: "stripeElementsRef",
+                  class: "stripeElements",
+                  ref_key: "stripeElementsRef",
+                  ref: stripeElementsRef
+                }, null, 512)
+              ])) : createCommentVNode("v-if", true),
               currentMethod.value == "Free" ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [], 64)) : createCommentVNode("v-if", true),
               currentMethod.value == "OnFile" ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                 createVNode(FyInput, {
@@ -3582,12 +3774,12 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                 return openBlock(), createElementBlock("div", {
                   key: `field_method_${key}`
                 }, [
-                  field.type == "input" || field.type == "password" || field.type == "email" || field.type == "checkbox" ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+                  (field.type == "input" || field.type == "password" || field.type == "email" || field.type == "checkbox") && field.caption ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
                     field.type == "checkbox" ? (openBlock(), createBlock(FyInput, {
                       key: 0,
-                      placeholder: field.caption,
+                      placeholder: _ctx.$t(field.caption),
                       type: field.type,
-                      label: field.caption,
+                      label: _ctx.$t(field.caption),
                       checkboxValue: formData[key],
                       "onUpdate:checkboxValue": ($event) => formData[key] = $event,
                       id: `form_${key}`,
@@ -3595,9 +3787,9 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                       checkboxFalseValue: "0"
                     }, null, 8, ["placeholder", "type", "label", "checkboxValue", "onUpdate:checkboxValue", "id"])) : (openBlock(), createBlock(FyInput, {
                       key: 1,
-                      placeholder: field.caption,
+                      placeholder: _ctx.$t(field.caption),
                       type: field.type,
-                      label: field.caption,
+                      label: _ctx.$t(field.caption),
                       modelValue: formData[key],
                       "onUpdate:modelValue": ($event) => formData[key] = $event,
                       id: `form_${key}`
@@ -3605,16 +3797,20 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                   ], 64)) : createCommentVNode("v-if", true)
                 ]);
               }), 128)) : createCommentVNode("v-if", true),
-              errorMessage.value ? (openBlock(), createElementBlock("div", _hoisted_6$1, toDisplayString(errorMessage.value), 1)) : createCommentVNode("v-if", true),
-              createElementVNode("div", _hoisted_7$1, [
-                createElementVNode("button", _hoisted_8$1, toDisplayString(_ctx.$t("klb_order_process_cta")), 1)
+              errorMessage.value ? (openBlock(), createElementBlock("div", _hoisted_5$1, toDisplayString(errorMessage.value), 1)) : createCommentVNode("v-if", true),
+              createElementVNode("div", _hoisted_6$1, [
+                createElementVNode("button", _hoisted_7$1, toDisplayString(_ctx.$t("klb_order_process_cta")), 1)
               ])
             ], 64)) : createCommentVNode("v-if", true)
           ], 40, _hoisted_2$3),
-          process.value.order.Status == "completed" ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-            createTextVNode(toDisplayString(_ctx.$t("klb_order_paid_text", {
-              date: process.value.order.Paid ? _ctx.$formatDatetime(process.value.order.Paid.iso) : ""
-            })), 1)
+          process.value.order_payable == false ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+            process.value.order.Paid ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+              createTextVNode(toDisplayString(_ctx.$t("klb_order_paid_text", {
+                date: process.value.order.Paid ? _ctx.$formatDatetime(process.value.order.Paid.iso) : ""
+              })), 1)
+            ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+              createTextVNode(toDisplayString(_ctx.$t("klb_order_non_payable")), 1)
+            ], 64))
           ], 64)) : createCommentVNode("v-if", true)
         ], 64)) : createCommentVNode("v-if", true)
       ]);
@@ -3707,8 +3903,11 @@ const _hoisted_39 = {
 const _hoisted_40 = /* @__PURE__ */ createElementVNode("br", null, null, -1);
 const _hoisted_41 = /* @__PURE__ */ createElementVNode("br", null, null, -1);
 const _hoisted_42 = { key: 1 };
-const _hoisted_43 = { class: "mt-4 flex items-center justify-center" };
-const _hoisted_44 = { key: 0 };
+const _hoisted_43 = {
+  key: 2,
+  class: "response-error"
+};
+const _hoisted_44 = { class: "mt-4 flex items-center justify-center" };
 const _hoisted_45 = { key: 2 };
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "KlbOrder",
@@ -3752,12 +3951,15 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
     const createOrder = async () => {
       eventBus.emit("klb-order-main-loading", true);
+      error.value = void 0;
       if (!state.location) {
         error.value = translate("klb_error_order_create_location_empty");
         return;
       }
       const _result = await useCart().createOrder({
         User_Location__: state.location
+      }).catch((err) => {
+        error.value = err.error;
       });
       if (_result && _result.result == "success") {
         hasOrder.value = _result.data;
@@ -3947,10 +4149,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               }, 8, ["to"])
             ]))
           ], 64)) : (openBlock(), createElementBlock("div", _hoisted_42, toDisplayString(hasOrder.value.Billing_User_Location.Display.join(", ")), 1)),
-          createElementVNode("div", _hoisted_43, [
-            error.value ? (openBlock(), createElementBlock("p", _hoisted_44, toDisplayString(error.value), 1)) : createCommentVNode("v-if", true),
+          error.value ? (openBlock(), createElementBlock("p", _hoisted_43, toDisplayString(error.value), 1)) : createCommentVNode("v-if", true),
+          createElementVNode("div", _hoisted_44, [
             !hasOrder.value ? (openBlock(), createElementBlock("button", {
-              key: 1,
+              key: 0,
               onClick: _cache[1] || (_cache[1] = ($event) => createOrder()),
               class: "btn primary btn-defaults big"
             }, toDisplayString(_ctx.$t("klb_order_create_cta")), 1)) : createCommentVNode("v-if", true)
@@ -4170,43 +4372,6 @@ var KlbSupport = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "KlbSupport.
 
 function useUser() {
     return {};
-}
-
-function useBilling() {
-    return {
-        getUserBillingAndLoc: () => {
-            return new Promise((resolve) => {
-                rest('User/Billing', 'GET')
-                    .then((_userBilling) => {
-                    if (_userBilling &&
-                        _userBilling.data &&
-                        _userBilling.data.length != 0) {
-                        rest(`User/Location/${_userBilling.data[0].User_Location__}`, 'GET')
-                            .then((_userLocation) => {
-                            if (_userLocation && _userLocation.result == 'success') {
-                                resolve({
-                                    location: _userLocation.data,
-                                    billing: _userBilling.data[0],
-                                });
-                            }
-                            else {
-                                resolve(null);
-                            }
-                        })
-                            .catch(() => {
-                            resolve(null);
-                        });
-                    }
-                    else {
-                        resolve(null);
-                    }
-                })
-                    .catch(() => {
-                    resolve(null);
-                });
-            });
-        },
-    };
 }
 
 var klb = {

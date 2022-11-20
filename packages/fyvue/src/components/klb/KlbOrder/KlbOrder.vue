@@ -60,13 +60,18 @@ const delProduct = async (productUuid: string) => {
 };
 const createOrder = async () => {
   eventBus.emit('klb-order-main-loading', true);
+  error.value = undefined;
   if (!state.location) {
     error.value = translate('klb_error_order_create_location_empty');
     return;
   }
-  const _result = await useCart().createOrder({
-    User_Location__: state.location,
-  });
+  const _result = await useCart()
+    .createOrder({
+      User_Location__: state.location,
+    })
+    .catch((err) => {
+      error.value = err.error;
+    });
   if (_result && _result.result == 'success') {
     hasOrder.value = _result.data;
     router.push({
@@ -312,8 +317,8 @@ onMounted(async () => {
       <div v-else>
         {{ hasOrder.Billing_User_Location.Display.join(', ') }}
       </div>
+      <p v-if="error" class="response-error">{{ error }}</p>
       <div class="mt-4 flex items-center justify-center">
-        <p v-if="error">{{ error }}</p>
         <button
           @click="createOrder()"
           class="btn primary btn-defaults big"
