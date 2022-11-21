@@ -270,6 +270,7 @@ onMounted(async () => {
 
     if (!errorMessage.value) await getOrderProcess(_process);
     else await getOrderProcess();
+    await store.refreshCart();
     history.push(`${getPath()}?Order__=${props.orderUuid}`);
   } else {
     await getOrderProcess();

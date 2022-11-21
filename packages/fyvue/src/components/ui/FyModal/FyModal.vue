@@ -26,11 +26,11 @@ const eventBus = useEventBus();
 
 const isOpen = ref<boolean>(false);
 const setModal = (value: boolean) => {
-  if (value === true)
+  if (value === true) {
     if (props.onOpen) props.onOpen();
-    else {
-      if (props.onClose) props.onClose();
-    }
+  } else {
+    if (props.onClose) props.onClose();
+  }
   isOpen.value = value;
 };
 onMounted(() => {

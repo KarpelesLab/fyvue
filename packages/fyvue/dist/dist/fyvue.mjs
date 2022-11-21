@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.81
+  * @karpeleslab/fyvue v0.2.0-beta.86
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -94,27 +94,44 @@ async function handleSSR(createApp, cb, options = { url: null }) {
         result.statusCode = 307;
         return cb(result);
     }
-    const html = await renderToString(app, {});
-    const { headTags, htmlAttrs, bodyAttrs, bodyTags } = await renderHeadToString(head);
-    result.meta = headTags;
-    result.bodyAttributes = bodyAttrs;
-    result.htmlAttributes = htmlAttrs;
-    result.bodyTags = bodyTags;
-    result.app = html;
-    if (historyStore.status != 200) {
-        if ([301, 302, 303, 307].includes(historyStore.status)) {
-            if (historyStore.redirect) {
+    try {
+        const html = await renderToString(app, {});
+        const { headTags, htmlAttrs, bodyAttrs, bodyTags } = await renderHeadToString(head);
+        result.meta = headTags;
+        result.bodyAttributes = bodyAttrs;
+        result.htmlAttributes = htmlAttrs;
+        result.bodyTags = bodyTags;
+        result.app = html;
+        if (historyStore.status != 200) {
+            if ([301, 302, 303, 307].includes(historyStore.status)) {
+                if (historyStore.redirect) {
+                    result.statusCode = historyStore.status;
+                    result.redirect = historyStore.redirect;
+                }
+            }
+            else {
                 result.statusCode = historyStore.status;
-                result.redirect = historyStore.redirect;
             }
         }
-        else {
-            result.statusCode = historyStore.status;
-        }
+        useHistory(pinia)._setRouter(null);
+        result.initial.piniaState = JSON.stringify(pinia.state.value);
+        return cb(result);
     }
-    useHistory(pinia)._setRouter(null);
-    result.initial.piniaState = JSON.stringify(pinia.state.value);
-    return cb(result);
+    catch (e) {
+        console.log('------Fyvue SSR Error------');
+        if (e) {
+            if (typeof e === 'string') {
+                console.log(e);
+            }
+            else if (e instanceof Error) {
+                console.log(e.message);
+                console.log('------------');
+                console.log(e.stack);
+            }
+        }
+        console.log('------End Fyvue SSR Error------');
+        return cb(result);
+    }
 }
 
 const useRestState = defineStore({
@@ -398,13 +415,13 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
     const eventBus = useEventBus();
     const isOpen = ref(false);
     const setModal = (value) => {
-      if (value === true)
+      if (value === true) {
         if (props.onOpen)
           props.onOpen();
-        else {
-          if (props.onClose)
-            props.onClose();
-        }
+      } else {
+        if (props.onClose)
+          props.onClose();
+      }
       isOpen.value = value;
     };
     onMounted(() => {
@@ -3716,6 +3733,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           await getOrderProcess(_process);
         else
           await getOrderProcess();
+        await store.refreshCart();
         history.push(`${getPath()}?Order__=${props.orderUuid}`);
       } else {
         await getOrderProcess();
@@ -3930,6 +3948,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       const _result = await useCart().delProduct(productUuid);
       if (_result) {
         cart.value = await useCart().getCart();
+        await store.refreshCart();
       }
       eventBus.emit("klb-order-main-loading", false);
     };
@@ -3952,6 +3971,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           query: { Order__: hasOrder.value.Order__ }
         });
       }
+      await store.refreshCart();
       eventBus.emit("klb-order-main-loading", false);
     };
     onMounted(async () => {

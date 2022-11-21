@@ -55,6 +55,7 @@ const delProduct = async (productUuid: string) => {
   const _result = await useCart().delProduct(productUuid);
   if (_result) {
     cart.value = await useCart().getCart();
+    await store.refreshCart();
   }
   eventBus.emit('klb-order-main-loading', false);
 };
@@ -79,6 +80,7 @@ const createOrder = async () => {
       query: { Order__: hasOrder.value.Order__ },
     });
   }
+  await store.refreshCart();
   eventBus.emit('klb-order-main-loading', false);
 };
 const getLastUnfinishedOrder = async () => {

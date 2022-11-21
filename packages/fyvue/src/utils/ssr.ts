@@ -113,29 +113,43 @@ export async function handleSSR(
     return cb(result);
   }
 
-  const html = await renderToString(app, {});
-  const { headTags, htmlAttrs, bodyAttrs, bodyTags } = await renderHeadToString(
-    head
-  );
+  try {
+    const html = await renderToString(app, {});
+    const { headTags, htmlAttrs, bodyAttrs, bodyTags } =
+      await renderHeadToString(head);
 
-  result.meta = headTags;
-  result.bodyAttributes = bodyAttrs;
-  result.htmlAttributes = htmlAttrs;
-  result.bodyTags = bodyTags;
-  result.app = html;
+    result.meta = headTags;
+    result.bodyAttributes = bodyAttrs;
+    result.htmlAttributes = htmlAttrs;
+    result.bodyTags = bodyTags;
+    result.app = html;
 
-  if (historyStore.status != 200) {
-    if ([301, 302, 303, 307].includes(historyStore.status)) {
-      if (historyStore.redirect) {
+    if (historyStore.status != 200) {
+      if ([301, 302, 303, 307].includes(historyStore.status)) {
+        if (historyStore.redirect) {
+          result.statusCode = historyStore.status;
+          result.redirect = historyStore.redirect;
+        }
+      } else {
         result.statusCode = historyStore.status;
-        result.redirect = historyStore.redirect;
       }
-    } else {
-      result.statusCode = historyStore.status;
     }
-  }
-  useHistory(pinia)._setRouter(null);
-  result.initial.piniaState = JSON.stringify(pinia.state.value);
+    useHistory(pinia)._setRouter(null);
+    result.initial.piniaState = JSON.stringify(pinia.state.value);
 
-  return cb(result);
+    return cb(result);
+  } catch (e) {
+    console.log('------Fyvue SSR Error------');
+    if (e) {
+      if (typeof e === 'string') {
+        console.log(e); // works, `e` narrowed to string
+      } else if (e instanceof Error) {
+        console.log(e.message);
+        console.log('------------');
+        console.log(e.stack);
+      }
+    }
+    console.log('------End Fyvue SSR Error------');
+    return cb(result);
+  }
 }
