@@ -87,6 +87,9 @@ const getLastUnfinishedOrder = async () => {
 onMounted(async () => {
   eventBus.emit('klb-order-main-loading', true);
   if (!routeOrderUuid.value) {
+    if (route.query.product) {
+      await addProductToCart(route.query.product.toString());
+    }
     cart.value = await useCart().getCart();
   } else {
     const _order = await useOrder()
@@ -100,6 +103,13 @@ onMounted(async () => {
   isReady.value = true;
   eventBus.emit('klb-order-main-loading', false);
 });
+const addProductToCart = async (productData: string) => {
+  await useCart().resetCart();
+  const _addResult = await useCart().addProduct(productData, '');
+  if (_addResult) {
+    await store.refreshCartData(_addResult);
+  }
+};
 </script>
 <template>
   <div class="klb-order" v-if="isReady">
@@ -109,9 +119,6 @@ onMounted(async () => {
       <div class="fv-typo mb-2" v-if="cart.data.products.length == 0">
         <p>
           {{ $t('klb_order_cart_is_empty') }}
-          <RouterLink :to="shopPath" class="btn px-2 py-1 primary">
-            {{ $t('klb_order_cart_is_empty_back_cta') }}
-          </RouterLink>
         </p>
       </div>
       <div

@@ -11,7 +11,7 @@
     @apply h-4 -mt-0.5 align-middle inline-block
   }
   .download-btn {
-    @apply  p-2;
+    @apply  p-2 whitespace-nowrap;
   }
   .billing-history-paging {
     @apply my-4;

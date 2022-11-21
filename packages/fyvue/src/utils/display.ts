@@ -52,12 +52,18 @@ const jpZipcode = (zip: string | number) => {
   return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 
-const formatDate = (dt: Date | string) => {
-  if (typeof dt == 'string') dt = new Date(dt);
+const formatDate = (dt: Date | string | number) => {
+  let _dt = dt as number;
+  if (typeof dt === 'string') {
+    _dt = Date.parse(dt);
+    if (Number.isNaN(_dt)) {
+      _dt = parseInt(dt);
+    }
+  }
 
   const translate = useTranslation();
   return translate('global_datetime', {
-    val: dt,
+    val: new Date(_dt),
     formatParams: {
       val: {
         year: 'numeric',
@@ -67,12 +73,17 @@ const formatDate = (dt: Date | string) => {
     },
   });
 };
-const formatDatetime = (dt: Date | string) => {
-  if (typeof dt == 'string') dt = new Date(dt);
-
+const formatDatetime = (dt: Date | string | number) => {
+  let _dt = dt as number;
+  if (typeof dt === 'string') {
+    _dt = Date.parse(dt);
+    if (Number.isNaN(_dt)) {
+      _dt = parseInt(dt);
+    }
+  }
   const translate = useTranslation();
   return translate('global_datetime', {
-    val: dt,
+    val: new Date(_dt),
     formatParams: {
       val: {
         year: 'numeric',
@@ -85,10 +96,15 @@ const formatDatetime = (dt: Date | string) => {
     },
   });
 };
-const formatTimeago = (dt: Date | string) => {
-  if (typeof dt == 'string') dt = new Date(dt);
-
-  return formatDateTimeago(dt, getLocale().replace('_', '-'));
+const formatTimeago = (dt: Date | string | number) => {
+  let _dt = dt as number;
+  if (typeof dt === 'string') {
+    _dt = Date.parse(dt);
+    if (Number.isNaN(_dt)) {
+      _dt = parseInt(dt);
+    }
+  }
+  return formatDateTimeago(new Date(_dt), getLocale().replace('_', '-'));
 };
 
 export {

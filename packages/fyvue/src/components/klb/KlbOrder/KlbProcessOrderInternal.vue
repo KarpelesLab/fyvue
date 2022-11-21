@@ -362,9 +362,7 @@ onMounted(async () => {
         <template v-if="process.order.Paid">
           {{
             $t('klb_order_paid_text', {
-              date: process.order.Paid
-                ? $formatDatetime(process.order.Paid.iso)
-                : '',
+              date: $formatDatetime(process.order.Paid.unixms),
             })
           }}
         </template>

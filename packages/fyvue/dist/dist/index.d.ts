@@ -39,9 +39,9 @@ declare const helpers: {
     cropText: (str: string, ml?: number, end?: string) => string;
     formatBytes: (bytes: number, decimals?: number) => string;
     formatJPZipcode: (zip: string | number) => string;
-    formatDate: (dt: string | Date) => string;
-    formatDatetime: (dt: string | Date) => string;
-    formatTimeago: (dt: string | Date) => string;
+    formatDate: (dt: string | number | Date) => string;
+    formatDatetime: (dt: string | number | Date) => string;
+    formatTimeago: (dt: string | number | Date) => string;
     formatKlbRecurringPaymentCycle: (cycle?: string | undefined) => string;
 };
 declare const helpersSSR: {

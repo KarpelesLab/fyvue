@@ -87,7 +87,7 @@ const getUserGeolocation = async () => {
     'GET'
   ).catch(() => {});
   if (_userLoc && _userLoc.result == 'success') {
-    state.country = _userLoc.data.country.iso_code;
+    state.country = _userLoc.data.country.unixms_code;
   }
 };
 const deleteLocation = async () => {

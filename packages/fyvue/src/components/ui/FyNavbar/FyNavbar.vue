@@ -55,7 +55,6 @@ withDefaults(
         <span v-if="title && showTitle">{{ title }}</span>
       </router-link>
       <div class="nav-actions">
-        <slot name="custom"></slot>
         <ClientOnly>
           <slot name="cart">
             <template v-if="showCart">
@@ -66,30 +65,7 @@ withDefaults(
             </template>
           </slot>
         </ClientOnly>
-        <slot name="buttons">
-          <div v-if="isAuth">
-            <a
-              href="javascript:void(0)"
-              @click="logout()"
-              class="btn neutral btn-defaults"
-              >{{ $t('navbar_logout_cta') }}</a
-            >
-            <router-link
-              v-if="showDashboardLink"
-              to="/user"
-              class="btn primary btn-defaults"
-              >{{ $t('navbar_dashboard_cta') }}</router-link
-            >
-          </div>
-          <div v-else>
-            <router-link to="/login" class="btn neutral btn-defaults">{{
-              $t('navbar_login_cta')
-            }}</router-link>
-            <router-link to="/login" class="btn primary btn-defaults">{{
-              $t('navbar_signup_cta')
-            }}</router-link>
-          </div>
-        </slot>
+
         <button
           @click="toggleDark()"
           class="btn neutral light-dark"
@@ -195,6 +171,31 @@ withDefaults(
             </template>
           </li>
         </ul>
+        <slot name="custom"></slot>
+        <slot name="buttons">
+          <div v-if="isAuth">
+            <a
+              href="javascript:void(0)"
+              @click="logout()"
+              class="btn neutral btn-defaults"
+              >{{ $t('navbar_logout_cta') }}</a
+            >
+            <router-link
+              v-if="showDashboardLink"
+              to="/user"
+              class="btn primary btn-defaults"
+              >{{ $t('navbar_dashboard_cta') }}</router-link
+            >
+          </div>
+          <div v-else>
+            <router-link to="/login" class="btn neutral btn-defaults">{{
+              $t('navbar_login_cta')
+            }}</router-link>
+            <router-link to="/login" class="btn primary btn-defaults">{{
+              $t('navbar_signup_cta')
+            }}</router-link>
+          </div>
+        </slot>
       </div>
     </div>
   </nav>

@@ -28,7 +28,7 @@ html, body {
 
 .card-container {
   @apply block  border border-fv-neutral-200 rounded dark:border-fv-neutral-700;
-  background: rgba(238, 238, 238, 0.3);
+  background: rgba(204, 204, 204, 0.3);
 }
 .card-container :first-child {
   @apply mt-0;
@@ -320,7 +320,7 @@ button[type=submit] {
   @apply flex px-5 py-2 text-fv-neutral-700 rounded-lg bg-fv-neutral-50 dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
 }
 .fy-breadcrumb ol {
-  @apply inline-flex items-center;
+  @apply inline-flex items-center  flex-wrap;
 }
 .fy-breadcrumb ol li.li-home {
   @apply inline-flex items-center;
@@ -350,11 +350,20 @@ button[type=submit] {
   @apply text-sm font-medium text-fv-neutral-500  dark:text-fv-neutral-400;
 }
 
+.fy-table {
+  @apply flex flex-col;
+}
 .fy-table .table-container {
-  @apply overflow-x-auto relative shadow-md sm:rounded-lg;
+  @apply overflow-x-auto sm:-mx-6 lg:-mx-8;
+}
+.fy-table .table-sub-container {
+  @apply py-2 inline-block min-w-full sm:px-6 lg:px-8;
+}
+.fy-table .table-scroll {
+  @apply overflow-x-auto;
 }
 .fy-table table {
-  @apply w-full text-sm text-left text-fv-neutral-500 dark:text-fv-neutral-400;
+  @apply min-w-full text-sm text-left text-fv-neutral-500 dark:text-fv-neutral-400;
 }
 .fy-table table thead {
   @apply text-xs text-fv-neutral-700 uppercase bg-fv-neutral-50 dark:bg-fv-neutral-700 dark:text-fv-neutral-400;
@@ -586,10 +595,10 @@ button[type=submit] {
   @apply flex items-center justify-center order-2 md:order-1 mt-2 md:mt-0 flex-1 scale-90 md:scale-100;
 }
 .fy-navbar .nav-menu {
-  @apply hidden justify-between items-center w-full text-sm md:flex md:w-auto md:order-1;
+  @apply hidden  items-start md:items-center justify-between min-w-full md:min-w-0 text-sm flex-1 flex-col md:flex-row space-y-3 md:space-y-0 py-4 md:py-0 md:flex md:w-auto order-last md:order-1 px-2 md:pl-8;
 }
 .fy-navbar .nav-menu.is-open {
-  @apply block;
+  @apply flex;
 }
 .fy-navbar .nav-menu .main-ul {
   @apply flex flex-col mt-4 font-medium md:flex-row md:space-x-4 md:mt-0;
@@ -720,7 +729,7 @@ button[type=submit] {
   @apply h-4 -mt-0.5 align-middle inline-block;
 }
 .klb-billing-history .download-btn {
-  @apply p-2;
+  @apply p-2 whitespace-nowrap;
 }
 .klb-billing-history .billing-history-paging {
   @apply my-4;

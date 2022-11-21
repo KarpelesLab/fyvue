@@ -1,7 +1,7 @@
 .fy-breadcrumb {
   @apply flex px-5 py-2 text-fv-neutral-700 rounded-lg bg-fv-neutral-50 dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
   ol {
-    @apply inline-flex items-center ;
+    @apply inline-flex items-center  flex-wrap;
     li {
       &.li-home {
         @apply inline-flex items-center;

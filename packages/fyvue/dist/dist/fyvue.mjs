@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.70
+  * @karpeleslab/fyvue v0.2.0-beta.81
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -528,7 +528,7 @@ const _hoisted_4$h = {
   class: "confirm-modal-desc default-p"
 };
 const _hoisted_5$f = /* @__PURE__ */ createElementVNode("br", null, null, -1);
-const _hoisted_6$e = { class: "btn-box" };
+const _hoisted_6$f = { class: "btn-box" };
 const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "FyConfirm",
   setup(__props) {
@@ -585,7 +585,7 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
                   createElementVNode("div", _hoisted_3$l, [
                     desc.value ? (openBlock(), createElementBlock("div", _hoisted_4$h, toDisplayString(desc.value), 1)) : createCommentVNode("v-if", true),
                     _hoisted_5$f,
-                    createElementVNode("div", _hoisted_6$e, [
+                    createElementVNode("div", _hoisted_6$f, [
                       createElementVNode("button", {
                         onClick: _cache[0] || (_cache[0] = ($event) => confirm.value = false),
                         class: "btn neutral btn-defaults"
@@ -708,7 +708,7 @@ const _hoisted_2$i = { key: 0 };
 const _hoisted_3$i = { class: "div" };
 const _hoisted_4$g = { class: "div-cell" };
 const _hoisted_5$e = { key: 0 };
-const _hoisted_6$d = { key: 1 };
+const _hoisted_6$e = { key: 1 };
 const _sfc_main$k = /* @__PURE__ */ defineComponent({
   __name: "FyDatatable",
   props: {
@@ -747,7 +747,7 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
                     renderSlot(_ctx.$slots, `${property}_item`, {
                       data: { prop: item[property], item, idx: index }
                     }, () => [
-                      item[property] ? (openBlock(), createElementBlock("span", _hoisted_5$e, toDisplayString(item[property].toString()), 1)) : (openBlock(), createElementBlock("span", _hoisted_6$d, "n/a"))
+                      item[property] ? (openBlock(), createElementBlock("span", _hoisted_5$e, toDisplayString(item[property].toString()), 1)) : (openBlock(), createElementBlock("span", _hoisted_6$e, "n/a"))
                     ])
                   ])
                 ]);
@@ -766,9 +766,11 @@ const _hoisted_1$i = {
   class: "fy-table"
 };
 const _hoisted_2$h = { class: "table-container" };
-const _hoisted_3$h = { key: 0 };
-const _hoisted_4$f = { key: 0 };
-const _hoisted_5$d = { key: 1 };
+const _hoisted_3$h = { class: "table-sub-container" };
+const _hoisted_4$f = { class: "table-scroll" };
+const _hoisted_5$d = { key: 0 };
+const _hoisted_6$d = { key: 0 };
+const _hoisted_7$c = { key: 1 };
 const _sfc_main$j = /* @__PURE__ */ defineComponent({
   __name: "FyTable",
   props: {
@@ -780,34 +782,38 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     return (_ctx, _cache) => {
       return __props.data && __props.data.length ? (openBlock(), createElementBlock("div", _hoisted_1$i, [
         createElementVNode("div", _hoisted_2$h, [
-          createElementVNode("table", null, [
-            __props.showHeaders ? (openBlock(), createElementBlock("thead", _hoisted_3$h, [
-              createElementVNode("tr", null, [
-                (openBlock(true), createElementBlock(Fragment, null, renderList(__props.headers, (title, property) => {
-                  return openBlock(), createElementBlock("th", { key: property }, toDisplayString(title), 1);
-                }), 128))
-              ])
-            ])) : createCommentVNode("v-if", true),
-            createElementVNode("tbody", null, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(__props.data, (item, index) => {
-                return openBlock(), createElementBlock("tr", { key: index }, [
-                  (openBlock(true), createElementBlock(Fragment, null, renderList(__props.headers, (_, property) => {
-                    return openBlock(), createElementBlock("td", {
-                      key: `${property}`
-                    }, [
-                      renderSlot(_ctx.$slots, `${property}_item`, {
-                        data: {
-                          prop: item[property],
-                          item,
-                          idx: index
-                        }
-                      }, () => [
-                        item[property] ? (openBlock(), createElementBlock("span", _hoisted_4$f, toDisplayString(item[property]), 1)) : (openBlock(), createElementBlock("span", _hoisted_5$d, "n/a"))
-                      ])
+          createElementVNode("div", _hoisted_3$h, [
+            createElementVNode("div", _hoisted_4$f, [
+              createElementVNode("table", null, [
+                __props.showHeaders ? (openBlock(), createElementBlock("thead", _hoisted_5$d, [
+                  createElementVNode("tr", null, [
+                    (openBlock(true), createElementBlock(Fragment, null, renderList(__props.headers, (title, property) => {
+                      return openBlock(), createElementBlock("th", { key: property }, toDisplayString(title), 1);
+                    }), 128))
+                  ])
+                ])) : createCommentVNode("v-if", true),
+                createElementVNode("tbody", null, [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(__props.data, (item, index) => {
+                    return openBlock(), createElementBlock("tr", { key: index }, [
+                      (openBlock(true), createElementBlock(Fragment, null, renderList(__props.headers, (_, property) => {
+                        return openBlock(), createElementBlock("td", {
+                          key: `${property}`
+                        }, [
+                          renderSlot(_ctx.$slots, `${property}_item`, {
+                            data: {
+                              prop: item[property],
+                              item,
+                              idx: index
+                            }
+                          }, () => [
+                            item[property] ? (openBlock(), createElementBlock("span", _hoisted_6$d, toDisplayString(item[property]), 1)) : (openBlock(), createElementBlock("span", _hoisted_7$c, "n/a"))
+                          ])
+                        ]);
+                      }), 128))
                     ]);
                   }), 128))
-                ]);
-              }), 128))
+                ])
+              ])
             ])
           ])
         ])
@@ -1360,10 +1366,8 @@ const _hoisted_2$d = { class: "nav-container" };
 const _hoisted_3$d = { key: 0 };
 const _hoisted_4$c = { class: "nav-actions" };
 const _hoisted_5$a = { class: "badge" };
-const _hoisted_6$a = { key: 0 };
-const _hoisted_7$9 = { key: 1 };
-const _hoisted_8$8 = /* @__PURE__ */ createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
-const _hoisted_9$7 = /* @__PURE__ */ createElementVNode("svg", {
+const _hoisted_6$a = /* @__PURE__ */ createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_7$9 = /* @__PURE__ */ createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
   viewBox: "0 0 20 20",
@@ -1375,12 +1379,12 @@ const _hoisted_9$7 = /* @__PURE__ */ createElementVNode("svg", {
     "clip-rule": "evenodd"
   })
 ], -1);
-const _hoisted_10$6 = [
-  _hoisted_8$8,
-  _hoisted_9$7
+const _hoisted_8$8 = [
+  _hoisted_6$a,
+  _hoisted_7$9
 ];
-const _hoisted_11$6 = { class: "main-ul" };
-const _hoisted_12$5 = /* @__PURE__ */ createElementVNode("svg", {
+const _hoisted_9$7 = { class: "main-ul" };
+const _hoisted_10$6 = /* @__PURE__ */ createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
   viewBox: "0 0 20 20",
@@ -1392,8 +1396,10 @@ const _hoisted_12$5 = /* @__PURE__ */ createElementVNode("svg", {
     "clip-rule": "evenodd"
   })
 ], -1);
-const _hoisted_13$4 = ["href", "title", "alt"];
-const _hoisted_14$4 = ["href", "title", "alt"];
+const _hoisted_11$6 = ["href", "title", "alt"];
+const _hoisted_12$5 = ["href", "title", "alt"];
+const _hoisted_13$4 = { key: 0 };
+const _hoisted_14$4 = { key: 1 };
 const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "FyNavbar",
   props: {
@@ -1439,7 +1445,6 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
             _: 3
           }),
           createElementVNode("div", _hoisted_4$c, [
-            renderSlot(_ctx.$slots, "custom"),
             createVNode(unref(ClientOnly), null, {
               default: withCtx(() => [
                 renderSlot(_ctx.$slots, "cart", {}, () => [
@@ -1458,47 +1463,9 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
               ]),
               _: 3
             }),
-            renderSlot(_ctx.$slots, "buttons", {}, () => [
-              unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_6$a, [
-                createElementVNode("a", {
-                  href: "javascript:void(0)",
-                  onClick: _cache[0] || (_cache[0] = ($event) => logout()),
-                  class: "btn neutral btn-defaults"
-                }, toDisplayString(_ctx.$t("navbar_logout_cta")), 1),
-                __props.showDashboardLink ? (openBlock(), createBlock(_component_router_link, {
-                  key: 0,
-                  to: "/user",
-                  class: "btn primary btn-defaults"
-                }, {
-                  default: withCtx(() => [
-                    createTextVNode(toDisplayString(_ctx.$t("navbar_dashboard_cta")), 1)
-                  ]),
-                  _: 1
-                })) : createCommentVNode("v-if", true)
-              ])) : (openBlock(), createElementBlock("div", _hoisted_7$9, [
-                createVNode(_component_router_link, {
-                  to: "/login",
-                  class: "btn neutral btn-defaults"
-                }, {
-                  default: withCtx(() => [
-                    createTextVNode(toDisplayString(_ctx.$t("navbar_login_cta")), 1)
-                  ]),
-                  _: 1
-                }),
-                createVNode(_component_router_link, {
-                  to: "/login",
-                  class: "btn primary btn-defaults"
-                }, {
-                  default: withCtx(() => [
-                    createTextVNode(toDisplayString(_ctx.$t("navbar_signup_cta")), 1)
-                  ]),
-                  _: 1
-                })
-              ]))
-            ]),
             __props.darkLight ? (openBlock(), createElementBlock("button", {
               key: 0,
-              onClick: _cache[1] || (_cache[1] = ($event) => unref(toggleDark)()),
+              onClick: _cache[0] || (_cache[0] = ($event) => unref(toggleDark)()),
               class: "btn neutral light-dark"
             }, [
               !unref(isDark) ? (openBlock(), createBlock(unref(render$5), { key: 0 })) : (openBlock(), createBlock(unref(render$2), { key: 1 }))
@@ -1506,13 +1473,13 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
             createElementVNode("button", {
               type: "button",
               class: "open-nav-button",
-              onClick: _cache[2] || (_cache[2] = ($event) => unref(toggleNavbarOpen)())
-            }, _hoisted_10$6)
+              onClick: _cache[1] || (_cache[1] = ($event) => unref(toggleNavbarOpen)())
+            }, _hoisted_8$8)
           ]),
           createElementVNode("div", {
             class: normalizeClass(["nav-menu", isOpen.value ? "is-open" : ""])
           }, [
-            createElementVNode("ul", _hoisted_11$6, [
+            createElementVNode("ul", _hoisted_9$7, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(__props.links, (link, index) => {
                 return openBlock(), createElementBlock("li", {
                   key: `link_${index.toString()}`
@@ -1522,7 +1489,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                       createVNode(unref(MenuButton), { class: "is-link has-childs" }, {
                         default: withCtx(() => [
                           createTextVNode(toDisplayString(link.name) + " ", 1),
-                          _hoisted_12$5
+                          _hoisted_10$6
                         ]),
                         _: 2
                       }, 1024),
@@ -1554,7 +1521,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                                           title: children.name,
                                           alt: children.name,
                                           class: "is-link"
-                                        }, toDisplayString(children.name), 9, _hoisted_13$4))
+                                        }, toDisplayString(children.name), 9, _hoisted_11$6))
                                       ])
                                     ]),
                                     _: 2
@@ -1587,10 +1554,49 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                       title: link.name,
                       alt: link.name,
                       class: normalizeClass(["is-link", ""])
-                    }, toDisplayString(link.name), 9, _hoisted_14$4))
+                    }, toDisplayString(link.name), 9, _hoisted_12$5))
                   ], 64))
                 ]);
               }), 128))
+            ]),
+            renderSlot(_ctx.$slots, "custom"),
+            renderSlot(_ctx.$slots, "buttons", {}, () => [
+              unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_13$4, [
+                createElementVNode("a", {
+                  href: "javascript:void(0)",
+                  onClick: _cache[2] || (_cache[2] = ($event) => logout()),
+                  class: "btn neutral btn-defaults"
+                }, toDisplayString(_ctx.$t("navbar_logout_cta")), 1),
+                __props.showDashboardLink ? (openBlock(), createBlock(_component_router_link, {
+                  key: 0,
+                  to: "/user",
+                  class: "btn primary btn-defaults"
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(_ctx.$t("navbar_dashboard_cta")), 1)
+                  ]),
+                  _: 1
+                })) : createCommentVNode("v-if", true)
+              ])) : (openBlock(), createElementBlock("div", _hoisted_14$4, [
+                createVNode(_component_router_link, {
+                  to: "/login",
+                  class: "btn neutral btn-defaults"
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(_ctx.$t("navbar_login_cta")), 1)
+                  ]),
+                  _: 1
+                }),
+                createVNode(_component_router_link, {
+                  to: "/login",
+                  class: "btn primary btn-defaults"
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode(toDisplayString(_ctx.$t("navbar_signup_cta")), 1)
+                  ]),
+                  _: 1
+                })
+              ]))
             ])
           ], 2)
         ])
@@ -2251,38 +2257,16 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
               ], 8, _hoisted_2$8)) : createCommentVNode("v-if", true)
             ]),
             Total_item: withCtx((property) => [
-              createElementVNode("span", _hoisted_3$8, toDisplayString(property.data.item.Total.display), 1)
+              createElementVNode("span", _hoisted_3$8, toDisplayString(property.data.item.Total_Vat.display), 1)
             ]),
             Status_item: withCtx((property) => [
               createElementVNode("span", _hoisted_4$7, toDisplayString(property.data.item.Status), 1)
             ]),
             Invoice_Date_item: withCtx((property) => [
-              createTextVNode(toDisplayString(_ctx.$t("global_datetime", {
-                val: new Date(property.data.item.Invoice_Date.iso),
-                formatParams: {
-                  val: {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric"
-                  }
-                }
-              })), 1)
+              createTextVNode(toDisplayString(_ctx.$formatDatetime(property.data.item.Invoice_Date.unixms)), 1)
             ]),
             Paid_item: withCtx((property) => [
-              createTextVNode(toDisplayString(_ctx.$t("global_datetime", {
-                val: new Date(property.data.item.Paid.iso),
-                formatParams: {
-                  val: {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric"
-                  }
-                }
-              })), 1)
+              createTextVNode(toDisplayString(_ctx.$formatDatetime(property.data.item.Paid.unixms)), 1)
             ]),
             _: 1
           }, 8, ["data", "headers"]),
@@ -2403,7 +2387,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       ).catch(() => {
       });
       if (_userLoc && _userLoc.result == "success") {
-        state.country = _userLoc.data.country.iso_code;
+        state.country = _userLoc.data.country.unixms_code;
       }
     };
     const deleteLocation = async () => {
@@ -3806,7 +3790,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           process.value.order_payable == false ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
             process.value.order.Paid ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
               createTextVNode(toDisplayString(_ctx.$t("klb_order_paid_text", {
-                date: process.value.order.Paid ? _ctx.$formatDatetime(process.value.order.Paid.iso) : ""
+                date: _ctx.$formatDatetime(process.value.order.Paid.unixms)
               })), 1)
             ], 64)) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createTextVNode(toDisplayString(_ctx.$t("klb_order_non_payable")), 1)
@@ -3973,6 +3957,9 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     onMounted(async () => {
       eventBus.emit("klb-order-main-loading", true);
       if (!routeOrderUuid.value) {
+        if (route.query.product) {
+          await addProductToCart(route.query.product.toString());
+        }
         cart.value = await useCart().getCart();
       } else {
         const _order = await useOrder().getOrder(routeOrderUuid.value.toString()).catch(() => {
@@ -3984,26 +3971,21 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       isReady.value = true;
       eventBus.emit("klb-order-main-loading", false);
     });
+    const addProductToCart = async (productData) => {
+      await useCart().resetCart();
+      const _addResult = await useCart().addProduct(productData, "");
+      if (_addResult) {
+        await store.refreshCartData(_addResult);
+      }
+    };
     return (_ctx, _cache) => {
-      const _component_RouterLink = resolveComponent("RouterLink");
       const _component_router_link = resolveComponent("router-link");
       return isReady.value ? (openBlock(), createElementBlock("div", _hoisted_1$2, [
         createVNode(FyLoader, { id: "klb-order-main" }),
         createElementVNode("h2", null, toDisplayString(_ctx.$t("klb_order_cart_summary")), 1),
         cart.value && !hasOrder.value ? (openBlock(), createElementBlock("div", _hoisted_2$2, [
           cart.value.data.products.length == 0 ? (openBlock(), createElementBlock("div", _hoisted_3$2, [
-            createElementVNode("p", null, [
-              createTextVNode(toDisplayString(_ctx.$t("klb_order_cart_is_empty")) + " ", 1),
-              createVNode(_component_RouterLink, {
-                to: __props.shopPath,
-                class: "btn px-2 py-1 primary"
-              }, {
-                default: withCtx(() => [
-                  createTextVNode(toDisplayString(_ctx.$t("klb_order_cart_is_empty_back_cta")), 1)
-                ]),
-                _: 1
-              }, 8, ["to"])
-            ])
+            createElementVNode("p", null, toDisplayString(_ctx.$t("klb_order_cart_is_empty")), 1)
           ])) : createCommentVNode("v-if", true),
           (openBlock(true), createElementBlock(Fragment, null, renderList(cart.value.data.products, (product) => {
             return openBlock(), createElementBlock("div", {
@@ -4518,11 +4500,16 @@ const jpZipcode = (zip) => {
     return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
 };
 const formatDate = (dt) => {
-    if (typeof dt == 'string')
-        dt = new Date(dt);
+    let _dt = dt;
+    if (typeof dt === 'string') {
+        _dt = Date.parse(dt);
+        if (Number.isNaN(_dt)) {
+            _dt = parseInt(dt);
+        }
+    }
     const translate = useTranslation();
     return translate('global_datetime', {
-        val: dt,
+        val: new Date(_dt),
         formatParams: {
             val: {
                 year: 'numeric',
@@ -4533,11 +4520,16 @@ const formatDate = (dt) => {
     });
 };
 const formatDatetime = (dt) => {
-    if (typeof dt == 'string')
-        dt = new Date(dt);
+    let _dt = dt;
+    if (typeof dt === 'string') {
+        _dt = Date.parse(dt);
+        if (Number.isNaN(_dt)) {
+            _dt = parseInt(dt);
+        }
+    }
     const translate = useTranslation();
     return translate('global_datetime', {
-        val: dt,
+        val: new Date(_dt),
         formatParams: {
             val: {
                 year: 'numeric',
@@ -4551,9 +4543,14 @@ const formatDatetime = (dt) => {
     });
 };
 const formatTimeago = (dt) => {
-    if (typeof dt == 'string')
-        dt = new Date(dt);
-    return format(dt, getLocale$1().replace('_', '-'));
+    let _dt = dt;
+    if (typeof dt === 'string') {
+        _dt = Date.parse(dt);
+        if (Number.isNaN(_dt)) {
+            _dt = parseInt(dt);
+        }
+    }
+    return format(new Date(_dt), getLocale$1().replace('_', '-'));
 };
 
 function useUserCheck(path = '/login') {

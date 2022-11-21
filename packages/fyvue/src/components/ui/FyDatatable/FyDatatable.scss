@@ -1,9 +1,17 @@
 .fy-table  {
+  @apply flex flex-col;
+
   .table-container {
-    @apply overflow-x-auto relative shadow-md sm:rounded-lg;
+    @apply overflow-x-auto sm:-mx-6 lg:-mx-8;
+  }
+  .table-sub-container {
+    @apply py-2 inline-block min-w-full sm:px-6 lg:px-8;
+  }
+  .table-scroll {
+    @apply overflow-x-auto;
   }
   table {
-    @apply w-full text-sm text-left text-fv-neutral-500 dark:text-fv-neutral-400;
+    @apply min-w-full text-sm text-left text-fv-neutral-500 dark:text-fv-neutral-400;
     thead {
       @apply text-xs text-fv-neutral-700 uppercase bg-fv-neutral-50 dark:bg-fv-neutral-700 dark:text-fv-neutral-400;
       th {

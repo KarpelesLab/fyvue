@@ -62,7 +62,7 @@ onMounted(async () => {
         </template>
         <template v-slot:Total_item="property">
           <span class="billing-history-tag">{{
-            property.data.item.Total.display
+            property.data.item.Total_Vat.display
           }}</span>
         </template>
         <template v-slot:Status_item="property">
@@ -71,36 +71,10 @@ onMounted(async () => {
           }}</span>
         </template>
         <template v-slot:Invoice_Date_item="property">
-          {{
-            $t('global_datetime', {
-              val: new Date(property.data.item.Invoice_Date.iso),
-              formatParams: {
-                val: {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: 'numeric',
-                },
-              },
-            })
-          }}
+          {{ $formatDatetime(property.data.item.Invoice_Date.unixms) }}
         </template>
         <template v-slot:Paid_item="property">
-          {{
-            $t('global_datetime', {
-              val: new Date(property.data.item.Paid.iso),
-              formatParams: {
-                val: {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: 'numeric',
-                },
-              },
-            })
-          }}
+          {{ $formatDatetime(property.data.item.Paid.unixms) }}
         </template>
       </FyTable>
       <FyPaging

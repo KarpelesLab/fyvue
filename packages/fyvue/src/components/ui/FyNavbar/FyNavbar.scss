@@ -53,9 +53,9 @@
     @apply flex items-center justify-center order-2 md:order-1 mt-2 md:mt-0 flex-1 scale-90 md:scale-100;
   }
   .nav-menu {
-    @apply hidden justify-between items-center w-full text-sm md:flex md:w-auto md:order-1;
+    @apply hidden  items-start md:items-center justify-between min-w-full md:min-w-0 text-sm flex-1 flex-col md:flex-row space-y-3 md:space-y-0 py-4 md:py-0 md:flex md:w-auto order-last md:order-1 px-2 md:pl-8;
     &.is-open {
-      @apply block;
+      @apply flex;
     }
     .main-ul {
       @apply flex flex-col mt-4 font-medium md:flex-row md:space-x-4 md:mt-0;

@@ -22,7 +22,7 @@ html, body {
 }
 .card-container {
   @apply block  border border-fv-neutral-200 rounded dark:border-fv-neutral-700;
-  background: rgba($color: #eee, $alpha: .3);
+  background: rgba($color: #ccc, $alpha: .3);
   :first-child {
     @apply mt-0;
   }
