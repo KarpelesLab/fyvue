@@ -144,5 +144,7 @@
 "klb_billing_edit_pm_cta","Edit",,,"KlbUserBilling Component"
 "payment_remember_card","Remember this card for future payments",,,"KlbOrder Component"
 "klb_order_non_payable","This order is not payable.",,,"KlbOrder Component"
-
+"klb_billing_edit_pm_cta","Edit",,,"KlbUserBilling Component"
+"edit_pm_modal_title","Billing method",,,"KlbUserBilling Component"
+"edit_billing_method","Save",,,"KlbUserBilling Component"
 
