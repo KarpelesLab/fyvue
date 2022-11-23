@@ -3,12 +3,15 @@
     z-index: 40;
 
     .parent {
-      @apply flex items-center justify-center min-h-screen;
-
+      @apply flex flex-col items-center justify-center min-h-screen;
+    }
+    .modal-parent {
+      @apply relative mx-1 md:mx-0 w-11/12 shadow  ;
+      z-index: 41;
     }
     .modal-container {
-      @apply relative mx-1 md:mx-0 md:max-w-2xl w-11/12 shadow -mt-20 ;
-      z-index: 41;
+     // @apply relative mx-1 md:mx-0 md:max-w-2xl w-11/12 shadow -mt-20 ;
+
     }
     .title {
       @apply text-xl flex justify-between items-center px-2 py-1;

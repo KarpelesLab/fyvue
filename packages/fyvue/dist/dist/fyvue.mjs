@@ -1,10 +1,10 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.86
+  * @karpeleslab/fyvue v0.2.0-beta.87
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
 import i18next from 'i18next';
-import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, renderSlot, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers, watch } from 'vue';
+import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers, watch } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { defineStore } from 'pinia';
 import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale as getLocale$1, getUrl } from '@karpeleslab/klbfw';
@@ -401,6 +401,7 @@ var _export_sfc = (sfc, props) => {
 };
 
 const _hoisted_1$o = { class: "parent" };
+const _hoisted_2$n = { class: "modal-container" };
 const _sfc_main$p = /* @__PURE__ */ defineComponent({
   __name: "FyModal",
   props: {
@@ -450,34 +451,37 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
           }, {
             default: withCtx(() => [
               createElementVNode("div", _hoisted_1$o, [
-                createVNode(unref(DialogPanel), { class: "modal-container" }, {
+                createVNode(unref(DialogPanel), { class: "modal-parent" }, {
                   default: withCtx(() => [
-                    __props.title ? (openBlock(), createBlock(unref(DialogTitle), {
-                      key: 0,
-                      class: "title"
-                    }, {
-                      default: withCtx(() => [
-                        createTextVNode(toDisplayString(__props.title) + " ", 1),
-                        createElementVNode("a", {
-                          href: "javascript:void(0)",
-                          onClick: _cache[0] || (_cache[0] = ($event) => setModal(false))
-                        }, [
-                          (openBlock(), createBlock(resolveDynamicComponent(__props.closeIcon), { class: "close-icon" }))
-                        ])
-                      ]),
-                      _: 1
-                    })) : (openBlock(), createElementBlock("a", {
-                      key: 1,
-                      href: "javascript:void(0)",
-                      onClick: _cache[1] || (_cache[1] = ($event) => setModal(false))
-                    }, [
-                      (openBlock(), createBlock(resolveDynamicComponent(__props.closeIcon), { class: "close-icon is-alone" }))
-                    ])),
-                    createElementVNode("div", {
-                      class: normalizeClass(!__props.title ? "is-alone modal-content" : "modal-content")
-                    }, [
-                      renderSlot(_ctx.$slots, "default")
-                    ], 2)
+                    renderSlot(_ctx.$slots, "before"),
+                    createElementVNode("div", _hoisted_2$n, [
+                      __props.title ? (openBlock(), createBlock(unref(DialogTitle), {
+                        key: 0,
+                        class: "title"
+                      }, {
+                        default: withCtx(() => [
+                          createTextVNode(toDisplayString(__props.title) + " ", 1),
+                          createElementVNode("a", {
+                            href: "javascript:void(0)",
+                            onClick: _cache[0] || (_cache[0] = ($event) => setModal(false))
+                          }, [
+                            (openBlock(), createBlock(resolveDynamicComponent(__props.closeIcon), { class: "close-icon" }))
+                          ])
+                        ]),
+                        _: 1
+                      })) : (openBlock(), createElementBlock("a", {
+                        key: 1,
+                        href: "javascript:void(0)",
+                        onClick: _cache[1] || (_cache[1] = ($event) => setModal(false))
+                      }, [
+                        (openBlock(), createBlock(resolveDynamicComponent(__props.closeIcon), { class: "close-icon is-alone" }))
+                      ])),
+                      createElementVNode("div", {
+                        class: normalizeClass(!__props.title ? "is-alone modal-content" : "modal-content")
+                      }, [
+                        renderSlot(_ctx.$slots, "default")
+                      ], 2)
+                    ])
                   ]),
                   _: 3
                 })

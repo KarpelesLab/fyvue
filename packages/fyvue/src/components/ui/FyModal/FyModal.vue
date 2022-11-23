@@ -58,18 +58,21 @@ onUnmounted(() => {
       class="fy-modal"
     >
       <div class="parent">
-        <DialogPanel class="modal-container">
-          <DialogTitle class="title" v-if="title">
-            {{ title }}
-            <a href="javascript:void(0)" @click="setModal(false)">
-              <component :is="closeIcon" class="close-icon" />
+        <DialogPanel class="modal-parent">
+          <slot name="before" />
+          <div class="modal-container">
+            <DialogTitle class="title" v-if="title">
+              {{ title }}
+              <a href="javascript:void(0)" @click="setModal(false)">
+                <component :is="closeIcon" class="close-icon" />
+              </a>
+            </DialogTitle>
+            <a href="javascript:void(0)" @click="setModal(false)" v-else>
+              <component :is="closeIcon" class="close-icon is-alone" />
             </a>
-          </DialogTitle>
-          <a href="javascript:void(0)" @click="setModal(false)" v-else>
-            <component :is="closeIcon" class="close-icon is-alone" />
-          </a>
-          <div :class="!title ? 'is-alone modal-content' : 'modal-content'">
-            <slot />
+            <div :class="!title ? 'is-alone modal-content' : 'modal-content'">
+              <slot />
+            </div>
           </div>
         </DialogPanel>
       </div>

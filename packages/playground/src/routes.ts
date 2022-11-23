@@ -143,6 +143,19 @@ export const routes = [
         },
       },
       {
+        path: '/components/ui/FyModal',
+        component: () => import('./views/components/ui/FyModalView.vue'),
+        meta: {
+          breadcrumb: [
+            { name: 'fyvue', to: '/' },
+            { name: 'Components', to: '/components' },
+            { name: 'UI', to: '/components/ui' },
+            { name: 'FyModal' },
+          ],
+          title: 'FyModal - UI - Components - fyvue',
+        },
+      },
+      {
         path: '/components/ui/FyDatatable',
         component: () => import('./views/components/ui/FyDatatableView.vue'),
         meta: {

@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.86
+  * @karpeleslab/fyvue v0.2.0-beta.87
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -403,6 +403,7 @@ var _export_sfc = (sfc, props) => {
 };
 
 const _hoisted_1$o = { class: "parent" };
+const _hoisted_2$n = { class: "modal-container" };
 const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
   __name: "FyModal",
   props: {
@@ -452,34 +453,37 @@ const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
           }, {
             default: vue.withCtx(() => [
               vue.createElementVNode("div", _hoisted_1$o, [
-                vue.createVNode(vue.unref(vue$1.DialogPanel), { class: "modal-container" }, {
+                vue.createVNode(vue.unref(vue$1.DialogPanel), { class: "modal-parent" }, {
                   default: vue.withCtx(() => [
-                    __props.title ? (vue.openBlock(), vue.createBlock(vue.unref(vue$1.DialogTitle), {
-                      key: 0,
-                      class: "title"
-                    }, {
-                      default: vue.withCtx(() => [
-                        vue.createTextVNode(vue.toDisplayString(__props.title) + " ", 1),
-                        vue.createElementVNode("a", {
-                          href: "javascript:void(0)",
-                          onClick: _cache[0] || (_cache[0] = ($event) => setModal(false))
-                        }, [
-                          (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(__props.closeIcon), { class: "close-icon" }))
-                        ])
-                      ]),
-                      _: 1
-                    })) : (vue.openBlock(), vue.createElementBlock("a", {
-                      key: 1,
-                      href: "javascript:void(0)",
-                      onClick: _cache[1] || (_cache[1] = ($event) => setModal(false))
-                    }, [
-                      (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(__props.closeIcon), { class: "close-icon is-alone" }))
-                    ])),
-                    vue.createElementVNode("div", {
-                      class: vue.normalizeClass(!__props.title ? "is-alone modal-content" : "modal-content")
-                    }, [
-                      vue.renderSlot(_ctx.$slots, "default")
-                    ], 2)
+                    vue.renderSlot(_ctx.$slots, "before"),
+                    vue.createElementVNode("div", _hoisted_2$n, [
+                      __props.title ? (vue.openBlock(), vue.createBlock(vue.unref(vue$1.DialogTitle), {
+                        key: 0,
+                        class: "title"
+                      }, {
+                        default: vue.withCtx(() => [
+                          vue.createTextVNode(vue.toDisplayString(__props.title) + " ", 1),
+                          vue.createElementVNode("a", {
+                            href: "javascript:void(0)",
+                            onClick: _cache[0] || (_cache[0] = ($event) => setModal(false))
+                          }, [
+                            (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(__props.closeIcon), { class: "close-icon" }))
+                          ])
+                        ]),
+                        _: 1
+                      })) : (vue.openBlock(), vue.createElementBlock("a", {
+                        key: 1,
+                        href: "javascript:void(0)",
+                        onClick: _cache[1] || (_cache[1] = ($event) => setModal(false))
+                      }, [
+                        (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(__props.closeIcon), { class: "close-icon is-alone" }))
+                      ])),
+                      vue.createElementVNode("div", {
+                        class: vue.normalizeClass(!__props.title ? "is-alone modal-content" : "modal-content")
+                      }, [
+                        vue.renderSlot(_ctx.$slots, "default")
+                      ], 2)
+                    ])
                   ]),
                   _: 3
                 })

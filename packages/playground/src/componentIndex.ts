@@ -10,6 +10,7 @@ const uiComponents = [
   'FySteps',
   'FyTable',
   'FyTabs',
+  'FyModal',
 ];
 const KlbComponents = [
   'KlbDeleteAccount',
