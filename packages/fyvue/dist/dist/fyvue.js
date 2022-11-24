@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.87
+  * @karpeleslab/fyvue v0.2.0-beta.88
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -12,10 +12,10 @@ var pinia = require('pinia');
 var klbfw = require('@karpeleslab/klbfw');
 var serverRenderer = require('@vue/server-renderer');
 var head = require('@vueuse/head');
-var vueRouter = require('vue-router');
 var core = require('@vueuse/core');
 var useVuelidate = require('@vuelidate/core');
 var validators = require('@vuelidate/validators');
+var vueRouter = require('vue-router');
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -38,15 +38,15 @@ const useHistory = pinia.defineStore({
         },
         push(path, status = 302) {
             this.status = status;
-            this._router?.push(path);
             if (status != 302)
                 this.redirect = path;
+            return this._router?.push(path);
         },
         replace(path, status = 302) {
             this.status = status;
-            this._router?.replace(path);
             if (status != 302)
                 this.redirect = path;
+            return this._router?.replace(path);
         },
         go(delta) {
             this._router?.go(delta);
@@ -1143,11 +1143,10 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
   setup(__props) {
     const props = __props;
     const eventBus = useEventBus();
-    const route = vueRouter.useRoute();
-    const router = vueRouter.useRouter();
+    const history = useHistory();
     const getRoutePage = () => {
-      if (route && route.query) {
-        return route.query.page?.toString() || "1";
+      if (history.currentRoute && history.currentRoute.query && history.currentRoute.query.page) {
+        return history.currentRoute.query.page;
       }
       return "1";
     };
@@ -1158,9 +1157,9 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
       const page2 = props.items.page_no + 1;
       if (!isNewPage(page2))
         return;
-      router.push({
-        path: route.path,
-        query: { page: page2 }
+      history.push({
+        path: history.currentRoute.path,
+        query: { page: page2.toString() }
       }).then(() => {
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
@@ -1169,9 +1168,9 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
       const page2 = props.items.page_no - 1;
       if (!isNewPage(page2))
         return;
-      router.push({
-        path: route.path,
-        query: { page: page2 }
+      history.push({
+        path: history.currentRoute.path,
+        query: { page: page2.toString() }
       }).then(() => {
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
@@ -1179,16 +1178,16 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
     const page = (page2) => {
       if (!isNewPage(page2))
         return;
-      router.push({
-        path: route.path,
-        query: { page: page2 }
+      history.push({
+        path: history.currentRoute.path,
+        query: { page: page2.toString() }
       }).then(() => {
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
     };
     vue.onMounted(() => {
       const routePage = parseInt(getRoutePage());
-      if (!isNaN(routePage) && props.items) {
+      if (props.items) {
         eventBus.emit(`${props.id}GoToPage`, routePage);
       }
     });

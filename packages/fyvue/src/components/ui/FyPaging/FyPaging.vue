@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
 import { onMounted } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import type { KlbApiPaging } from '../../../dts/klb';
 import { useEventBus } from '../../../utils/helpers';
-
+import { useHistory } from '../../../utils/ssr';
 const props = defineProps<{
   items: KlbApiPaging;
   id: string;
 }>();
 
 const eventBus = useEventBus();
-const route = useRoute();
-const router = useRouter();
+const history = useHistory();
 const getRoutePage = () => {
-  if (route && route.query) {
-    return route.query.page?.toString() || '1';
+  if (
+    history.currentRoute &&
+    history.currentRoute.query &&
+    history.currentRoute.query.page
+  ) {
+    return history.currentRoute.query.page;
   }
   return '1';
 };
@@ -27,10 +29,11 @@ const isNewPage = (page: number) => {
 const next = () => {
   const page = props.items.page_no + 1;
   if (!isNewPage(page)) return;
-  router
+
+  history
     .push({
-      path: route.path,
-      query: { page: page },
+      path: history.currentRoute.path,
+      query: { page: page.toString() },
     })
     .then(() => {
       eventBus.emit(`${props.id}GoToPage`, page);
@@ -39,10 +42,11 @@ const next = () => {
 const prev = () => {
   const page = props.items.page_no - 1;
   if (!isNewPage(page)) return;
-  router
+
+  history
     .push({
-      path: route.path,
-      query: { page: page },
+      path: history.currentRoute.path,
+      query: { page: page.toString() },
     })
     .then(() => {
       eventBus.emit(`${props.id}GoToPage`, page);
@@ -50,10 +54,11 @@ const prev = () => {
 };
 const page = (page: number) => {
   if (!isNewPage(page)) return;
-  router
+
+  history
     .push({
-      path: route.path,
-      query: { page: page },
+      path: history.currentRoute.path,
+      query: { page: page.toString() },
     })
     .then(() => {
       eventBus.emit(`${props.id}GoToPage`, page);
@@ -63,7 +68,7 @@ const page = (page: number) => {
 onMounted(() => {
   const routePage = parseInt(getRoutePage());
 
-  if (!isNaN(routePage) && props.items) {
+  if (props.items) {
     eventBus.emit(`${props.id}GoToPage`, routePage);
   }
 });

@@ -39,15 +39,15 @@ export const useHistory = defineStore({
     _setRouter(_router: Router | null) {
       (this._router as unknown as Router | null) = _router;
     },
-    push(path: string, status = 302) {
+    push(path: any, status = 302) {
       this.status = status;
-      this._router?.push(path);
       if (status != 302) this.redirect = path;
+      return this._router?.push(path);
     },
-    replace(path: string, status = 302) {
+    replace(path: any, status = 302) {
       this.status = status;
-      this._router?.replace(path);
       if (status != 302) this.redirect = path;
+      return this._router?.replace(path);
     },
     go(delta: number) {
       this._router?.go(delta);

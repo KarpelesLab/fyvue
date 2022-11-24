@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.87
+  * @karpeleslab/fyvue v0.2.0-beta.88
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -10,10 +10,10 @@ import { defineStore } from 'pinia';
 import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale as getLocale$1, getUrl } from '@karpeleslab/klbfw';
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString, useHead } from '@vueuse/head';
-import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
 import { useDark, useToggle, useStorage } from '@vueuse/core';
 import useVuelidate, { useVuelidate as useVuelidate$1 } from '@vuelidate/core';
 import { required, email, sameAs } from '@vuelidate/validators';
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -36,15 +36,15 @@ const useHistory = defineStore({
         },
         push(path, status = 302) {
             this.status = status;
-            this._router?.push(path);
             if (status != 302)
                 this.redirect = path;
+            return this._router?.push(path);
         },
         replace(path, status = 302) {
             this.status = status;
-            this._router?.replace(path);
             if (status != 302)
                 this.redirect = path;
+            return this._router?.replace(path);
         },
         go(delta) {
             this._router?.go(delta);
@@ -1141,11 +1141,10 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
   setup(__props) {
     const props = __props;
     const eventBus = useEventBus();
-    const route = useRoute();
-    const router = useRouter();
+    const history = useHistory();
     const getRoutePage = () => {
-      if (route && route.query) {
-        return route.query.page?.toString() || "1";
+      if (history.currentRoute && history.currentRoute.query && history.currentRoute.query.page) {
+        return history.currentRoute.query.page;
       }
       return "1";
     };
@@ -1156,9 +1155,9 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
       const page2 = props.items.page_no + 1;
       if (!isNewPage(page2))
         return;
-      router.push({
-        path: route.path,
-        query: { page: page2 }
+      history.push({
+        path: history.currentRoute.path,
+        query: { page: page2.toString() }
       }).then(() => {
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
@@ -1167,9 +1166,9 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
       const page2 = props.items.page_no - 1;
       if (!isNewPage(page2))
         return;
-      router.push({
-        path: route.path,
-        query: { page: page2 }
+      history.push({
+        path: history.currentRoute.path,
+        query: { page: page2.toString() }
       }).then(() => {
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
@@ -1177,16 +1176,16 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     const page = (page2) => {
       if (!isNewPage(page2))
         return;
-      router.push({
-        path: route.path,
-        query: { page: page2 }
+      history.push({
+        path: history.currentRoute.path,
+        query: { page: page2.toString() }
       }).then(() => {
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
     };
     onMounted(() => {
       const routePage = parseInt(getRoutePage());
-      if (!isNaN(routePage) && props.items) {
+      if (props.items) {
         eventBus.emit(`${props.id}GoToPage`, routePage);
       }
     });

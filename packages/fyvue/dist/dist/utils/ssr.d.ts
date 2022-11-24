@@ -14,8 +14,8 @@ export declare const useHistory: import("pinia").StoreDefinition<"historyStore",
 }, {
     setStatus(status: number): void;
     _setRouter(_router: Router | null): void;
-    push(path: string, status?: number): void;
-    replace(path: string, status?: number): void;
+    push(path: any, status?: number): any;
+    replace(path: any, status?: number): any;
     go(delta: number): void;
     back(): void;
     forward(): void;
