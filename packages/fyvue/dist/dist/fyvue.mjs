@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.89
+  * @karpeleslab/fyvue v0.2.0-rc.1
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */

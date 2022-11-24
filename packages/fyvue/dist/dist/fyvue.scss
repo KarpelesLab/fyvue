@@ -354,10 +354,10 @@ button[type=submit] {
   @apply flex flex-col;
 }
 .fy-table .table-container {
-  @apply overflow-x-auto sm:-mx-6 lg:-mx-8;
+  @apply overflow-x-auto;
 }
 .fy-table .table-sub-container {
-  @apply py-2 inline-block min-w-full sm:px-6 lg:px-8;
+  @apply inline-block min-w-full;
 }
 .fy-table .table-scroll {
   @apply overflow-x-auto;
@@ -373,6 +373,9 @@ button[type=submit] {
 }
 .fy-table table tbody tr {
   @apply bg-white border-b dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
+}
+.fy-table table tbody tr:last-child {
+  @apply border-0;
 }
 .fy-table table tbody th {
   @apply py-4 px-6 font-medium text-fv-neutral-900 whitespace-nowrap dark:text-white;
