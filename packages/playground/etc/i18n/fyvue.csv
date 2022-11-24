@@ -147,4 +147,5 @@
 "klb_billing_edit_pm_cta","Edit",,,"KlbUserBilling Component"
 "edit_pm_modal_title","Billing method",,,"KlbUserBilling Component"
 "edit_billing_method","Save",,,"KlbUserBilling Component"
-
+"cta_login_next","Next",,,"KlbLogin Component"
+"paging_a_lot_of","a lot of",,,"FyPaging Component"
