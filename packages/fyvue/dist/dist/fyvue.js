@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-beta.88
+  * @karpeleslab/fyvue v0.2.0-beta.89
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -1144,12 +1144,6 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
     const props = __props;
     const eventBus = useEventBus();
     const history = useHistory();
-    const getRoutePage = () => {
-      if (history.currentRoute && history.currentRoute.query && history.currentRoute.query.page) {
-        return history.currentRoute.query.page;
-      }
-      return "1";
-    };
     const isNewPage = (page2) => {
       return page2 >= 1 && page2 <= props.items.page_max && page2 != props.items.page_no;
     };
@@ -1185,12 +1179,6 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
     };
-    vue.onMounted(() => {
-      const routePage = parseInt(getRoutePage());
-      if (props.items) {
-        eventBus.emit(`${props.id}GoToPage`, routePage);
-      }
-    });
     return (_ctx, _cache) => {
       return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$e, [
         vue.createElementVNode("div", _hoisted_2$e, [

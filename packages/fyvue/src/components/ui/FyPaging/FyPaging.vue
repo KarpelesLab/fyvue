@@ -11,16 +11,7 @@ const props = defineProps<{
 
 const eventBus = useEventBus();
 const history = useHistory();
-const getRoutePage = () => {
-  if (
-    history.currentRoute &&
-    history.currentRoute.query &&
-    history.currentRoute.query.page
-  ) {
-    return history.currentRoute.query.page;
-  }
-  return '1';
-};
+
 const isNewPage = (page: number) => {
   return (
     page >= 1 && page <= props.items.page_max && page != props.items.page_no
@@ -64,14 +55,6 @@ const page = (page: number) => {
       eventBus.emit(`${props.id}GoToPage`, page);
     });
 };
-
-onMounted(() => {
-  const routePage = parseInt(getRoutePage());
-
-  if (props.items) {
-    eventBus.emit(`${props.id}GoToPage`, routePage);
-  }
-});
 </script>
 <template>
   <div class="fy-paging" v-if="items && items.page_max > 1 && items.page_no">
