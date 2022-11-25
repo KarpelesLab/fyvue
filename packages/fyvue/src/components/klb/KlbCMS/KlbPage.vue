@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, reactive, watch } from 'vue';
-//import { rest } from '../../../utils/rest';
-import { rest } from '@karpeleslab/klbfw';
+import { rest } from '../../../utils/rest';
 import { useHistory } from '../../../utils/ssr';
 import type { KlbAPIResultUnknown } from '../../../dts/klb';
 import { useHead } from '@vueuse/head';
@@ -28,13 +27,14 @@ watch(
 const loadPage = async (slug) => {
   eventBus.emit('cmspage-loading', true);
   is404.value = false;
-  console.log('/Content/Cms/@pages:loadSlug', 'GET', {
-    slug: slug,
-  });
-  const _page = await rest('/Content/Cms/@pages:loadSlug', 'GET', {
-    slug: slug,
-  }).catch((err) => {
-    console.log('klbNativeRestErr :', err)
+
+  const _page = await rest<KlbAPIResultUnknown>(
+    'Content/Cms/@pages:loadSlug',
+    'GET',
+    {
+      slug: slug,
+    }
+  ).catch((err) => {
     if (err.code == 404) {
       useHistory().status = 404;
       is404.value = true;
@@ -42,7 +42,6 @@ const loadPage = async (slug) => {
     }
     eventBus.emit('cmspage-loading', false);
   });
-  console.log('klbNativeRest :', _page)
   if (_page && _page.result == 'success') {
     page.value = _page;
     pageHead.title = page.value.data.content_cms_entry_data.Title;

@@ -62,11 +62,9 @@ export function rest<ResultType extends KlbAPIResult>(
   }
 
   return new Promise<ResultType>((resolve, reject) => {
-    console.log('KlbRestParams ', params);
     _rest(url, method, params, ctx)
       .then((restResult: ResultType) => {
         if (isSSRRendered()) restState.addResult(requestHash, restResult);
-        console.log('restResult ', restResult);
         resolve(restResult);
       })
       .catch((err: ResultType) => {
@@ -74,7 +72,6 @@ export function rest<ResultType extends KlbAPIResult>(
           err.fvReject = true;
           restState.addResult(requestHash, err);
         }
-        console.log('restResultErr ', err);
         reject(err);
       });
   });
