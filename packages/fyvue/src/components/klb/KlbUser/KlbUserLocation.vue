@@ -83,7 +83,7 @@ const v$ = useVuelidate(rules, state);
 
 const getUserGeolocation = async () => {
   const _userLoc = await rest<KlbAPIResultUnknown>(
-    '/ThirdParty/Geoip:lookup',
+    'ThirdParty/Geoip:lookup',
     'GET'
   ).catch(() => {});
   if (_userLoc && _userLoc.result == 'success') {

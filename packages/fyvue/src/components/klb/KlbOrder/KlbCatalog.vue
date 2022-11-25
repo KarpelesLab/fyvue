@@ -28,7 +28,7 @@ const props = withDefaults(
 );
 onMounted(async () => {
   const _products = await rest<KlbAPICatalog>(
-    '/Catalog/Product:search',
+    'Catalog/Product:search',
     'GET',
     {
       ...props.options,

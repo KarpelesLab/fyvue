@@ -67,7 +67,7 @@ const setupClient = (router, pinia) => {
     const initialState = klbfw.getInitialState();
     if (isSSRRendered()) {
         if (initialState && initialState.piniaState) {
-            pinia.state.value = initialState.piniaState;
+            pinia.state.value = JSON.parse(initialState.piniaState);
         }
     }
     useHistory(pinia)._setRouter(router);
@@ -116,7 +116,7 @@ async function handleSSR(createApp, cb, options = { url: null }) {
             }
         }
         useHistory(pinia)._setRouter(null);
-        result.initial.piniaState = pinia.state.value;
+        result.initial.piniaState = JSON.stringify(pinia.state.value);
         return cb(result);
     }
     catch (e) {
@@ -1273,7 +1273,7 @@ function useCart() {
             });
         },
         getCart() {
-            return rest('/Catalog/Cart/@', 'GET');
+            return rest('Catalog/Cart/@', 'GET');
         },
         delProduct: (productKey) => {
             return new Promise((resolve, reject) => {
@@ -2399,7 +2399,7 @@ const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
     const v$ = useVuelidate(rules, state);
     const getUserGeolocation = async () => {
       const _userLoc = await rest(
-        "/ThirdParty/Geoip:lookup",
+        "ThirdParty/Geoip:lookup",
         "GET"
       ).catch(() => {
       });
@@ -3380,7 +3380,7 @@ const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
     const store = useFVStore();
     vue.onMounted(async () => {
       const _products = await rest(
-        "/Catalog/Product:search",
+        "Catalog/Product:search",
         "GET",
         {
           ...props.options,

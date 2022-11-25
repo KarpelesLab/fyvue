@@ -24,7 +24,7 @@ export function useCart() {
       });
     },
     getCart() {
-      return rest<KlbAPICatalogCart>('/Catalog/Cart/@', 'GET');
+      return rest<KlbAPICatalogCart>('Catalog/Cart/@', 'GET');
     },
     delProduct: (productKey: string) => {
       return new Promise<boolean>((resolve, reject) => {
