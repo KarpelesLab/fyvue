@@ -42,7 +42,7 @@ const stringHashcode = (str: string) => {
   return hash;
 };
 
-export async function rest<ResultType extends KlbAPIResult>(
+export function rest<ResultType extends KlbAPIResult>(
   url: string,
   method: string = 'GET',
   params: object = {},
