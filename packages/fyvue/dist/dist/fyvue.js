@@ -4209,13 +4209,9 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
       console.log("/Content/Cms/@pages:loadSlug", "GET", {
         slug
       });
-      const _page = await rest(
-        "/Content/Cms/@pages:loadSlug",
-        "GET",
-        {
-          slug
-        }
-      ).catch((err) => {
+      const _page = await klbfw.rest("/Content/Cms/@pages:loadSlug", "GET", {
+        slug
+      }).catch((err) => {
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
