@@ -4212,6 +4212,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
       const _page = await klbfw.rest("/Content/Cms/@pages:loadSlug", "GET", {
         slug
       }).catch((err) => {
+        console.log("klbNativeRestErr :", err);
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
@@ -4219,7 +4220,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         }
         eventBus.emit("cmspage-loading", false);
       });
-      console.log(_page);
+      console.log("klbNativeRest :", _page);
       if (_page && _page.result == "success") {
         page.value = _page;
         pageHead.title = page.value.data.content_cms_entry_data.Title;
