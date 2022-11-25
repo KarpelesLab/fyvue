@@ -62,21 +62,19 @@ export async function rest<ResultType extends KlbAPIResult>(
   }
 
   return new Promise<ResultType>((resolve, reject) => {
-    console.log('----klbrest----')
-    console.log(`KLBRESTCall: ${method} ${url}`);
-    console.log('Params: ', params);
-    console.log('CTX: ', ctx);
-    console.log('----endklbrest----')
+    console.log('KlbRestParams ', params);
     _rest(url, method, params, ctx)
       .then((restResult: ResultType) => {
-        if (getMode() == 'ssr') restState.addResult(requestHash, restResult);
+        if (isSSRRendered()) restState.addResult(requestHash, restResult);
+        console.log('restResult ', restResult);
         resolve(restResult);
       })
       .catch((err: ResultType) => {
-        if (getMode() == 'ssr') {
+        if (isSSRRendered()) {
           err.fvReject = true;
           restState.addResult(requestHash, err);
         }
+        console.log('restResultErr ', err);
         reject(err);
       });
   });

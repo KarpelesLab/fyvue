@@ -179,22 +179,20 @@ async function rest(url, method = 'GET', params = {}, ctx = {}) {
         });
     }
     return new Promise((resolve, reject) => {
-        console.log('----klbrest----');
-        console.log(`KLBRESTCall: ${method} ${url}`);
-        console.log('Params: ', params);
-        console.log('CTX: ', ctx);
-        console.log('----endklbrest----');
+        console.log('KlbRestParams ', params);
         klbfw.rest(url, method, params, ctx)
             .then((restResult) => {
-            if (klbfw.getMode() == 'ssr')
+            if (isSSRRendered())
                 restState.addResult(requestHash, restResult);
+            console.log('restResult ', restResult);
             resolve(restResult);
         })
             .catch((err) => {
-            if (klbfw.getMode() == 'ssr') {
+            if (isSSRRendered()) {
                 err.fvReject = true;
                 restState.addResult(requestHash, err);
             }
+            console.log('restResultErr ', err);
             reject(err);
         });
     });
