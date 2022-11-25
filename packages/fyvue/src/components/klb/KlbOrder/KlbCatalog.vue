@@ -27,17 +27,13 @@ const props = withDefaults(
   }
 );
 onMounted(async () => {
-  const _products = await rest<KlbAPICatalog>(
-    'Catalog/Product:search',
-    'GET',
-    {
-      ...props.options,
-      image_variation: [
-        'scale_crop=320x160&format=png&alias=shop',
-        'scale_crop=320x120&format=png&alias=subs',
-      ],
-    }
-  ).catch(() => {});
+  const _products = await rest<KlbAPICatalog>('Catalog/Product:search', 'GET', {
+    ...props.options,
+    image_variation: [
+      'scale_crop=320x160&format=png&alias=shop',
+      'scale_crop=320x120&format=png&alias=subs',
+    ],
+  }).catch(() => {});
 
   if (_products && _products.result == 'success') {
     products.value = _products;

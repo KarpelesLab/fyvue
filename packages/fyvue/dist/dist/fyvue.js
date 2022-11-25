@@ -1801,123 +1801,128 @@ const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
     return (_ctx, _cache) => {
       const _component_FyLoader = vue.resolveComponent("FyLoader");
       const _component_FyModal = vue.resolveComponent("FyModal");
-      return vue.openBlock(), vue.createElementBlock("div", null, [
-        !completed.value ? (vue.openBlock(), vue.createElementBlock("form", {
-          key: 0,
-          onSubmit: _cache[1] || (_cache[1] = vue.withModifiers(($event) => userFlow(), ["prevent"])),
-          class: "klb-login"
-        }, [
-          vue.createVNode(_component_FyLoader, { id: "klblogin" }),
-          vue.createElementVNode("div", _hoisted_1$c, [
-            responseMessage.value ? (vue.openBlock(), vue.createElementBlock("h2", _hoisted_2$c, vue.toDisplayString(responseMessage.value), 1)) : vue.createCommentVNode("v-if", true),
-            responseFields.value.length > 0 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
-              (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(responseFields.value, (field) => {
-                return vue.openBlock(), vue.createElementBlock(vue.Fragment, {
-                  key: field.label
-                }, [
-                  field.type == "label" ? (vue.openBlock(), vue.createElementBlock("h3", {
-                    key: 0,
-                    class: vue.normalizeClass(["label", field.style == "error" ? "response-error" : ""])
-                  }, vue.toDisplayString(field.label), 3)) : vue.createCommentVNode("v-if", true),
-                  field.cat == "input" ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
-                    field.type == "text" || field.type == "password" || field.type == "email" ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
-                      field.name ? (vue.openBlock(), vue.createBlock(FyInput, {
-                        key: 0,
-                        id: field.name,
-                        label: field.label,
-                        placeholder: field.name == "name" ? "John Doe" : field.label,
-                        error: fieldsError.value[field.name],
-                        type: field.type,
-                        ref_for: true,
-                        ref_key: "inputs",
-                        ref: inputs,
-                        modelValue: formData.value[field.name],
-                        "onUpdate:modelValue": ($event) => formData.value[field.name] = $event,
-                        req: responseReq.value.includes(field.name)
-                      }, null, 8, ["id", "label", "placeholder", "error", "type", "modelValue", "onUpdate:modelValue", "req"])) : vue.createCommentVNode("v-if", true)
-                    ], 64)) : vue.createCommentVNode("v-if", true)
-                  ], 64)) : vue.createCommentVNode("v-if", true),
-                  field.type == "checkbox" ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 2 }, [
-                    field.name ? (vue.openBlock(), vue.createBlock(FyInput, {
-                      key: 0,
-                      id: field.name,
-                      label: field.label,
-                      error: fieldsError.value[field.name],
-                      type: field.type,
-                      "checkbox-value": formData.value[field.name],
-                      "onUpdate:checkbox-value": ($event) => formData.value[field.name] = $event,
-                      req: responseReq.value.includes(field.name),
-                      "link-icon": field.link
-                    }, null, 8, ["id", "label", "error", "type", "checkbox-value", "onUpdate:checkbox-value", "req", "link-icon"])) : vue.createCommentVNode("v-if", true)
-                  ], 64)) : vue.createCommentVNode("v-if", true)
-                ], 64);
-              }), 128)),
-              hasOauth.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$c, [
-                (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(responseFields.value, (field) => {
-                  return vue.openBlock(), vue.createElementBlock(vue.Fragment, {
-                    key: field.id
-                  }, [
-                    field.type && field.type == "oauth2" && field.button ? (vue.openBlock(), vue.createElementBlock("a", {
-                      key: 0,
-                      onClick: () => {
-                        userFlow({ initial: true, oauth: field.id });
-                      },
-                      href: "javascript:void(0);"
+      return vue.openBlock(), vue.createBlock(vue.unref(ClientOnly), null, {
+        default: vue.withCtx(() => [
+          vue.createElementVNode("div", null, [
+            !completed.value ? (vue.openBlock(), vue.createElementBlock("form", {
+              key: 0,
+              onSubmit: _cache[1] || (_cache[1] = vue.withModifiers(($event) => userFlow(), ["prevent"])),
+              class: "klb-login"
+            }, [
+              vue.createVNode(_component_FyLoader, { id: "klblogin" }),
+              vue.createElementVNode("div", _hoisted_1$c, [
+                responseMessage.value ? (vue.openBlock(), vue.createElementBlock("h2", _hoisted_2$c, vue.toDisplayString(responseMessage.value), 1)) : vue.createCommentVNode("v-if", true),
+                responseFields.value.length > 0 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+                  (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(responseFields.value, (field) => {
+                    return vue.openBlock(), vue.createElementBlock(vue.Fragment, {
+                      key: field.label
                     }, [
-                      (vue.openBlock(), vue.createElementBlock("img", {
-                        key: `${field.label}oauth`,
-                        class: "oauth-button",
-                        alt: field.info.Name,
-                        src: field.button.logo,
-                        style: vue.normalizeStyle(`background: ${field.button["background-color"]}`)
-                      }, null, 12, _hoisted_5$9))
-                    ], 8, _hoisted_4$c)) : vue.createCommentVNode("v-if", true)
-                  ], 64);
-                }), 128))
-              ])) : vue.createCommentVNode("v-if", true),
-              responseError.value && responseError.value.token ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$9, vue.toDisplayString(_ctx.$t(responseError.value.token)), 1)) : vue.createCommentVNode("v-if", true),
-              responseReq.value.includes("password") && 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$8, [
-                vue.createElementVNode("a", {
-                  href: "javascript:void(0)",
-                  onClick: _cache[0] || (_cache[0] = () => {
-                    vue.unref(eventBus).emit("ResetPasswordModal", true);
-                    pwdRecoverMailSent.value = false;
-                  })
-                }, vue.toDisplayString(_ctx.$t("recover_pwd_link")), 1)
-              ])) : vue.createCommentVNode("v-if", true),
-              vue.createElementVNode("button", _hoisted_8$7, vue.toDisplayString(_ctx.$t("cta_login_next")), 1)
-            ], 64)) : vue.createCommentVNode("v-if", true)
+                      field.type == "label" ? (vue.openBlock(), vue.createElementBlock("h3", {
+                        key: 0,
+                        class: vue.normalizeClass(["label", field.style == "error" ? "response-error" : ""])
+                      }, vue.toDisplayString(field.label), 3)) : vue.createCommentVNode("v-if", true),
+                      field.cat == "input" ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+                        field.type == "text" || field.type == "password" || field.type == "email" ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                          field.name ? (vue.openBlock(), vue.createBlock(FyInput, {
+                            key: 0,
+                            id: field.name,
+                            label: field.label,
+                            placeholder: field.name == "name" ? "John Doe" : field.label,
+                            error: fieldsError.value[field.name],
+                            type: field.type,
+                            ref_for: true,
+                            ref_key: "inputs",
+                            ref: inputs,
+                            modelValue: formData.value[field.name],
+                            "onUpdate:modelValue": ($event) => formData.value[field.name] = $event,
+                            req: responseReq.value.includes(field.name)
+                          }, null, 8, ["id", "label", "placeholder", "error", "type", "modelValue", "onUpdate:modelValue", "req"])) : vue.createCommentVNode("v-if", true)
+                        ], 64)) : vue.createCommentVNode("v-if", true)
+                      ], 64)) : vue.createCommentVNode("v-if", true),
+                      field.type == "checkbox" ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 2 }, [
+                        field.name ? (vue.openBlock(), vue.createBlock(FyInput, {
+                          key: 0,
+                          id: field.name,
+                          label: field.label,
+                          error: fieldsError.value[field.name],
+                          type: field.type,
+                          "checkbox-value": formData.value[field.name],
+                          "onUpdate:checkbox-value": ($event) => formData.value[field.name] = $event,
+                          req: responseReq.value.includes(field.name),
+                          "link-icon": field.link
+                        }, null, 8, ["id", "label", "error", "type", "checkbox-value", "onUpdate:checkbox-value", "req", "link-icon"])) : vue.createCommentVNode("v-if", true)
+                      ], 64)) : vue.createCommentVNode("v-if", true)
+                    ], 64);
+                  }), 128)),
+                  hasOauth.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$c, [
+                    (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(responseFields.value, (field) => {
+                      return vue.openBlock(), vue.createElementBlock(vue.Fragment, {
+                        key: field.id
+                      }, [
+                        field.type && field.type == "oauth2" && field.button ? (vue.openBlock(), vue.createElementBlock("a", {
+                          key: 0,
+                          onClick: () => {
+                            userFlow({ initial: true, oauth: field.id });
+                          },
+                          href: "javascript:void(0);"
+                        }, [
+                          (vue.openBlock(), vue.createElementBlock("img", {
+                            key: `${field.label}oauth`,
+                            class: "oauth-button",
+                            alt: field.info.Name,
+                            src: field.button.logo,
+                            style: vue.normalizeStyle(`background: ${field.button["background-color"]}`)
+                          }, null, 12, _hoisted_5$9))
+                        ], 8, _hoisted_4$c)) : vue.createCommentVNode("v-if", true)
+                      ], 64);
+                    }), 128))
+                  ])) : vue.createCommentVNode("v-if", true),
+                  responseError.value && responseError.value.token ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$9, vue.toDisplayString(_ctx.$t(responseError.value.token)), 1)) : vue.createCommentVNode("v-if", true),
+                  responseReq.value.includes("password") && 0 ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_7$8, [
+                    vue.createElementVNode("a", {
+                      href: "javascript:void(0)",
+                      onClick: _cache[0] || (_cache[0] = () => {
+                        vue.unref(eventBus).emit("ResetPasswordModal", true);
+                        pwdRecoverMailSent.value = false;
+                      })
+                    }, vue.toDisplayString(_ctx.$t("recover_pwd_link")), 1)
+                  ])) : vue.createCommentVNode("v-if", true),
+                  vue.createElementVNode("button", _hoisted_8$7, vue.toDisplayString(_ctx.$t("cta_login_next")), 1)
+                ], 64)) : vue.createCommentVNode("v-if", true)
+              ])
+            ], 32)) : vue.createCommentVNode("v-if", true),
+            vue.createVNode(_component_FyModal, {
+              id: "ResetPassword",
+              title: `${_ctx.$t("recover_pwd_title")}`
+            }, {
+              default: vue.withCtx(() => [
+                !pwdRecoverMailSent.value ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                  vue.createVNode(FyInput, {
+                    id: "emailRecover",
+                    req: true,
+                    showLabel: true,
+                    placeholder: _ctx.$t("recover_pwd_email_placeholder"),
+                    modelValue: state.userEmail,
+                    "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => state.userEmail = $event),
+                    errorVuelidate: vue.unref(v$).userEmail.$errors,
+                    type: "email",
+                    label: _ctx.$t("recover_pwd_email_label")
+                  }, null, 8, ["placeholder", "modelValue", "errorVuelidate", "label"]),
+                  pwdRecoverError.value && pwdRecoverError.value.token ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$6, vue.toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1)) : vue.createCommentVNode("v-if", true),
+                  vue.createElementVNode("a", {
+                    href: "javascript:void(0)",
+                    onClick: _cache[3] || (_cache[3] = ($event) => forgotPassword()),
+                    class: "mt-2 float-right btn px-5 py-2 primary"
+                  }, vue.toDisplayString(_ctx.$t("recover_pwd_cta")), 1),
+                  _hoisted_10$5
+                ], 64)) : (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$5, vue.toDisplayString(_ctx.$t("pwd_recover_confirm")), 1))
+              ]),
+              _: 1
+            }, 8, ["title"])
           ])
-        ], 32)) : vue.createCommentVNode("v-if", true),
-        vue.createVNode(_component_FyModal, {
-          id: "ResetPassword",
-          title: `${_ctx.$t("recover_pwd_title")}`
-        }, {
-          default: vue.withCtx(() => [
-            !pwdRecoverMailSent.value ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
-              vue.createVNode(FyInput, {
-                id: "emailRecover",
-                req: true,
-                showLabel: true,
-                placeholder: _ctx.$t("recover_pwd_email_placeholder"),
-                modelValue: state.userEmail,
-                "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => state.userEmail = $event),
-                errorVuelidate: vue.unref(v$).userEmail.$errors,
-                type: "email",
-                label: _ctx.$t("recover_pwd_email_label")
-              }, null, 8, ["placeholder", "modelValue", "errorVuelidate", "label"]),
-              pwdRecoverError.value && pwdRecoverError.value.token ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$6, vue.toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1)) : vue.createCommentVNode("v-if", true),
-              vue.createElementVNode("a", {
-                href: "javascript:void(0)",
-                onClick: _cache[3] || (_cache[3] = ($event) => forgotPassword()),
-                class: "mt-2 float-right btn px-5 py-2 primary"
-              }, vue.toDisplayString(_ctx.$t("recover_pwd_cta")), 1),
-              _hoisted_10$5
-            ], 64)) : (vue.openBlock(), vue.createElementBlock("div", _hoisted_11$5, vue.toDisplayString(_ctx.$t("pwd_recover_confirm")), 1))
-          ]),
-          _: 1
-        }, 8, ["title"])
-      ]);
+        ]),
+        _: 1
+      });
     };
   }
 });
@@ -2404,7 +2409,7 @@ const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
       ).catch(() => {
       });
       if (_userLoc && _userLoc.result == "success") {
-        state.country = _userLoc.data.country.unixms_code;
+        state.country = _userLoc.data.country.iso_code;
       }
     };
     const deleteLocation = async () => {
@@ -2538,7 +2543,10 @@ const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
                 type: "reset",
                 onClick: _cache[3] || (_cache[3] = ($event) => editMode.value = false)
               }, vue.toDisplayString(_ctx.$t("klb_locations_reset_cta")), 1)) : vue.createCommentVNode("v-if", true),
-              editMode.value == false ? (vue.openBlock(), vue.createElementBlock("button", {
+              (async () => {
+                editMode.value == false;
+                await getUserGeolocation();
+              }) ? (vue.openBlock(), vue.createElementBlock("button", {
                 key: 3,
                 class: "btn-defaults btn primary",
                 type: "reset",
@@ -3379,17 +3387,13 @@ const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
     const products = vue.ref();
     const store = useFVStore();
     vue.onMounted(async () => {
-      const _products = await rest(
-        "Catalog/Product:search",
-        "GET",
-        {
-          ...props.options,
-          image_variation: [
-            "scale_crop=320x160&format=png&alias=shop",
-            "scale_crop=320x120&format=png&alias=subs"
-          ]
-        }
-      ).catch(() => {
+      const _products = await rest("Catalog/Product:search", "GET", {
+        ...props.options,
+        image_variation: [
+          "scale_crop=320x160&format=png&alias=shop",
+          "scale_crop=320x120&format=png&alias=subs"
+        ]
+      }).catch(() => {
       });
       if (_products && _products.result == "success") {
         products.value = _products;
