@@ -163,7 +163,7 @@ const stringHashcode = (str) => {
     }
     return hash;
 };
-async function rest(url, method = 'GET', params = {}, ctx = {}) {
+function rest(url, method = 'GET', params = {}, ctx = {}) {
     const requestHash = stringHashcode(url + method + JSON.stringify(params));
     const restState = useRestState();
     if (isSSRRendered() && restState.results[requestHash]) {
