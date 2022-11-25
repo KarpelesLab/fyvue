@@ -1,19 +1,19 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.1
+  * @karpeleslab/fyvue v0.2.0-rc.4
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
 import i18next from 'i18next';
-import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers, watch } from 'vue';
+import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers, watch, withAsyncContext } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { defineStore } from 'pinia';
-import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale as getLocale$1, getUrl } from '@karpeleslab/klbfw';
+import { getMode, getInitialState, getPath, getUuid, rest as rest$1, getLocale as getLocale$1, getUrl } from '@karpeleslab/klbfw';
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString, useHead } from '@vueuse/head';
 import { useDark, useToggle, useStorage } from '@vueuse/core';
 import useVuelidate, { useVuelidate as useVuelidate$1 } from '@vuelidate/core';
 import { required, email, sameAs } from '@vuelidate/validators';
-import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
@@ -58,8 +58,7 @@ const useHistory = defineStore({
     },
 });
 const isSSRRendered = () => {
-    const state = getInitialState();
-    return !!(state && state.isSSRRendered == true);
+    return !!(getMode() != 'client');
 };
 const setupClient = (router, pinia) => {
     const initialState = getInitialState();
@@ -506,7 +505,7 @@ const _hoisted_3$m = /* @__PURE__ */ createElementVNode("path", {
   class: "circle-bg",
   d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1);
-const _hoisted_4$i = ["stroke-dasharray", "stroke"];
+const _hoisted_4$j = ["stroke-dasharray", "stroke"];
 const _hoisted_5$g = ["x", "y"];
 const _sfc_main$o = /* @__PURE__ */ defineComponent({
   __name: "FyCirclePercent",
@@ -525,7 +524,7 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
             "stroke-dasharray": `${__props.percent}, 100`,
             stroke: __props.color,
             d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
-          }, null, 8, _hoisted_4$i),
+          }, null, 8, _hoisted_4$j),
           createElementVNode("text", {
             x: __props.textXY[0].toString(),
             y: __props.textXY[1].toString(),
@@ -544,7 +543,7 @@ const _hoisted_2$l = {
   style: { "width": "350px !important" }
 };
 const _hoisted_3$l = { class: "modal-content" };
-const _hoisted_4$h = {
+const _hoisted_4$i = {
   key: 0,
   class: "confirm-modal-desc default-p"
 };
@@ -604,7 +603,7 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
                     _: 1
                   }),
                   createElementVNode("div", _hoisted_3$l, [
-                    desc.value ? (openBlock(), createElementBlock("div", _hoisted_4$h, toDisplayString(desc.value), 1)) : createCommentVNode("v-if", true),
+                    desc.value ? (openBlock(), createElementBlock("div", _hoisted_4$i, toDisplayString(desc.value), 1)) : createCommentVNode("v-if", true),
                     _hoisted_5$f,
                     createElementVNode("div", _hoisted_6$f, [
                       createElementVNode("button", {
@@ -727,7 +726,7 @@ const _hoisted_1$j = {
 };
 const _hoisted_2$i = { key: 0 };
 const _hoisted_3$i = { class: "div" };
-const _hoisted_4$g = { class: "div-cell" };
+const _hoisted_4$h = { class: "div-cell" };
 const _hoisted_5$e = { key: 0 };
 const _hoisted_6$e = { key: 1 };
 const _sfc_main$k = /* @__PURE__ */ defineComponent({
@@ -764,7 +763,7 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
                   class: "td"
                 }, [
                   createElementVNode("div", _hoisted_3$i, toDisplayString(title), 1),
-                  createElementVNode("div", _hoisted_4$g, [
+                  createElementVNode("div", _hoisted_4$h, [
                     renderSlot(_ctx.$slots, `${property}_item`, {
                       data: { prop: item[property], item, idx: index }
                     }, () => [
@@ -788,7 +787,7 @@ const _hoisted_1$i = {
 };
 const _hoisted_2$h = { class: "table-container" };
 const _hoisted_3$h = { class: "table-sub-container" };
-const _hoisted_4$f = { class: "table-scroll" };
+const _hoisted_4$g = { class: "table-scroll" };
 const _hoisted_5$d = { key: 0 };
 const _hoisted_6$d = { key: 0 };
 const _hoisted_7$c = { key: 1 };
@@ -804,7 +803,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
       return __props.data && __props.data.length ? (openBlock(), createElementBlock("div", _hoisted_1$i, [
         createElementVNode("div", _hoisted_2$h, [
           createElementVNode("div", _hoisted_3$h, [
-            createElementVNode("div", _hoisted_4$f, [
+            createElementVNode("div", _hoisted_4$g, [
               createElementVNode("table", null, [
                 __props.showHeaders ? (openBlock(), createElementBlock("thead", _hoisted_5$d, [
                   createElementVNode("tr", null, [
@@ -939,7 +938,7 @@ var FyLoader = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "FyLoader.vu
 const _hoisted_1$f = { class: "input-group" };
 const _hoisted_2$f = ["for"];
 const _hoisted_3$f = ["aria-label", "id", "true-value", "false-value"];
-const _hoisted_4$e = ["href"];
+const _hoisted_4$f = ["href"];
 const _hoisted_5$c = {
   key: 2,
   class: "is-req"
@@ -1043,7 +1042,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
             target: "_blank"
           }, [
             createVNode(unref(render$6))
-          ], 8, _hoisted_4$e)) : createCommentVNode("v-if", true),
+          ], 8, _hoisted_4$f)) : createCommentVNode("v-if", true),
           __props.req ? (openBlock(), createElementBlock("sup", _hoisted_5$c, "*")) : createCommentVNode("v-if", true)
         ], 8, _hoisted_2$f)) : createCommentVNode("v-if", true),
         !["checkbox", "radiobox"].includes(__props.type) ? (openBlock(), createElementBlock("div", {
@@ -1114,7 +1113,7 @@ const _hoisted_1$e = {
 };
 const _hoisted_2$e = { class: "paging-container" };
 const _hoisted_3$e = { "aria-label": "Pagination" };
-const _hoisted_4$d = { class: "is-sr" };
+const _hoisted_4$e = { class: "is-sr" };
 const _hoisted_5$b = {
   key: 2,
   class: "dots"
@@ -1187,7 +1186,7 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
               onClick: _cache[0] || (_cache[0] = ($event) => prev()),
               class: "prev-next"
             }, [
-              createElementVNode("span", _hoisted_4$d, toDisplayString(_ctx.$t("previous_paging")), 1),
+              createElementVNode("span", _hoisted_4$e, toDisplayString(_ctx.$t("previous_paging")), 1),
               createVNode(unref(render$a), { class: "fv-icon-base" })
             ])) : createCommentVNode("v-if", true),
             __props.items.page_no - 2 > 1 ? (openBlock(), createElementBlock("a", {
@@ -1319,6 +1318,7 @@ const useFVStore = defineStore({
     state: () => ({
         user: null,
         cartCount: 0,
+        cart: null,
     }),
     getters: {
         isAuth: (state) => {
@@ -1330,11 +1330,13 @@ const useFVStore = defineStore({
             const _cart = await useCart().getCart();
             if (_cart && _cart.result == 'success') {
                 this.cartCount = _cart.data.products.length;
+                this.cart = _cart.data;
             }
         },
         async refreshCartData(_cart) {
             if (_cart && _cart.result == 'success') {
                 this.cartCount = _cart.data.products.length;
+                this.cart = _cart.data;
             }
         },
         async refreshUser(params = {}) {
@@ -1372,7 +1374,7 @@ const ClientOnly = defineComponent({
 const _hoisted_1$d = { class: "fy-navbar" };
 const _hoisted_2$d = { class: "nav-container" };
 const _hoisted_3$d = { key: 0 };
-const _hoisted_4$c = { class: "nav-actions" };
+const _hoisted_4$d = { class: "nav-actions" };
 const _hoisted_5$a = { class: "badge" };
 const _hoisted_6$a = /* @__PURE__ */ createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
 const _hoisted_7$9 = /* @__PURE__ */ createElementVNode("svg", {
@@ -1452,7 +1454,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
             ]),
             _: 3
           }),
-          createElementVNode("div", _hoisted_4$c, [
+          createElementVNode("div", _hoisted_4$d, [
             createVNode(unref(ClientOnly), null, {
               default: withCtx(() => [
                 renderSlot(_ctx.$slots, "cart", {}, () => [
@@ -1648,7 +1650,7 @@ const _hoisted_3$c = {
   key: 0,
   class: "oauth-container"
 };
-const _hoisted_4$b = ["onClick"];
+const _hoisted_4$c = ["onClick"];
 const _hoisted_5$9 = ["alt", "src"];
 const _hoisted_6$9 = {
   key: 1,
@@ -1669,7 +1671,8 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
   __name: "KlbLogin",
   props: {
     returnDefault: { default: "/" },
-    forceAction: null
+    forceAction: null,
+    onSuccess: null
   },
   setup(__props) {
     const props = __props;
@@ -1751,6 +1754,9 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
         }
       );
       if (response.value?.result == "success") {
+        if (props.onSuccess) {
+          await props.onSuccess();
+        }
         if (response.value.data.url) {
           window.location.href = response.value.data.url;
           return;
@@ -1862,7 +1868,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
                         src: field.button.logo,
                         style: normalizeStyle(`background: ${field.button["background-color"]}`)
                       }, null, 12, _hoisted_5$9))
-                    ], 8, _hoisted_4$b)) : createCommentVNode("v-if", true)
+                    ], 8, _hoisted_4$c)) : createCommentVNode("v-if", true)
                   ], 64);
                 }), 128))
               ])) : createCommentVNode("v-if", true),
@@ -1923,7 +1929,7 @@ const _hoisted_2$b = {
   class: "input-group"
 };
 const _hoisted_3$b = { class: "label-basic" };
-const _hoisted_4$a = { class: "input-box-child" };
+const _hoisted_4$b = { class: "input-box-child" };
 const _hoisted_5$8 = { class: "main" };
 const _hoisted_6$8 = ["onSubmit"];
 const _hoisted_7$7 = { class: "klb-account-grid-inputs" };
@@ -1973,7 +1979,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
       return unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_1$b, [
         __props.showValueButton ? (openBlock(), createElementBlock("div", _hoisted_2$b, [
           createElementVNode("div", _hoisted_3$b, toDisplayString(_ctx.$t("update_email_display_label")), 1),
-          createElementVNode("div", _hoisted_4$a, [
+          createElementVNode("div", _hoisted_4$b, [
             createElementVNode("div", _hoisted_5$8, toDisplayString(unref(store).user?.Email), 1),
             createElementVNode("button", {
               onClick: _cache[0] || (_cache[0] = ($event) => unref(eventBus).emit("UpdateEmailModal", true)),
@@ -2039,7 +2045,7 @@ const _hoisted_2$a = {
   class: "input-group"
 };
 const _hoisted_3$a = { class: "label-basic" };
-const _hoisted_4$9 = { class: "input-box-child" };
+const _hoisted_4$a = { class: "input-box-child" };
 const _hoisted_5$7 = ["onSubmit"];
 const _hoisted_6$7 = { class: "klb-account-grid-inputs" };
 const _hoisted_7$6 = {
@@ -2089,7 +2095,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
       return unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_1$a, [
         __props.showValueButton ? (openBlock(), createElementBlock("div", _hoisted_2$a, [
           createElementVNode("div", _hoisted_3$a, toDisplayString(_ctx.$t("update_pwd_display_label")), 1),
-          createElementVNode("div", _hoisted_4$9, [
+          createElementVNode("div", _hoisted_4$a, [
             createElementVNode("button", {
               onClick: _cache[0] || (_cache[0] = ($event) => unref(eventBus).emit("updatePwdModal", true)),
               class: "btn primary small"
@@ -2163,7 +2169,7 @@ const _hoisted_1$9 = {
 };
 const _hoisted_2$9 = { class: "input-group" };
 const _hoisted_3$9 = { class: "label-basic" };
-const _hoisted_4$8 = { class: "input-box-child" };
+const _hoisted_4$9 = { class: "input-box-child" };
 const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "KlbDeleteAccount",
   props: {
@@ -2177,7 +2183,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       return unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_1$9, [
         createElementVNode("div", _hoisted_2$9, [
           createElementVNode("div", _hoisted_3$9, toDisplayString(_ctx.$t("delete_account_display_label")), 1),
-          createElementVNode("div", _hoisted_4$8, [
+          createElementVNode("div", _hoisted_4$9, [
             createVNode(_component_router_link, {
               to: `${__props.url}?act=delete_account`,
               class: "btn primary small"
@@ -2199,7 +2205,7 @@ var KlbDeleteAccount = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "Klb
 const _hoisted_1$8 = { class: "klb-billing-history" };
 const _hoisted_2$8 = ["href"];
 const _hoisted_3$8 = { class: "billing-history-tag" };
-const _hoisted_4$7 = { class: "billing-history-tag" };
+const _hoisted_4$8 = { class: "billing-history-tag" };
 const _hoisted_5$6 = {
   key: 1,
   class: "self-loader-fyvue"
@@ -2268,7 +2274,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
               createElementVNode("span", _hoisted_3$8, toDisplayString(property.data.item.Total_Vat.display), 1)
             ]),
             Status_item: withCtx((property) => [
-              createElementVNode("span", _hoisted_4$7, toDisplayString(property.data.item.Status), 1)
+              createElementVNode("span", _hoisted_4$8, toDisplayString(property.data.item.Status), 1)
             ]),
             Invoice_Date_item: withCtx((property) => [
               createTextVNode(toDisplayString(_ctx.$formatDatetime(property.data.item.Invoice_Date.unixms)), 1)
@@ -2306,7 +2312,7 @@ const _hoisted_3$7 = {
   class: "label-basic",
   for: "selectLocation"
 };
-const _hoisted_4$6 = { class: "input-box" };
+const _hoisted_4$7 = { class: "input-box" };
 const _hoisted_5$5 = { key: 0 };
 const _hoisted_6$5 = ["onSubmit"];
 const _hoisted_7$5 = { class: "form-grid" };
@@ -2502,7 +2508,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           createElementVNode("div", _hoisted_1$7, [
             createElementVNode("div", _hoisted_2$7, [
               __props.displayOnly ? (openBlock(), createElementBlock("label", _hoisted_3$7, toDisplayString(_ctx.$t("klb_user_location_label")), 1)) : createCommentVNode("v-if", true),
-              createElementVNode("div", _hoisted_4$6, [
+              createElementVNode("div", _hoisted_4$7, [
                 createVNode(_component_FyInput, {
                   id: "selectLocation",
                   options: locationsSelectOptions.value,
@@ -2678,7 +2684,7 @@ function useBilling() {
 const _hoisted_1$6 = { key: 0 };
 const _hoisted_2$6 = ["onSubmit"];
 const _hoisted_3$6 = { class: "form-grid" };
-const _hoisted_4$5 = { class: "input-group" };
+const _hoisted_4$6 = { class: "input-group" };
 const _hoisted_5$4 = {
   class: "label-basic",
   for: "typeDef"
@@ -2893,7 +2899,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                   label: _ctx.$t("add_pm_zip_label"),
                   type: "text"
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
-                createElementVNode("div", _hoisted_4$5, [
+                createElementVNode("div", _hoisted_4$6, [
                   createElementVNode("label", _hoisted_5$4, toDisplayString(_ctx.$t("add_pm_country_label")), 1),
                   createElementVNode("div", _hoisted_6$4, [
                     withDirectives(createElementVNode("select", {
@@ -2941,7 +2947,7 @@ const _hoisted_1$5 = {
 };
 const _hoisted_2$5 = ["onSubmit"];
 const _hoisted_3$5 = { class: "input-group" };
-const _hoisted_4$4 = {
+const _hoisted_4$5 = {
   class: "label-basic",
   for: "typeDef"
 };
@@ -3215,7 +3221,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
                 onSubmit: withModifiers(submitBillingEdit, ["prevent"])
               }, [
                 createElementVNode("div", _hoisted_3$5, [
-                  createElementVNode("label", _hoisted_4$4, toDisplayString(_ctx.$t("payment_method_label")), 1),
+                  createElementVNode("label", _hoisted_4$5, toDisplayString(_ctx.$t("payment_method_label")), 1),
                   createElementVNode("div", {
                     id: "stripePayment",
                     class: "stripePayment",
@@ -3334,7 +3340,7 @@ const _hoisted_2$4 = {
   class: "subs"
 };
 const _hoisted_3$4 = { class: "price" };
-const _hoisted_4$3 = { class: "price" };
+const _hoisted_4$4 = { class: "price" };
 const _hoisted_5$2 = {
   key: 0,
   class: "cycle"
@@ -3416,7 +3422,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               createElementVNode("div", null, [
                 createElementVNode("h5", null, toDisplayString(product["Basic.Name"]), 1),
                 createElementVNode("div", _hoisted_3$4, [
-                  createElementVNode("span", _hoisted_4$3, toDisplayString(product.Price.display), 1),
+                  createElementVNode("span", _hoisted_4$4, toDisplayString(product.Price.display), 1),
                   product["Basic.ServiceLifetime"] ? (openBlock(), createElementBlock("span", _hoisted_5$2, "/" + toDisplayString(_ctx.$formatKlbRecurringPaymentCycle(
                     product["Basic.ServiceLifetime"]
                   )), 1)) : createCommentVNode("v-if", true)
@@ -3513,7 +3519,7 @@ const _hoisted_3$3 = {
   key: 0,
   class: "input-group"
 };
-const _hoisted_4$2 = {
+const _hoisted_4$3 = {
   class: "label-basic",
   for: "stripeElementsRef"
 };
@@ -3739,7 +3745,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           }, [
             process.value.order_payable ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
               currentMethod.value == "Stripe" ? (openBlock(), createElementBlock("div", _hoisted_3$3, [
-                createElementVNode("label", _hoisted_4$2, toDisplayString(_ctx.$t("klb_order_payment_card_label")), 1),
+                createElementVNode("label", _hoisted_4$3, toDisplayString(_ctx.$t("klb_order_payment_card_label")), 1),
                 createElementVNode("div", {
                   id: "stripeElementsRef",
                   class: "stripeElements",
@@ -3824,7 +3830,7 @@ const _hoisted_3$2 = {
   key: 0,
   class: "fv-typo mb-2"
 };
-const _hoisted_4$1 = { class: "cart-summary" };
+const _hoisted_4$2 = { class: "cart-summary" };
 const _hoisted_5 = { class: "price" };
 const _hoisted_6 = {
   key: 0,
@@ -4003,7 +4009,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               key: `cart_summary_${product.data.Catalog_Product__}`,
               class: "cart-product"
             }, [
-              createElementVNode("div", _hoisted_4$1, [
+              createElementVNode("div", _hoisted_4$2, [
                 createElementVNode("h3", null, toDisplayString(product.data["Basic.Name"]), 1),
                 createElementVNode("div", _hoisted_5, [
                   createTextVNode(toDisplayString(__props.mode == "b2c" ? product.data.Price.tax.display : product.data.Price.raw.display) + " ", 1),
@@ -4163,19 +4169,21 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
 });
 var KlbOrder = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__file", "KlbOrder.vue"]]);
 
-const _hoisted_1$1 = {
+const _hoisted_1$1 = { class: "fv-relative" };
+const _hoisted_2$1 = {
   key: 0,
   class: "fv-typo margins"
 };
-const _hoisted_2$1 = ["innerHTML"];
-const _hoisted_3$1 = {
+const _hoisted_3$1 = ["innerHTML"];
+const _hoisted_4$1 = {
   key: 1,
   class: "fv-typo"
 };
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "KlbPage",
   props: {},
-  setup(__props) {
+  async setup(__props) {
+    let __temp, __restore;
     const pageHead = reactive({
       title: `...`
     });
@@ -4183,13 +4191,18 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const route = useRoute();
     const pageSlug = ref(route.params.slug);
     const is404 = ref(false);
-    onBeforeRouteUpdate(async (to) => {
-      if (to.params.slug !== pageSlug.value) {
-        pageSlug.value = to.params.slug;
-        await loadPage();
+    const eventBus = useEventBus();
+    watch(
+      () => route.params.slug,
+      async (v) => {
+        if (v && v !== pageSlug.value) {
+          pageSlug.value = v;
+          await loadPage();
+        }
       }
-    });
+    );
     const loadPage = async () => {
+      eventBus.emit("cmspage-loading", true);
       is404.value = false;
       const _page = await rest(
         "/Content/Cms/@pages:loadSlug",
@@ -4203,30 +4216,31 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           is404.value = true;
           pageHead.title = "404";
         }
+        eventBus.emit("cmspage-loading", false);
       });
       if (_page && _page.result == "success") {
         page.value = _page;
         pageHead.title = page.value.data.content_cms_entry_data.Title;
       }
+      eventBus.emit("cmspage-loading", false);
     };
     useHead({
       title: computed(() => `${pageHead.title}`)
     });
-    onMounted(async () => {
-      await loadPage();
-    });
+    [__temp, __restore] = withAsyncContext(() => loadPage()), await __temp, __restore();
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock(Fragment, null, [
-        page.value ? (openBlock(), createElementBlock("div", _hoisted_1$1, [
+      return openBlock(), createElementBlock("div", _hoisted_1$1, [
+        createVNode(FyLoader, { id: "cmspage" }),
+        page.value ? (openBlock(), createElementBlock("div", _hoisted_2$1, [
           createElementVNode("h1", null, toDisplayString(page.value.data.content_cms_entry_data.Title), 1),
           createElementVNode("div", {
             innerHTML: page.value.data.content_cms_entry_data.Contents
-          }, null, 8, _hoisted_2$1)
+          }, null, 8, _hoisted_3$1)
         ])) : createCommentVNode("v-if", true),
-        is404.value ? (openBlock(), createElementBlock("div", _hoisted_3$1, [
+        is404.value ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
           createElementVNode("h1", null, toDisplayString(_ctx.$t("fv_404_text")), 1)
         ])) : createCommentVNode("v-if", true)
-      ], 64);
+      ]);
     };
   }
 });

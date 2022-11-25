@@ -1,6 +1,6 @@
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString } from '@vueuse/head';
-import { getUuid, getPath, getInitialState } from '@karpeleslab/klbfw';
+import { getUuid, getPath, getInitialState, getMode } from '@karpeleslab/klbfw';
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
 import { defineStore } from 'pinia';
@@ -62,8 +62,12 @@ export const useHistory = defineStore({
 });
 
 export const isSSRRendered = () => {
+  /*
+  console.log(getMode())
   const state = getInitialState();
   return !!(state && state.isSSRRendered == true);
+  */
+  return !!(getMode() != 'client');
 };
 
 export const setupClient = (router: Router, pinia: Pinia) => {

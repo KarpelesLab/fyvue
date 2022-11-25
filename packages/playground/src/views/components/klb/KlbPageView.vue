@@ -1,6 +1,6 @@
 <script setup>
 const klbLogin = `
-<KlbPage pageSlug="tos" />
+<KlbPage  />
 `;
 const props = [];
 </script>

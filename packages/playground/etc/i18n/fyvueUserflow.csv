@@ -4,8 +4,8 @@ user_flow_input_email,Please input your email address to log in,Veuillez saisir 
 user_flow_input_password,Please input your password,Veuillez saisir votre mot de passe,パスワードを入力してください,패스워드를 입력해주세요,请输入密码
 user_flow_register,Register New Account,Créer un nouveau compte,登録,등록,登录
 user_flow_waitlist,Waiting list,Liste d'attente,ウェイティングリスト,웨이팅 리스트,等候名单
-user_flow_pending,Thank you for pre-registering for __SITENAME__! Your spot is saved in line and we'll contact you as soon as it's your turn. Your position in line is #%1.,"Merci de vous être préinscrit pour __SITENAME__! Vous avez enregistré votre place en ligne, et nous vous contacterons dès que ce sera votre tour. Votre position en ligne est #% 1.",シェルズの事前登録をありがとうございます！現在順番待ちですので、順番が決まり次第ご連絡いたします。あなたのポジションは#%1です,__SITENAME__의 사전등록 감사랍니다. 현재 순서를 기다리고 있으므로 순서가 정해지는대로 연락드리겠습니다.,感谢__SITENAME__的事前登录！现在按顺序等待，所以等决定了顺序就联系您。您的位置是#%1
-user_email_input_help,"If this is your first time with __SITENAME__, please input your email to create an account. If not, you will be prompted to input your password to log in.","S'il s'agit de votre première conenxion à __SITENAME__, vous pourrez créer un compte après avoir renseigné votre adresse email. Sinon, votre mot de passe vous sera demandé.",シェルズを初めて利用する場合は、メールアドレスを入力してアカウントを作成してください。そうでない場合は、パスワードを入力してログインしてください,__SITENAME__를 처음 사용하려면 이메일 주소를 입력하여 계정을 만드세요. 그렇지 아노을 경우 패스워드를 입력하고 로그인하세요.,首次使用__SITENAME__吋，请输入邮箱地址后做成账户。如不是，请输入密码后䢎入系統统
+user_flow_pending,Thank you for pre-registering for __SITE__! Your spot is saved in line and we'll contact you as soon as it's your turn. Your position in line is #%1.,"Merci de vous être préinscrit pour __SITE__! Vous avez enregistré votre place en ligne, et nous vous contacterons dès que ce sera votre tour. Votre position en ligne est #% 1.",シェルズの事前登録をありがとうございます！現在順番待ちですので、順番が決まり次第ご連絡いたします。あなたのポジションは#%1です,__SITE__의 사전등록 감사랍니다. 현재 순서를 기다리고 있으므로 순서가 정해지는대로 연락드리겠습니다.,感谢__SITE__的事前登录！现在按顺序等待，所以等决定了顺序就联系您。您的位置是#%1
+user_email_input_help,"If this is your first time with __SITE__, please input your email to create an account. If not, you will be prompted to input your password to log in.","S'il s'agit de votre première conenxion à __SITE__, vous pourrez créer un compte après avoir renseigné votre adresse email. Sinon, votre mot de passe vous sera demandé.",シェルズを初めて利用する場合は、メールアドレスを入力してアカウントを作成してください。そうでない場合は、パスワードを入力してログインしてください,__SITE__를 처음 사용하려면 이메일 주소를 입력하여 계정을 만드세요. 그렇지 아노을 경우 패스워드를 입력하고 로그인하세요.,首次使用__SITE__吋，请输入邮箱地址后做成账户。如不是，请输入密码后䢎入系統统
 input_field_email,Email,Veuillez saisir votre adresse email,Eメール,이메일,电子邮件
 user_oauth_help,Or login using one of the following,Ou connectez vous avec l'une des méthodes suivantes,または、次のいずれかを使用してログインします,또는 다음 중 하나를 사용하여 로그인합니다,或使用以下方式登入
 input_field_password,Password,Veuillez saisir votre mot de passe,パスワード,패스워드,密码
@@ -16,29 +16,29 @@ input_field_conf_password,Password confirmation,Confirmer le mot de passe,パス
 input_field_accept_tos,I accept the Terms of Service,J'accepte les conditions de service,利用規約に同意します,이용약관에 동의합니다,同意使用协议
 profile_upload_image,Upload Image,Télécharger une image,画像をアップロード,이미지를 업로드,上传图片
 profile_delete_image,Delete Image,Supprimer l'image,画像を削除,이미지 삭제,刪除图片
-login_flow_error,An error occurred while your login attempt. If the error persist please contact us.,,,,
-user_flow_input_otp,One time password validation,,,,
-input_field_otp,Enter your one time password,,,,
-user_flow_sms_verif_message,Welcome to __SITENAME__! Your verification code is : {{code}},Bienvenue sur __SITENAME__ votre code de vérification est : {{code}},__SITENAME__へようこそ！あなたの確認コードは: {{code}},__SITENAME__에 오신 것을 환영합니다! 고객님의 확인 코드는: {{code}},欢迎来到__SITENAME__！你的确认代码是: {{code}}
-user_sms_check_step1,Please input your phone number below to confirm your account. An SMS will be sent to your phone.,,,,
-user_sms_phone,International format starting with +,,,,
-user_sms_check_step2,"A code has been sent to your phone, please input it below",,,,
-user_sms_code,Input code here...,,,,
-error_password_not_same,The passwords are not identical.,,,,
-error_invalid_login_or_password,Invalid login or password. ,,,,
-email_pwd_reset_text,A request to reset the password of your account has been emitted; please click on the button hereafter to proceed:,,,,
-email_pwd_reset_notice,"This link will remain valid during the 24 hours following the request. Beyond that period, a new request must be emitted. ",,,,
-password_recovery_email_title,__SITENAME__ password recovery,,,,
-regards,"Best regards,",,,,
-mtgoxnft_team,The __SITENAME__ team,,,,
-"error_tos_not_accepted","You need to accept the terms of service to proceed.",,,,
-"error_name_not_valid","This name is invalid.",,,,
-"error_password_not_acceptable","This password is not acceptable.",,,,
-"recover_pwd_title","Recover your password",,,,
-"pwd_recover_confirm","Please check your emails to reset your password.",,,,
-"recover_pwd_link","Password lost?",,,,
-"recover_pwd_cta","Recover my password",,,,
-"recover_pwd_email_placeholder","Email",,,,
-"recover_pwd_email_label","Email",,,,
-"cta_login_next","Next",,,,
-"user_flow_title","Sign in / Sign up",,,,
+login_flow_error,An error occurred while your login attempt. If the error persist please contact us.,,ログイン中にエラーが発生しました。エラーが解決しない場合は、弊社までご連絡ください。,,
+user_flow_input_otp,One time password validation,,ワンタイムパスワードの認証,,
+input_field_otp,Enter your one time password,,ワンタイムパスワードを入力してください,,
+user_flow_sms_verif_message,Welcome to __SITE__! Your verification code is : {{code}},Bienvenue sur __SITE__ votre code de vérification est : {{code}},__SITE__へようこそ！あなたの認証コードは: {{code}}です,__SITE__에 오신 것을 환영합니다! 고객님의 확인 코드는: {{code}},欢迎来到__SITE__！你的确认代码是: {{code}}
+user_sms_check_step1,Please input your phone number below to confirm your account. An SMS will be sent to your phone.,,アカウントの確認のため、下記に電話番号を入力してください。SMSがあなたの携帯電話に送信されます。,,
+user_sms_phone,International format starting with +,,で始まる国際的な形式,,
+user_sms_check_step2,"A code has been sent to your phone, please input it below",,コードが携帯電話に送信されましたので、下記に入力してください。,,
+user_sms_code,Input code here...,,ここにコードを入力してください,,
+error_password_not_same,The passwords are not identical.,,パスワードが一致しません,,
+error_invalid_login_or_password,Invalid login or password.,,ログイン名またはパスワードが無効です。,,
+email_pwd_reset_text,A request to reset the password of your account has been emitted; please click on the button hereafter to proceed:,,パスワードの再設定が送信されましたので、以下のボタンをクリックして手続きを行ってください。,,
+email_pwd_reset_notice,"This link will remain valid during the 24 hours following the request. Beyond that period, a new request must be emitted. ",,このリンクは、リクエスト後24時間有効です。それを過ぎると、新たなリクエストが必要です。,,
+password_recovery_email_title,__SITE__ password recovery,,__SITE__のパスワード再設定,,
+regards,"Best regards,",,よろしくお願いいたします。,,
+mtgoxnft_team,The __SITE__ team,,__SITE__のチーム紹介,,
+error_tos_not_accepted,You need to accept the terms of service to proceed.,,利用規約に同意の上、手続きを行ってください。,,
+error_name_not_valid,This name is invalid.,,この名前は無効です。,,
+error_password_not_acceptable,This password is not acceptable.,,このパスワードは使用できません。,,
+recover_pwd_title,Recover your password,,パスワードの再設定,,
+pwd_recover_confirm,Please check your emails to reset your password.,,パスワードの再設定を行いますので、メールをご確認ください。,,
+recover_pwd_link,Password lost?,,パスワードを忘れた場合,,
+recover_pwd_cta,Recover my password,,パスワードの再設定,,
+recover_pwd_email_placeholder,Email,,Eメール,,
+recover_pwd_email_label,Email,,Eメール,,
+cta_login_next,Next,,次,,
+user_flow_title,Sign in / Sign up,,サインイン / サインアップ,,

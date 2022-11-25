@@ -3,6 +3,7 @@ import {
   i18nextPromise,
   countriesPromise,
   useUserCheck,
+  rest,
 } from '@karpeleslab/fyvue';
 import { Head, useHead } from '@vueuse/head';
 import {
@@ -196,7 +197,9 @@ useHead({
             >Florian Gasquez</a
           ></b
         >
-        - Powered by vue/vite/fyvue &amp; tailwindcss.
+        - Powered by vue/vite/fyvue &amp; tailwindcss.<br />
+        <router-link to="/pages/test">Test KlbPage</router-link> -
+        <RouterLink to="/pages/about">About fyvue</RouterLink>
       </div>
     </footer>
   </div>

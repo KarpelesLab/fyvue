@@ -1,151 +1,146 @@
-"token","en-US","fr-FR","ja-JP","comment"
-"vuelidate_validator_email","This field required a valid email.",,,"Fyvue Forms"
-"vuelidate_validator_required","This field is required.",,,"Fyvue Forms"
-"vuelidate_validator_req","This field is required.",,,"Fyvue Forms"
-"vuelidate_validator_sameAs","Boths fields must be identical.",,,"Fyvue Forms"
-"vuelidate_validator_minLength","Value is too short.",,,"Fyvue Forms"
-"vuelidate_validator_maxLength","Value is too long.",,,"Fyvue Forms"
-"global_datetime","{{val, datetime}}","{{val, datetime}}","{{val, datetime}}","Fyvue globals"
-"global_timeago","{{val, relativetime}}","{{val, relativetime}}","{{val, relativetime}}","Fyvue globals"
-"global_paging","Showing {{start, number}} to {{end, number}} of {{total, number}} results",,,"Fyvue globals"
-"unknown_error","Unknown error",,,"Fyvue globals"
-"global_loading_text","Loading...",,,"Fyvue globals"
-"confirm_modal_cta_cancel","Cancel",,,"FyConfirm component"
-"confirm_modal_cta_confirm","Confirm",,,"FyConfirm component"
-"previous_paging","Previous page",,,"FyPaging component"
-"next_paging","Next page",,,"FyPaging component"
-"update_email_display_label","Email",,,"KlbUpdateEmailModal component"
-"update_email_form_pwd_placeholder","Password",,,"KlbUpdateEmailModal component"
-"update_email_form_pwd_label","Current password",,,"KlbUpdateEmailModal component"
-"update_email_form_email_placeholder","New email",,,"KlbUpdateEmailModal component"
-"update_email_form_email_label","New email",,,"KlbUpdateEmailModal component"
-"update_email_cta","Confirm",,,"KlbUpdateEmailModal component"
-"update_email_modal_title","Update your email",,,"KlbUpdateEmailModal component"
-"update_email_display_cta","Update your email",,,"KlbUpdateEmailModal component"
-"update_pwd_display_label","Update your password",,,"KlbUpdatePassword component"
-"update_pwd_display_cta","Update your password",,,"KlbUpdatePassword component"
-"update_pwd_modal_title","Update your password",,,"KlbUpdatePassword component"
-"update_pwd_form_oldPwd_placeholder","Current password",,,"KlbUpdatePassword component"
-"update_pwd_form_oldPwd_label","Current password",,,"KlbUpdatePassword component"
-"update_pwd_form_newPwd_placeholder","New password",,,"KlbUpdatePassword component"
-"update_pwd_form_newPwd_label","New password",,,"KlbUpdatePassword component"
-"update_pwd_form_pwdConfirm_placeholder","Confirmation",,,"KlbUpdatePassword component"
-"update_pwd_form_pwdConfirm_label","Confirm your new password",,,"KlbUpdatePassword component"
-"update_pwd_cta","Confirmation",,,"KlbUpdatePassword component"
-"delete_account_display_label","Delete my account",,,"KlbDeleteAccount component"
-"delete_account_display_cta","Delete my account",,,"KlbUpdatePassword component"
-"billing_history_empty","Biling history is empty",,,"KlbBillingHistory component"
-"billing_history_headers_invoice_number","Invoice",,,"KlbBillingHistory component"
-"billing_history_headers_created","Created",,,"KlbBillingHistory component"
-"billing_history_headers_paid","Paid",,,"KlbBillingHistory component"
-"billing_history_headers_status","Status",,,"KlbBillingHistory component"
-"billing_history_headers_price","Amount",,,"KlbBillingHistory component"
-"billing_history_headers_actions","...",,,"KlbBillingHistory component"
-"billing_history_download_cta","Download PDF",,,"KlbBillingHistory component"
-"add_pm_modal_title","Add payment method",,,"KlbAdddPaymentMethodModal component"
-"add_pm_label_placeholder","My principal payment method...",,,"KlbAdddPaymentMethodModal component"
-"add_pm_label_label","Label",,,"KlbAdddPaymentMethodModal component"
-"add_pm_firstname_placeholder","Firstname",,,"KlbAdddPaymentMethodModal component"
-"add_pm_firstname_label","Firstname",,,"KlbAdddPaymentMethodModal component"
-"add_pm_lastname_placeholder","Lastname",,,"KlbAdddPaymentMethodModal component"
-"add_pm_lastname_label","Lastname",,,"KlbAdddPaymentMethodModal component"
-"add_pm_zip_placeholder","Zipcode",,,"KlbAdddPaymentMethodModal component"
-"add_pm_country_label","Country",,,"KlbAdddPaymentMethodModal component"
-"add_pm_zip_label","Zipcode",,,"KlbAdddPaymentMethodModal component"
-"payment_method_label","Credit Card Information",,,"KlbAdddPaymentMethodModal component"
-"create_billing_profile","Save payment method",,,"KlbAdddPaymentMethodModal component"
-"navbar_login_cta","Login",,,"FyNavbar component"
-"navbar_signup_cta","Sign up",,,"FyNavbar component"
-"navbar_dashboard_cta","Dashboard",,,"FyNavbar component"
-"navbar_logout_cta","Logout",,,"FyNavbar component"
-"payment_cycles_one_time","Once",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_hour_one","hour",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_hour_other","{{count}} hours",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_day_one","day",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_day_other","{{count}} days",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_month_one","month",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_month_other","{{count}} months",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_year_one","year",,,"formatKlbRecurringPaymentCycle helper"
-"payment_cycles_year_other","{{count}} years",,,"formatKlbRecurringPaymentCycle helper"
-"klb_catalog_choose_plan","Choose Plan",,,"KlbCatalog Component"
-"klb_catalog_add_to_cart","Add to cart",,,"KlbCatalog Component"
-"klb_order_cart_summary","Order summary",,,"KlbOrder Component"
-"klb_order_cart_total","Total",,,"KlbOrder Component"
-"klb_order_cart_total_taxes","Total taxes",,,"KlbOrder Component"
-"klb_order_cart_total_products","Total products",,,"KlbOrder Component"
-"klb_order_create_cta","Next",,,"KlbOrder Component"
-"klb_order_cart_is_empty","Your cart is empty.",,,"KlbOrder Component"
-"klb_order_cart_is_empty_back_cta","Back",,,"KlbOrder Component"
-"klb_order_cart_vat","Taxes",,,"KlbOrder Component"
-"klb_order_tv_included","includes {{val}} tax",,,"KlbOrder Component"
-"klb_order_billing_location","Billing location",,,"KlbOrder Component"
-"klb_order_cta_next","Next",,,"KlbOrder Component"
-"klb_location_firstname_placeholder","Firstname",,,"KlbUserLocation component"
-"klb_location_firstname_label","Firstname",,,"KlbUserLocation component"
-"klb_location_lastname_placeholder","Lastname",,,"KlbUserLocation component"
-"klb_location_lastname_label","Lastname",,,"KlbUserLocation component"
-"klb_location_zip_placeholder","Zipcode",,,"KlbUserLocation component"
-"klb_location_zip_label","Zipcode",,,"KlbUserLocation component"
-"klb_location_country_label","Country",,,"KlbUserLocation component"
-"klb_locations_save_cta","Save",,,"KlbUserLocation component"
-"klb_edit_location","Edit",,,"KlbUserLocation component"
-"klb_delete_location","Delete",,,"KlbUserLocation component"
-"klb_locations_reset_cta","Cancel",,,"KlbUserLocation component"
-"klb_order_process","Payment",,,"KlbOrder component"
-"klb_order_process_cta","Process Order",,,"KlbUserLocation component"
-"klb_location_new_cta","New",,,"KlbUserLocation component"
-"klb_order_payment_card_label","Credit card",,,"KlbUserLocation component"
-"klb_order_paid_text","This order was succesfully paid ({{date}})",,,"KlbUserLocation component"
-"klb_order_option_on_file","Use one of your saved billing method",,,"KlbUserLocation component"
-"klb_order_option_stripe","Add a new credit card",,,"KlbUserLocation component"
-"klb_edit_billing_profile","Edit",,,"KlbUserBilling component"
-"klb_add_new_billing_profile","New",,,"KlbUserBilling component"
-"klb_edit_billing_profile","Edit",,,"KlbUserBilling component"
-"klb_billing_cancel_save_payment_method","Cancel",,,"KlbUserBilling component"
-"klb_billing_payment_method_label","Credit Card",,,"KlbUserBilling component"
-"klb_user_location_label","Location",,,"KlbUserBilling/KlbUserLocation component"
-"klb_billing_save_payment_method","Save",,,"KlbUserBilling component"
-"payment_method_billing","Credit Card",,,"KlbUserBilling component"
-"payment_method_exp","Exp",,,"KlbUserBilling component"
-"klb_billing_current_credit_card","Current:",,,"KlbUserBilling component"
-"klb_billing_credit_card_edit_help","If you leave this field empty, this profile will use the card above by default.",,,"KlbUserBilling component"
-"fv_404_text","Page not found (404)",,,"Fyvue globals"
-"klb_order_you_need_to_be_logged_in","You must be logged in to continue.",,,"KlbOrder Components"
-"klb_login_cta","Login",,,"Fyvue globals"
-"klb_product_status","Status",,,"KlbOrder Component"
-"klb_product_status_pending","Pending",,,"KlbOrder Component"
-"klb_product_status_deliver_wait","Pending",,,"KlbOrder Component"
-"klb_product_status_deliver_pending","Delivery pending",,,"KlbOrder Component"
-"klb_product_status_deliver_done","Delivered",,,"KlbOrder Component"
-"klb_product_status_deliver_failed","Delivery failed",,,"KlbOrder Component"
-"klb_product_status_cancel_pending","Cancel pending",,,"KlbOrder Component"
-"klb_product_status_cancel_done","Canceled",,,"KlbOrder Component"
-"klb_product_status_recover_pending","Recover pending",,,"KlbOrder Component"
-"klb_product_status_recover_done","Recovered",,,"KlbOrder Component"
-"klb_product_status_refund_pending","Refund pending",,,"KlbOrder Component"
-"klb_product_status_refund_done","Refunded",,,"KlbOrder Component"
-"klb_product_description_label","Description",,,"KlbOrder Component"
-"klb_contact_form_label_fullname","Fullname",,,"KlbSupport Component"
-"klb_contact_form_place_holder_fullname","Fullname",,,"KlbSupport Component"
-"klb_contact_form_label_subject","Subject",,,"KlbSupport Component"
-"klb_contact_form_place_holder_subject","Subject",,,"KlbSupport Component"
-"klb_contact_form_label_email","Email",,,"KlbSupport Component"
-"klb_contact_form_place_holder_email","Email",,,"KlbSupport Component"
-"klb_contact_form_label_Lastname","Last name",,,"KlbSupport Component"
-"klb_contact_form_place_holder_lastname","Last name",,,"KlbSupport Component"
-"klb_contact_form_label_firstname","First name",,,"KlbSupport Component"
-"klb_contact_form_place_holder_firstname","First name",,,"KlbSupport Component"
-"klb_contact_form_label_message","Message",,,"KlbSupport Component"
-"klb_contact_form_place_holder_message","Message",,,"KlbSupport Component"
-"klb_contact_cta","Send",,,"KlbSupport Component"
-"klb_contact_thanks","Thanks for contacting us.",,,"KlbSupport Component"
-"edit_pm_modal_title","Update billing informations",,,"KlbUserBilling Component"
-"edit_billing_method","Save",,,"KlbUserBilling Component"
-"klb_billing_edit_pm_cta","Edit",,,"KlbUserBilling Component"
-"payment_remember_card","Remember this card for future payments",,,"KlbOrder Component"
-"klb_order_non_payable","This order is not payable.",,,"KlbOrder Component"
-"klb_billing_edit_pm_cta","Edit",,,"KlbUserBilling Component"
-"edit_pm_modal_title","Billing method",,,"KlbUserBilling Component"
-"edit_billing_method","Save",,,"KlbUserBilling Component"
-"cta_login_next","Next",,,"KlbLogin Component"
-"paging_a_lot_of","a lot of",,,"FyPaging Component"
+token,en-US,fr-FR,ja-JP,comment
+vuelidate_validator_email,This field required a valid email.,,このフィールドには、有効なメールアドレスが必要です。,Fyvue Forms
+vuelidate_validator_required,This field is required.,,この項目は必須です。,Fyvue Forms
+vuelidate_validator_req,This field is required.,,この項目は必須です。,Fyvue Forms
+vuelidate_validator_sameAs,Boths fields must be identical.,,両フィールドは同一である必要があります。,Fyvue Forms
+vuelidate_validator_minLength,Value is too short.,,バリューが短すぎます。,Fyvue Forms
+vuelidate_validator_maxLength,Value is too long.,,バリューが長すぎます。,Fyvue Forms
+global_datetime,"{{val, datetime}}","{{val, datetime}}","{{val, datetime}}",Fyvue globals
+global_timeago,"{{val, relativetime}}","{{val, relativetime}}","{{val, relativetime}}",Fyvue globals
+global_paging,"Showing {{start, number}} to {{end, number}} of {{total}} results",,"{{total}}の結果の{{start, number}}から{{end, number}} を表示する。",Fyvue globals
+unknown_error,Unknown error,,不明なエラー,Fyvue globals
+global_loading_text,Loading...,,読み込み中...,Fyvue globals
+confirm_modal_cta_cancel,Cancel,,キャンセル,FyConfirm component
+confirm_modal_cta_confirm,Confirm,,確認,FyConfirm component
+previous_paging,Previous page,,前のページ,FyPaging component
+next_paging,Next page,,次のページ,FyPaging component
+update_email_display_label,Email,,メール,KlbUpdateEmailModal component
+update_email_form_pwd_placeholder,Password,,パスワード,KlbUpdateEmailModal component
+update_email_form_pwd_label,Current password,,現在のパスワード,KlbUpdateEmailModal component
+update_email_form_email_placeholder,New email,,新しいメールアドレス,KlbUpdateEmailModal component
+update_email_form_email_label,New email,,新しいメールアドレス,KlbUpdateEmailModal component
+update_email_cta,Confirm,,確認,KlbUpdateEmailModal component
+update_email_modal_title,Update your email,,メールを更新する,KlbUpdateEmailModal component
+update_email_display_cta,Update your email,,メールを更新する,KlbUpdateEmailModal component
+update_pwd_display_label,Update your password,,パスワードを変更する,KlbUpdatePassword component
+update_pwd_display_cta,Update your password,,パスワードを変更する,KlbUpdatePassword component
+update_pwd_modal_title,Update your password,,パスワードを変更する,KlbUpdatePassword component
+update_pwd_form_oldPwd_placeholder,Current password,,現在のパスワード,KlbUpdatePassword component
+update_pwd_form_oldPwd_label,Current password,,現在のパスワード,KlbUpdatePassword component
+update_pwd_form_newPwd_placeholder,New password,,新しいパスワード,KlbUpdatePassword component
+update_pwd_form_newPwd_label,New password,,新しいパスワード,KlbUpdatePassword component
+update_pwd_form_pwdConfirm_placeholder,Confirmation,,確認事項,KlbUpdatePassword component
+update_pwd_form_pwdConfirm_label,Confirm your new password,,新しいパスワードを確認します。,KlbUpdatePassword component
+update_pwd_cta,Confirmation,,確認事項,KlbUpdatePassword component
+delete_account_display_label,Delete my account,,アカウントの削除,KlbDeleteAccount component
+delete_account_display_cta,Delete my account,,アカウントの削除,KlbUpdatePassword component
+billing_history_empty,Biling history is empty,,購入履歴はありません,KlbBillingHistory component
+billing_history_headers_invoice_number,Invoice,,請求書,KlbBillingHistory component
+billing_history_headers_created,Created,,作成,KlbBillingHistory component
+billing_history_headers_paid,Paid,,有料,KlbBillingHistory component
+billing_history_headers_status,Status,,ステータス,KlbBillingHistory component
+billing_history_headers_price,Amount,,金額,KlbBillingHistory component
+billing_history_headers_actions,...,,...,KlbBillingHistory component
+billing_history_download_cta,Download PDF,,PDFのダウンロード,KlbBillingHistory component
+add_pm_modal_title,Add payment method,,支払い方法の追加,KlbAdddPaymentMethodModal component
+add_pm_label_placeholder,My principal payment method...,,主な支払い方法,KlbAdddPaymentMethodModal component
+add_pm_label_label,Label,,ラベル,KlbAdddPaymentMethodModal component
+add_pm_firstname_placeholder,Firstname,,名,KlbAdddPaymentMethodModal component
+add_pm_firstname_label,Firstname,,名,KlbAdddPaymentMethodModal component
+add_pm_lastname_placeholder,Lastname,,性,KlbAdddPaymentMethodModal component
+add_pm_lastname_label,Lastname,,性,KlbAdddPaymentMethodModal component
+add_pm_zip_placeholder,Zipcode,,郵便番号,KlbAdddPaymentMethodModal component
+add_pm_country_label,Country,,国名,KlbAdddPaymentMethodModal component
+add_pm_zip_label,Zipcode,,郵便番号,KlbAdddPaymentMethodModal component
+payment_method_label,Credit Card Information,,クレジットカード情報,KlbAdddPaymentMethodModal component
+create_billing_profile,Save payment method,,支払い方法を保存する,KlbAdddPaymentMethodModal component
+navbar_login_cta,Login,,ログイン,FyNavbar component
+navbar_signup_cta,Sign up,,会員登録,FyNavbar component
+navbar_dashboard_cta,Dashboard,,ダッシュボード,FyNavbar component
+navbar_logout_cta,Logout,,ログアウト,FyNavbar component
+payment_cycles_one_time,Once,,一度,formatKlbRecurringPaymentCycle helper
+payment_cycles_hour_one,hour,,時,formatKlbRecurringPaymentCycle helper
+payment_cycles_hour_other,{{count}} hours,,{{count}} 時間,formatKlbRecurringPaymentCycle helper
+payment_cycles_day_one,day,,日,formatKlbRecurringPaymentCycle helper
+payment_cycles_day_other,{{count}} days,,{{count}} 日数,formatKlbRecurringPaymentCycle helper
+payment_cycles_month_one,month,,月,formatKlbRecurringPaymentCycle helper
+payment_cycles_month_other,{{count}} months,,{{count}} 月数,formatKlbRecurringPaymentCycle helper
+payment_cycles_year_one,year,,年,formatKlbRecurringPaymentCycle helper
+payment_cycles_year_other,{{count}} years,,{{count}} 年数,formatKlbRecurringPaymentCycle helper
+klb_catalog_choose_plan,Choose Plan,,プランを選ぶ,KlbCatalog Component
+klb_catalog_add_to_cart,Add to cart,,カートに入れる,KlbCatalog Component
+klb_order_cart_summary,Order summary,,ご注文の内容,KlbOrder Component
+klb_order_cart_total,Total,,合計,KlbOrder Component
+klb_order_cart_total_taxes,Total taxes,,税,KlbOrder Component
+klb_order_cart_total_products,Total products,,製品合計,KlbOrder Component
+klb_order_create_cta,Next,,次,KlbOrder Component
+klb_order_cart_is_empty,Your cart is empty.,,カートの中身が空です,KlbOrder Component
+klb_order_cart_is_empty_back_cta,Back,,戻る,KlbOrder Component
+klb_order_cart_vat,Taxes,,税金,KlbOrder Component
+klb_order_tv_included,includes {{val}} tax,,を含む{{val}}税,KlbOrder Component
+klb_order_billing_location,Billing location,,請求先,KlbOrder Component
+klb_order_cta_next,Next,,次,KlbOrder Component
+klb_location_firstname_placeholder,Firstname,,名,KlbUserLocation component
+klb_location_firstname_label,Firstname,,名,KlbUserLocation component
+klb_location_lastname_placeholder,Lastname,,性,KlbUserLocation component
+klb_location_lastname_label,Lastname,,性,KlbUserLocation component
+klb_location_zip_placeholder,Zipcode,,郵便番号,KlbUserLocation component
+klb_location_zip_label,Zipcode,,郵便番号,KlbUserLocation component
+klb_location_country_label,Country,,国,KlbUserLocation component
+klb_locations_save_cta,Save,,保存,KlbUserLocation component
+klb_edit_location,Edit,,編集,KlbUserLocation component
+klb_delete_location,Delete,,削除,KlbUserLocation component
+klb_locations_reset_cta,Cancel,,キャンセル,KlbUserLocation component
+klb_order_process,Payment,,お支払い方法,KlbOrder component
+klb_order_process_cta,Process Order,,プロセスオーダー,KlbUserLocation component
+klb_location_new_cta,New,,New,KlbUserLocation component
+klb_order_payment_card_label,Credit card,,クレジットカード,KlbUserLocation component
+klb_order_paid_text,This order was succesfully paid ({{date}}),,この注文は正常に支払われました ({{date}}),KlbUserLocation component
+klb_order_option_on_file,Use one of your saved billing method,,保存されている支払い方法を使用する,KlbUserLocation component
+klb_order_option_stripe,Add a new credit card,,新しいクレジットカードを追加する,KlbUserLocation component
+klb_edit_billing_profile,Edit,,編集,KlbUserBilling component
+klb_add_new_billing_profile,New,,New,KlbUserBilling component
+klb_edit_billing_profile,Edit,,編集,KlbUserBilling component
+klb_billing_cancel_save_payment_method,Cancel,,キャンセル,KlbUserBilling component
+klb_billing_payment_method_label,Credit Card,,クレジットカード,KlbUserBilling component
+klb_user_location_label,Location,,所在地,KlbUserBilling/KlbUserLocation component
+klb_billing_save_payment_method,Save,,保存,KlbUserBilling component
+payment_method_billing,Credit Card,,クレジットカード,KlbUserBilling component
+payment_method_exp,Exp,,エキスプレス,KlbUserBilling component
+klb_billing_current_credit_card,Current:,,現在,KlbUserBilling component
+klb_billing_credit_card_edit_help,"If you leave this field empty, this profile will use the card above by default.",,このフィールドを空にすると、このプロファイルはデフォルトで上記のカードを使用します。,KlbUserBilling component
+fv_404_text,Page not found (404),,ページが見つかりません (404),Fyvue globals
+klb_order_you_need_to_be_logged_in,You must be logged in to continue.,,続けるにはログインする必要があります。,KlbOrder Components
+klb_login_cta,Login,,ログイン,Fyvue globals
+klb_product_status,Status,,ステータス,KlbOrder Component
+klb_product_status_pending,Pending,,保留,KlbOrder Component
+klb_product_status_deliver_wait,Pending,,保留,KlbOrder Component
+klb_product_status_deliver_pending,Delivery pending,,納品待ち,KlbOrder Component
+klb_product_status_deliver_done,Delivered,,納品,KlbOrder Component
+klb_product_status_deliver_failed,Delivery failed,,納品に失敗しました,KlbOrder Component
+klb_product_status_cancel_pending,Cancel pending,,キャンセル待ち,KlbOrder Component
+klb_product_status_cancel_done,Canceled,,キャンセルされました,KlbOrder Component
+klb_product_status_recover_pending,Recover pending,,復旧待ち,KlbOrder Component
+klb_product_status_recover_done,Recovered,,回収済み,KlbOrder Component
+klb_product_status_refund_pending,Refund pending,,払い戻し手続き中,KlbOrder Component
+klb_product_status_refund_done,Refunded,,払い戻し,KlbOrder Component
+klb_product_description_label,Description,,概要,KlbOrder Component
+klb_contact_form_label_fullname,Fullname,,フルネーム,KlbSupport Component
+klb_contact_form_place_holder_fullname,Fullname,,フルネーム,KlbSupport Component
+klb_contact_form_label_subject,Subject,,対象,KlbSupport Component
+klb_contact_form_place_holder_subject,Subject,,対象,KlbSupport Component
+klb_contact_form_label_email,Email,,メール,KlbSupport Component
+klb_contact_form_place_holder_email,Email,,メール,KlbSupport Component
+klb_contact_form_label_Lastname,Last name,,名,KlbSupport Component
+klb_contact_form_place_holder_lastname,Last name,,名,KlbSupport Component
+klb_contact_form_label_firstname,First name,,性,KlbSupport Component
+klb_contact_form_place_holder_firstname,First name,,性,KlbSupport Component
+klb_contact_form_label_message,Message,,メッセージ,KlbSupport Component
+klb_contact_form_place_holder_message,Message,,メッセージ,KlbSupport Component
+klb_contact_cta,Send,,送信,KlbSupport Component
+klb_contact_thanks,Thanks for contacting us.,,お問い合わせありがとうございます。,KlbSupport Component
+payment_remember_card,Remember card,,リメンバーカード,Klb Order API
+klb_billing_edit_pm_cta,Edit,,編集,KlbUserBilling Component
+edit_pm_modal_title,Billing method,,支払い方法,KlbUserBilling Component
+edit_billing_method,Save billing method,,支払い方法を保存する,KlbUserBilling Component
+paging_a_lot_of,a lot of,,多数,FyPaging Component

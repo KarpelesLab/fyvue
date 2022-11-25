@@ -11,6 +11,19 @@ export const routes = [
     },
   },
   {
+    path: '/pages/:slug',
+    component: () => import('./views/PageView.vue'),
+    meta: {
+      /*breadcrumb: [
+        { name: 'fyvue', to: '/' },
+        { name: 'Components', to: '/components' },
+        { name: 'Klb', to: '/components/klb' },
+        { name: 'KlbPage' },
+      ],
+      title: 'KlbPage - Klb - Components - fyvue',*/
+    },
+  },
+  {
     path: '/helpers/formatting',
     component: () => import('./views/helpers/formattingView.vue'),
     meta: {

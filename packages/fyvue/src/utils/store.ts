@@ -3,12 +3,14 @@ import { rest } from '@karpeleslab/klbfw';
 import type {
   KlbAPICatalogCart,
   KlbAPIResultUnknown,
+  KlbCatalogCart,
   KlbUser,
 } from '../dts/klb';
 import { useCart } from '../components/klb/KlbOrder/useCart';
 export type RootState = {
   user: KlbUser | null;
   cartCount: number;
+  cart: KlbCatalogCart | null;
 };
 
 export const useFVStore = defineStore({
@@ -16,6 +18,7 @@ export const useFVStore = defineStore({
   state: (): RootState => ({
     user: null,
     cartCount: 0,
+    cart: null,
   }),
   getters: {
     isAuth: (state): boolean => {
@@ -27,11 +30,13 @@ export const useFVStore = defineStore({
       const _cart = await useCart().getCart();
       if (_cart && _cart.result == 'success') {
         this.cartCount = _cart.data.products.length;
+        this.cart = _cart.data;
       }
     },
     async refreshCartData(_cart: KlbAPICatalogCart) {
       if (_cart && _cart.result == 'success') {
         this.cartCount = _cart.data.products.length;
+        this.cart = _cart.data;
       }
     },
     async refreshUser(params = {}) {

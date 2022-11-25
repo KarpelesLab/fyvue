@@ -48,6 +48,10 @@ html, body {
   @apply bg-fv-neutral-200 text-fv-neutral-800 font-semibold text-xs px-2.5 py-0.5 rounded dark:bg-fv-neutral-700 dark:text-fv-neutral-300;
 }
 
+.fv-relative {
+  @apply relative;
+}
+
 .btn-box, .box-btn {
   @apply inline-flex space-x-2;
 }
@@ -474,6 +478,9 @@ button[type=submit] {
 }
 .input-group .input-box textarea {
   @apply h-32;
+}
+.input-group .input-box select {
+  @apply bg-fv-neutral-50 dark:bg-fv-neutral-700;
 }
 .input-group .label-basic {
   @apply block mt-2 mb-1 text-sm font-bold text-fv-neutral-600 dark:text-fv-neutral-300 uppercase;

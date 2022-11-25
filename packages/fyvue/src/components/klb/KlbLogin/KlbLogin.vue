@@ -18,6 +18,7 @@ const props = withDefaults(
   defineProps<{
     returnDefault?: string;
     forceAction?: string;
+    onSuccess?: Function;
   }>(),
   {
     returnDefault: '/',
@@ -121,6 +122,9 @@ const userFlow = async (params: paramsType = { initial: false }) => {
     }
   )) as KlbUserFlow;
   if (response.value?.result == 'success') {
+    if (props.onSuccess) {
+      await props.onSuccess();
+    }
     if (response.value.data.url) {
       window.location.href = response.value.data.url;
       return;

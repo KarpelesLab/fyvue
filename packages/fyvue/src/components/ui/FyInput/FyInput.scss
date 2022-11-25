@@ -27,6 +27,9 @@
     textarea {
       @apply h-32;
     }
+    select {
+      @apply bg-fv-neutral-50 dark:bg-fv-neutral-700;
+    }
   }
   .label-basic {
     @apply block mt-2 mb-1 text-sm font-bold text-fv-neutral-600 dark:text-fv-neutral-300 uppercase;
