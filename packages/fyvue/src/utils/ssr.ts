@@ -62,12 +62,8 @@ export const useHistory = defineStore({
 });
 
 export const isSSRRendered = () => {
-  /*
-  console.log(getMode())
   const state = getInitialState();
   return !!(state && state.isSSRRendered == true);
-  */
-  return !!(getMode() != 'client');
 };
 
 export const setupClient = (router: Router, pinia: Pinia) => {

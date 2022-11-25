@@ -7,7 +7,7 @@ import i18next from 'i18next';
 import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers, watch, withAsyncContext } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { defineStore } from 'pinia';
-import { getMode, getInitialState, getPath, getUuid, rest as rest$1, getLocale as getLocale$1, getUrl } from '@karpeleslab/klbfw';
+import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale as getLocale$1, getUrl } from '@karpeleslab/klbfw';
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString, useHead } from '@vueuse/head';
 import { useDark, useToggle, useStorage } from '@vueuse/core';
@@ -58,7 +58,8 @@ const useHistory = defineStore({
     },
 });
 const isSSRRendered = () => {
-    return !!(getMode() != 'client');
+    const state = getInitialState();
+    return !!(state && state.isSSRRendered == true);
 };
 const setupClient = (router, pinia) => {
     const initialState = getInitialState();
@@ -164,7 +165,7 @@ const stringHashcode = (str) => {
 function rest(url, method = 'GET', params = {}, ctx = {}) {
     const requestHash = stringHashcode(url + method + JSON.stringify(params));
     const restState = useRestState();
-    if (!isSSRRendered() && restState.results[requestHash]) {
+    if (isSSRRendered() && restState.results[requestHash]) {
         const result = { ...restState.getByHash(requestHash) };
         restState.delResult(requestHash);
         return new Promise((resolve, reject) => {
@@ -179,12 +180,12 @@ function rest(url, method = 'GET', params = {}, ctx = {}) {
     return new Promise((resolve, reject) => {
         rest$1(url, method, params, ctx)
             .then((restResult) => {
-            if (isSSRRendered())
+            if (getMode() == 'ssr')
                 restState.addResult(requestHash, restResult);
             resolve(restResult);
         })
             .catch((err) => {
-            if (isSSRRendered()) {
+            if (getMode() == 'ssr') {
                 err.fvReject = true;
                 restState.addResult(requestHash, err);
             }

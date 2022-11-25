@@ -60,7 +60,8 @@ const useHistory = pinia.defineStore({
     },
 });
 const isSSRRendered = () => {
-    return !!(klbfw.getMode() != 'client');
+    const state = klbfw.getInitialState();
+    return !!(state && state.isSSRRendered == true);
 };
 const setupClient = (router, pinia) => {
     const initialState = klbfw.getInitialState();
@@ -166,7 +167,7 @@ const stringHashcode = (str) => {
 function rest(url, method = 'GET', params = {}, ctx = {}) {
     const requestHash = stringHashcode(url + method + JSON.stringify(params));
     const restState = useRestState();
-    if (!isSSRRendered() && restState.results[requestHash]) {
+    if (isSSRRendered() && restState.results[requestHash]) {
         const result = { ...restState.getByHash(requestHash) };
         restState.delResult(requestHash);
         return new Promise((resolve, reject) => {
@@ -181,12 +182,12 @@ function rest(url, method = 'GET', params = {}, ctx = {}) {
     return new Promise((resolve, reject) => {
         klbfw.rest(url, method, params, ctx)
             .then((restResult) => {
-            if (isSSRRendered())
+            if (klbfw.getMode() == 'ssr')
                 restState.addResult(requestHash, restResult);
             resolve(restResult);
         })
             .catch((err) => {
-            if (isSSRRendered()) {
+            if (klbfw.getMode() == 'ssr') {
                 err.fvReject = true;
                 restState.addResult(requestHash, err);
             }
