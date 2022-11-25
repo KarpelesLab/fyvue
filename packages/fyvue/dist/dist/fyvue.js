@@ -4219,6 +4219,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         }
         eventBus.emit("cmspage-loading", false);
       });
+      console.log(_page);
       if (_page && _page.result == "success") {
         page.value = _page;
         pageHead.title = page.value.data.content_cms_entry_data.Title;
