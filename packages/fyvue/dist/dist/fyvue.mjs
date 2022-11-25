@@ -177,6 +177,11 @@ async function rest(url, method = 'GET', params = {}, ctx = {}) {
         });
     }
     return new Promise((resolve, reject) => {
+        console.log('----klbrest----');
+        console.log(`KLBRESTCall: ${method} ${url}`);
+        console.log('Params: ', params);
+        console.log('CTX: ', ctx);
+        console.log('----endklbrest----');
         rest$1(url, method, params, ctx)
             .then((restResult) => {
             if (getMode() == 'ssr')
@@ -4201,6 +4206,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const loadPage = async (slug) => {
       eventBus.emit("cmspage-loading", true);
       is404.value = false;
+      console.log("/Content/Cms/@pages:loadSlug", "GET", {
+        slug
+      });
       const _page = await rest(
         "/Content/Cms/@pages:loadSlug",
         "GET",
@@ -4225,7 +4233,6 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       title: computed(() => `${pageHead.title}`)
     });
     [__temp, __restore] = withAsyncContext(() => loadPage(route.params.slug)), await __temp, __restore();
-    console.log(route.params, route.path);
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$1, [
         createVNode(FyLoader, { id: "cmspage" }),

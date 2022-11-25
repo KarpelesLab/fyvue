@@ -27,6 +27,9 @@ watch(
 const loadPage = async (slug) => {
   eventBus.emit('cmspage-loading', true);
   is404.value = false;
+  console.log('/Content/Cms/@pages:loadSlug', 'GET', {
+    slug: slug,
+  });
   const _page = await rest<KlbAPIResultUnknown>(
     '/Content/Cms/@pages:loadSlug',
     'GET',
@@ -51,7 +54,6 @@ useHead({
   title: computed(() => `${pageHead.title}`),
 });
 await loadPage(route.params.slug);
-console.log(route.params, route.path);
 </script>
 <template>
   <div class="fv-relative">
