@@ -4191,26 +4191,23 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     });
     const page = vue.ref();
     const route = vueRouter.useRoute();
-    const pageSlug = vue.ref(route.params.slug);
     const is404 = vue.ref(false);
     const eventBus = useEventBus();
     vue.watch(
       () => route.params.slug,
       async (v) => {
-        if (v && v !== pageSlug.value) {
-          pageSlug.value = v;
-          await loadPage();
-        }
+        if (v)
+          await loadPage(v);
       }
     );
-    const loadPage = async () => {
+    const loadPage = async (slug) => {
       eventBus.emit("cmspage-loading", true);
       is404.value = false;
       const _page = await rest(
         "/Content/Cms/@pages:loadSlug",
         "GET",
         {
-          slug: pageSlug.value
+          slug
         }
       ).catch((err) => {
         if (err.code == 404) {
@@ -4229,7 +4226,8 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     head.useHead({
       title: vue.computed(() => `${pageHead.title}`)
     });
-    [__temp, __restore] = vue.withAsyncContext(() => loadPage()), await __temp, __restore();
+    [__temp, __restore] = vue.withAsyncContext(() => loadPage(route.params.slug)), await __temp, __restore();
+    console.log(route.params, route.path);
     return (_ctx, _cache) => {
       return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
         vue.createVNode(FyLoader, { id: "cmspage" }),

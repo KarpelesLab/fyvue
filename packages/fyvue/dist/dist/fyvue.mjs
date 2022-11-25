@@ -4189,26 +4189,23 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     });
     const page = ref();
     const route = useRoute();
-    const pageSlug = ref(route.params.slug);
     const is404 = ref(false);
     const eventBus = useEventBus();
     watch(
       () => route.params.slug,
       async (v) => {
-        if (v && v !== pageSlug.value) {
-          pageSlug.value = v;
-          await loadPage();
-        }
+        if (v)
+          await loadPage(v);
       }
     );
-    const loadPage = async () => {
+    const loadPage = async (slug) => {
       eventBus.emit("cmspage-loading", true);
       is404.value = false;
       const _page = await rest(
         "/Content/Cms/@pages:loadSlug",
         "GET",
         {
-          slug: pageSlug.value
+          slug
         }
       ).catch((err) => {
         if (err.code == 404) {
@@ -4227,7 +4224,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     useHead({
       title: computed(() => `${pageHead.title}`)
     });
-    [__temp, __restore] = withAsyncContext(() => loadPage()), await __temp, __restore();
+    [__temp, __restore] = withAsyncContext(() => loadPage(route.params.slug)), await __temp, __restore();
+    console.log(route.params, route.path);
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$1, [
         createVNode(FyLoader, { id: "cmspage" }),

@@ -14,28 +14,24 @@ const pageHead = reactive({
 });
 const page = ref();
 const route = useRoute();
-const pageSlug = ref(route.params.slug);
 const is404 = ref<Boolean>(false);
 const eventBus = useEventBus();
 
 watch(
   () => route.params.slug,
   async (v) => {
-    if (v && v !== pageSlug.value) {
-      pageSlug.value = v;
-      await loadPage();
-    }
+    if (v) await loadPage(v);
   }
 );
 
-const loadPage = async () => {
+const loadPage = async (slug) => {
   eventBus.emit('cmspage-loading', true);
   is404.value = false;
   const _page = await rest<KlbAPIResultUnknown>(
     '/Content/Cms/@pages:loadSlug',
     'GET',
     {
-      slug: pageSlug.value,
+      slug: slug,
     }
   ).catch((err) => {
     if (err.code == 404) {
@@ -54,7 +50,8 @@ const loadPage = async () => {
 useHead({
   title: computed(() => `${pageHead.title}`),
 });
-await loadPage();
+await loadPage(route.params.slug);
+console.log(route.params, route.path);
 </script>
 <template>
   <div class="fv-relative">
