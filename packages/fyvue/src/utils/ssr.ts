@@ -71,7 +71,7 @@ export const setupClient = (router: Router, pinia: Pinia) => {
 
   if (isSSRRendered()) {
     if (initialState && initialState.piniaState) {
-      pinia.state.value = JSON.parse(initialState.piniaState);
+      pinia.state.value = initialState.piniaState;
     }
   }
   useHistory(pinia)._setRouter(router);
@@ -135,7 +135,7 @@ export async function handleSSR(
       }
     }
     useHistory(pinia)._setRouter(null);
-    result.initial.piniaState = JSON.stringify(pinia.state.value);
+    result.initial.piniaState = pinia.state.value;
 
     return cb(result);
   } catch (e) {
