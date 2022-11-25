@@ -164,7 +164,7 @@ const stringHashcode = (str) => {
 function rest(url, method = 'GET', params = {}, ctx = {}) {
     const requestHash = stringHashcode(url + method + JSON.stringify(params));
     const restState = useRestState();
-    if (isSSRRendered() && restState.results[requestHash]) {
+    if (!isSSRRendered() && restState.results[requestHash]) {
         const result = { ...restState.getByHash(requestHash) };
         restState.delResult(requestHash);
         return new Promise((resolve, reject) => {

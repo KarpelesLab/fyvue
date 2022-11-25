@@ -50,7 +50,7 @@ export function rest<ResultType extends KlbAPIResult>(
 ): Promise<ResultType> {
   const requestHash = stringHashcode(url + method + JSON.stringify(params));
   const restState = useRestState();
-  if (isSSRRendered() && restState.results[requestHash]) {
+  if (!isSSRRendered() && restState.results[requestHash]) {
     const result = { ...restState.getByHash(requestHash) } as ResultType;
     restState.delResult(requestHash);
     return new Promise<ResultType>((resolve, reject) => {
