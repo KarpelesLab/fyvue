@@ -10,7 +10,7 @@ import FyInput from './FyInput/FyInput.vue';
 import FyPaging from './FyPaging/FyPaging.vue';
 import FyNavbar from './FyNavbar/FyNavbar.vue';
 import FyTabs from './FyTabs/FyTabs.vue';
-
+import Fy404View from './Fy404/Fy404View.vue';
 export default {
   FyModal,
   FyCirclePercent,
@@ -24,4 +24,5 @@ export default {
   FyPaging,
   FyNavbar,
   FyTabs,
+  Fy404View,
 };

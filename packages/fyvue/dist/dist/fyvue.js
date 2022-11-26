@@ -448,9 +448,9 @@ var _export_sfc = (sfc, props) => {
   return target;
 };
 
-const _hoisted_1$q = { class: "parent" };
-const _hoisted_2$p = { class: "modal-container" };
-const _sfc_main$r = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_1$r = { class: "parent" };
+const _hoisted_2$q = { class: "modal-container" };
+const _sfc_main$s = /* @__PURE__ */ vue.defineComponent({
   __name: "FyModal",
   props: {
     id: null,
@@ -498,11 +498,11 @@ const _sfc_main$r = /* @__PURE__ */ vue.defineComponent({
             class: "fy-modal"
           }, {
             default: vue.withCtx(() => [
-              vue.createElementVNode("div", _hoisted_1$q, [
+              vue.createElementVNode("div", _hoisted_1$r, [
                 vue.createVNode(vue.unref(vue$1.DialogPanel), { class: "modal-parent" }, {
                   default: vue.withCtx(() => [
                     vue.renderSlot(_ctx.$slots, "before"),
-                    vue.createElementVNode("div", _hoisted_2$p, [
+                    vue.createElementVNode("div", _hoisted_2$q, [
                       __props.title ? (vue.openBlock(), vue.createBlock(vue.unref(vue$1.DialogTitle), {
                         key: 0,
                         class: "title"
@@ -543,20 +543,20 @@ const _sfc_main$r = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyModal = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__file", "FyModal.vue"]]);
+var FyModal = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "FyModal.vue"]]);
 
-const _hoisted_1$p = { class: "fy-circle-percent" };
-const _hoisted_2$o = {
+const _hoisted_1$q = { class: "fy-circle-percent" };
+const _hoisted_2$p = {
   viewBox: "0 0 36 36",
   class: "circular-chart"
 };
-const _hoisted_3$o = /* @__PURE__ */ vue.createElementVNode("path", {
+const _hoisted_3$p = /* @__PURE__ */ vue.createElementVNode("path", {
   class: "circle-bg",
   d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1);
-const _hoisted_4$l = ["stroke-dasharray", "stroke"];
-const _hoisted_5$i = ["x", "y"];
-const _sfc_main$q = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_4$m = ["stroke-dasharray", "stroke"];
+const _hoisted_5$j = ["x", "y"];
+const _sfc_main$r = /* @__PURE__ */ vue.defineComponent({
   __name: "FyCirclePercent",
   props: {
     percent: { default: 100 },
@@ -565,40 +565,40 @@ const _sfc_main$q = /* @__PURE__ */ vue.defineComponent({
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$p, [
-        (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$o, [
-          _hoisted_3$o,
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$q, [
+        (vue.openBlock(), vue.createElementBlock("svg", _hoisted_2$p, [
+          _hoisted_3$p,
           vue.createElementVNode("path", {
             class: "circle",
             "stroke-dasharray": `${__props.percent}, 100`,
             stroke: __props.color,
             d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
-          }, null, 8, _hoisted_4$l),
+          }, null, 8, _hoisted_4$m),
           vue.createElementVNode("text", {
             x: __props.textXY[0].toString(),
             y: __props.textXY[1].toString(),
             class: "percentage"
-          }, vue.toDisplayString(__props.percent) + "% ", 9, _hoisted_5$i)
+          }, vue.toDisplayString(__props.percent) + "% ", 9, _hoisted_5$j)
         ]))
       ]);
     };
   }
 });
-var FyCirclePercent = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__file", "FyCirclePercent.vue"]]);
+var FyCirclePercent = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__file", "FyCirclePercent.vue"]]);
 
-const _hoisted_1$o = { class: "parent" };
-const _hoisted_2$n = {
+const _hoisted_1$p = { class: "parent" };
+const _hoisted_2$o = {
   class: "modal-container",
   style: { "width": "350px !important" }
 };
-const _hoisted_3$n = { class: "modal-content" };
-const _hoisted_4$k = {
+const _hoisted_3$o = { class: "modal-content" };
+const _hoisted_4$l = {
   key: 0,
   class: "confirm-modal-desc default-p"
 };
-const _hoisted_5$h = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
-const _hoisted_6$h = { class: "btn-box" };
-const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_5$i = /* @__PURE__ */ vue.createElementVNode("br", null, null, -1);
+const _hoisted_6$i = { class: "btn-box" };
+const _sfc_main$q = /* @__PURE__ */ vue.defineComponent({
   __name: "FyConfirm",
   setup(__props) {
     const eventBus = useEventBus();
@@ -641,9 +641,9 @@ const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
           style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "43 !important" }
         }, {
           default: vue.withCtx(() => [
-            vue.createElementVNode("div", _hoisted_1$o, [
+            vue.createElementVNode("div", _hoisted_1$p, [
               vue.createVNode(vue.unref(vue$1.DialogOverlay)),
-              vue.createElementVNode("div", _hoisted_2$n, [
+              vue.createElementVNode("div", _hoisted_2$o, [
                 vue.createElementVNode("div", null, [
                   vue.createVNode(vue.unref(vue$1.DialogTitle), { class: "title" }, {
                     default: vue.withCtx(() => [
@@ -651,10 +651,10 @@ const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
                     ]),
                     _: 1
                   }),
-                  vue.createElementVNode("div", _hoisted_3$n, [
-                    desc.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$k, vue.toDisplayString(desc.value), 1)) : vue.createCommentVNode("v-if", true),
-                    _hoisted_5$h,
-                    vue.createElementVNode("div", _hoisted_6$h, [
+                  vue.createElementVNode("div", _hoisted_3$o, [
+                    desc.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$l, vue.toDisplayString(desc.value), 1)) : vue.createCommentVNode("v-if", true),
+                    _hoisted_5$i,
+                    vue.createElementVNode("div", _hoisted_6$i, [
                       vue.createElementVNode("button", {
                         onClick: _cache[0] || (_cache[0] = ($event) => confirm.value = false),
                         class: "btn neutral btn-defaults"
@@ -675,15 +675,15 @@ const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyConfirm = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__file", "FyConfirm.vue"]]);
+var FyConfirm = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__file", "FyConfirm.vue"]]);
 
-const _hoisted_1$n = {
+const _hoisted_1$o = {
   class: "fy-breadcrumb",
   "aria-label": "Breadcrumb"
 };
-const _hoisted_2$m = ["aria-current"];
-const _hoisted_3$m = { key: 2 };
-const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_2$n = ["aria-current"];
+const _hoisted_3$n = { key: 2 };
+const _sfc_main$p = /* @__PURE__ */ vue.defineComponent({
   __name: "FyBreadcrumb",
   props: {
     nav: { default: () => [] },
@@ -692,7 +692,7 @@ const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
   setup(__props) {
     return (_ctx, _cache) => {
       const _component_router_link = vue.resolveComponent("router-link");
-      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$n, [
+      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$o, [
         vue.createElementVNode("ol", null, [
           (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.nav, (item, index) => {
             return vue.openBlock(), vue.createElementBlock("li", {
@@ -712,20 +712,20 @@ const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
                   vue.createTextVNode(" " + vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
                 ]),
                 _: 2
-              }, 1032, ["to"])) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$m, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
-            ], 10, _hoisted_2$m);
+              }, 1032, ["to"])) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$n, vue.toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+            ], 10, _hoisted_2$n);
           }), 128))
         ])
       ]);
     };
   }
 });
-var FyBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__file", "FyBreadcrumb.vue"]]);
+var FyBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__file", "FyBreadcrumb.vue"]]);
 
-const _hoisted_1$m = { class: "fy-step-bar" };
-const _hoisted_2$l = { class: "bar-bg" };
-const _hoisted_3$l = { class: "label" };
-const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_1$n = { class: "fy-step-bar" };
+const _hoisted_2$m = { class: "bar-bg" };
+const _hoisted_3$m = { class: "label" };
+const _sfc_main$o = /* @__PURE__ */ vue.defineComponent({
   __name: "FySteps",
   props: {
     steps: { default: () => [] },
@@ -742,8 +742,8 @@ const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
       return "past-step";
     };
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$m, [
-        vue.createElementVNode("div", _hoisted_2$l, [
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$n, [
+        vue.createElementVNode("div", _hoisted_2$m, [
           vue.createElementVNode("div", {
             class: "bar",
             style: vue.normalizeStyle(`width:${vue.unref(barWidth)}%`)
@@ -755,7 +755,7 @@ const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
               key: index,
               class: vue.normalizeClass(getStepClass(index))
             }, [
-              vue.createElementVNode("span", _hoisted_3$l, vue.toDisplayString(_ctx.$t(step.name)), 1),
+              vue.createElementVNode("span", _hoisted_3$m, vue.toDisplayString(_ctx.$t(step.name)), 1),
               step.icon ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(step.icon), {
                 key: 0,
                 class: "icon"
@@ -767,18 +767,18 @@ const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FySteps = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__file", "FySteps.vue"]]);
+var FySteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__file", "FySteps.vue"]]);
 
-const _hoisted_1$l = {
+const _hoisted_1$m = {
   key: 0,
   class: "border-collapse w-full md:mx-0 fy-datatable"
 };
-const _hoisted_2$k = { key: 0 };
-const _hoisted_3$k = { class: "div" };
-const _hoisted_4$j = { class: "div-cell" };
-const _hoisted_5$g = { key: 0 };
-const _hoisted_6$g = { key: 1 };
-const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
+const _hoisted_2$l = { key: 0 };
+const _hoisted_3$l = { class: "div" };
+const _hoisted_4$k = { class: "div-cell" };
+const _hoisted_5$h = { key: 0 };
+const _hoisted_6$h = { key: 1 };
+const _sfc_main$n = /* @__PURE__ */ vue.defineComponent({
   __name: "FyDatatable",
   props: {
     showHeaders: { type: Boolean, default: true },
@@ -790,8 +790,8 @@ const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
       return i % 2 == 0 ? "bg-color-1" : "bg-color-2";
     };
     return (_ctx, _cache) => {
-      return __props.data && __props.data.length > 0 ? (vue.openBlock(), vue.createElementBlock("table", _hoisted_1$l, [
-        __props.showHeaders ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_2$k, [
+      return __props.data && __props.data.length > 0 ? (vue.openBlock(), vue.createElementBlock("table", _hoisted_1$m, [
+        __props.showHeaders ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_2$l, [
           vue.createElementVNode("tr", null, [
             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.headers, (title) => {
               return vue.openBlock(), vue.createElementBlock("th", {
@@ -811,12 +811,12 @@ const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
                   key: title,
                   class: "td"
                 }, [
-                  vue.createElementVNode("div", _hoisted_3$k, vue.toDisplayString(title), 1),
-                  vue.createElementVNode("div", _hoisted_4$j, [
+                  vue.createElementVNode("div", _hoisted_3$l, vue.toDisplayString(title), 1),
+                  vue.createElementVNode("div", _hoisted_4$k, [
                     vue.renderSlot(_ctx.$slots, `${property}_item`, {
                       data: { prop: item[property], item, idx: index }
                     }, () => [
-                      item[property] ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$g, vue.toDisplayString(item[property].toString()), 1)) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_6$g, "n/a"))
+                      item[property] ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$h, vue.toDisplayString(item[property].toString()), 1)) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_6$h, "n/a"))
                     ])
                   ])
                 ]);
@@ -828,19 +828,19 @@ const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyDatatable = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "FyDatatable.vue"]]);
+var FyDatatable = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__file", "FyDatatable.vue"]]);
 
-const _hoisted_1$k = {
+const _hoisted_1$l = {
   key: 0,
   class: "fy-table"
 };
-const _hoisted_2$j = { class: "table-container" };
-const _hoisted_3$j = { class: "table-sub-container" };
-const _hoisted_4$i = { class: "table-scroll" };
-const _hoisted_5$f = { key: 0 };
-const _hoisted_6$f = { key: 0 };
+const _hoisted_2$k = { class: "table-container" };
+const _hoisted_3$k = { class: "table-sub-container" };
+const _hoisted_4$j = { class: "table-scroll" };
+const _hoisted_5$g = { key: 0 };
+const _hoisted_6$g = { key: 0 };
 const _hoisted_7$e = { key: 1 };
-const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$m = /* @__PURE__ */ vue.defineComponent({
   __name: "FyTable",
   props: {
     showHeaders: { type: Boolean, default: true },
@@ -849,12 +849,12 @@ const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return __props.data && __props.data.length ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$k, [
-        vue.createElementVNode("div", _hoisted_2$j, [
-          vue.createElementVNode("div", _hoisted_3$j, [
-            vue.createElementVNode("div", _hoisted_4$i, [
+      return __props.data && __props.data.length ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$l, [
+        vue.createElementVNode("div", _hoisted_2$k, [
+          vue.createElementVNode("div", _hoisted_3$k, [
+            vue.createElementVNode("div", _hoisted_4$j, [
               vue.createElementVNode("table", null, [
-                __props.showHeaders ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_5$f, [
+                __props.showHeaders ? (vue.openBlock(), vue.createElementBlock("thead", _hoisted_5$g, [
                   vue.createElementVNode("tr", null, [
                     (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.headers, (title, property) => {
                       return vue.openBlock(), vue.createElementBlock("th", { key: property }, vue.toDisplayString(title), 1);
@@ -875,7 +875,7 @@ const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
                               idx: index
                             }
                           }, () => [
-                            item[property] ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_6$f, vue.toDisplayString(item[property]), 1)) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_7$e, "n/a"))
+                            item[property] ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_6$g, vue.toDisplayString(item[property]), 1)) : (vue.openBlock(), vue.createElementBlock("span", _hoisted_7$e, "n/a"))
                           ])
                         ]);
                       }), 128))
@@ -890,21 +890,21 @@ const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyTable = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "FyTable.vue"]]);
+var FyTable = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "FyTable.vue"]]);
 
-const _hoisted_1$j = /* @__PURE__ */ vue.createElementVNode("path", {
+const _hoisted_1$k = /* @__PURE__ */ vue.createElementVNode("path", {
   d: "M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z",
   fill: "currentColor"
 }, null, -1);
-const _hoisted_2$i = /* @__PURE__ */ vue.createElementVNode("path", {
+const _hoisted_2$j = /* @__PURE__ */ vue.createElementVNode("path", {
   d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
   fill: "currentFill"
 }, null, -1);
-const _hoisted_3$i = [
-  _hoisted_1$j,
-  _hoisted_2$i
+const _hoisted_3$j = [
+  _hoisted_1$k,
+  _hoisted_2$j
 ];
-const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$l = /* @__PURE__ */ vue.defineComponent({
   __name: "DefaultLoader",
   props: {
     size: { default: "16" },
@@ -920,7 +920,7 @@ const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
           viewBox: "0 0 100 101",
           fill: "none",
           xmlns: "http://www.w3.org/2000/svg"
-        }, _hoisted_3$i, 4)),
+        }, _hoisted_3$j, 4)),
         vue.createElementVNode("span", {
           class: vue.normalizeClass(!__props.showLoadingText ? "is-sr" : "loader-text")
         }, vue.toDisplayString(_ctx.$t("global_loading_text")), 3)
@@ -928,13 +928,13 @@ const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var DefaultLoader = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "DefaultLoader.vue"]]);
+var DefaultLoader = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "DefaultLoader.vue"]]);
 
-const _hoisted_1$i = {
+const _hoisted_1$j = {
   key: 0,
   class: "fy-loader"
 };
-const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$k = /* @__PURE__ */ vue.defineComponent({
   __name: "FyLoader",
   props: {
     id: null,
@@ -966,7 +966,7 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
     });
     return (_ctx, _cache) => {
       return vue.openBlock(), vue.createElementBlock("div", null, [
-        loading.value || __props.force ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$i, [
+        loading.value || __props.force ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$j, [
           vue.createElementVNode("div", {
             class: "loader-container",
             role: "status",
@@ -982,20 +982,20 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyLoader = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyLoader.vue"]]);
+var FyLoader = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "FyLoader.vue"]]);
 
-const _hoisted_1$h = { class: "input-group" };
-const _hoisted_2$h = ["for"];
-const _hoisted_3$h = ["aria-label", "id", "true-value", "false-value"];
-const _hoisted_4$h = ["href"];
-const _hoisted_5$e = {
+const _hoisted_1$i = { class: "input-group" };
+const _hoisted_2$i = ["for"];
+const _hoisted_3$i = ["aria-label", "id", "true-value", "false-value"];
+const _hoisted_4$i = ["href"];
+const _hoisted_5$f = {
   key: 2,
   class: "is-req"
 };
-const _hoisted_6$e = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
+const _hoisted_6$f = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
 const _hoisted_7$d = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
 const _hoisted_8$c = ["aria-label", "id"];
-const _hoisted_9$a = ["value"];
+const _hoisted_9$b = ["value"];
 const _hoisted_10$9 = {
   key: 2,
   class: "form-error-label"
@@ -1004,7 +1004,7 @@ const _hoisted_11$9 = {
   key: 3,
   class: "help-text"
 };
-const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
   __name: "FyInput",
   props: {
     id: null,
@@ -1063,7 +1063,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
     });
     expose({ focus, getInputRef });
     return (_ctx, _cache) => {
-      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$h, [
+      return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$i, [
         __props.showLabel && __props.id && __props.label ? (vue.openBlock(), vue.createElementBlock("label", {
           key: 0,
           class: "label-basic",
@@ -1080,7 +1080,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
             "true-value": __props.checkboxTrueValue,
             "false-value": __props.checkboxFalseValue,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => vue.isRef(modelCheckbox) ? modelCheckbox.value = $event : null)
-          }, null, 10, _hoisted_3$h)), [
+          }, null, 10, _hoisted_3$i)), [
             [vue.vModelCheckbox, vue.unref(modelCheckbox)]
           ]) : vue.createCommentVNode("v-if", true),
           vue.createTextVNode(" " + vue.toDisplayString(__props.label) + " ", 1),
@@ -1091,9 +1091,9 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
             target: "_blank"
           }, [
             vue.createVNode(vue.unref(render$8))
-          ], 8, _hoisted_4$h)) : vue.createCommentVNode("v-if", true),
-          __props.req ? (vue.openBlock(), vue.createElementBlock("sup", _hoisted_5$e, "*")) : vue.createCommentVNode("v-if", true)
-        ], 8, _hoisted_2$h)) : vue.createCommentVNode("v-if", true),
+          ], 8, _hoisted_4$i)) : vue.createCommentVNode("v-if", true),
+          __props.req ? (vue.openBlock(), vue.createElementBlock("sup", _hoisted_5$f, "*")) : vue.createCommentVNode("v-if", true)
+        ], 8, _hoisted_2$i)) : vue.createCommentVNode("v-if", true),
         !["checkbox", "radiobox"].includes(__props.type) ? (vue.openBlock(), vue.createElementBlock("div", {
           key: 1,
           class: vue.normalizeClass(["input-box", { error: vue.unref(checkErrors), disabled: __props.disabled }])
@@ -1111,7 +1111,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => vue.isRef(model) ? model.value = $event : null),
             type: __props.type,
             disabled: __props.disabled
-          }, null, 8, _hoisted_6$e)), [
+          }, null, 8, _hoisted_6$f)), [
             [vue.vModelDynamic, vue.unref(model)]
           ]) : vue.createCommentVNode("v-if", true),
           __props.type == "textarea" ? vue.withDirectives((vue.openBlock(), vue.createElementBlock("textarea", {
@@ -1141,7 +1141,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
               return vue.openBlock(), vue.createElementBlock("option", {
                 value: opt[0],
                 key: opt[0].toString()
-              }, vue.toDisplayString(opt[1]), 9, _hoisted_9$a);
+              }, vue.toDisplayString(opt[1]), 9, _hoisted_9$b);
             }), 128))
           ], 8, _hoisted_8$c)), [
             [vue.vModelSelect, vue.unref(model)]
@@ -1154,33 +1154,33 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "FyInput.vue"]]);
+var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
-const _hoisted_1$g = {
+const _hoisted_1$h = {
   key: 0,
   class: "fy-paging"
 };
-const _hoisted_2$g = { class: "paging-container" };
-const _hoisted_3$g = { "aria-label": "Pagination" };
-const _hoisted_4$g = { class: "is-sr" };
-const _hoisted_5$d = {
+const _hoisted_2$h = { class: "paging-container" };
+const _hoisted_3$h = { "aria-label": "Pagination" };
+const _hoisted_4$h = { class: "is-sr" };
+const _hoisted_5$e = {
   key: 2,
   class: "dots"
 };
-const _hoisted_6$d = ["onClick"];
+const _hoisted_6$e = ["onClick"];
 const _hoisted_7$c = {
   href: "#",
   "aria-current": "page",
   class: "active"
 };
 const _hoisted_8$b = ["onClick"];
-const _hoisted_9$9 = {
+const _hoisted_9$a = {
   key: 3,
   class: "dots"
 };
 const _hoisted_10$8 = { class: "is-sr" };
 const _hoisted_11$8 = { class: "paging-text" };
-const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
   __name: "FyPaging",
   props: {
     items: null,
@@ -1226,16 +1226,16 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
       });
     };
     return (_ctx, _cache) => {
-      return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$g, [
-        vue.createElementVNode("div", _hoisted_2$g, [
-          vue.createElementVNode("nav", _hoisted_3$g, [
+      return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$h, [
+        vue.createElementVNode("div", _hoisted_2$h, [
+          vue.createElementVNode("nav", _hoisted_3$h, [
             __props.items.page_no >= 2 ? (vue.openBlock(), vue.createElementBlock("a", {
               key: 0,
               href: "javascript:void(0);",
               onClick: _cache[0] || (_cache[0] = ($event) => prev()),
               class: "prev-next"
             }, [
-              vue.createElementVNode("span", _hoisted_4$g, vue.toDisplayString(_ctx.$t("previous_paging")), 1),
+              vue.createElementVNode("span", _hoisted_4$h, vue.toDisplayString(_ctx.$t("previous_paging")), 1),
               vue.createVNode(vue.unref(render$c), { class: "fv-icon-base" })
             ])) : vue.createCommentVNode("v-if", true),
             __props.items.page_no - 2 > 1 ? (vue.openBlock(), vue.createElementBlock("a", {
@@ -1244,7 +1244,7 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
               href: "javascript:void(0);",
               onClick: _cache[1] || (_cache[1] = ($event) => page(1))
             }, " 1 ")) : vue.createCommentVNode("v-if", true),
-            __props.items.page_no - 2 > 2 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$d, " ... ")) : vue.createCommentVNode("v-if", true),
+            __props.items.page_no - 2 > 2 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_5$e, " ... ")) : vue.createCommentVNode("v-if", true),
             (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, vue.renderList(2, (i) => {
               return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
                 __props.items.page_no - (3 - i) >= 1 ? (vue.openBlock(), vue.createElementBlock("a", {
@@ -1252,7 +1252,7 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
                   href: "javascript:void(0);",
                   key: `${i}-sm`,
                   onClick: ($event) => page(__props.items.page_no - (3 - i))
-                }, vue.toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_6$d)) : vue.createCommentVNode("v-if", true)
+                }, vue.toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_6$e)) : vue.createCommentVNode("v-if", true)
               ], 64);
             }), 64)),
             vue.createElementVNode("a", _hoisted_7$c, vue.toDisplayString(__props.items.page_no), 1),
@@ -1266,7 +1266,7 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
                 }, vue.toDisplayString(__props.items.page_no + i), 9, _hoisted_8$b)) : vue.createCommentVNode("v-if", true)
               ], 64);
             }), 64)),
-            __props.items.page_no + 2 < __props.items.page_max - 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_9$9, " ... ")) : vue.createCommentVNode("v-if", true),
+            __props.items.page_no + 2 < __props.items.page_max - 1 ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_9$a, " ... ")) : vue.createCommentVNode("v-if", true),
             __props.items.page_no + 2 < __props.items.page_max ? (vue.openBlock(), vue.createElementBlock("a", {
               key: 4,
               class: "innactive",
@@ -1293,7 +1293,7 @@ const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyPaging = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "FyPaging.vue"]]);
+var FyPaging = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "FyPaging.vue"]]);
 
 function useCart() {
     return {
@@ -1420,12 +1420,12 @@ const ClientOnly = vue.defineComponent({
     },
 });
 
-const _hoisted_1$f = { class: "fy-navbar" };
-const _hoisted_2$f = { class: "nav-container" };
-const _hoisted_3$f = { key: 0 };
-const _hoisted_4$f = { class: "nav-actions" };
-const _hoisted_5$c = { class: "badge" };
-const _hoisted_6$c = /* @__PURE__ */ vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_1$g = { class: "fy-navbar" };
+const _hoisted_2$g = { class: "nav-container" };
+const _hoisted_3$g = { key: 0 };
+const _hoisted_4$g = { class: "nav-actions" };
+const _hoisted_5$d = { class: "badge" };
+const _hoisted_6$d = /* @__PURE__ */ vue.createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
 const _hoisted_7$b = /* @__PURE__ */ vue.createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
@@ -1439,10 +1439,10 @@ const _hoisted_7$b = /* @__PURE__ */ vue.createElementVNode("svg", {
   })
 ], -1);
 const _hoisted_8$a = [
-  _hoisted_6$c,
+  _hoisted_6$d,
   _hoisted_7$b
 ];
-const _hoisted_9$8 = { class: "main-ul" };
+const _hoisted_9$9 = { class: "main-ul" };
 const _hoisted_10$7 = /* @__PURE__ */ vue.createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
@@ -1459,7 +1459,7 @@ const _hoisted_11$7 = ["href", "title", "alt"];
 const _hoisted_12$6 = ["href", "title", "alt"];
 const _hoisted_13$5 = { key: 0 };
 const _hoisted_14$5 = { key: 1 };
-const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$h = /* @__PURE__ */ vue.defineComponent({
   __name: "FyNavbar",
   props: {
     title: null,
@@ -1491,19 +1491,19 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
     };
     return (_ctx, _cache) => {
       const _component_router_link = vue.resolveComponent("router-link");
-      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$f, [
-        vue.createElementVNode("div", _hoisted_2$f, [
+      return vue.openBlock(), vue.createElementBlock("nav", _hoisted_1$g, [
+        vue.createElementVNode("div", _hoisted_2$g, [
           vue.createVNode(_component_router_link, {
             to: "/",
             class: "logo-image"
           }, {
             default: vue.withCtx(() => [
               vue.renderSlot(_ctx.$slots, "logo"),
-              __props.title && __props.showTitle ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$f, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("v-if", true)
+              __props.title && __props.showTitle ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_3$g, vue.toDisplayString(__props.title), 1)) : vue.createCommentVNode("v-if", true)
             ]),
             _: 3
           }),
-          vue.createElementVNode("div", _hoisted_4$f, [
+          vue.createElementVNode("div", _hoisted_4$g, [
             vue.createVNode(vue.unref(ClientOnly), null, {
               default: vue.withCtx(() => [
                 vue.renderSlot(_ctx.$slots, "cart", {}, () => [
@@ -1514,7 +1514,7 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
                   }, {
                     default: vue.withCtx(() => [
                       vue.createVNode(vue.unref(render$3)),
-                      vue.createElementVNode("div", _hoisted_5$c, vue.toDisplayString(vue.unref(cartCount).toString()), 1)
+                      vue.createElementVNode("div", _hoisted_5$d, vue.toDisplayString(vue.unref(cartCount).toString()), 1)
                     ]),
                     _: 1
                   }, 8, ["to"])) : vue.createCommentVNode("v-if", true)
@@ -1538,7 +1538,7 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
           vue.createElementVNode("div", {
             class: vue.normalizeClass(["nav-menu", isOpen.value ? "is-open" : ""])
           }, [
-            vue.createElementVNode("ul", _hoisted_9$8, [
+            vue.createElementVNode("ul", _hoisted_9$9, [
               (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(__props.links, (link, index) => {
                 return vue.openBlock(), vue.createElementBlock("li", {
                   key: `link_${index.toString()}`
@@ -1663,9 +1663,9 @@ const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "FyNavbar.vue"]]);
+var FyNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "FyNavbar.vue"]]);
 
-const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
+const _sfc_main$g = /* @__PURE__ */ vue.defineComponent({
   __name: "FyTabs",
   setup(__props) {
     return (_ctx, _cache) => {
@@ -1673,7 +1673,32 @@ const _sfc_main$f = /* @__PURE__ */ vue.defineComponent({
     };
   }
 });
-var FyTabs = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__file", "FyTabs.vue"]]);
+var FyTabs = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "FyTabs.vue"]]);
+
+const _sfc_main$f = {};
+
+const _hoisted_1$f = { class: "fv-404" };
+const _hoisted_2$f = { class: "" };
+const _hoisted_3$f = /*#__PURE__*/vue.createElementVNode("div", { class: "title-404" }, "404", -1 /* HOISTED */);
+const _hoisted_4$f = { class: "content-404" };
+const _hoisted_5$c = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$c = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+
+function _sfc_render(_ctx, _cache) {
+  return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$f, [
+    vue.createElementVNode("div", _hoisted_2$f, [
+      _hoisted_3$f,
+      vue.createElementVNode("div", _hoisted_4$f, vue.toDisplayString(_ctx.$t('fv_404_title')), 1 /* TEXT */),
+      _hoisted_5$c,
+      _hoisted_6$c,
+      vue.createElementVNode("button", {
+        onClick: _cache[0] || (_cache[0] = $event => (_ctx.$router.go(-1))),
+        class: "btn primary btn-defaults"
+      }, vue.toDisplayString(_ctx.$t('fv_404_back_to_home')), 1 /* TEXT */)
+    ])
+  ]))
+}
+var Fy404View = /*#__PURE__*/_export_sfc(_sfc_main$f, [['render',_sfc_render],['__file',"Fy404View.vue"]]);
 
 var uiComponents = {
     FyModal,
@@ -1688,6 +1713,7 @@ var uiComponents = {
     FyPaging,
     FyNavbar,
     FyTabs,
+    Fy404View,
 };
 
 const _hoisted_1$e = { class: "w-full" };
@@ -1710,7 +1736,7 @@ const _hoisted_7$a = {
   class: "reset-pwd"
 };
 const _hoisted_8$9 = { class: "btn primary btn-defaults" };
-const _hoisted_9$7 = {
+const _hoisted_9$8 = {
   key: 0,
   class: "response-error"
 };
@@ -1954,7 +1980,7 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
                     type: "email",
                     label: _ctx.$t("recover_pwd_email_label")
                   }, null, 8, ["placeholder", "modelValue", "errorVuelidate", "label"]),
-                  pwdRecoverError.value && pwdRecoverError.value.token ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$7, vue.toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1)) : vue.createCommentVNode("v-if", true),
+                  pwdRecoverError.value && pwdRecoverError.value.token ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$8, vue.toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1)) : vue.createCommentVNode("v-if", true),
                   vue.createElementVNode("a", {
                     href: "javascript:void(0)",
                     onClick: _cache[3] || (_cache[3] = ($event) => forgotPassword()),
@@ -1991,7 +2017,7 @@ const _hoisted_8$8 = {
   key: 0,
   class: "form-error-label"
 };
-const _hoisted_9$6 = {
+const _hoisted_9$7 = {
   class: "btn-defaults mt-4 btn primary",
   type: "submit"
 };
@@ -2079,7 +2105,7 @@ const _sfc_main$d = /* @__PURE__ */ vue.defineComponent({
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"])
               ]),
               errorOnSubmit.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$8, vue.toDisplayString(errorOnSubmit.value), 1)) : vue.createCommentVNode("v-if", true),
-              vue.createElementVNode("button", _hoisted_9$6, vue.toDisplayString(_ctx.$t("update_email_cta")), 1)
+              vue.createElementVNode("button", _hoisted_9$7, vue.toDisplayString(_ctx.$t("update_email_cta")), 1)
             ], 40, _hoisted_6$a)
           ]),
           _: 1
@@ -2371,7 +2397,7 @@ const _hoisted_5$7 = { key: 0 };
 const _hoisted_6$7 = ["onSubmit"];
 const _hoisted_7$7 = { class: "form-grid" };
 const _hoisted_8$6 = { class: "input-group" };
-const _hoisted_9$5 = { class: "mr-4 w-16" };
+const _hoisted_9$6 = { class: "mr-4 w-16" };
 const _hoisted_10$5 = {
   class: "label-basic",
   for: "countryChoice"
@@ -2640,7 +2666,7 @@ const _sfc_main$9 = /* @__PURE__ */ vue.defineComponent({
                     label: _ctx.$t("klb_location_zip_label")
                   }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
                   vue.createElementVNode("div", _hoisted_8$6, [
-                    vue.createElementVNode("div", _hoisted_9$5, [
+                    vue.createElementVNode("div", _hoisted_9$6, [
                       vue.createElementVNode("label", _hoisted_10$5, vue.toDisplayString(_ctx.$t("klb_location_country_label")), 1)
                     ]),
                     vue.createElementVNode("div", _hoisted_11$5, [
@@ -2749,7 +2775,7 @@ const _hoisted_5$6 = {
 const _hoisted_6$6 = { class: "input-box" };
 const _hoisted_7$6 = ["value"];
 const _hoisted_8$5 = { class: "input-group" };
-const _hoisted_9$4 = {
+const _hoisted_9$5 = {
   class: "label-basic",
   for: "typeDef"
 };
@@ -2976,7 +3002,7 @@ const _sfc_main$8 = /* @__PURE__ */ vue.defineComponent({
                 ])
               ]),
               vue.createElementVNode("div", _hoisted_8$5, [
-                vue.createElementVNode("label", _hoisted_9$4, vue.toDisplayString(_ctx.$t("payment_method_label")), 1),
+                vue.createElementVNode("label", _hoisted_9$5, vue.toDisplayString(_ctx.$t("payment_method_label")), 1),
                 vue.createElementVNode("div", {
                   id: "stripePayment",
                   class: "stripePayment",
@@ -3018,7 +3044,7 @@ const _hoisted_7$5 = {
   type: "submit"
 };
 const _hoisted_8$4 = { class: "billing-select" };
-const _hoisted_9$3 = { key: 0 };
+const _hoisted_9$4 = { key: 0 };
 const _hoisted_10$3 = ["onSubmit"];
 const _hoisted_11$3 = { class: "input-group" };
 const _hoisted_12$3 = {
@@ -3325,7 +3351,7 @@ const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
               onClick: _cache[3] || (_cache[3] = ($event) => _ctx.$eventBus.emit("ShowAddPaymentMethodModal", true))
             }, vue.toDisplayString(_ctx.$t("klb_add_new_billing_profile")), 1)) : vue.createCommentVNode("v-if", true)
           ]),
-          editMode.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$3, [
+          editMode.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$4, [
             vue.createElementVNode("div", null, [
               vue.createElementVNode("form", {
                 onSubmit: vue.withModifiers(submitUserBilling, ["prevent"])
@@ -3405,7 +3431,7 @@ const _hoisted_5$4 = {
 const _hoisted_6$4 = ["src"];
 const _hoisted_7$4 = { role: "list" };
 const _hoisted_8$3 = ["onClick"];
-const _hoisted_9$2 = {
+const _hoisted_9$3 = {
   key: 1,
   class: "shop"
 };
@@ -3496,7 +3522,7 @@ const _sfc_main$6 = /* @__PURE__ */ vue.defineComponent({
             ]);
           }), 128))
         ])) : vue.createCommentVNode("v-if", true),
-        products.value && __props.displayType == "shop" ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$2, [
+        products.value && __props.displayType == "shop" ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$3, [
           (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(products.value?.data.data, (product) => {
             return vue.openBlock(), vue.createElementBlock("div", {
               key: product.Catalog_Product__,
@@ -3894,7 +3920,7 @@ const _hoisted_8$2 = {
   key: 0,
   class: "cart-summary is-desc"
 };
-const _hoisted_9$1 = {
+const _hoisted_9$2 = {
   key: 1,
   class: "cart-summary is-tax"
 };
@@ -4078,7 +4104,7 @@ const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
                 ])
               ]),
               product.meta.description ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$2, vue.toDisplayString(product.meta.description), 1)) : vue.createCommentVNode("v-if", true),
-              __props.mode == "b2b" ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$1, [
+              __props.mode == "b2b" ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_9$2, [
                 vue.createElementVNode("h3", null, vue.toDisplayString(_ctx.$t("klb_order_cart_vat")) + " (" + vue.toDisplayString(product.data.Price.tax_rate) + "%) ", 1),
                 vue.createElementVNode("div", _hoisted_10$1, vue.toDisplayString(product.data.Price.tax_only.display), 1)
               ])) : vue.createCommentVNode("v-if", true)
@@ -4291,7 +4317,7 @@ const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
           }, null, 8, _hoisted_3$3)
         ])) : vue.createCommentVNode("v-if", true),
         is404.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$3, [
-          vue.createElementVNode("h1", null, vue.toDisplayString(_ctx.$t("fv_404_text")), 1)
+          vue.createVNode(Fy404View)
         ])) : vue.createCommentVNode("v-if", true)
       ]);
     };
@@ -4310,7 +4336,7 @@ const _hoisted_5$1 = { class: "entry-main" };
 const _hoisted_6$1 = { class: "entry-content" };
 const _hoisted_7$1 = ["innerHTML"];
 const _hoisted_8$1 = { key: 0 };
-const _hoisted_9 = { class: "entry-footer" };
+const _hoisted_9$1 = { class: "entry-footer" };
 const _hoisted_10 = { class: "published" };
 const _hoisted_11 = ["datetime"];
 const _hoisted_12 = {
@@ -4388,7 +4414,7 @@ const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
               }, 8, ["to"])
             ])) : vue.createCommentVNode("v-if", true)
           ]),
-          vue.createElementVNode("footer", _hoisted_9, [
+          vue.createElementVNode("footer", _hoisted_9$1, [
             vue.createCommentVNode(`<span class="comments" v-if="post.Comments">
           <ChatBubbleBottomCenterIcon />
           {{
@@ -4448,6 +4474,10 @@ const _hoisted_8 = {
   key: 1,
   class: "single"
 };
+const _hoisted_9 = {
+  key: 2,
+  class: "is-404"
+};
 const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
   __name: "KlbBlog",
   props: {
@@ -4459,21 +4489,11 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
   async setup(__props) {
     let __temp, __restore;
     const props = __props;
-    const pageHead = vue.reactive({
-      title: `...`,
-      ogImage: { name: "og:image", content: "", key: "image" }
-    });
     const route = vueRouter.useRoute();
-    vue.watch(
-      () => route.name == "cmsNews" ? route.params.slug : false,
-      async (v) => {
-        if (v !== false) {
-          await checkRoute(v.toString());
-        }
-      }
-    );
     const translate = useTranslation();
     const blogName = vue.ref("");
+    const pageTitle = vue.ref();
+    const pageImage = vue.ref({ name: "og:image", content: "" });
     const is404 = vue.ref(false);
     const cats = vue.ref();
     const data = vue.ref();
@@ -4485,6 +4505,14 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
       ...props.breadcrumbBase,
       { name: blogName.value }
     ]);
+    vue.watch(
+      () => route.name == "cmsNews" ? route.params.slug : false,
+      async (v) => {
+        if (v !== false) {
+          await checkRoute(v.toString());
+        }
+      }
+    );
     const getArticle = async (slug) => {
       eventBus.emit("cmsBlog-loading", true);
       is404.value = false;
@@ -4503,9 +4531,10 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
-          pageHead.title = "404";
+          pageTitle.value = "404";
         }
         eventBus.emit("cmsBlog-loading", false);
+        return;
       });
       if (_data && _data.result == "success") {
         blogName.value = _data.data.content_cms.Name;
@@ -4515,12 +4544,9 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
           { name: _data.data.content_cms_entry_data.Title }
         ];
         dataSingle.value = _data;
-        pageHead.title = dataSingle.value.data.content_cms_entry_data.Title + " - " + blogName.value;
+        pageTitle.value = dataSingle.value.data.content_cms_entry_data.Title + " - " + blogName.value;
         if (dataSingle.value.data.content_cms_entry_data.Top_Drive_Item && dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image && dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
-          pageHead.ogImage = {
-            name: "og:image",
-            content: dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"]
-          };
+          pageImage.value.content = dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"];
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4554,7 +4580,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
-          pageHead.title = "404";
+          pageTitle.value = "404";
         }
         eventBus.emit("cmsBlog-loading", false);
       });
@@ -4571,17 +4597,17 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
             { name: blogName.value, to: props.basePath },
             { name: translate("klb_blog_category_breadcrumb", { category }) }
           ];
-          pageHead.title = translate("klb_blog_category_breadcrumb", { category });
+          pageTitle.value = translate("klb_blog_category_breadcrumb", { category });
         } else if (search) {
           breadcrumb.value = [
             ...props.breadcrumbBase,
             { name: blogName.value, to: props.basePath },
             { name: translate("klb_blog_search_breadcrumb", { search }) }
           ];
-          pageHead.title = translate("klb_blog_search_breadcrumb", { search });
+          pageTitle.value = translate("klb_blog_search_breadcrumb", { search });
         } else {
           breadcrumb.value = [...props.breadcrumbBase, { name: blogName.value }];
-          pageHead.title = blogName.value;
+          pageTitle.value = blogName.value;
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4611,8 +4637,9 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     vue.onUnmounted(() => {
       eventBus.off("cmsPagingGoToPage", checkRoutePage);
     });
+    [__temp, __restore] = vue.withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     head.useHead({
-      title: vue.computed(() => `${pageHead.title} - ${props.siteName}`),
+      title: `${pageTitle.value} - ${props.siteName}`,
       meta: vue.computed(() => {
         const _res = [
           {
@@ -4624,18 +4651,16 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
             content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
           }
         ];
-        if (pageHead.ogImage.content != "") {
-          _res.push(pageHead.ogImage);
-        }
+        if (pageImage.value.content != "")
+          _res.push(pageImage.value);
         return _res;
       })
     });
-    [__temp, __restore] = vue.withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     return (_ctx, _cache) => {
       const _component_RouterLink = vue.resolveComponent("RouterLink");
       return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
         vue.createVNode(FyLoader, { id: "cmsBlog" }),
-        displayType.value == "multiple" ? (vue.openBlock(), vue.createElementBlock("main", _hoisted_2$1, [
+        displayType.value == "multiple" && data.value && data.value.result ? (vue.openBlock(), vue.createElementBlock("main", _hoisted_2$1, [
           vue.createElementVNode("div", null, [
             vue.createVNode(FyBreadcrumb, { nav: breadcrumb.value }, null, 8, ["nav"]),
             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(data.value?.data.data, (post, index) => {
@@ -4698,13 +4723,16 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
             vue.createCommentVNode('\n        <div class="widget">\n          <h3>Archives</h3>\n        </div>')
           ])
         ])) : vue.createCommentVNode("v-if", true),
-        displayType.value == "single" && dataSingle.value ? (vue.openBlock(), vue.createElementBlock("main", _hoisted_8, [
+        displayType.value == "single" && dataSingle.value && dataSingle.value.result ? (vue.openBlock(), vue.createElementBlock("main", _hoisted_8, [
           vue.createVNode(KlbBlogInnerPost, {
             post: dataSingle.value.data.content_cms_entry_data,
             single: true,
             basePath: __props.basePath,
             breadcrumbBase: breadcrumb.value
           }, null, 8, ["post", "basePath", "breadcrumbBase"])
+        ])) : vue.createCommentVNode("v-if", true),
+        is404.value ? (vue.openBlock(), vue.createElementBlock("main", _hoisted_9, [
+          vue.createVNode(Fy404View)
         ])) : vue.createCommentVNode("v-if", true)
       ]);
     };

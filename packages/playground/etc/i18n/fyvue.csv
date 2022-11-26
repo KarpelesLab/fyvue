@@ -153,3 +153,5 @@ klb_blog_category_breadcrumb,Category: {{category}},,,KlbBlog Component
 klb_blog_search_breadcrumb,Search: {{search}},,,KlbBlog Component
 klb_blog_search_placeholder,Search...,,,KlbBlog Component
 klb_blog_readmore,Read more...,,,KlbBlog Component
+fv_404_title,Page not found,,ページが見つかりません,Fy404 Component
+fv_404_back_to_home,Back,,戻る,Fy404 Component

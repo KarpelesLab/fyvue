@@ -7,6 +7,7 @@ import { useHead } from '@vueuse/head';
 import { useRoute } from 'vue-router';
 import { useEventBus } from '../../../utils/helpers';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
+import Fy404View from '../../ui/Fy404/Fy404View.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -68,7 +69,7 @@ await loadPage(route.params.slug.toString());
       <div v-html="page.data.content_cms_entry_data.Contents"></div>
     </div>
     <div class="fv-typo" v-if="is404">
-      <h1>{{ $t('fv_404_text') }}</h1>
+      <Fy404View />
     </div>
   </div>
 </template>

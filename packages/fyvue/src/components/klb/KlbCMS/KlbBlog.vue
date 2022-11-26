@@ -12,6 +12,8 @@ import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 import KlbBlogInnerPost from './KlbBlogInnerPost.vue';
 import FyBreadcrumb from '../../ui/FyBreadcrumb/FyBreadcrumb.vue';
 import FyPaging from '../../ui/FyPaging/FyPaging.vue';
+import Fy404View from '../../ui/Fy404/Fy404View.vue';
+
 import type {
   KlbAPIClassify,
   KlbAPIContentCmsSingle,
@@ -31,22 +33,12 @@ const props = withDefaults(
     basePath: '/blog',
   }
 );
-const pageHead = reactive({
-  title: `...`,
-  ogImage: { name: 'og:image', content: '', key: 'image' },
-});
-const route = useRoute();
-watch(
-  () => (route.name == 'cmsNews' ? route.params.slug : false),
-  async (v) => {
-    if (v !== false) {
-      await checkRoute(v.toString());
-    }
-  }
-);
 
+const route = useRoute();
 const translate = useTranslation();
 const blogName = ref<string>('');
+const pageTitle = ref<string>();
+const pageImage = ref({ name: 'og:image', content: '' });
 const is404 = ref<Boolean>(false);
 const cats = ref<Array<KlbClassifyTag>>();
 const data = ref<KlbAPIContentCmsSearch>();
@@ -58,6 +50,15 @@ const breadcrumb = ref<Array<FyVueBreadcrumb>>([
   ...props.breadcrumbBase,
   { name: blogName.value },
 ]);
+
+watch(
+  () => (route.name == 'cmsNews' ? route.params.slug : false),
+  async (v) => {
+    if (v !== false) {
+      await checkRoute(v.toString());
+    }
+  }
+);
 const getArticle = async (slug: string) => {
   eventBus.emit('cmsBlog-loading', true);
   is404.value = false;
@@ -76,9 +77,10 @@ const getArticle = async (slug: string) => {
     if (err.code == 404) {
       useHistory().status = 404;
       is404.value = true;
-      pageHead.title = '404';
+      pageTitle.value = '404';
     }
     eventBus.emit('cmsBlog-loading', false);
+    return;
   });
   if (_data && _data.result == 'success') {
     blogName.value = _data.data.content_cms.Name;
@@ -88,8 +90,8 @@ const getArticle = async (slug: string) => {
       { name: _data.data.content_cms_entry_data.Title },
     ];
     dataSingle.value = _data;
-    //pageHead.title = data.value.data.content;
-    pageHead.title =
+    //pageTitle.value = data.value.data.content;
+    pageTitle.value =
       dataSingle.value.data.content_cms_entry_data.Title +
       ' - ' +
       blogName.value;
@@ -99,12 +101,10 @@ const getArticle = async (slug: string) => {
       dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image
         .Variation
     ) {
-      pageHead.ogImage = {
-        name: 'og:image',
-        content:
-          dataSingle.value.data.content_cms_entry_data.Top_Drive_Item
-            .Media_Image?.Variation['squared'],
-      };
+      pageImage.value.content =
+        dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation[
+          'squared'
+        ];
     }
   }
   eventBus.emit('cmsBlog-loading', false);
@@ -144,7 +144,7 @@ const getArticles = async (
     if (err.code == 404) {
       useHistory().status = 404;
       is404.value = true;
-      pageHead.title = '404';
+      pageTitle.value = '404';
     }
     eventBus.emit('cmsBlog-loading', false);
   });
@@ -161,17 +161,17 @@ const getArticles = async (
         { name: blogName.value, to: props.basePath },
         { name: translate('klb_blog_category_breadcrumb', { category }) },
       ];
-      pageHead.title = translate('klb_blog_category_breadcrumb', { category });
+      pageTitle.value = translate('klb_blog_category_breadcrumb', { category });
     } else if (search) {
       breadcrumb.value = [
         ...props.breadcrumbBase,
         { name: blogName.value, to: props.basePath },
         { name: translate('klb_blog_search_breadcrumb', { search }) },
       ];
-      pageHead.title = translate('klb_blog_search_breadcrumb', { search });
+      pageTitle.value = translate('klb_blog_search_breadcrumb', { search });
     } else {
       breadcrumb.value = [...props.breadcrumbBase, { name: blogName.value }];
-      pageHead.title = blogName.value;
+      pageTitle.value = blogName.value;
     }
   }
   eventBus.emit('cmsBlog-loading', false);
@@ -203,8 +203,10 @@ onMounted(() => {
 onUnmounted(() => {
   eventBus.off('cmsPagingGoToPage', checkRoutePage);
 });
+await checkRoute(route.params.slug.toString());
+
 useHead({
-  title: computed(() => `${pageHead.title} - ${props.siteName}`),
+  title: `${pageTitle.value} - ${props.siteName}`,
   meta: computed(() => {
     const _res = [
       {
@@ -217,20 +219,19 @@ useHead({
           'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
       },
     ];
-    if (pageHead.ogImage.content != '') {
-      _res.push(pageHead.ogImage);
-    }
+    if (pageImage.value.content != '') _res.push(pageImage.value);
     return _res;
   }),
 });
-
-await checkRoute(route.params.slug.toString());
 </script>
 <template>
   <div class="klb-blog">
     <FyLoader id="cmsBlog" />
 
-    <main v-if="displayType == 'multiple'" class="multiple">
+    <main
+      v-if="displayType == 'multiple' && data && data.result"
+      class="multiple"
+    >
       <div>
         <FyBreadcrumb :nav="breadcrumb" />
 
@@ -282,13 +283,19 @@ await checkRoute(route.params.slug.toString());
         </div>-->
       </aside>
     </main>
-    <main v-if="displayType == 'single' && dataSingle" class="single">
+    <main
+      v-if="displayType == 'single' && dataSingle && dataSingle.result"
+      class="single"
+    >
       <KlbBlogInnerPost
         :post="dataSingle.data.content_cms_entry_data"
         :single="true"
         :basePath="basePath"
         :breadcrumbBase="breadcrumb"
       />
+    </main>
+    <main v-if="is404" class="is-404">
+      <Fy404View />
     </main>
   </div>
 </template>

@@ -446,9 +446,9 @@ var _export_sfc = (sfc, props) => {
   return target;
 };
 
-const _hoisted_1$q = { class: "parent" };
-const _hoisted_2$p = { class: "modal-container" };
-const _sfc_main$r = /* @__PURE__ */ defineComponent({
+const _hoisted_1$r = { class: "parent" };
+const _hoisted_2$q = { class: "modal-container" };
+const _sfc_main$s = /* @__PURE__ */ defineComponent({
   __name: "FyModal",
   props: {
     id: null,
@@ -496,11 +496,11 @@ const _sfc_main$r = /* @__PURE__ */ defineComponent({
             class: "fy-modal"
           }, {
             default: withCtx(() => [
-              createElementVNode("div", _hoisted_1$q, [
+              createElementVNode("div", _hoisted_1$r, [
                 createVNode(unref(DialogPanel), { class: "modal-parent" }, {
                   default: withCtx(() => [
                     renderSlot(_ctx.$slots, "before"),
-                    createElementVNode("div", _hoisted_2$p, [
+                    createElementVNode("div", _hoisted_2$q, [
                       __props.title ? (openBlock(), createBlock(unref(DialogTitle), {
                         key: 0,
                         class: "title"
@@ -541,20 +541,20 @@ const _sfc_main$r = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyModal = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__file", "FyModal.vue"]]);
+var FyModal = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "FyModal.vue"]]);
 
-const _hoisted_1$p = { class: "fy-circle-percent" };
-const _hoisted_2$o = {
+const _hoisted_1$q = { class: "fy-circle-percent" };
+const _hoisted_2$p = {
   viewBox: "0 0 36 36",
   class: "circular-chart"
 };
-const _hoisted_3$o = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_3$p = /* @__PURE__ */ createElementVNode("path", {
   class: "circle-bg",
   d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
 }, null, -1);
-const _hoisted_4$l = ["stroke-dasharray", "stroke"];
-const _hoisted_5$i = ["x", "y"];
-const _sfc_main$q = /* @__PURE__ */ defineComponent({
+const _hoisted_4$m = ["stroke-dasharray", "stroke"];
+const _hoisted_5$j = ["x", "y"];
+const _sfc_main$r = /* @__PURE__ */ defineComponent({
   __name: "FyCirclePercent",
   props: {
     percent: { default: 100 },
@@ -563,40 +563,40 @@ const _sfc_main$q = /* @__PURE__ */ defineComponent({
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$p, [
-        (openBlock(), createElementBlock("svg", _hoisted_2$o, [
-          _hoisted_3$o,
+      return openBlock(), createElementBlock("div", _hoisted_1$q, [
+        (openBlock(), createElementBlock("svg", _hoisted_2$p, [
+          _hoisted_3$p,
           createElementVNode("path", {
             class: "circle",
             "stroke-dasharray": `${__props.percent}, 100`,
             stroke: __props.color,
             d: "M18 2.0845\n                    a 15.9155 15.9155 0 0 1 0 31.831\n                    a 15.9155 15.9155 0 0 1 0 -31.831"
-          }, null, 8, _hoisted_4$l),
+          }, null, 8, _hoisted_4$m),
           createElementVNode("text", {
             x: __props.textXY[0].toString(),
             y: __props.textXY[1].toString(),
             class: "percentage"
-          }, toDisplayString(__props.percent) + "% ", 9, _hoisted_5$i)
+          }, toDisplayString(__props.percent) + "% ", 9, _hoisted_5$j)
         ]))
       ]);
     };
   }
 });
-var FyCirclePercent = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__file", "FyCirclePercent.vue"]]);
+var FyCirclePercent = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__file", "FyCirclePercent.vue"]]);
 
-const _hoisted_1$o = { class: "parent" };
-const _hoisted_2$n = {
+const _hoisted_1$p = { class: "parent" };
+const _hoisted_2$o = {
   class: "modal-container",
   style: { "width": "350px !important" }
 };
-const _hoisted_3$n = { class: "modal-content" };
-const _hoisted_4$k = {
+const _hoisted_3$o = { class: "modal-content" };
+const _hoisted_4$l = {
   key: 0,
   class: "confirm-modal-desc default-p"
 };
-const _hoisted_5$h = /* @__PURE__ */ createElementVNode("br", null, null, -1);
-const _hoisted_6$h = { class: "btn-box" };
-const _sfc_main$p = /* @__PURE__ */ defineComponent({
+const _hoisted_5$i = /* @__PURE__ */ createElementVNode("br", null, null, -1);
+const _hoisted_6$i = { class: "btn-box" };
+const _sfc_main$q = /* @__PURE__ */ defineComponent({
   __name: "FyConfirm",
   setup(__props) {
     const eventBus = useEventBus();
@@ -639,9 +639,9 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
           style: { "background": "rgba(0, 0, 0, 0.6)", "z-index": "43 !important" }
         }, {
           default: withCtx(() => [
-            createElementVNode("div", _hoisted_1$o, [
+            createElementVNode("div", _hoisted_1$p, [
               createVNode(unref(DialogOverlay)),
-              createElementVNode("div", _hoisted_2$n, [
+              createElementVNode("div", _hoisted_2$o, [
                 createElementVNode("div", null, [
                   createVNode(unref(DialogTitle), { class: "title" }, {
                     default: withCtx(() => [
@@ -649,10 +649,10 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
                     ]),
                     _: 1
                   }),
-                  createElementVNode("div", _hoisted_3$n, [
-                    desc.value ? (openBlock(), createElementBlock("div", _hoisted_4$k, toDisplayString(desc.value), 1)) : createCommentVNode("v-if", true),
-                    _hoisted_5$h,
-                    createElementVNode("div", _hoisted_6$h, [
+                  createElementVNode("div", _hoisted_3$o, [
+                    desc.value ? (openBlock(), createElementBlock("div", _hoisted_4$l, toDisplayString(desc.value), 1)) : createCommentVNode("v-if", true),
+                    _hoisted_5$i,
+                    createElementVNode("div", _hoisted_6$i, [
                       createElementVNode("button", {
                         onClick: _cache[0] || (_cache[0] = ($event) => confirm.value = false),
                         class: "btn neutral btn-defaults"
@@ -673,15 +673,15 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyConfirm = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__file", "FyConfirm.vue"]]);
+var FyConfirm = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__file", "FyConfirm.vue"]]);
 
-const _hoisted_1$n = {
+const _hoisted_1$o = {
   class: "fy-breadcrumb",
   "aria-label": "Breadcrumb"
 };
-const _hoisted_2$m = ["aria-current"];
-const _hoisted_3$m = { key: 2 };
-const _sfc_main$o = /* @__PURE__ */ defineComponent({
+const _hoisted_2$n = ["aria-current"];
+const _hoisted_3$n = { key: 2 };
+const _sfc_main$p = /* @__PURE__ */ defineComponent({
   __name: "FyBreadcrumb",
   props: {
     nav: { default: () => [] },
@@ -690,7 +690,7 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
   setup(__props) {
     return (_ctx, _cache) => {
       const _component_router_link = resolveComponent("router-link");
-      return openBlock(), createElementBlock("nav", _hoisted_1$n, [
+      return openBlock(), createElementBlock("nav", _hoisted_1$o, [
         createElementVNode("ol", null, [
           (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item, index) => {
             return openBlock(), createElementBlock("li", {
@@ -710,20 +710,20 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
                   createTextVNode(" " + toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
                 ]),
                 _: 2
-              }, 1032, ["to"])) : (openBlock(), createElementBlock("span", _hoisted_3$m, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
-            ], 10, _hoisted_2$m);
+              }, 1032, ["to"])) : (openBlock(), createElementBlock("span", _hoisted_3$n, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+            ], 10, _hoisted_2$n);
           }), 128))
         ])
       ]);
     };
   }
 });
-var FyBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__file", "FyBreadcrumb.vue"]]);
+var FyBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__file", "FyBreadcrumb.vue"]]);
 
-const _hoisted_1$m = { class: "fy-step-bar" };
-const _hoisted_2$l = { class: "bar-bg" };
-const _hoisted_3$l = { class: "label" };
-const _sfc_main$n = /* @__PURE__ */ defineComponent({
+const _hoisted_1$n = { class: "fy-step-bar" };
+const _hoisted_2$m = { class: "bar-bg" };
+const _hoisted_3$m = { class: "label" };
+const _sfc_main$o = /* @__PURE__ */ defineComponent({
   __name: "FySteps",
   props: {
     steps: { default: () => [] },
@@ -740,8 +740,8 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
       return "past-step";
     };
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$m, [
-        createElementVNode("div", _hoisted_2$l, [
+      return openBlock(), createElementBlock("div", _hoisted_1$n, [
+        createElementVNode("div", _hoisted_2$m, [
           createElementVNode("div", {
             class: "bar",
             style: normalizeStyle(`width:${unref(barWidth)}%`)
@@ -753,7 +753,7 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
               key: index,
               class: normalizeClass(getStepClass(index))
             }, [
-              createElementVNode("span", _hoisted_3$l, toDisplayString(_ctx.$t(step.name)), 1),
+              createElementVNode("span", _hoisted_3$m, toDisplayString(_ctx.$t(step.name)), 1),
               step.icon ? (openBlock(), createBlock(resolveDynamicComponent(step.icon), {
                 key: 0,
                 class: "icon"
@@ -765,18 +765,18 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FySteps = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__file", "FySteps.vue"]]);
+var FySteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__file", "FySteps.vue"]]);
 
-const _hoisted_1$l = {
+const _hoisted_1$m = {
   key: 0,
   class: "border-collapse w-full md:mx-0 fy-datatable"
 };
-const _hoisted_2$k = { key: 0 };
-const _hoisted_3$k = { class: "div" };
-const _hoisted_4$j = { class: "div-cell" };
-const _hoisted_5$g = { key: 0 };
-const _hoisted_6$g = { key: 1 };
-const _sfc_main$m = /* @__PURE__ */ defineComponent({
+const _hoisted_2$l = { key: 0 };
+const _hoisted_3$l = { class: "div" };
+const _hoisted_4$k = { class: "div-cell" };
+const _hoisted_5$h = { key: 0 };
+const _hoisted_6$h = { key: 1 };
+const _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "FyDatatable",
   props: {
     showHeaders: { type: Boolean, default: true },
@@ -788,8 +788,8 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
       return i % 2 == 0 ? "bg-color-1" : "bg-color-2";
     };
     return (_ctx, _cache) => {
-      return __props.data && __props.data.length > 0 ? (openBlock(), createElementBlock("table", _hoisted_1$l, [
-        __props.showHeaders ? (openBlock(), createElementBlock("thead", _hoisted_2$k, [
+      return __props.data && __props.data.length > 0 ? (openBlock(), createElementBlock("table", _hoisted_1$m, [
+        __props.showHeaders ? (openBlock(), createElementBlock("thead", _hoisted_2$l, [
           createElementVNode("tr", null, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(__props.headers, (title) => {
               return openBlock(), createElementBlock("th", {
@@ -809,12 +809,12 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
                   key: title,
                   class: "td"
                 }, [
-                  createElementVNode("div", _hoisted_3$k, toDisplayString(title), 1),
-                  createElementVNode("div", _hoisted_4$j, [
+                  createElementVNode("div", _hoisted_3$l, toDisplayString(title), 1),
+                  createElementVNode("div", _hoisted_4$k, [
                     renderSlot(_ctx.$slots, `${property}_item`, {
                       data: { prop: item[property], item, idx: index }
                     }, () => [
-                      item[property] ? (openBlock(), createElementBlock("span", _hoisted_5$g, toDisplayString(item[property].toString()), 1)) : (openBlock(), createElementBlock("span", _hoisted_6$g, "n/a"))
+                      item[property] ? (openBlock(), createElementBlock("span", _hoisted_5$h, toDisplayString(item[property].toString()), 1)) : (openBlock(), createElementBlock("span", _hoisted_6$h, "n/a"))
                     ])
                   ])
                 ]);
@@ -826,19 +826,19 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyDatatable = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "FyDatatable.vue"]]);
+var FyDatatable = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__file", "FyDatatable.vue"]]);
 
-const _hoisted_1$k = {
+const _hoisted_1$l = {
   key: 0,
   class: "fy-table"
 };
-const _hoisted_2$j = { class: "table-container" };
-const _hoisted_3$j = { class: "table-sub-container" };
-const _hoisted_4$i = { class: "table-scroll" };
-const _hoisted_5$f = { key: 0 };
-const _hoisted_6$f = { key: 0 };
+const _hoisted_2$k = { class: "table-container" };
+const _hoisted_3$k = { class: "table-sub-container" };
+const _hoisted_4$j = { class: "table-scroll" };
+const _hoisted_5$g = { key: 0 };
+const _hoisted_6$g = { key: 0 };
 const _hoisted_7$e = { key: 1 };
-const _sfc_main$l = /* @__PURE__ */ defineComponent({
+const _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "FyTable",
   props: {
     showHeaders: { type: Boolean, default: true },
@@ -847,12 +847,12 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
   },
   setup(__props) {
     return (_ctx, _cache) => {
-      return __props.data && __props.data.length ? (openBlock(), createElementBlock("div", _hoisted_1$k, [
-        createElementVNode("div", _hoisted_2$j, [
-          createElementVNode("div", _hoisted_3$j, [
-            createElementVNode("div", _hoisted_4$i, [
+      return __props.data && __props.data.length ? (openBlock(), createElementBlock("div", _hoisted_1$l, [
+        createElementVNode("div", _hoisted_2$k, [
+          createElementVNode("div", _hoisted_3$k, [
+            createElementVNode("div", _hoisted_4$j, [
               createElementVNode("table", null, [
-                __props.showHeaders ? (openBlock(), createElementBlock("thead", _hoisted_5$f, [
+                __props.showHeaders ? (openBlock(), createElementBlock("thead", _hoisted_5$g, [
                   createElementVNode("tr", null, [
                     (openBlock(true), createElementBlock(Fragment, null, renderList(__props.headers, (title, property) => {
                       return openBlock(), createElementBlock("th", { key: property }, toDisplayString(title), 1);
@@ -873,7 +873,7 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
                               idx: index
                             }
                           }, () => [
-                            item[property] ? (openBlock(), createElementBlock("span", _hoisted_6$f, toDisplayString(item[property]), 1)) : (openBlock(), createElementBlock("span", _hoisted_7$e, "n/a"))
+                            item[property] ? (openBlock(), createElementBlock("span", _hoisted_6$g, toDisplayString(item[property]), 1)) : (openBlock(), createElementBlock("span", _hoisted_7$e, "n/a"))
                           ])
                         ]);
                       }), 128))
@@ -888,21 +888,21 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyTable = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "FyTable.vue"]]);
+var FyTable = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "FyTable.vue"]]);
 
-const _hoisted_1$j = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_1$k = /* @__PURE__ */ createElementVNode("path", {
   d: "M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z",
   fill: "currentColor"
 }, null, -1);
-const _hoisted_2$i = /* @__PURE__ */ createElementVNode("path", {
+const _hoisted_2$j = /* @__PURE__ */ createElementVNode("path", {
   d: "M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z",
   fill: "currentFill"
 }, null, -1);
-const _hoisted_3$i = [
-  _hoisted_1$j,
-  _hoisted_2$i
+const _hoisted_3$j = [
+  _hoisted_1$k,
+  _hoisted_2$j
 ];
-const _sfc_main$k = /* @__PURE__ */ defineComponent({
+const _sfc_main$l = /* @__PURE__ */ defineComponent({
   __name: "DefaultLoader",
   props: {
     size: { default: "16" },
@@ -918,7 +918,7 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
           viewBox: "0 0 100 101",
           fill: "none",
           xmlns: "http://www.w3.org/2000/svg"
-        }, _hoisted_3$i, 4)),
+        }, _hoisted_3$j, 4)),
         createElementVNode("span", {
           class: normalizeClass(!__props.showLoadingText ? "is-sr" : "loader-text")
         }, toDisplayString(_ctx.$t("global_loading_text")), 3)
@@ -926,13 +926,13 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var DefaultLoader = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "DefaultLoader.vue"]]);
+var DefaultLoader = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "DefaultLoader.vue"]]);
 
-const _hoisted_1$i = {
+const _hoisted_1$j = {
   key: 0,
   class: "fy-loader"
 };
-const _sfc_main$j = /* @__PURE__ */ defineComponent({
+const _sfc_main$k = /* @__PURE__ */ defineComponent({
   __name: "FyLoader",
   props: {
     id: null,
@@ -964,7 +964,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     });
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", null, [
-        loading.value || __props.force ? (openBlock(), createElementBlock("div", _hoisted_1$i, [
+        loading.value || __props.force ? (openBlock(), createElementBlock("div", _hoisted_1$j, [
           createElementVNode("div", {
             class: "loader-container",
             role: "status",
@@ -980,20 +980,20 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyLoader = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyLoader.vue"]]);
+var FyLoader = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "FyLoader.vue"]]);
 
-const _hoisted_1$h = { class: "input-group" };
-const _hoisted_2$h = ["for"];
-const _hoisted_3$h = ["aria-label", "id", "true-value", "false-value"];
-const _hoisted_4$h = ["href"];
-const _hoisted_5$e = {
+const _hoisted_1$i = { class: "input-group" };
+const _hoisted_2$i = ["for"];
+const _hoisted_3$i = ["aria-label", "id", "true-value", "false-value"];
+const _hoisted_4$i = ["href"];
+const _hoisted_5$f = {
   key: 2,
   class: "is-req"
 };
-const _hoisted_6$e = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
+const _hoisted_6$f = ["aria-label", "placeholder", "autocomplete", "id", "type", "disabled"];
 const _hoisted_7$d = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
 const _hoisted_8$c = ["aria-label", "id"];
-const _hoisted_9$a = ["value"];
+const _hoisted_9$b = ["value"];
 const _hoisted_10$9 = {
   key: 2,
   class: "form-error-label"
@@ -1002,7 +1002,7 @@ const _hoisted_11$9 = {
   key: 3,
   class: "help-text"
 };
-const _sfc_main$i = /* @__PURE__ */ defineComponent({
+const _sfc_main$j = /* @__PURE__ */ defineComponent({
   __name: "FyInput",
   props: {
     id: null,
@@ -1061,7 +1061,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     });
     expose({ focus, getInputRef });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", _hoisted_1$h, [
+      return openBlock(), createElementBlock("div", _hoisted_1$i, [
         __props.showLabel && __props.id && __props.label ? (openBlock(), createElementBlock("label", {
           key: 0,
           class: "label-basic",
@@ -1078,7 +1078,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
             "true-value": __props.checkboxTrueValue,
             "false-value": __props.checkboxFalseValue,
             "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => isRef(modelCheckbox) ? modelCheckbox.value = $event : null)
-          }, null, 10, _hoisted_3$h)), [
+          }, null, 10, _hoisted_3$i)), [
             [vModelCheckbox, unref(modelCheckbox)]
           ]) : createCommentVNode("v-if", true),
           createTextVNode(" " + toDisplayString(__props.label) + " ", 1),
@@ -1089,9 +1089,9 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
             target: "_blank"
           }, [
             createVNode(unref(render$8))
-          ], 8, _hoisted_4$h)) : createCommentVNode("v-if", true),
-          __props.req ? (openBlock(), createElementBlock("sup", _hoisted_5$e, "*")) : createCommentVNode("v-if", true)
-        ], 8, _hoisted_2$h)) : createCommentVNode("v-if", true),
+          ], 8, _hoisted_4$i)) : createCommentVNode("v-if", true),
+          __props.req ? (openBlock(), createElementBlock("sup", _hoisted_5$f, "*")) : createCommentVNode("v-if", true)
+        ], 8, _hoisted_2$i)) : createCommentVNode("v-if", true),
         !["checkbox", "radiobox"].includes(__props.type) ? (openBlock(), createElementBlock("div", {
           key: 1,
           class: normalizeClass(["input-box", { error: unref(checkErrors), disabled: __props.disabled }])
@@ -1109,7 +1109,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
             "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => isRef(model) ? model.value = $event : null),
             type: __props.type,
             disabled: __props.disabled
-          }, null, 8, _hoisted_6$e)), [
+          }, null, 8, _hoisted_6$f)), [
             [vModelDynamic, unref(model)]
           ]) : createCommentVNode("v-if", true),
           __props.type == "textarea" ? withDirectives((openBlock(), createElementBlock("textarea", {
@@ -1139,7 +1139,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
               return openBlock(), createElementBlock("option", {
                 value: opt[0],
                 key: opt[0].toString()
-              }, toDisplayString(opt[1]), 9, _hoisted_9$a);
+              }, toDisplayString(opt[1]), 9, _hoisted_9$b);
             }), 128))
           ], 8, _hoisted_8$c)), [
             [vModelSelect, unref(model)]
@@ -1152,33 +1152,33 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "FyInput.vue"]]);
+var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
-const _hoisted_1$g = {
+const _hoisted_1$h = {
   key: 0,
   class: "fy-paging"
 };
-const _hoisted_2$g = { class: "paging-container" };
-const _hoisted_3$g = { "aria-label": "Pagination" };
-const _hoisted_4$g = { class: "is-sr" };
-const _hoisted_5$d = {
+const _hoisted_2$h = { class: "paging-container" };
+const _hoisted_3$h = { "aria-label": "Pagination" };
+const _hoisted_4$h = { class: "is-sr" };
+const _hoisted_5$e = {
   key: 2,
   class: "dots"
 };
-const _hoisted_6$d = ["onClick"];
+const _hoisted_6$e = ["onClick"];
 const _hoisted_7$c = {
   href: "#",
   "aria-current": "page",
   class: "active"
 };
 const _hoisted_8$b = ["onClick"];
-const _hoisted_9$9 = {
+const _hoisted_9$a = {
   key: 3,
   class: "dots"
 };
 const _hoisted_10$8 = { class: "is-sr" };
 const _hoisted_11$8 = { class: "paging-text" };
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+const _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "FyPaging",
   props: {
     items: null,
@@ -1224,16 +1224,16 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
       });
     };
     return (_ctx, _cache) => {
-      return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (openBlock(), createElementBlock("div", _hoisted_1$g, [
-        createElementVNode("div", _hoisted_2$g, [
-          createElementVNode("nav", _hoisted_3$g, [
+      return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (openBlock(), createElementBlock("div", _hoisted_1$h, [
+        createElementVNode("div", _hoisted_2$h, [
+          createElementVNode("nav", _hoisted_3$h, [
             __props.items.page_no >= 2 ? (openBlock(), createElementBlock("a", {
               key: 0,
               href: "javascript:void(0);",
               onClick: _cache[0] || (_cache[0] = ($event) => prev()),
               class: "prev-next"
             }, [
-              createElementVNode("span", _hoisted_4$g, toDisplayString(_ctx.$t("previous_paging")), 1),
+              createElementVNode("span", _hoisted_4$h, toDisplayString(_ctx.$t("previous_paging")), 1),
               createVNode(unref(render$c), { class: "fv-icon-base" })
             ])) : createCommentVNode("v-if", true),
             __props.items.page_no - 2 > 1 ? (openBlock(), createElementBlock("a", {
@@ -1242,7 +1242,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
               href: "javascript:void(0);",
               onClick: _cache[1] || (_cache[1] = ($event) => page(1))
             }, " 1 ")) : createCommentVNode("v-if", true),
-            __props.items.page_no - 2 > 2 ? (openBlock(), createElementBlock("span", _hoisted_5$d, " ... ")) : createCommentVNode("v-if", true),
+            __props.items.page_no - 2 > 2 ? (openBlock(), createElementBlock("span", _hoisted_5$e, " ... ")) : createCommentVNode("v-if", true),
             (openBlock(), createElementBlock(Fragment, null, renderList(2, (i) => {
               return openBlock(), createElementBlock(Fragment, null, [
                 __props.items.page_no - (3 - i) >= 1 ? (openBlock(), createElementBlock("a", {
@@ -1250,7 +1250,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
                   href: "javascript:void(0);",
                   key: `${i}-sm`,
                   onClick: ($event) => page(__props.items.page_no - (3 - i))
-                }, toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_6$d)) : createCommentVNode("v-if", true)
+                }, toDisplayString(__props.items.page_no - (3 - i)), 9, _hoisted_6$e)) : createCommentVNode("v-if", true)
               ], 64);
             }), 64)),
             createElementVNode("a", _hoisted_7$c, toDisplayString(__props.items.page_no), 1),
@@ -1264,7 +1264,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
                 }, toDisplayString(__props.items.page_no + i), 9, _hoisted_8$b)) : createCommentVNode("v-if", true)
               ], 64);
             }), 64)),
-            __props.items.page_no + 2 < __props.items.page_max - 1 ? (openBlock(), createElementBlock("span", _hoisted_9$9, " ... ")) : createCommentVNode("v-if", true),
+            __props.items.page_no + 2 < __props.items.page_max - 1 ? (openBlock(), createElementBlock("span", _hoisted_9$a, " ... ")) : createCommentVNode("v-if", true),
             __props.items.page_no + 2 < __props.items.page_max ? (openBlock(), createElementBlock("a", {
               key: 4,
               class: "innactive",
@@ -1291,7 +1291,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyPaging = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "FyPaging.vue"]]);
+var FyPaging = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "FyPaging.vue"]]);
 
 function useCart() {
     return {
@@ -1418,12 +1418,12 @@ const ClientOnly = defineComponent({
     },
 });
 
-const _hoisted_1$f = { class: "fy-navbar" };
-const _hoisted_2$f = { class: "nav-container" };
-const _hoisted_3$f = { key: 0 };
-const _hoisted_4$f = { class: "nav-actions" };
-const _hoisted_5$c = { class: "badge" };
-const _hoisted_6$c = /* @__PURE__ */ createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
+const _hoisted_1$g = { class: "fy-navbar" };
+const _hoisted_2$g = { class: "nav-container" };
+const _hoisted_3$g = { key: 0 };
+const _hoisted_4$g = { class: "nav-actions" };
+const _hoisted_5$d = { class: "badge" };
+const _hoisted_6$d = /* @__PURE__ */ createElementVNode("span", { class: "is-sr" }, "Open main menu", -1);
 const _hoisted_7$b = /* @__PURE__ */ createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
@@ -1437,10 +1437,10 @@ const _hoisted_7$b = /* @__PURE__ */ createElementVNode("svg", {
   })
 ], -1);
 const _hoisted_8$a = [
-  _hoisted_6$c,
+  _hoisted_6$d,
   _hoisted_7$b
 ];
-const _hoisted_9$8 = { class: "main-ul" };
+const _hoisted_9$9 = { class: "main-ul" };
 const _hoisted_10$7 = /* @__PURE__ */ createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
@@ -1457,7 +1457,7 @@ const _hoisted_11$7 = ["href", "title", "alt"];
 const _hoisted_12$6 = ["href", "title", "alt"];
 const _hoisted_13$5 = { key: 0 };
 const _hoisted_14$5 = { key: 1 };
-const _sfc_main$g = /* @__PURE__ */ defineComponent({
+const _sfc_main$h = /* @__PURE__ */ defineComponent({
   __name: "FyNavbar",
   props: {
     title: null,
@@ -1489,19 +1489,19 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     };
     return (_ctx, _cache) => {
       const _component_router_link = resolveComponent("router-link");
-      return openBlock(), createElementBlock("nav", _hoisted_1$f, [
-        createElementVNode("div", _hoisted_2$f, [
+      return openBlock(), createElementBlock("nav", _hoisted_1$g, [
+        createElementVNode("div", _hoisted_2$g, [
           createVNode(_component_router_link, {
             to: "/",
             class: "logo-image"
           }, {
             default: withCtx(() => [
               renderSlot(_ctx.$slots, "logo"),
-              __props.title && __props.showTitle ? (openBlock(), createElementBlock("span", _hoisted_3$f, toDisplayString(__props.title), 1)) : createCommentVNode("v-if", true)
+              __props.title && __props.showTitle ? (openBlock(), createElementBlock("span", _hoisted_3$g, toDisplayString(__props.title), 1)) : createCommentVNode("v-if", true)
             ]),
             _: 3
           }),
-          createElementVNode("div", _hoisted_4$f, [
+          createElementVNode("div", _hoisted_4$g, [
             createVNode(unref(ClientOnly), null, {
               default: withCtx(() => [
                 renderSlot(_ctx.$slots, "cart", {}, () => [
@@ -1512,7 +1512,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
                   }, {
                     default: withCtx(() => [
                       createVNode(unref(render$3)),
-                      createElementVNode("div", _hoisted_5$c, toDisplayString(unref(cartCount).toString()), 1)
+                      createElementVNode("div", _hoisted_5$d, toDisplayString(unref(cartCount).toString()), 1)
                     ]),
                     _: 1
                   }, 8, ["to"])) : createCommentVNode("v-if", true)
@@ -1536,7 +1536,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
           createElementVNode("div", {
             class: normalizeClass(["nav-menu", isOpen.value ? "is-open" : ""])
           }, [
-            createElementVNode("ul", _hoisted_9$8, [
+            createElementVNode("ul", _hoisted_9$9, [
               (openBlock(true), createElementBlock(Fragment, null, renderList(__props.links, (link, index) => {
                 return openBlock(), createElementBlock("li", {
                   key: `link_${index.toString()}`
@@ -1661,9 +1661,9 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "FyNavbar.vue"]]);
+var FyNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "FyNavbar.vue"]]);
 
-const _sfc_main$f = /* @__PURE__ */ defineComponent({
+const _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "FyTabs",
   setup(__props) {
     return (_ctx, _cache) => {
@@ -1671,7 +1671,32 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyTabs = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__file", "FyTabs.vue"]]);
+var FyTabs = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "FyTabs.vue"]]);
+
+const _sfc_main$f = {};
+
+const _hoisted_1$f = { class: "fv-404" };
+const _hoisted_2$f = { class: "" };
+const _hoisted_3$f = /*#__PURE__*/createElementVNode("div", { class: "title-404" }, "404", -1 /* HOISTED */);
+const _hoisted_4$f = { class: "content-404" };
+const _hoisted_5$c = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$c = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+
+function _sfc_render(_ctx, _cache) {
+  return (openBlock(), createElementBlock("div", _hoisted_1$f, [
+    createElementVNode("div", _hoisted_2$f, [
+      _hoisted_3$f,
+      createElementVNode("div", _hoisted_4$f, toDisplayString(_ctx.$t('fv_404_title')), 1 /* TEXT */),
+      _hoisted_5$c,
+      _hoisted_6$c,
+      createElementVNode("button", {
+        onClick: _cache[0] || (_cache[0] = $event => (_ctx.$router.go(-1))),
+        class: "btn primary btn-defaults"
+      }, toDisplayString(_ctx.$t('fv_404_back_to_home')), 1 /* TEXT */)
+    ])
+  ]))
+}
+var Fy404View = /*#__PURE__*/_export_sfc(_sfc_main$f, [['render',_sfc_render],['__file',"Fy404View.vue"]]);
 
 var uiComponents = {
     FyModal,
@@ -1686,6 +1711,7 @@ var uiComponents = {
     FyPaging,
     FyNavbar,
     FyTabs,
+    Fy404View,
 };
 
 const _hoisted_1$e = { class: "w-full" };
@@ -1708,7 +1734,7 @@ const _hoisted_7$a = {
   class: "reset-pwd"
 };
 const _hoisted_8$9 = { class: "btn primary btn-defaults" };
-const _hoisted_9$7 = {
+const _hoisted_9$8 = {
   key: 0,
   class: "response-error"
 };
@@ -1952,7 +1978,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                     type: "email",
                     label: _ctx.$t("recover_pwd_email_label")
                   }, null, 8, ["placeholder", "modelValue", "errorVuelidate", "label"]),
-                  pwdRecoverError.value && pwdRecoverError.value.token ? (openBlock(), createElementBlock("div", _hoisted_9$7, toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1)) : createCommentVNode("v-if", true),
+                  pwdRecoverError.value && pwdRecoverError.value.token ? (openBlock(), createElementBlock("div", _hoisted_9$8, toDisplayString(_ctx.$t(pwdRecoverError.value.token)), 1)) : createCommentVNode("v-if", true),
                   createElementVNode("a", {
                     href: "javascript:void(0)",
                     onClick: _cache[3] || (_cache[3] = ($event) => forgotPassword()),
@@ -1989,7 +2015,7 @@ const _hoisted_8$8 = {
   key: 0,
   class: "form-error-label"
 };
-const _hoisted_9$6 = {
+const _hoisted_9$7 = {
   class: "btn-defaults mt-4 btn primary",
   type: "submit"
 };
@@ -2077,7 +2103,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
                 }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"])
               ]),
               errorOnSubmit.value ? (openBlock(), createElementBlock("div", _hoisted_8$8, toDisplayString(errorOnSubmit.value), 1)) : createCommentVNode("v-if", true),
-              createElementVNode("button", _hoisted_9$6, toDisplayString(_ctx.$t("update_email_cta")), 1)
+              createElementVNode("button", _hoisted_9$7, toDisplayString(_ctx.$t("update_email_cta")), 1)
             ], 40, _hoisted_6$a)
           ]),
           _: 1
@@ -2369,7 +2395,7 @@ const _hoisted_5$7 = { key: 0 };
 const _hoisted_6$7 = ["onSubmit"];
 const _hoisted_7$7 = { class: "form-grid" };
 const _hoisted_8$6 = { class: "input-group" };
-const _hoisted_9$5 = { class: "mr-4 w-16" };
+const _hoisted_9$6 = { class: "mr-4 w-16" };
 const _hoisted_10$5 = {
   class: "label-basic",
   for: "countryChoice"
@@ -2638,7 +2664,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
                     label: _ctx.$t("klb_location_zip_label")
                   }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
                   createElementVNode("div", _hoisted_8$6, [
-                    createElementVNode("div", _hoisted_9$5, [
+                    createElementVNode("div", _hoisted_9$6, [
                       createElementVNode("label", _hoisted_10$5, toDisplayString(_ctx.$t("klb_location_country_label")), 1)
                     ]),
                     createElementVNode("div", _hoisted_11$5, [
@@ -2747,7 +2773,7 @@ const _hoisted_5$6 = {
 const _hoisted_6$6 = { class: "input-box" };
 const _hoisted_7$6 = ["value"];
 const _hoisted_8$5 = { class: "input-group" };
-const _hoisted_9$4 = {
+const _hoisted_9$5 = {
   class: "label-basic",
   for: "typeDef"
 };
@@ -2974,7 +3000,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
                 ])
               ]),
               createElementVNode("div", _hoisted_8$5, [
-                createElementVNode("label", _hoisted_9$4, toDisplayString(_ctx.$t("payment_method_label")), 1),
+                createElementVNode("label", _hoisted_9$5, toDisplayString(_ctx.$t("payment_method_label")), 1),
                 createElementVNode("div", {
                   id: "stripePayment",
                   class: "stripePayment",
@@ -3016,7 +3042,7 @@ const _hoisted_7$5 = {
   type: "submit"
 };
 const _hoisted_8$4 = { class: "billing-select" };
-const _hoisted_9$3 = { key: 0 };
+const _hoisted_9$4 = { key: 0 };
 const _hoisted_10$3 = ["onSubmit"];
 const _hoisted_11$3 = { class: "input-group" };
 const _hoisted_12$3 = {
@@ -3323,7 +3349,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
               onClick: _cache[3] || (_cache[3] = ($event) => _ctx.$eventBus.emit("ShowAddPaymentMethodModal", true))
             }, toDisplayString(_ctx.$t("klb_add_new_billing_profile")), 1)) : createCommentVNode("v-if", true)
           ]),
-          editMode.value ? (openBlock(), createElementBlock("div", _hoisted_9$3, [
+          editMode.value ? (openBlock(), createElementBlock("div", _hoisted_9$4, [
             createElementVNode("div", null, [
               createElementVNode("form", {
                 onSubmit: withModifiers(submitUserBilling, ["prevent"])
@@ -3403,7 +3429,7 @@ const _hoisted_5$4 = {
 const _hoisted_6$4 = ["src"];
 const _hoisted_7$4 = { role: "list" };
 const _hoisted_8$3 = ["onClick"];
-const _hoisted_9$2 = {
+const _hoisted_9$3 = {
   key: 1,
   class: "shop"
 };
@@ -3494,7 +3520,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
             ]);
           }), 128))
         ])) : createCommentVNode("v-if", true),
-        products.value && __props.displayType == "shop" ? (openBlock(), createElementBlock("div", _hoisted_9$2, [
+        products.value && __props.displayType == "shop" ? (openBlock(), createElementBlock("div", _hoisted_9$3, [
           (openBlock(true), createElementBlock(Fragment, null, renderList(products.value?.data.data, (product) => {
             return openBlock(), createElementBlock("div", {
               key: product.Catalog_Product__,
@@ -3892,7 +3918,7 @@ const _hoisted_8$2 = {
   key: 0,
   class: "cart-summary is-desc"
 };
-const _hoisted_9$1 = {
+const _hoisted_9$2 = {
   key: 1,
   class: "cart-summary is-tax"
 };
@@ -4076,7 +4102,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                 ])
               ]),
               product.meta.description ? (openBlock(), createElementBlock("div", _hoisted_8$2, toDisplayString(product.meta.description), 1)) : createCommentVNode("v-if", true),
-              __props.mode == "b2b" ? (openBlock(), createElementBlock("div", _hoisted_9$1, [
+              __props.mode == "b2b" ? (openBlock(), createElementBlock("div", _hoisted_9$2, [
                 createElementVNode("h3", null, toDisplayString(_ctx.$t("klb_order_cart_vat")) + " (" + toDisplayString(product.data.Price.tax_rate) + "%) ", 1),
                 createElementVNode("div", _hoisted_10$1, toDisplayString(product.data.Price.tax_only.display), 1)
               ])) : createCommentVNode("v-if", true)
@@ -4289,7 +4315,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
           }, null, 8, _hoisted_3$3)
         ])) : createCommentVNode("v-if", true),
         is404.value ? (openBlock(), createElementBlock("div", _hoisted_4$3, [
-          createElementVNode("h1", null, toDisplayString(_ctx.$t("fv_404_text")), 1)
+          createVNode(Fy404View)
         ])) : createCommentVNode("v-if", true)
       ]);
     };
@@ -4308,7 +4334,7 @@ const _hoisted_5$1 = { class: "entry-main" };
 const _hoisted_6$1 = { class: "entry-content" };
 const _hoisted_7$1 = ["innerHTML"];
 const _hoisted_8$1 = { key: 0 };
-const _hoisted_9 = { class: "entry-footer" };
+const _hoisted_9$1 = { class: "entry-footer" };
 const _hoisted_10 = { class: "published" };
 const _hoisted_11 = ["datetime"];
 const _hoisted_12 = {
@@ -4386,7 +4412,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
               }, 8, ["to"])
             ])) : createCommentVNode("v-if", true)
           ]),
-          createElementVNode("footer", _hoisted_9, [
+          createElementVNode("footer", _hoisted_9$1, [
             createCommentVNode(`<span class="comments" v-if="post.Comments">
           <ChatBubbleBottomCenterIcon />
           {{
@@ -4446,6 +4472,10 @@ const _hoisted_8 = {
   key: 1,
   class: "single"
 };
+const _hoisted_9 = {
+  key: 2,
+  class: "is-404"
+};
 const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "KlbBlog",
   props: {
@@ -4457,21 +4487,11 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   async setup(__props) {
     let __temp, __restore;
     const props = __props;
-    const pageHead = reactive({
-      title: `...`,
-      ogImage: { name: "og:image", content: "", key: "image" }
-    });
     const route = useRoute();
-    watch(
-      () => route.name == "cmsNews" ? route.params.slug : false,
-      async (v) => {
-        if (v !== false) {
-          await checkRoute(v.toString());
-        }
-      }
-    );
     const translate = useTranslation();
     const blogName = ref("");
+    const pageTitle = ref();
+    const pageImage = ref({ name: "og:image", content: "" });
     const is404 = ref(false);
     const cats = ref();
     const data = ref();
@@ -4483,6 +4503,14 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       ...props.breadcrumbBase,
       { name: blogName.value }
     ]);
+    watch(
+      () => route.name == "cmsNews" ? route.params.slug : false,
+      async (v) => {
+        if (v !== false) {
+          await checkRoute(v.toString());
+        }
+      }
+    );
     const getArticle = async (slug) => {
       eventBus.emit("cmsBlog-loading", true);
       is404.value = false;
@@ -4501,9 +4529,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
-          pageHead.title = "404";
+          pageTitle.value = "404";
         }
         eventBus.emit("cmsBlog-loading", false);
+        return;
       });
       if (_data && _data.result == "success") {
         blogName.value = _data.data.content_cms.Name;
@@ -4513,12 +4542,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           { name: _data.data.content_cms_entry_data.Title }
         ];
         dataSingle.value = _data;
-        pageHead.title = dataSingle.value.data.content_cms_entry_data.Title + " - " + blogName.value;
+        pageTitle.value = dataSingle.value.data.content_cms_entry_data.Title + " - " + blogName.value;
         if (dataSingle.value.data.content_cms_entry_data.Top_Drive_Item && dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image && dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
-          pageHead.ogImage = {
-            name: "og:image",
-            content: dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"]
-          };
+          pageImage.value.content = dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"];
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4552,7 +4578,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
-          pageHead.title = "404";
+          pageTitle.value = "404";
         }
         eventBus.emit("cmsBlog-loading", false);
       });
@@ -4569,17 +4595,17 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             { name: blogName.value, to: props.basePath },
             { name: translate("klb_blog_category_breadcrumb", { category }) }
           ];
-          pageHead.title = translate("klb_blog_category_breadcrumb", { category });
+          pageTitle.value = translate("klb_blog_category_breadcrumb", { category });
         } else if (search) {
           breadcrumb.value = [
             ...props.breadcrumbBase,
             { name: blogName.value, to: props.basePath },
             { name: translate("klb_blog_search_breadcrumb", { search }) }
           ];
-          pageHead.title = translate("klb_blog_search_breadcrumb", { search });
+          pageTitle.value = translate("klb_blog_search_breadcrumb", { search });
         } else {
           breadcrumb.value = [...props.breadcrumbBase, { name: blogName.value }];
-          pageHead.title = blogName.value;
+          pageTitle.value = blogName.value;
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4609,8 +4635,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     onUnmounted(() => {
       eventBus.off("cmsPagingGoToPage", checkRoutePage);
     });
+    [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     useHead({
-      title: computed(() => `${pageHead.title} - ${props.siteName}`),
+      title: `${pageTitle.value} - ${props.siteName}`,
       meta: computed(() => {
         const _res = [
           {
@@ -4622,18 +4649,16 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
           }
         ];
-        if (pageHead.ogImage.content != "") {
-          _res.push(pageHead.ogImage);
-        }
+        if (pageImage.value.content != "")
+          _res.push(pageImage.value);
         return _res;
       })
     });
-    [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     return (_ctx, _cache) => {
       const _component_RouterLink = resolveComponent("RouterLink");
       return openBlock(), createElementBlock("div", _hoisted_1$1, [
         createVNode(FyLoader, { id: "cmsBlog" }),
-        displayType.value == "multiple" ? (openBlock(), createElementBlock("main", _hoisted_2$1, [
+        displayType.value == "multiple" && data.value && data.value.result ? (openBlock(), createElementBlock("main", _hoisted_2$1, [
           createElementVNode("div", null, [
             createVNode(FyBreadcrumb, { nav: breadcrumb.value }, null, 8, ["nav"]),
             (openBlock(true), createElementBlock(Fragment, null, renderList(data.value?.data.data, (post, index) => {
@@ -4696,13 +4721,16 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             createCommentVNode('\n        <div class="widget">\n          <h3>Archives</h3>\n        </div>')
           ])
         ])) : createCommentVNode("v-if", true),
-        displayType.value == "single" && dataSingle.value ? (openBlock(), createElementBlock("main", _hoisted_8, [
+        displayType.value == "single" && dataSingle.value && dataSingle.value.result ? (openBlock(), createElementBlock("main", _hoisted_8, [
           createVNode(KlbBlogInnerPost, {
             post: dataSingle.value.data.content_cms_entry_data,
             single: true,
             basePath: __props.basePath,
             breadcrumbBase: breadcrumb.value
           }, null, 8, ["post", "basePath", "breadcrumbBase"])
+        ])) : createCommentVNode("v-if", true),
+        is404.value ? (openBlock(), createElementBlock("main", _hoisted_9, [
+          createVNode(Fy404View)
         ])) : createCommentVNode("v-if", true)
       ]);
     };

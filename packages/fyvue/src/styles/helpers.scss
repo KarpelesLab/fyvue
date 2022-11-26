@@ -44,3 +44,12 @@ html, body {
 .fv-relative {
   @apply relative;
 }
+.fv-404 {
+  @apply flex flex-col lg:flex-row items-center justify-center my-20 text-center lg:text-left;
+  .title-404 {
+    @apply  text-8xl font-medium;
+  }
+  .content-404 {
+    @apply  text-xl lg:text-3xl font-medium mt-5;
+  }
+}
