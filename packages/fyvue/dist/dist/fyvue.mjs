@@ -4824,8 +4824,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }
       eventBus.emit("cmsBlog-loading", false);
     };
-    useSeo(seo);
     [__temp, __restore] = withAsyncContext(() => getArticle(route.params.slug.toString())), await __temp, __restore();
+    useSeo(seo);
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$2, [
         createVNode(FyLoader, { id: "cmspage" }),

@@ -121,9 +121,9 @@ const getArticle = async (slug: string) => {
   }
   eventBus.emit('cmsBlog-loading', false);
 };
-useSeo(seo);
 
 await getArticle(route.params.slug.toString());
+useSeo(seo);
 </script>
 <template>
   <div class="fv-relative klb-blog">

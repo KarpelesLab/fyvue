@@ -4826,8 +4826,8 @@ const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
       }
       eventBus.emit("cmsBlog-loading", false);
     };
-    useSeo(seo);
     [__temp, __restore] = vue.withAsyncContext(() => getArticle(route.params.slug.toString())), await __temp, __restore();
+    useSeo(seo);
     return (_ctx, _cache) => {
       return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$2, [
         vue.createVNode(FyLoader, { id: "cmspage" }),
