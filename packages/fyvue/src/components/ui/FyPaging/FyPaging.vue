@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import type { KlbApiPaging } from '../../../dts/klb';
 import { useEventBus } from '../../../utils/helpers';
 import { useHistory } from '../../../utils/ssr';
+import { useSeo } from '../../helpers/seo';
+import { getUrl } from '@karpeleslab/klbfw';
+import type { SeoData } from '../../../dts';
 const props = defineProps<{
   items: KlbApiPaging;
   id: string;
@@ -11,14 +14,17 @@ const props = defineProps<{
 
 const eventBus = useEventBus();
 const history = useHistory();
-
+const prevNextSeo = ref<SeoData>({});
+const url = getUrl();
 const isNewPage = (page: number) => {
   return (
     page >= 1 && page <= props.items.page_max && page != props.items.page_no
   );
 };
+
 const next = () => {
   const page = props.items.page_no + 1;
+
   if (!isNewPage(page)) return;
 
   history
@@ -55,6 +61,34 @@ const page = (page: number) => {
       eventBus.emit(`${props.id}GoToPage`, page);
     });
 };
+
+const checkPageNumber = (page: number = 1) => {
+  prevNextSeo.value.next = undefined;
+  prevNextSeo.value.prev = undefined;
+  if (page + 1 <= props.items.page_max) {
+    prevNextSeo.value.next = `${url.scheme}://${url.host}${url.path}?page=${
+      page + 1
+    }`;
+  }
+  if (page - 1 >= 1) {
+    prevNextSeo.value.prev = `${url.scheme}://${url.host}${url.path}?page=${
+      page - 1
+    }`;
+  }
+};
+onMounted(() => {
+  eventBus.on(`${props.id}GoToPage`, checkPageNumber);
+});
+onUnmounted(() => {
+  eventBus.off(`${props.id}GoToPage`, checkPageNumber);
+});
+checkPageNumber(props.items.page_no);
+useSeo(prevNextSeo);
+
+/*
+<link rel="prev" href="https://www.example.com/article?story=abc&page=1" />
+<link rel="next" href="https://www.example.com/article?story=abc&page=3" />
+*/
 </script>
 <template>
   <div class="fy-paging" v-if="items && items.page_max > 1 && items.page_no">

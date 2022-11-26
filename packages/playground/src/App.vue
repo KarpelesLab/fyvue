@@ -3,7 +3,7 @@ import {
   i18nextPromise,
   countriesPromise,
   useUserCheck,
-  rest,
+  useSeo,
 } from '@karpeleslab/fyvue';
 import { Head, useHead } from '@vueuse/head';
 import {
@@ -12,12 +12,13 @@ import {
 } from '@vueuse/schema-org/runtime';
 import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
-import { useRoute } from 'vue-router';
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import { onClickOutside } from '@vueuse/core';
 import { Backend } from '@karpeleslab/i18next-klb-backend';
 import ComponentIndex from '@/componentIndex';
+import { getUrl } from '@karpeleslab/klbfw';
 
 await i18nextPromise(Backend);
 const route = useRoute();
@@ -31,6 +32,20 @@ if (!import.meta.env.SSR) {
   await countriesPromise();
 }
 
+useSeo(
+  ref({
+    name: 'fyvue',
+    image: 'https://fy-vue.com/fyvue.svg',
+    title: computed(() =>
+      computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
+    ),
+    description:
+      'fyvue is a Vue Plugin providing components, helpers for Vue, Tailwind, vite-ssr, KLB APIs, and more. At some point in the future, it will do my job for me.',
+  }),
+  true,
+  import.meta.env.SSR
+);
+/*
 useHead({
   title: computed(() =>
     computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
@@ -66,9 +81,6 @@ useHead({
     },
   ],
 });
-</script>
-
-<template>
   <SchemaOrgOrganization
     name="fyvue"
     logo="https://www.fy-vue.com/fyvue.svg"
@@ -76,6 +88,10 @@ useHead({
   />
   <SchemaOrgWebSite name="fyvue" />
   <SchemaOrgWebPage v-if="$route.meta.title" :name="$route.meta.title" />
+*/
+</script>
+
+<template>
   <div class="flex flex-col min-h-screen">
     <FyNavbar
       title="fyvue"

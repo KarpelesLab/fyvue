@@ -932,7 +932,7 @@ button[type=submit] {
   @apply flex-1;
 }
 .klb-blog aside {
-  @apply grow w-full md:w-96;
+  @apply grow md:grow-0 w-full md:w-96;
 }
 .klb-blog aside .widget {
   @apply mt-2 bg-white dark:bg-fv-neutral-900 text-black dark:text-fv-neutral-50 shadow rounded py-0.5 px-2  mx-0 md:mx-2;
@@ -959,7 +959,7 @@ button[type=submit] {
   @apply my-2 container mx-auto max-w-screen-xl shadow;
 }
 .klb-blog .multiple {
-  @apply px-2 block md:flex container mx-auto max-w-screen-xl;
+  @apply px-2 block md:flex container mx-auto max-w-screen-xl flex-1;
 }
 .klb-blog .tag {
   @apply inline-block p-0.5 bg-fv-primary-400 text-white mx-0.5 px-1.5 shadow uppercase font-bold rounded text-xs;

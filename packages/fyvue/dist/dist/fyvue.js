@@ -12,6 +12,7 @@ var pinia = require('pinia');
 var klbfw = require('@karpeleslab/klbfw');
 var serverRenderer = require('@vue/server-renderer');
 var head = require('@vueuse/head');
+var runtime = require('@vueuse/schema-org/runtime');
 var core = require('@vueuse/core');
 var useVuelidate = require('@vuelidate/core');
 var validators = require('@vuelidate/validators');
@@ -1156,6 +1157,155 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
 });
 var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
+const useSeo = (seo, initial = false, ssr = false) => {
+    if (seo.value.title) {
+        head.useHead({
+            title: vue.computed(() => seo.value.title),
+        });
+    }
+    if (initial) {
+        runtime.useSchemaOrg([
+            runtime.defineOrganization({
+                name: seo.value.name,
+                logo: seo.value.image,
+            }),
+            runtime.defineWebSite({
+                name: seo.value.name,
+                potentialAction: vue.computed(() => {
+                    const _res = [];
+                    if (seo.value.searchAction) {
+                        _res.push(runtime.defineSearchAction({ target: seo.value.searchAction }));
+                    }
+                    return _res;
+                }),
+            }),
+            runtime.defineWebPage(),
+        ]);
+    }
+    head.useHead({
+        link: vue.computed(() => {
+            const _res = [];
+            if (initial && ssr) {
+                _res.push({
+                    rel: 'canonical',
+                    href: `${klbfw.getUrl().scheme}://${klbfw.getUrl().host}${klbfw.getUrl().path}`,
+                });
+            }
+            if (seo.value.prev) {
+                _res.push({
+                    rel: 'prev',
+                    href: seo.value.prev,
+                });
+            }
+            if (seo.value.next) {
+                _res.push({
+                    rel: 'next',
+                    href: seo.value.next,
+                });
+            }
+            return _res;
+        }),
+        htmlAttrs: vue.computed(() => {
+            if (initial && ssr)
+                return { lang: vue.computed(() => klbfw.getLocale()) };
+            return {};
+        }),
+        bodyAttrs: vue.computed(() => {
+            if (initial)
+                return { itemtype: 'http://schema.org/WebPage' };
+            return {};
+        }),
+        meta: vue.computed(() => {
+            const _res = [];
+            if (initial) {
+                if (ssr) {
+                    _res.push({
+                        name: 'og:locale',
+                        content: klbfw.getLocale().replace('-', '_'),
+                    }, {
+                        name: 'og:url',
+                        content: klbfw.getUrl().full,
+                    });
+                }
+                _res.push({
+                    name: 'og:type',
+                    content: 'website',
+                }, {
+                    name: 'robots',
+                    content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+                });
+            }
+            if (seo.value.type) {
+                _res.push({
+                    name: 'og:type',
+                    content: seo.value.type,
+                });
+            }
+            if (seo.value.title) {
+                _res.push({
+                    name: 'og:title',
+                    content: seo.value.title,
+                }, {
+                    name: 'twitter:title',
+                    content: seo.value.title,
+                });
+            }
+            if (seo.value.description) {
+                _res.push({
+                    name: 'og:description',
+                    content: seo.value.description,
+                }, {
+                    name: 'twitter:description',
+                    content: seo.value.description,
+                }, {
+                    name: 'og:description',
+                    content: seo.value.description,
+                }, {
+                    name: 'description',
+                    content: seo.value.description,
+                });
+            }
+            if (seo.value.modified) {
+                _res.push({
+                    name: 'article:published_time',
+                    content: seo.value.modified,
+                });
+            }
+            if (seo.value.published) {
+                _res.push({
+                    name: 'article:modified_time',
+                    content: seo.value.published,
+                });
+            }
+            if (seo.value.imageWidth && seo.value.imageHeight) {
+                _res.push({
+                    name: 'og:image:width',
+                    content: seo.value.imageWidth,
+                }, {
+                    name: 'og:image:height',
+                    content: seo.value.imageHeight,
+                });
+            }
+            if (seo.value.imageType) {
+                _res.push({
+                    name: 'og:image:type',
+                    content: seo.value.imageType,
+                });
+            }
+            if (seo.value.image) {
+                _res.push({
+                    name: 'og:image',
+                    content: seo.value.image,
+                }, {
+                    name: 'twitter:image',
+                    content: seo.value.image,
+                });
+            }
+            return _res;
+        }),
+    });
+};
+
 const _hoisted_1$h = {
   key: 0,
   class: "fy-paging"
@@ -1190,6 +1340,8 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
     const props = __props;
     const eventBus = useEventBus();
     const history = useHistory();
+    const prevNextSeo = vue.ref({});
+    const url = klbfw.getUrl();
     const isNewPage = (page2) => {
       return page2 >= 1 && page2 <= props.items.page_max && page2 != props.items.page_no;
     };
@@ -1225,6 +1377,24 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
     };
+    const checkPageNumber = (page2 = 1) => {
+      prevNextSeo.value.next = void 0;
+      prevNextSeo.value.prev = void 0;
+      if (page2 + 1 <= props.items.page_max) {
+        prevNextSeo.value.next = `${url.scheme}://${url.host}${url.path}?page=${page2 + 1}`;
+      }
+      if (page2 - 1 >= 1) {
+        prevNextSeo.value.prev = `${url.scheme}://${url.host}${url.path}?page=${page2 - 1}`;
+      }
+    };
+    vue.onMounted(() => {
+      eventBus.on(`${props.id}GoToPage`, checkPageNumber);
+    });
+    vue.onUnmounted(() => {
+      eventBus.off(`${props.id}GoToPage`, checkPageNumber);
+    });
+    checkPageNumber(props.items.page_no);
+    useSeo(prevNextSeo);
     return (_ctx, _cache) => {
       return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$h, [
         vue.createElementVNode("div", _hoisted_2$h, [
@@ -4511,6 +4681,8 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         published: void 0,
         modified: void 0,
         keywords: void 0,
+        imageWidth: void 0,
+        imageHeight: void 0,
         type
       };
     };
@@ -4545,7 +4717,8 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
           slug,
           image_variation: [
             "strip&scale_crop=512x512&alias=squared",
-            "strip&scale_crop=1280x100&alias=bannerx100"
+            "strip&scale_crop=1280x100&alias=bannerx100",
+            "strip&scale_crop=1200x630&alias=seo"
           ]
         }
       ).catch((err) => {
@@ -4580,7 +4753,9 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         }
         if (_data.data.content_cms_entry_data.Top_Drive_Item && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
           seo.value.imageType = _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
-          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"];
+          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["seo"];
+          seo.value.imageWidth = "1200";
+          seo.value.imageHeight = "630";
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4603,7 +4778,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         "GET",
         {
           page_no: page,
-          results_per_page: 8,
+          results_per_page: 1,
           sort: "published:desc",
           image_variation: "strip&scale_crop=1280x160&alias=banner",
           query: {
@@ -4623,7 +4798,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         query.value = search;
       }
       if (_data && _data.result == "success") {
-        await getCategories(_data.data.content_cms.Classify.Classify__);
+        getCategories(_data.data.content_cms.Classify.Classify__);
         data.value = _data;
         blogName.value = _data.data.content_cms.Name;
         if (category) {
@@ -4675,94 +4850,13 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
       eventBus.off("cmsPagingGoToPage", checkRoutePage);
     });
     [__temp, __restore] = vue.withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
-    head.useHead({
-      title: `${seo.value.title} - ${props.siteName}`,
-      meta: vue.computed(() => {
-        const _res = [
-          {
-            name: "og:type",
-            content: seo.value.type
-          },
-          {
-            name: "og:title",
-            content: seo.value.title
-          },
-          {
-            name: "twitter:title",
-            content: seo.value.title
-          },
-          {
-            name: "robots",
-            content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-          }
-        ];
-        if (seo.value.description) {
-          _res.push({
-            name: "og:description",
-            content: seo.value.description
-          });
-          _res.push({
-            name: "twitter:description",
-            content: seo.value.description
-          });
-          _res.push({
-            name: "og:description",
-            content: seo.value.description
-          });
-          _res.push({
-            name: "description",
-            content: seo.value.description
-          });
-        }
-        if (seo.value.keywords) {
-          _res.push({
-            name: "keywords",
-            content: seo.value.keywords
-          });
-        }
-        if (seo.value.modified) {
-          _res.push({
-            name: "article:published_time",
-            content: seo.value.modified
-          });
-        }
-        if (seo.value.published) {
-          _res.push({
-            name: "article:modified_time",
-            content: seo.value.published
-          });
-        }
-        if (seo.value.image) {
-          _res.push({
-            name: "og:image",
-            content: seo.value.image
-          });
-          _res.push({
-            name: "og:image:type",
-            content: seo.value.imageType
-          });
-          _res.push({
-            name: "twitter:image",
-            content: seo.value.image
-          });
-          _res.push({
-            name: "og:image:width",
-            content: "512"
-          });
-          _res.push({
-            name: "og:image:height",
-            content: "512"
-          });
-        }
-        return _res;
-      })
-    });
+    useSeo(seo);
     return (_ctx, _cache) => {
       const _component_RouterLink = vue.resolveComponent("RouterLink");
       return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
         vue.createVNode(FyLoader, { id: "cmsBlog" }),
-        displayType.value == "multiple" && data.value && data.value.result ? (vue.openBlock(), vue.createElementBlock("main", _hoisted_2$1, [
-          vue.createElementVNode("div", null, [
+        displayType.value == "multiple" && data.value && data.value.result ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$1, [
+          vue.createElementVNode("main", null, [
             vue.createVNode(FyBreadcrumb, { nav: breadcrumb.value }, null, 8, ["nav"]),
             (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(data.value?.data.data, (post, index) => {
               return vue.openBlock(), vue.createElementBlock(vue.Fragment, {
@@ -4776,7 +4870,9 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
                 data.value && index != data.value?.data.data.length - 1 ? (vue.openBlock(), vue.createElementBlock("hr", _hoisted_3$1)) : vue.createCommentVNode("v-if", true)
               ], 64);
             }), 128)),
-            data.value && data.value.data.data.length == 0 ? (vue.openBlock(), vue.createElementBlock("p", _hoisted_4$1, vue.toDisplayString(_ctx.$t("klb_blog_no_posts")), 1)) : vue.createCommentVNode("v-if", true),
+            !data.value?.data.data.length ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$1, [
+              vue.createElementVNode("p", null, vue.toDisplayString(_ctx.$t("klb_blog_no_posts")), 1)
+            ])) : vue.createCommentVNode("v-if", true),
             data.value && data.value.paging ? (vue.openBlock(), vue.createBlock(FyPaging, {
               key: 1,
               id: "cmsPaging",
@@ -5273,6 +5369,7 @@ exports.useCountries = useCountries;
 exports.useEventBus = useEventBus;
 exports.useFVStore = useFVStore;
 exports.useHistory = useHistory;
+exports.useSeo = useSeo;
 exports.useTranslation = useTranslation;
 exports.useUserCheck = useUserCheck;
 //# sourceMappingURL=fyvue.js.map

@@ -7,9 +7,10 @@ import i18next from 'i18next';
 import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, Transition, reactive, withModifiers, watch, withAsyncContext } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { defineStore } from 'pinia';
-import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getLocale as getLocale$1, getUrl } from '@karpeleslab/klbfw';
+import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getUrl, getLocale as getLocale$1 } from '@karpeleslab/klbfw';
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString, useHead } from '@vueuse/head';
+import { useSchemaOrg, defineOrganization, defineWebSite, defineSearchAction, defineWebPage } from '@vueuse/schema-org/runtime';
 import { useDark, useToggle, useStorage } from '@vueuse/core';
 import useVuelidate, { useVuelidate as useVuelidate$1 } from '@vuelidate/core';
 import { required, email, sameAs } from '@vuelidate/validators';
@@ -1154,6 +1155,155 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
 });
 var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
+const useSeo = (seo, initial = false, ssr = false) => {
+    if (seo.value.title) {
+        useHead({
+            title: computed(() => seo.value.title),
+        });
+    }
+    if (initial) {
+        useSchemaOrg([
+            defineOrganization({
+                name: seo.value.name,
+                logo: seo.value.image,
+            }),
+            defineWebSite({
+                name: seo.value.name,
+                potentialAction: computed(() => {
+                    const _res = [];
+                    if (seo.value.searchAction) {
+                        _res.push(defineSearchAction({ target: seo.value.searchAction }));
+                    }
+                    return _res;
+                }),
+            }),
+            defineWebPage(),
+        ]);
+    }
+    useHead({
+        link: computed(() => {
+            const _res = [];
+            if (initial && ssr) {
+                _res.push({
+                    rel: 'canonical',
+                    href: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
+                });
+            }
+            if (seo.value.prev) {
+                _res.push({
+                    rel: 'prev',
+                    href: seo.value.prev,
+                });
+            }
+            if (seo.value.next) {
+                _res.push({
+                    rel: 'next',
+                    href: seo.value.next,
+                });
+            }
+            return _res;
+        }),
+        htmlAttrs: computed(() => {
+            if (initial && ssr)
+                return { lang: computed(() => getLocale$1()) };
+            return {};
+        }),
+        bodyAttrs: computed(() => {
+            if (initial)
+                return { itemtype: 'http://schema.org/WebPage' };
+            return {};
+        }),
+        meta: computed(() => {
+            const _res = [];
+            if (initial) {
+                if (ssr) {
+                    _res.push({
+                        name: 'og:locale',
+                        content: getLocale$1().replace('-', '_'),
+                    }, {
+                        name: 'og:url',
+                        content: getUrl().full,
+                    });
+                }
+                _res.push({
+                    name: 'og:type',
+                    content: 'website',
+                }, {
+                    name: 'robots',
+                    content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+                });
+            }
+            if (seo.value.type) {
+                _res.push({
+                    name: 'og:type',
+                    content: seo.value.type,
+                });
+            }
+            if (seo.value.title) {
+                _res.push({
+                    name: 'og:title',
+                    content: seo.value.title,
+                }, {
+                    name: 'twitter:title',
+                    content: seo.value.title,
+                });
+            }
+            if (seo.value.description) {
+                _res.push({
+                    name: 'og:description',
+                    content: seo.value.description,
+                }, {
+                    name: 'twitter:description',
+                    content: seo.value.description,
+                }, {
+                    name: 'og:description',
+                    content: seo.value.description,
+                }, {
+                    name: 'description',
+                    content: seo.value.description,
+                });
+            }
+            if (seo.value.modified) {
+                _res.push({
+                    name: 'article:published_time',
+                    content: seo.value.modified,
+                });
+            }
+            if (seo.value.published) {
+                _res.push({
+                    name: 'article:modified_time',
+                    content: seo.value.published,
+                });
+            }
+            if (seo.value.imageWidth && seo.value.imageHeight) {
+                _res.push({
+                    name: 'og:image:width',
+                    content: seo.value.imageWidth,
+                }, {
+                    name: 'og:image:height',
+                    content: seo.value.imageHeight,
+                });
+            }
+            if (seo.value.imageType) {
+                _res.push({
+                    name: 'og:image:type',
+                    content: seo.value.imageType,
+                });
+            }
+            if (seo.value.image) {
+                _res.push({
+                    name: 'og:image',
+                    content: seo.value.image,
+                }, {
+                    name: 'twitter:image',
+                    content: seo.value.image,
+                });
+            }
+            return _res;
+        }),
+    });
+};
+
 const _hoisted_1$h = {
   key: 0,
   class: "fy-paging"
@@ -1188,6 +1338,8 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     const props = __props;
     const eventBus = useEventBus();
     const history = useHistory();
+    const prevNextSeo = ref({});
+    const url = getUrl();
     const isNewPage = (page2) => {
       return page2 >= 1 && page2 <= props.items.page_max && page2 != props.items.page_no;
     };
@@ -1223,6 +1375,24 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
         eventBus.emit(`${props.id}GoToPage`, page2);
       });
     };
+    const checkPageNumber = (page2 = 1) => {
+      prevNextSeo.value.next = void 0;
+      prevNextSeo.value.prev = void 0;
+      if (page2 + 1 <= props.items.page_max) {
+        prevNextSeo.value.next = `${url.scheme}://${url.host}${url.path}?page=${page2 + 1}`;
+      }
+      if (page2 - 1 >= 1) {
+        prevNextSeo.value.prev = `${url.scheme}://${url.host}${url.path}?page=${page2 - 1}`;
+      }
+    };
+    onMounted(() => {
+      eventBus.on(`${props.id}GoToPage`, checkPageNumber);
+    });
+    onUnmounted(() => {
+      eventBus.off(`${props.id}GoToPage`, checkPageNumber);
+    });
+    checkPageNumber(props.items.page_no);
+    useSeo(prevNextSeo);
     return (_ctx, _cache) => {
       return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (openBlock(), createElementBlock("div", _hoisted_1$h, [
         createElementVNode("div", _hoisted_2$h, [
@@ -4509,6 +4679,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         published: void 0,
         modified: void 0,
         keywords: void 0,
+        imageWidth: void 0,
+        imageHeight: void 0,
         type
       };
     };
@@ -4543,7 +4715,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           slug,
           image_variation: [
             "strip&scale_crop=512x512&alias=squared",
-            "strip&scale_crop=1280x100&alias=bannerx100"
+            "strip&scale_crop=1280x100&alias=bannerx100",
+            "strip&scale_crop=1200x630&alias=seo"
           ]
         }
       ).catch((err) => {
@@ -4578,7 +4751,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         }
         if (_data.data.content_cms_entry_data.Top_Drive_Item && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
           seo.value.imageType = _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
-          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"];
+          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["seo"];
+          seo.value.imageWidth = "1200";
+          seo.value.imageHeight = "630";
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4601,7 +4776,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         "GET",
         {
           page_no: page,
-          results_per_page: 8,
+          results_per_page: 1,
           sort: "published:desc",
           image_variation: "strip&scale_crop=1280x160&alias=banner",
           query: {
@@ -4621,7 +4796,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         query.value = search;
       }
       if (_data && _data.result == "success") {
-        await getCategories(_data.data.content_cms.Classify.Classify__);
+        getCategories(_data.data.content_cms.Classify.Classify__);
         data.value = _data;
         blogName.value = _data.data.content_cms.Name;
         if (category) {
@@ -4673,94 +4848,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       eventBus.off("cmsPagingGoToPage", checkRoutePage);
     });
     [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
-    useHead({
-      title: `${seo.value.title} - ${props.siteName}`,
-      meta: computed(() => {
-        const _res = [
-          {
-            name: "og:type",
-            content: seo.value.type
-          },
-          {
-            name: "og:title",
-            content: seo.value.title
-          },
-          {
-            name: "twitter:title",
-            content: seo.value.title
-          },
-          {
-            name: "robots",
-            content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-          }
-        ];
-        if (seo.value.description) {
-          _res.push({
-            name: "og:description",
-            content: seo.value.description
-          });
-          _res.push({
-            name: "twitter:description",
-            content: seo.value.description
-          });
-          _res.push({
-            name: "og:description",
-            content: seo.value.description
-          });
-          _res.push({
-            name: "description",
-            content: seo.value.description
-          });
-        }
-        if (seo.value.keywords) {
-          _res.push({
-            name: "keywords",
-            content: seo.value.keywords
-          });
-        }
-        if (seo.value.modified) {
-          _res.push({
-            name: "article:published_time",
-            content: seo.value.modified
-          });
-        }
-        if (seo.value.published) {
-          _res.push({
-            name: "article:modified_time",
-            content: seo.value.published
-          });
-        }
-        if (seo.value.image) {
-          _res.push({
-            name: "og:image",
-            content: seo.value.image
-          });
-          _res.push({
-            name: "og:image:type",
-            content: seo.value.imageType
-          });
-          _res.push({
-            name: "twitter:image",
-            content: seo.value.image
-          });
-          _res.push({
-            name: "og:image:width",
-            content: "512"
-          });
-          _res.push({
-            name: "og:image:height",
-            content: "512"
-          });
-        }
-        return _res;
-      })
-    });
+    useSeo(seo);
     return (_ctx, _cache) => {
       const _component_RouterLink = resolveComponent("RouterLink");
       return openBlock(), createElementBlock("div", _hoisted_1$1, [
         createVNode(FyLoader, { id: "cmsBlog" }),
-        displayType.value == "multiple" && data.value && data.value.result ? (openBlock(), createElementBlock("main", _hoisted_2$1, [
-          createElementVNode("div", null, [
+        displayType.value == "multiple" && data.value && data.value.result ? (openBlock(), createElementBlock("div", _hoisted_2$1, [
+          createElementVNode("main", null, [
             createVNode(FyBreadcrumb, { nav: breadcrumb.value }, null, 8, ["nav"]),
             (openBlock(true), createElementBlock(Fragment, null, renderList(data.value?.data.data, (post, index) => {
               return openBlock(), createElementBlock(Fragment, {
@@ -4774,7 +4868,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 data.value && index != data.value?.data.data.length - 1 ? (openBlock(), createElementBlock("hr", _hoisted_3$1)) : createCommentVNode("v-if", true)
               ], 64);
             }), 128)),
-            data.value && data.value.data.data.length == 0 ? (openBlock(), createElementBlock("p", _hoisted_4$1, toDisplayString(_ctx.$t("klb_blog_no_posts")), 1)) : createCommentVNode("v-if", true),
+            !data.value?.data.data.length ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
+              createElementVNode("p", null, toDisplayString(_ctx.$t("klb_blog_no_posts")), 1)
+            ])) : createCommentVNode("v-if", true),
             data.value && data.value.paging ? (openBlock(), createBlock(FyPaging, {
               key: 1,
               id: "cmsPaging",
@@ -5259,5 +5355,5 @@ const KlbUse = {
     ...klb.composables,
 };
 
-export { KlbUse, components, countriesPromise, createFyvue, helpers, helpersSSR, i18nextPromise, rest, useCountries, useEventBus, useFVStore, useHistory, useTranslation, useUserCheck };
+export { KlbUse, components, countriesPromise, createFyvue, helpers, helpersSSR, i18nextPromise, rest, useCountries, useEventBus, useFVStore, useHistory, useSeo, useTranslation, useUserCheck };
 //# sourceMappingURL=fyvue.mjs.map

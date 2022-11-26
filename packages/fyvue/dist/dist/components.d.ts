@@ -32,8 +32,6 @@ declare module 'vue' {
     KlbBlog: typeof import('@karpeleslab/fyvue')['components']['KlbBlog'];
     Fy404View: typeof import('@karpeleslab/fyvue')['components']['Fy404View'];
 
-
-
     // Helpers
     ClientOnly: typeof import('@karpeleslab/fyvue')['components']['ClientOnly'];
   }

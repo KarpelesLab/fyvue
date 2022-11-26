@@ -27,7 +27,7 @@ import { rest } from './utils/rest';
 import type { FyvueOptions } from './dts';
 import { useUserCheck } from './components/klb/KlbUser/useUserCheck';
 import { getLocale } from '@karpeleslab/klbfw';
-
+import { useSeo } from './components/helpers/seo';
 const components = { ...uiComponents, ...klb.components, ...helpersComponents };
 export const i18nextPromise = (backend) => {
   return i18next.use(backend).init({
@@ -102,6 +102,7 @@ export {
   useEventBus,
   useTranslation,
   useUserCheck,
+  useSeo,
   useFVStore,
   useHistory,
   useCountries,

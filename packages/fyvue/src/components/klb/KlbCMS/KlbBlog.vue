@@ -13,6 +13,8 @@ import KlbBlogInnerPost from './KlbBlogInnerPost.vue';
 import FyBreadcrumb from '../../ui/FyBreadcrumb/FyBreadcrumb.vue';
 import FyPaging from '../../ui/FyPaging/FyPaging.vue';
 import Fy404View from '../../ui/Fy404/Fy404View.vue';
+import { useSeo } from '../../helpers/seo';
+import type { SeoData } from '../../../dts/index';
 
 import type {
   KlbAPIClassify,
@@ -34,6 +36,7 @@ const props = withDefaults(
   }
 );
 
+/*
 type SeoData = {
   title?: string;
   image?: string;
@@ -43,7 +46,7 @@ type SeoData = {
   modified?: string;
   keywords?: string;
   type: 'blog' | 'search' | 'article';
-};
+};*/
 
 const route = useRoute();
 const translate = useTranslation();
@@ -75,6 +78,8 @@ const resetSeo = (type: 'blog' | 'search' | 'article' = 'blog') => {
     published: undefined,
     modified: undefined,
     keywords: undefined,
+    imageWidth: undefined,
+    imageHeight: undefined,
     type: type,
   };
 };
@@ -159,6 +164,8 @@ const getArticle = async (slug: string) => {
         _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation[
           'seo'
         ];
+      seo.value.imageWidth = '1200';
+      seo.value.imageHeight = '630';
     }
   }
   eventBus.emit('cmsBlog-loading', false);
@@ -188,7 +195,7 @@ const getArticles = async (
     'GET',
     {
       page_no: page,
-      results_per_page: 8,
+      results_per_page: 1,
       sort: 'published:desc',
       image_variation: 'strip&scale_crop=1280x160&alias=banner',
       query: {
@@ -208,7 +215,7 @@ const getArticles = async (
     query.value = search;
   }
   if (_data && _data.result == 'success') {
-    await getCategories(_data.data.content_cms.Classify.Classify__);
+    getCategories(_data.data.content_cms.Classify.Classify__);
     data.value = _data;
     blogName.value = _data.data.content_cms.Name;
     if (category) {
@@ -262,7 +269,8 @@ onUnmounted(() => {
   eventBus.off('cmsPagingGoToPage', checkRoutePage);
 });
 await checkRoute(route.params.slug.toString());
-
+useSeo(seo);
+/*
 useHead({
   title: `${seo.value.title} - ${props.siteName}`,
   meta: computed(() => {
@@ -347,16 +355,17 @@ useHead({
     return _res;
   }),
 });
+*/
 </script>
 <template>
   <div class="klb-blog">
     <FyLoader id="cmsBlog" />
 
-    <main
+    <div
       v-if="displayType == 'multiple' && data && data.result"
       class="multiple"
     >
-      <div>
+      <main>
         <FyBreadcrumb :nav="breadcrumb" />
 
         <template
@@ -366,15 +375,15 @@ useHead({
           <KlbBlogInnerPost :post="post" :single="false" :basePath="basePath" />
           <hr v-if="data && index != data?.data.data.length - 1" />
         </template>
-        <p v-if="data && data.data.data.length == 0">
-          {{ $t('klb_blog_no_posts') }}
-        </p>
+        <div v-if="!data?.data.data.length">
+          <p>{{ $t('klb_blog_no_posts') }}</p>
+        </div>
         <FyPaging
           v-if="data && data.paging"
           id="cmsPaging"
           :items="data.paging"
         />
-      </div>
+      </main>
       <aside>
         <form
           class="search"
@@ -406,7 +415,7 @@ useHead({
           <h3>Archives</h3>
         </div>-->
       </aside>
-    </main>
+    </div>
     <main
       v-if="displayType == 'single' && dataSingle && dataSingle.result"
       class="single"

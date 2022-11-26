@@ -32,8 +32,6 @@ declare module 'vue' {
     KlbBlog: typeof import('../src')['components']['KlbBlog'];
     Fy404View: typeof import('../src')['components']['Fy404View'];
 
-
-
     // Helpers
     ClientOnly: typeof import('../src')['components']['ClientOnly'];
   }
