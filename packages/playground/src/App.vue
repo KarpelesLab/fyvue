@@ -35,6 +35,7 @@ if (!import.meta.env.SSR) {
 useSeo(
   ref({
     name: 'fyvue',
+    type: 'website',
     image: 'https://fy-vue.com/fyvue.svg',
     title: computed(() =>
       computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
@@ -42,53 +43,8 @@ useSeo(
     description:
       'fyvue is a Vue Plugin providing components, helpers for Vue, Tailwind, vite-ssr, KLB APIs, and more. At some point in the future, it will do my job for me.',
   }),
-  true,
-  import.meta.env.SSR
+  true
 );
-/*
-useHead({
-  title: computed(() =>
-    computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
-  ),
-  meta: [
-    {
-      name: 'og:title',
-      content: computed(() =>
-        computedRoute.value.meta.title
-          ? computedRoute.value.meta.title
-          : 'fyvue'
-      ),
-    },
-  ],
-});
-useHead({
-  meta: [
-    {
-      name: 'og:site_name',
-      content: 'fyvue',
-    },
-    {
-      name: 'og:url',
-      content: 'https://fy-vue.com/',
-    },
-    {
-      name: 'og:type',
-      content: 'website',
-    },
-    {
-      name: 'og:image',
-      content: 'https://fy-vue.com/fyvue.svg',
-    },
-  ],
-});
-  <SchemaOrgOrganization
-    name="fyvue"
-    logo="https://www.fy-vue.com/fyvue.svg"
-    same-as="['https://twitter.com/ungeek']"
-  />
-  <SchemaOrgWebSite name="fyvue" />
-  <SchemaOrgWebPage v-if="$route.meta.title" :name="$route.meta.title" />
-*/
 </script>
 
 <template>
@@ -199,7 +155,7 @@ useHead({
       class="container mx-auto max-w-screen-xl mt-2 md:mt-3"
     />
     <main
-      v-if="!$route.path.includes('blog')"
+      v-if="!$route.path.includes('blog') && !$route.path.includes('pages')"
       class="relative w-full flex-grow bg-white dark:bg-fv-neutral-900 rounded container mx-auto max-w-screen-xl p-2 md:p-4 lg:p-6 my-2 md:my-3"
     >
       <RouterView v-slot="{ Component }">

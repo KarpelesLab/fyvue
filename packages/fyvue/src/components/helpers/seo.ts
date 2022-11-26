@@ -36,6 +36,23 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
       defineWebPage(),
     ]);
   }
+  /*
+  @redo with store per page
+  if (seo.value.published)
+    defineWebPage({ datePublished: seo.value.published });
+  if (seo.value.modified) defineWebPage({ dateModified: seo.value.modified });
+  if (seo.value.image) defineWebPage({ image: seo.value.image });
+  if (seo.value.title) defineWebPage({ name: seo.value.title });
+  if (seo.value.type) {
+    if (seo.value.type == 'search')
+      defineWebPage({ '@types': 'SearchResultsPage' });
+  }
+  if (getMode() == 'ssr') {
+    defineWebPage({
+      url: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
+    });
+  }*/
+
   useHead({
     link: computed(() => {
       const _res: Array<any> = [];

@@ -15,7 +15,7 @@ import FyPaging from '../../ui/FyPaging/FyPaging.vue';
 import Fy404View from '../../ui/Fy404/Fy404View.vue';
 import { useSeo } from '../../helpers/seo';
 import type { SeoData } from '../../../dts/index';
-
+import { cropText } from '../../../utils/display';
 import type {
   KlbAPIClassify,
   KlbAPIContentCmsSingle,
@@ -36,18 +36,6 @@ const props = withDefaults(
   }
 );
 
-/*
-type SeoData = {
-  title?: string;
-  image?: string;
-  imageType?: string;
-  description?: string;
-  published?: string;
-  modified?: string;
-  keywords?: string;
-  type: 'blog' | 'search' | 'article';
-};*/
-
 const route = useRoute();
 const translate = useTranslation();
 const blogName = ref<string>('');
@@ -61,14 +49,7 @@ const seo = ref<SeoData>({
   keywords: undefined,
   type: 'blog',
 });
-/*
-const seo.value.title<string>();
-const pageImage = ref<string>();
-const pageDescription = ref<string>();
-const pageKeywords = ref<string>();
-const pagePublished = ref<string>();
-const pageEdited = ref<string>();
-*/
+
 const resetSeo = (type: 'blog' | 'search' | 'article' = 'blog') => {
   seo.value = {
     title: undefined,
@@ -96,13 +77,12 @@ const breadcrumb = ref<Array<FyVueBreadcrumb>>([
 ]);
 
 watch(
-  () => (route.name == 'cmsNews' ? route.params.slug : false),
+  () => route.params.slug,
   async (v) => {
-    if (v !== false) {
-      await checkRoute(v.toString());
-    }
+    await checkRoute(v.toString());
   }
 );
+
 const getArticle = async (slug: string) => {
   eventBus.emit('cmsBlog-loading', true);
   is404.value = false;
@@ -148,6 +128,12 @@ const getArticle = async (slug: string) => {
       _data.data.content_cms_entry_data.Title + ' - ' + blogName.value;
     if (_data.data.content_cms_entry_data.Short_Contents) {
       seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
+    } else {
+      seo.value.description = cropText(
+        _data.data.content_cms_entry_data.Contents.replace(/(<([^>]+)>)/gi, ''),
+        100,
+        '...'
+      );
     }
     if (_data.data.content_cms_entry_data.Keywords.length) {
       seo.value.keywords =
@@ -181,21 +167,21 @@ const getCategories = async (uuid) => {
 const getArticles = async (
   category: string | undefined,
   search: string | undefined,
-  page: number = 1
+  page: any = 1
 ) => {
   if (route.query.page) page = parseInt(route.query.page.toString());
   eventBus.emit('cmsBlog-loading', true);
   is404.value = false;
   displayType.value = 'multiple';
 
-  resetSeo('article');
+  resetSeo('blog');
 
   const _data = await rest<KlbAPIContentCmsSearch>(
     `Content/Cms/${props.blogAlias}:search`,
     'GET',
     {
       page_no: page,
-      results_per_page: 1,
+      results_per_page: 8,
       sort: 'published:desc',
       image_variation: 'strip&scale_crop=1280x160&alias=banner',
       query: {
@@ -270,92 +256,6 @@ onUnmounted(() => {
 });
 await checkRoute(route.params.slug.toString());
 useSeo(seo);
-/*
-useHead({
-  title: `${seo.value.title} - ${props.siteName}`,
-  meta: computed(() => {
-    const _res = [
-      {
-        name: 'og:type',
-        content: seo.value.type,
-      },
-      {
-        name: 'og:title',
-        content: seo.value.title,
-      },
-      {
-        name: 'twitter:title',
-        content: seo.value.title,
-      },
-      {
-        name: 'robots',
-        content:
-          'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-      },
-    ];
-    if (seo.value.description) {
-      _res.push({
-        name: 'og:description',
-        content: seo.value.description,
-      });
-      _res.push({
-        name: 'twitter:description',
-        content: seo.value.description,
-      });
-      _res.push({
-        name: 'og:description',
-        content: seo.value.description,
-      });
-      _res.push({
-        name: 'description',
-        content: seo.value.description,
-      });
-    }
-    if (seo.value.keywords) {
-      _res.push({
-        name: 'keywords',
-        content: seo.value.keywords,
-      });
-    }
-    if (seo.value.modified) {
-      _res.push({
-        name: 'article:published_time',
-        content: seo.value.modified,
-      });
-    }
-    if (seo.value.published) {
-      _res.push({
-        name: 'article:modified_time',
-        content: seo.value.published,
-      });
-    }
-    if (seo.value.image) {
-      _res.push({
-        name: 'og:image',
-        content: seo.value.image,
-      });
-      _res.push({
-        name: 'og:image:type',
-        content: seo.value.imageType,
-      });
-      _res.push({
-        name: 'twitter:image',
-        content: seo.value.image,
-      });
-      _res.push({
-        name: 'og:image:width',
-        content: '512',
-      });
-      _res.push({
-        name: 'og:image:height',
-        content: '512',
-      });
-    }
-
-    return _res;
-  }),
-});
-*/
 </script>
 <template>
   <div class="klb-blog">
@@ -375,7 +275,7 @@ useHead({
           <KlbBlogInnerPost :post="post" :single="false" :basePath="basePath" />
           <hr v-if="data && index != data?.data.data.length - 1" />
         </template>
-        <div v-if="!data?.data.data.length">
+        <div v-if="!data?.data.data.length" class="klb-post-container no-posts">
           <p>{{ $t('klb_blog_no_posts') }}</p>
         </div>
         <FyPaging

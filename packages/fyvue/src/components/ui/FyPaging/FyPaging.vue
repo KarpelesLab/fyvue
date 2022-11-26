@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { watch, onUnmounted, ref } from 'vue';
 import type { KlbApiPaging } from '../../../dts/klb';
 import { useEventBus } from '../../../utils/helpers';
 import { useHistory } from '../../../utils/ssr';
 import { useSeo } from '../../helpers/seo';
 import { getUrl } from '@karpeleslab/klbfw';
 import type { SeoData } from '../../../dts';
+import { useRoute } from 'vue-router';
 const props = defineProps<{
   items: KlbApiPaging;
   id: string;
 }>();
-
+const route = useRoute();
 const eventBus = useEventBus();
 const history = useHistory();
 const prevNextSeo = ref<SeoData>({});
@@ -27,39 +28,27 @@ const next = () => {
 
   if (!isNewPage(page)) return;
 
-  history
-    .push({
-      path: history.currentRoute.path,
-      query: { page: page.toString() },
-    })
-    .then(() => {
-      eventBus.emit(`${props.id}GoToPage`, page);
-    });
+  history.push({
+    path: history.currentRoute.path,
+    query: { page: page.toString() },
+  });
 };
 const prev = () => {
   const page = props.items.page_no - 1;
   if (!isNewPage(page)) return;
 
-  history
-    .push({
-      path: history.currentRoute.path,
-      query: { page: page.toString() },
-    })
-    .then(() => {
-      eventBus.emit(`${props.id}GoToPage`, page);
-    });
+  history.push({
+    path: history.currentRoute.path,
+    query: { page: page.toString() },
+  });
 };
 const page = (page: number) => {
   if (!isNewPage(page)) return;
 
-  history
-    .push({
-      path: history.currentRoute.path,
-      query: { page: page.toString() },
-    })
-    .then(() => {
-      eventBus.emit(`${props.id}GoToPage`, page);
-    });
+  history.push({
+    path: history.currentRoute.path,
+    query: { page: page.toString() },
+  });
 };
 
 const checkPageNumber = (page: number = 1) => {
@@ -80,7 +69,12 @@ eventBus.on(`${props.id}GoToPage`, checkPageNumber);
 onUnmounted(() => {
   eventBus.off(`${props.id}GoToPage`, checkPageNumber);
 });
-
+watch(
+  () => route.query.page,
+  (v, ov) => {
+    eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
+  }
+);
 checkPageNumber(props.items.page_no);
 useSeo(prevNextSeo);
 

@@ -62,7 +62,7 @@ withDefaults(
           : ''
       "
     >
-      <div class="h1-bg">
+      <div class="h1-bg dark">
         <h1>{{ post.Title }}</h1>
         <FyBreadcrumb v-if="breadcrumbBase.length > 0" :nav="breadcrumbBase" />
       </div>
@@ -72,7 +72,9 @@ withDefaults(
       <div class="entry-content">
         <div
           v-html="
-            single || !post.Short_Contents ? post.Contents : post.Short_Contents
+            single || !post.Short_Contents
+              ? post.Contents
+              : '<p>' + post.Short_Contents + '</p>'
           "
         />
         <div v-if="!single && post.Short_Contents">
