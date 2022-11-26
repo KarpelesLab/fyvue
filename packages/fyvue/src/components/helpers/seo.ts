@@ -2,7 +2,7 @@ import { computed } from 'vue';
 import type { Ref } from 'vue';
 import { useHead } from '@vueuse/head';
 import type { SeoData } from '../../dts/index';
-import { getUrl, getLocale } from '@karpeleslab/klbfw';
+import { getUrl, getLocale, getMode } from '@karpeleslab/klbfw';
 import {
   useSchemaOrg,
   defineWebSite,
@@ -11,11 +11,7 @@ import {
   defineSearchAction,
 } from '@vueuse/schema-org/runtime';
 
-export const useSeo = (
-  seo: Ref<SeoData>,
-  initial: boolean = false,
-  ssr: boolean = false
-) => {
+export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
   if (seo.value.title) {
     useHead({
       title: computed(() => seo.value.title),
@@ -44,7 +40,7 @@ export const useSeo = (
     link: computed(() => {
       const _res: Array<any> = [];
 
-      if (initial && ssr) {
+      if (initial && getMode() == 'ssr') {
         _res.push({
           rel: 'canonical',
           href: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
@@ -65,7 +61,8 @@ export const useSeo = (
       return _res;
     }),
     htmlAttrs: computed(() => {
-      if (initial && ssr) return { lang: computed(() => getLocale()) };
+      if (initial && getMode() == 'ssr')
+        return { lang: computed(() => getLocale()) };
       return {};
     }),
     bodyAttrs: computed(() => {
@@ -76,7 +73,7 @@ export const useSeo = (
       const _res: Array<any> = [];
 
       if (initial) {
-        if (ssr) {
+        if (getMode() == 'ssr') {
           _res.push(
             {
               name: 'og:locale',

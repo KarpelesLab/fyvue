@@ -1155,7 +1155,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
 });
 var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
-const useSeo = (seo, initial = false, ssr = false) => {
+const useSeo = (seo, initial = false) => {
     if (seo.value.title) {
         useHead({
             title: computed(() => seo.value.title),
@@ -1183,7 +1183,7 @@ const useSeo = (seo, initial = false, ssr = false) => {
     useHead({
         link: computed(() => {
             const _res = [];
-            if (initial && ssr) {
+            if (initial && getMode() == 'ssr') {
                 _res.push({
                     rel: 'canonical',
                     href: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
@@ -1204,7 +1204,7 @@ const useSeo = (seo, initial = false, ssr = false) => {
             return _res;
         }),
         htmlAttrs: computed(() => {
-            if (initial && ssr)
+            if (initial && getMode() == 'ssr')
                 return { lang: computed(() => getLocale$1()) };
             return {};
         }),
@@ -1216,7 +1216,7 @@ const useSeo = (seo, initial = false, ssr = false) => {
         meta: computed(() => {
             const _res = [];
             if (initial) {
-                if (ssr) {
+                if (getMode() == 'ssr') {
                     _res.push({
                         name: 'og:locale',
                         content: getLocale$1().replace('-', '_'),

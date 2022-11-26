@@ -1157,7 +1157,7 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
 });
 var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
-const useSeo = (seo, initial = false, ssr = false) => {
+const useSeo = (seo, initial = false) => {
     if (seo.value.title) {
         head.useHead({
             title: vue.computed(() => seo.value.title),
@@ -1185,7 +1185,7 @@ const useSeo = (seo, initial = false, ssr = false) => {
     head.useHead({
         link: vue.computed(() => {
             const _res = [];
-            if (initial && ssr) {
+            if (initial && klbfw.getMode() == 'ssr') {
                 _res.push({
                     rel: 'canonical',
                     href: `${klbfw.getUrl().scheme}://${klbfw.getUrl().host}${klbfw.getUrl().path}`,
@@ -1206,7 +1206,7 @@ const useSeo = (seo, initial = false, ssr = false) => {
             return _res;
         }),
         htmlAttrs: vue.computed(() => {
-            if (initial && ssr)
+            if (initial && klbfw.getMode() == 'ssr')
                 return { lang: vue.computed(() => klbfw.getLocale()) };
             return {};
         }),
@@ -1218,7 +1218,7 @@ const useSeo = (seo, initial = false, ssr = false) => {
         meta: vue.computed(() => {
             const _res = [];
             if (initial) {
-                if (ssr) {
+                if (klbfw.getMode() == 'ssr') {
                     _res.push({
                         name: 'og:locale',
                         content: klbfw.getLocale().replace('-', '_'),
