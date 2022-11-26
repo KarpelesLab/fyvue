@@ -131,7 +131,7 @@ const getArticle = async (slug: string) => {
     return;
   });
   if (_data && _data.result == 'success') {
-    blogName.value = _data.data.content_cms.Name;
+    blogName.value = _data.data.content_cms.Name + ' - ' + props.siteName;
     breadcrumb.value = [
       ...props.breadcrumbBase,
       { name: blogName.value, to: props.basePath },
@@ -217,7 +217,7 @@ const getArticles = async (
   if (_data && _data.result == 'success') {
     getCategories(_data.data.content_cms.Classify.Classify__);
     data.value = _data;
-    blogName.value = _data.data.content_cms.Name;
+    blogName.value = _data.data.content_cms.Name + ' - ' + props.siteName;
     if (category) {
       breadcrumb.value = [
         ...props.breadcrumbBase,

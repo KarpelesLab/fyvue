@@ -76,12 +76,11 @@ const checkPageNumber = (page: number = 1) => {
     }`;
   }
 };
-onMounted(() => {
-  eventBus.on(`${props.id}GoToPage`, checkPageNumber);
-});
+eventBus.on(`${props.id}GoToPage`, checkPageNumber);
 onUnmounted(() => {
   eventBus.off(`${props.id}GoToPage`, checkPageNumber);
 });
+
 checkPageNumber(props.items.page_no);
 useSeo(prevNextSeo);
 

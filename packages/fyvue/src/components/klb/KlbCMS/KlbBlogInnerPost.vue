@@ -25,15 +25,19 @@ withDefaults(
 <template>
   <article v-if="post" :class="single ? 'is-single' : 'is-multiple'">
     <header class="entry-header" v-if="!single">
-      <RouterLink :to="`${basePath}/${post.Slug}`">
-        <figure class="post-thumbnail">
+      <RouterLink :to="`${basePath}/${post.Slug}`" :title="post.Title">
+        <figure
+          class="post-thumbnail"
+          v-if="
+            post.Top_Drive_Item &&
+            post.Top_Drive_Item.Media_Image &&
+            post.Top_Drive_Item.Media_Image?.Variation
+          "
+        >
           <img
-            v-if="
-              post.Top_Drive_Item &&
-              post.Top_Drive_Item.Media_Image &&
-              post.Top_Drive_Item.Media_Image?.Variation
-            "
             :src="post.Top_Drive_Item.Media_Image?.Variation['banner']"
+            :title="post.Title"
+            :alt="post.Title"
           />
         </figure>
         <!--<div class="keywords" v-if="post.Keywords.length">
