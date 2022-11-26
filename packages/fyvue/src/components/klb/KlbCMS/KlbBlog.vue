@@ -113,6 +113,7 @@ const getArticle = async (slug: string) => {
       image_variation: [
         'strip&scale_crop=512x512&alias=squared',
         'strip&scale_crop=1280x100&alias=bannerx100',
+        'strip&scale_crop=1200x630&alias=seo',
       ],
     }
   ).catch((err) => {
@@ -156,7 +157,7 @@ const getArticle = async (slug: string) => {
         _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
       seo.value.image =
         _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation[
-          'squared'
+          'seo'
         ];
     }
   }
