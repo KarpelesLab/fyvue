@@ -691,6 +691,7 @@ export interface KlbContentCms {
     Commented: false;
   };
   Top_Drive_Item?: {
+    Mime: string;
     Media_Image?: KlbMediaImage;
   };
   Short_Contents?: string;

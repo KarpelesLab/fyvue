@@ -4490,8 +4490,28 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const route = useRoute();
     const translate = useTranslation();
     const blogName = ref("");
-    const pageTitle = ref();
-    const pageImage = ref({ name: "og:image", content: "" });
+    const seo = ref({
+      title: void 0,
+      image: void 0,
+      imageType: void 0,
+      description: void 0,
+      published: void 0,
+      modified: void 0,
+      keywords: void 0,
+      type: "blog"
+    });
+    const resetSeo = (type = "blog") => {
+      seo.value = {
+        title: void 0,
+        image: void 0,
+        imageType: void 0,
+        description: void 0,
+        published: void 0,
+        modified: void 0,
+        keywords: void 0,
+        type
+      };
+    };
     const is404 = ref(false);
     const cats = ref();
     const data = ref();
@@ -4515,6 +4535,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       eventBus.emit("cmsBlog-loading", true);
       is404.value = false;
       displayType.value = "single";
+      resetSeo("article");
       const _data = await rest(
         `Content/Cms/${props.blogAlias}:loadSlug`,
         "GET",
@@ -4529,7 +4550,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
-          pageTitle.value = "404";
+          seo.value.title = "404";
         }
         eventBus.emit("cmsBlog-loading", false);
         return;
@@ -4542,9 +4563,22 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           { name: _data.data.content_cms_entry_data.Title }
         ];
         dataSingle.value = _data;
-        pageTitle.value = dataSingle.value.data.content_cms_entry_data.Title + " - " + blogName.value;
-        if (dataSingle.value.data.content_cms_entry_data.Top_Drive_Item && dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image && dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
-          pageImage.value.content = dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"];
+        seo.value.published = new Date(
+          parseInt(_data.data.content_cms_entry_data.Published.unixms)
+        ).toISOString();
+        seo.value.modified = new Date(
+          parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)
+        ).toISOString();
+        seo.value.title = _data.data.content_cms_entry_data.Title + " - " + blogName.value;
+        if (_data.data.content_cms_entry_data.Short_Contents) {
+          seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
+        }
+        if (_data.data.content_cms_entry_data.Keywords.length) {
+          seo.value.keywords = _data.data.content_cms_entry_data.Keywords.join(",").trim();
+        }
+        if (_data.data.content_cms_entry_data.Top_Drive_Item && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
+          seo.value.imageType = _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
+          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["squared"];
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4561,6 +4595,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       eventBus.emit("cmsBlog-loading", true);
       is404.value = false;
       displayType.value = "multiple";
+      resetSeo("article");
       const _data = await rest(
         `Content/Cms/${props.blogAlias}:search`,
         "GET",
@@ -4578,7 +4613,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         if (err.code == 404) {
           useHistory().status = 404;
           is404.value = true;
-          pageTitle.value = "404";
+          seo.value.title = "404";
         }
         eventBus.emit("cmsBlog-loading", false);
       });
@@ -4595,17 +4630,19 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             { name: blogName.value, to: props.basePath },
             { name: translate("klb_blog_category_breadcrumb", { category }) }
           ];
-          pageTitle.value = translate("klb_blog_category_breadcrumb", { category });
+          seo.value.title = translate("klb_blog_category_breadcrumb", { category });
+          seo.value.type = "search";
         } else if (search) {
           breadcrumb.value = [
             ...props.breadcrumbBase,
             { name: blogName.value, to: props.basePath },
             { name: translate("klb_blog_search_breadcrumb", { search }) }
           ];
-          pageTitle.value = translate("klb_blog_search_breadcrumb", { search });
+          seo.value.title = translate("klb_blog_search_breadcrumb", { search });
+          seo.value.type = "search";
         } else {
           breadcrumb.value = [...props.breadcrumbBase, { name: blogName.value }];
-          pageTitle.value = blogName.value;
+          seo.value.title = blogName.value;
         }
       }
       eventBus.emit("cmsBlog-loading", false);
@@ -4637,20 +4674,84 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     });
     [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     useHead({
-      title: `${pageTitle.value} - ${props.siteName}`,
+      title: `${seo.value.title} - ${props.siteName}`,
       meta: computed(() => {
         const _res = [
           {
             name: "og:type",
-            content: "article"
+            content: seo.value.type
+          },
+          {
+            name: "og:title",
+            content: seo.value.title
+          },
+          {
+            name: "twitter:title",
+            content: seo.value.title
           },
           {
             name: "robots",
             content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
           }
         ];
-        if (pageImage.value.content != "")
-          _res.push(pageImage.value);
+        if (seo.value.description) {
+          _res.push({
+            name: "og:description",
+            content: seo.value.description
+          });
+          _res.push({
+            name: "twitter:description",
+            content: seo.value.description
+          });
+          _res.push({
+            name: "og:description",
+            content: seo.value.description
+          });
+          _res.push({
+            name: "description",
+            content: seo.value.description
+          });
+        }
+        if (seo.value.keywords) {
+          _res.push({
+            name: "keywords",
+            content: seo.value.keywords
+          });
+        }
+        if (seo.value.modified) {
+          _res.push({
+            name: "article:published_time",
+            content: seo.value.modified
+          });
+        }
+        if (seo.value.published) {
+          _res.push({
+            name: "article:modified_time",
+            content: seo.value.published
+          });
+        }
+        if (seo.value.image) {
+          _res.push({
+            name: "og:image",
+            content: seo.value.image
+          });
+          _res.push({
+            name: "og:image:type",
+            content: seo.value.imageType
+          });
+          _res.push({
+            name: "twitter:image",
+            content: seo.value.image
+          });
+          _res.push({
+            name: "og:image:width",
+            content: "512"
+          });
+          _res.push({
+            name: "og:image:height",
+            content: "512"
+          });
+        }
         return _res;
       })
     });

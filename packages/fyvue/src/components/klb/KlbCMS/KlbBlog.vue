@@ -34,11 +34,50 @@ const props = withDefaults(
   }
 );
 
+type SeoData = {
+  title?: string;
+  image?: string;
+  imageType?: string;
+  description?: string;
+  published?: string;
+  modified?: string;
+  keywords?: string;
+  type: 'blog' | 'search' | 'article';
+};
+
 const route = useRoute();
 const translate = useTranslation();
 const blogName = ref<string>('');
-const pageTitle = ref<string>();
-const pageImage = ref({ name: 'og:image', content: '' });
+const seo = ref<SeoData>({
+  title: undefined,
+  image: undefined,
+  imageType: undefined,
+  description: undefined,
+  published: undefined,
+  modified: undefined,
+  keywords: undefined,
+  type: 'blog',
+});
+/*
+const seo.value.title<string>();
+const pageImage = ref<string>();
+const pageDescription = ref<string>();
+const pageKeywords = ref<string>();
+const pagePublished = ref<string>();
+const pageEdited = ref<string>();
+*/
+const resetSeo = (type: 'blog' | 'search' | 'article' = 'blog') => {
+  seo.value = {
+    title: undefined,
+    image: undefined,
+    imageType: undefined,
+    description: undefined,
+    published: undefined,
+    modified: undefined,
+    keywords: undefined,
+    type: type,
+  };
+};
 const is404 = ref<Boolean>(false);
 const cats = ref<Array<KlbClassifyTag>>();
 const data = ref<KlbAPIContentCmsSearch>();
@@ -63,6 +102,9 @@ const getArticle = async (slug: string) => {
   eventBus.emit('cmsBlog-loading', true);
   is404.value = false;
   displayType.value = 'single';
+
+  resetSeo('article');
+
   const _data = await rest<KlbAPIContentCmsSingle>(
     `Content/Cms/${props.blogAlias}:loadSlug`,
     'GET',
@@ -77,7 +119,7 @@ const getArticle = async (slug: string) => {
     if (err.code == 404) {
       useHistory().status = 404;
       is404.value = true;
-      pageTitle.value = '404';
+      seo.value.title = '404';
     }
     eventBus.emit('cmsBlog-loading', false);
     return;
@@ -90,19 +132,30 @@ const getArticle = async (slug: string) => {
       { name: _data.data.content_cms_entry_data.Title },
     ];
     dataSingle.value = _data;
-    //pageTitle.value = data.value.data.content;
-    pageTitle.value =
-      dataSingle.value.data.content_cms_entry_data.Title +
-      ' - ' +
-      blogName.value;
+    seo.value.published = new Date(
+      parseInt(_data.data.content_cms_entry_data.Published.unixms)
+    ).toISOString();
+    seo.value.modified = new Date(
+      parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)
+    ).toISOString();
+    seo.value.title =
+      _data.data.content_cms_entry_data.Title + ' - ' + blogName.value;
+    if (_data.data.content_cms_entry_data.Short_Contents) {
+      seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
+    }
+    if (_data.data.content_cms_entry_data.Keywords.length) {
+      seo.value.keywords =
+        _data.data.content_cms_entry_data.Keywords.join(',').trim();
+    }
     if (
-      dataSingle.value.data.content_cms_entry_data.Top_Drive_Item &&
-      dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image &&
-      dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image
-        .Variation
+      _data.data.content_cms_entry_data.Top_Drive_Item &&
+      _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image &&
+      _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation
     ) {
-      pageImage.value.content =
-        dataSingle.value.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation[
+      seo.value.imageType =
+        _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
+      seo.value.image =
+        _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation[
           'squared'
         ];
     }
@@ -127,6 +180,8 @@ const getArticles = async (
   is404.value = false;
   displayType.value = 'multiple';
 
+  resetSeo('article');
+
   const _data = await rest<KlbAPIContentCmsSearch>(
     `Content/Cms/${props.blogAlias}:search`,
     'GET',
@@ -144,7 +199,7 @@ const getArticles = async (
     if (err.code == 404) {
       useHistory().status = 404;
       is404.value = true;
-      pageTitle.value = '404';
+      seo.value.title = '404';
     }
     eventBus.emit('cmsBlog-loading', false);
   });
@@ -161,17 +216,19 @@ const getArticles = async (
         { name: blogName.value, to: props.basePath },
         { name: translate('klb_blog_category_breadcrumb', { category }) },
       ];
-      pageTitle.value = translate('klb_blog_category_breadcrumb', { category });
+      seo.value.title = translate('klb_blog_category_breadcrumb', { category });
+      seo.value.type = 'search';
     } else if (search) {
       breadcrumb.value = [
         ...props.breadcrumbBase,
         { name: blogName.value, to: props.basePath },
         { name: translate('klb_blog_search_breadcrumb', { search }) },
       ];
-      pageTitle.value = translate('klb_blog_search_breadcrumb', { search });
+      seo.value.title = translate('klb_blog_search_breadcrumb', { search });
+      seo.value.type = 'search';
     } else {
       breadcrumb.value = [...props.breadcrumbBase, { name: blogName.value }];
-      pageTitle.value = blogName.value;
+      seo.value.title = blogName.value;
     }
   }
   eventBus.emit('cmsBlog-loading', false);
@@ -206,12 +263,20 @@ onUnmounted(() => {
 await checkRoute(route.params.slug.toString());
 
 useHead({
-  title: `${pageTitle.value} - ${props.siteName}`,
+  title: `${seo.value.title} - ${props.siteName}`,
   meta: computed(() => {
     const _res = [
       {
         name: 'og:type',
-        content: 'article',
+        content: seo.value.type,
+      },
+      {
+        name: 'og:title',
+        content: seo.value.title,
+      },
+      {
+        name: 'twitter:title',
+        content: seo.value.title,
       },
       {
         name: 'robots',
@@ -219,7 +284,65 @@ useHead({
           'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
       },
     ];
-    if (pageImage.value.content != '') _res.push(pageImage.value);
+    if (seo.value.description) {
+      _res.push({
+        name: 'og:description',
+        content: seo.value.description,
+      });
+      _res.push({
+        name: 'twitter:description',
+        content: seo.value.description,
+      });
+      _res.push({
+        name: 'og:description',
+        content: seo.value.description,
+      });
+      _res.push({
+        name: 'description',
+        content: seo.value.description,
+      });
+    }
+    if (seo.value.keywords) {
+      _res.push({
+        name: 'keywords',
+        content: seo.value.keywords,
+      });
+    }
+    if (seo.value.modified) {
+      _res.push({
+        name: 'article:published_time',
+        content: seo.value.modified,
+      });
+    }
+    if (seo.value.published) {
+      _res.push({
+        name: 'article:modified_time',
+        content: seo.value.published,
+      });
+    }
+    if (seo.value.image) {
+      _res.push({
+        name: 'og:image',
+        content: seo.value.image,
+      });
+      _res.push({
+        name: 'og:image:type',
+        content: seo.value.imageType,
+      });
+      _res.push({
+        name: 'twitter:image',
+        content: seo.value.image,
+      });
+      _res.push({
+        name: 'og:image:width',
+        content: '512',
+      });
+      _res.push({
+        name: 'og:image:height',
+        content: '512',
+      });
+    }
+
     return _res;
   }),
 });
