@@ -9,6 +9,7 @@ import KlbAddPaymentMethodModal from './KlbBilling/KlbAddPaymentMethodModal.vue'
 import KlbCatalog from './KlbOrder/KlbCatalog.vue';
 import KlbOrder from './KlbOrder/KlbOrder.vue';
 import KlbPage from './KlbCMS/KlbPage.vue';
+import KlbBlog from './KlbCMS/KlbBlog.vue';
 import KlbSupport from './KlbMisc/KlbSupport.vue';
 
 import { useCart } from './KlbOrder/useCart';
@@ -29,6 +30,7 @@ export default {
     KlbUserBilling,
     KlbPage,
     KlbSupport,
+    KlbBlog,
   },
   composables: {
     useCart,

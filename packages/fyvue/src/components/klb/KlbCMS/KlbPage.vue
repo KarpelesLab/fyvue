@@ -8,7 +8,14 @@ import { useRoute } from 'vue-router';
 import { useEventBus } from '../../../utils/helpers';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 
-defineProps({});
+const props = withDefaults(
+  defineProps<{
+    pagesAlias?: string;
+  }>(),
+  {
+    pagesAlias: '@pages',
+  }
+);
 const pageHead = reactive({
   title: `...`,
 });
@@ -20,16 +27,16 @@ const eventBus = useEventBus();
 watch(
   () => route.params.slug,
   async (v) => {
-    if (v) await loadPage(v);
+    if (v) await loadPage(v.toString());
   }
 );
 
-const loadPage = async (slug) => {
+const loadPage = async (slug: string) => {
   eventBus.emit('cmspage-loading', true);
   is404.value = false;
 
   const _page = await rest<KlbAPIResultUnknown>(
-    'Content/Cms/@pages:loadSlug',
+    `Content/Cms/${props.pagesAlias}:loadSlug`,
     'GET',
     {
       slug: slug,
@@ -51,7 +58,7 @@ const loadPage = async (slug) => {
 useHead({
   title: computed(() => `${pageHead.title}`),
 });
-await loadPage(route.params.slug);
+await loadPage(route.params.slug.toString());
 </script>
 <template>
   <div class="fv-relative">

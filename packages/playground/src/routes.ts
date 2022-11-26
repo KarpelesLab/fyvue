@@ -13,15 +13,14 @@ export const routes = [
   {
     path: '/pages/:slug',
     component: () => import('./views/PageView.vue'),
-    meta: {
-      /*breadcrumb: [
-        { name: 'fyvue', to: '/' },
-        { name: 'Components', to: '/components' },
-        { name: 'Klb', to: '/components/klb' },
-        { name: 'KlbPage' },
-      ],
-      title: 'KlbPage - Klb - Components - fyvue',*/
-    },
+    meta: {},
+  },
+
+  {
+    path: '/blog/:slug(.*)?',
+    name: 'cmsNews',
+    component: () => import('./views/BlogView.vue'),
+    meta: {},
   },
   {
     path: '/helpers/formatting',

@@ -46,14 +46,29 @@ useHead({
     },
   ],
 });
+useHead({
+  meta: [
+    {
+      name: 'og:site_name',
+      content: 'fyvue',
+    },
+    {
+      name: 'og:url',
+      content: 'https://fy-vue.com/',
+    },
+    {
+      name: 'og:type',
+      content: 'website',
+    },
+    {
+      name: 'og:image',
+      content: 'https://fy-vue.com/fyvue.svg',
+    },
+  ],
+});
 </script>
 
 <template>
-  <Head>
-    <meta property="og:site_name" content="fyvue" />
-    <meta property="og:url" :content="`https://fy-vue.com/`" />
-    <meta property="og:image" :content="`https://fy-vue.com/fyvue.svg`" />
-  </Head>
   <SchemaOrgOrganization
     name="fyvue"
     logo="https://www.fy-vue.com/fyvue.svg"
@@ -69,6 +84,7 @@ useHead({
       cartPath="/components/klb/KlbOrder"
       :links="[
         { to: '/', name: 'Getting Started' },
+        { to: '/blog', name: 'Blog' },
         {
           to: '#',
           name: 'SSR',
@@ -101,94 +117,100 @@ useHead({
       </template>
       <template v-slot:custom> </template>
     </FyNavbar>
-    <div class="relative w-full p-2 md:p-4 lg:p-6 flex-grow">
-      <aside
-        class="fixed shadow right-2 top-1/2 -translate-y-1/2 max-h-screen overflow-y-auto"
-        :class="
-          sideBarOpen
-            ? 'w-64 rounded-xl  bg-fv-neutral-100 dark:bg-fv-neutral-900 border-2 border-fv-primary-500 z-20'
-            : 'w-12 h-12 rounded-full bg-fv-primary-800 dark:bg-fv-primary-100 z-20'
-        "
-        aria-label="Sidebar"
-        ref="aside"
-      >
-        <div class="py-4 px-4" v-if="sideBarOpen">
-          <nav class="website-nav">
-            <button
-              @click="sideBarOpen = false"
-              class="flex items-center float-right -mt-3 -mr-2"
+    <aside
+      class="fixed shadow right-2 top-1/2 -translate-y-1/2 max-h-screen overflow-y-auto"
+      :class="
+        sideBarOpen
+          ? 'w-64 rounded-xl  bg-fv-neutral-100 dark:bg-fv-neutral-900 border-2 border-fv-primary-500 z-20'
+          : 'w-12 h-12 rounded-full bg-fv-primary-800 dark:bg-fv-primary-100 z-20'
+      "
+      aria-label="Sidebar"
+      ref="aside"
+    >
+      <div class="py-4 px-4" v-if="sideBarOpen">
+        <nav class="website-nav">
+          <button
+            @click="sideBarOpen = false"
+            class="flex items-center float-right -mt-3 -mr-2"
+          >
+            <XMarkIcon class="m-1 w-6"></XMarkIcon>
+          </button>
+          <h2 class="font-bold">UI</h2>
+          <div class="link-group">
+            <router-link
+              v-for="(c, i) in ComponentIndex.ui"
+              :key="`${i.toString()}_${c}`"
+              :to="`/components/ui/${c}`"
             >
-              <XMarkIcon class="m-1 w-6"></XMarkIcon>
-            </button>
-            <h2 class="font-bold">UI</h2>
-            <div class="link-group">
-              <router-link
-                v-for="(c, i) in ComponentIndex.ui"
-                :key="`${i.toString()}_${c}`"
-                :to="`/components/ui/${c}`"
-              >
-                {{ c }}
-              </router-link>
-            </div>
-            <h2 class="font-bold mt-2">Klb</h2>
-            <div class="link-group">
-              <router-link
-                v-for="(c, i) in ComponentIndex.klb"
-                :key="`${i.toString()}_${c}`"
-                :to="`/components/klb/${c}`"
-              >
-                {{ c }}
-              </router-link>
-            </div>
-            <h2 class="font-bold mt-2">Misc</h2>
-            <div class="link-group">
-              <router-link
-                v-for="(c, i) in ComponentIndex.misc"
-                :key="`${i.toString()}_${c}`"
-                :to="`/components/misc/${c}`"
-              >
-                {{ c }}
-              </router-link>
-            </div>
-          </nav>
-        </div>
-        <button
-          @click="sideBarOpen = true"
-          class="flex items-center justify-center w-12 h-12"
-          v-else
-        >
-          <CodeBracketSquareIcon
-            class="w-9 dark:text-fv-primary-800 text-fv-primary-50"
-          />
-        </button>
-      </aside>
-      <div class="container mx-auto max-w-screen-xl">
-        <FyBreadcrumb
-          v-if="$route.meta.breadcrumb"
-          :nav="$route.meta.breadcrumb"
-          class="mb-2"
-        />
-        <main
-          class="bg-white dark:bg-fv-neutral-900 px-2 md:px-4 xl:-6 rounded py-2 md:py-4"
-        >
-          <div class="px-2">
-            <RouterView v-slot="{ Component }">
-              <Suspense timeout="0">
-                <template #default><component :is="Component" /></template>
-                <template #fallback
-                  ><FyLoader
-                    id="app-suspender"
-                    :force="true"
-                    :show-loading-text="false"
-                /></template>
-              </Suspense>
-            </RouterView>
+              {{ c }}
+            </router-link>
           </div>
-        </main>
+          <h2 class="font-bold mt-2">Klb</h2>
+          <div class="link-group">
+            <router-link
+              v-for="(c, i) in ComponentIndex.klb"
+              :key="`${i.toString()}_${c}`"
+              :to="`/components/klb/${c}`"
+            >
+              {{ c }}
+            </router-link>
+          </div>
+          <h2 class="font-bold mt-2">Misc</h2>
+          <div class="link-group">
+            <router-link
+              v-for="(c, i) in ComponentIndex.misc"
+              :key="`${i.toString()}_${c}`"
+              :to="`/components/misc/${c}`"
+            >
+              {{ c }}
+            </router-link>
+          </div>
+        </nav>
       </div>
-    </div>
+      <button
+        @click="sideBarOpen = true"
+        class="flex items-center justify-center w-12 h-12"
+        v-else
+      >
+        <CodeBracketSquareIcon
+          class="w-9 dark:text-fv-primary-800 text-fv-primary-50"
+        />
+      </button>
+    </aside>
+    <FyBreadcrumb
+      v-if="$route.meta.breadcrumb"
+      :nav="$route.meta.breadcrumb"
+      class="container mx-auto max-w-screen-xl mt-2 md:mt-3"
+    />
+    <main
+      v-if="!$route.path.includes('blog')"
+      class="relative w-full flex-grow bg-white dark:bg-fv-neutral-900 rounded container mx-auto max-w-screen-xl p-2 md:p-4 lg:p-6 my-2 md:my-3"
+    >
+      <RouterView v-slot="{ Component }">
+        <Suspense timeout="0">
+          <template #default><component :is="Component" /></template>
+          <template #fallback
+            ><FyLoader
+              id="app-suspender"
+              :force="true"
+              :show-loading-text="false"
+          /></template>
+        </Suspense>
+      </RouterView>
+    </main>
+    <RouterView v-else v-slot="{ Component }">
+      <Suspense timeout="0">
+        <template #default><component :is="Component" /></template>
+        <template #fallback
+          ><FyLoader
+            id="app-suspender"
+            :force="true"
+            :show-loading-text="false"
+        /></template>
+      </Suspense>
+    </RouterView>
     <footer
-      class="flex items-center justify-center h-12 bg-white dark:bg-fv-neutral-900"
+      class="flex items-center justify-center py-2 bg-white dark:bg-fv-neutral-900"
     >
       <div class="text-center text-xs fv-typo">
         &copy; 2022 - made with &hearts; by
@@ -198,8 +220,8 @@ useHead({
           ></b
         >
         - Powered by vue/vite/fyvue &amp; tailwindcss.<br />
-        <router-link to="/pages/test">Test KlbPage</router-link> -
         <RouterLink to="/pages/about">About fyvue</RouterLink>
+        <small> (test KlbPage component)</small>
       </div>
     </footer>
   </div>

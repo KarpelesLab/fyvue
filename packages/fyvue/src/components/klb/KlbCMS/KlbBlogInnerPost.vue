@@ -1,0 +1,119 @@
+<script setup lang="ts">
+import type { KlbContentCms } from '../../../dts/klb';
+import type { FyVueBreadcrumb } from '../../../dts/index';
+import FyBreadcrumb from '../../ui/FyBreadcrumb/FyBreadcrumb.vue';
+
+import {
+  CalendarDaysIcon,
+  ChatBubbleBottomCenterIcon,
+  PaperClipIcon,
+} from '@heroicons/vue/24/solid';
+withDefaults(
+  defineProps<{
+    post: KlbContentCms;
+    single?: boolean;
+    basePath?: string;
+    breadcrumbBase?: FyVueBreadcrumb[];
+  }>(),
+  {
+    single: true,
+    basePath: '/blog',
+    breadcrumbBase: () => [],
+  }
+);
+</script>
+<template>
+  <article v-if="post" :class="single ? 'is-single' : 'is-multiple'">
+    <header class="entry-header" v-if="!single">
+      <RouterLink :to="`${basePath}/${post.Slug}`">
+        <figure class="post-thumbnail">
+          <img
+            v-if="
+              post.Top_Drive_Item &&
+              post.Top_Drive_Item.Media_Image &&
+              post.Top_Drive_Item.Media_Image?.Variation
+            "
+            :src="post.Top_Drive_Item.Media_Image?.Variation['banner']"
+          />
+        </figure>
+        <!--<div class="keywords" v-if="post.Keywords.length">
+          <span class="tag" v-for="keyword in post.Keywords">{{
+            keyword
+          }}</span>
+        </div>-->
+        <h2 :class="post.Top_Drive_Item?.Media_Image ? 'title-has-pic' : ''">
+          {{ post.Title }}
+        </h2>
+      </RouterLink>
+    </header>
+    <header
+      v-else
+      class="entry-header"
+      :class="post.Top_Drive_Item?.Media_Image ? 'has-pic' : ''"
+      :style="
+        post.Top_Drive_Item &&
+        post.Top_Drive_Item.Media_Image &&
+        post.Top_Drive_Item.Media_Image?.Variation
+          ? `background-image: url('${post.Top_Drive_Item.Media_Image?.Variation['bannerx100']}'); background-size: cover;`
+          : ''
+      "
+    >
+      <div class="h1-bg">
+        <h1>{{ post.Title }}</h1>
+        <FyBreadcrumb v-if="breadcrumbBase.length > 0" :nav="breadcrumbBase" />
+      </div>
+    </header>
+
+    <div class="entry-main">
+      <div class="entry-content">
+        <div
+          v-html="
+            single || !post.Short_Contents ? post.Contents : post.Short_Contents
+          "
+        />
+        <div v-if="!single && post.Short_Contents">
+          <router-link :to="`${basePath}/${post.Slug}`">{{
+            $t('klb_blog_readmore')
+          }}</router-link>
+        </div>
+      </div>
+
+      <footer class="entry-footer">
+        <!--<span class="comments" v-if="post.Comments">
+          <ChatBubbleBottomCenterIcon />
+          {{
+            $t('klb_blog_comment_count', { count: post.Comments.Comment_Count })
+          }}
+        </span>
+
+        <span class="dot">&#8226;</span>-->
+        <span class="published">
+          <CalendarDaysIcon />
+          <time
+            class="entry-date published"
+            :datetime="new Date(parseInt(post.Published.unixms)).toISOString()"
+            >{{ $formatDate(post.Published.unixms) }}
+          </time>
+        </span>
+        <span class="dot" v-if="post.Tag_Category">&#8226;</span>
+        <span class="category" v-if="post.Tag_Category">
+          <PaperClipIcon />
+          <RouterLink
+            :to="`${basePath}/category/${post.Tag_Category.Full_Name}`"
+            >{{ post.Tag_Category.Full_Name }}</RouterLink
+          >
+        </span>
+        <span class="modified">
+          <CalendarDaysIcon />
+          <time
+            class="updated"
+            :datetime="
+              new Date(parseInt(post.Last_Modified.unixms)).toISOString()
+            "
+            >{{ $formatDate(post.Last_Modified.unixms) }}
+          </time>
+        </span>
+      </footer>
+    </div>
+  </article>
+</template>

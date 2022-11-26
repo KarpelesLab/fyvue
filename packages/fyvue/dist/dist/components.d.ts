@@ -29,6 +29,7 @@ declare module 'vue' {
     KlbOrder: typeof import('@karpeleslab/fyvue')['components']['KlbOrder'];
     KlbPage: typeof import('@karpeleslab/fyvue')['components']['KlbPage'];
     KlbSupport: typeof import('@karpeleslab/fyvue')['components']['KlbSupport'];
+    KlbBlog: typeof import('@karpeleslab/fyvue')['components']['KlbBlog'];
 
     // Helpers
     ClientOnly: typeof import('@karpeleslab/fyvue')['components']['ClientOnly'];

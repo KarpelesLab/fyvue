@@ -144,3 +144,12 @@ klb_billing_edit_pm_cta,Edit,,編集,KlbUserBilling Component
 edit_pm_modal_title,Billing method,,支払い方法,KlbUserBilling Component
 edit_billing_method,Save billing method,,支払い方法を保存する,KlbUserBilling Component
 paging_a_lot_of,a lot of,,多数,FyPaging Component
+klb_blog_comment_count_zero,{{count}} comment,,,KlbBlog Component
+klb_blog_comment_count_one,{{count}} comment,,,KlbBlog Component
+klb_blog_comment_count_other,{{count}} comments,,,KlbBlog Component
+klb_blog_article_modified,modified,,,KlbBlog Component
+klb_blog_article_published,published,,,KlbBlog Component
+klb_blog_category_breadcrumb,Category: {{category}},,,KlbBlog Component
+klb_blog_search_breadcrumb,Search: {{search}},,,KlbBlog Component
+klb_blog_search_placeholder,Search...,,,KlbBlog Component
+klb_blog_readmore,Read more...,,,KlbBlog Component

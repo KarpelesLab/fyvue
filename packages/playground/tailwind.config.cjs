@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -17,6 +19,8 @@ module.exports = {
           800: '#37247f',
           900: '#1e174d',
         },
+        'fv-neutral': colors.neutral,
+        /*
         'fv-neutral': {
           50: '#f8faf9',
           100: '#edf1f7',
@@ -29,6 +33,7 @@ module.exports = {
           800: '#2d2a43',
           900: '#1a1a29',
         },
+        */
       },
     },
   },

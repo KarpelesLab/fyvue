@@ -29,6 +29,7 @@ declare module 'vue' {
     KlbOrder: typeof import('../src')['components']['KlbOrder'];
     KlbPage: typeof import('../src')['components']['KlbPage'];
     KlbSupport: typeof import('../src')['components']['KlbSupport'];
+    KlbBlog: typeof import('../src')['components']['KlbBlog'];
 
     // Helpers
     ClientOnly: typeof import('../src')['components']['ClientOnly'];

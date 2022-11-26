@@ -33,7 +33,7 @@
     @apply ml-4 space-y-0.5 max-w-md list-disc list-inside text-fv-neutral-600 dark:text-fv-neutral-300 text-[.95rem];
   }
   a {
-    @apply font-medium text-fv-primary-700 dark:text-fv-primary-400 hover:underline;
+    @apply font-medium text-fv-primary-700 dark:text-fv-primary-400 hover:text-fv-primary-800 dark:hover:text-fv-primary-300 ;
   }
   hr {
     @apply my-4 mx-auto w-1/3 h-1 bg-fv-neutral-100 rounded border-0 dark:bg-fv-neutral-700;
@@ -59,11 +59,11 @@
       }
       tbody {
           @apply my-2 py-2  min-w-fit sm:-mx-4 sm:px-4 lg:-mx-4 lg:px-4 ;
-          
+
       }
       tr td {
          min-width: 28rem;
-         
+
       }
   }
 }

@@ -19,6 +19,21 @@ export interface KlbPrice {
   value_disp: number;
   value_int: number;
 }
+export interface KlbClassifyTag {
+  Classify_Tag__: KlbUUID;
+  Classify__: KlbUUID;
+  Color?: string;
+  Created: KlbDate;
+  Flags: 'category' | 'hidden';
+  MetaObject__: KlbUUID;
+  Parent_Classify_Tag__?: KlbUUID;
+  Priority: number;
+  Refcount: number;
+  Refcount_Internal: number;
+  Refcount_Updated?: KlbDate;
+  Full_Name: string;
+  Full_Name_Compact: string;
+}
 export interface KlbPriceTaxes extends KlbPrice {
   raw: KlbPrice;
   tax: KlbPrice;
@@ -87,6 +102,33 @@ export interface KlbAPICatalog extends KlbAPIResult {
 }
 export interface KlbAPICatalogCart extends KlbAPIResult {
   data: KlbCatalogCart;
+}
+export interface KlbAPIClassify extends KlbAPIResult {
+  data: {
+    Root_Tags: Array<KlbClassifyTag>;
+  };
+}
+export interface KlbAPIContentCmsSingle extends KlbAPIResult {
+  data: {
+    content_cms_entry_data: KlbContentCms;
+    content_cms: {
+      Name: string;
+      Classify: {
+        Classify__: KlbUUID;
+      };
+    };
+  };
+}
+export interface KlbAPIContentCmsSearch extends KlbAPIResult {
+  data: {
+    data: Array<KlbContentCms>;
+    content_cms: {
+      Name: string;
+      Classify: {
+        Classify__: KlbUUID;
+      };
+    };
+  };
 }
 export interface KlbAPIOrder extends KlbAPIResult {
   data: KlbOrder;
@@ -625,4 +667,31 @@ export interface KlbSetupIntent {
       [key: string]: string;
     };
   };
+}
+
+export interface KlbContentCms {
+  Audience: 'all' | 'web' | 'app';
+  Content_Cms_Entry__: KlbUUID;
+  Content_Cms__: KlbUUID;
+  Created: KlbDate;
+  Published: KlbDate;
+  Deleted?: KlbDate;
+  Drive_Item__?: KlbUUID;
+  Import_Key?: string;
+  Last_Modified: KlbDate;
+  Status: 'valid' | 'deleted';
+  Slug: string;
+  Contents: string;
+  Title: string;
+  User__: KlbUUID;
+  Tag_Category?: KlbClassifyTag;
+  Keywords: Array<string>;
+  Comments?: {
+    Comment_Count: number;
+    Commented: false;
+  };
+  Top_Drive_Item?: {
+    Media_Image?: KlbMediaImage;
+  };
+  Short_Contents?: string;
 }
