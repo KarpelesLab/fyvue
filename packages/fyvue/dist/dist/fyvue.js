@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.5
+  * @karpeleslab/fyvue v0.2.0-rc.8
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -1158,11 +1158,6 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
 var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
 const useSeo = (seo, initial = false) => {
-    if (seo.value.title) {
-        head.useHead({
-            title: vue.computed(() => seo.value.title),
-        });
-    }
     if (initial) {
         runtime.useSchemaOrg([
             runtime.defineOrganization({
@@ -1183,6 +1178,7 @@ const useSeo = (seo, initial = false) => {
         ]);
     }
     head.useHead({
+        title: vue.computed(() => seo.value.title),
         link: vue.computed(() => {
             const _res = [];
             if (initial && klbfw.getMode() == 'ssr') {
@@ -4554,176 +4550,6 @@ const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
 });
 var KlbBlogInnerPost = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "KlbBlogInnerPost.vue"]]);
 
-var EN_US = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];
-function en_US (diff, idx) {
-    if (idx === 0)
-        return ['just now', 'right now'];
-    var unit = EN_US[Math.floor(idx / 2)];
-    if (diff > 1)
-        unit += 's';
-    return [diff + " " + unit + " ago", "in " + diff + " " + unit];
-}
-
-var ZH_CN = ['秒', '分钟', '小时', '天', '周', '个月', '年'];
-function zh_CN (diff, idx) {
-    if (idx === 0)
-        return ['刚刚', '片刻后'];
-    var unit = ZH_CN[~~(idx / 2)];
-    return [diff + " " + unit + "\u524D", diff + " " + unit + "\u540E"];
-}
-
-var Locales = {};
-var register = function (locale, func) {
-    Locales[locale] = func;
-};
-var getLocale = function (locale) {
-    return Locales[locale] || Locales['en_US'];
-};
-
-var SEC_ARRAY = [
-    60,
-    60,
-    24,
-    7,
-    365 / 7 / 12,
-    12,
-];
-function toDate(input) {
-    if (input instanceof Date)
-        return input;
-    if (!isNaN(input) || /^\d+$/.test(input))
-        return new Date(parseInt(input));
-    input = (input || '')
-        .trim()
-        .replace(/\.\d+/, '')
-        .replace(/-/, '/')
-        .replace(/-/, '/')
-        .replace(/(\d)T(\d)/, '$1 $2')
-        .replace(/Z/, ' UTC')
-        .replace(/([+-]\d\d):?(\d\d)/, ' $1$2');
-    return new Date(input);
-}
-function formatDiff(diff, localeFunc) {
-    var agoIn = diff < 0 ? 1 : 0;
-    diff = Math.abs(diff);
-    var totalSec = diff;
-    var idx = 0;
-    for (; diff >= SEC_ARRAY[idx] && idx < SEC_ARRAY.length; idx++) {
-        diff /= SEC_ARRAY[idx];
-    }
-    diff = Math.floor(diff);
-    idx *= 2;
-    if (diff > (idx === 0 ? 9 : 1))
-        idx += 1;
-    return localeFunc(diff, idx, totalSec)[agoIn].replace('%s', diff.toString());
-}
-function diffSec(date, relativeDate) {
-    var relDate = relativeDate ? toDate(relativeDate) : new Date();
-    return (+relDate - +toDate(date)) / 1000;
-}
-
-var format = function (date, locale, opts) {
-    var sec = diffSec(date, opts && opts.relativeDate);
-    return formatDiff(sec, getLocale(locale));
-};
-
-register('en_US', en_US);
-register('zh_CN', zh_CN);
-
-const cropText = (str, ml = 100, end = '...') => {
-    if (str.length > ml) {
-        return `${str.slice(0, ml)}${end}`;
-    }
-    return str;
-};
-const formatKlbRecurringPaymentCycle = (cycle) => {
-    const translate = useTranslation();
-    if (!cycle) {
-        return translate('payment_cycles_one_time');
-    }
-    const unit = cycle.slice(-1);
-    const quantity = parseInt(cycle.replace(unit, ''));
-    switch (unit) {
-        case 'h':
-            return translate('payment_cycles_hour', { count: quantity });
-        case 'd':
-            return translate('payment_cycles_day', { count: quantity });
-        case 'm':
-            return translate('payment_cycles_month', { count: quantity });
-        case 'y':
-            return translate('payment_cycles_year', { count: quantity });
-    }
-    return '';
-};
-const formatBytes = (bytes, decimals = 2) => {
-    if (!+bytes)
-        return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-};
-const jpZipcode = (zip) => {
-    const _zip = zip.toString();
-    if (_zip.length != 7)
-        return '';
-    return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
-};
-const formatDate = (dt) => {
-    let _dt = dt;
-    if (typeof dt === 'string') {
-        _dt = Date.parse(dt);
-        if (Number.isNaN(_dt)) {
-            _dt = parseInt(dt);
-        }
-    }
-    const translate = useTranslation();
-    return translate('global_datetime', {
-        val: new Date(_dt),
-        formatParams: {
-            val: {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-            },
-        },
-    });
-};
-const formatDatetime = (dt) => {
-    let _dt = dt;
-    if (typeof dt === 'string') {
-        _dt = Date.parse(dt);
-        if (Number.isNaN(_dt)) {
-            _dt = parseInt(dt);
-        }
-    }
-    const translate = useTranslation();
-    return translate('global_datetime', {
-        val: new Date(_dt),
-        formatParams: {
-            val: {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
-            },
-        },
-    });
-};
-const formatTimeago = (dt) => {
-    let _dt = dt;
-    if (typeof dt === 'string') {
-        _dt = Date.parse(dt);
-        if (Number.isNaN(_dt)) {
-            _dt = parseInt(dt);
-        }
-    }
-    return format(new Date(_dt), klbfw.getLocale().replace('_', '-'));
-};
-
 const _hoisted_1$2 = { class: "fv-relative klb-blog" };
 const _hoisted_2$2 = {
   key: 1,
@@ -4807,12 +4633,6 @@ const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
         seo.value.title = _data.data.content_cms_entry_data.Title;
         if (_data.data.content_cms_entry_data.Short_Contents) {
           seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
-        } else {
-          seo.value.description = cropText(
-            _data.data.content_cms_entry_data.Contents.replace(/(<([^>]+)>)/gi, ""),
-            100,
-            "..."
-          );
         }
         if (_data.data.content_cms_entry_data.Keywords.length) {
           seo.value.keywords = _data.data.content_cms_entry_data.Keywords.join(",").trim();
@@ -4966,12 +4786,6 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         seo.value.title = _data.data.content_cms_entry_data.Title + " - " + blogName.value;
         if (_data.data.content_cms_entry_data.Short_Contents) {
           seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
-        } else {
-          seo.value.description = cropText(
-            _data.data.content_cms_entry_data.Contents.replace(/(<([^>]+)>)/gi, ""),
-            100,
-            "..."
-          );
         }
         if (_data.data.content_cms_entry_data.Keywords.length) {
           seo.value.keywords = _data.data.content_cms_entry_data.Keywords.join(",").trim();
@@ -5323,6 +5137,176 @@ var klb = {
 
 var helpersComponents = {
     ClientOnly: ClientOnly,
+};
+
+var EN_US = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];
+function en_US (diff, idx) {
+    if (idx === 0)
+        return ['just now', 'right now'];
+    var unit = EN_US[Math.floor(idx / 2)];
+    if (diff > 1)
+        unit += 's';
+    return [diff + " " + unit + " ago", "in " + diff + " " + unit];
+}
+
+var ZH_CN = ['秒', '分钟', '小时', '天', '周', '个月', '年'];
+function zh_CN (diff, idx) {
+    if (idx === 0)
+        return ['刚刚', '片刻后'];
+    var unit = ZH_CN[~~(idx / 2)];
+    return [diff + " " + unit + "\u524D", diff + " " + unit + "\u540E"];
+}
+
+var Locales = {};
+var register = function (locale, func) {
+    Locales[locale] = func;
+};
+var getLocale = function (locale) {
+    return Locales[locale] || Locales['en_US'];
+};
+
+var SEC_ARRAY = [
+    60,
+    60,
+    24,
+    7,
+    365 / 7 / 12,
+    12,
+];
+function toDate(input) {
+    if (input instanceof Date)
+        return input;
+    if (!isNaN(input) || /^\d+$/.test(input))
+        return new Date(parseInt(input));
+    input = (input || '')
+        .trim()
+        .replace(/\.\d+/, '')
+        .replace(/-/, '/')
+        .replace(/-/, '/')
+        .replace(/(\d)T(\d)/, '$1 $2')
+        .replace(/Z/, ' UTC')
+        .replace(/([+-]\d\d):?(\d\d)/, ' $1$2');
+    return new Date(input);
+}
+function formatDiff(diff, localeFunc) {
+    var agoIn = diff < 0 ? 1 : 0;
+    diff = Math.abs(diff);
+    var totalSec = diff;
+    var idx = 0;
+    for (; diff >= SEC_ARRAY[idx] && idx < SEC_ARRAY.length; idx++) {
+        diff /= SEC_ARRAY[idx];
+    }
+    diff = Math.floor(diff);
+    idx *= 2;
+    if (diff > (idx === 0 ? 9 : 1))
+        idx += 1;
+    return localeFunc(diff, idx, totalSec)[agoIn].replace('%s', diff.toString());
+}
+function diffSec(date, relativeDate) {
+    var relDate = relativeDate ? toDate(relativeDate) : new Date();
+    return (+relDate - +toDate(date)) / 1000;
+}
+
+var format = function (date, locale, opts) {
+    var sec = diffSec(date, opts && opts.relativeDate);
+    return formatDiff(sec, getLocale(locale));
+};
+
+register('en_US', en_US);
+register('zh_CN', zh_CN);
+
+const cropText = (str, ml = 100, end = '...') => {
+    if (str.length > ml) {
+        return `${str.slice(0, ml)}${end}`;
+    }
+    return str;
+};
+const formatKlbRecurringPaymentCycle = (cycle) => {
+    const translate = useTranslation();
+    if (!cycle) {
+        return translate('payment_cycles_one_time');
+    }
+    const unit = cycle.slice(-1);
+    const quantity = parseInt(cycle.replace(unit, ''));
+    switch (unit) {
+        case 'h':
+            return translate('payment_cycles_hour', { count: quantity });
+        case 'd':
+            return translate('payment_cycles_day', { count: quantity });
+        case 'm':
+            return translate('payment_cycles_month', { count: quantity });
+        case 'y':
+            return translate('payment_cycles_year', { count: quantity });
+    }
+    return '';
+};
+const formatBytes = (bytes, decimals = 2) => {
+    if (!+bytes)
+        return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+};
+const jpZipcode = (zip) => {
+    const _zip = zip.toString();
+    if (_zip.length != 7)
+        return '';
+    return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
+};
+const formatDate = (dt) => {
+    let _dt = dt;
+    if (typeof dt === 'string') {
+        _dt = Date.parse(dt);
+        if (Number.isNaN(_dt)) {
+            _dt = parseInt(dt);
+        }
+    }
+    const translate = useTranslation();
+    return translate('global_datetime', {
+        val: new Date(_dt),
+        formatParams: {
+            val: {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            },
+        },
+    });
+};
+const formatDatetime = (dt) => {
+    let _dt = dt;
+    if (typeof dt === 'string') {
+        _dt = Date.parse(dt);
+        if (Number.isNaN(_dt)) {
+            _dt = parseInt(dt);
+        }
+    }
+    const translate = useTranslation();
+    return translate('global_datetime', {
+        val: new Date(_dt),
+        formatParams: {
+            val: {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+            },
+        },
+    });
+};
+const formatTimeago = (dt) => {
+    let _dt = dt;
+    if (typeof dt === 'string') {
+        _dt = Date.parse(dt);
+        if (Number.isNaN(_dt)) {
+            _dt = parseInt(dt);
+        }
+    }
+    return format(new Date(_dt), klbfw.getLocale().replace('_', '-'));
 };
 
 function useUserCheck(path = '/login') {

@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { useFVStore } from '@karpeleslab/fyvue';
+import { useFVStore, useSeo } from '@karpeleslab/fyvue';
+import { ref } from 'vue';
+useSeo(
+  ref({
+    description:
+      'fyvue is a Vue Plugin providing components, helpers for Vue, Tailwind, vite-ssr, KLB APIs, and more. At some point in the future, it will do my job for me.',
+  })
+);
 const store = useFVStore();
 </script>
 <template>

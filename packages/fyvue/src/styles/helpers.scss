@@ -21,8 +21,7 @@ html, body {
   @apply border-2 bg-red-100 text-red-800 text-sm my-2 p-1 border-red-300 rounded;
 }
 .card-container {
-  @apply block  border border-fv-neutral-200 rounded dark:border-fv-neutral-700;
-  background: rgba($color: #ccc, $alpha: .3);
+  @apply block  border border-fv-neutral-200 rounded dark:border-fv-neutral-700 bg-fv-neutral-200/[0.30] dark:bg-fv-neutral-900/[0.30];
   :first-child {
     @apply mt-0;
   }
@@ -33,11 +32,7 @@ html, body {
     @apply p-2 ;
   }
 }
-.dark {
-  .card-container {
-    background: rgba($color: #000, $alpha: .3);
-  }
-}
+
 .fv-tag {
   @apply bg-fv-neutral-200 text-fv-neutral-800 font-semibold text-xs px-2.5 py-0.5 rounded dark:bg-fv-neutral-700 dark:text-fv-neutral-300;
 }

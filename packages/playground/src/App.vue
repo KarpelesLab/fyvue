@@ -40,8 +40,6 @@ useSeo(
     title: computed(() =>
       computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
     ),
-    description:
-      'fyvue is a Vue Plugin providing components, helpers for Vue, Tailwind, vite-ssr, KLB APIs, and more. At some point in the future, it will do my job for me.',
   }),
   true
 );

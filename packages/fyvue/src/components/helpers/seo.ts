@@ -12,11 +12,6 @@ import {
 } from '@vueuse/schema-org/runtime';
 
 export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
-  if (seo.value.title) {
-    useHead({
-      title: computed(() => seo.value.title),
-    });
-  }
   if (initial) {
     useSchemaOrg([
       defineOrganization({
@@ -54,6 +49,7 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
   }*/
 
   useHead({
+    title: computed(() => seo.value.title),
     link: computed(() => {
       const _res: Array<any> = [];
 

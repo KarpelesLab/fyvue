@@ -129,11 +129,11 @@ const getArticle = async (slug: string) => {
     if (_data.data.content_cms_entry_data.Short_Contents) {
       seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
     } else {
-      seo.value.description = cropText(
+      /*seo.value.description = cropText(
         _data.data.content_cms_entry_data.Contents.replace(/(<([^>]+)>)/gi, ''),
         100,
         '...'
-      );
+      );*/
     }
     if (_data.data.content_cms_entry_data.Keywords.length) {
       seo.value.keywords =
