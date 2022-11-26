@@ -1387,9 +1387,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
         prevNextSeo.value.prev = `${url.scheme}://${url.host}${url.path}?page=${page2 - 1}`;
       }
     };
-    vue.onMounted(() => {
-      eventBus.on(`${props.id}GoToPage`, checkPageNumber);
-    });
+    eventBus.on(`${props.id}GoToPage`, checkPageNumber);
     vue.onUnmounted(() => {
       eventBus.off(`${props.id}GoToPage`, checkPageNumber);
     });
@@ -4499,8 +4497,11 @@ const _hoisted_1$2 = {
   key: 0,
   class: "entry-header"
 };
-const _hoisted_2$2 = { class: "post-thumbnail" };
-const _hoisted_3$2 = ["src"];
+const _hoisted_2$2 = {
+  key: 0,
+  class: "post-thumbnail"
+};
+const _hoisted_3$2 = ["src", "title", "alt"];
 const _hoisted_4$2 = { class: "h1-bg" };
 const _hoisted_5$1 = { class: "entry-main" };
 const _hoisted_6$1 = { class: "entry-content" };
@@ -4537,22 +4538,24 @@ const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
       }, [
         !__props.single ? (vue.openBlock(), vue.createElementBlock("header", _hoisted_1$2, [
           vue.createVNode(_component_RouterLink, {
-            to: `${__props.basePath}/${__props.post.Slug}`
+            to: `${__props.basePath}/${__props.post.Slug}`,
+            title: __props.post.Title
           }, {
             default: vue.withCtx(() => [
-              vue.createElementVNode("figure", _hoisted_2$2, [
-                __props.post.Top_Drive_Item && __props.post.Top_Drive_Item.Media_Image && __props.post.Top_Drive_Item.Media_Image?.Variation ? (vue.openBlock(), vue.createElementBlock("img", {
-                  key: 0,
-                  src: __props.post.Top_Drive_Item.Media_Image?.Variation["banner"]
-                }, null, 8, _hoisted_3$2)) : vue.createCommentVNode("v-if", true)
-              ]),
+              __props.post.Top_Drive_Item && __props.post.Top_Drive_Item.Media_Image && __props.post.Top_Drive_Item.Media_Image?.Variation ? (vue.openBlock(), vue.createElementBlock("figure", _hoisted_2$2, [
+                vue.createElementVNode("img", {
+                  src: __props.post.Top_Drive_Item.Media_Image?.Variation["banner"],
+                  title: __props.post.Title,
+                  alt: __props.post.Title
+                }, null, 8, _hoisted_3$2)
+              ])) : vue.createCommentVNode("v-if", true),
               vue.createCommentVNode('<div class="keywords" v-if="post.Keywords.length">\n          <span class="tag" v-for="keyword in post.Keywords">{{\n            keyword\n          }}</span>\n        </div>'),
               vue.createElementVNode("h2", {
                 class: vue.normalizeClass(__props.post.Top_Drive_Item?.Media_Image ? "title-has-pic" : "")
               }, vue.toDisplayString(__props.post.Title), 3)
             ]),
             _: 1
-          }, 8, ["to"])
+          }, 8, ["to", "title"])
         ])) : (vue.openBlock(), vue.createElementBlock("header", {
           key: 1,
           class: vue.normalizeClass(["entry-header", __props.post.Top_Drive_Item?.Media_Image ? "has-pic" : ""]),
@@ -4731,7 +4734,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         return;
       });
       if (_data && _data.result == "success") {
-        blogName.value = _data.data.content_cms.Name;
+        blogName.value = _data.data.content_cms.Name + " - " + props.siteName;
         breadcrumb.value = [
           ...props.breadcrumbBase,
           { name: blogName.value, to: props.basePath },
@@ -4800,7 +4803,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
       if (_data && _data.result == "success") {
         getCategories(_data.data.content_cms.Classify.Classify__);
         data.value = _data;
-        blogName.value = _data.data.content_cms.Name;
+        blogName.value = _data.data.content_cms.Name + " - " + props.siteName;
         if (category) {
           breadcrumb.value = [
             ...props.breadcrumbBase,

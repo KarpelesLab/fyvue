@@ -1385,9 +1385,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
         prevNextSeo.value.prev = `${url.scheme}://${url.host}${url.path}?page=${page2 - 1}`;
       }
     };
-    onMounted(() => {
-      eventBus.on(`${props.id}GoToPage`, checkPageNumber);
-    });
+    eventBus.on(`${props.id}GoToPage`, checkPageNumber);
     onUnmounted(() => {
       eventBus.off(`${props.id}GoToPage`, checkPageNumber);
     });
@@ -4497,8 +4495,11 @@ const _hoisted_1$2 = {
   key: 0,
   class: "entry-header"
 };
-const _hoisted_2$2 = { class: "post-thumbnail" };
-const _hoisted_3$2 = ["src"];
+const _hoisted_2$2 = {
+  key: 0,
+  class: "post-thumbnail"
+};
+const _hoisted_3$2 = ["src", "title", "alt"];
 const _hoisted_4$2 = { class: "h1-bg" };
 const _hoisted_5$1 = { class: "entry-main" };
 const _hoisted_6$1 = { class: "entry-content" };
@@ -4535,22 +4536,24 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }, [
         !__props.single ? (openBlock(), createElementBlock("header", _hoisted_1$2, [
           createVNode(_component_RouterLink, {
-            to: `${__props.basePath}/${__props.post.Slug}`
+            to: `${__props.basePath}/${__props.post.Slug}`,
+            title: __props.post.Title
           }, {
             default: withCtx(() => [
-              createElementVNode("figure", _hoisted_2$2, [
-                __props.post.Top_Drive_Item && __props.post.Top_Drive_Item.Media_Image && __props.post.Top_Drive_Item.Media_Image?.Variation ? (openBlock(), createElementBlock("img", {
-                  key: 0,
-                  src: __props.post.Top_Drive_Item.Media_Image?.Variation["banner"]
-                }, null, 8, _hoisted_3$2)) : createCommentVNode("v-if", true)
-              ]),
+              __props.post.Top_Drive_Item && __props.post.Top_Drive_Item.Media_Image && __props.post.Top_Drive_Item.Media_Image?.Variation ? (openBlock(), createElementBlock("figure", _hoisted_2$2, [
+                createElementVNode("img", {
+                  src: __props.post.Top_Drive_Item.Media_Image?.Variation["banner"],
+                  title: __props.post.Title,
+                  alt: __props.post.Title
+                }, null, 8, _hoisted_3$2)
+              ])) : createCommentVNode("v-if", true),
               createCommentVNode('<div class="keywords" v-if="post.Keywords.length">\n          <span class="tag" v-for="keyword in post.Keywords">{{\n            keyword\n          }}</span>\n        </div>'),
               createElementVNode("h2", {
                 class: normalizeClass(__props.post.Top_Drive_Item?.Media_Image ? "title-has-pic" : "")
               }, toDisplayString(__props.post.Title), 3)
             ]),
             _: 1
-          }, 8, ["to"])
+          }, 8, ["to", "title"])
         ])) : (openBlock(), createElementBlock("header", {
           key: 1,
           class: normalizeClass(["entry-header", __props.post.Top_Drive_Item?.Media_Image ? "has-pic" : ""]),
@@ -4729,7 +4732,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         return;
       });
       if (_data && _data.result == "success") {
-        blogName.value = _data.data.content_cms.Name;
+        blogName.value = _data.data.content_cms.Name + " - " + props.siteName;
         breadcrumb.value = [
           ...props.breadcrumbBase,
           { name: blogName.value, to: props.basePath },
@@ -4798,7 +4801,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       if (_data && _data.result == "success") {
         getCategories(_data.data.content_cms.Classify.Classify__);
         data.value = _data;
-        blogName.value = _data.data.content_cms.Name;
+        blogName.value = _data.data.content_cms.Name + " - " + props.siteName;
         if (category) {
           breadcrumb.value = [
             ...props.breadcrumbBase,
