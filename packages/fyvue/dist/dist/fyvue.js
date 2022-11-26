@@ -4456,7 +4456,8 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     breadcrumbBase: null,
     siteName: null
   },
-  setup(__props) {
+  async setup(__props) {
+    let __temp, __restore;
     const props = __props;
     const pageHead = vue.reactive({
       title: `...`,
@@ -4604,7 +4605,6 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
     const checkRoutePage = async (page = 1) => {
       await checkRoute(route.params.slug.toString(), page);
     };
-    checkRoute(route.params.slug.toString());
     vue.onMounted(() => {
       eventBus.on("cmsPagingGoToPage", checkRoutePage);
     });
@@ -4630,6 +4630,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
         return _res;
       })
     });
+    [__temp, __restore] = vue.withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     return (_ctx, _cache) => {
       const _component_RouterLink = vue.resolveComponent("RouterLink");
       return vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [

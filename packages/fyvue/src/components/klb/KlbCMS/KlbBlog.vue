@@ -196,7 +196,6 @@ const checkRoute = async (slug: string, page: number = 1) => {
 const checkRoutePage = async (page: number = 1) => {
   await checkRoute(route.params.slug.toString(), page);
 };
-checkRoute(route.params.slug.toString());
 
 onMounted(() => {
   eventBus.on('cmsPagingGoToPage', checkRoutePage);
@@ -224,12 +223,8 @@ useHead({
     return _res;
   }),
 });
-//await getData(route.params.slug.toString());
-/*
-  <link rel="canonical" href="https://fy.to/blog/">
-  <meta property="og:type" content="article">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-*/
+
+await checkRoute(route.params.slug.toString());
 </script>
 <template>
   <div class="klb-blog">

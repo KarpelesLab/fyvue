@@ -4454,7 +4454,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     breadcrumbBase: null,
     siteName: null
   },
-  setup(__props) {
+  async setup(__props) {
+    let __temp, __restore;
     const props = __props;
     const pageHead = reactive({
       title: `...`,
@@ -4602,7 +4603,6 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const checkRoutePage = async (page = 1) => {
       await checkRoute(route.params.slug.toString(), page);
     };
-    checkRoute(route.params.slug.toString());
     onMounted(() => {
       eventBus.on("cmsPagingGoToPage", checkRoutePage);
     });
@@ -4628,6 +4628,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         return _res;
       })
     });
+    [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     return (_ctx, _cache) => {
       const _component_RouterLink = resolveComponent("RouterLink");
       return openBlock(), createElementBlock("div", _hoisted_1$1, [
