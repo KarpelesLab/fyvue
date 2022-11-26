@@ -3,7 +3,7 @@ declare function sitemapPlugin(options: {}): {
     closeBundle(): void;
     transformIndexHtml(): {
         tag: string;
-        injectTo: "head" | "body" | "head-prepend" | "body-prepend" | undefined;
+        injectTo: "body" | "head" | "head-prepend" | "body-prepend" | undefined;
         attrs: {
             rel: string;
             type: string;
