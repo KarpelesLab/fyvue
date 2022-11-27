@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted, reactive, watch, computed } from 'vue';
+import {
+  ref,
+  onMounted,
+  reactive,
+  watch,
+  computed,
+  onUnmounted,
+  WatchStopHandle,
+} from 'vue';
 import { useHead } from '@vueuse/head';
 import {
   KlbUserBilling,
@@ -47,34 +55,8 @@ const process = ref<KlbOrderProcess>();
 const onFileSelectOptions = ref<Array<string[]>>([]);
 const selectedOnFile = ref<string>();
 const isAuth = computed(() => store.isAuth);
+const internalWatcher = ref<WatchStopHandle>();
 
-watch(formData, async (v) => {
-  if (v.cc_remember) {
-    if (isAuth.value && currentMethod.value) {
-      if (
-        (order.value?.Flags.autorenew_record == true && v.cc_remember == '0') ||
-        ((!order.value?.Flags.autorenew_record ||
-          order.value?.Flags.autorenew_record == false) &&
-          v.cc_remember == '1')
-      ) {
-        const _process = await useOrder().process(
-          {
-            cc_remember: v.cc_remember,
-            session: session.value,
-            method: currentMethod.value,
-            stripe_intent: 1,
-          },
-          props.orderUuid
-        );
-        if (_process && _process.result == 'success') {
-          process.value = _process.data;
-          order.value = process.value.order;
-          session.value = process.value.methods[currentMethod.value].session;
-        }
-      }
-    }
-  }
-});
 const processOrder = async () => {
   eventBus.emit('klb-order-loading', true);
   errorMessage.value = undefined;
@@ -250,6 +232,34 @@ const getOrderProcess = async (
   eventBus.emit('klb-order-loading', false);
 };
 onMounted(async () => {
+  internalWatcher.value = watch(formData, async (v) => {
+    if (v.cc_remember) {
+      if (isAuth.value && currentMethod.value) {
+        if (
+          (order.value?.Flags.autorenew_record == true &&
+            v.cc_remember == '0') ||
+          ((!order.value?.Flags.autorenew_record ||
+            order.value?.Flags.autorenew_record == false) &&
+            v.cc_remember == '1')
+        ) {
+          const _process = await useOrder().process(
+            {
+              cc_remember: v.cc_remember,
+              session: session.value,
+              method: currentMethod.value,
+              stripe_intent: 1,
+            },
+            props.orderUuid
+          );
+          if (_process && _process.result == 'success') {
+            process.value = _process.data;
+            order.value = process.value.order;
+            session.value = process.value.methods[currentMethod.value].session;
+          }
+        }
+      }
+    }
+  });
   if (
     history.currentRoute.query.payment_intent &&
     history.currentRoute.query.payment_intent_client_secret &&
@@ -275,6 +285,9 @@ onMounted(async () => {
   } else {
     await getOrderProcess();
   }
+});
+onUnmounted(() => {
+  if (internalWatcher.value) internalWatcher.value();
 });
 </script>
 <template>

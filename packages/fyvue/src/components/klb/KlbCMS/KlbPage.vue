@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, reactive, watch } from 'vue';
+import { ref, computed, reactive, watch, onMounted, onUnmounted } from 'vue';
 import { rest } from '../../../utils/rest';
 import { useHistory } from '../../../utils/ssr';
 import type { KlbAPIContentCmsSingle } from '../../../dts/klb';
@@ -12,6 +12,8 @@ import KlbBlogInnerPost from './KlbBlogInnerPost.vue';
 import type { SeoData } from '../../../dts/index';
 import { useSeo } from '../../helpers/seo';
 import { cropText } from '../../../utils/display';
+import { useCMS } from './useCms';
+import type { WatchStopHandle } from 'vue';
 const props = withDefaults(
   defineProps<{
     pagesAlias?: string;
@@ -20,7 +22,9 @@ const props = withDefaults(
     pagesAlias: '@pages',
   }
 );
-const page = ref();
+const slugWatcher = ref<WatchStopHandle>();
+
+const page = ref<KlbAPIContentCmsSingle>();
 const route = useRoute();
 const is404 = ref<Boolean>(false);
 const eventBus = useEventBus();
@@ -49,88 +53,44 @@ const resetSeo = (type: 'blog' | 'search' | 'article' = 'blog') => {
     type: type,
   };
 };
-watch(
-  () => route.params.slug,
-  async (v) => {
-    if (v) await getArticle(v.toString());
-  }
-);
 
 const getArticle = async (slug: string) => {
-  eventBus.emit('cmsBlog-loading', true);
-  is404.value = false;
-
-  resetSeo('article');
-
-  const _data = await rest<KlbAPIContentCmsSingle>(
-    `Content/Cms/${props.pagesAlias}:loadSlug`,
-    'GET',
-    {
-      slug: slug,
-      image_variation: [
-        'strip&scale_crop=512x512&alias=squared',
-        'strip&scale_crop=1280x100&alias=bannerx100',
-        'strip&scale_crop=1200x630&alias=seo',
-      ],
-    }
-  ).catch((err) => {
-    if (err.code == 404) {
-      useHistory().status = 404;
-      is404.value = true;
-      seo.value.title = '404';
-    }
-    eventBus.emit('cmsBlog-loading', false);
-    return;
-  });
-  if (_data && _data.result == 'success') {
-    page.value = _data;
-    seo.value.published = new Date(
-      parseInt(_data.data.content_cms_entry_data.Published.unixms)
-    ).toISOString();
-    seo.value.modified = new Date(
-      parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)
-    ).toISOString();
-    seo.value.title = _data.data.content_cms_entry_data.Title;
-    if (_data.data.content_cms_entry_data.Short_Contents) {
-      seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
-    } else {
-      /*seo.value.description = cropText(
-        _data.data.content_cms_entry_data.Contents.replace(/(<([^>]+)>)/gi, ''),
-        100,
-        '...'
-      );*/
-    }
-    if (_data.data.content_cms_entry_data.Keywords.length) {
-      seo.value.keywords =
-        _data.data.content_cms_entry_data.Keywords.join(',').trim();
-    }
-    if (
-      _data.data.content_cms_entry_data.Top_Drive_Item &&
-      _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image &&
-      _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation
-    ) {
-      seo.value.imageType =
-        _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
-      seo.value.image =
-        _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation[
-          'seo'
-        ];
-      seo.value.imageWidth = '1200';
-      seo.value.imageHeight = '630';
-    }
-  }
-  eventBus.emit('cmsBlog-loading', false);
+  eventBus.emit('cmsPage-loading', true);
+  await useCMS().getArticle(
+    slug,
+    '',
+    props.pagesAlias,
+    '',
+    [],
+    seo,
+    is404,
+    page
+  );
+  eventBus.emit('cmsPage-loading', false);
 };
 
 await getArticle(route.params.slug.toString());
 useSeo(seo);
+
+onMounted(() => {
+  slugWatcher.value = watch(
+    () => route.params.slug,
+    (v) => {
+      if (typeof v == 'string' && v != '') getArticle(v.toString());
+    }
+  );
+});
+onUnmounted(() => {
+  if (slugWatcher.value) slugWatcher.value();
+});
 </script>
 <template>
   <div class="fv-relative klb-blog">
-    <FyLoader id="cmspage" />
+    <FyLoader id="cmsPage" />
     <KlbBlogInnerPost
       v-if="page"
       :post="page.data.content_cms_entry_data"
+      :cms="page.data.content_cms"
       :single="true"
     />
     <div class="fv-typo" v-if="is404">

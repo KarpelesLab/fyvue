@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.8
+  * @karpeleslab/fyvue v0.2.0-rc.14
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -228,7 +228,7 @@ const useTranslation = () => {
     return vueInstance.appContext.config.globalProperties.$t;
 };
 
-function render$e(_ctx, _cache) {
+function render$g(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -243,7 +243,7 @@ function render$e(_ctx, _cache) {
   ]))
 }
 
-function render$d(_ctx, _cache) {
+function render$f(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -259,7 +259,22 @@ function render$d(_ctx, _cache) {
   ]))
 }
 
-function render$c(_ctx, _cache) {
+function render$e(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97z",
+      "clip-rule": "evenodd"
+    })
+  ]))
+}
+
+function render$d(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -274,7 +289,7 @@ function render$c(_ctx, _cache) {
   ]))
 }
 
-function render$b(_ctx, _cache) {
+function render$c(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -289,7 +304,7 @@ function render$b(_ctx, _cache) {
   ]))
 }
 
-function render$a(_ctx, _cache) {
+function render$b(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -304,7 +319,7 @@ function render$a(_ctx, _cache) {
   ]))
 }
 
-function render$9(_ctx, _cache) {
+function render$a(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -316,7 +331,7 @@ function render$9(_ctx, _cache) {
   ]))
 }
 
-function render$8(_ctx, _cache) {
+function render$9(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -331,7 +346,7 @@ function render$8(_ctx, _cache) {
   ]))
 }
 
-function render$7(_ctx, _cache) {
+function render$8(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -346,7 +361,7 @@ function render$7(_ctx, _cache) {
   ]))
 }
 
-function render$6(_ctx, _cache) {
+function render$7(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -361,7 +376,7 @@ function render$6(_ctx, _cache) {
   ]))
 }
 
-function render$5(_ctx, _cache) {
+function render$6(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -376,7 +391,7 @@ function render$5(_ctx, _cache) {
   ]))
 }
 
-function render$4(_ctx, _cache) {
+function render$5(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -387,7 +402,7 @@ function render$4(_ctx, _cache) {
   ]))
 }
 
-function render$3(_ctx, _cache) {
+function render$4(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -398,7 +413,7 @@ function render$3(_ctx, _cache) {
   ]))
 }
 
-function render$2(_ctx, _cache) {
+function render$3(_ctx, _cache) {
   return (openBlock(), createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -406,6 +421,21 @@ function render$2(_ctx, _cache) {
     "aria-hidden": "true"
   }, [
     createElementVNode("path", { d: "M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" })
+  ]))
+}
+
+function render$2(_ctx, _cache) {
+  return (openBlock(), createElementBlock("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, [
+    createElementVNode("path", {
+      "fill-rule": "evenodd",
+      d: "M5.25 2.25a3 3 0 00-3 3v4.318a3 3 0 00.879 2.121l9.58 9.581c.92.92 2.39 1.186 3.548.428a18.849 18.849 0 005.441-5.44c.758-1.16.492-2.629-.428-3.548l-9.58-9.581a3 3 0 00-2.122-.879H5.25zM6.375 7.5a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z",
+      "clip-rule": "evenodd"
+    })
   ]))
 }
 
@@ -701,13 +731,13 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
               ),
               "aria-current": item.to ? void 0 : "page"
             }, [
-              index != 0 ? (openBlock(), createBlock(unref(render$b), { key: 0 })) : createCommentVNode("v-if", true),
+              index != 0 ? (openBlock(), createBlock(unref(render$c), { key: 0 })) : createCommentVNode("v-if", true),
               item.to ? (openBlock(), createBlock(_component_router_link, {
                 key: 1,
                 to: item.to
               }, {
                 default: withCtx(() => [
-                  index === 0 ? (openBlock(), createBlock(unref(render$9), { key: 0 })) : createCommentVNode("v-if", true),
+                  index === 0 ? (openBlock(), createBlock(unref(render$a), { key: 0 })) : createCommentVNode("v-if", true),
                   createTextVNode(" " + toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
                 ]),
                 _: 2
@@ -1089,7 +1119,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
             href: __props.linkIcon,
             target: "_blank"
           }, [
-            createVNode(unref(render$8))
+            createVNode(unref(render$9))
           ], 8, _hoisted_4$h)) : createCommentVNode("v-if", true),
           __props.req ? (openBlock(), createElementBlock("sup", _hoisted_5$f, "*")) : createCommentVNode("v-if", true)
         ], 8, _hoisted_2$i)) : createCommentVNode("v-if", true),
@@ -1340,6 +1370,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     const isNewPage = (page2) => {
       return page2 >= 1 && page2 <= props.items.page_max && page2 != props.items.page_no;
     };
+    const pageWatcher = ref();
     const next = () => {
       const page2 = props.items.page_no + 1;
       if (!isNewPage(page2))
@@ -1377,15 +1408,19 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
       }
     };
     eventBus.on(`${props.id}GoToPage`, checkPageNumber);
+    onMounted(() => {
+      pageWatcher.value = watch(
+        () => route.query.page,
+        (v, ov) => {
+          eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
+        }
+      );
+    });
     onUnmounted(() => {
       eventBus.off(`${props.id}GoToPage`, checkPageNumber);
+      if (pageWatcher.value)
+        pageWatcher.value();
     });
-    watch(
-      () => route.query.page,
-      (v, ov) => {
-        eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
-      }
-    );
     checkPageNumber(props.items.page_no);
     useSeo(prevNextSeo);
     return (_ctx, _cache) => {
@@ -1399,7 +1434,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
               class: "prev-next"
             }, [
               createElementVNode("span", _hoisted_4$g, toDisplayString(_ctx.$t("previous_paging")), 1),
-              createVNode(unref(render$c), { class: "fv-icon-base" })
+              createVNode(unref(render$d), { class: "fv-icon-base" })
             ])) : createCommentVNode("v-if", true),
             __props.items.page_no - 2 > 1 ? (openBlock(), createElementBlock("a", {
               key: 1,
@@ -1443,7 +1478,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
               class: "prev-next"
             }, [
               createElementVNode("span", _hoisted_10$8, toDisplayString(_ctx.$t("next_paging")), 1),
-              createVNode(unref(render$b), { class: "fv-icon-base" })
+              createVNode(unref(render$c), { class: "fv-icon-base" })
             ])) : createCommentVNode("v-if", true)
           ]),
           createElementVNode("p", _hoisted_11$8, toDisplayString(_ctx.$t("global_paging", {
@@ -1676,7 +1711,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
                     class: "nav-cart"
                   }, {
                     default: withCtx(() => [
-                      createVNode(unref(render$3)),
+                      createVNode(unref(render$4)),
                       createElementVNode("div", _hoisted_5$d, toDisplayString(unref(cartCount).toString()), 1)
                     ]),
                     _: 1
@@ -1690,7 +1725,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
               onClick: _cache[0] || (_cache[0] = ($event) => unref(toggleDark)()),
               class: "btn neutral light-dark"
             }, [
-              !unref(isDark) ? (openBlock(), createBlock(unref(render$6), { key: 0 })) : (openBlock(), createBlock(unref(render$2), { key: 1 }))
+              !unref(isDark) ? (openBlock(), createBlock(unref(render$7), { key: 0 })) : (openBlock(), createBlock(unref(render$3), { key: 1 }))
             ])) : createCommentVNode("v-if", true),
             createElementVNode("button", {
               type: "button",
@@ -2228,7 +2263,7 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
               onClick: _cache[0] || (_cache[0] = ($event) => unref(eventBus).emit("UpdateEmailModal", true)),
               class: "btn primary small"
             }, [
-              createVNode(unref(render$4), { class: "edit-icon" }),
+              createVNode(unref(render$5), { class: "edit-icon" }),
               createTextVNode(" " + toDisplayString(_ctx.$t("update_email_display_cta")), 1)
             ])
           ])
@@ -2343,7 +2378,7 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
               onClick: _cache[0] || (_cache[0] = ($event) => unref(eventBus).emit("updatePwdModal", true)),
               class: "btn primary small"
             }, [
-              createVNode(unref(render$4), { class: "edit-icon" }),
+              createVNode(unref(render$5), { class: "edit-icon" }),
               createTextVNode(" " + toDisplayString(_ctx.$t("update_pwd_display_cta")), 1)
             ])
           ])
@@ -2432,7 +2467,7 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
               class: "btn primary small"
             }, {
               default: withCtx(() => [
-                createVNode(unref(render$a), { class: "edit-icon" }),
+                createVNode(unref(render$b), { class: "edit-icon" }),
                 createTextVNode(" " + toDisplayString(_ctx.$t("delete_account_display_cta")), 1)
               ]),
               _: 1
@@ -2506,7 +2541,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
                 target: "_blank",
                 class: "btn neutral download-btn"
               }, [
-                createVNode(unref(render$e), {
+                createVNode(unref(render$g), {
                   stroke: "currentColor",
                   class: "download-icon"
                 }),
@@ -2573,7 +2608,7 @@ const _hoisted_15$3 = {
   class: "btn-defaults btn primary",
   type: "submit"
 };
-const _hoisted_16$2 = {
+const _hoisted_16$3 = {
   key: 1,
   class: "self-loader-fyvue"
 };
@@ -2603,27 +2638,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
         emit("update:modelValue", items);
       }
     });
-    watch(selectedLocation, async (v) => {
-      if (v == "new") {
-        state.firstname = "";
-        state.lastname = "";
-        state.zip = "";
-        state.country = "";
-        editMode.value = true;
-        location.value = void 0;
-        model.value = void 0;
-        await getUserGeolocation();
-      } else {
-        if (v && locations.value[v]) {
-          location.value = locations.value[v];
-          state.firstname = location.value.First_Name;
-          state.lastname = location.value.Last_Name;
-          state.zip = location.value.Zip ? location.value.Zip : "";
-          state.country = location.value.Country__;
-          model.value = location.value.User_Location__;
-        }
-      }
-    });
+    const locationWatcher = ref();
     const state = reactive({
       firstname: "",
       lastname: "",
@@ -2738,8 +2753,33 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     };
     onMounted(async () => {
       if (isAuth.value) {
+        locationWatcher.value = watch(selectedLocation, async (v) => {
+          if (v == "new") {
+            state.firstname = "";
+            state.lastname = "";
+            state.zip = "";
+            state.country = "";
+            editMode.value = true;
+            location.value = void 0;
+            model.value = void 0;
+            await getUserGeolocation();
+          } else {
+            if (v && locations.value[v]) {
+              location.value = locations.value[v];
+              state.firstname = location.value.First_Name;
+              state.lastname = location.value.Last_Name;
+              state.zip = location.value.Zip ? location.value.Zip : "";
+              state.country = location.value.Country__;
+              model.value = location.value.User_Location__;
+            }
+          }
+        });
         await getUserLocation();
       }
+    });
+    onUnmounted(() => {
+      if (locationWatcher.value)
+        locationWatcher.value();
     });
     return (_ctx, _cache) => {
       const _component_FyInput = resolveComponent("FyInput");
@@ -2858,7 +2898,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
             ])
           ])) : createCommentVNode("v-if", true)
         ], 2)) : createCommentVNode("v-if", true),
-        !isLoaded.value && unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_16$2, [
+        !isLoaded.value && unref(isAuth) ? (openBlock(), createElementBlock("div", _hoisted_16$3, [
           createVNode(FyLoader, {
             id: "self-loader-fyvue",
             force: true,
@@ -3223,7 +3263,7 @@ const _hoisted_14$3 = {
   class: "response-error"
 };
 const _hoisted_15$2 = /* @__PURE__ */ createElementVNode("br", null, null, -1);
-const _hoisted_16$1 = { class: "btn-box" };
+const _hoisted_16$2 = { class: "btn-box" };
 const _hoisted_17$1 = {
   class: "btn-defaults btn primary",
   type: "submit"
@@ -3259,26 +3299,11 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     let stripeElements;
     const paymentSetupIntent = ref();
     const stripePayment = ref();
+    const billingWatcher = ref();
     const model = computed({
       get: () => props.modelValue,
       set: (items) => {
         emit("update:modelValue", items);
-      }
-    });
-    watch(selectedBillingProfile, (v) => {
-      if (v == "new") {
-        state.billingProfile.label = "";
-        state.billingProfile.location = "";
-        editMode.value = true;
-        billingProfile.value = void 0;
-        model.value = void 0;
-      } else {
-        if (v && billingProfiles.value[v]) {
-          billingProfile.value = billingProfiles.value[v];
-          state.billingProfile.label = billingProfile.value.Label;
-          state.billingProfile.location = billingProfile.value.User_Location__;
-          model.value = billingProfile.value.User_Billing__;
-        }
       }
     });
     const state = reactive({
@@ -3418,6 +3443,22 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
     onMounted(async () => {
       if (isAuth.value) {
+        billingWatcher.value = watch(selectedBillingProfile, (v) => {
+          if (v == "new") {
+            state.billingProfile.label = "";
+            state.billingProfile.location = "";
+            editMode.value = true;
+            billingProfile.value = void 0;
+            model.value = void 0;
+          } else {
+            if (v && billingProfiles.value[v]) {
+              billingProfile.value = billingProfiles.value[v];
+              state.billingProfile.label = billingProfile.value.Label;
+              state.billingProfile.location = billingProfile.value.User_Location__;
+              model.value = billingProfile.value.User_Billing__;
+            }
+          }
+        });
         await getUserBilling();
         if (history.currentRoute.query.setup_intent && history.currentRoute.query.setup_intent_client_secret && history.currentRoute.query.editMode == "1" && history.currentRoute.query.editUuid && history.currentRoute.query.billingProfile) {
           await rest(
@@ -3439,6 +3480,10 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
           editMode.value = true;
         }
       }
+    });
+    onUnmounted(() => {
+      if (billingWatcher.value)
+        billingWatcher.value();
     });
     useHead({
       script: [
@@ -3559,7 +3604,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                   `vuelidate_validator_${unref(v$).billingProfile.location.$errors[0].$validator.toString()}`
                 )), 1)) : createCommentVNode("v-if", true),
                 _hoisted_15$2,
-                createElementVNode("div", _hoisted_16$1, [
+                createElementVNode("div", _hoisted_16$2, [
                   createElementVNode("button", _hoisted_17$1, toDisplayString(_ctx.$t("klb_billing_save_payment_method")), 1)
                 ])
               ], 40, _hoisted_10$3)
@@ -3801,28 +3846,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const onFileSelectOptions = ref([]);
     const selectedOnFile = ref();
     const isAuth = computed(() => store.isAuth);
-    watch(formData, async (v) => {
-      if (v.cc_remember) {
-        if (isAuth.value && currentMethod.value) {
-          if (order.value?.Flags.autorenew_record == true && v.cc_remember == "0" || (!order.value?.Flags.autorenew_record || order.value?.Flags.autorenew_record == false) && v.cc_remember == "1") {
-            const _process = await useOrder().process(
-              {
-                cc_remember: v.cc_remember,
-                session: session.value,
-                method: currentMethod.value,
-                stripe_intent: 1
-              },
-              props.orderUuid
-            );
-            if (_process && _process.result == "success") {
-              process.value = _process.data;
-              order.value = process.value.order;
-              session.value = process.value.methods[currentMethod.value].session;
-            }
-          }
-        }
-      }
-    });
+    const internalWatcher = ref();
     const processOrder = async () => {
       eventBus.emit("klb-order-loading", true);
       errorMessage.value = void 0;
@@ -3957,6 +3981,28 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       eventBus.emit("klb-order-loading", false);
     };
     onMounted(async () => {
+      internalWatcher.value = watch(formData, async (v) => {
+        if (v.cc_remember) {
+          if (isAuth.value && currentMethod.value) {
+            if (order.value?.Flags.autorenew_record == true && v.cc_remember == "0" || (!order.value?.Flags.autorenew_record || order.value?.Flags.autorenew_record == false) && v.cc_remember == "1") {
+              const _process = await useOrder().process(
+                {
+                  cc_remember: v.cc_remember,
+                  session: session.value,
+                  method: currentMethod.value,
+                  stripe_intent: 1
+                },
+                props.orderUuid
+              );
+              if (_process && _process.result == "success") {
+                process.value = _process.data;
+                order.value = process.value.order;
+                session.value = process.value.methods[currentMethod.value].session;
+              }
+            }
+          }
+        }
+      });
       if (history.currentRoute.query.payment_intent && history.currentRoute.query.payment_intent_client_secret && history.currentRoute.query.session) {
         const _process = await useOrder().process(
           {
@@ -3977,6 +4023,10 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       } else {
         await getOrderProcess();
       }
+    });
+    onUnmounted(() => {
+      if (internalWatcher.value)
+        internalWatcher.value();
     });
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$5, [
@@ -4096,7 +4146,7 @@ const _hoisted_12$1 = {
 const _hoisted_13$1 = { class: "price" };
 const _hoisted_14$1 = { class: "cart-summary vat" };
 const _hoisted_15$1 = { class: "price" };
-const _hoisted_16 = { class: "cart-summary vat" };
+const _hoisted_16$1 = { class: "cart-summary vat" };
 const _hoisted_17 = { class: "price" };
 const _hoisted_18 = { class: "cart-summary total" };
 const _hoisted_19 = { class: "price" };
@@ -4169,16 +4219,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     const error = ref();
     const hasOrder = ref();
     const eventBus = useEventBus();
-    watch(routeOrderUuid, async (v) => {
-      if (v) {
-        const _order = await useOrder().getOrder(v.toString()).catch(() => {
-        });
-        if (_order && _order.result == "success")
-          hasOrder.value = _order.data;
-      } else {
-        hasOrder.value = void 0;
-      }
-    });
+    const orderWatcher = ref();
     const state = reactive({
       location: void 0
     });
@@ -4215,6 +4256,16 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
     onMounted(async () => {
       eventBus.emit("klb-order-main-loading", true);
+      orderWatcher.value = watch(routeOrderUuid, async (v) => {
+        if (v) {
+          const _order = await useOrder().getOrder(v.toString()).catch(() => {
+          });
+          if (_order && _order.result == "success")
+            hasOrder.value = _order.data;
+        } else {
+          hasOrder.value = void 0;
+        }
+      });
       if (!routeOrderUuid.value) {
         if (route.query.product) {
           await addProductToCart(route.query.product.toString());
@@ -4237,6 +4288,10 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
         await store.refreshCartData(_addResult);
       }
     };
+    onUnmounted(() => {
+      if (orderWatcher.value)
+        orderWatcher.value();
+    });
     return (_ctx, _cache) => {
       const _component_router_link = resolveComponent("router-link");
       return isReady.value ? (openBlock(), createElementBlock("div", _hoisted_1$4, [
@@ -4291,7 +4346,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
                   createElementVNode("b", null, toDisplayString(cart.value.data.total.display), 1)
                 ])
               ]),
-              createElementVNode("div", _hoisted_16, [
+              createElementVNode("div", _hoisted_16$1, [
                 createElementVNode("h3", null, toDisplayString(_ctx.$t("klb_order_cart_total_taxes")), 1),
                 createElementVNode("div", _hoisted_17, [
                   createElementVNode("b", null, toDisplayString(cart.value.data.total_vat_only.display), 1)
@@ -4426,25 +4481,30 @@ const _hoisted_6$1 = { class: "entry-content" };
 const _hoisted_7$1 = ["innerHTML"];
 const _hoisted_8$1 = { key: 0 };
 const _hoisted_9$1 = { class: "entry-footer" };
-const _hoisted_10 = { class: "published" };
-const _hoisted_11 = ["datetime"];
-const _hoisted_12 = {
+const _hoisted_10 = {
   key: 0,
-  class: "dot"
+  class: "comments"
 };
+const _hoisted_11 = { class: "published" };
+const _hoisted_12 = ["datetime"];
 const _hoisted_13 = {
   key: 1,
   class: "category"
 };
-const _hoisted_14 = { class: "modified" };
-const _hoisted_15 = ["datetime"];
+const _hoisted_14 = {
+  key: 2,
+  class: "category"
+};
+const _hoisted_15 = { class: "modified" };
+const _hoisted_16 = ["datetime"];
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "KlbBlogInnerPost",
   props: {
     post: null,
     single: { type: Boolean, default: true },
     basePath: { default: "/blog" },
-    breadcrumbBase: { default: () => [] }
+    breadcrumbBase: { default: () => [] },
+    cms: null
   },
   setup(__props) {
     return (_ctx, _cache) => {
@@ -4506,24 +4566,19 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             ])) : createCommentVNode("v-if", true)
           ]),
           createElementVNode("footer", _hoisted_9$1, [
-            createCommentVNode(`<span class="comments" v-if="post.Comments">
-          <ChatBubbleBottomCenterIcon />
-          {{
-            $t('klb_blog_comment_count', { count: post.Comments.Comment_Count })
-          }}
-        </span>
-
-        <span class="dot">&#8226;</span>`),
-            createElementVNode("span", _hoisted_10, [
-              createVNode(unref(render$d)),
+            __props.post.Comments && __props.cms.Type == "article" ? (openBlock(), createElementBlock("span", _hoisted_10, [
+              createVNode(unref(render$e)),
+              createTextVNode(" " + toDisplayString(_ctx.$t("klb_blog_comment_count", { count: __props.post.Comments.Comment_Count })), 1)
+            ])) : createCommentVNode("v-if", true),
+            createElementVNode("span", _hoisted_11, [
+              createVNode(unref(render$f)),
               createElementVNode("time", {
                 class: "entry-date published",
                 datetime: new Date(parseInt(__props.post.Published.unixms)).toISOString()
-              }, toDisplayString(_ctx.$formatDate(__props.post.Published.unixms)), 9, _hoisted_11)
+              }, toDisplayString(_ctx.$formatDate(__props.post.Published.unixms)), 9, _hoisted_12)
             ]),
-            __props.post.Tag_Category ? (openBlock(), createElementBlock("span", _hoisted_12, "\u2022")) : createCommentVNode("v-if", true),
             __props.post.Tag_Category ? (openBlock(), createElementBlock("span", _hoisted_13, [
-              createVNode(unref(render$5)),
+              createVNode(unref(render$6)),
               createVNode(_component_RouterLink, {
                 to: `${__props.basePath}/category/${__props.post.Tag_Category.Full_Name}`
               }, {
@@ -4533,12 +4588,16 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                 _: 1
               }, 8, ["to"])
             ])) : createCommentVNode("v-if", true),
-            createElementVNode("span", _hoisted_14, [
-              createVNode(unref(render$d)),
+            __props.post.Keywords && __props.post.Keywords.length ? (openBlock(), createElementBlock("span", _hoisted_14, [
+              createVNode(unref(render$2)),
+              createTextVNode(" " + toDisplayString(__props.post.Keywords.join(", ")), 1)
+            ])) : createCommentVNode("v-if", true),
+            createElementVNode("span", _hoisted_15, [
+              createVNode(unref(render$f)),
               createElementVNode("time", {
                 class: "updated",
                 datetime: new Date(parseInt(__props.post.Last_Modified.unixms)).toISOString()
-              }, toDisplayString(_ctx.$formatDate(__props.post.Last_Modified.unixms)), 9, _hoisted_15)
+              }, toDisplayString(_ctx.$formatDate(__props.post.Last_Modified.unixms)), 9, _hoisted_16)
             ])
           ])
         ])
@@ -4547,6 +4606,85 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   }
 });
 var KlbBlogInnerPost = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "KlbBlogInnerPost.vue"]]);
+
+function useCMS() {
+    return {
+        getArticle: async (slug, basePath, alias, siteName, breadcrumbBase, seo, is404, dataSingle, displayType = undefined, blogName = undefined, breadcrumb = undefined, vars = [
+            'strip&scale_crop=512x512&alias=squared',
+            'strip&scale_crop=1280x100&alias=bannerx100',
+            'strip&scale_crop=1200x630&alias=seo',
+        ]) => {
+            seo.value = {
+                title: undefined,
+                image: undefined,
+                imageType: undefined,
+                description: undefined,
+                published: undefined,
+                modified: undefined,
+                keywords: undefined,
+                imageWidth: undefined,
+                imageHeight: undefined,
+                type: 'article',
+            };
+            is404.value = false;
+            if (displayType)
+                displayType.value = 'single';
+            const _data = await rest(`Content/Cms/${alias}:loadSlug`, 'GET', {
+                slug: slug,
+                image_variation: vars,
+            }).catch((err) => {
+                if (err.code == 404) {
+                    useHistory().status = 404;
+                    is404.value = true;
+                    seo.value.title = '404';
+                }
+                return;
+            });
+            if (_data && _data.result == 'success') {
+                if (blogName)
+                    blogName.value = _data.data.content_cms.Name + ' - ' + siteName;
+                if (breadcrumb && blogName)
+                    breadcrumb.value = [
+                        ...breadcrumbBase,
+                        { name: blogName.value, to: basePath },
+                        { name: _data.data.content_cms_entry_data.Title },
+                    ];
+                dataSingle.value = _data;
+                seo.value.published = new Date(parseInt(_data.data.content_cms_entry_data.Published.unixms)).toISOString();
+                seo.value.modified = new Date(parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)).toISOString();
+                seo.value.title = blogName
+                    ? _data.data.content_cms_entry_data.Title + ' - ' + blogName.value
+                    : _data.data.content_cms_entry_data.Title;
+                if (_data.data.content_cms_entry_data.Short_Contents) {
+                    seo.value.description =
+                        _data.data.content_cms_entry_data.Short_Contents;
+                }
+                if (_data.data.content_cms_entry_data.Keywords &&
+                    _data.data.content_cms_entry_data.Keywords.length) {
+                    seo.value.keywords =
+                        _data.data.content_cms_entry_data.Keywords.join(',').trim();
+                }
+                if (_data.data.content_cms_entry_data.Top_Drive_Item &&
+                    _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image &&
+                    _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
+                    seo.value.imageType =
+                        _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
+                    seo.value.image =
+                        _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation['seo'];
+                    seo.value.imageWidth = '1200';
+                    seo.value.imageHeight = '630';
+                }
+            }
+            return {
+                seo,
+                is404,
+                dataSingle,
+                displayType,
+                blogName,
+            };
+        },
+    };
+}
 
 const _hoisted_1$2 = { class: "fv-relative klb-blog" };
 const _hoisted_2$2 = {
@@ -4561,6 +4699,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   async setup(__props) {
     let __temp, __restore;
     const props = __props;
+    const slugWatcher = ref();
     const page = ref();
     const route = useRoute();
     const is404 = ref(false);
@@ -4575,85 +4714,44 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       keywords: void 0,
       type: "blog"
     });
-    const resetSeo = (type = "blog") => {
-      seo.value = {
-        title: void 0,
-        image: void 0,
-        imageType: void 0,
-        description: void 0,
-        published: void 0,
-        modified: void 0,
-        keywords: void 0,
-        imageWidth: void 0,
-        imageHeight: void 0,
-        type
-      };
-    };
-    watch(
-      () => route.params.slug,
-      async (v) => {
-        if (v)
-          await getArticle(v.toString());
-      }
-    );
     const getArticle = async (slug) => {
-      eventBus.emit("cmsBlog-loading", true);
-      is404.value = false;
-      resetSeo("article");
-      const _data = await rest(
-        `Content/Cms/${props.pagesAlias}:loadSlug`,
-        "GET",
-        {
-          slug,
-          image_variation: [
-            "strip&scale_crop=512x512&alias=squared",
-            "strip&scale_crop=1280x100&alias=bannerx100",
-            "strip&scale_crop=1200x630&alias=seo"
-          ]
-        }
-      ).catch((err) => {
-        if (err.code == 404) {
-          useHistory().status = 404;
-          is404.value = true;
-          seo.value.title = "404";
-        }
-        eventBus.emit("cmsBlog-loading", false);
-        return;
-      });
-      if (_data && _data.result == "success") {
-        page.value = _data;
-        seo.value.published = new Date(
-          parseInt(_data.data.content_cms_entry_data.Published.unixms)
-        ).toISOString();
-        seo.value.modified = new Date(
-          parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)
-        ).toISOString();
-        seo.value.title = _data.data.content_cms_entry_data.Title;
-        if (_data.data.content_cms_entry_data.Short_Contents) {
-          seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
-        }
-        if (_data.data.content_cms_entry_data.Keywords.length) {
-          seo.value.keywords = _data.data.content_cms_entry_data.Keywords.join(",").trim();
-        }
-        if (_data.data.content_cms_entry_data.Top_Drive_Item && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
-          seo.value.imageType = _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
-          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["seo"];
-          seo.value.imageWidth = "1200";
-          seo.value.imageHeight = "630";
-        }
-      }
-      eventBus.emit("cmsBlog-loading", false);
+      eventBus.emit("cmsPage-loading", true);
+      await useCMS().getArticle(
+        slug,
+        "",
+        props.pagesAlias,
+        "",
+        [],
+        seo,
+        is404,
+        page
+      );
+      eventBus.emit("cmsPage-loading", false);
     };
     [__temp, __restore] = withAsyncContext(() => getArticle(route.params.slug.toString())), await __temp, __restore();
     useSeo(seo);
+    onMounted(() => {
+      slugWatcher.value = watch(
+        () => route.params.slug,
+        (v) => {
+          if (typeof v == "string" && v != "")
+            getArticle(v.toString());
+        }
+      );
+    });
+    onUnmounted(() => {
+      if (slugWatcher.value)
+        slugWatcher.value();
+    });
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$2, [
-        createVNode(FyLoader, { id: "cmspage" }),
+        createVNode(FyLoader, { id: "cmsPage" }),
         page.value ? (openBlock(), createBlock(KlbBlogInnerPost, {
           key: 0,
           post: page.value.data.content_cms_entry_data,
+          cms: page.value.data.content_cms,
           single: true
-        }, null, 8, ["post"])) : createCommentVNode("v-if", true),
+        }, null, 8, ["post", "cms"])) : createCommentVNode("v-if", true),
         is404.value ? (openBlock(), createElementBlock("div", _hoisted_2$2, [
           createVNode(Fy404View)
         ])) : createCommentVNode("v-if", true)
@@ -4701,30 +4799,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const route = useRoute();
     const translate = useTranslation();
     const blogName = ref("");
-    const seo = ref({
-      title: void 0,
-      image: void 0,
-      imageType: void 0,
-      description: void 0,
-      published: void 0,
-      modified: void 0,
-      keywords: void 0,
-      type: "blog"
-    });
-    const resetSeo = (type = "blog") => {
-      seo.value = {
-        title: void 0,
-        image: void 0,
-        imageType: void 0,
-        description: void 0,
-        published: void 0,
-        modified: void 0,
-        keywords: void 0,
-        imageWidth: void 0,
-        imageHeight: void 0,
-        type
-      };
-    };
+    const seo = ref({});
     const is404 = ref(false);
     const cats = ref();
     const data = ref();
@@ -4736,65 +4811,22 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       ...props.breadcrumbBase,
       { name: blogName.value }
     ]);
-    watch(
-      () => route.params.slug,
-      async (v) => {
-        await checkRoute(v.toString());
-      }
-    );
+    const slugWatcher = ref();
     const getArticle = async (slug) => {
       eventBus.emit("cmsBlog-loading", true);
-      is404.value = false;
-      displayType.value = "single";
-      resetSeo("article");
-      const _data = await rest(
-        `Content/Cms/${props.blogAlias}:loadSlug`,
-        "GET",
-        {
-          slug,
-          image_variation: [
-            "strip&scale_crop=512x512&alias=squared",
-            "strip&scale_crop=1280x100&alias=bannerx100",
-            "strip&scale_crop=1200x630&alias=seo"
-          ]
-        }
-      ).catch((err) => {
-        if (err.code == 404) {
-          useHistory().status = 404;
-          is404.value = true;
-          seo.value.title = "404";
-        }
-        eventBus.emit("cmsBlog-loading", false);
-        return;
-      });
-      if (_data && _data.result == "success") {
-        blogName.value = _data.data.content_cms.Name + " - " + props.siteName;
-        breadcrumb.value = [
-          ...props.breadcrumbBase,
-          { name: blogName.value, to: props.basePath },
-          { name: _data.data.content_cms_entry_data.Title }
-        ];
-        dataSingle.value = _data;
-        seo.value.published = new Date(
-          parseInt(_data.data.content_cms_entry_data.Published.unixms)
-        ).toISOString();
-        seo.value.modified = new Date(
-          parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)
-        ).toISOString();
-        seo.value.title = _data.data.content_cms_entry_data.Title + " - " + blogName.value;
-        if (_data.data.content_cms_entry_data.Short_Contents) {
-          seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
-        }
-        if (_data.data.content_cms_entry_data.Keywords.length) {
-          seo.value.keywords = _data.data.content_cms_entry_data.Keywords.join(",").trim();
-        }
-        if (_data.data.content_cms_entry_data.Top_Drive_Item && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
-          seo.value.imageType = _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
-          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["seo"];
-          seo.value.imageWidth = "1200";
-          seo.value.imageHeight = "630";
-        }
-      }
+      await useCMS().getArticle(
+        slug,
+        props.basePath,
+        props.blogAlias,
+        props.siteName,
+        props.breadcrumbBase,
+        seo,
+        is404,
+        dataSingle,
+        displayType,
+        blogName,
+        breadcrumb
+      );
       eventBus.emit("cmsBlog-loading", false);
     };
     const getCategories = async (uuid) => {
@@ -4809,7 +4841,18 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       eventBus.emit("cmsBlog-loading", true);
       is404.value = false;
       displayType.value = "multiple";
-      resetSeo("blog");
+      seo.value = {
+        title: void 0,
+        image: void 0,
+        imageType: void 0,
+        description: void 0,
+        published: void 0,
+        modified: void 0,
+        keywords: void 0,
+        imageWidth: void 0,
+        imageHeight: void 0,
+        type: "blog"
+      };
       const _data = await rest(
         `Content/Cms/${props.blogAlias}:search`,
         "GET",
@@ -4882,9 +4925,19 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
     onMounted(() => {
       eventBus.on("cmsPagingGoToPage", checkRoutePage);
+      slugWatcher.value = watch(
+        () => route.params.slug,
+        (v) => {
+          if (typeof v == "string")
+            checkRoute(v.toString());
+        }
+      );
     });
     onUnmounted(() => {
       eventBus.off("cmsPagingGoToPage", checkRoutePage);
+      if (slugWatcher.value) {
+        slugWatcher.value();
+      }
     });
     [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     useSeo(seo);
@@ -4902,8 +4955,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 createVNode(KlbBlogInnerPost, {
                   post,
                   single: false,
-                  basePath: __props.basePath
-                }, null, 8, ["post", "basePath"]),
+                  basePath: __props.basePath,
+                  cms: data.value.data.content_cms
+                }, null, 8, ["post", "basePath", "cms"]),
                 data.value && index != data.value?.data.data.length - 1 ? (openBlock(), createElementBlock("hr", _hoisted_3$1)) : createCommentVNode("v-if", true)
               ], 64);
             }), 128)),
@@ -4926,7 +4980,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 ["prevent"]
               ))
             }, [
-              createVNode(unref(render$7), { class: "searchIcon" }),
+              createVNode(unref(render$8), { class: "searchIcon" }),
               withDirectives(createElementVNode("input", {
                 type: "text",
                 placeholder: _ctx.$t("klb_blog_search_placeholder"),
@@ -4962,8 +5016,9 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             post: dataSingle.value.data.content_cms_entry_data,
             single: true,
             basePath: __props.basePath,
-            breadcrumbBase: breadcrumb.value
-          }, null, 8, ["post", "basePath", "breadcrumbBase"])
+            breadcrumbBase: breadcrumb.value,
+            cms: dataSingle.value.data.content_cms
+          }, null, 8, ["post", "basePath", "breadcrumbBase", "cms"])
         ])) : createCommentVNode("v-if", true),
         is404.value ? (openBlock(), createElementBlock("main", _hoisted_9, [
           createVNode(Fy404View)

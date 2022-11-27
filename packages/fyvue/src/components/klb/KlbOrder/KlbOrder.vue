@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { useCart } from '../KlbOrder/useCart';
 import { useOrder } from '../KlbOrder/userOrder';
-import { watch, ref, onMounted, computed, reactive } from 'vue';
+import {
+  watch,
+  ref,
+  onMounted,
+  computed,
+  reactive,
+  WatchStopHandle,
+  onUnmounted,
+} from 'vue';
 import { KlbAPICatalogCart, KlbOrder } from '../../../dts/klb';
 import { TrashIcon } from '@heroicons/vue/24/solid';
 import { useFVStore } from '../../../utils/store';
@@ -23,17 +31,7 @@ const isReady = ref<boolean>(false);
 const error = ref<string>();
 const hasOrder = ref<KlbOrder>();
 const eventBus = useEventBus();
-
-watch(routeOrderUuid, async (v) => {
-  if (v) {
-    const _order = await useOrder()
-      .getOrder(v.toString())
-      .catch(() => {});
-    if (_order && _order.result == 'success') hasOrder.value = _order.data;
-  } else {
-    hasOrder.value = undefined;
-  }
-});
+const orderWatcher = ref<WatchStopHandle>();
 
 const state = reactive({
   location: undefined,
@@ -88,6 +86,17 @@ const getLastUnfinishedOrder = async () => {
 };
 onMounted(async () => {
   eventBus.emit('klb-order-main-loading', true);
+  orderWatcher.value = watch(routeOrderUuid, async (v) => {
+    if (v) {
+      const _order = await useOrder()
+        .getOrder(v.toString())
+        .catch(() => {});
+      if (_order && _order.result == 'success') hasOrder.value = _order.data;
+    } else {
+      hasOrder.value = undefined;
+    }
+  });
+
   if (!routeOrderUuid.value) {
     if (route.query.product) {
       await addProductToCart(route.query.product.toString());
@@ -112,6 +121,9 @@ const addProductToCart = async (productData: string) => {
     await store.refreshCartData(_addResult);
   }
 };
+onUnmounted(() => {
+  if (orderWatcher.value) orderWatcher.value();
+});
 </script>
 <template>
   <div class="klb-order" v-if="isReady">

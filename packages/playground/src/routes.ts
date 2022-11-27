@@ -15,7 +15,10 @@ export const routes = [
     component: () => import('./views/PageView.vue'),
     meta: {},
   },
-
+  {
+    path: '/Contact',
+    component: () => import('./views/ContactIndex.vue'),
+  },
   {
     path: '/blog/:slug(.*)?',
     name: 'cmsNews',

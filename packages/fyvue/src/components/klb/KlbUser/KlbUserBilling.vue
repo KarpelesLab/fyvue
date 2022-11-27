@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, reactive, watch } from 'vue';
+import {
+  ref,
+  onMounted,
+  computed,
+  reactive,
+  watch,
+  WatchStopHandle,
+  onUnmounted,
+} from 'vue';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import useVuelidate from '@vuelidate/core';
@@ -51,30 +59,13 @@ let stripe: any;
 let stripeElements: any;
 const paymentSetupIntent = ref<KlbAPISetupIntent>();
 const stripePayment = ref();
+const billingWatcher = ref<WatchStopHandle>();
 
 const model = computed({
   get: () => props.modelValue,
   set: (items) => {
     emit('update:modelValue', items);
   },
-});
-
-watch(selectedBillingProfile, (v) => {
-  if (v == 'new') {
-    state.billingProfile.label = '';
-    state.billingProfile.location = '';
-
-    editMode.value = true;
-    billingProfile.value = undefined;
-    model.value = undefined;
-  } else {
-    if (v && billingProfiles.value[v]) {
-      billingProfile.value = billingProfiles.value[v];
-      state.billingProfile.label = billingProfile.value.Label;
-      state.billingProfile.location = billingProfile.value.User_Location__;
-      model.value = billingProfile.value.User_Billing__;
-    }
-  }
 });
 
 const state = reactive({
@@ -232,6 +223,23 @@ const openEditModal = async () => {
 
 onMounted(async () => {
   if (isAuth.value) {
+    billingWatcher.value = watch(selectedBillingProfile, (v) => {
+      if (v == 'new') {
+        state.billingProfile.label = '';
+        state.billingProfile.location = '';
+
+        editMode.value = true;
+        billingProfile.value = undefined;
+        model.value = undefined;
+      } else {
+        if (v && billingProfiles.value[v]) {
+          billingProfile.value = billingProfiles.value[v];
+          state.billingProfile.label = billingProfile.value.Label;
+          state.billingProfile.location = billingProfile.value.User_Location__;
+          model.value = billingProfile.value.User_Billing__;
+        }
+      }
+    });
     await getUserBilling();
     if (
       history.currentRoute.query.setup_intent &&
@@ -260,6 +268,9 @@ onMounted(async () => {
       editMode.value = true;
     }
   }
+});
+onUnmounted(() => {
+  if (billingWatcher.value) billingWatcher.value();
 });
 
 useHead({

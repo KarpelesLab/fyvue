@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, reactive, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, WatchStopHandle } from 'vue';
 import { rest } from '../../../utils/rest';
 import { useHistory } from '../../../utils/ssr';
 import type { FyVueBreadcrumb } from '../../../dts/index';
-import { useHead } from '@vueuse/head';
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
 import { useEventBus } from '../../../utils/helpers';
@@ -15,7 +14,8 @@ import FyPaging from '../../ui/FyPaging/FyPaging.vue';
 import Fy404View from '../../ui/Fy404/Fy404View.vue';
 import { useSeo } from '../../helpers/seo';
 import type { SeoData } from '../../../dts/index';
-import { cropText } from '../../../utils/display';
+import { useCMS } from './useCms';
+import type { CMSDisplayType } from './useCms';
 import type {
   KlbAPIClassify,
   KlbAPIContentCmsSingle,
@@ -39,121 +39,42 @@ const props = withDefaults(
 const route = useRoute();
 const translate = useTranslation();
 const blogName = ref<string>('');
-const seo = ref<SeoData>({
-  title: undefined,
-  image: undefined,
-  imageType: undefined,
-  description: undefined,
-  published: undefined,
-  modified: undefined,
-  keywords: undefined,
-  type: 'blog',
-});
-
-const resetSeo = (type: 'blog' | 'search' | 'article' = 'blog') => {
-  seo.value = {
-    title: undefined,
-    image: undefined,
-    imageType: undefined,
-    description: undefined,
-    published: undefined,
-    modified: undefined,
-    keywords: undefined,
-    imageWidth: undefined,
-    imageHeight: undefined,
-    type: type,
-  };
-};
+const seo = ref<SeoData>({});
 const is404 = ref<Boolean>(false);
 const cats = ref<Array<KlbClassifyTag>>();
 const data = ref<KlbAPIContentCmsSearch>();
 const dataSingle = ref<KlbAPIContentCmsSingle>();
-const displayType = ref<'multiple' | 'single'>('multiple');
+const displayType = ref<CMSDisplayType>('multiple');
 const query = ref<string | undefined>();
 const eventBus = useEventBus();
 const breadcrumb = ref<Array<FyVueBreadcrumb>>([
   ...props.breadcrumbBase,
   { name: blogName.value },
 ]);
-
-watch(
+const slugWatcher = ref<WatchStopHandle>();
+/*
+const slugWatcher = watch(
   () => route.params.slug,
-  async (v) => {
-    await checkRoute(v.toString());
+  (v) => {
+    if (typeof v == 'string') checkRoute(v.toString());
   }
-);
+);*/
 
 const getArticle = async (slug: string) => {
   eventBus.emit('cmsBlog-loading', true);
-  is404.value = false;
-  displayType.value = 'single';
-
-  resetSeo('article');
-
-  const _data = await rest<KlbAPIContentCmsSingle>(
-    `Content/Cms/${props.blogAlias}:loadSlug`,
-    'GET',
-    {
-      slug: slug,
-      image_variation: [
-        'strip&scale_crop=512x512&alias=squared',
-        'strip&scale_crop=1280x100&alias=bannerx100',
-        'strip&scale_crop=1200x630&alias=seo',
-      ],
-    }
-  ).catch((err) => {
-    if (err.code == 404) {
-      useHistory().status = 404;
-      is404.value = true;
-      seo.value.title = '404';
-    }
-    eventBus.emit('cmsBlog-loading', false);
-    return;
-  });
-  if (_data && _data.result == 'success') {
-    blogName.value = _data.data.content_cms.Name + ' - ' + props.siteName;
-    breadcrumb.value = [
-      ...props.breadcrumbBase,
-      { name: blogName.value, to: props.basePath },
-      { name: _data.data.content_cms_entry_data.Title },
-    ];
-    dataSingle.value = _data;
-    seo.value.published = new Date(
-      parseInt(_data.data.content_cms_entry_data.Published.unixms)
-    ).toISOString();
-    seo.value.modified = new Date(
-      parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)
-    ).toISOString();
-    seo.value.title =
-      _data.data.content_cms_entry_data.Title + ' - ' + blogName.value;
-    if (_data.data.content_cms_entry_data.Short_Contents) {
-      seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
-    } else {
-      /*seo.value.description = cropText(
-        _data.data.content_cms_entry_data.Contents.replace(/(<([^>]+)>)/gi, ''),
-        100,
-        '...'
-      );*/
-    }
-    if (_data.data.content_cms_entry_data.Keywords.length) {
-      seo.value.keywords =
-        _data.data.content_cms_entry_data.Keywords.join(',').trim();
-    }
-    if (
-      _data.data.content_cms_entry_data.Top_Drive_Item &&
-      _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image &&
-      _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation
-    ) {
-      seo.value.imageType =
-        _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
-      seo.value.image =
-        _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation[
-          'seo'
-        ];
-      seo.value.imageWidth = '1200';
-      seo.value.imageHeight = '630';
-    }
-  }
+  await useCMS().getArticle(
+    slug,
+    props.basePath,
+    props.blogAlias,
+    props.siteName,
+    props.breadcrumbBase,
+    seo,
+    is404,
+    dataSingle,
+    displayType,
+    blogName,
+    breadcrumb
+  );
   eventBus.emit('cmsBlog-loading', false);
 };
 
@@ -174,7 +95,18 @@ const getArticles = async (
   is404.value = false;
   displayType.value = 'multiple';
 
-  resetSeo('blog');
+  seo.value = {
+    title: undefined,
+    image: undefined,
+    imageType: undefined,
+    description: undefined,
+    published: undefined,
+    modified: undefined,
+    keywords: undefined,
+    imageWidth: undefined,
+    imageHeight: undefined,
+    type: 'blog',
+  };
 
   const _data = await rest<KlbAPIContentCmsSearch>(
     `Content/Cms/${props.blogAlias}:search`,
@@ -250,9 +182,19 @@ const checkRoutePage = async (page: number = 1) => {
 
 onMounted(() => {
   eventBus.on('cmsPagingGoToPage', checkRoutePage);
+
+  slugWatcher.value = watch(
+    () => route.params.slug,
+    (v) => {
+      if (typeof v == 'string') checkRoute(v.toString());
+    }
+  );
 });
 onUnmounted(() => {
   eventBus.off('cmsPagingGoToPage', checkRoutePage);
+  if (slugWatcher.value) {
+    slugWatcher.value();
+  }
 });
 await checkRoute(route.params.slug.toString());
 useSeo(seo);
@@ -272,7 +214,12 @@ useSeo(seo);
           v-for="(post, index) in data?.data.data"
           :key="post.Content_Cms_Entry__"
         >
-          <KlbBlogInnerPost :post="post" :single="false" :basePath="basePath" />
+          <KlbBlogInnerPost
+            :post="post"
+            :single="false"
+            :basePath="basePath"
+            :cms="data.data.content_cms"
+          />
           <hr v-if="data && index != data?.data.data.length - 1" />
         </template>
         <div v-if="!data?.data.data.length" class="klb-post-container no-posts">
@@ -325,6 +272,7 @@ useSeo(seo);
         :single="true"
         :basePath="basePath"
         :breadcrumbBase="breadcrumb"
+        :cms="dataSingle.data.content_cms"
       />
     </main>
     <main v-if="is404" class="is-404">

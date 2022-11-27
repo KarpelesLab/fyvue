@@ -70,7 +70,7 @@
 
     }
     .entry-content {
-      @apply px-2 md:px-4 lg:px-5 py-2 mt-2;
+      @apply px-2 md:px-4 lg:px-5 py-2 mt-2 text-fv-neutral-900 dark:text-fv-neutral-100;
       p {
         @apply mb-2 text-justify;
       }
@@ -143,7 +143,7 @@
       }
     }
     .entry-footer {
-      @apply flex space-x-2 flex-wrap text-fv-neutral-500 dark:text-fv-neutral-400 items-center text-sm mt-2;
+      @apply flex gap-x-2 md:gap-x-3 flex-wrap text-fv-neutral-500 dark:text-fv-neutral-400 items-center text-sm mt-2;
       @apply border-t border-t-fv-neutral-100 dark:border-t-fv-neutral-800 pt-0.5;
       @apply px-2 md:px-4 lg:px-5 py-2;
       a {

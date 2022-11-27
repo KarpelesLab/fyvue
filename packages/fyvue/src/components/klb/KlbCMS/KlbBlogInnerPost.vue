@@ -2,11 +2,12 @@
 import type { KlbContentCms } from '../../../dts/klb';
 import type { FyVueBreadcrumb } from '../../../dts/index';
 import FyBreadcrumb from '../../ui/FyBreadcrumb/FyBreadcrumb.vue';
-
+import type { KlbCms } from '../../../dts/klb';
 import {
   CalendarDaysIcon,
   ChatBubbleBottomCenterIcon,
   PaperClipIcon,
+  TagIcon,
 } from '@heroicons/vue/24/solid';
 withDefaults(
   defineProps<{
@@ -14,6 +15,7 @@ withDefaults(
     single?: boolean;
     basePath?: string;
     breadcrumbBase?: FyVueBreadcrumb[];
+    cms: KlbCms;
   }>(),
   {
     single: true,
@@ -85,14 +87,13 @@ withDefaults(
       </div>
 
       <footer class="entry-footer">
-        <!--<span class="comments" v-if="post.Comments">
+        <span class="comments" v-if="post.Comments && cms.Type == 'article'">
           <ChatBubbleBottomCenterIcon />
           {{
             $t('klb_blog_comment_count', { count: post.Comments.Comment_Count })
           }}
         </span>
 
-        <span class="dot">&#8226;</span>-->
         <span class="published">
           <CalendarDaysIcon />
           <time
@@ -101,13 +102,16 @@ withDefaults(
             >{{ $formatDate(post.Published.unixms) }}
           </time>
         </span>
-        <span class="dot" v-if="post.Tag_Category">&#8226;</span>
         <span class="category" v-if="post.Tag_Category">
           <PaperClipIcon />
           <RouterLink
             :to="`${basePath}/category/${post.Tag_Category.Full_Name}`"
             >{{ post.Tag_Category.Full_Name }}</RouterLink
           >
+        </span>
+        <span class="category" v-if="post.Keywords && post.Keywords.length">
+          <TagIcon />
+          {{ post.Keywords.join(', ') }}
         </span>
         <span class="modified">
           <CalendarDaysIcon />

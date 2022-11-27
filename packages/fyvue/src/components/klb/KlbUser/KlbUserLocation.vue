@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, reactive, watch } from 'vue';
+import {
+  ref,
+  onMounted,
+  computed,
+  reactive,
+  watch,
+  WatchStopHandle,
+  onUnmounted,
+} from 'vue';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import useVuelidate from '@vuelidate/core';
@@ -44,27 +52,7 @@ const model = computed({
     emit('update:modelValue', items);
   },
 });
-watch(selectedLocation, async (v) => {
-  if (v == 'new') {
-    state.firstname = '';
-    state.lastname = '';
-    state.zip = '';
-    state.country = '';
-    editMode.value = true;
-    location.value = undefined;
-    model.value = undefined;
-    await getUserGeolocation();
-  } else {
-    if (v && locations.value[v]) {
-      location.value = locations.value[v];
-      state.firstname = location.value.First_Name;
-      state.lastname = location.value.Last_Name;
-      state.zip = location.value.Zip ? location.value.Zip : '';
-      state.country = location.value.Country__;
-      model.value = location.value.User_Location__;
-    }
-  }
-});
+const locationWatcher = ref<WatchStopHandle>();
 
 const state = reactive({
   firstname: '',
@@ -180,8 +168,32 @@ const getUserLocation = async () => {
 
 onMounted(async () => {
   if (isAuth.value) {
+    locationWatcher.value = watch(selectedLocation, async (v) => {
+      if (v == 'new') {
+        state.firstname = '';
+        state.lastname = '';
+        state.zip = '';
+        state.country = '';
+        editMode.value = true;
+        location.value = undefined;
+        model.value = undefined;
+        await getUserGeolocation();
+      } else {
+        if (v && locations.value[v]) {
+          location.value = locations.value[v];
+          state.firstname = location.value.First_Name;
+          state.lastname = location.value.Last_Name;
+          state.zip = location.value.Zip ? location.value.Zip : '';
+          state.country = location.value.Country__;
+          model.value = location.value.User_Location__;
+        }
+      }
+    });
     await getUserLocation();
   }
+});
+onUnmounted(() => {
+  if (locationWatcher.value) locationWatcher.value();
 });
 </script>
 <template>

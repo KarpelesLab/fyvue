@@ -111,23 +111,13 @@ export interface KlbAPIClassify extends KlbAPIResult {
 export interface KlbAPIContentCmsSingle extends KlbAPIResult {
   data: {
     content_cms_entry_data: KlbContentCms;
-    content_cms: {
-      Name: string;
-      Classify: {
-        Classify__: KlbUUID;
-      };
-    };
+    content_cms: KlbCms;
   };
 }
 export interface KlbAPIContentCmsSearch extends KlbAPIResult {
   data: {
     data: Array<KlbContentCms>;
-    content_cms: {
-      Name: string;
-      Classify: {
-        Classify__: KlbUUID;
-      };
-    };
+    content_cms: KlbCms;
   };
 }
 export interface KlbAPIOrder extends KlbAPIResult {
@@ -667,6 +657,14 @@ export interface KlbSetupIntent {
       [key: string]: string;
     };
   };
+}
+
+export interface KlbCms {
+  Name: string;
+  Classify: {
+    Classify__: KlbUUID;
+  };
+  Type: 'article' | 'page';
 }
 
 export interface KlbContentCms {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
-import { watch, onUnmounted, ref } from 'vue';
+import { watch, onUnmounted, ref, WatchStopHandle, onMounted } from 'vue';
 import type { KlbApiPaging } from '../../../dts/klb';
 import { useEventBus } from '../../../utils/helpers';
 import { useHistory } from '../../../utils/ssr';
@@ -22,6 +22,7 @@ const isNewPage = (page: number) => {
     page >= 1 && page <= props.items.page_max && page != props.items.page_no
   );
 };
+const pageWatcher = ref<WatchStopHandle>();
 
 const next = () => {
   const page = props.items.page_no + 1;
@@ -66,15 +67,19 @@ const checkPageNumber = (page: number = 1) => {
   }
 };
 eventBus.on(`${props.id}GoToPage`, checkPageNumber);
+onMounted(() => {
+  pageWatcher.value = watch(
+    () => route.query.page,
+    (v, ov) => {
+      eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
+    }
+  );
+});
 onUnmounted(() => {
   eventBus.off(`${props.id}GoToPage`, checkPageNumber);
+  if (pageWatcher.value) pageWatcher.value();
 });
-watch(
-  () => route.query.page,
-  (v, ov) => {
-    eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
-  }
-);
+
 checkPageNumber(props.items.page_no);
 useSeo(prevNextSeo);
 

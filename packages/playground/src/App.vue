@@ -79,7 +79,7 @@ useSeo(
             { to: '/helpers/styles', name: 'Styles' },
           ],
         },
-        // { to: '/contact', name: 'Contact' },
+        { to: '/contact', name: 'Contact' },
       ]"
     >
       <template v-slot:logo>
