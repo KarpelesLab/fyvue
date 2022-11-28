@@ -45,15 +45,6 @@ _script_end_
 const props = undefined;
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>FyConfirm</h1>
-    <p>Show a confirm modal on action using fyvue <b>eventBus</b>.</p>
-    <p>
-      <ShieldCheckIcon class="w-5 inline-block -mt-1" /> You should include
-      <code v-text="`<FyConfirm />`"></code> in your root layout.
-    </p>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
       <code>IsConfirmed: {{ isConfirmed }}</code>

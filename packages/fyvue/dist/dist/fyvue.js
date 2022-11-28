@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.14
+  * @karpeleslab/fyvue v0.2.0-rc.15
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -4482,7 +4482,10 @@ const _hoisted_5$1 = { class: "entry-main" };
 const _hoisted_6$1 = { class: "entry-content" };
 const _hoisted_7$1 = ["innerHTML"];
 const _hoisted_8$1 = { key: 0 };
-const _hoisted_9$1 = { class: "entry-footer" };
+const _hoisted_9$1 = {
+  key: 0,
+  class: "entry-footer"
+};
 const _hoisted_10 = {
   key: 0,
   class: "comments"
@@ -4506,7 +4509,8 @@ const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
     single: { type: Boolean, default: true },
     basePath: { default: "/blog" },
     breadcrumbBase: { default: () => [] },
-    cms: null
+    cms: null,
+    showFooter: { type: Boolean, default: true }
   },
   setup(__props) {
     return (_ctx, _cache) => {
@@ -4567,7 +4571,7 @@ const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
               }, 8, ["to"])
             ])) : vue.createCommentVNode("v-if", true)
           ]),
-          vue.createElementVNode("footer", _hoisted_9$1, [
+          __props.showFooter ? (vue.openBlock(), vue.createElementBlock("footer", _hoisted_9$1, [
             __props.post.Comments && __props.cms.Type == "article" ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_10, [
               vue.createVNode(vue.unref(render$e)),
               vue.createTextVNode(" " + vue.toDisplayString(_ctx.$t("klb_blog_comment_count", { count: __props.post.Comments.Comment_Count })), 1)
@@ -4601,7 +4605,7 @@ const _sfc_main$3 = /* @__PURE__ */ vue.defineComponent({
                 datetime: new Date(parseInt(__props.post.Last_Modified.unixms)).toISOString()
               }, vue.toDisplayString(_ctx.$formatDate(__props.post.Last_Modified.unixms)), 9, _hoisted_16)
             ])
-          ])
+          ])) : vue.createCommentVNode("v-if", true)
         ])
       ], 2)) : vue.createCommentVNode("v-if", true);
     };
@@ -4696,7 +4700,9 @@ const _hoisted_2$2 = {
 const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
   __name: "KlbPage",
   props: {
-    pagesAlias: { default: "@pages" }
+    pagesAlias: { default: "@pages" },
+    showFooter: { type: Boolean, default: true },
+    breadcrumbBase: { default: () => [] }
   },
   async setup(__props) {
     let __temp, __restore;
@@ -4752,8 +4758,10 @@ const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
           key: 0,
           post: page.value.data.content_cms_entry_data,
           cms: page.value.data.content_cms,
-          single: true
-        }, null, 8, ["post", "cms"])) : vue.createCommentVNode("v-if", true),
+          single: true,
+          showFooter: __props.showFooter,
+          breadcrumbBase: __props.breadcrumbBase
+        }, null, 8, ["post", "cms", "showFooter", "breadcrumbBase"])) : vue.createCommentVNode("v-if", true),
         is404.value ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$2, [
           vue.createVNode(Fy404View)
         ])) : vue.createCommentVNode("v-if", true)

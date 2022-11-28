@@ -93,19 +93,6 @@ const props = [
 const slots = [];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>FyPaging</h1>
-    <p>Generate pagination from a standard Klb paging object.</p>
-    <pre class="text-xs">
-{
-  page_no: number,
-  results_per_page: number,
-  page_max: number,
-  count: number,
-}</pre
-    >
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props" :slots="slots">
     <template #component>
       <FyPaging id="myPaging" :items="paging" v-if="paging" />

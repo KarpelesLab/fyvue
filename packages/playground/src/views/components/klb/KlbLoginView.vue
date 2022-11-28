@@ -15,14 +15,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>KlbLogin</h1>
-    <p>
-      This component provide an interface for Klb User Flow allowing to sign in
-      users.
-    </p>
-  </div>
-
   <FyDocPreview :component="klbLogin" :props="props">
     <template #component>
       <KlbLogin

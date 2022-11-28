@@ -16,11 +16,13 @@ withDefaults(
     basePath?: string;
     breadcrumbBase?: FyVueBreadcrumb[];
     cms: KlbCms;
+    showFooter?: boolean;
   }>(),
   {
     single: true,
     basePath: '/blog',
     breadcrumbBase: () => [],
+    showFooter: true,
   }
 );
 </script>
@@ -86,7 +88,7 @@ withDefaults(
         </div>
       </div>
 
-      <footer class="entry-footer">
+      <footer class="entry-footer" v-if="showFooter">
         <span class="comments" v-if="post.Comments && cms.Type == 'article'">
           <ChatBubbleBottomCenterIcon />
           {{

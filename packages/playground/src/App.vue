@@ -147,14 +147,21 @@ useSeo(
         />
       </button>
     </aside>
-    <FyBreadcrumb
-      v-if="$route.meta.breadcrumb"
-      :nav="$route.meta.breadcrumb"
-      class="container mx-auto max-w-screen-xl mt-2 md:mt-3"
-    />
+    <div
+      v-if="$route.meta.breadcrumb && $route.meta.breadcrumb.length"
+      class="mt-3"
+    >
+      <FyBreadcrumb :nav="$route.meta.breadcrumb" class="doc-contained" />
+    </div>
     <main
-      v-if="!$route.path.includes('blog') && !$route.path.includes('pages')"
-      class="relative w-full flex-grow bg-white dark:bg-fv-neutral-900 rounded container mx-auto max-w-screen-xl p-2 md:p-4 lg:p-6 my-2 md:my-3"
+      v-if="
+        !$route.path.includes('blog') &&
+        !$route.path.includes('pages') &&
+        !$route.path.includes('components/ui/') &&
+        !$route.path.includes('components/klb/') &&
+        !$route.path.includes('components/misc/')
+      "
+      class="relative w-full flex-grow bg-white dark:bg-fv-neutral-900 rounded doc-contained my-4"
     >
       <RouterView v-slot="{ Component }">
         <Suspense timeout="0">

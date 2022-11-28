@@ -9,7 +9,7 @@ const uiComponents = [
   'FyPaging',
   'FySteps',
   'FyTable',
-  'FyTabs',
+  //'FyTabs',
   'FyModal',
 ];
 const KlbComponents = [

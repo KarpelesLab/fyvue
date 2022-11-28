@@ -1,17 +1,13 @@
 <script setup>
 const klbLogin = `
-<KlbPage  />
+<KlbPage pagesAlias="@pages" />
 `;
 const props = [];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>KlbPage</h1>
-  </div>
-
   <FyDocPreview :component="klbLogin" :props="props">
     <template #component>
-      <KlbPage />
+      <p>Nothing to see here.</p>
     </template>
   </FyDocPreview>
 </template>

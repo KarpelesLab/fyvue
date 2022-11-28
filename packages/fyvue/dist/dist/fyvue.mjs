@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.14
+  * @karpeleslab/fyvue v0.2.0-rc.15
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -4480,7 +4480,10 @@ const _hoisted_5$1 = { class: "entry-main" };
 const _hoisted_6$1 = { class: "entry-content" };
 const _hoisted_7$1 = ["innerHTML"];
 const _hoisted_8$1 = { key: 0 };
-const _hoisted_9$1 = { class: "entry-footer" };
+const _hoisted_9$1 = {
+  key: 0,
+  class: "entry-footer"
+};
 const _hoisted_10 = {
   key: 0,
   class: "comments"
@@ -4504,7 +4507,8 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     single: { type: Boolean, default: true },
     basePath: { default: "/blog" },
     breadcrumbBase: { default: () => [] },
-    cms: null
+    cms: null,
+    showFooter: { type: Boolean, default: true }
   },
   setup(__props) {
     return (_ctx, _cache) => {
@@ -4565,7 +4569,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
               }, 8, ["to"])
             ])) : createCommentVNode("v-if", true)
           ]),
-          createElementVNode("footer", _hoisted_9$1, [
+          __props.showFooter ? (openBlock(), createElementBlock("footer", _hoisted_9$1, [
             __props.post.Comments && __props.cms.Type == "article" ? (openBlock(), createElementBlock("span", _hoisted_10, [
               createVNode(unref(render$e)),
               createTextVNode(" " + toDisplayString(_ctx.$t("klb_blog_comment_count", { count: __props.post.Comments.Comment_Count })), 1)
@@ -4599,7 +4603,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
                 datetime: new Date(parseInt(__props.post.Last_Modified.unixms)).toISOString()
               }, toDisplayString(_ctx.$formatDate(__props.post.Last_Modified.unixms)), 9, _hoisted_16)
             ])
-          ])
+          ])) : createCommentVNode("v-if", true)
         ])
       ], 2)) : createCommentVNode("v-if", true);
     };
@@ -4694,7 +4698,9 @@ const _hoisted_2$2 = {
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "KlbPage",
   props: {
-    pagesAlias: { default: "@pages" }
+    pagesAlias: { default: "@pages" },
+    showFooter: { type: Boolean, default: true },
+    breadcrumbBase: { default: () => [] }
   },
   async setup(__props) {
     let __temp, __restore;
@@ -4750,8 +4756,10 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           key: 0,
           post: page.value.data.content_cms_entry_data,
           cms: page.value.data.content_cms,
-          single: true
-        }, null, 8, ["post", "cms"])) : createCommentVNode("v-if", true),
+          single: true,
+          showFooter: __props.showFooter,
+          breadcrumbBase: __props.breadcrumbBase
+        }, null, 8, ["post", "cms", "showFooter", "breadcrumbBase"])) : createCommentVNode("v-if", true),
         is404.value ? (openBlock(), createElementBlock("div", _hoisted_2$2, [
           createVNode(Fy404View)
         ])) : createCommentVNode("v-if", true)

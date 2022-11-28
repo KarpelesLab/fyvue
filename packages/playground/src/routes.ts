@@ -118,160 +118,11 @@ export const routes = [
     },
     children: [
       {
-        path: '/components/ui/FyBreadcrumb',
-        component: () => import('./views/components/ui/FyBreadcrumbView.vue'),
+        path: '/components/ui/:slug',
+        component: () => import('./views/components/ComponentView.vue'),
         meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyBreadcrumb' },
-          ],
-          title: 'FyBreadcrumb - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyCirclePercent',
-        component: () =>
-          import('./views/components/ui/FyCirclePercentView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyCirclePercent' },
-          ],
-          title: 'FyCirclePercent - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyConfirm',
-        component: () => import('./views/components/ui/FyConfirmView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyConfirm' },
-          ],
-          title: 'FyConfirm - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyModal',
-        component: () => import('./views/components/ui/FyModalView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyModal' },
-          ],
-          title: 'FyModal - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyDatatable',
-        component: () => import('./views/components/ui/FyDatatableView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyDatatable' },
-          ],
-          title: 'FyDatatable - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyTable',
-        component: () => import('./views/components/ui/FyTableView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyTable' },
-          ],
-          title: 'FyTable - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyTabs',
-        component: () => import('./views/components/ui/FyTabsView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyTabs' },
-          ],
-          title: 'FyTabs - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyInput',
-        component: () => import('./views/components/ui/FyInputView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyInput' },
-          ],
-          title: 'FyInput - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyLoader',
-        component: () => import('./views/components/ui/FyLoaderView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyLoader' },
-          ],
-          title: 'FyLoader - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyNavbar',
-        component: () => import('./views/components/ui/FyNavbarView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyNavbar' },
-          ],
-          title: 'FyNavbar - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FyPaging',
-        component: () => import('./views/components/ui/FyPagingView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FyPaging' },
-          ],
-          title: 'FyPaging - UI - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/ui/FySteps',
-        component: () => import('./views/components/ui/FyStepsView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'UI', to: '/components/ui' },
-            { name: 'FySteps' },
-          ],
-          title: 'FySteps - UI - Components - fyvue',
+          breadcrumb: [],
+          category: 'ui',
         },
       },
     ],
@@ -291,192 +142,11 @@ export const routes = [
     },
     children: [
       {
-        path: '/components/klb/KlbLogin',
-        component: () => import('./views/components/klb/KlbLoginView.vue'),
+        path: '/components/klb/:slug',
+        component: () => import('./views/components/ComponentView.vue'),
         meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbLogin' },
-          ],
-          title: 'KlbLogin - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbAddPaymentMethodModal',
-        component: () =>
-          import('./views/components/klb/KlbAddPaymentMethodModalView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbAddPaymentMethodModal' },
-          ],
-          title: 'KlbAddPaymentMethodModal - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbDeleteAccount',
-        component: () =>
-          import('./views/components/klb/KlbDeleteAccountView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbDeleteAccount' },
-          ],
-          title: 'KlbDeleteAccount - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbUpdatePasswordModal',
-        component: () =>
-          import('./views/components/klb/KlbUpdatePasswordModalView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbUpdatePasswordModal' },
-          ],
-          title: 'KlbUpdatePasswordModal - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbUpdateEmailModal',
-        component: () =>
-          import('./views/components/klb/KlbUpdateEmailModalView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbUpdateEmailModal' },
-          ],
-          title: 'KlbUpdateEmailModal - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/useUserCheck',
-        component: () => import('./views/components/klb/useUserCheckView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'useUserCheck' },
-          ],
-          title: 'useUserCheck - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbUserLocation',
-        component: () =>
-          import('./views/components/klb/KlbUserLocationView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbUserLocation' },
-          ],
-          title: 'KlbUserLocation - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbUserBilling',
-        component: () =>
-          import('./views/components/klb/KlbUserBillingView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbUserBilling' },
-          ],
-          title: 'KlbUserBilling - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbCatalog',
-        component: () => import('./views/components/klb/KlbCatalogView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbCatalog' },
-          ],
-          title: 'KlbCatalog - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbOrder',
-        component: () => import('./views/components/klb/KlbOrderView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbOrder' },
-          ],
-          title: 'KlbOrder - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbBillingHistory',
-        component: () =>
-          import('./views/components/klb/KlbBillingHistoryView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbBillingHistory' },
-          ],
-          title: 'KlbBillingHistory - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbPage',
-        component: () => import('./views/components/klb/KlbPageView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbPage' },
-          ],
-          title: 'KlbPage - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbSupport',
-        component: () => import('./views/components/klb/KlbSupportView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbSupport' },
-          ],
-          title: 'KlbSupport - Klb - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/klb/KlbPage/:slug',
-        component: () => import('./views/components/klb/KlbPageView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Klb', to: '/components/klb' },
-            { name: 'KlbPage' },
-          ],
-          title: 'KlbPage - Klb - Components - fyvue',
+          breadcrumb: [],
+          category: 'klb',
         },
       },
     ],
@@ -496,48 +166,17 @@ export const routes = [
     },
     children: [
       {
-        path: '/components/misc/ClientOnly',
-        component: () => import('./views/components/misc/ClientOnlyView.vue'),
+        path: '/components/misc/:slug',
+        component: () => import('./views/components/ComponentView.vue'),
         meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Misc', to: '/components/misc' },
-            { name: 'ClientOnly' },
-          ],
-          title: 'ClientOnly - MISC - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/misc/typo',
-        component: () => import('./views/components/misc/FyTypoView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Misc', to: '/components/misc' },
-            { name: 'FyTypo' },
-          ],
-          title: 'FyTypo - MISC - Components - fyvue',
-        },
-      },
-      {
-        path: '/components/misc/button',
-        component: () => import('./views/components/misc/ButtonView.vue'),
-        meta: {
-          breadcrumb: [
-            { name: 'fyvue', to: '/' },
-            { name: 'Components', to: '/components' },
-            { name: 'Misc', to: '/components/misc' },
-            { name: 'Button' },
-          ],
-          title: 'Button - MISC - Components - fyvue',
+          breadcrumb: [],
+          category: 'misc',
         },
       },
     ],
   },
   {
     path: '/:path(.*)',
-    component: () => import('./views/404View.vue'),
+    component: () => import('./views/Error404View.vue'),
   },
 ];

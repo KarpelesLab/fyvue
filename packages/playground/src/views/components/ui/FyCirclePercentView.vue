@@ -27,10 +27,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>FyCirclePercent</h1>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
       <div class="flex">

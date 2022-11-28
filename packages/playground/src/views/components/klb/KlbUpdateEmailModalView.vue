@@ -12,11 +12,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>KlbUpdateEmailModal</h1>
-    <p>Opens a modal to change user email.</p>
-  </div>
-
   <FyDocPreview :component="klbLogin" :props="props" :reqAuth="true">
     <template #component>
       <KlbUpdateEmailModal />

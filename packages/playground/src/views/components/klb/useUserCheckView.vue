@@ -1,20 +1,5 @@
 <template>
   <div class="fv-typo mb-2">
-    <h1>useUserCheck</h1>
-    <p>
-      This is a
-      <a
-        href="https://vuejs.org/guide/reusability/composables.html"
-        target="_blank"
-        >composable</a
-      >
-      and it should be included in your root template (after a
-      <a
-        href="https://vuejs.org/guide/built-ins/suspense.html#suspense"
-        target="_blank"
-        ><code v-text="`<Suspense>`"></code></a
-      >). It will call Klb <b>User:get</b> and check if your user is logged in.
-    </p>
     <h3>Params</h3>
     <p>
       <b>OnMount</b> (boolean, defaulted to <b>true</b>) if you set it to false

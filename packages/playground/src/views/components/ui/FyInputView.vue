@@ -269,10 +269,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>FyInput</h1>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
       <h2 class="text-xl font-bold">Basic usage:</h2>

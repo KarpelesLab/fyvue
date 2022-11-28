@@ -14,12 +14,17 @@ import { useSeo } from '../../helpers/seo';
 import { cropText } from '../../../utils/display';
 import { useCMS } from './useCms';
 import type { WatchStopHandle } from 'vue';
+import type { FyVueBreadcrumb } from '../../../dts/index';
 const props = withDefaults(
   defineProps<{
     pagesAlias?: string;
+    showFooter?: boolean;
+    breadcrumbBase?: FyVueBreadcrumb[];
   }>(),
   {
     pagesAlias: '@pages',
+    showFooter: true,
+    breadcrumbBase: () => [],
   }
 );
 const slugWatcher = ref<WatchStopHandle>();
@@ -28,6 +33,7 @@ const page = ref<KlbAPIContentCmsSingle>();
 const route = useRoute();
 const is404 = ref<Boolean>(false);
 const eventBus = useEventBus();
+
 const seo = ref<SeoData>({
   title: undefined,
   image: undefined,
@@ -92,6 +98,8 @@ onUnmounted(() => {
       :post="page.data.content_cms_entry_data"
       :cms="page.data.content_cms"
       :single="true"
+      :showFooter="showFooter"
+      :breadcrumbBase="breadcrumbBase"
     />
     <div class="fv-typo" v-if="is404">
       <Fy404View />

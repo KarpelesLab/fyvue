@@ -45,13 +45,6 @@ const fvComponent = `<div class="fv-typo">
 </div>`;
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>.fv-typo</h1>
-    <p>
-      <b>FyTypo</b> is FyVue Typography CSS class. It provide basic styling for
-      pure HTML tags
-    </p>
-  </div>
   <FyDocPreview :component="fvComponent" lang="html">
     <template #component>
       <div class="flex">

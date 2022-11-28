@@ -76,19 +76,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>FyLoader</h1>
-    <p>
-      Show a loader (enabled and disabled via <b>eventBus</b>, this way the
-      loader state is controllable from any component).
-    </p>
-    <p>
-      <InformationCircleIcon class="w-5 inline-block -mt-1" /> You can access
-      the <b>eventBus</b> from setup context with <b>useEventbus</b> (from
-      @karpeleslab/fyvue)
-    </p>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
       <h2 class="text-xl font-bold">Simple usage:</h2>

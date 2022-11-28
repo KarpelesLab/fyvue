@@ -23,11 +23,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>FyBreadcrumb</h1>
-    <p>Generate a breadcrumb from an array.</p>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
       <FyBreadcrumb

@@ -68,10 +68,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>KlbCatalog</h1>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
       <div class="fv-typo text-center"><h2>DisplayType: subs</h2></div>

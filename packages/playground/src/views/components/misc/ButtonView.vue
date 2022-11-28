@@ -21,14 +21,6 @@ const fvComponent = `<h2>With .btn-defaults</h2>
 </div>`;
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>Button</h1>
-    <p><b>fyvue</b> provides a CSS class for html buttons and links.</p>
-    <p>
-      You can override all colors manually or just change your tailwind setup
-      (primary uses <b>fv-primary</b> color and neutral uses <b>fv-neutral</b>).
-    </p>
-  </div>
   <FyDocPreview :component="fvComponent" lang="html">
     <template #component>
       <div class="fv-typo">

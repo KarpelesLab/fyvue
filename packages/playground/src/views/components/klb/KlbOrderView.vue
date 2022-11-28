@@ -23,10 +23,6 @@ const props = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>KlbOrder</h1>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props">
     <template #component>
       <KlbOrder

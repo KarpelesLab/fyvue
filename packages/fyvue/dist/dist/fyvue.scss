@@ -132,7 +132,7 @@ button[type=submit] {
   @apply p-4  bg-fv-neutral-100 border-l-4 border-fv-neutral-300 dark:border-fv-neutral-600 dark:bg-fv-neutral-900 text-xl italic font-medium leading-relaxed text-fv-neutral-900 dark:text-white;
 }
 .fv-typo ul {
-  @apply ml-4 space-y-0.5 max-w-md list-disc list-inside text-fv-neutral-600 dark:text-fv-neutral-300 text-[.95rem];
+  @apply ml-4 space-y-0.5 list-disc list-inside text-fv-neutral-600 dark:text-fv-neutral-300 text-[.95rem];
 }
 .fv-typo a {
   @apply font-medium text-fv-primary-700 dark:text-fv-primary-400 hover:text-fv-primary-800 dark:hover:text-fv-primary-300;
@@ -1020,7 +1020,7 @@ button[type=submit] {
   @apply p-4  bg-fv-neutral-100 border-l-4 border-fv-neutral-300 dark:border-fv-neutral-600 dark:bg-fv-neutral-900 text-xl italic font-medium leading-relaxed text-fv-neutral-900 dark:text-white;
 }
 .klb-blog article .entry-content ul {
-  @apply ml-4 space-y-0.5 max-w-md list-disc list-inside text-fv-neutral-600 dark:text-fv-neutral-300 text-[.95rem];
+  @apply ml-4 space-y-0.5 list-disc list-inside text-fv-neutral-600 dark:text-fv-neutral-300 text-[.95rem];
 }
 .klb-blog article .entry-content a {
   @apply font-medium text-fv-primary-700 dark:text-fv-primary-400 hover:text-fv-primary-800 dark:hover:text-fv-primary-300;
@@ -1089,5 +1089,5 @@ button[type=submit] {
   @apply bg-fv-primary-900/[.85];
 }
 .klb-blog article.is-single header h1 {
-  @apply py-0 my-0 px-2 md:px-4 lg:px-5 border-0 container mx-auto max-w-screen-xl text-white text-2xl lg:text-3xl uppercase  font-bold w-full;
+  @apply py-0 my-0 px-2 md:px-4 lg:px-5 border-0 container mx-auto max-w-screen-xl text-white text-2xl lg:text-3xl font-bold w-full;
 }

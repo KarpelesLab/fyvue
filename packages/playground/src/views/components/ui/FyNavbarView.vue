@@ -96,14 +96,6 @@ const slots = [
 ];
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>FyNavbar</h1>
-    <p>
-      Note if you're using the "buttons" slot the following props are ignored:
-      loginPath, accountPath, showDashboardLink.
-    </p>
-  </div>
-
   <FyDocPreview :component="fvComponent" :props="props" :slots="slots">
     <template #component>
       <FyNavbar
