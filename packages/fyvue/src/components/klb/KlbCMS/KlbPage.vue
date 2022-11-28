@@ -20,6 +20,7 @@ const props = withDefaults(
     pagesAlias?: string;
     showFooter?: boolean;
     breadcrumbBase?: FyVueBreadcrumb[];
+    forceSlug?: string;
   }>(),
   {
     pagesAlias: '@pages',
@@ -75,16 +76,20 @@ const getArticle = async (slug: string) => {
   eventBus.emit('cmsPage-loading', false);
 };
 
-await getArticle(route.params.slug.toString());
+await getArticle(
+  props.forceSlug ? props.forceSlug : route.params.slug.toString()
+);
 useSeo(seo);
 
 onMounted(() => {
-  slugWatcher.value = watch(
-    () => route.params.slug,
-    (v) => {
-      if (typeof v == 'string' && v != '') getArticle(v.toString());
-    }
-  );
+  if (!props.forceSlug) {
+    slugWatcher.value = watch(
+      () => route.params.slug,
+      (v) => {
+        if (typeof v == 'string' && v != '') getArticle(v.toString());
+      }
+    );
+  }
 });
 onUnmounted(() => {
   if (slugWatcher.value) slugWatcher.value();

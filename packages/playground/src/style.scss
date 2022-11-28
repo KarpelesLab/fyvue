@@ -57,5 +57,11 @@ pre[class*="language-"] {
   }
 }
 .doc-contained {
-  @apply relative container mx-auto max-w-screen-xl px-2 md:px-3;
+  @apply relative container mx-auto max-w-screen-xl px-2 md:px-4 lg:px-5 mb-4;
+}
+.klb-blog {
+  @apply flex-grow-0;
+  &.is-blog {
+    @apply flex-1;
+  }
 }

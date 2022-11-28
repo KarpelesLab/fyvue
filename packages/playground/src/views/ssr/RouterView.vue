@@ -1,12 +1,13 @@
+<script setup></script>
 <template>
-  <div class="fv-typo">
-    <h1>Klb SSR &gt; Router</h1>
-    <p>
-      <b>fyvue</b> provides a
-      <a href="https://router.vuejs.org/" target="_blank">vue-router</a> wrapper
-      with an internal pinia store, this way you can add statusCode or redirect
-      directly.
-    </p>
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="ssr-router"
+    :breadcrumbBase="$route.meta.breadcrumb ? $route.meta.breadcrumb : []"
+  />
+  <div class="fv-typo doc-contained margins flex-1">
+    <h2>Usage</h2>
     <!-- prettier-ignore --><FvHL><pre>// composition API
 import { useHistory } from '@karpeleslab/fyvue';
 useHistory().status = 404;

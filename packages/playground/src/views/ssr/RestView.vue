@@ -1,17 +1,14 @@
+<script setup></script>
 <template>
-  <div class="fv-typo">
-    <h1>Klb SSR &gt; Rest</h1>
-    <p>
-      When we're using SSR we don't want to call the API on the server side and
-      on the client side. To prevent this behaviour <small>(bad Vue)</small>
-      <b>fyvue</b> provide a
-      <a
-        href="https://github.com/KarpelesLab/klbfw#restapi-method-params-context"
-        target="_blank"
-        >Rest</a
-      >
-      wrapper.
-    </p>
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="ssr-rest"
+    :breadcrumbBase="$route.meta.breadcrumb ? $route.meta.breadcrumb : []"
+  />
+  <div class="fv-typo doc-contained margins flex-1">
+    <h2>Usage</h2>
+
     <!-- prettier-ignore --><FvHL><pre>import { rest } from '@karpeleslab/fyvue'; // now
 // import { rest } from '@karpeleslab/klbfw'</pre></FvHL>
     <p>

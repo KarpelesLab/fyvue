@@ -7,7 +7,15 @@ export const routes = [
     path: '/login',
     component: () => import('./views/LoginView.vue'),
     meta: {
-      title: 'Login - fyvue',
+      title: 'Sign in / Sign up',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Sign in / Sign up' }],
+    },
+  },
+  {
+    path: '/search/:query(.*)?',
+    component: () => import('./views/SearchView.vue'),
+    meta: {
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Search' }],
     },
   },
   {
@@ -18,6 +26,10 @@ export const routes = [
   {
     path: '/Contact',
     component: () => import('./views/ContactIndex.vue'),
+    meta: {
+      title: 'Contact',
+      breadcrumb: [{ name: 'fyvue', to: '/' }, { name: 'Contact' }],
+    },
   },
   {
     path: '/blog/:slug(.*)?',

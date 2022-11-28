@@ -1,9 +1,15 @@
+<script setup></script>
 <template>
-  <div class="fv-typo">
-    <h1>Klb <b>SSR</b></h1>
-    <p>
-      This is a basic guide to setup SSR on Klb with vue/vite and fyvue. You
-      should also check the
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="ssr-main"
+    :breadcrumbBase="$route.meta.breadcrumb ? $route.meta.breadcrumb : []"
+  />
+  <div class="fv-typo doc-contained margins flex-1">
+    <h2>Usage</h2>
+    <p class="text-sm">
+      Note: You should also check the
       <b
         ><RouterLink to="/components/misc/ClientOnly">ClientOnly</RouterLink></b
       >

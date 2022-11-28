@@ -1,16 +1,13 @@
+<script setup></script>
 <template>
-  <div class="fv-typo">
-    <h1>KLB i18next</h1>
-    <p>
-      You will need to import <b>i18nextPromise</b> from
-      <b>@karpeleslab/fyvue</b> and await it in the setup context. This require
-      the use of
-      <a
-        href="https://vuejs.org/guide/built-ins/suspense.html#suspense"
-        target="_blank"
-        ><code v-text="`<Suspense>`"></code></a
-      >. With SSR this await will be invisible for the client.
-    </p>
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="helpers-i18n"
+    :breadcrumbBase="$route.meta.breadcrumb ? $route.meta.breadcrumb : []"
+  />
+  <div class="fv-typo doc-contained margins flex-1">
+    <h2>Usage</h2>
     <!-- prettier-ignore --><FvHL><pre>// composition API, this should be in your root template
 import { i18nextPromise } from '@karpeleslab/fyvue';
 import { Backend } from '@karpeleslab/i18next-klb-backend'; // Or any i18next Backend

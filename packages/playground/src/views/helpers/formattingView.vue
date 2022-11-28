@@ -29,33 +29,33 @@ const getTime5MinutesAgo = () => {
 };
 </script>
 <template>
-  <div class="fv-typo mb-2">
-    <h1>Formatting helpers</h1>
-    <p>
-      <b>fyvue</b> provides a collection of formatting helpers available
-      directly in the template.
-    </p>
-
-    <h4>$formatDate <small>(dt: Date|string)</small></h4>
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="helpers-formatting"
+    :breadcrumbBase="$route.meta.breadcrumb ? $route.meta.breadcrumb : []"
+  />
+  <div class="fv-typo doc-contained margins flex-1">
+    <h2>$formatDate <small>(dt: Date|string)</small></h2>
     <FyDocPreview :component="formatDate" lang="html">
       <template #component>
         {{ $formatDate(Date.now()) }}
       </template>
     </FyDocPreview>
-    <h4>$formatDatetime <small>(dt: Date|string)</small></h4>
+    <h2>$formatDatetime <small>(dt: Date|string)</small></h2>
     <FyDocPreview :component="formatDatetime" lang="html">
       <template #component>
         {{ $formatDatetime(Date.now()) }}
       </template>
     </FyDocPreview>
-    <h4>$formatTimeago <small>(dt: Date|string)</small></h4>
+    <h2>$formatTimeago <small>(dt: Date|string)</small></h2>
     <FyDocPreview :component="formatTimeago" lang="html">
       <template #component>
         {{ $formatDatetime(getTime5MinutesAgo()) }} &gtcc;
         {{ $formatTimeago(getTime5MinutesAgo()) }}
       </template>
     </FyDocPreview>
-    <h4>$formatKlbRecurringPaymentCycle <small>(cycle: string)</small></h4>
+    <h2>$formatKlbRecurringPaymentCycle <small>(cycle: string)</small></h2>
     <FyDocPreview :component="formatKlbRecurringPaymentCycle" lang="html">
       <template #component>
         /{{ $formatKlbRecurringPaymentCycle('1m') }}<br />
@@ -67,19 +67,19 @@ const getTime5MinutesAgo = () => {
       </template>
     </FyDocPreview>
 
-    <h4>$formatJPZipcode <small>(zipcode: number|string)</small></h4>
+    <h2>$formatJPZipcode <small>(zipcode: number|string)</small></h2>
     <FyDocPreview :component="formatJPZipcode" lang="html">
       <template #component>
         {{ $formatJPZipcode(1610032) }}
       </template>
     </FyDocPreview>
-    <h4>
+    <h2>
       $cropText
       <small
         >(text: string, maxLength?: number = 100, endString? : string =
         '...')</small
       >
-    </h4>
+    </h2>
     <FyDocPreview :component="cropText" lang="html">
       <template #component>
         {{
@@ -93,7 +93,7 @@ const getTime5MinutesAgo = () => {
         {{ $cropText('LOOOOL', 4, '') }}
       </template>
     </FyDocPreview>
-    <h4>$formatBytes <small>(bytes: number, decimals? :number = 2)</small></h4>
+    <h2>$formatBytes <small>(bytes: number, decimals? :number = 2)</small></h2>
     <FyDocPreview :component="formatBytes" lang="html">
       <template #component>
         {{ $formatBytes(10000) }}<br />
@@ -101,7 +101,7 @@ const getTime5MinutesAgo = () => {
         {{ $formatBytes(1337, 10) }}
       </template>
     </FyDocPreview>
-    <h4>$countries (Klb only)</h4>
+    <h2>$countries (Klb only)</h2>
     <p>
       Provide an ordered array for selects in <b>$countries.countries</b> and a
       by uuid property: <b>$countries.byUuid(Country__)</b>.

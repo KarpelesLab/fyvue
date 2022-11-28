@@ -1,16 +1,16 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.15
+  * @karpeleslab/fyvue v0.2.0-rc.16
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
 import i18next from 'i18next';
-import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, resolveComponent, Fragment, renderList, computed, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, watch, Transition, reactive, withModifiers, withAsyncContext } from 'vue';
+import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, computed, resolveComponent, Fragment, renderList, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, watch, Transition, reactive, withModifiers, withAsyncContext } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import { defineStore } from 'pinia';
 import { getInitialState, getPath, getUuid, rest as rest$1, getMode, getUrl, getLocale as getLocale$1 } from '@karpeleslab/klbfw';
 import { renderToString } from '@vue/server-renderer';
 import { renderHeadToString, useHead } from '@vueuse/head';
-import { useSchemaOrg, defineOrganization, defineWebSite, defineSearchAction, defineWebPage } from '@vueuse/schema-org/runtime';
+import { SchemaOrgBreadcrumb, useSchemaOrg, defineOrganization, defineWebSite, defineSearchAction, defineWebPage, SchemaOrgArticle, SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 import { useRoute, useRouter } from 'vue-router';
 import { useDark, useToggle, useStorage } from '@vueuse/core';
 import useVuelidate, { useVuelidate as useVuelidate$1 } from '@vuelidate/core';
@@ -719,32 +719,49 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
     maxLength: { default: 32 }
   },
   setup(__props) {
+    const props = __props;
+    const schemaOrgFormat = computed(() => {
+      const _nav = [];
+      props.nav.forEach((e) => {
+        _nav.push({
+          item: e.to,
+          name: e.name
+        });
+      });
+      return _nav;
+    });
     return (_ctx, _cache) => {
       const _component_router_link = resolveComponent("router-link");
       return openBlock(), createElementBlock("nav", _hoisted_1$o, [
-        createElementVNode("ol", null, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item, index) => {
-            return openBlock(), createElementBlock("li", {
-              key: `bc_${index.toString()}`,
-              class: normalizeClass(
-                item.to ? index == 0 ? "li-home" : "li-normal" : "li-current"
-              ),
-              "aria-current": item.to ? void 0 : "page"
-            }, [
-              index != 0 ? (openBlock(), createBlock(unref(render$c), { key: 0 })) : createCommentVNode("v-if", true),
-              item.to ? (openBlock(), createBlock(_component_router_link, {
-                key: 1,
-                to: item.to
-              }, {
-                default: withCtx(() => [
-                  index === 0 ? (openBlock(), createBlock(unref(render$a), { key: 0 })) : createCommentVNode("v-if", true),
-                  createTextVNode(" " + toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
-                ]),
-                _: 2
-              }, 1032, ["to"])) : (openBlock(), createElementBlock("span", _hoisted_3$m, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
-            ], 10, _hoisted_2$n);
-          }), 128))
-        ])
+        createVNode(unref(SchemaOrgBreadcrumb), {
+          as: "ol",
+          "item-list-element": unref(schemaOrgFormat)
+        }, {
+          default: withCtx(() => [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(__props.nav, (item, index) => {
+              return openBlock(), createElementBlock("li", {
+                key: `bc_${index.toString()}`,
+                class: normalizeClass(
+                  item.to ? index == 0 ? "li-home" : "li-normal" : "li-current"
+                ),
+                "aria-current": item.to ? void 0 : "page"
+              }, [
+                index != 0 ? (openBlock(), createBlock(unref(render$c), { key: 0 })) : createCommentVNode("v-if", true),
+                item.to ? (openBlock(), createBlock(_component_router_link, {
+                  key: 1,
+                  to: item.to
+                }, {
+                  default: withCtx(() => [
+                    index === 0 ? (openBlock(), createBlock(unref(render$a), { key: 0 })) : createCommentVNode("v-if", true),
+                    createTextVNode(" " + toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1)
+                  ]),
+                  _: 2
+                }, 1032, ["to"])) : (openBlock(), createElementBlock("span", _hoisted_3$m, toDisplayString(_ctx.$cropText(_ctx.$t(item.name).toString(), __props.maxLength)), 1))
+              ], 10, _hoisted_2$n);
+            }), 128))
+          ]),
+          _: 1
+        }, 8, ["item-list-element"])
       ]);
     };
   }
@@ -1025,7 +1042,7 @@ const _hoisted_6$f = ["aria-label", "placeholder", "autocomplete", "id", "type",
 const _hoisted_7$d = ["aria-label", "placeholder", "autocomplete", "id", "disabled"];
 const _hoisted_8$c = ["aria-label", "id"];
 const _hoisted_9$b = ["value"];
-const _hoisted_10$9 = {
+const _hoisted_10$a = {
   key: 2,
   class: "form-error-label"
 };
@@ -1177,7 +1194,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
           ]) : createCommentVNode("v-if", true),
           renderSlot(_ctx.$slots, "after")
         ], 2)) : createCommentVNode("v-if", true),
-        unref(checkErrors) ? (openBlock(), createElementBlock("div", _hoisted_10$9, toDisplayString(unref(checkErrors)), 1)) : createCommentVNode("v-if", true),
+        unref(checkErrors) ? (openBlock(), createElementBlock("div", _hoisted_10$a, toDisplayString(unref(checkErrors)), 1)) : createCommentVNode("v-if", true),
         __props.help ? (openBlock(), createElementBlock("div", _hoisted_11$9, toDisplayString(__props.help), 1)) : createCommentVNode("v-if", true)
       ]);
     };
@@ -1352,7 +1369,7 @@ const _hoisted_9$a = {
   key: 3,
   class: "dots"
 };
-const _hoisted_10$8 = { class: "is-sr" };
+const _hoisted_10$9 = { class: "is-sr" };
 const _hoisted_11$8 = { class: "paging-text" };
 const _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "FyPaging",
@@ -1477,7 +1494,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
               onClick: _cache[3] || (_cache[3] = ($event) => next()),
               class: "prev-next"
             }, [
-              createElementVNode("span", _hoisted_10$8, toDisplayString(_ctx.$t("next_paging")), 1),
+              createElementVNode("span", _hoisted_10$9, toDisplayString(_ctx.$t("next_paging")), 1),
               createVNode(unref(render$c), { class: "fv-icon-base" })
             ])) : createCommentVNode("v-if", true)
           ]),
@@ -1641,7 +1658,7 @@ const _hoisted_8$a = [
   _hoisted_7$b
 ];
 const _hoisted_9$9 = { class: "main-ul" };
-const _hoisted_10$7 = /* @__PURE__ */ createElementVNode("svg", {
+const _hoisted_10$8 = /* @__PURE__ */ createElementVNode("svg", {
   "aria-hidden": "true",
   fill: "currentColor",
   viewBox: "0 0 20 20",
@@ -1746,7 +1763,7 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
                       createVNode(unref(MenuButton), { class: "is-link has-childs" }, {
                         default: withCtx(() => [
                           createTextVNode(toDisplayString(link.name) + " ", 1),
-                          _hoisted_10$7
+                          _hoisted_10$8
                         ]),
                         _: 2
                       }, 1024),
@@ -1938,7 +1955,7 @@ const _hoisted_9$8 = {
   key: 0,
   class: "response-error"
 };
-const _hoisted_10$6 = /* @__PURE__ */ createElementVNode("br", { style: { "clear": "both" } }, null, -1);
+const _hoisted_10$7 = /* @__PURE__ */ createElementVNode("br", { style: { "clear": "both" } }, null, -1);
 const _hoisted_11$6 = { key: 1 };
 const _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "KlbLogin",
@@ -2184,7 +2201,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
                     onClick: _cache[3] || (_cache[3] = ($event) => forgotPassword()),
                     class: "mt-2 float-right btn px-5 py-2 primary"
                   }, toDisplayString(_ctx.$t("recover_pwd_cta")), 1),
-                  _hoisted_10$6
+                  _hoisted_10$7
                 ], 64)) : (openBlock(), createElementBlock("div", _hoisted_11$6, toDisplayString(_ctx.$t("pwd_recover_confirm")), 1))
               ]),
               _: 1
@@ -2596,7 +2613,7 @@ const _hoisted_6$7 = ["onSubmit"];
 const _hoisted_7$7 = { class: "form-grid" };
 const _hoisted_8$6 = { class: "input-group" };
 const _hoisted_9$6 = { class: "mr-4 w-16" };
-const _hoisted_10$5 = {
+const _hoisted_10$6 = {
   class: "label-basic",
   for: "countryChoice"
 };
@@ -2870,7 +2887,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
                   }, null, 8, ["placeholder", "errorVuelidate", "modelValue", "label"]),
                   createElementVNode("div", _hoisted_8$6, [
                     createElementVNode("div", _hoisted_9$6, [
-                      createElementVNode("label", _hoisted_10$5, toDisplayString(_ctx.$t("klb_location_country_label")), 1)
+                      createElementVNode("label", _hoisted_10$6, toDisplayString(_ctx.$t("klb_location_country_label")), 1)
                     ]),
                     createElementVNode("div", _hoisted_11$5, [
                       withDirectives(createElementVNode("select", {
@@ -2982,7 +2999,7 @@ const _hoisted_9$5 = {
   class: "label-basic",
   for: "typeDef"
 };
-const _hoisted_10$4 = {
+const _hoisted_10$5 = {
   key: 0,
   class: "response-error"
 };
@@ -3213,7 +3230,7 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
                   ref: stripePayment
                 }, null, 512)
               ]),
-              errorMessage.value ? (openBlock(), createElementBlock("div", _hoisted_10$4, toDisplayString(errorMessage.value), 1)) : createCommentVNode("v-if", true),
+              errorMessage.value ? (openBlock(), createElementBlock("div", _hoisted_10$5, toDisplayString(errorMessage.value), 1)) : createCommentVNode("v-if", true),
               createElementVNode("div", _hoisted_11$4, [
                 createElementVNode("button", _hoisted_12$4, toDisplayString(_ctx.$t("create_billing_profile")), 1)
               ])
@@ -3248,7 +3265,7 @@ const _hoisted_7$5 = {
 };
 const _hoisted_8$4 = { class: "billing-select" };
 const _hoisted_9$4 = { key: 0 };
-const _hoisted_10$3 = ["onSubmit"];
+const _hoisted_10$4 = ["onSubmit"];
 const _hoisted_11$3 = { class: "input-group" };
 const _hoisted_12$3 = {
   class: "label-basic",
@@ -3607,7 +3624,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                 createElementVNode("div", _hoisted_16$2, [
                   createElementVNode("button", _hoisted_17$1, toDisplayString(_ctx.$t("klb_billing_save_payment_method")), 1)
                 ])
-              ], 40, _hoisted_10$3)
+              ], 40, _hoisted_10$4)
             ])
           ])) : createCommentVNode("v-if", true)
         ])) : createCommentVNode("v-if", true),
@@ -3643,7 +3660,7 @@ const _hoisted_9$3 = {
   key: 1,
   class: "shop"
 };
-const _hoisted_10$2 = ["src"];
+const _hoisted_10$3 = ["src"];
 const _hoisted_11$2 = { class: "inside" };
 const _hoisted_12$2 = { class: "price-btn" };
 const _hoisted_13$2 = {
@@ -3740,7 +3757,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
                 key: 0,
                 src: product.Image.list[0].Variation?.shop,
                 class: "product-image"
-              }, null, 8, _hoisted_10$2)) : createCommentVNode("v-if", true),
+              }, null, 8, _hoisted_10$3)) : createCommentVNode("v-if", true),
               createElementVNode("div", _hoisted_11$2, [
                 createElementVNode("h5", null, toDisplayString(product["Basic.Name"]), 1),
                 renderSlot(_ctx.$slots, product.Catalog_Product__),
@@ -4137,7 +4154,7 @@ const _hoisted_9$2 = {
   key: 1,
   class: "cart-summary is-tax"
 };
-const _hoisted_10$1 = { class: "price" };
+const _hoisted_10$2 = { class: "price" };
 const _hoisted_11$1 = { class: "cart-total" };
 const _hoisted_12$1 = {
   key: 0,
@@ -4324,7 +4341,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
               product.meta.description ? (openBlock(), createElementBlock("div", _hoisted_8$2, toDisplayString(product.meta.description), 1)) : createCommentVNode("v-if", true),
               __props.mode == "b2b" ? (openBlock(), createElementBlock("div", _hoisted_9$2, [
                 createElementVNode("h3", null, toDisplayString(_ctx.$t("klb_order_cart_vat")) + " (" + toDisplayString(product.data.Price.tax_rate) + "%) ", 1),
-                createElementVNode("div", _hoisted_10$1, toDisplayString(product.data.Price.tax_only.display), 1)
+                createElementVNode("div", _hoisted_10$2, toDisplayString(product.data.Price.tax_only.display), 1)
               ])) : createCommentVNode("v-if", true)
             ]);
           }), 128)),
@@ -4467,7 +4484,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
 var KlbOrder = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "KlbOrder.vue"]]);
 
 const _hoisted_1$3 = {
-  key: 0,
+  key: 1,
   class: "entry-header"
 };
 const _hoisted_2$3 = {
@@ -4484,7 +4501,7 @@ const _hoisted_9$1 = {
   key: 0,
   class: "entry-footer"
 };
-const _hoisted_10 = {
+const _hoisted_10$1 = {
   key: 0,
   class: "comments"
 };
@@ -4518,6 +4535,14 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
         key: 0,
         class: normalizeClass(__props.single ? "is-single" : "is-multiple")
       }, [
+        __props.single ? (openBlock(), createBlock(unref(SchemaOrgArticle), {
+          key: 0,
+          headline: __props.post.Title,
+          "date-published": new Date(parseInt(__props.post.Published.unixms)).toISOString(),
+          "date-modified": new Date(parseInt(__props.post.Last_Modified.unixms)).toISOString(),
+          description: __props.post.Short_Contents ? __props.post.Short_Contents : void 0,
+          image: __props.post.Top_Drive_Item && __props.post.Top_Drive_Item.Media_Image && __props.post.Top_Drive_Item.Media_Image?.Variation ? __props.post.Top_Drive_Item.Media_Image?.Variation["banner"] : void 0
+        }, null, 8, ["headline", "date-published", "date-modified", "description", "image"])) : createCommentVNode("v-if", true),
         !__props.single ? (openBlock(), createElementBlock("header", _hoisted_1$3, [
           createVNode(_component_RouterLink, {
             to: `${__props.basePath}/${__props.post.Slug}`,
@@ -4539,7 +4564,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             _: 1
           }, 8, ["to", "title"])
         ])) : (openBlock(), createElementBlock("header", {
-          key: 1,
+          key: 2,
           class: normalizeClass(["entry-header", __props.post.Top_Drive_Item?.Media_Image ? "has-pic" : ""]),
           style: normalizeStyle(
             __props.post.Top_Drive_Item && __props.post.Top_Drive_Item.Media_Image && __props.post.Top_Drive_Item.Media_Image?.Variation ? `background-image: url('${__props.post.Top_Drive_Item.Media_Image?.Variation["bannerx100"]}'); background-size: cover;` : ""
@@ -4570,7 +4595,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             ])) : createCommentVNode("v-if", true)
           ]),
           __props.showFooter ? (openBlock(), createElementBlock("footer", _hoisted_9$1, [
-            __props.post.Comments && __props.cms.Type == "article" ? (openBlock(), createElementBlock("span", _hoisted_10, [
+            __props.post.Comments && __props.cms.Type == "article" ? (openBlock(), createElementBlock("span", _hoisted_10$1, [
               createVNode(unref(render$e)),
               createTextVNode(" " + toDisplayString(_ctx.$t("klb_blog_comment_count", { count: __props.post.Comments.Comment_Count })), 1)
             ])) : createCommentVNode("v-if", true),
@@ -4646,7 +4671,7 @@ function useCMS() {
             });
             if (_data && _data.result == 'success') {
                 if (blogName)
-                    blogName.value = _data.data.content_cms.Name + ' - ' + siteName;
+                    blogName.value = _data.data.content_cms.Name;
                 if (breadcrumb && blogName)
                     breadcrumb.value = [
                         ...breadcrumbBase,
@@ -4700,7 +4725,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   props: {
     pagesAlias: { default: "@pages" },
     showFooter: { type: Boolean, default: true },
-    breadcrumbBase: { default: () => [] }
+    breadcrumbBase: { default: () => [] },
+    forceSlug: null
   },
   async setup(__props) {
     let __temp, __restore;
@@ -4734,16 +4760,20 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       );
       eventBus.emit("cmsPage-loading", false);
     };
-    [__temp, __restore] = withAsyncContext(() => getArticle(route.params.slug.toString())), await __temp, __restore();
+    [__temp, __restore] = withAsyncContext(() => getArticle(
+      props.forceSlug ? props.forceSlug : route.params.slug.toString()
+    )), await __temp, __restore();
     useSeo(seo);
     onMounted(() => {
-      slugWatcher.value = watch(
-        () => route.params.slug,
-        (v) => {
-          if (typeof v == "string" && v != "")
-            getArticle(v.toString());
-        }
-      );
+      if (!props.forceSlug) {
+        slugWatcher.value = watch(
+          () => route.params.slug,
+          (v) => {
+            if (typeof v == "string" && v != "")
+              getArticle(v.toString());
+          }
+        );
+      }
     });
     onUnmounted(() => {
       if (slugWatcher.value)
@@ -4774,22 +4804,26 @@ const _hoisted_2$1 = {
   key: 0,
   class: "multiple"
 };
-const _hoisted_3$1 = { key: 0 };
-const _hoisted_4$1 = {
+const _hoisted_3$1 = {
   key: 0,
+  class: "m-h1"
+};
+const _hoisted_4$1 = { key: 0 };
+const _hoisted_5 = {
+  key: 1,
   class: "klb-post-container no-posts"
 };
-const _hoisted_5 = ["placeholder"];
-const _hoisted_6 = {
+const _hoisted_6 = ["placeholder"];
+const _hoisted_7 = {
   key: 0,
   class: "widget"
 };
-const _hoisted_7 = /* @__PURE__ */ createElementVNode("h3", null, "Categories", -1);
-const _hoisted_8 = {
+const _hoisted_8 = /* @__PURE__ */ createElementVNode("h3", null, "Categories", -1);
+const _hoisted_9 = {
   key: 1,
   class: "single"
 };
-const _hoisted_9 = {
+const _hoisted_10 = {
   key: 2,
   class: "is-404"
 };
@@ -4814,6 +4848,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const dataSingle = ref();
     const displayType = ref("multiple");
     const query = ref();
+    const h1Mult = ref();
     const eventBus = useEventBus();
     const breadcrumb = ref([
       ...props.breadcrumbBase,
@@ -4849,6 +4884,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       eventBus.emit("cmsBlog-loading", true);
       is404.value = false;
       displayType.value = "multiple";
+      h1Mult.value = void 0;
       seo.value = {
         title: void 0,
         image: void 0,
@@ -4888,7 +4924,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       if (_data && _data.result == "success") {
         getCategories(_data.data.content_cms.Classify.Classify__);
         data.value = _data;
-        blogName.value = _data.data.content_cms.Name + " - " + props.siteName;
+        blogName.value = _data.data.content_cms.Name;
         if (category) {
           breadcrumb.value = [
             ...props.breadcrumbBase,
@@ -4897,6 +4933,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           ];
           seo.value.title = translate("klb_blog_category_breadcrumb", { category });
           seo.value.type = "search";
+          h1Mult.value = translate("klb_blog_category_breadcrumb", { category });
         } else if (search) {
           breadcrumb.value = [
             ...props.breadcrumbBase,
@@ -4905,6 +4942,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           ];
           seo.value.title = translate("klb_blog_search_breadcrumb", { search });
           seo.value.type = "search";
+          h1Mult.value = translate("klb_blog_search_breadcrumb", { search });
         } else {
           breadcrumb.value = [...props.breadcrumbBase, { name: blogName.value }];
           seo.value.title = blogName.value;
@@ -4954,8 +4992,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("div", _hoisted_1$1, [
         createVNode(FyLoader, { id: "cmsBlog" }),
         displayType.value == "multiple" && data.value && data.value.result ? (openBlock(), createElementBlock("div", _hoisted_2$1, [
+          createVNode(unref(SchemaOrgWebPage), { type: ["CollectionPage", "SearchResultsPage"] }),
           createElementVNode("main", null, [
             createVNode(FyBreadcrumb, { nav: breadcrumb.value }, null, 8, ["nav"]),
+            h1Mult.value ? (openBlock(), createElementBlock("h1", _hoisted_3$1, toDisplayString(h1Mult.value), 1)) : createCommentVNode("v-if", true),
             (openBlock(true), createElementBlock(Fragment, null, renderList(data.value?.data.data, (post, index) => {
               return openBlock(), createElementBlock(Fragment, {
                 key: post.Content_Cms_Entry__
@@ -4966,14 +5006,14 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   basePath: __props.basePath,
                   cms: data.value.data.content_cms
                 }, null, 8, ["post", "basePath", "cms"]),
-                data.value && index != data.value?.data.data.length - 1 ? (openBlock(), createElementBlock("hr", _hoisted_3$1)) : createCommentVNode("v-if", true)
+                data.value && index != data.value?.data.data.length - 1 ? (openBlock(), createElementBlock("hr", _hoisted_4$1)) : createCommentVNode("v-if", true)
               ], 64);
             }), 128)),
-            !data.value?.data.data.length ? (openBlock(), createElementBlock("div", _hoisted_4$1, [
+            !data.value?.data.data.length ? (openBlock(), createElementBlock("div", _hoisted_5, [
               createElementVNode("p", null, toDisplayString(_ctx.$t("klb_blog_no_posts")), 1)
             ])) : createCommentVNode("v-if", true),
             data.value && data.value.paging ? (openBlock(), createBlock(FyPaging, {
-              key: 1,
+              key: 2,
               id: "cmsPaging",
               items: data.value.paging
             }, null, 8, ["items"])) : createCommentVNode("v-if", true)
@@ -4993,12 +5033,12 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                 type: "text",
                 placeholder: _ctx.$t("klb_blog_search_placeholder"),
                 "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => query.value = $event)
-              }, null, 8, _hoisted_5), [
+              }, null, 8, _hoisted_6), [
                 [vModelText, query.value]
               ])
             ], 32),
-            cats.value && cats.value.length ? (openBlock(), createElementBlock("div", _hoisted_6, [
-              _hoisted_7,
+            cats.value && cats.value.length ? (openBlock(), createElementBlock("div", _hoisted_7, [
+              _hoisted_8,
               createElementVNode("ul", null, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(cats.value, (cat) => {
                   return openBlock(), createElementBlock("li", {
@@ -5019,7 +5059,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             createCommentVNode('\n        <div class="widget">\n          <h3>Archives</h3>\n        </div>')
           ])
         ])) : createCommentVNode("v-if", true),
-        displayType.value == "single" && dataSingle.value && dataSingle.value.result ? (openBlock(), createElementBlock("main", _hoisted_8, [
+        displayType.value == "single" && dataSingle.value && dataSingle.value.result ? (openBlock(), createElementBlock("main", _hoisted_9, [
           createVNode(KlbBlogInnerPost, {
             post: dataSingle.value.data.content_cms_entry_data,
             single: true,
@@ -5028,7 +5068,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             cms: dataSingle.value.data.content_cms
           }, null, 8, ["post", "basePath", "breadcrumbBase", "cms"])
         ])) : createCommentVNode("v-if", true),
-        is404.value ? (openBlock(), createElementBlock("main", _hoisted_9, [
+        is404.value ? (openBlock(), createElementBlock("main", _hoisted_10, [
           createVNode(Fy404View)
         ])) : createCommentVNode("v-if", true)
       ]);

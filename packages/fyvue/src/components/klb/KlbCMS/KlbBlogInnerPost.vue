@@ -9,6 +9,8 @@ import {
   PaperClipIcon,
   TagIcon,
 } from '@heroicons/vue/24/solid';
+import { SchemaOrgArticle } from '@vueuse/schema-org/runtime';
+
 withDefaults(
   defineProps<{
     post: KlbContentCms;
@@ -28,6 +30,22 @@ withDefaults(
 </script>
 <template>
   <article v-if="post" :class="single ? 'is-single' : 'is-multiple'">
+    <SchemaOrgArticle
+      v-if="single"
+      :headline="post.Title"
+      :date-published="new Date(parseInt(post.Published.unixms)).toISOString()"
+      :date-modified="
+        new Date(parseInt(post.Last_Modified.unixms)).toISOString()
+      "
+      :description="post.Short_Contents ? post.Short_Contents : undefined"
+      :image="
+        post.Top_Drive_Item &&
+        post.Top_Drive_Item.Media_Image &&
+        post.Top_Drive_Item.Media_Image?.Variation
+          ? post.Top_Drive_Item.Media_Image?.Variation['banner']
+          : undefined
+      "
+    />
     <header class="entry-header" v-if="!single">
       <RouterLink :to="`${basePath}/${post.Slug}`" :title="post.Title">
         <figure

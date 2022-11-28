@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from 'url';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { SchemaOrg } from '@vueuse/schema-org-vite';
 
 const fyvueRoot = '../fyvue/src';
 
@@ -17,11 +16,6 @@ export default defineConfig({
           img: ['src'],
         },
       },
-    }),
-    SchemaOrg({
-      mock: false,
-      full: false,
-      dts: true,
     }),
   ],
   resolve: {

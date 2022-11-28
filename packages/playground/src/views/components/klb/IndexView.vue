@@ -4,17 +4,35 @@ import ComponentIndex from '@/componentIndex';
 <template>
   <RouterView />
   <div class="doc-contained fv-typo my-5 flex-1">
-    <h1 v-if="$route.path == '/components/klb'" class="font-bold mt-2">
-      Klb Components
-    </h1>
-    <h2 v-else class="font-bold mt-2">Klb Components</h2>
-    <nav class="bg-fv-neutral-100 rounded p-2 dark:bg-fv-neutral-900 w-full">
-      <ul class="flex flex-wrap !list-none items-center justify-start w-full">
-        <li v-for="(c, i) in ComponentIndex.klb" :key="`${i.toString()}_${c}`">
-          <router-link :to="`/components/klb/${c}`"> {{ c }} </router-link
-          ><span v-if="i != ComponentIndex.klb.length - 1">,&nbsp;</span>
-        </li>
-      </ul>
-    </nav>
+    <FyBreadcrumb
+      :nav="$route.meta.breadcrumb"
+      v-if="$route.path == '/components/klb'"
+    />
+    <div
+      :class="
+        $route.path == '/components/klb'
+          ? 'card-container card-defaults mt-4'
+          : ''
+      "
+    >
+      <h1 v-if="$route.path == '/components/klb'" class="font-bold">
+        Klb Components
+      </h1>
+      <h2 v-else class="font-bold">
+        <RouterLink to="/components/klb">Klb Components</RouterLink>
+      </h2>
+      <p>Collection of Vue components working with KLB API.</p>
+      <nav class="bg-fv-neutral-100 rounded p-2 dark:bg-fv-neutral-900 w-full">
+        <ul class="flex flex-wrap !list-none items-center justify-start w-full">
+          <li
+            v-for="(c, i) in ComponentIndex.klb"
+            :key="`${i.toString()}_${c}`"
+          >
+            <router-link :to="`/components/klb/${c}`"> {{ c }} </router-link
+            ><span v-if="i != ComponentIndex.klb.length - 1">,&nbsp;</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>

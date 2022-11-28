@@ -26,6 +26,7 @@ const KlbComponents = [
   'KlbOrder',
   'KlbPage',
   'KlbSupport',
+  'KlbBlog',
 ];
 
 const miscComponents = ['Button', 'Typo', 'ClientOnly'];

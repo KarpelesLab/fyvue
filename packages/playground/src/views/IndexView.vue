@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import IndexViewVue from './components/IndexView.vue';
 import { useFVStore, useSeo } from '@karpeleslab/fyvue';
 import { ref } from 'vue';
 useSeo(
@@ -10,13 +11,12 @@ useSeo(
 const store = useFVStore();
 </script>
 <template>
-  <div class="fv-typo">
-    <h1>About <b>fyvue</b></h1>
-    <p>
-      <b>fyvue</b> is a Vue Plugin providing components, helpers for Vue,
-      Tailwind, vite-ssr, <b>KLB</b> APIs, and more.
-      <small>At some point in the future, it will do my job for me.</small>
-    </p>
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="getting-started"
+  />
+  <div class="fv-typo doc-contained margins">
     <h2>Getting started</h2>
     <p>First you'll need to install <b>fyvue</b>.</p>
     <!-- prettier-ignore --><FvHL lang="bash"><pre>yarn add @karpeleslab/fyvue@alpha</pre></FvHL>
@@ -61,5 +61,10 @@ module.exports = {
       <code>tsconfig.json</code>
     </p>
     <!-- prettier-ignore --><FvHL><pre>"types": ["vite/client", "@karpeleslab/fyvue/dist/components"],</pre></FvHL>
+  </div>
+  <div class="fv-typo doc-contained">
+    <h2>Components List</h2>
+    <p>List of all documented fyvue components.</p>
+    <IndexViewVue />
   </div>
 </template>

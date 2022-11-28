@@ -54,7 +54,7 @@ const componentFormated = () => {
 </script>
 <template>
   <div>
-    <div class="fv-typo">
+    <div class="fv-typo" v-if="$route.params.slug">
       <h2>{{ $route.params.slug }} example</h2>
     </div>
     <TabGroup class="compo-view" as="div">

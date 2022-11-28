@@ -22,6 +22,7 @@ import type {
   KlbAPIContentCmsSearch,
   KlbClassifyTag,
 } from '../../../dts/klb';
+import { SchemaOrgArticle, SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 
 const props = withDefaults(
   defineProps<{
@@ -46,6 +47,7 @@ const data = ref<KlbAPIContentCmsSearch>();
 const dataSingle = ref<KlbAPIContentCmsSingle>();
 const displayType = ref<CMSDisplayType>('multiple');
 const query = ref<string | undefined>();
+const h1Mult = ref<string | undefined>();
 const eventBus = useEventBus();
 const breadcrumb = ref<Array<FyVueBreadcrumb>>([
   ...props.breadcrumbBase,
@@ -94,7 +96,7 @@ const getArticles = async (
   eventBus.emit('cmsBlog-loading', true);
   is404.value = false;
   displayType.value = 'multiple';
-
+  h1Mult.value = undefined;
   seo.value = {
     title: undefined,
     image: undefined,
@@ -135,7 +137,7 @@ const getArticles = async (
   if (_data && _data.result == 'success') {
     getCategories(_data.data.content_cms.Classify.Classify__);
     data.value = _data;
-    blogName.value = _data.data.content_cms.Name + ' - ' + props.siteName;
+    blogName.value = _data.data.content_cms.Name;
     if (category) {
       breadcrumb.value = [
         ...props.breadcrumbBase,
@@ -144,6 +146,7 @@ const getArticles = async (
       ];
       seo.value.title = translate('klb_blog_category_breadcrumb', { category });
       seo.value.type = 'search';
+      h1Mult.value = translate('klb_blog_category_breadcrumb', { category });
     } else if (search) {
       breadcrumb.value = [
         ...props.breadcrumbBase,
@@ -152,6 +155,7 @@ const getArticles = async (
       ];
       seo.value.title = translate('klb_blog_search_breadcrumb', { search });
       seo.value.type = 'search';
+      h1Mult.value = translate('klb_blog_search_breadcrumb', { search });
     } else {
       breadcrumb.value = [...props.breadcrumbBase, { name: blogName.value }];
       seo.value.title = blogName.value;
@@ -207,9 +211,10 @@ useSeo(seo);
       v-if="displayType == 'multiple' && data && data.result"
       class="multiple"
     >
+      <SchemaOrgWebPage :type="['CollectionPage', 'SearchResultsPage']" />
       <main>
         <FyBreadcrumb :nav="breadcrumb" />
-
+        <h1 v-if="h1Mult" class="m-h1">{{ h1Mult }}</h1>
         <template
           v-for="(post, index) in data?.data.data"
           :key="post.Content_Cms_Entry__"
@@ -231,6 +236,7 @@ useSeo(seo);
           :items="data.paging"
         />
       </main>
+
       <aside>
         <form
           class="search"

@@ -4,33 +4,38 @@ import {
   countriesPromise,
   useUserCheck,
   useSeo,
+  useEventBus,
 } from '@karpeleslab/fyvue';
-import { Head, useHead } from '@vueuse/head';
-import {
-  SchemaOrgWebSite,
-  SchemaOrgOrganization,
-} from '@vueuse/schema-org/runtime';
-import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 
-import { ref, computed, watch } from 'vue';
+import { ref, computed, onUnmounted, onMounted } from 'vue';
 import { CodeBracketSquareIcon, XMarkIcon } from '@heroicons/vue/24/solid';
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { onClickOutside } from '@vueuse/core';
 import { Backend } from '@karpeleslab/i18next-klb-backend';
 import ComponentIndex from '@/componentIndex';
-import { getUrl } from '@karpeleslab/klbfw';
 
 await i18nextPromise(Backend);
 const route = useRoute();
 const sideBarOpen = ref(false);
 const computedRoute = computed(() => route);
 const aside = ref();
+const query = ref(route.params.query);
+const eventBus = useEventBus();
 onClickOutside(ref, () => (sideBarOpen.value = false));
 
 if (!import.meta.env.SSR) {
   await useUserCheck();
   await countriesPromise();
 }
+
+onMounted(() => {
+  eventBus.on('leaveSearchPage', () => {
+    query.value = undefined;
+  });
+});
+onUnmounted(() => {
+  eventBus.off('leaveSearchPage', '*');
+});
 
 useSeo(
   ref({
@@ -50,10 +55,10 @@ useSeo(
     <FyNavbar
       title="fyvue"
       :showDashboardLink="false"
-      :showCart="true"
+      :showCart="false"
       cartPath="/components/klb/KlbOrder"
       :links="[
-        { to: '/', name: 'Getting Started' },
+        //{ to: '/', name: 'Getting Started' },
         { to: '/blog', name: 'Blog' },
         {
           to: '#',
@@ -79,13 +84,60 @@ useSeo(
             { to: '/helpers/styles', name: 'Styles' },
           ],
         },
-        { to: '/contact', name: 'Contact' },
+        //{ to: '/contact', name: 'Contact' },
       ]"
     >
       <template v-slot:logo>
         <img src="@/assets/fyvue.svg" class="h-10" />
       </template>
-      <template v-slot:custom> </template>
+      <template v-slot:custom>
+        <div
+          class="search relative !mb-4 !w-full md:!mb-0 md:!w-auto mx-0 md:mx-3"
+          ref="searchContainer"
+        >
+          <div class="block md:flex items-center">
+            <div class="relative md:block">
+              <form
+                class="flex flex-nowrap w-full"
+                @submit.prevent="
+                  () => {
+                    if (query) $router.push(`/search/${query}`);
+                    else {
+                      $router.push(`/search/`);
+                    }
+                  }
+                "
+              >
+                <FyInput
+                  id="search"
+                  ref="searchInputRef"
+                  v-model="query"
+                  type="search"
+                  placeholder="Search..."
+                >
+                  <template v-slot:before>
+                    <div class="flex items-center px-2">
+                      <svg
+                        class="w-5 h-5 text-fv-neutral-500"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                  </template>
+                </FyInput>
+              </form>
+            </div>
+          </div>
+        </div>
+      </template>
     </FyNavbar>
     <aside
       class="fixed shadow right-2 top-1/2 -translate-y-1/2 max-h-screen overflow-y-auto"
@@ -147,22 +199,8 @@ useSeo(
         />
       </button>
     </aside>
-    <div
-      v-if="$route.meta.breadcrumb && $route.meta.breadcrumb.length"
-      class="mt-3"
-    >
-      <FyBreadcrumb :nav="$route.meta.breadcrumb" class="doc-contained" />
-    </div>
-    <main
-      v-if="
-        !$route.path.includes('blog') &&
-        !$route.path.includes('pages') &&
-        !$route.path.includes('components/ui/') &&
-        !$route.path.includes('components/klb/') &&
-        !$route.path.includes('components/misc/')
-      "
-      class="relative w-full flex-grow bg-white dark:bg-fv-neutral-900 rounded doc-contained my-4"
-    >
+
+    <div class="flex-1 flex flex-col relative">
       <RouterView v-slot="{ Component }">
         <Suspense timeout="0">
           <template #default><component :is="Component" /></template>
@@ -174,18 +212,7 @@ useSeo(
           /></template>
         </Suspense>
       </RouterView>
-    </main>
-    <RouterView v-else v-slot="{ Component }">
-      <Suspense timeout="0">
-        <template #default><component :is="Component" /></template>
-        <template #fallback
-          ><FyLoader
-            id="app-suspender"
-            :force="true"
-            :show-loading-text="false"
-        /></template>
-      </Suspense>
-    </RouterView>
+    </div>
     <footer
       class="flex items-center justify-center py-2 bg-white dark:bg-fv-neutral-900"
     >
@@ -196,9 +223,7 @@ useSeo(
             >Florian Gasquez</a
           ></b
         >
-        - Powered by vue/vite/fyvue &amp; tailwindcss.<br />
-        <RouterLink to="/pages/about">About fyvue</RouterLink>
-        <small> (test KlbPage component)</small>
+        - Powered by vue/vite/fyvue &amp; tailwindcss.
       </div>
     </footer>
   </div>

@@ -1,6 +1,12 @@
+<script setup></script>
 <template>
-  <div class="fv-typo">
-    <h1>Stylized fyvue</h1>
-    <p>Doc soon...</p>
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="helpers-styling"
+    :breadcrumbBase="$route.meta.breadcrumb ? $route.meta.breadcrumb : []"
+  />
+  <div class="fv-typo doc-contained margins flex-1">
+    <h2>Stylized fyvue</h2>
   </div>
 </template>

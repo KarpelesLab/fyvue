@@ -5,10 +5,10 @@ const translate = useTranslation();
 useSeo(ref({ title: 'Contact - Fyvue' }));
 </script>
 <template>
-  <div>
-    <h1>Contact</h1>
-    <br />
-    <div>
+  <div class="doc-contained flex-1 fv-typo mt-4">
+    <FyBreadcrumb :nav="$route.meta.breadcrumb" />
+    <div class="card-container card-defaults mt-4">
+      <h1 class="font-bold">Contact</h1>
       <KlbSupport to="@support" />
     </div>
   </div>

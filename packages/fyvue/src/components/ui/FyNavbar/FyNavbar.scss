@@ -9,6 +9,10 @@
     opacity: 0;
   }
 
+  .btn {
+    @apply whitespace-nowrap;
+  }
+
   @apply bg-white border-fv-neutral-200 px-2 md:px-4 py-2.5 dark:bg-fv-neutral-900;
 
   .nav-container {
@@ -32,7 +36,7 @@
       }
     }
     .light-dark {
-      @apply p-1.5 rounded-full;
+      @apply p-1.5 mr-2 md:mr-0 rounded-full;
       svg {
         @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
       }

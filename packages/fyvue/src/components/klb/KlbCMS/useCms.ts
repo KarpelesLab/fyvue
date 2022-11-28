@@ -61,8 +61,7 @@ export function useCMS() {
         return;
       });
       if (_data && _data.result == 'success') {
-        if (blogName)
-          blogName.value = _data.data.content_cms.Name + ' - ' + siteName;
+        if (blogName) blogName.value = _data.data.content_cms.Name;
         if (breadcrumb && blogName)
           breadcrumb.value = [
             ...breadcrumbBase,

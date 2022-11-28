@@ -1,11 +1,13 @@
+<script setup></script>
 <template>
-  <div class="fv-typo">
-    <h1>EventBus</h1>
-    <p>
-      Shortcut to
-      <a href="https://github.com/developit/mitt" target="_blank">mitt</a>
-      (event emitter / pubsub)
-    </p>
+  <KlbPage
+    pagesAlias="ctcm-dwt7xu-mmez-eh3f-xmg2-pqrzarfa"
+    :showFooter="false"
+    forceSlug="helpers-eventBus"
+    :breadcrumbBase="$route.meta.breadcrumb ? $route.meta.breadcrumb : []"
+  />
+  <div class="fv-typo doc-contained margins flex-1">
+    <h2>Usage</h2>
     <!-- prettier-ignore --><FvHL><pre>// composition API
 import { useEventBus } from "@karpeleslab/fyvue"
 const eventBus = useEventBus();

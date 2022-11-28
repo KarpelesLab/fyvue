@@ -141,7 +141,7 @@ button[type=submit] {
   @apply my-4 mx-auto w-1/3 h-1 bg-fv-neutral-100 rounded border-0 dark:bg-fv-neutral-700;
 }
 .fv-typo.margins p {
-  @apply mt-2 mb-4;
+  @apply mt-3 mb-2;
 }
 .fv-typo table {
   @apply align-middle inline-block min-w-full max-w-full shadow overflow-hidden overflow-x-auto sm:rounded-lg;
@@ -568,6 +568,9 @@ button[type=submit] {
 .fy-navbar .fade-leave-to {
   opacity: 0;
 }
+.fy-navbar .btn {
+  @apply whitespace-nowrap;
+}
 .fy-navbar .nav-container {
   @apply flex flex-wrap justify-between items-center mx-auto max-w-screen-xl;
 }
@@ -590,7 +593,7 @@ button[type=submit] {
   @apply w-6 h-6;
 }
 .fy-navbar .nav-actions .light-dark {
-  @apply p-1.5 rounded-full;
+  @apply p-1.5 mr-2 md:mr-0 rounded-full;
 }
 .fy-navbar .nav-actions .light-dark svg {
   @apply w-5 h-5 text-fv-neutral-500 dark:text-fv-neutral-400;
@@ -928,6 +931,9 @@ button[type=submit] {
 }
 .klb-blog main {
   @apply flex-1;
+}
+.klb-blog .m-h1 {
+  @apply font-bold text-2xl px-5 pt-1 pb-1.5 mb-2 text-fv-neutral-900 dark:text-fv-neutral-50  rounded-lg bg-fv-neutral-50 dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
 }
 .klb-blog aside {
   @apply grow md:grow-0 w-full md:w-96;
