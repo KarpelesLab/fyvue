@@ -1,21 +1,26 @@
 import { fileURLToPath, URL } from 'url';
-
+//import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { SchemaOrg } from '@vueuse/schema-org-vite';
+import Vue from 'unplugin-vue/vite';
 
 const fyvueRoot = '../fyvue/src';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue({
+    Vue({
       template: {
-        ssr: true,
         compilerOptions: {},
         transformAssetUrls: {
           img: ['src'],
         },
       },
+    }),
+    SchemaOrg({
+      mock: false,
+      full: false,
+      dts: true,
     }),
   ],
   resolve: {

@@ -59,7 +59,7 @@ useSeo(
       :showCart="false"
       cartPath="/components/klb/KlbOrder"
       :links="[
-        //{ to: '/', name: 'Getting Started' },
+        { to: '/pages/about', name: 'test' },
         { to: '/blog', name: 'Blog' },
         {
           to: '#',

@@ -19,7 +19,7 @@
     ],
     "types": [
       "vite/client",
-      "../fyvue/typings/components"
+      "../fyvue/src/dts/components"
     ],
     "paths": {
       "@/*": [

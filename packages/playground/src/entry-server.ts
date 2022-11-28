@@ -2,7 +2,6 @@ import { helpersSSR } from '@karpeleslab/fyvue';
 import { createApp } from './main';
 import { routes } from './routes';
 
-
 export async function render(cb) {
   await helpersSSR.handleSSR(createApp, cb, {});
 }
