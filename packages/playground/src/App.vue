@@ -45,6 +45,7 @@ useSeo(
     title: computed(() =>
       computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
     ),
+    searchAction: '/search/{search_term_string}',
   }),
   true
 );
