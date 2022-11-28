@@ -2,14 +2,17 @@
 import { ref, computed, defineAsyncComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import Error404View from '@/views/Error404View.vue';
+import ComponentIndex from '@/componentIndex';
 
 const route = useRoute();
-const innerComponent = ref();
+
+const allowedCompos = import.meta.glob('./**/*.vue');
+
 const getInnerComponent = computed(() => {
-  const src = `/src/views/components/${route.meta.category}/${route.params.slug}View.vue`;
+  const src = `./${route.meta.category}/${route.params.slug}View.vue`;
   console.log(src);
   const comp = defineAsyncComponent({
-    loader: () => import(src),
+    loader: () => allowedCompos[src](),
     errorComponent: Error404View,
     timeout: 3000,
   });
