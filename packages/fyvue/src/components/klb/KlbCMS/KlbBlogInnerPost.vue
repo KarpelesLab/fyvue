@@ -19,12 +19,14 @@ withDefaults(
     breadcrumbBase?: FyVueBreadcrumb[];
     cms: KlbCms;
     showFooter?: boolean;
+    isPage?: boolean;
   }>(),
   {
     single: true,
     basePath: '/blog',
     breadcrumbBase: () => [],
     showFooter: true,
+    isPage: false,
   }
 );
 </script>
@@ -107,7 +109,10 @@ withDefaults(
       </div>
 
       <footer class="entry-footer" v-if="showFooter">
-        <span class="comments" v-if="post.Comments && cms.Type == 'article'">
+        <span
+          class="comments"
+          v-if="post.Comments && cms.Type == 'article' && !isPage"
+        >
           <ChatBubbleBottomCenterIcon />
           {{
             $t('klb_blog_comment_count', { count: post.Comments.Comment_Count })

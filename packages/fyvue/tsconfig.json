@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
-    //"skipLibCheck": true,
-    //"jsx": "preserve",
-    "outDir": "dist",
     "target": "esnext",
     "module": "esnext",
-    "baseUrl": "packages/fyvue/",
-    "sourceMap": false,
     "moduleResolution": "node",
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "outDir": "dist",
+    "baseUrl": "packages/fyvue/",
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": false,
-    "resolveJsonModule": true,
+    "lib": ["esnext", "dom"],
     "allowSyntheticDefaultImports": true,
-    "types": ["vite/client"],
-    "esModuleInterop": true,
+    "types": ["vite/client", "@types/node"],
     "removeComments": true,
     "noImplicitAny": false,
-    "declaration": true,
     "paths": {
       //"@karpeleslab/fyvue/*": [
       //  "./*"
@@ -28,9 +29,10 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "typings/env.d.ts",
-    "typings/components.d.ts",
-    "typings/global.d.ts",
+    "src/dts/*.d.ts",
     "../../node_modules/vue-router/dist/vue-router.d.ts"
   ],
+  "exclude": [
+    "node_modules",
+  ]
 }

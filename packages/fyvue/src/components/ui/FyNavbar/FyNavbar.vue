@@ -26,7 +26,7 @@ const logout = async () => {
 
 withDefaults(
   defineProps<{
-    title: string;
+    title?: string;
     showTitle?: boolean;
     darkLight?: boolean;
     links: NavLink[];

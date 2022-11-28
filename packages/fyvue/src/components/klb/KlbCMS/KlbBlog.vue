@@ -22,7 +22,7 @@ import type {
   KlbAPIContentCmsSearch,
   KlbClassifyTag,
 } from '../../../dts/klb';
-import { SchemaOrgArticle, SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
+import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 
 const props = withDefaults(
   defineProps<{
@@ -184,6 +184,8 @@ const checkRoutePage = async (page: number = 1) => {
   await checkRoute(route.params.slug.toString(), page);
 };
 
+await checkRoute(route.params.slug.toString());
+
 onMounted(() => {
   eventBus.on('cmsPagingGoToPage', checkRoutePage);
 
@@ -200,7 +202,7 @@ onUnmounted(() => {
     slugWatcher.value();
   }
 });
-await checkRoute(route.params.slug.toString());
+
 useSeo(seo);
 </script>
 <template>

@@ -1,11 +1,12 @@
-import vue from '@vitejs/plugin-vue';
+import Vue from 'unplugin-vue/rollup';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
-//import typescript from '@rollup/plugin-typescript';
 import scss from 'rollup-plugin-scss';
 import copy from 'rollup-plugin-copy';
 import cleanup from 'rollup-plugin-cleanup';
+import esbuild from 'rollup-plugin-esbuild';
 import typescript from 'rollup-plugin-typescript2';
+import dts from 'rollup-plugin-dts';
 
 const pkg = require('./package.json');
 const name = pkg.name;
@@ -32,36 +33,51 @@ export default [
       scss({
         output: 'dist/dist/fyvue.scss',
         sass: require('sass'),
+        verbose: false,
       }),
     ],
+  },
+  {
+    input: './src/index.ts',
+    output: [{ file: 'dist/dist/index.d.ts', format: 'es' }],
+    plugins: [dts()],
   },
   {
     input: 'src/index.ts',
     output: [
       {
-        inlineDynamicImports: true,
+        //inlineDynamicImports: true,
         format: 'cjs',
-        sourcemap: true,
+        //sourcemap: true,
         file: 'dist/dist/fyvue.js',
         name: 'fyvue',
-        globals: globals,
-        banner: banner,
+        //globals: globals,
+        //banner: banner,
       },
       {
-        inlineDynamicImports: true,
+        //inlineDynamicImports: true,
         format: 'es',
-        sourcemap: true,
+        //sourcemap: true,
         file: 'dist/dist/fyvue.mjs',
-        globals: globals,
-        banner: banner,
+        //globals: globals,
+        //banner: banner,
       },
     ],
     plugins: [
-      resolve(),
       peerDepsExternal(),
-      typescript({
-        tsconfig: 'tsconfig.json',
+      Vue({
+        /*
+        ssr: true,
+        isProduction: true,
+        template: {
+          ssr: true,
+          isProd: true,
+        },*/
       }),
+      esbuild({ tsconfig: 'tsconfig.json' }),
+      /*typescript({
+        tsconfig: 'tsconfig.json',
+      }),*/
       copy({
         targets: [
           {
@@ -83,15 +99,15 @@ export default [
           },
           { src: 'README.md', dest: 'dist/', rename: 'README.md' },
           {
-            src: 'typings/components.d.ts',
+            src: 'src/dts/components.d.ts',
             dest: 'dist/dist/',
             transform: (contents, filename) => {
               let _contents = contents
                 .toString()
-                .replaceAll('../src', '@karpeleslab/fyvue');
+                .replaceAll('../index', '@karpeleslab/fyvue');
               _contents = _contents.replaceAll(
-                '@karpeleslab/fyvue/utils/helpers',
-                '@karpeleslab/fyvue/dist/utils/helpers'
+                '../utils/helpers',
+                '@karpeleslab/fyvue'
               );
 
               return _contents;
@@ -99,14 +115,9 @@ export default [
           },
         ],
       }),
-      vue({
-      ssr: true,
-      isProduction: true,
-      template: {
-        ssr: true,
-        isProd: true,
-      }}),
+
       cleanup(),
+      resolve(),
     ],
   },
 ];

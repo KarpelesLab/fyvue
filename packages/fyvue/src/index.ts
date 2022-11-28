@@ -88,6 +88,7 @@ const helpers = {
   formatDatetime,
   formatTimeago,
   formatKlbRecurringPaymentCycle,
+  eventBus,
 };
 const helpersSSR = {
   setupClient,

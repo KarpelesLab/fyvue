@@ -79,7 +79,6 @@ const getArticle = async (slug: string) => {
 await getArticle(
   props.forceSlug ? props.forceSlug : route.params.slug.toString()
 );
-useSeo(seo);
 
 onMounted(() => {
   if (!props.forceSlug) {
@@ -94,6 +93,7 @@ onMounted(() => {
 onUnmounted(() => {
   if (slugWatcher.value) slugWatcher.value();
 });
+useSeo(seo);
 </script>
 <template>
   <div class="fv-relative klb-blog">
@@ -105,6 +105,7 @@ onUnmounted(() => {
       :single="true"
       :showFooter="showFooter"
       :breadcrumbBase="breadcrumbBase"
+      :isPage="true"
     />
     <div class="fv-typo" v-if="is404">
       <Fy404View />

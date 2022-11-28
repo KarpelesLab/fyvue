@@ -9,8 +9,8 @@
         "lint:fyvue": "yarn workspace @karpeleslab/fyvue lint:check --fix",
         "play": "yarn workspace playground dev:live",
         "build:play": "yarn workspace playground build",
+        "build:play:client": "yarn workspace playground build:client",
+        "build:play:server": "yarn workspace playground build:server:noExternal",
         "lint:play": "yarn workspace playground lint:check --fix"
-    },
-    "packageManager": "yarn@3.2.4",
-    "devDependencies": {}
+    }
 }

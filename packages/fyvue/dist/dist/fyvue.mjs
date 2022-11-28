@@ -1,8 +1,3 @@
-/*!
-  * @karpeleslab/fyvue v0.2.0-rc.16
-  * (c) 2022 Florian Gasquez <m@fy.to>
-  * @license MIT
-  */
 import i18next from 'i18next';
 import { getCurrentInstance, openBlock, createElementBlock, createElementVNode, defineComponent, h, ref, onMounted, onUnmounted, createBlock, unref, withCtx, createVNode, renderSlot, createTextVNode, toDisplayString, resolveDynamicComponent, normalizeClass, createCommentVNode, computed, resolveComponent, Fragment, renderList, normalizeStyle, toRef, withDirectives, isRef, vModelCheckbox, vModelDynamic, vModelText, vModelSelect, watch, Transition, reactive, withModifiers, withAsyncContext } from 'vue';
 import { TransitionRoot, Dialog, DialogPanel, DialogTitle, DialogOverlay, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
@@ -19,213 +14,206 @@ import { required, email, sameAs } from '@vuelidate/validators';
 function mitt(n){return {all:n=n||new Map,on:function(t,e){var i=n.get(t);i?i.push(e):n.set(t,[e]);},off:function(t,e){var i=n.get(t);i&&(e?i.splice(i.indexOf(e)>>>0,1):n.set(t,[]));},emit:function(t,e){var i=n.get(t);i&&i.slice().map(function(n){n(e);}),(i=n.get("*"))&&i.slice().map(function(n){n(t,e);});}}}
 
 const useHistory = defineStore({
-    id: 'historyStore',
-    state: () => ({
-        _router: null,
-        status: 200,
-        redirect: undefined,
-    }),
-    getters: {
-        currentRoute: (state) => state._router.currentRoute,
+  id: "historyStore",
+  state: () => ({
+    _router: null,
+    status: 200,
+    redirect: void 0
+  }),
+  getters: {
+    currentRoute: (state) => state._router.currentRoute
+  },
+  actions: {
+    setStatus(status) {
+      this.status = status;
     },
-    actions: {
-        setStatus(status) {
-            this.status = status;
-        },
-        _setRouter(_router) {
-            this._router = _router;
-        },
-        push(path, status = 302) {
-            this.status = status;
-            if (status != 302)
-                this.redirect = path;
-            return this._router?.push(path);
-        },
-        replace(path, status = 302) {
-            this.status = status;
-            if (status != 302)
-                this.redirect = path;
-            return this._router?.replace(path);
-        },
-        go(delta) {
-            this._router?.go(delta);
-        },
-        back() {
-            this._router?.go(-1);
-        },
-        forward() {
-            this._router?.go(1);
-        },
+    _setRouter(_router) {
+      this._router = _router;
     },
+    push(path, status = 302) {
+      this.status = status;
+      if (status != 302)
+        this.redirect = path;
+      return this._router?.push(path);
+    },
+    replace(path, status = 302) {
+      this.status = status;
+      if (status != 302)
+        this.redirect = path;
+      return this._router?.replace(path);
+    },
+    go(delta) {
+      this._router?.go(delta);
+    },
+    back() {
+      this._router?.go(-1);
+    },
+    forward() {
+      this._router?.go(1);
+    }
+  }
 });
 const isSSRRendered = () => {
-    const state = getInitialState();
-    return !!(state && state.isSSRRendered == true);
+  const state = getInitialState();
+  return !!(state && state.isSSRRendered == true);
 };
 const setupClient = (router, pinia) => {
-    const initialState = getInitialState();
-    if (isSSRRendered()) {
-        if (initialState && initialState.piniaState) {
-            pinia.state.value = JSON.parse(initialState.piniaState);
-        }
+  const initialState = getInitialState();
+  if (isSSRRendered()) {
+    if (initialState && initialState.piniaState) {
+      pinia.state.value = JSON.parse(initialState.piniaState);
     }
-    useHistory(pinia)._setRouter(router);
+  }
+  useHistory(pinia)._setRouter(router);
 };
 async function handleSSR(createApp, cb, options = { url: null }) {
-    const { app, router, head, pinia } = await createApp(true);
-    let url;
-    if (options.url)
-        url = options.url;
-    else {
-        url = `${getPath()}`;
+  const { app, router, head, pinia } = await createApp(true);
+  let url;
+  if (options.url)
+    url = options.url;
+  else {
+    url = `${getPath()}`;
+  }
+  await router.push(url);
+  await router.isReady();
+  const result = {
+    uuid: getUuid(),
+    initial: {
+      isSSRRendered: true,
+      piniaState: null
     }
-    await router.push(url);
-    await router.isReady();
-    const result = {
-        uuid: getUuid(),
-        initial: {
-            isSSRRendered: true,
-            piniaState: null,
-        },
-    };
-    const historyStore = useHistory(pinia);
-    useHistory(pinia)._setRouter(router);
-    if (url !== historyStore.currentRoute.fullPath) {
-        result.redirect = router.currentRoute.value.fullPath;
-        result.statusCode = 307;
-        return cb(result);
-    }
-    try {
-        const html = await renderToString(app, {});
-        const { headTags, htmlAttrs, bodyAttrs, bodyTags } = await renderHeadToString(head);
-        result.meta = headTags;
-        result.bodyAttributes = bodyAttrs;
-        result.htmlAttributes = htmlAttrs;
-        result.bodyTags = bodyTags;
-        result.app = html;
-        if (historyStore.status != 200) {
-            if ([301, 302, 303, 307].includes(historyStore.status)) {
-                if (historyStore.redirect) {
-                    result.statusCode = historyStore.status;
-                    result.redirect = historyStore.redirect;
-                }
-            }
-            else {
-                result.statusCode = historyStore.status;
-            }
+  };
+  const historyStore = useHistory(pinia);
+  useHistory(pinia)._setRouter(router);
+  if (url !== historyStore.currentRoute.fullPath) {
+    result.redirect = router.currentRoute.value.fullPath;
+    result.statusCode = 307;
+    return cb(result);
+  }
+  try {
+    const html = await renderToString(app, {});
+    const { headTags, htmlAttrs, bodyAttrs, bodyTags } = await renderHeadToString(head);
+    result.meta = headTags;
+    result.bodyAttributes = bodyAttrs;
+    result.htmlAttributes = htmlAttrs;
+    result.bodyTags = bodyTags;
+    result.app = html;
+    if (historyStore.status != 200) {
+      if ([301, 302, 303, 307].includes(historyStore.status)) {
+        if (historyStore.redirect) {
+          result.statusCode = historyStore.status;
+          result.redirect = historyStore.redirect;
         }
-        useHistory(pinia)._setRouter(null);
-        result.initial.piniaState = JSON.stringify(pinia.state.value);
-        return cb(result);
+      } else {
+        result.statusCode = historyStore.status;
+      }
     }
-    catch (e) {
-        console.log('------Fyvue SSR Error------');
-        if (e) {
-            if (typeof e === 'string') {
-                console.log(e);
-            }
-            else if (e instanceof Error) {
-                console.log(e.message);
-                console.log('------------');
-                console.log(e.stack);
-            }
-        }
-        console.log('------End Fyvue SSR Error------');
-        return cb(result);
+    useHistory(pinia)._setRouter(null);
+    result.initial.piniaState = JSON.stringify(pinia.state.value);
+    return cb(result);
+  } catch (e) {
+    console.log("------Fyvue SSR Error------");
+    if (e) {
+      if (typeof e === "string") {
+        console.log(e);
+      } else if (e instanceof Error) {
+        console.log(e.message);
+        console.log("------------");
+        console.log(e.stack);
+      }
     }
+    console.log("------End Fyvue SSR Error------");
+    return cb(result);
+  }
 }
 
 const useRestState = defineStore({
-    id: 'restState',
-    state: () => ({
-        results: {},
-    }),
-    actions: {
-        addResult(key, result) {
-            this.results[key] = result;
-        },
-        delResult(key) {
-            delete this.results[key];
-        },
-        getByHash(key) {
-            return this.results[key];
-        },
+  id: "restState",
+  state: () => ({
+    results: {}
+  }),
+  actions: {
+    addResult(key, result) {
+      this.results[key] = result;
     },
+    delResult(key) {
+      delete this.results[key];
+    },
+    getByHash(key) {
+      return this.results[key];
+    }
+  }
 });
 const stringHashcode = (str) => {
-    let hash = 0, i, chr;
-    if (str.length === 0)
-        return hash;
-    for (i = 0; i < str.length; i++) {
-        chr = str.charCodeAt(i);
-        hash = (hash << 5) - hash + chr;
-        hash |= 0;
-    }
+  let hash = 0, i, chr;
+  if (str.length === 0)
     return hash;
+  for (i = 0; i < str.length; i++) {
+    chr = str.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0;
+  }
+  return hash;
 };
-function rest(url, method = 'GET', params = {}, ctx = {}) {
-    const requestHash = stringHashcode(url + method + JSON.stringify(params));
-    const restState = useRestState();
-    if (isSSRRendered() && restState.results[requestHash]) {
-        const result = { ...restState.getByHash(requestHash) };
-        restState.delResult(requestHash);
-        return new Promise((resolve, reject) => {
-            if (result.fvReject) {
-                delete result.fvReject;
-                reject(result);
-            }
-            else
-                resolve(result);
-        });
-    }
+function rest(url, method = "GET", params = {}, ctx = {}) {
+  const requestHash = stringHashcode(url + method + JSON.stringify(params));
+  const restState = useRestState();
+  if (isSSRRendered() && restState.results[requestHash]) {
+    const result = { ...restState.getByHash(requestHash) };
+    restState.delResult(requestHash);
     return new Promise((resolve, reject) => {
-        rest$1(url, method, params, ctx)
-            .then((restResult) => {
-            if (getMode() == 'ssr')
-                restState.addResult(requestHash, restResult);
-            resolve(restResult);
-        })
-            .catch((err) => {
-            if (getMode() == 'ssr') {
-                err.fvReject = true;
-                restState.addResult(requestHash, err);
-            }
-            reject(err);
-        });
+      if (result.fvReject) {
+        delete result.fvReject;
+        reject(result);
+      } else
+        resolve(result);
     });
+  }
+  return new Promise((resolve, reject) => {
+    rest$1(url, method, params, ctx).then((restResult) => {
+      if (getMode() == "ssr")
+        restState.addResult(requestHash, restResult);
+      resolve(restResult);
+    }).catch((err) => {
+      if (getMode() == "ssr") {
+        err.fvReject = true;
+        restState.addResult(requestHash, err);
+      }
+      reject(err);
+    });
+  });
 }
 
 const countries = {
-    countries: new Array(),
-    byUuid: {},
+  countries: new Array(),
+  byUuid: {}
 };
 const eventBus = mitt();
 const useCountries = () => {
-    const vueInstance = getCurrentInstance();
-    return vueInstance.appContext.config.globalProperties.$countries;
+  const vueInstance = getCurrentInstance();
+  return vueInstance.appContext.config.globalProperties.$countries;
 };
 const countriesPromise = () => {
-    return new Promise((resolve) => {
-        rest('Country', 'GET')
-            .then((_countries) => {
-            if (_countries && _countries.result == 'success') {
-                countries.countries = _countries.data;
-                _countries.data.forEach((_country) => {
-                    countries.byUuid[_country.Country__] = _country;
-                });
-            }
-            resolve(true);
-        })
-            .catch(() => { });
+  return new Promise((resolve) => {
+    rest("Country", "GET").then((_countries) => {
+      if (_countries && _countries.result == "success") {
+        countries.countries = _countries.data;
+        _countries.data.forEach((_country) => {
+          countries.byUuid[_country.Country__] = _country;
+        });
+      }
+      resolve(true);
+    }).catch(() => {
     });
+  });
 };
 const useEventBus = () => {
-    const vueInstance = getCurrentInstance();
-    return vueInstance.appContext.config.globalProperties.$eventBus;
+  const vueInstance = getCurrentInstance();
+  return vueInstance.appContext.config.globalProperties.$eventBus;
 };
 const useTranslation = () => {
-    const vueInstance = getCurrentInstance();
-    return vueInstance.appContext.config.globalProperties.$t;
+  const vueInstance = getCurrentInstance();
+  return vueInstance.appContext.config.globalProperties.$t;
 };
 
 function render$g(_ctx, _cache) {
@@ -469,24 +457,16 @@ function render(_ctx, _cache) {
   ]))
 }
 
-var _export_sfc = (sfc, props) => {
-  const target = sfc.__vccOpts || sfc;
-  for (const [key, val] of props) {
-    target[key] = val;
-  }
-  return target;
-};
-
 const _hoisted_1$r = { class: "parent" };
 const _hoisted_2$q = { class: "modal-container" };
-const _sfc_main$s = /* @__PURE__ */ defineComponent({
+var _sfc_main$s = /* @__PURE__ */ defineComponent({
   __name: "FyModal",
   props: {
-    id: null,
-    title: null,
-    onOpen: null,
-    onClose: null,
-    closeIcon: { default: () => h(render) }
+    id: { type: String, required: true },
+    title: { type: String, required: false },
+    onOpen: { type: Function, required: false },
+    onClose: { type: Function, required: false },
+    closeIcon: { type: Object, required: false, default: () => h(render) }
   },
   setup(__props) {
     const props = __props;
@@ -572,7 +552,16 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyModal = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "FyModal.vue"]]);
+
+var _export_sfc = (sfc, props) => {
+  const target = sfc.__vccOpts || sfc;
+  for (const [key, val] of props) {
+    target[key] = val;
+  }
+  return target;
+};
+
+var FyModal = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyModal/FyModal.vue"]]);
 
 const _hoisted_1$q = { class: "fy-circle-percent" };
 const _hoisted_2$p = {
@@ -585,12 +574,12 @@ const _hoisted_3$o = /* @__PURE__ */ createElementVNode("path", {
 }, null, -1);
 const _hoisted_4$l = ["stroke-dasharray", "stroke"];
 const _hoisted_5$j = ["x", "y"];
-const _sfc_main$r = /* @__PURE__ */ defineComponent({
+var _sfc_main$r = /* @__PURE__ */ defineComponent({
   __name: "FyCirclePercent",
   props: {
-    percent: { default: 100 },
-    textXY: { default: () => [18, 20.85] },
-    color: { default: "blue" }
+    percent: { type: Number, required: true, default: 100 },
+    textXY: { type: Array, required: false, default: () => [18, 20.85] },
+    color: { type: String, required: false, default: "blue" }
   },
   setup(__props) {
     return (_ctx, _cache) => {
@@ -613,7 +602,8 @@ const _sfc_main$r = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyCirclePercent = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__file", "FyCirclePercent.vue"]]);
+
+var FyCirclePercent = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyCirclePercent/FyCirclePercent.vue"]]);
 
 const _hoisted_1$p = { class: "parent" };
 const _hoisted_2$o = {
@@ -627,7 +617,7 @@ const _hoisted_4$k = {
 };
 const _hoisted_5$i = /* @__PURE__ */ createElementVNode("br", null, null, -1);
 const _hoisted_6$i = { class: "btn-box" };
-const _sfc_main$q = /* @__PURE__ */ defineComponent({
+var _sfc_main$q = /* @__PURE__ */ defineComponent({
   __name: "FyConfirm",
   setup(__props) {
     const eventBus = useEventBus();
@@ -704,7 +694,8 @@ const _sfc_main$q = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyConfirm = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__file", "FyConfirm.vue"]]);
+
+var FyConfirm = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyConfirm/FyConfirm.vue"]]);
 
 const _hoisted_1$o = {
   class: "fy-breadcrumb",
@@ -712,11 +703,11 @@ const _hoisted_1$o = {
 };
 const _hoisted_2$n = ["aria-current"];
 const _hoisted_3$m = { key: 2 };
-const _sfc_main$p = /* @__PURE__ */ defineComponent({
+var _sfc_main$p = /* @__PURE__ */ defineComponent({
   __name: "FyBreadcrumb",
   props: {
-    nav: { default: () => [] },
-    maxLength: { default: 32 }
+    nav: { type: Array, required: true, default: () => [] },
+    maxLength: { type: Number, required: false, default: 32 }
   },
   setup(__props) {
     const props = __props;
@@ -766,16 +757,17 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__file", "FyBreadcrumb.vue"]]);
+
+var FyBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyBreadcrumb/FyBreadcrumb.vue"]]);
 
 const _hoisted_1$n = { class: "fy-step-bar" };
 const _hoisted_2$m = { class: "bar-bg" };
 const _hoisted_3$l = { class: "label" };
-const _sfc_main$o = /* @__PURE__ */ defineComponent({
+var _sfc_main$o = /* @__PURE__ */ defineComponent({
   __name: "FySteps",
   props: {
-    steps: { default: () => [] },
-    currentStep: { default: 1 }
+    steps: { type: Array, required: false, default: () => [] },
+    currentStep: { type: Number, required: false, default: 1 }
   },
   setup(__props) {
     const props = __props;
@@ -813,7 +805,8 @@ const _sfc_main$o = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FySteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__file", "FySteps.vue"]]);
+
+var FySteps = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FySteps/FySteps.vue"]]);
 
 const _hoisted_1$m = {
   key: 0,
@@ -824,12 +817,12 @@ const _hoisted_3$k = { class: "div" };
 const _hoisted_4$j = { class: "div-cell" };
 const _hoisted_5$h = { key: 0 };
 const _hoisted_6$h = { key: 1 };
-const _sfc_main$n = /* @__PURE__ */ defineComponent({
+var _sfc_main$n = /* @__PURE__ */ defineComponent({
   __name: "FyDatatable",
   props: {
-    showHeaders: { type: Boolean, default: true },
-    headers: null,
-    data: { default: () => [] }
+    showHeaders: { type: Boolean, required: false, default: true },
+    headers: { type: null, required: true },
+    data: { type: Array, required: false, default: () => [] }
   },
   setup(__props) {
     const bgColor = (i) => {
@@ -874,7 +867,8 @@ const _sfc_main$n = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyDatatable = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__file", "FyDatatable.vue"]]);
+
+var FyDatatable = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyDatatable/FyDatatable.vue"]]);
 
 const _hoisted_1$l = {
   key: 0,
@@ -886,12 +880,12 @@ const _hoisted_4$i = { class: "table-scroll" };
 const _hoisted_5$g = { key: 0 };
 const _hoisted_6$g = { key: 0 };
 const _hoisted_7$e = { key: 1 };
-const _sfc_main$m = /* @__PURE__ */ defineComponent({
+var _sfc_main$m = /* @__PURE__ */ defineComponent({
   __name: "FyTable",
   props: {
-    showHeaders: { type: Boolean, default: true },
-    headers: null,
-    data: { default: () => [] }
+    showHeaders: { type: Boolean, required: false, default: true },
+    headers: { type: null, required: true },
+    data: { type: Array, required: false, default: () => [] }
   },
   setup(__props) {
     return (_ctx, _cache) => {
@@ -936,7 +930,8 @@ const _sfc_main$m = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyTable = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "FyTable.vue"]]);
+
+var FyTable = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyTable/FyTable.vue"]]);
 
 const _hoisted_1$k = /* @__PURE__ */ createElementVNode("path", {
   d: "M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z",
@@ -950,11 +945,11 @@ const _hoisted_3$i = [
   _hoisted_1$k,
   _hoisted_2$j
 ];
-const _sfc_main$l = /* @__PURE__ */ defineComponent({
+var _sfc_main$l = /* @__PURE__ */ defineComponent({
   __name: "DefaultLoader",
   props: {
-    size: { default: "16" },
-    showLoadingText: { type: Boolean, default: true }
+    size: { type: String, required: false, default: "16" },
+    showLoadingText: { type: Boolean, required: true, default: true }
   },
   setup(__props) {
     return (_ctx, _cache) => {
@@ -974,20 +969,21 @@ const _sfc_main$l = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var DefaultLoader = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "DefaultLoader.vue"]]);
+
+var DefaultLoader = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyLoader/DefaultLoader.vue"]]);
 
 const _hoisted_1$j = {
   key: 0,
   class: "fy-loader"
 };
-const _sfc_main$k = /* @__PURE__ */ defineComponent({
+var _sfc_main$k = /* @__PURE__ */ defineComponent({
   __name: "FyLoader",
   props: {
-    id: null,
-    loader: { default: () => DefaultLoader },
-    showLoadingText: { type: Boolean, default: true },
-    size: { default: "16" },
-    force: { type: Boolean, default: false }
+    id: { type: String, required: false },
+    loader: { type: Object, required: false, default: () => DefaultLoader },
+    showLoadingText: { type: Boolean, required: false, default: true },
+    size: { type: String, required: false, default: "16" },
+    force: { type: Boolean, required: false, default: false }
   },
   setup(__props) {
     const props = __props;
@@ -1028,7 +1024,8 @@ const _sfc_main$k = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyLoader = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "FyLoader.vue"]]);
+
+var FyLoader = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyLoader/FyLoader.vue"]]);
 
 const _hoisted_1$i = { class: "input-group" };
 const _hoisted_2$i = ["for"];
@@ -1050,26 +1047,26 @@ const _hoisted_11$9 = {
   key: 3,
   class: "help-text"
 };
-const _sfc_main$j = /* @__PURE__ */ defineComponent({
+var _sfc_main$j = /* @__PURE__ */ defineComponent({
   __name: "FyInput",
   props: {
-    id: null,
-    showLabel: { type: Boolean, default: true },
-    label: null,
-    type: { default: "text" },
-    placeholder: null,
-    autocomplete: null,
-    checkboxTrueValue: { type: [String, Boolean], default: true },
-    checkboxFalseValue: { type: [String, Boolean], default: false },
-    req: { type: Boolean, default: false },
-    linkIcon: null,
-    modelValue: null,
-    checkboxValue: null,
-    options: { default: () => [] },
-    help: null,
-    error: null,
-    errorVuelidate: null,
-    disabled: { type: Boolean, default: false }
+    id: { type: String, required: true },
+    showLabel: { type: Boolean, required: false, default: true },
+    label: { type: String, required: false },
+    type: { type: String, required: false, default: "text" },
+    placeholder: { type: String, required: false },
+    autocomplete: { type: String, required: false },
+    checkboxTrueValue: { type: [String, Boolean], required: false, default: true },
+    checkboxFalseValue: { type: [String, Boolean], required: false, default: false },
+    req: { type: Boolean, required: false, default: false },
+    linkIcon: { type: String, required: false },
+    modelValue: { type: null, required: false },
+    checkboxValue: { type: null, required: false },
+    options: { type: Array, required: false, default: () => [] },
+    help: { type: String, required: false },
+    error: { type: String, required: false },
+    errorVuelidate: { type: Array, required: false },
+    disabled: { type: Boolean, required: false, default: false }
   },
   emits: ["update:modelValue", "update:checkboxValue"],
   setup(__props, { expose, emit }) {
@@ -1200,151 +1197,172 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
+
+var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyInput/FyInput.vue"]]);
 
 const useSeo = (seo, initial = false) => {
-    if (initial) {
-        useSchemaOrg([
-            defineOrganization({
-                name: seo.value.name,
-                logo: seo.value.image,
-            }),
-            defineWebSite({
-                name: seo.value.name,
-                potentialAction: computed(() => {
-                    const _res = [];
-                    if (seo.value.searchAction) {
-                        _res.push(defineSearchAction({ target: seo.value.searchAction }));
-                    }
-                    return _res;
-                }),
-            }),
-            defineWebPage(),
-        ]);
-    }
-    useHead({
-        title: computed(() => seo.value.title),
-        link: computed(() => {
-            const _res = [];
-            if (initial && getMode() == 'ssr') {
-                _res.push({
-                    rel: 'canonical',
-                    href: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
-                });
+  if (initial) {
+    useSchemaOrg([
+      defineOrganization({
+        name: seo.value.name,
+        logo: seo.value.image
+      }),
+      defineWebSite({
+        name: seo.value.name,
+        potentialAction: computed(() => {
+          const _res = [];
+          if (seo.value.searchAction) {
+            _res.push(defineSearchAction({ target: seo.value.searchAction }));
+          }
+          return _res;
+        })
+      }),
+      defineWebPage()
+    ]);
+  }
+  useHead({
+    title: computed(() => seo.value.title),
+    link: computed(() => {
+      const _res = [];
+      if (initial && getMode() == "ssr") {
+        _res.push({
+          rel: "canonical",
+          href: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`
+        });
+      }
+      if (seo.value.prev) {
+        _res.push({
+          rel: "prev",
+          href: seo.value.prev
+        });
+      }
+      if (seo.value.next) {
+        _res.push({
+          rel: "next",
+          href: seo.value.next
+        });
+      }
+      return _res;
+    }),
+    htmlAttrs: computed(() => {
+      if (initial && getMode() == "ssr")
+        return { lang: computed(() => getLocale$1()) };
+      return {};
+    }),
+    bodyAttrs: computed(() => {
+      if (initial)
+        return { itemtype: "http://schema.org/WebPage" };
+      return {};
+    }),
+    meta: computed(() => {
+      const _res = [];
+      if (initial) {
+        if (getMode() == "ssr") {
+          _res.push(
+            {
+              name: "og:locale",
+              content: getLocale$1().replace("-", "_")
+            },
+            {
+              name: "og:url",
+              content: getUrl().full
             }
-            if (seo.value.prev) {
-                _res.push({
-                    rel: 'prev',
-                    href: seo.value.prev,
-                });
-            }
-            if (seo.value.next) {
-                _res.push({
-                    rel: 'next',
-                    href: seo.value.next,
-                });
-            }
-            return _res;
-        }),
-        htmlAttrs: computed(() => {
-            if (initial && getMode() == 'ssr')
-                return { lang: computed(() => getLocale$1()) };
-            return {};
-        }),
-        bodyAttrs: computed(() => {
-            if (initial)
-                return { itemtype: 'http://schema.org/WebPage' };
-            return {};
-        }),
-        meta: computed(() => {
-            const _res = [];
-            if (initial) {
-                if (getMode() == 'ssr') {
-                    _res.push({
-                        name: 'og:locale',
-                        content: getLocale$1().replace('-', '_'),
-                    }, {
-                        name: 'og:url',
-                        content: getUrl().full,
-                    });
-                }
-                _res.push({
-                    name: 'og:type',
-                    content: 'website',
-                }, {
-                    name: 'robots',
-                    content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-                });
-            }
-            if (seo.value.type) {
-                _res.push({
-                    name: 'og:type',
-                    content: seo.value.type,
-                });
-            }
-            if (seo.value.title) {
-                _res.push({
-                    name: 'og:title',
-                    content: seo.value.title,
-                }, {
-                    name: 'twitter:title',
-                    content: seo.value.title,
-                });
-            }
-            if (seo.value.description) {
-                _res.push({
-                    name: 'og:description',
-                    content: seo.value.description,
-                }, {
-                    name: 'twitter:description',
-                    content: seo.value.description,
-                }, {
-                    name: 'og:description',
-                    content: seo.value.description,
-                }, {
-                    name: 'description',
-                    content: seo.value.description,
-                });
-            }
-            if (seo.value.modified) {
-                _res.push({
-                    name: 'article:published_time',
-                    content: seo.value.modified,
-                });
-            }
-            if (seo.value.published) {
-                _res.push({
-                    name: 'article:modified_time',
-                    content: seo.value.published,
-                });
-            }
-            if (seo.value.imageWidth && seo.value.imageHeight) {
-                _res.push({
-                    name: 'og:image:width',
-                    content: seo.value.imageWidth,
-                }, {
-                    name: 'og:image:height',
-                    content: seo.value.imageHeight,
-                });
-            }
-            if (seo.value.imageType) {
-                _res.push({
-                    name: 'og:image:type',
-                    content: seo.value.imageType,
-                });
-            }
-            if (seo.value.image) {
-                _res.push({
-                    name: 'og:image',
-                    content: seo.value.image,
-                }, {
-                    name: 'twitter:image',
-                    content: seo.value.image,
-                });
-            }
-            return _res;
-        }),
-    });
+          );
+        }
+        _res.push(
+          {
+            name: "og:type",
+            content: "website"
+          },
+          {
+            name: "robots",
+            content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          }
+        );
+      }
+      if (seo.value.type) {
+        _res.push({
+          name: "og:type",
+          content: seo.value.type
+        });
+      }
+      if (seo.value.title) {
+        _res.push(
+          {
+            name: "og:title",
+            content: seo.value.title
+          },
+          {
+            name: "twitter:title",
+            content: seo.value.title
+          }
+        );
+      }
+      if (seo.value.description) {
+        _res.push(
+          {
+            name: "og:description",
+            content: seo.value.description
+          },
+          {
+            name: "twitter:description",
+            content: seo.value.description
+          },
+          {
+            name: "og:description",
+            content: seo.value.description
+          },
+          {
+            name: "description",
+            content: seo.value.description
+          }
+        );
+      }
+      if (seo.value.modified) {
+        _res.push({
+          name: "article:published_time",
+          content: seo.value.modified
+        });
+      }
+      if (seo.value.published) {
+        _res.push({
+          name: "article:modified_time",
+          content: seo.value.published
+        });
+      }
+      if (seo.value.imageWidth && seo.value.imageHeight) {
+        _res.push(
+          {
+            name: "og:image:width",
+            content: seo.value.imageWidth
+          },
+          {
+            name: "og:image:height",
+            content: seo.value.imageHeight
+          }
+        );
+      }
+      if (seo.value.imageType) {
+        _res.push({
+          name: "og:image:type",
+          content: seo.value.imageType
+        });
+      }
+      if (seo.value.image) {
+        _res.push(
+          {
+            name: "og:image",
+            content: seo.value.image
+          },
+          {
+            name: "twitter:image",
+            content: seo.value.image
+          }
+        );
+      }
+      return _res;
+    })
+  });
 };
 
 const _hoisted_1$h = {
@@ -1371,11 +1389,11 @@ const _hoisted_9$a = {
 };
 const _hoisted_10$9 = { class: "is-sr" };
 const _hoisted_11$8 = { class: "paging-text" };
-const _sfc_main$i = /* @__PURE__ */ defineComponent({
+var _sfc_main$i = /* @__PURE__ */ defineComponent({
   __name: "FyPaging",
   props: {
-    items: null,
-    id: null
+    items: { type: null, required: true },
+    id: { type: String, required: true }
   },
   setup(__props) {
     const props = __props;
@@ -1508,131 +1526,129 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyPaging = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "FyPaging.vue"]]);
+
+var FyPaging = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyPaging/FyPaging.vue"]]);
 
 function useCart() {
-    return {
-        resetCart: () => {
-            return new Promise((resolve, reject) => {
-                rest('Catalog/Cart/@:reset', 'POST', {})
-                    .then((_resetResult) => {
-                    if (_resetResult && _resetResult.result == 'success') {
-                        resolve(true);
-                    }
-                    else {
-                        resolve(false);
-                    }
-                })
-                    .catch(() => {
-                    reject(false);
-                });
-            });
-        },
-        createOrder(billingLocation) {
-            return rest('Catalog/Cart/@:createOrder', 'POST', {
-                Billing: billingLocation,
-            });
-        },
-        getCart() {
-            return rest('Catalog/Cart/@', 'GET');
-        },
-        delProduct: (productKey) => {
-            return new Promise((resolve, reject) => {
-                rest('Catalog/Cart/@:process', 'POST', {
-                    request: productKey + `=0`,
-                })
-                    .then((_addProductCartResult) => {
-                    if (_addProductCartResult &&
-                        _addProductCartResult.result == 'success') {
-                        resolve(true);
-                    }
-                    else {
-                        resolve(false);
-                    }
-                })
-                    .catch(() => {
-                    reject(false);
-                });
-            });
-        },
-        addProduct: (productUuid, meta) => {
-            return new Promise((resolve, reject) => {
-                rest('Catalog/Cart/@:process', 'POST', {
-                    request: productUuid + meta,
-                })
-                    .then((_addProductCartResult) => {
-                    if (_addProductCartResult &&
-                        _addProductCartResult.result == 'success') {
-                        resolve(_addProductCartResult);
-                    }
-                    else {
-                        resolve(_addProductCartResult);
-                    }
-                })
-                    .catch((err) => {
-                    reject(err);
-                });
-            });
-        },
-    };
+  return {
+    resetCart: () => {
+      return new Promise((resolve, reject) => {
+        rest("Catalog/Cart/@:reset", "POST", {}).then((_resetResult) => {
+          if (_resetResult && _resetResult.result == "success") {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }).catch(() => {
+          reject(false);
+        });
+      });
+    },
+    createOrder(billingLocation) {
+      return rest("Catalog/Cart/@:createOrder", "POST", {
+        Billing: billingLocation
+      });
+    },
+    getCart() {
+      return rest("Catalog/Cart/@", "GET");
+    },
+    delProduct: (productKey) => {
+      return new Promise((resolve, reject) => {
+        rest("Catalog/Cart/@:process", "POST", {
+          request: productKey + `=0`
+        }).then((_addProductCartResult) => {
+          if (_addProductCartResult && _addProductCartResult.result == "success") {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }).catch(() => {
+          reject(false);
+        });
+      });
+    },
+    addProduct: (productUuid, meta) => {
+      return new Promise((resolve, reject) => {
+        rest("Catalog/Cart/@:process", "POST", {
+          request: productUuid + meta
+        }).then((_addProductCartResult) => {
+          if (_addProductCartResult && _addProductCartResult.result == "success") {
+            resolve(_addProductCartResult);
+          } else {
+            resolve(_addProductCartResult);
+          }
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    }
+  };
 }
 
 const useFVStore = defineStore({
-    id: 'fVStore',
-    state: () => ({
-        user: null,
-        cartCount: 0,
-        cart: null,
-    }),
-    getters: {
-        isAuth: (state) => {
-            return !(state.user === null);
-        },
+  id: "fVStore",
+  state: () => ({
+    user: null,
+    cartCount: 0,
+    cart: null
+  }),
+  getters: {
+    isAuth: (state) => {
+      return !(state.user === null);
+    }
+  },
+  actions: {
+    async refreshCart() {
+      const _cart = await useCart().getCart();
+      if (_cart && _cart.result == "success") {
+        this.cartCount = _cart.data.products.length;
+        this.cart = _cart.data;
+      }
     },
-    actions: {
-        async refreshCart() {
-            const _cart = await useCart().getCart();
-            if (_cart && _cart.result == 'success') {
-                this.cartCount = _cart.data.products.length;
-                this.cart = _cart.data;
-            }
-        },
-        async refreshCartData(_cart) {
-            if (_cart && _cart.result == 'success') {
-                this.cartCount = _cart.data.products.length;
-                this.cart = _cart.data;
-            }
-        },
-        async refreshUser(params = {}) {
-            const apiData = await rest$1('User:get', 'GET', params).catch((err) => { });
-            if (apiData.result == 'success' && apiData.data != null) {
-                this.user = apiData.data;
-            }
-            else {
-                this.user = null;
-            }
-        },
-        async logout() {
-            const apiData = await rest$1('User:logout', 'POST').catch((err) => { });
-            if (apiData.result == 'success') {
-                this.setUser(null);
-            }
-        },
-        setUser(user) {
-            this.user = user;
-        },
+    async refreshCartData(_cart) {
+      if (_cart && _cart.result == "success") {
+        this.cartCount = _cart.data.products.length;
+        this.cart = _cart.data;
+      }
     },
+    async refreshUser(params = {}) {
+      const apiData = await rest$1(
+        "User:get",
+        "GET",
+        params
+      ).catch((err) => {
+      });
+      if (apiData.result == "success" && apiData.data != null) {
+        this.user = apiData.data;
+      } else {
+        this.user = null;
+      }
+    },
+    async logout() {
+      const apiData = await rest$1(
+        "User:logout",
+        "POST"
+      ).catch((err) => {
+      });
+      if (apiData.result == "success") {
+        this.setUser(null);
+      }
+    },
+    setUser(user) {
+      this.user = user;
+    }
+  }
 });
 
 const ClientOnly = defineComponent({
-    __name: 'ClientOnly',
-    setup(_, { slots }) {
-        const show = ref(false);
-        onMounted(() => {
-            show.value = true;
-        });
-        return () => (show.value && slots.default ? slots.default() : null);
-    },
+  __name: "ClientOnly",
+  setup(_, { slots }) {
+    const show = ref(false);
+    onMounted(() => {
+      show.value = true;
+    });
+    return () => show.value && slots.default ? slots.default() : null;
+  }
 });
 
 const _hoisted_1$g = { class: "fy-navbar" };
@@ -1674,18 +1690,18 @@ const _hoisted_11$7 = ["href", "title", "alt"];
 const _hoisted_12$6 = ["href", "title", "alt"];
 const _hoisted_13$5 = { key: 0 };
 const _hoisted_14$5 = { key: 1 };
-const _sfc_main$h = /* @__PURE__ */ defineComponent({
+var _sfc_main$h = /* @__PURE__ */ defineComponent({
   __name: "FyNavbar",
   props: {
-    title: null,
-    showTitle: { type: Boolean, default: true },
-    darkLight: { type: Boolean, default: true },
-    links: null,
-    loginPath: { default: "/login" },
-    accountPath: { default: "/user" },
-    cartPath: { default: "/user/order" },
-    showDashboardLink: { type: Boolean, default: true },
-    showCart: { type: Boolean, default: false }
+    title: { type: String, required: false },
+    showTitle: { type: Boolean, required: false, default: true },
+    darkLight: { type: Boolean, required: false, default: true },
+    links: { type: Array, required: true },
+    loginPath: { type: String, required: false, default: "/login" },
+    accountPath: { type: String, required: false, default: "/user" },
+    cartPath: { type: String, required: false, default: "/user/order" },
+    showDashboardLink: { type: Boolean, required: false, default: true },
+    showCart: { type: Boolean, required: false, default: false }
   },
   setup(__props) {
     const isDark = useDark({
@@ -1878,9 +1894,10 @@ const _sfc_main$h = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "FyNavbar.vue"]]);
 
-const _sfc_main$g = /* @__PURE__ */ defineComponent({
+var FyNavbar = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyNavbar/FyNavbar.vue"]]);
+
+var _sfc_main$g = /* @__PURE__ */ defineComponent({
   __name: "FyTabs",
   setup(__props) {
     return (_ctx, _cache) => {
@@ -1888,7 +1905,8 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var FyTabs = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "FyTabs.vue"]]);
+
+var FyTabs = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/FyTabs/FyTabs.vue"]]);
 
 const _sfc_main$f = {};
 
@@ -1913,22 +1931,22 @@ function _sfc_render(_ctx, _cache) {
     ])
   ]))
 }
-var Fy404View = /*#__PURE__*/_export_sfc(_sfc_main$f, [['render',_sfc_render],['__file',"Fy404View.vue"]]);
+var Fy404View = /*#__PURE__*/_export_sfc(_sfc_main$f, [['render',_sfc_render],['__file',"/home/fy/fy.to/fyvue/packages/fyvue/src/components/ui/Fy404/Fy404View.vue"]]);
 
 var uiComponents = {
-    FyModal,
-    FyCirclePercent,
-    FyConfirm,
-    FyBreadcrumb,
-    FySteps,
-    FyDatatable,
-    FyTable,
-    FyLoader,
-    FyInput,
-    FyPaging,
-    FyNavbar,
-    FyTabs,
-    Fy404View,
+  FyModal,
+  FyCirclePercent,
+  FyConfirm,
+  FyBreadcrumb,
+  FySteps,
+  FyDatatable,
+  FyTable,
+  FyLoader,
+  FyInput,
+  FyPaging,
+  FyNavbar,
+  FyTabs,
+  Fy404View
 };
 
 const _hoisted_1$e = { class: "w-full" };
@@ -1957,12 +1975,12 @@ const _hoisted_9$8 = {
 };
 const _hoisted_10$7 = /* @__PURE__ */ createElementVNode("br", { style: { "clear": "both" } }, null, -1);
 const _hoisted_11$6 = { key: 1 };
-const _sfc_main$e = /* @__PURE__ */ defineComponent({
+var _sfc_main$e = /* @__PURE__ */ defineComponent({
   __name: "KlbLogin",
   props: {
-    returnDefault: { default: "/" },
-    forceAction: null,
-    onSuccess: null
+    returnDefault: { type: String, required: false, default: "/" },
+    forceAction: { type: String, required: false },
+    onSuccess: { type: Function, required: false }
   },
   setup(__props) {
     const props = __props;
@@ -2213,7 +2231,8 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbLogin = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__file", "KlbLogin.vue"]]);
+
+var KlbLogin = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbLogin/KlbLogin.vue"]]);
 
 const _hoisted_1$d = {
   key: 0,
@@ -2236,10 +2255,10 @@ const _hoisted_9$7 = {
   class: "btn-defaults mt-4 btn primary",
   type: "submit"
 };
-const _sfc_main$d = /* @__PURE__ */ defineComponent({
+var _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "KlbUpdateEmailModal",
   props: {
-    showValueButton: { type: Boolean, default: true }
+    showValueButton: { type: Boolean, required: false, default: true }
   },
   setup(__props) {
     const eventBus = useEventBus();
@@ -2329,7 +2348,8 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbUpdateEmailModal = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__file", "KlbUpdateEmailModal.vue"]]);
+
+var KlbUpdateEmailModal = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbAccount/KlbUpdateEmailModal.vue"]]);
 
 const _hoisted_1$c = {
   key: 0,
@@ -2351,10 +2371,10 @@ const _hoisted_8$7 = {
   class: "btn-defaults mt-4 btn primary",
   type: "submit"
 };
-const _sfc_main$c = /* @__PURE__ */ defineComponent({
+var _sfc_main$c = /* @__PURE__ */ defineComponent({
   __name: "KlbUpdatePasswordModal",
   props: {
-    showValueButton: { type: Boolean, default: true }
+    showValueButton: { type: Boolean, required: false, default: true }
   },
   setup(__props) {
     const eventBus = useEventBus();
@@ -2456,7 +2476,8 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbUpdatePasswordModal = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__file", "KlbUpdatePasswordModal.vue"]]);
+
+var KlbUpdatePasswordModal = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbAccount/KlbUpdatePasswordModal.vue"]]);
 
 const _hoisted_1$b = {
   key: 0,
@@ -2465,10 +2486,10 @@ const _hoisted_1$b = {
 const _hoisted_2$b = { class: "input-group" };
 const _hoisted_3$a = { class: "label-basic" };
 const _hoisted_4$a = { class: "input-box-child" };
-const _sfc_main$b = /* @__PURE__ */ defineComponent({
+var _sfc_main$b = /* @__PURE__ */ defineComponent({
   __name: "KlbDeleteAccount",
   props: {
-    url: { default: "/login" }
+    url: { type: String, required: false, default: "/login" }
   },
   setup(__props) {
     const store = useFVStore();
@@ -2495,7 +2516,8 @@ const _sfc_main$b = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbDeleteAccount = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__file", "KlbDeleteAccount.vue"]]);
+
+var KlbDeleteAccount = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbAccount/KlbDeleteAccount.vue"]]);
 
 const _hoisted_1$a = { class: "klb-billing-history" };
 const _hoisted_2$a = ["href"];
@@ -2509,7 +2531,7 @@ const _hoisted_6$8 = {
   key: 2,
   class: "no-billing-history"
 };
-const _sfc_main$a = /* @__PURE__ */ defineComponent({
+var _sfc_main$a = /* @__PURE__ */ defineComponent({
   __name: "KlbBillingHistory",
   setup(__props) {
     const store = useFVStore();
@@ -2598,7 +2620,8 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbBillingHistory = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "KlbBillingHistory.vue"]]);
+
+var KlbBillingHistory = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbBilling/KlbBillingHistory.vue"]]);
 
 const _hoisted_1$9 = { class: "location-select" };
 const _hoisted_2$9 = { class: "input-group" };
@@ -2629,13 +2652,13 @@ const _hoisted_16$3 = {
   key: 1,
   class: "self-loader-fyvue"
 };
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+var _sfc_main$9 = /* @__PURE__ */ defineComponent({
   __name: "KlbUserLocation",
   props: {
-    displayOnly: { type: Boolean, default: false },
-    locationUuid: null,
-    modelValue: null,
-    selectedLocation: { default: void 0 }
+    displayOnly: { type: Boolean, required: false, default: false },
+    locationUuid: { type: String, required: false },
+    modelValue: { type: String, required: false },
+    selectedLocation: { type: String, required: false, default: void 0 }
   },
   emits: ["update:modelValue"],
   setup(__props, { emit }) {
@@ -2927,61 +2950,54 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbUserLocation = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "KlbUserLocation.vue"]]);
+
+var KlbUserLocation = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbUser/KlbUserLocation.vue"]]);
 
 function useBilling() {
-    return {
-        setupPaymentIntent: (method = 'Stripe') => {
-            return new Promise((resolve) => {
-                rest('Realm/PaymentMethod:setup', 'POST', {
-                    method: method,
-                })
-                    .then((_result) => {
-                    if (_result && _result.result == 'success') {
-                        resolve(_result);
-                    }
-                    else {
-                        resolve(null);
-                    }
-                })
-                    .catch(() => {
-                    resolve(null);
+  return {
+    setupPaymentIntent: (method = "Stripe") => {
+      return new Promise((resolve) => {
+        rest("Realm/PaymentMethod:setup", "POST", {
+          method
+        }).then((_result) => {
+          if (_result && _result.result == "success") {
+            resolve(_result);
+          } else {
+            resolve(null);
+          }
+        }).catch(() => {
+          resolve(null);
+        });
+      });
+    },
+    getUserBillingAndLoc: () => {
+      return new Promise((resolve) => {
+        rest("User/Billing", "GET").then((_userBilling) => {
+          if (_userBilling && _userBilling.data && _userBilling.data.length != 0) {
+            rest(
+              `User/Location/${_userBilling.data[0].User_Location__}`,
+              "GET"
+            ).then((_userLocation) => {
+              if (_userLocation && _userLocation.result == "success") {
+                resolve({
+                  location: _userLocation.data,
+                  billing: _userBilling.data[0]
                 });
+              } else {
+                resolve(null);
+              }
+            }).catch(() => {
+              resolve(null);
             });
-        },
-        getUserBillingAndLoc: () => {
-            return new Promise((resolve) => {
-                rest('User/Billing', 'GET')
-                    .then((_userBilling) => {
-                    if (_userBilling &&
-                        _userBilling.data &&
-                        _userBilling.data.length != 0) {
-                        rest(`User/Location/${_userBilling.data[0].User_Location__}`, 'GET')
-                            .then((_userLocation) => {
-                            if (_userLocation && _userLocation.result == 'success') {
-                                resolve({
-                                    location: _userLocation.data,
-                                    billing: _userBilling.data[0],
-                                });
-                            }
-                            else {
-                                resolve(null);
-                            }
-                        })
-                            .catch(() => {
-                            resolve(null);
-                        });
-                    }
-                    else {
-                        resolve(null);
-                    }
-                })
-                    .catch(() => {
-                    resolve(null);
-                });
-            });
-        },
-    };
+          } else {
+            resolve(null);
+          }
+        }).catch(() => {
+          resolve(null);
+        });
+      });
+    }
+  };
 }
 
 const _hoisted_1$8 = { key: 0 };
@@ -3008,7 +3024,7 @@ const _hoisted_12$4 = {
   class: "btn primary btn-defaults",
   type: "submit"
 };
-const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+var _sfc_main$8 = /* @__PURE__ */ defineComponent({
   __name: "KlbAddPaymentMethodModal",
   props: {
     onComplete: { type: Function, default: () => {
@@ -3242,7 +3258,8 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbAddPaymentMethodModal = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "KlbAddPaymentMethodModal.vue"]]);
+
+var KlbAddPaymentMethodModal = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbBilling/KlbAddPaymentMethodModal.vue"]]);
 
 const _hoisted_1$7 = {
   key: 0,
@@ -3289,12 +3306,12 @@ const _hoisted_18$1 = {
   key: 1,
   class: "self-loader-fyvue"
 };
-const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+var _sfc_main$7 = /* @__PURE__ */ defineComponent({
   __name: "KlbUserBilling",
   props: {
-    displayOnly: { type: Boolean, default: false },
-    locationUuid: null,
-    modelValue: null
+    displayOnly: { type: Boolean, required: false, default: false },
+    locationUuid: { type: String, required: false },
+    modelValue: { type: String, required: false }
   },
   emits: ["update:modelValue"],
   setup(__props, { emit }) {
@@ -3640,7 +3657,8 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbUserBilling = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "KlbUserBilling.vue"]]);
+
+var KlbUserBilling = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbUser/KlbUserBilling.vue"]]);
 
 const _hoisted_1$6 = { class: "klb-product" };
 const _hoisted_2$6 = {
@@ -3668,16 +3686,16 @@ const _hoisted_13$2 = {
   class: "cycle"
 };
 const _hoisted_14$2 = ["onClick"];
-const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+var _sfc_main$6 = /* @__PURE__ */ defineComponent({
   __name: "KlbCatalog",
   props: {
-    options: { default: () => {
+    options: { type: null, required: false, default: () => {
       return { sort: "Basic.Priority:asc" };
     } },
-    displayType: { default: "subs" },
-    features: { default: () => [] },
-    startOrderPath: { default: "/user/order/start" },
-    productMeta: { default: "" }
+    displayType: { type: String, required: false, default: "subs" },
+    features: { type: Array, required: false, default: () => [] },
+    startOrderPath: { type: String, required: false, default: "/user/order/start" },
+    productMeta: { type: String, required: false, default: "" }
   },
   setup(__props) {
     const props = __props;
@@ -3781,40 +3799,41 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbCatalog = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "KlbCatalog.vue"]]);
+
+var KlbCatalog = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbOrder/KlbCatalog.vue"]]);
 
 function useOrder() {
-    return {
-        process(data, orderUuid) {
-            return rest(`Order/${orderUuid}:process`, 'POST', data);
-        },
-        getOrder(orderUuid) {
-            return rest(`Order/${orderUuid}`, 'GET');
-        },
-        getOrders() {
-            return rest('Order/', 'GET');
-        },
-        getLastUnfinishedOrder() {
-            return new Promise((resolve) => {
-                rest('Order/', 'GET', {
-                    results_per_page: 1,
-                    sort: 'Created',
-                    Status: 'pending',
-                })
-                    .then((_result) => {
-                    if (_result &&
-                        _result.result == 'success' &&
-                        _result.data.length > 0) {
-                        resolve(_result.data[0]);
-                    }
-                    resolve(null);
-                })
-                    .catch(() => {
-                    resolve(null);
-                });
-            });
-        },
-    };
+  return {
+    process(data, orderUuid) {
+      return rest(
+        `Order/${orderUuid}:process`,
+        "POST",
+        data
+      );
+    },
+    getOrder(orderUuid) {
+      return rest(`Order/${orderUuid}`, "GET");
+    },
+    getOrders() {
+      return rest("Order/", "GET");
+    },
+    getLastUnfinishedOrder() {
+      return new Promise((resolve) => {
+        rest("Order/", "GET", {
+          results_per_page: 1,
+          sort: "Created",
+          Status: "pending"
+        }).then((_result) => {
+          if (_result && _result.result == "success" && _result.data.length > 0) {
+            resolve(_result.data[0]);
+          }
+          resolve(null);
+        }).catch(() => {
+          resolve(null);
+        });
+      });
+    }
+  };
 }
 
 const _hoisted_1$5 = { class: "klb-order-internal" };
@@ -3833,10 +3852,10 @@ const _hoisted_5$3 = {
 };
 const _hoisted_6$3 = { class: "klb-order-button" };
 const _hoisted_7$3 = { class: "btn primary btn-defaults" };
-const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+var _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "KlbProcessOrderInternal",
   props: {
-    orderUuid: null
+    orderUuid: { type: String, required: true }
   },
   setup(__props) {
     const props = __props;
@@ -4125,7 +4144,8 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbProcessOrderInternal = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "KlbProcessOrderInternal.vue"]]);
+
+var KlbProcessOrderInternal = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbOrder/KlbProcessOrderInternal.vue"]]);
 
 const _hoisted_1$4 = {
   key: 0,
@@ -4217,12 +4237,12 @@ const _hoisted_43 = {
 };
 const _hoisted_44 = { class: "mt-4 flex items-center justify-center" };
 const _hoisted_45 = { key: 2 };
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+var _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "KlbOrder",
   props: {
-    shopPath: { default: "/shop" },
-    mode: { default: "b2c" },
-    loginPath: { default: "/login" }
+    shopPath: { type: String, required: false, default: "/shop" },
+    mode: { type: String, required: false, default: "b2c" },
+    loginPath: { type: String, required: false, default: "/login" }
   },
   setup(__props) {
     const cart = ref();
@@ -4481,7 +4501,8 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbOrder = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "KlbOrder.vue"]]);
+
+var KlbOrder = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbOrder/KlbOrder.vue"]]);
 
 const _hoisted_1$3 = {
   key: 1,
@@ -4517,15 +4538,16 @@ const _hoisted_14 = {
 };
 const _hoisted_15 = { class: "modified" };
 const _hoisted_16 = ["datetime"];
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+var _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "KlbBlogInnerPost",
   props: {
-    post: null,
-    single: { type: Boolean, default: true },
-    basePath: { default: "/blog" },
-    breadcrumbBase: { default: () => [] },
-    cms: null,
-    showFooter: { type: Boolean, default: true }
+    post: { type: null, required: true },
+    single: { type: Boolean, required: false, default: true },
+    basePath: { type: String, required: false, default: "/blog" },
+    breadcrumbBase: { type: Array, required: false, default: () => [] },
+    cms: { type: null, required: true },
+    showFooter: { type: Boolean, required: false, default: true },
+    isPage: { type: Boolean, required: false, default: false }
   },
   setup(__props) {
     return (_ctx, _cache) => {
@@ -4595,7 +4617,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
             ])) : createCommentVNode("v-if", true)
           ]),
           __props.showFooter ? (openBlock(), createElementBlock("footer", _hoisted_9$1, [
-            __props.post.Comments && __props.cms.Type == "article" ? (openBlock(), createElementBlock("span", _hoisted_10$1, [
+            __props.post.Comments && __props.cms.Type == "article" && !__props.isPage ? (openBlock(), createElementBlock("span", _hoisted_10$1, [
               createVNode(unref(render$e)),
               createTextVNode(" " + toDisplayString(_ctx.$t("klb_blog_comment_count", { count: __props.post.Comments.Comment_Count })), 1)
             ])) : createCommentVNode("v-if", true),
@@ -4634,85 +4656,85 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbBlogInnerPost = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "KlbBlogInnerPost.vue"]]);
+
+var KlbBlogInnerPost = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbCMS/KlbBlogInnerPost.vue"]]);
 
 function useCMS() {
-    return {
-        getArticle: async (slug, basePath, alias, siteName, breadcrumbBase, seo, is404, dataSingle, displayType = undefined, blogName = undefined, breadcrumb = undefined, vars = [
-            'strip&scale_crop=512x512&alias=squared',
-            'strip&scale_crop=1280x100&alias=bannerx100',
-            'strip&scale_crop=1200x630&alias=seo',
-        ]) => {
-            seo.value = {
-                title: undefined,
-                image: undefined,
-                imageType: undefined,
-                description: undefined,
-                published: undefined,
-                modified: undefined,
-                keywords: undefined,
-                imageWidth: undefined,
-                imageHeight: undefined,
-                type: 'article',
-            };
-            is404.value = false;
-            if (displayType)
-                displayType.value = 'single';
-            const _data = await rest(`Content/Cms/${alias}:loadSlug`, 'GET', {
-                slug: slug,
-                image_variation: vars,
-            }).catch((err) => {
-                if (err.code == 404) {
-                    useHistory().status = 404;
-                    is404.value = true;
-                    seo.value.title = '404';
-                }
-                return;
-            });
-            if (_data && _data.result == 'success') {
-                if (blogName)
-                    blogName.value = _data.data.content_cms.Name;
-                if (breadcrumb && blogName)
-                    breadcrumb.value = [
-                        ...breadcrumbBase,
-                        { name: blogName.value, to: basePath },
-                        { name: _data.data.content_cms_entry_data.Title },
-                    ];
-                dataSingle.value = _data;
-                seo.value.published = new Date(parseInt(_data.data.content_cms_entry_data.Published.unixms)).toISOString();
-                seo.value.modified = new Date(parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)).toISOString();
-                seo.value.title = blogName
-                    ? _data.data.content_cms_entry_data.Title + ' - ' + blogName.value
-                    : _data.data.content_cms_entry_data.Title;
-                if (_data.data.content_cms_entry_data.Short_Contents) {
-                    seo.value.description =
-                        _data.data.content_cms_entry_data.Short_Contents;
-                }
-                if (_data.data.content_cms_entry_data.Keywords &&
-                    _data.data.content_cms_entry_data.Keywords.length) {
-                    seo.value.keywords =
-                        _data.data.content_cms_entry_data.Keywords.join(',').trim();
-                }
-                if (_data.data.content_cms_entry_data.Top_Drive_Item &&
-                    _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image &&
-                    _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
-                    seo.value.imageType =
-                        _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
-                    seo.value.image =
-                        _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation['seo'];
-                    seo.value.imageWidth = '1200';
-                    seo.value.imageHeight = '630';
-                }
-            }
-            return {
-                seo,
-                is404,
-                dataSingle,
-                displayType,
-                blogName,
-            };
-        },
-    };
+  return {
+    getArticle: async (slug, basePath, alias, siteName, breadcrumbBase, seo, is404, dataSingle, displayType = void 0, blogName = void 0, breadcrumb = void 0, vars = [
+      "strip&scale_crop=512x512&alias=squared",
+      "strip&scale_crop=1280x100&alias=bannerx100",
+      "strip&scale_crop=1200x630&alias=seo"
+    ]) => {
+      seo.value = {
+        title: void 0,
+        image: void 0,
+        imageType: void 0,
+        description: void 0,
+        published: void 0,
+        modified: void 0,
+        keywords: void 0,
+        imageWidth: void 0,
+        imageHeight: void 0,
+        type: "article"
+      };
+      is404.value = false;
+      if (displayType)
+        displayType.value = "single";
+      const _data = await rest(
+        `Content/Cms/${alias}:loadSlug`,
+        "GET",
+        {
+          slug,
+          image_variation: vars
+        }
+      ).catch((err) => {
+        if (err.code == 404) {
+          useHistory().status = 404;
+          is404.value = true;
+          seo.value.title = "404";
+        }
+        return;
+      });
+      if (_data && _data.result == "success") {
+        if (blogName)
+          blogName.value = _data.data.content_cms.Name;
+        if (breadcrumb && blogName)
+          breadcrumb.value = [
+            ...breadcrumbBase,
+            { name: blogName.value, to: basePath },
+            { name: _data.data.content_cms_entry_data.Title }
+          ];
+        dataSingle.value = _data;
+        seo.value.published = new Date(
+          parseInt(_data.data.content_cms_entry_data.Published.unixms)
+        ).toISOString();
+        seo.value.modified = new Date(
+          parseInt(_data.data.content_cms_entry_data.Last_Modified.unixms)
+        ).toISOString();
+        seo.value.title = blogName ? _data.data.content_cms_entry_data.Title + " - " + blogName.value : _data.data.content_cms_entry_data.Title;
+        if (_data.data.content_cms_entry_data.Short_Contents) {
+          seo.value.description = _data.data.content_cms_entry_data.Short_Contents;
+        }
+        if (_data.data.content_cms_entry_data.Keywords && _data.data.content_cms_entry_data.Keywords.length) {
+          seo.value.keywords = _data.data.content_cms_entry_data.Keywords.join(",").trim();
+        }
+        if (_data.data.content_cms_entry_data.Top_Drive_Item && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image && _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image.Variation) {
+          seo.value.imageType = _data.data.content_cms_entry_data.Top_Drive_Item.Mime;
+          seo.value.image = _data.data.content_cms_entry_data.Top_Drive_Item.Media_Image?.Variation["seo"];
+          seo.value.imageWidth = "1200";
+          seo.value.imageHeight = "630";
+        }
+      }
+      return {
+        seo,
+        is404,
+        dataSingle,
+        displayType,
+        blogName
+      };
+    }
+  };
 }
 
 const _hoisted_1$2 = { class: "fv-relative klb-blog" };
@@ -4720,13 +4742,13 @@ const _hoisted_2$2 = {
   key: 1,
   class: "fv-typo"
 };
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+var _sfc_main$2 = /* @__PURE__ */ defineComponent({
   __name: "KlbPage",
   props: {
-    pagesAlias: { default: "@pages" },
-    showFooter: { type: Boolean, default: true },
-    breadcrumbBase: { default: () => [] },
-    forceSlug: null
+    pagesAlias: { type: String, required: false, default: "@pages" },
+    showFooter: { type: Boolean, required: false, default: true },
+    breadcrumbBase: { type: Array, required: false, default: () => [] },
+    forceSlug: { type: String, required: false }
   },
   async setup(__props) {
     let __temp, __restore;
@@ -4763,7 +4785,6 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     [__temp, __restore] = withAsyncContext(() => getArticle(
       props.forceSlug ? props.forceSlug : route.params.slug.toString()
     )), await __temp, __restore();
-    useSeo(seo);
     onMounted(() => {
       if (!props.forceSlug) {
         slugWatcher.value = watch(
@@ -4779,6 +4800,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       if (slugWatcher.value)
         slugWatcher.value();
     });
+    useSeo(seo);
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", _hoisted_1$2, [
         createVNode(FyLoader, { id: "cmsPage" }),
@@ -4788,7 +4810,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           cms: page.value.data.content_cms,
           single: true,
           showFooter: __props.showFooter,
-          breadcrumbBase: __props.breadcrumbBase
+          breadcrumbBase: __props.breadcrumbBase,
+          isPage: true
         }, null, 8, ["post", "cms", "showFooter", "breadcrumbBase"])) : createCommentVNode("v-if", true),
         is404.value ? (openBlock(), createElementBlock("div", _hoisted_2$2, [
           createVNode(Fy404View)
@@ -4797,7 +4820,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbPage = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__file", "KlbPage.vue"]]);
+
+var KlbPage = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbCMS/KlbPage.vue"]]);
 
 const _hoisted_1$1 = { class: "klb-blog" };
 const _hoisted_2$1 = {
@@ -4827,13 +4851,13 @@ const _hoisted_10 = {
   key: 2,
   class: "is-404"
 };
-const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+var _sfc_main$1 = /* @__PURE__ */ defineComponent({
   __name: "KlbBlog",
   props: {
-    blogAlias: { default: "@news" },
-    basePath: { default: "/blog" },
-    breadcrumbBase: null,
-    siteName: null
+    blogAlias: { type: String, required: false, default: "@news" },
+    basePath: { type: String, required: false, default: "/blog" },
+    breadcrumbBase: { type: Array, required: true },
+    siteName: { type: String, required: true }
   },
   async setup(__props) {
     let __temp, __restore;
@@ -4969,6 +4993,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     const checkRoutePage = async (page = 1) => {
       await checkRoute(route.params.slug.toString(), page);
     };
+    [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     onMounted(() => {
       eventBus.on("cmsPagingGoToPage", checkRoutePage);
       slugWatcher.value = watch(
@@ -4985,7 +5010,6 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         slugWatcher.value();
       }
     });
-    [__temp, __restore] = withAsyncContext(() => checkRoute(route.params.slug.toString())), await __temp, __restore();
     useSeo(seo);
     return (_ctx, _cache) => {
       const _component_RouterLink = resolveComponent("RouterLink");
@@ -5075,7 +5099,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbBlog = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__file", "KlbBlog.vue"]]);
+
+var KlbBlog = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbCMS/KlbBlog.vue"]]);
 
 const _hoisted_1 = ["onSubmit"];
 const _hoisted_2 = {
@@ -5090,10 +5115,10 @@ const _hoisted_4 = {
   key: 1,
   class: "response-success"
 };
-const _sfc_main = /* @__PURE__ */ defineComponent({
+var _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "KlbSupport",
   props: {
-    to: { default: "@support" }
+    to: { type: String, required: false, default: "@support" }
   },
   setup(__props) {
     const props = __props;
@@ -5206,38 +5231,39 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var KlbSupport = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "KlbSupport.vue"]]);
+
+var KlbSupport = /* @__PURE__ */ _export_sfc(_sfc_main, [["__file", "/home/fy/fy.to/fyvue/packages/fyvue/src/components/klb/KlbMisc/KlbSupport.vue"]]);
 
 function useUser() {
-    return {};
+  return {};
 }
 
 var klb = {
-    components: {
-        KlbLogin,
-        KlbUpdateEmailModal,
-        KlbUpdatePasswordModal,
-        KlbDeleteAccount,
-        KlbBillingHistory,
-        KlbUserLocation,
-        KlbAddPaymentMethodModal,
-        KlbCatalog,
-        KlbOrder,
-        KlbUserBilling,
-        KlbPage,
-        KlbSupport,
-        KlbBlog,
-    },
-    composables: {
-        useCart,
-        useUserCheck: useUser,
-        useOrder,
-        useBilling,
-    },
+  components: {
+    KlbLogin,
+    KlbUpdateEmailModal,
+    KlbUpdatePasswordModal,
+    KlbDeleteAccount,
+    KlbBillingHistory,
+    KlbUserLocation,
+    KlbAddPaymentMethodModal,
+    KlbCatalog,
+    KlbOrder,
+    KlbUserBilling,
+    KlbPage,
+    KlbSupport,
+    KlbBlog
+  },
+  composables: {
+    useCart,
+    useUserCheck: useUser,
+    useOrder,
+    useBilling
+  }
 };
 
 var helpersComponents = {
-    ClientOnly: ClientOnly,
+  ClientOnly
 };
 
 var EN_US = ['second', 'minute', 'hour', 'day', 'week', 'month', 'year'];
@@ -5316,186 +5342,188 @@ var format = function (date, locale, opts) {
 register('en_US', en_US);
 register('zh_CN', zh_CN);
 
-const cropText = (str, ml = 100, end = '...') => {
-    if (str.length > ml) {
-        return `${str.slice(0, ml)}${end}`;
-    }
-    return str;
+const cropText = (str, ml = 100, end = "...") => {
+  if (str.length > ml) {
+    return `${str.slice(0, ml)}${end}`;
+  }
+  return str;
 };
 const formatKlbRecurringPaymentCycle = (cycle) => {
-    const translate = useTranslation();
-    if (!cycle) {
-        return translate('payment_cycles_one_time');
-    }
-    const unit = cycle.slice(-1);
-    const quantity = parseInt(cycle.replace(unit, ''));
-    switch (unit) {
-        case 'h':
-            return translate('payment_cycles_hour', { count: quantity });
-        case 'd':
-            return translate('payment_cycles_day', { count: quantity });
-        case 'm':
-            return translate('payment_cycles_month', { count: quantity });
-        case 'y':
-            return translate('payment_cycles_year', { count: quantity });
-    }
-    return '';
+  const translate = useTranslation();
+  if (!cycle) {
+    return translate("payment_cycles_one_time");
+  }
+  const unit = cycle.slice(-1);
+  const quantity = parseInt(cycle.replace(unit, ""));
+  switch (unit) {
+    case "h":
+      return translate("payment_cycles_hour", { count: quantity });
+    case "d":
+      return translate("payment_cycles_day", { count: quantity });
+    case "m":
+      return translate("payment_cycles_month", { count: quantity });
+    case "y":
+      return translate("payment_cycles_year", { count: quantity });
+  }
+  return "";
 };
 const formatBytes = (bytes, decimals = 2) => {
-    if (!+bytes)
-        return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+  if (!+bytes)
+    return "0 Bytes";
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
 };
 const jpZipcode = (zip) => {
-    const _zip = zip.toString();
-    if (_zip.length != 7)
-        return '';
-    return '〒' + _zip.slice(0, 3) + '-' + _zip.slice(3, _zip.length);
+  const _zip = zip.toString();
+  if (_zip.length != 7)
+    return "";
+  return "\u3012" + _zip.slice(0, 3) + "-" + _zip.slice(3, _zip.length);
 };
 const formatDate = (dt) => {
-    let _dt = dt;
-    if (typeof dt === 'string') {
-        _dt = Date.parse(dt);
-        if (Number.isNaN(_dt)) {
-            _dt = parseInt(dt);
-        }
+  let _dt = dt;
+  if (typeof dt === "string") {
+    _dt = Date.parse(dt);
+    if (Number.isNaN(_dt)) {
+      _dt = parseInt(dt);
     }
-    const translate = useTranslation();
-    return translate('global_datetime', {
-        val: new Date(_dt),
-        formatParams: {
-            val: {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-            },
-        },
-    });
+  }
+  const translate = useTranslation();
+  return translate("global_datetime", {
+    val: new Date(_dt),
+    formatParams: {
+      val: {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      }
+    }
+  });
 };
 const formatDatetime = (dt) => {
-    let _dt = dt;
-    if (typeof dt === 'string') {
-        _dt = Date.parse(dt);
-        if (Number.isNaN(_dt)) {
-            _dt = parseInt(dt);
-        }
+  let _dt = dt;
+  if (typeof dt === "string") {
+    _dt = Date.parse(dt);
+    if (Number.isNaN(_dt)) {
+      _dt = parseInt(dt);
     }
-    const translate = useTranslation();
-    return translate('global_datetime', {
-        val: new Date(_dt),
-        formatParams: {
-            val: {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
-            },
-        },
-    });
+  }
+  const translate = useTranslation();
+  return translate("global_datetime", {
+    val: new Date(_dt),
+    formatParams: {
+      val: {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric"
+      }
+    }
+  });
 };
 const formatTimeago = (dt) => {
-    let _dt = dt;
-    if (typeof dt === 'string') {
-        _dt = Date.parse(dt);
-        if (Number.isNaN(_dt)) {
-            _dt = parseInt(dt);
-        }
+  let _dt = dt;
+  if (typeof dt === "string") {
+    _dt = Date.parse(dt);
+    if (Number.isNaN(_dt)) {
+      _dt = parseInt(dt);
     }
-    return format(new Date(_dt), getLocale$1().replace('_', '-'));
+  }
+  return format(new Date(_dt), getLocale$1().replace("_", "-"));
 };
 
-function useUserCheck(path = '/login') {
-    const store = useFVStore();
-    const isAuth = computed(() => store.isAuth);
-    const router = useRouter();
-    const checkUser = (route) => {
-        if (route.meta.reqLogin) {
-            if (!isAuth.value)
-                router.push(path);
-        }
-    };
-    store.refreshUser().then(() => {
-        checkUser(useHistory().currentRoute);
-    });
-    router.afterEach(async () => {
-        await store.refreshUser();
-    });
-    router.beforeEach((to) => {
-        if (to.fullPath != path) {
-            checkUser(to);
-        }
-    });
+function useUserCheck(path = "/login") {
+  const store = useFVStore();
+  const isAuth = computed(() => store.isAuth);
+  const router = useRouter();
+  const checkUser = (route) => {
+    if (route.meta.reqLogin) {
+      if (!isAuth.value)
+        router.push(path);
+    }
+  };
+  store.refreshUser().then(() => {
+    checkUser(useHistory().currentRoute);
+  });
+  router.afterEach(async () => {
+    await store.refreshUser();
+  });
+  router.beforeEach((to) => {
+    if (to.fullPath != path) {
+      checkUser(to);
+    }
+  });
 }
 
 const components = { ...uiComponents, ...klb.components, ...helpersComponents };
 const i18nextPromise = (backend) => {
-    return i18next.use(backend).init({
-        ns: ['translation'],
-        defaultNS: 'translation',
-        debug: false,
-        lng: getLocale$1(),
-        load: 'currentOnly',
-        initImmediate: false,
-    });
+  return i18next.use(backend).init({
+    ns: ["translation"],
+    defaultNS: "translation",
+    debug: false,
+    lng: getLocale$1(),
+    load: "currentOnly",
+    initImmediate: false
+  });
 };
 const createFyvue = () => {
-    const install = (app, options) => {
-        if (!options)
-            options = { loadKlb: true };
-        app.config.globalProperties.$eventBus = eventBus;
-        app.config.globalProperties.$t = i18next.t;
-        app.config.globalProperties.$cropText = cropText;
-        app.config.globalProperties.$formatBytes = formatBytes;
-        app.config.globalProperties.$formatDate = formatDate;
-        app.config.globalProperties.$formatTimeago = formatTimeago;
-        app.config.globalProperties.$formatDatetime = formatDatetime;
-        app.config.globalProperties.$formatJPZipcode = jpZipcode;
-        app.config.globalProperties.$formatKlbRecurringPaymentCycle =
-            formatKlbRecurringPaymentCycle;
-        app.config.globalProperties.$jpZipcode = jpZipcode;
-        let k;
-        for (k in uiComponents) {
-            app.component(uiComponents[k].__name, uiComponents[k]);
-        }
-        if (options.loadKlb) {
-            app.config.globalProperties.$countries = countries;
-            let klbComponent;
-            for (klbComponent in klb.components) {
-                app.component(klb.components[klbComponent].__name, klb.components[klbComponent]);
-            }
-        }
-        let hlp;
-        for (hlp in helpersComponents) {
-            app.component(helpersComponents[hlp].__name, helpersComponents[hlp]);
-        }
-    };
-    return {
-        install,
-    };
+  const install = (app, options) => {
+    if (!options)
+      options = { loadKlb: true };
+    app.config.globalProperties.$eventBus = eventBus;
+    app.config.globalProperties.$t = i18next.t;
+    app.config.globalProperties.$cropText = cropText;
+    app.config.globalProperties.$formatBytes = formatBytes;
+    app.config.globalProperties.$formatDate = formatDate;
+    app.config.globalProperties.$formatTimeago = formatTimeago;
+    app.config.globalProperties.$formatDatetime = formatDatetime;
+    app.config.globalProperties.$formatJPZipcode = jpZipcode;
+    app.config.globalProperties.$formatKlbRecurringPaymentCycle = formatKlbRecurringPaymentCycle;
+    app.config.globalProperties.$jpZipcode = jpZipcode;
+    let k;
+    for (k in uiComponents) {
+      app.component(uiComponents[k].__name, uiComponents[k]);
+    }
+    if (options.loadKlb) {
+      app.config.globalProperties.$countries = countries;
+      let klbComponent;
+      for (klbComponent in klb.components) {
+        app.component(
+          klb.components[klbComponent].__name,
+          klb.components[klbComponent]
+        );
+      }
+    }
+    let hlp;
+    for (hlp in helpersComponents) {
+      app.component(helpersComponents[hlp].__name, helpersComponents[hlp]);
+    }
+  };
+  return {
+    install
+  };
 };
 const helpers = {
-    cropText,
-    formatBytes,
-    formatJPZipcode: jpZipcode,
-    formatDate,
-    formatDatetime,
-    formatTimeago,
-    formatKlbRecurringPaymentCycle,
+  cropText,
+  formatBytes,
+  formatJPZipcode: jpZipcode,
+  formatDate,
+  formatDatetime,
+  formatTimeago,
+  formatKlbRecurringPaymentCycle,
+  eventBus
 };
 const helpersSSR = {
-    setupClient,
-    handleSSR,
-    isSSRRendered,
+  setupClient,
+  handleSSR,
+  isSSRRendered
 };
 const KlbUse = {
-    ...klb.composables,
+  ...klb.composables
 };
 
 export { KlbUse, components, countriesPromise, createFyvue, helpers, helpersSSR, i18nextPromise, rest, useCountries, useEventBus, useFVStore, useHistory, useSeo, useTranslation, useUserCheck };
-//# sourceMappingURL=fyvue.mjs.map

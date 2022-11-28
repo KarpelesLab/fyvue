@@ -1,3 +1,6 @@
+# packages
+packages/fy-sitemap
+
 # yarn
 .pnp.*
 .yarn/*

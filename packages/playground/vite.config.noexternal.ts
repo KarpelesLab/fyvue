@@ -1,6 +1,7 @@
 import config from './vite.config.bundle';
 import { SchemaOrg } from '@vueuse/schema-org-vite';
 import vue from '@vitejs/plugin-vue';
+//import sitemapPlugin from '../fy-sitemap';
 
 export default Object.assign(config, {
   plugins: [
@@ -18,6 +19,9 @@ export default Object.assign(config, {
       full: false,
       dts: true,
     }),
+    /*sitemapPlugin({
+      outDir: './dist/server/',
+    }),*/
   ],
   ssr: {
     noExternal: /./,

@@ -1,4 +1,4 @@
-import { GlobalCountries } from '@karpeleslab/fyvue/dist/utils/helpers';
+import { GlobalCountries } from '@karpeleslab/fyvue';
 
 declare module 'vue' {
   export interface GlobalComponents {
@@ -37,7 +37,7 @@ declare module 'vue' {
   }
   interface ComponentCustomProperties {
     $t: (key: string, v?: any | undefined) => string;
-    $eventBus: typeof import('@karpeleslab/fyvue/dist/utils/helpers')['eventBus'];
+    $eventBus: typeof import('@karpeleslab/fyvue')['helpers']['eventBus'];
     $cropText: typeof import('@karpeleslab/fyvue')['helpers']['cropText'];
     $formatBytes: typeof import('@karpeleslab/fyvue')['helpers']['formatBytes'];
     $formatJPZipcode: typeof import('@karpeleslab/fyvue')['helpers']['formatJPZipcode'];
