@@ -12,7 +12,7 @@ const getInnerComponent = computed(() => {
   const src = `./${route.meta.category}/${route.params.slug}View.vue`;
   console.log(src);
   const comp = defineAsyncComponent({
-    loader: () => allowedCompos[src](),
+    loader: allowedCompos[src],
     errorComponent: Error404View,
     timeout: 3000,
   });
