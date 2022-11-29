@@ -68,6 +68,9 @@ export default [
       Vue({
         isProduction: true,
         sourceMap: false,
+        template: {
+          ssr: true
+        }
       }),
       esbuild({
         tsconfig: 'tsconfig.json',
