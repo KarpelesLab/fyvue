@@ -23,7 +23,7 @@ import {
 } from './utils/display';
 import { handleSSR, setupClient, useHistory, isSSRRendered } from './utils/ssr';
 import { useFVStore } from './utils/store';
-import { rest } from './utils/rest';
+import { rest, restFetch } from './utils/rest';
 import type { FyvueOptions } from './dts';
 import { useUserCheck } from './components/klb/KlbUser/useUserCheck';
 import { getLocale } from '@karpeleslab/klbfw';
@@ -112,5 +112,6 @@ export {
   helpers,
   helpersSSR,
   rest,
+  restFetch,
   KlbUse,
 };

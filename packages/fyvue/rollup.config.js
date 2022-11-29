@@ -46,35 +46,35 @@ export default [
     input: 'src/index.ts',
     output: [
       {
-        //inlineDynamicImports: true,
+        inlineDynamicImports: true,
         format: 'cjs',
-        //sourcemap: true,
+        sourcemap: true,
         file: 'dist/dist/fyvue.js',
         name: 'fyvue',
-        //globals: globals,
-        //banner: banner,
+        globals: globals,
+        banner: banner,
       },
       {
-        //inlineDynamicImports: true,
+        inlineDynamicImports: true,
         format: 'es',
-        //sourcemap: true,
+        sourcemap: true,
         file: 'dist/dist/fyvue.mjs',
-        //globals: globals,
-        //banner: banner,
+        globals: globals,
+        banner: banner,
       },
     ],
     plugins: [
       peerDepsExternal(),
       Vue({
-        /*
-        ssr: true,
         isProduction: true,
-        template: {
-          ssr: true,
-          isProd: true,
-        },*/
+        sourceMap: false,
       }),
-      esbuild({ tsconfig: 'tsconfig.json' }),
+      esbuild({
+        tsconfig: 'tsconfig.json',
+        minifySyntax: true,
+        target: 'es2018',
+        platform: 'neutral',
+      }),
       /*typescript({
         tsconfig: 'tsconfig.json',
       }),*/

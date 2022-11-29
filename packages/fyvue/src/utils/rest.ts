@@ -1,20 +1,27 @@
 import { defineStore } from 'pinia';
 import { rest as _rest, getMode } from '@karpeleslab/klbfw';
 import type { KlbAPIResult } from '../dts/klb';
+import type { FetchResult } from '../dts';
+
 import { isSSRRendered } from './ssr';
 
 type RequestResult = {
   [key: number]: KlbAPIResult | undefined;
 };
+type FetchRequestResult = {
+  [key: number]: FetchResult | undefined;
+};
 
 type RestSharedState = {
   results: RequestResult;
+  fetchResults: FetchRequestResult;
 };
 
 export const useRestState = defineStore({
   id: 'restState',
   state: (): RestSharedState => ({
     results: {},
+    fetchResults: {},
   }),
   actions: {
     addResult(key: number, result: KlbAPIResult | undefined) {
@@ -41,6 +48,60 @@ const stringHashcode = (str: string) => {
   }
   return hash;
 };
+
+export function restFetch<ResultType extends FetchResult>(
+  url: string,
+  method: string = 'GET',
+  params: object = {},
+  isSSR: boolean = false
+): Promise<ResultType> {
+  const requestHash = stringHashcode(url + method + JSON.stringify(params));
+  const restState = useRestState();
+
+  if (isSSRRendered() && restState.fetchResults[requestHash]) {
+    const result = { ...restState.fetchResults[requestHash] } as ResultType;
+    delete restState.fetchResults[requestHash];
+    return new Promise<ResultType>((resolve, reject) => {
+      if (result.fvReject) {
+        delete result.fvReject;
+        reject(result);
+      } else resolve(result);
+    });
+  }
+  const headers = new Headers();
+  headers.set('Content-Type', 'application/json');
+  let _params: any = params;
+  if (method == 'POST') {
+    _params = JSON.stringify(params);
+  } else if (method == 'GET') {
+    _params = undefined;
+    if (params) {
+      _params = '?' + new URLSearchParams(params as Record<string, string>);
+    }
+  }
+  return new Promise<ResultType>((resolve, reject) => {
+    fetch(`${url}${method == 'GET' ? _params : ''}`, {
+      method: method,
+      body: method == 'POST' ? _params : undefined,
+      headers,
+    })
+      .catch((err) => {
+        if (isSSR) {
+          err.fvReject = true;
+          restState.fetchResults[requestHash] = err;
+        }
+        reject(err);
+      })
+      .then((res) => {
+        if (res) {
+          res.json().then((data: ResultType) => {
+            if (isSSR) restState.fetchResults[requestHash] = data;
+            resolve(data);
+          });
+        }
+      });
+  });
+}
 
 export function rest<ResultType extends KlbAPIResult>(
   url: string,

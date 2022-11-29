@@ -3,7 +3,7 @@ import { ref, watch, onMounted, onUnmounted, WatchStopHandle } from 'vue';
 import { rest } from '../../../utils/rest';
 import { useHistory } from '../../../utils/ssr';
 import type { FyVueBreadcrumb } from '../../../dts/index';
-import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
+import { MagnifyingGlassIcon, FolderOpenIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
 import { useEventBus } from '../../../utils/helpers';
 import { useTranslation } from '../../../utils/helpers';
@@ -216,7 +216,7 @@ useSeo(seo);
       <SchemaOrgWebPage :type="['CollectionPage', 'SearchResultsPage']" />
       <main>
         <FyBreadcrumb :nav="breadcrumb" />
-        <h1 v-if="h1Mult" class="m-h1">{{ h1Mult }}</h1>
+
         <template
           v-for="(post, index) in data?.data.data"
           :key="post.Content_Cms_Entry__"
@@ -240,6 +240,7 @@ useSeo(seo);
       </main>
 
       <aside>
+        <h1 class="m-h1">{{ h1Mult ? h1Mult : blogName }}</h1>
         <form
           class="search"
           @submit.prevent="
@@ -259,9 +260,9 @@ useSeo(seo);
           <h3>Categories</h3>
           <ul>
             <li v-for="cat in cats" :key="cat.Classify_Tag__">
-              <RouterLink :to="`${basePath}/category/${cat.Full_Name}`">{{
-                cat.Full_Name
-              }}</RouterLink>
+              <RouterLink :to="`${basePath}/category/${cat.Full_Name}`"
+                ><FolderOpenIcon /> {{ cat.Full_Name }}</RouterLink
+              >
             </li>
           </ul>
         </div>

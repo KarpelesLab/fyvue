@@ -103,6 +103,12 @@ export interface KlbAPICatalog extends KlbAPIResult {
 export interface KlbAPICatalogCart extends KlbAPIResult {
   data: KlbCatalogCart;
 }
+export interface KlbAPIComment extends KlbAPIResult {
+  data: KlbSocialComment;
+}
+export interface KlbAPIComments extends KlbAPIResult {
+  data: Array<KlbSocialComment>;
+}
 export interface KlbAPIClassify extends KlbAPIResult {
   data: {
     Root_Tags: Array<KlbClassifyTag>;
@@ -686,11 +692,24 @@ export interface KlbContentCms {
   Keywords: Array<string>;
   Comments?: {
     Comment_Count: number;
-    Commented: false;
+    Commented: boolean;
+    Key?: string;
   };
   Top_Drive_Item?: {
     Mime: string;
     Media_Image?: KlbMediaImage;
   };
   Short_Contents?: string;
+}
+export interface KlbSocialComment {
+  Date: KlbDate;
+  MetaObject__: KlbUUID;
+  Patrol: 'pending' | 'done';
+  Realm__: KlbUUID;
+  Reports: number;
+  Social_Comment__: KlbUUID;
+  User__: KlbUUID;
+  Visible: 'Y' | 'N';
+  Message: string;
+  Profile: KlbUserProfile;
 }

@@ -977,9 +977,10 @@ declare const useFVStore: pinia.StoreDefinition<"fVStore", RootState, {
     setUser(user: KlbUser | null): void;
 }>;
 
-declare function rest<ResultType extends KlbAPIResult>(url: string, method?: string, params?: object, ctx?: object): Promise<ResultType>;
-
-declare function useUserCheck(path?: string): void;
+interface FetchResult {
+  [key: string]: any;
+  fvReject?: boolean;
+}
 
 interface SeoData {
   name?: string;
@@ -997,6 +998,11 @@ interface SeoData {
   next?: string;
   prev?: string;
 }
+
+declare function restFetch<ResultType extends FetchResult>(url: string, method?: string, params?: object, isSSR?: boolean): Promise<ResultType>;
+declare function rest<ResultType extends KlbAPIResult>(url: string, method?: string, params?: object, ctx?: object): Promise<ResultType>;
+
+declare function useUserCheck(path?: string): void;
 
 declare const useSeo: (seo: Ref<SeoData>, initial?: boolean) => void;
 
@@ -1057,4 +1063,4 @@ declare const KlbUse: {
     useBilling: typeof useBilling;
 };
 
-export { KlbUse, components, countriesPromise, createFyvue, helpers, helpersSSR, i18nextPromise, rest, useCountries, useEventBus, useFVStore, useHistory, useSeo, useTranslation, useUserCheck };
+export { KlbUse, components, countriesPromise, createFyvue, helpers, helpersSSR, i18nextPromise, rest, restFetch, useCountries, useEventBus, useFVStore, useHistory, useSeo, useTranslation, useUserCheck };

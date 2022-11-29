@@ -927,25 +927,31 @@ button[type=submit] {
 }
 
 .klb-blog {
-  @apply flex-grow;
+  @apply flex-grow my-3;
 }
 .klb-blog main {
   @apply flex-1;
 }
 .klb-blog .m-h1 {
-  @apply font-bold text-2xl px-5 pt-1 pb-1.5 mb-2 text-fv-neutral-900 dark:text-fv-neutral-50  rounded-lg bg-fv-neutral-50 dark:bg-fv-neutral-900 dark:border-fv-neutral-700;
+  @apply font-bold text-2xl px-2 pt-1 pb-1.5 mb-2 text-fv-neutral-900 dark:text-fv-neutral-50;
 }
 .klb-blog aside {
-  @apply grow md:grow-0 w-full md:w-96;
+  @apply grow md:grow-0 w-full md:w-80 xl:w-96 border-l border-l-fv-neutral-300 dark:border-l-fv-neutral-900 ml-2;
 }
 .klb-blog aside .widget {
-  @apply mt-2 bg-white dark:bg-fv-neutral-900 text-black dark:text-fv-neutral-50 shadow rounded py-0.5 px-2  mx-0 md:mx-2;
+  @apply mt-2  text-black dark:text-fv-neutral-50  rounded py-0.5 px-2  mx-0 md:mx-2;
 }
 .klb-blog aside .widget h3 {
-  @apply text-lg font-medium mt-0.5 mb-1 text-center;
+  @apply text-lg font-medium mt-0.5 mb-1;
 }
 .klb-blog aside .widget ul {
-  @apply list-disc ml-8 mb-2;
+  @apply list-none ml-2 mb-2;
+}
+.klb-blog aside .widget ul li a {
+  @apply flex items-center;
+}
+.klb-blog aside .widget ul li a svg {
+  @apply h-4 w-4 mr-1;
 }
 .klb-blog aside .widget a {
   @apply text-fv-primary-700 hover:text-fv-primary-900 dark:text-fv-primary-300 dark:hover:text-fv-primary-500;
@@ -1096,4 +1102,11 @@ button[type=submit] {
 }
 .klb-blog article.is-single header h1 {
   @apply py-0 my-0 px-2 md:px-4 lg:px-5 border-0 container mx-auto max-w-screen-xl text-white text-2xl lg:text-3xl font-bold w-full;
+}
+
+.fv-comments {
+  @apply px-6 container mx-auto max-w-screen-xl pt-6;
+}
+.fv-comments .card-container {
+  @apply px-2 pt-1 pb-0.5;
 }
