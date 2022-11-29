@@ -980,6 +980,9 @@ declare const useFVStore: pinia.StoreDefinition<"fVStore", RootState, {
 interface FetchResult {
   [key: string]: any;
   fvReject?: boolean;
+  data?: any;
+  raw: any;
+  status: any;
 }
 
 interface SeoData {

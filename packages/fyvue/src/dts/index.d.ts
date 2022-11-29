@@ -18,6 +18,9 @@ export interface FyVueBreadcrumb {
 export interface FetchResult {
   [key: string]: any;
   fvReject?: boolean;
+  data?: any;
+  raw: any;
+  status: any;
 }
 
 export interface FyvueConfirm {

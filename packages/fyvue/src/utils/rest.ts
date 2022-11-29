@@ -86,17 +86,28 @@ export function restFetch<ResultType extends FetchResult>(
       headers,
     })
       .catch((err) => {
+        const _res: FetchResult = {
+          raw: err,
+          data: err,
+          status: err.status,
+        };
         if (isSSR) {
-          err.fvReject = true;
-          restState.fetchResults[requestHash] = err;
+          _res.fvReject = true;
+          restState.fetchResults[requestHash] = _res;
         }
-        reject(err);
+        reject(_res as ResultType);
       })
       .then((res) => {
         if (res) {
-          res.json().then((data: ResultType) => {
-            if (isSSR) restState.fetchResults[requestHash] = data;
-            resolve(data);
+          const _res: FetchResult = {
+            raw: res,
+            data: undefined,
+            status: res.status,
+          };
+          res.json().then((data: any) => {
+            _res.data = data;
+            if (isSSR) restState.fetchResults[requestHash] = _res;
+            resolve(_res as ResultType);
           });
         }
       });

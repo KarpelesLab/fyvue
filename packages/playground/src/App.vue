@@ -5,7 +5,6 @@ import {
   useUserCheck,
   useSeo,
   useEventBus,
-  restFetch,
 } from '@karpeleslab/fyvue';
 
 import { ref, computed, onUnmounted, onMounted } from 'vue';
@@ -28,12 +27,6 @@ if (!import.meta.env.SSR) {
   await useUserCheck();
   await countriesPromise();
 }
-
-const _test = await restFetch(
-  'https://www.recreatisse.com/wp-json/wp/v2/posts',
-  'GET'
-);
-console.log(_test);
 
 onMounted(() => {
   eventBus.on('leaveSearchPage', () => {

@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.23
+  * @karpeleslab/fyvue v0.2.0-rc.26
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -138,11 +138,23 @@ function restFetch(url, method = "GET", params = {}, isSSR = !1) {
       body: method == "POST" ? _params : void 0,
       headers
     }).catch((err) => {
-      isSSR && (err.fvReject = !0, restState.fetchResults[requestHash] = err), reject(err);
+      const _res = {
+        raw: err,
+        data: err,
+        status: err.status
+      };
+      isSSR && (_res.fvReject = !0, restState.fetchResults[requestHash] = _res), reject(_res);
     }).then((res) => {
-      res && res.json().then((data) => {
-        isSSR && (restState.fetchResults[requestHash] = data), resolve(data);
-      });
+      if (res) {
+        const _res = {
+          raw: res,
+          data: void 0,
+          status: res.status
+        };
+        res.json().then((data) => {
+          _res.data = data, isSSR && (restState.fetchResults[requestHash] = _res), resolve(_res);
+        });
+      }
     });
   });
 }
