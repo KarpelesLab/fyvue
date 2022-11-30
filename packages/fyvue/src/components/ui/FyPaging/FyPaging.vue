@@ -4,10 +4,11 @@ import { watch, onUnmounted, ref, WatchStopHandle, onMounted } from 'vue';
 import type { KlbApiPaging } from '../../../dts/klb';
 import { useEventBus } from '../../../utils/helpers';
 import { useHistory } from '../../../utils/ssr';
-import { useSeo } from '../../helpers/seo';
 import { getUrl } from '@karpeleslab/klbfw';
 import type { SeoData } from '../../../dts';
 import { useRoute } from 'vue-router';
+import { useFyHead } from '@fy/head';
+
 const props = defineProps<{
   items: KlbApiPaging;
   id: string;
@@ -17,6 +18,7 @@ const eventBus = useEventBus();
 const history = useHistory();
 const prevNextSeo = ref<SeoData>({});
 const url = getUrl();
+const fyhead = useFyHead();
 const isNewPage = (page: number) => {
   return (
     page >= 1 && page <= props.items.page_max && page != props.items.page_no
@@ -56,14 +58,16 @@ const checkPageNumber = (page: number = 1) => {
   prevNextSeo.value.next = undefined;
   prevNextSeo.value.prev = undefined;
   if (page + 1 <= props.items.page_max) {
-    prevNextSeo.value.next = `${url.scheme}://${url.host}${url.path}?page=${
-      page + 1
-    }`;
+    fyhead.addLink(
+      'next',
+      `${url.scheme}://${url.host}${url.path}?page=${page + 1}`
+    );
   }
   if (page - 1 >= 1) {
-    prevNextSeo.value.prev = `${url.scheme}://${url.host}${url.path}?page=${
-      page - 1
-    }`;
+    fyhead.addLink(
+      'prev',
+      `${url.scheme}://${url.host}${url.path}?page=${page - 1}`
+    );
   }
 };
 eventBus.on(`${props.id}GoToPage`, checkPageNumber);
@@ -81,7 +85,7 @@ onUnmounted(() => {
 });
 
 checkPageNumber(props.items.page_no);
-useSeo(prevNextSeo);
+//useSeo(prevNextSeo);
 
 /*
 <link rel="prev" href="https://www.example.com/article?story=abc&page=1" />

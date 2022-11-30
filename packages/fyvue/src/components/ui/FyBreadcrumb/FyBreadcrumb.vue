@@ -2,7 +2,7 @@
 import type { FyVueBreadcrumb } from '../../../dts';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
 import { computed } from 'vue';
-import { SchemaOrgBreadcrumb } from '@vueuse/schema-org/runtime';
+//import { SchemaOrgBreadcrumb } from '@vueuse/schema-org/runtime';
 const props = withDefaults(
   defineProps<{
     nav: FyVueBreadcrumb[];
@@ -14,6 +14,7 @@ const props = withDefaults(
   }
 );
 
+/*
 const schemaOrgFormat = computed(() => {
   const _nav: any[] = [];
   props.nav.forEach((e) => {
@@ -24,10 +25,11 @@ const schemaOrgFormat = computed(() => {
   });
   return _nav;
 });
+*/
 </script>
 <template>
   <nav class="fy-breadcrumb" aria-label="Breadcrumb">
-    <SchemaOrgBreadcrumb as="ol" :item-list-element="schemaOrgFormat">
+    <ol>
       <template v-for="(item, index) in nav" :key="`bc_${index.toString()}`">
         <li
           :class="
@@ -46,6 +48,6 @@ const schemaOrgFormat = computed(() => {
           </span>
         </li>
       </template>
-    </SchemaOrgBreadcrumb>
+    </ol>
   </nav>
 </template>

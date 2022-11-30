@@ -25,6 +25,9 @@
       "@/*": [
         "src/*"
       ],
+      "@fy/head": [
+        "../fy-head/"
+      ],
       "@vueuse/schema-org/runtime": [
         "./../../node_modules/@vueuse/schema-org/dist/runtime-simple/index"
       ]

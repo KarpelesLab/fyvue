@@ -12,5 +12,6 @@
         "build:play:client": "yarn workspace playground build:client",
         "build:play:server": "yarn workspace playground build:server:noExternal",
         "lint:play": "yarn workspace playground lint:check --fix"
-    }
+    },
+    "packageManager": "yarn@3.3.0"
 }

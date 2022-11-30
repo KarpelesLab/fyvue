@@ -19,12 +19,18 @@
     "types": ["vite/client", "@types/node"],
     "removeComments": true,
     "noImplicitAny": false,
+    /*
     "paths": {
-      //"@karpeleslab/fyvue/*": [
-      //  "./*"
-      //],
-    }
+      "@fy/head/*": [
+        "../fy-head/*"
+      ],
+    }*/
   },
+  "references": [
+    {
+      "path": "../fyhead"
+    }
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",

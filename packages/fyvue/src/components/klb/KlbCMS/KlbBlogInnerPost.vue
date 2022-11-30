@@ -9,7 +9,7 @@ import {
   PaperClipIcon,
   TagIcon,
 } from '@heroicons/vue/24/solid';
-import { SchemaOrgArticle } from '@vueuse/schema-org/runtime';
+//import { SchemaOrgArticle } from '@vueuse/schema-org/runtime';
 import KlbComments from './KlbComments.vue';
 
 withDefaults(
@@ -34,7 +34,7 @@ withDefaults(
 <template>
   <section>
     <article v-if="post" :class="single ? 'is-single' : 'is-multiple'">
-      <SchemaOrgArticle
+      <!--<SchemaOrgArticle
         v-if="single"
         :headline="post.Title"
         :date-published="
@@ -51,7 +51,7 @@ withDefaults(
             ? post.Top_Drive_Item.Media_Image?.Variation['banner']
             : undefined
         "
-      />
+      />-->
       <header class="entry-header" v-if="!single">
         <RouterLink :to="`${basePath}/${post.Slug}`" :title="post.Title">
           <figure

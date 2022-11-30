@@ -7,6 +7,8 @@ import {
   createMemoryHistory,
 } from 'vue-router';
 import { createHead } from '@vueuse/head';
+import { createFyHead } from '@fy/head';
+
 import { createPinia } from 'pinia';
 import { routes } from './routes';
 import VueCodeHighlight from 'vue-code-highlight';
@@ -34,6 +36,10 @@ export const createApp = async (isSSR = false) => {
   app.use(router);
   app.use(head);
   app.use(pinia);
+  const fyhead = createFyHead();
+
+  app.use(fyhead);
+
   installSchemaOrg(
     { app, router },
     {

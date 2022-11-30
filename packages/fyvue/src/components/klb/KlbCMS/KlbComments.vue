@@ -12,7 +12,6 @@ import {
   PaperClipIcon,
   TagIcon,
 } from '@heroicons/vue/24/solid';
-import { SchemaOrgArticle } from '@vueuse/schema-org/runtime';
 import { onMounted } from 'vue';
 const props = withDefaults(
   defineProps<{

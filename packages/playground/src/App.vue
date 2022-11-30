@@ -13,6 +13,8 @@ import { useRoute } from 'vue-router';
 import { onClickOutside } from '@vueuse/core';
 import { Backend } from '@karpeleslab/i18next-klb-backend';
 import ComponentIndex from '@/componentIndex';
+import { useFyHead } from '@fy/head';
+import { useHead } from '@vueuse/head';
 
 await i18nextPromise(Backend);
 const route = useRoute();
@@ -36,6 +38,7 @@ onMounted(() => {
 onUnmounted(() => {
   eventBus.off('leaveSearchPage', '*');
 });
+
 
 useSeo(
   ref({
