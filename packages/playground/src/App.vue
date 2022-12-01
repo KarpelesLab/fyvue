@@ -41,7 +41,7 @@ useSeo(
   ref({
     name: 'fyvue',
     type: 'website',
-    image: 'https://fy-vue.com/fyvue.svg',
+    image: 'https://fy-vue.com/fyvue.png',
     title: computed(() =>
       computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
     ),

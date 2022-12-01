@@ -31,22 +31,6 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
       defineWebPage(),
     ]);
   }
-  /*
-  @redo with store per page
-  if (seo.value.published)
-    defineWebPage({ datePublished: seo.value.published });
-  if (seo.value.modified) defineWebPage({ dateModified: seo.value.modified });
-  if (seo.value.image) defineWebPage({ image: seo.value.image });
-  if (seo.value.title) defineWebPage({ name: seo.value.title });
-  if (seo.value.type) {
-    if (seo.value.type == 'search')
-      defineWebPage({ '@types': 'SearchResultsPage' });
-  }
-  if (getMode() == 'ssr') {
-    defineWebPage({
-      url: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
-    });
-  }*/
 
   useHead({
     title: computed(() => seo.value.title),
@@ -89,18 +73,18 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
         if (getMode() == 'ssr') {
           _res.push(
             {
-              name: 'og:locale',
+              property: 'og:locale',
               content: getLocale().replace('-', '_'),
             },
             {
-              name: 'og:url',
+              property: 'og:url',
               content: getUrl().full,
             }
           );
         }
         _res.push(
           {
-            name: 'og:type',
+            property: 'og:type',
             content: 'website',
           },
           {
@@ -110,16 +94,22 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
           }
         );
       }
+      if (seo.value.name) {
+        _res.push({
+          property: 'og:site_name',
+          content: seo.value.name,
+        });
+      }
       if (seo.value.type) {
         _res.push({
-          name: 'og:type',
+          property: 'og:type',
           content: seo.value.type,
         });
       }
       if (seo.value.title) {
         _res.push(
           {
-            name: 'og:title',
+            property: 'og:title',
             content: seo.value.title,
           },
           {
@@ -131,7 +121,7 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
       if (seo.value.description) {
         _res.push(
           {
-            name: 'og:description',
+            property: 'og:description',
             content: seo.value.description,
           },
           {
@@ -139,7 +129,7 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
             content: seo.value.description,
           },
           {
-            name: 'og:description',
+            property: 'og:description',
             content: seo.value.description,
           },
           {
@@ -150,38 +140,38 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
       }
       if (seo.value.modified) {
         _res.push({
-          name: 'article:published_time',
+          property: 'article:published_time',
           content: seo.value.modified,
         });
       }
       if (seo.value.published) {
         _res.push({
-          name: 'article:modified_time',
+          property: 'article:modified_time',
           content: seo.value.published,
         });
       }
       if (seo.value.imageWidth && seo.value.imageHeight) {
         _res.push(
           {
-            name: 'og:image:width',
+            property: 'og:image:width',
             content: seo.value.imageWidth,
           },
           {
-            name: 'og:image:height',
+            property: 'og:image:height',
             content: seo.value.imageHeight,
           }
         );
       }
       if (seo.value.imageType) {
         _res.push({
-          name: 'og:image:type',
+          property: 'og:image:type',
           content: seo.value.imageType,
         });
       }
       if (seo.value.image) {
         _res.push(
           {
-            name: 'og:image',
+            property: 'og:image',
             content: seo.value.image,
           },
           {

@@ -8,7 +8,6 @@ useSeo(
       'fyvue is a Vue Plugin providing components, helpers for Vue, Tailwind, vite-ssr, KLB APIs, and more. At some point in the future, it will do my job for me.',
   })
 );
-const store = useFVStore();
 </script>
 <template>
   <KlbPage
@@ -19,7 +18,7 @@ const store = useFVStore();
   <div class="fv-typo doc-contained margins">
     <h2>Getting started</h2>
     <p>First you'll need to install <b>fyvue</b>.</p>
-    <!-- prettier-ignore --><FvHL lang="bash"><pre>yarn add @karpeleslab/fyvue@alpha</pre></FvHL>
+    <!-- prettier-ignore --><FvHL lang="bash"><pre>yarn add @karpeleslab/fyvue</pre></FvHL>
     <p>Then activate <b>fyvue</b> plugin in <code>main.ts</code></p>
 
     <!-- prettier-ignore --><FvHL><pre>import { createFyvue } from "@karpeleslab/fyvue";

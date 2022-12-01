@@ -5,4 +5,4 @@ yarn run lint:fyvue --fix
 yarn run build:fyvue
 cd packages/fyvue/dist
 
-npm publish --tag alpha
+npm publish

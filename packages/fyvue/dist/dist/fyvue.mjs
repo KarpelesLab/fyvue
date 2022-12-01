@@ -1,5 +1,5 @@
 /*!
-  * @karpeleslab/fyvue v0.2.0-rc.29
+  * @karpeleslab/fyvue v0.2.1
   * (c) 2022 Florian Gasquez <m@fy.to>
   * @license MIT
   */
@@ -1013,28 +1013,31 @@ const useSeo = (seo, initial = !1) => {
       const _res = [];
       return initial && (getMode() == "ssr" && _res.push(
         {
-          name: "og:locale",
+          property: "og:locale",
           content: getLocale$1().replace("-", "_")
         },
         {
-          name: "og:url",
+          property: "og:url",
           content: getUrl().full
         }
       ), _res.push(
         {
-          name: "og:type",
+          property: "og:type",
           content: "website"
         },
         {
           name: "robots",
           content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         }
-      )), seo.value.type && _res.push({
-        name: "og:type",
+      )), seo.value.name && _res.push({
+        property: "og:site_name",
+        content: seo.value.name
+      }), seo.value.type && _res.push({
+        property: "og:type",
         content: seo.value.type
       }), seo.value.title && _res.push(
         {
-          name: "og:title",
+          property: "og:title",
           content: seo.value.title
         },
         {
@@ -1043,7 +1046,7 @@ const useSeo = (seo, initial = !1) => {
         }
       ), seo.value.description && _res.push(
         {
-          name: "og:description",
+          property: "og:description",
           content: seo.value.description
         },
         {
@@ -1051,7 +1054,7 @@ const useSeo = (seo, initial = !1) => {
           content: seo.value.description
         },
         {
-          name: "og:description",
+          property: "og:description",
           content: seo.value.description
         },
         {
@@ -1059,26 +1062,26 @@ const useSeo = (seo, initial = !1) => {
           content: seo.value.description
         }
       ), seo.value.modified && _res.push({
-        name: "article:published_time",
+        property: "article:published_time",
         content: seo.value.modified
       }), seo.value.published && _res.push({
-        name: "article:modified_time",
+        property: "article:modified_time",
         content: seo.value.published
       }), seo.value.imageWidth && seo.value.imageHeight && _res.push(
         {
-          name: "og:image:width",
+          property: "og:image:width",
           content: seo.value.imageWidth
         },
         {
-          name: "og:image:height",
+          property: "og:image:height",
           content: seo.value.imageHeight
         }
       ), seo.value.imageType && _res.push({
-        name: "og:image:type",
+        property: "og:image:type",
         content: seo.value.imageType
       }), seo.value.image && _res.push(
         {
-          name: "og:image",
+          property: "og:image",
           content: seo.value.image
         },
         {
