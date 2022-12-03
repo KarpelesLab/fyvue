@@ -20,7 +20,7 @@ jobs:
       with:
         version: 7
         run_install: false
-    - run: pnpm install --no-frozen-lockfile
+    - run: pnpm install
     - run: pnpm run build:play
     - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install zip
     - run: zip -9r final.zip dist etc
