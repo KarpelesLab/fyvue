@@ -13,8 +13,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 18.x
-    - run: yarn install
-    - run: yarn run build:play
+    - run: pnpm install
+    - run: pnpm run build:play
     - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install zip
     - run: zip -9r final.zip dist etc
       working-directory: packages/playground
