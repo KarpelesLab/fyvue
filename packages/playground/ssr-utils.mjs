@@ -1,4 +1,4 @@
-function generateUUID() {
+export function generateUUID() {
   // Public Domain/MIT
   var d = new Date().getTime(); //Timestamp
   var d2 =
@@ -21,29 +21,31 @@ function generateUUID() {
   });
 }
 
-export const buildFw = (urlFull, hostname, path, scheme, mode, prefix) => {
-  return `
-    <script type="text/javascript">
-      var FW = (function () {
-        var my = {
-          URL: {
-            full: "${urlFull}",
-            host: "${hostname}",
-            path: "${path}",
-            scheme: "${scheme}",
-          },
-          Registry: {
-            Language__: "fr-FR",
-          },
-          Locale: "fr-FR",
-          hostname: "${hostname}",
-          mode: "${mode}",
-          path: "${path}",
-          prefix: "",
-          uuid: "${generateUUID()}",
-        };
-        return my;
-      })();
-    </script>
-    `;
+export const buildFw = (
+  uuid,
+  urlFull,
+  hostname,
+  path,
+  scheme,
+  mode,
+  prefix
+) => {
+  return {
+    URL: {
+      full: urlFull,
+      host: hostname,
+      path: path,
+      scheme: scheme,
+    },
+    Registry: {
+      Language__: 'fr-FR',
+    },
+    Locale: 'fr-FR',
+    hostname: hostname,
+    mode: mode,
+    path: path,
+    prefix: '',
+    uuid: uuid,
+    inital: {},
+  };
 };
