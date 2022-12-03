@@ -1,7 +1,7 @@
 import type { Ref } from 'vue';
 import { getUrl, getLocale, getMode } from '@karpeleslab/klbfw';
-import { useFyHead } from '@fy/head';
-import type { FyHeadLazy } from '@fy/head';
+import { useFyHead } from '@fy-/head';
+import type { FyHeadLazy } from '@fy-/head';
 
 export const useSeo = (seo: Ref<FyHeadLazy>, initial: boolean = false) => {
   if (initial) {

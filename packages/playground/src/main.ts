@@ -6,7 +6,7 @@ import {
   createWebHistory,
   createMemoryHistory,
 } from 'vue-router';
-import { createFyHead } from '@fy/head';
+import { createFyHead } from '@fy-/head';
 
 import { createPinia } from 'pinia';
 import { routes } from './routes';

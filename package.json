@@ -2,16 +2,19 @@
     "name": "fyvue-main",
     "private": true,
     "workspaces": [
-        "packages/*"
+        "packages/fyvue",
+        "packages/fyhead",
+        "packages/playground"
     ],
     "scripts": {
-        "build:fyvue": "yarn workspace @karpeleslab/fyvue build",
-        "lint:fyvue": "yarn workspace @karpeleslab/fyvue lint:check --fix",
-        "play": "yarn workspace playground dev:live",
-        "build:play": "yarn workspace playground build",
-        "build:play:client": "yarn workspace playground build:client",
-        "build:play:server": "yarn workspace playground build:server:noExternal",
-        "lint:play": "yarn workspace playground lint:check --fix"
-    },
-    "packageManager": "yarn@3.3.0"
+        "build:fyvue": "pnpm -C packages/fyvue build",
+        "build:fyhead": "pnpm -C packages/fyhead build",
+        "lint:fyvue": "pnpm -C packages/fyvue lint:check --fix",
+        "lint:fyhead": "pnpm -C packages/fyhead lint:check --fix",
+        "play": "pnpm -C packages/playground dev:live",
+        "build:play": "pnpm -C packages/playground build",
+        "build:play:client": "pnpm -C packages/playground build:client",
+        "build:play:server": "pnpm -C packages/playground build:server:noExternal",
+        "lint:play": "pnpm -C packages/playground lint:check --fix"
+    }
 }

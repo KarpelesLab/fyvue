@@ -1,63 +1,39 @@
-import Vue from 'unplugin-vue/rollup';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import ts from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
-import copy from 'rollup-plugin-copy';
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import cleanup from 'rollup-plugin-cleanup';
-import esbuild from 'rollup-plugin-esbuild';
-import dts from 'rollup-plugin-dts';
+import copy from 'rollup-plugin-copy';
 
-const pkg = require('./package.json');
-const name = pkg.name;
+import pkg from './package.json';
 
-const banner = `/*!
-  * ${pkg.name} v${pkg.version}
-  * (c) ${new Date().getFullYear()} Florian Gasquez <m@fy.to>
-  * @license MIT
-  */`;
+const banner = `
+/**
+ * ${pkg.name} v${pkg.version}
+ * (c) ${new Date().getFullYear()} Florian "Fy" Gasquez
+ * Released under the MIT License
+ */
+`;
 
-const globals = {};
+function createEntry(options) {
+  const { format, input } = options;
 
-export default [
-  {
-    input: './src/index.ts',
-    output: [{ file: 'dist/dist/index.d.ts', format: 'es' }],
-    plugins: [dts()],
-  },
-  {
-    input: 'src/index.ts',
-    output: [
-      {
-        inlineDynamicImports: true,
-        format: 'cjs',
-        sourcemap: true,
-        file: 'dist/dist/fyhead.js',
-        name: 'fyhead',
-        globals: globals,
-        banner: banner,
-      },
-      {
-        inlineDynamicImports: true,
-        format: 'es',
-        sourcemap: true,
-        file: 'dist/dist/fyhead.mjs',
-        globals: globals,
-        banner: banner,
-      },
-    ],
+  const config = {
+    input,
+    external: ['vue', '@vue/compiler-dom'],
     plugins: [
-      peerDepsExternal(),
-      Vue({
-        isProduction: true,
-        sourceMap: false,
-        template: {
-          ssr: true,
+      replace({
+        values: {
+          'process.env.NODE_ENV': 'true',
         },
+        preventAssignment: true,
       }),
-      esbuild({
+      resolve(),
+      commonjs(),
+      json(),
+      ts({
         tsconfig: 'tsconfig.json',
-        minifySyntax: true,
-        target: 'es2018',
-        platform: 'neutral',
       }),
       copy({
         targets: [
@@ -75,13 +51,41 @@ export default [
                   /"devDependencies": {([\S\s]+)}/gm,
                   '"devDependencies": {}\n}'
                 );
+              _contents = _contents
+                .toString()
+                .replaceAll(/"scripts": {([\S\s]+)}/gm, '"scripts": {}\n}');
               return _contents;
             },
           },
+          { src: 'README.md', dest: 'dist/', rename: 'README.md' },
         ],
       }),
       cleanup(),
-      resolve(),
     ],
-  },
+    output: {
+      banner,
+      name: 'fyhead',
+      file: 'dist/fyhead.js',
+      format,
+      globals: {
+        vue: 'Vue',
+        '@vue/compiler-dom': 'VueCompilerDOM',
+      },
+    },
+  };
+
+  if (format === 'es') {
+    config.output.file = 'dist/dist/fyhead.mjs';
+  }
+  if (format === 'cjs') {
+    config.output.file = 'dist/dist/fyhead.js';
+  }
+  console.log(`Building ${format}: ${config.output.file}`);
+
+  return config;
+}
+
+export default [
+  createEntry({ format: 'es', input: 'src/index.ts' }),
+  createEntry({ format: 'cjs', input: 'src/index.ts' }),
 ];

@@ -8,7 +8,7 @@ import {
   onUnmounted,
   WatchStopHandle,
 } from 'vue';
-import { useFyHead } from '@fy/head';
+import { useFyHead } from '@fy-/head';
 import {
   KlbUserBilling,
   KlbOrder,

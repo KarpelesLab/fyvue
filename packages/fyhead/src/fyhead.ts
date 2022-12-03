@@ -39,6 +39,9 @@ export class FyHead {
   reset() {
     this.state.elements = {};
   }
+  addElement(el: El) {
+    this.state.elements[el.key] = el;
+  }
   addTitle(title: string) {
     if (typeof title !== 'string') return;
     this.state.elements.title = new El('title', [], 'title', title);

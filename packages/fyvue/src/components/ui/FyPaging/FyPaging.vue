@@ -7,7 +7,7 @@ import { useHistory } from '../../../utils/ssr';
 import { getUrl } from '@karpeleslab/klbfw';
 import type { SeoData } from '../../../dts';
 import { useRoute } from 'vue-router';
-import { useFyHead } from '@fy/head';
+import { useFyHead } from '@fy-/head';
 
 const props = defineProps<{
   items: KlbApiPaging;

@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 set -e
-yarn run lint:fyvue --fix
-yarn run build:fyvue
+pnpm run lint:fyvue --fix
+pnpm run build:fyvue
 cd packages/fyvue/dist
 
 npm publish --tag alpha

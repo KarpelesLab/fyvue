@@ -1,30 +1,11 @@
-import { ShallowReactive, App } from 'vue';
-
-declare class ElProperty {
-    key: string;
-    value?: string;
-    constructor(key: string, value?: string);
-    toString(): string;
-}
-type ElTag = 'meta' | 'link' | 'script' | 'title';
-declare class El {
-    tag: ElTag;
-    properties: ElProperty[];
-    content?: string;
-    key: string;
-    constructor(tag: ElTag, properties?: ElProperty[], key?: string, content?: string);
-    getKey(): string;
-    toStringProperties(): string;
-    toString(): string;
-    toDom(doc: Document): HTMLMetaElement | HTMLLinkElement | HTMLScriptElement | HTMLTitleElement;
-}
-
-interface FyHeadState {
+import type { ShallowReactive } from 'vue';
+import { El } from './element';
+export interface FyHeadState {
     elements: ShallowReactive<{
         [key: string]: El;
     }>;
 }
-interface FyHeadLazy {
+export interface FyHeadLazy {
     name?: string;
     title?: string;
     image?: string;
@@ -44,10 +25,11 @@ interface FyHeadLazy {
     robots?: string;
     url?: string;
 }
-declare class FyHead {
+export declare class FyHead {
     state: FyHeadState;
     constructor();
     reset(): void;
+    addElement(el: El): void;
     addTitle(title: string): void;
     addScript(src: string, key?: string, nonce?: string, async?: boolean): void;
     addLink(rel: string, href: string, key?: string | undefined): void;
@@ -63,10 +45,3 @@ declare class FyHead {
         [key: string]: El;
     }>): Element[];
 }
-
-declare const useFyHead: () => FyHead;
-declare const createFyHead: () => {
-    install(app: App): void;
-};
-
-export { FyHeadLazy, createFyHead, useFyHead };

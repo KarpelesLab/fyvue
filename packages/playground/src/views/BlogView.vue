@@ -1,6 +1,7 @@
 <script setup>
-import { useFyHead } from '@fy/head';
-useFyHead().addMeta('bbbbbbbbbbbbb', 'tazeawhatzezz');
+/*
+import { useFyHead } from '@fy-/head';
+useFyHead().addMeta('bbbbbbbbbbbbb', 'tazeawhatzezz');*/
 </script>
 <template>
   <Suspense>

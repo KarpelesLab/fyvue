@@ -28,6 +28,8 @@ import type { FyvueOptions } from './dts';
 import { useUserCheck } from './components/klb/KlbUser/useUserCheck';
 import { getLocale } from '@karpeleslab/klbfw';
 import { useSeo } from './components/helpers/seo';
+import './fyvue.scss';
+
 const components = { ...uiComponents, ...klb.components, ...helpersComponents };
 export const i18nextPromise = (backend) => {
   return i18next.use(backend).init({

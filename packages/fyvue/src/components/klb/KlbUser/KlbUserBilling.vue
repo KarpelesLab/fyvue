@@ -24,7 +24,7 @@ import type {
   KlbAPIUserLocation,
 } from '../../../dts/klb';
 import { eventBus } from '../../../utils/helpers';
-import { useFyHead } from '@fy/head';
+import { useFyHead } from '@fy-/head';
 import FyModal from '../../ui/FyModal/FyModal.vue';
 import { useHistory } from '../../../utils/ssr';
 const props = withDefaults(

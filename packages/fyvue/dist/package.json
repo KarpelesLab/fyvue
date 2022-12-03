@@ -6,10 +6,7 @@
     "main": "dist/fyvue.js",
     "module": "dist/fyvue.mjs",
     "typings": "dist/index.d.ts",
-    "scripts": {
-        "build": "rm -rf dist/ && rollup -c",
-        "lint:check": "eslint src/ --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore"
-    },
+
     "exports": {
         ".": {
             "import": "./dist/fyvue.mjs",
@@ -42,5 +39,5 @@
         "vue": "^3.2.45",
         "vue-router": "^4.1.6"
     },
-    "devDependencies": {}
+    "scripts": {}
 }

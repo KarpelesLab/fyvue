@@ -23,7 +23,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@karpeleslab/fyvue': fileURLToPath(new URL(fyvueRoot, import.meta.url)),
-      '@fy/head': fileURLToPath(new URL(fyHeadRoot, import.meta.url)),
+      '@fy-/head': fileURLToPath(new URL(fyHeadRoot, import.meta.url)),
     },
   },
 });
