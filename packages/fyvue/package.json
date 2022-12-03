@@ -1,6 +1,6 @@
 {
     "name": "@karpeleslab/fyvue",
-    "version": "0.2.5-alpha1",
+    "version": "0.2.5-alpha2",
     "description": "Vue lib for KLB systems",
     "author": "Florian 'Fy' Gasquez <m@fy.to>",
     "main": "dist/dist/fyvue.js",
@@ -37,7 +37,8 @@
         "i18next": "^22.0.4",
         "pinia": "^2.0.23",
         "vue": "^3.2.45",
-        "vue-router": "^4.1.6"
+        "vue-router": "^4.1.6",
+        "@fy-/head": "^0.0.12"
     },
     "scripts": {
         "build": "rm -rf dist/ && rollup -c",

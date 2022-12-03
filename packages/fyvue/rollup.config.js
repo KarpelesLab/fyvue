@@ -33,6 +33,7 @@ function createEntry(options) {
       '@vueuse/core',
       'pinia',
       'vue-router',
+      '@fy-/head',
     ],
     plugins: [
       vue({
@@ -121,6 +122,7 @@ function createEntry(options) {
         '@vueuse/core': 'vueuseC',
         pinia: 'pinia',
         'vue-router': 'vr',
+        '@fy-/head': 'fh',
       },
     },
   };

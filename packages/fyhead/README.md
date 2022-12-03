@@ -9,11 +9,11 @@ Simple head manager for Vue3/Vite (supports SSR)
 ## Load Vue Plugin
 
     import { createFyHead } from  '@fy-/head';
-    export  const  createApp  =  async (isSSR  =  false) => {
+    export const createApp = (isSSR = false) => {
      //...
-     const  fyhead  =  createFyHead();
+     const fyhead = createFyHead();
      app.use(fyhead);
-     return { app, router, fyhead, pinia, ... }
+     return { app, router, head: fyhead, pinia, ... }
     }
 
 ## "Lazy SEO" usage
