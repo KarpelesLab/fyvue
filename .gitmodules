@@ -1,0 +1,3 @@
+[submodule "packages/fyhead"]
+	path = packages/fyhead
+	url = git@github.com:Fy-/fyhead.git

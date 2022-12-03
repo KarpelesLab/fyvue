@@ -26,11 +26,10 @@ importers:
       unplugin-vue: ^3.1.3
       vite: ^3.2.4
       vue: ^3.2.45
-    dependencies:
-      '@rollup/plugin-json': 5.0.2_rollup@3.5.1
-      '@rollup/plugin-replace': 5.0.1_rollup@3.5.1
     devDependencies:
+      '@rollup/plugin-json': 5.0.2_rollup@3.5.1
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.5.1
+      '@rollup/plugin-replace': 5.0.1_rollup@3.5.1
       '@types/node': 18.11.10
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.4+vue@3.2.45
       '@vue/compiler-sfc': 3.2.45
@@ -785,6 +784,7 @@ packages:
     dependencies:
       '@rollup/pluginutils': 5.0.2_rollup@3.5.1
       rollup: 3.5.1
+    dev: true
 
   /@rollup/plugin-node-resolve/13.3.0_rollup@2.79.1:
     resolution: {integrity: sha512-Lus8rbUo1eEcnS4yTFKLZrVumLPY+YayBdWXgFSHYhTT2iJbMhoaaBL3xl5NCdeRytErGr8tZ0L71BMRmnlwSw==}
@@ -831,6 +831,7 @@ packages:
       '@rollup/pluginutils': 5.0.2_rollup@3.5.1
       magic-string: 0.26.7
       rollup: 3.5.1
+    dev: true
 
   /@rollup/plugin-typescript/10.0.1_aalyefftcnrin63wtgzqkmrdqa:
     resolution: {integrity: sha512-wBykxRLlX7EzL8BmUqMqk5zpx2onnmRMSw/l9M1sVfkJvdwfxogZQVNUM9gVMJbjRLDR5H6U0OMOrlDGmIV45A==}
@@ -900,6 +901,7 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.5.1
+    dev: true
 
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
@@ -948,6 +950,7 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
+    dev: true
 
   /@types/fs-extra/8.1.2:
     resolution: {integrity: sha512-SvSrYXfWSc7R4eqnOzbQF4TZmfpNSM9FrSWLU3EUnWBuyZqNBOrv1B1JA3byUDPUl9z4Ab3jeZG2eDdySlgNMg==}
@@ -2636,6 +2639,7 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /function-bind/1.1.1:
@@ -3047,6 +3051,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: true
 
   /make-dir/3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -3745,6 +3750,7 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
 
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
