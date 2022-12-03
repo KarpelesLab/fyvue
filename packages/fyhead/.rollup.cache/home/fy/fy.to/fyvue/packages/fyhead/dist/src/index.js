@@ -25,6 +25,9 @@ const createFyHead = () => {
                 app.provide('fyhead', fyHead);
             }
         },
+        renderHeadToString() {
+            return fyHead.renderHeadToString();
+        },
     };
     return fyHeadPlugin;
 };
