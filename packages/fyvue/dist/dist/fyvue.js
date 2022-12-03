@@ -16,6 +16,7 @@ var pinia = require('pinia');
 var klbfw = require('@karpeleslab/klbfw');
 var serverRenderer = require('@vue/server-renderer');
 var solid = require('@heroicons/vue/24/solid');
+var vueRouter = require('vue-router');
 var core = require('@vueuse/core');
 var useVuelidate = require('@vuelidate/core');
 var validators = require('@vuelidate/validators');
@@ -994,330 +995,6 @@ const _sfc_main$j = /* @__PURE__ */ vue.defineComponent({
 });
 var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
-/*!
-  * vue-router v4.1.6
-  * (c) 2022 Eduardo San Martin Morote
-  * @license MIT
-  */
-const isBrowser = typeof window !== 'undefined';
-const assign = Object.assign;
-const noop = () => { };
-const isArray = Array.isArray;
-function warn(msg) {
-    const args = Array.from(arguments).slice(1);
-    console.warn.apply(console, ['[Vue Router warn]: ' + msg].concat(args));
-}
-function isSameRouteRecord(a, b) {
-    return (a.aliasOf || a) === (b.aliasOf || b);
-}
-function isSameRouteLocationParams(a, b) {
-    if (Object.keys(a).length !== Object.keys(b).length)
-        return false;
-    for (const key in a) {
-        if (!isSameRouteLocationParamsValue(a[key], b[key]))
-            return false;
-    }
-    return true;
-}
-function isSameRouteLocationParamsValue(a, b) {
-    return isArray(a)
-        ? isEquivalentArray(a, b)
-        : isArray(b)
-            ? isEquivalentArray(b, a)
-            : a === b;
-}
-function isEquivalentArray(a, b) {
-    return isArray(b)
-        ? a.length === b.length && a.every((value, i) => value === b[i])
-        : a.length === 1 && a[0] === b;
-}
-var NavigationType;
-(function (NavigationType) {
-    NavigationType["pop"] = "pop";
-    NavigationType["push"] = "push";
-})(NavigationType || (NavigationType = {}));
-var NavigationDirection;
-(function (NavigationDirection) {
-    NavigationDirection["back"] = "back";
-    NavigationDirection["forward"] = "forward";
-    NavigationDirection["unknown"] = "";
-})(NavigationDirection || (NavigationDirection = {}));
-Symbol((process.env.NODE_ENV !== 'production') ? 'navigation failure' : '');
-var NavigationFailureType;
-(function (NavigationFailureType) {
-    NavigationFailureType[NavigationFailureType["aborted"] = 4] = "aborted";
-    NavigationFailureType[NavigationFailureType["cancelled"] = 8] = "cancelled";
-    NavigationFailureType[NavigationFailureType["duplicated"] = 16] = "duplicated";
-})(NavigationFailureType || (NavigationFailureType = {}));
-const matchedRouteKey = Symbol((process.env.NODE_ENV !== 'production') ? 'router view location matched' : '');
-const viewDepthKey = Symbol((process.env.NODE_ENV !== 'production') ? 'router view depth' : '');
-const routerKey = Symbol((process.env.NODE_ENV !== 'production') ? 'router' : '');
-const routeLocationKey = Symbol((process.env.NODE_ENV !== 'production') ? 'route location' : '');
-const routerViewLocationKey = Symbol((process.env.NODE_ENV !== 'production') ? 'router view location' : '');
-function useLink(props) {
-    const router = vue.inject(routerKey);
-    const currentRoute = vue.inject(routeLocationKey);
-    const route = vue.computed(() => router.resolve(vue.unref(props.to)));
-    const activeRecordIndex = vue.computed(() => {
-        const { matched } = route.value;
-        const { length } = matched;
-        const routeMatched = matched[length - 1];
-        const currentMatched = currentRoute.matched;
-        if (!routeMatched || !currentMatched.length)
-            return -1;
-        const index = currentMatched.findIndex(isSameRouteRecord.bind(null, routeMatched));
-        if (index > -1)
-            return index;
-        const parentRecordPath = getOriginalPath(matched[length - 2]);
-        return (
-        length > 1 &&
-            getOriginalPath(routeMatched) === parentRecordPath &&
-            currentMatched[currentMatched.length - 1].path !== parentRecordPath
-            ? currentMatched.findIndex(isSameRouteRecord.bind(null, matched[length - 2]))
-            : index);
-    });
-    const isActive = vue.computed(() => activeRecordIndex.value > -1 &&
-        includesParams(currentRoute.params, route.value.params));
-    const isExactActive = vue.computed(() => activeRecordIndex.value > -1 &&
-        activeRecordIndex.value === currentRoute.matched.length - 1 &&
-        isSameRouteLocationParams(currentRoute.params, route.value.params));
-    function navigate(e = {}) {
-        if (guardEvent(e)) {
-            return router[vue.unref(props.replace) ? 'replace' : 'push'](vue.unref(props.to)
-            ).catch(noop);
-        }
-        return Promise.resolve();
-    }
-    if (((process.env.NODE_ENV !== 'production') || __VUE_PROD_DEVTOOLS__) && isBrowser) {
-        const instance = vue.getCurrentInstance();
-        if (instance) {
-            const linkContextDevtools = {
-                route: route.value,
-                isActive: isActive.value,
-                isExactActive: isExactActive.value,
-            };
-            instance.__vrl_devtools = instance.__vrl_devtools || [];
-            instance.__vrl_devtools.push(linkContextDevtools);
-            vue.watchEffect(() => {
-                linkContextDevtools.route = route.value;
-                linkContextDevtools.isActive = isActive.value;
-                linkContextDevtools.isExactActive = isExactActive.value;
-            }, { flush: 'post' });
-        }
-    }
-    return {
-        route,
-        href: vue.computed(() => route.value.href),
-        isActive,
-        isExactActive,
-        navigate,
-    };
-}
-vue.defineComponent({
-    name: 'RouterLink',
-    compatConfig: { MODE: 3 },
-    props: {
-        to: {
-            type: [String, Object],
-            required: true,
-        },
-        replace: Boolean,
-        activeClass: String,
-        exactActiveClass: String,
-        custom: Boolean,
-        ariaCurrentValue: {
-            type: String,
-            default: 'page',
-        },
-    },
-    useLink,
-    setup(props, { slots }) {
-        const link = vue.reactive(useLink(props));
-        const { options } = vue.inject(routerKey);
-        const elClass = vue.computed(() => ({
-            [getLinkClass(props.activeClass, options.linkActiveClass, 'router-link-active')]: link.isActive,
-            [getLinkClass(props.exactActiveClass, options.linkExactActiveClass, 'router-link-exact-active')]: link.isExactActive,
-        }));
-        return () => {
-            const children = slots.default && slots.default(link);
-            return props.custom
-                ? children
-                : vue.h('a', {
-                    'aria-current': link.isExactActive
-                        ? props.ariaCurrentValue
-                        : null,
-                    href: link.href,
-                    onClick: link.navigate,
-                    class: elClass.value,
-                }, children);
-        };
-    },
-});
-function guardEvent(e) {
-    if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey)
-        return;
-    if (e.defaultPrevented)
-        return;
-    if (e.button !== undefined && e.button !== 0)
-        return;
-    if (e.currentTarget && e.currentTarget.getAttribute) {
-        const target = e.currentTarget.getAttribute('target');
-        if (/\b_blank\b/i.test(target))
-            return;
-    }
-    if (e.preventDefault)
-        e.preventDefault();
-    return true;
-}
-function includesParams(outer, inner) {
-    for (const key in inner) {
-        const innerValue = inner[key];
-        const outerValue = outer[key];
-        if (typeof innerValue === 'string') {
-            if (innerValue !== outerValue)
-                return false;
-        }
-        else {
-            if (!isArray(outerValue) ||
-                outerValue.length !== innerValue.length ||
-                innerValue.some((value, i) => value !== outerValue[i]))
-                return false;
-        }
-    }
-    return true;
-}
-function getOriginalPath(record) {
-    return record ? (record.aliasOf ? record.aliasOf.path : record.path) : '';
-}
-const getLinkClass = (propClass, globalClass, defaultClass) => propClass != null
-    ? propClass
-    : globalClass != null
-        ? globalClass
-        : defaultClass;
-vue.defineComponent({
-    name: 'RouterView',
-    inheritAttrs: false,
-    props: {
-        name: {
-            type: String,
-            default: 'default',
-        },
-        route: Object,
-    },
-    compatConfig: { MODE: 3 },
-    setup(props, { attrs, slots }) {
-        (process.env.NODE_ENV !== 'production') && warnDeprecatedUsage();
-        const injectedRoute = vue.inject(routerViewLocationKey);
-        const routeToDisplay = vue.computed(() => props.route || injectedRoute.value);
-        const injectedDepth = vue.inject(viewDepthKey, 0);
-        const depth = vue.computed(() => {
-            let initialDepth = vue.unref(injectedDepth);
-            const { matched } = routeToDisplay.value;
-            let matchedRoute;
-            while ((matchedRoute = matched[initialDepth]) &&
-                !matchedRoute.components) {
-                initialDepth++;
-            }
-            return initialDepth;
-        });
-        const matchedRouteRef = vue.computed(() => routeToDisplay.value.matched[depth.value]);
-        vue.provide(viewDepthKey, vue.computed(() => depth.value + 1));
-        vue.provide(matchedRouteKey, matchedRouteRef);
-        vue.provide(routerViewLocationKey, routeToDisplay);
-        const viewRef = vue.ref();
-        vue.watch(() => [viewRef.value, matchedRouteRef.value, props.name], ([instance, to, name], [oldInstance, from, oldName]) => {
-            if (to) {
-                to.instances[name] = instance;
-                if (from && from !== to && instance && instance === oldInstance) {
-                    if (!to.leaveGuards.size) {
-                        to.leaveGuards = from.leaveGuards;
-                    }
-                    if (!to.updateGuards.size) {
-                        to.updateGuards = from.updateGuards;
-                    }
-                }
-            }
-            if (instance &&
-                to &&
-                (!from || !isSameRouteRecord(to, from) || !oldInstance)) {
-                (to.enterCallbacks[name] || []).forEach(callback => callback(instance));
-            }
-        }, { flush: 'post' });
-        return () => {
-            const route = routeToDisplay.value;
-            const currentName = props.name;
-            const matchedRoute = matchedRouteRef.value;
-            const ViewComponent = matchedRoute && matchedRoute.components[currentName];
-            if (!ViewComponent) {
-                return normalizeSlot(slots.default, { Component: ViewComponent, route });
-            }
-            const routePropsOption = matchedRoute.props[currentName];
-            const routeProps = routePropsOption
-                ? routePropsOption === true
-                    ? route.params
-                    : typeof routePropsOption === 'function'
-                        ? routePropsOption(route)
-                        : routePropsOption
-                : null;
-            const onVnodeUnmounted = vnode => {
-                if (vnode.component.isUnmounted) {
-                    matchedRoute.instances[currentName] = null;
-                }
-            };
-            const component = vue.h(ViewComponent, assign({}, routeProps, attrs, {
-                onVnodeUnmounted,
-                ref: viewRef,
-            }));
-            if (((process.env.NODE_ENV !== 'production') || __VUE_PROD_DEVTOOLS__) &&
-                isBrowser &&
-                component.ref) {
-                const info = {
-                    depth: depth.value,
-                    name: matchedRoute.name,
-                    path: matchedRoute.path,
-                    meta: matchedRoute.meta,
-                };
-                const internalInstances = isArray(component.ref)
-                    ? component.ref.map(r => r.i)
-                    : [component.ref.i];
-                internalInstances.forEach(instance => {
-                    instance.__vrv_devtools = info;
-                });
-            }
-            return (
-            normalizeSlot(slots.default, { Component: component, route }) ||
-                component);
-        };
-    },
-});
-function normalizeSlot(slot, data) {
-    if (!slot)
-        return null;
-    const slotContent = slot(data);
-    return slotContent.length === 1 ? slotContent[0] : slotContent;
-}
-function warnDeprecatedUsage() {
-    const instance = vue.getCurrentInstance();
-    const parentName = instance.parent && instance.parent.type.name;
-    if (parentName &&
-        (parentName === 'KeepAlive' || parentName.includes('Transition'))) {
-        const comp = parentName === 'KeepAlive' ? 'keep-alive' : 'transition';
-        warn(`<router-view> can no longer be used directly inside <transition> or <keep-alive>.\n` +
-            `Use slot props instead:\n\n` +
-            `<router-view v-slot="{ Component }">\n` +
-            `  <${comp}>\n` +
-            `    <component :is="Component" />\n` +
-            `  </${comp}>\n` +
-            `</router-view>`);
-    }
-}
-function useRouter() {
-    return vue.inject(routerKey);
-}
-function useRoute() {
-    return vue.inject(routeLocationKey);
-}
-
 function generateUUID() {
     var d = new Date().getTime();
     var d2 = (typeof performance !== 'undefined' &&
@@ -1567,7 +1244,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
   },
   setup(__props) {
     const props = __props;
-    const route = useRoute();
+    const route = vueRouter.useRoute();
     const eventBus = useEventBus();
     const history = useHistory();
     const prevNextSeo = vue.ref({});
@@ -2152,8 +1829,8 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
     };
     const store = useFVStore();
     const v$ = useVuelidate__default["default"](rules, state);
-    const route = useRoute();
-    const router = useRouter();
+    const route = vueRouter.useRoute();
+    const router = vueRouter.useRouter();
     const eventBus = useEventBus();
     const returnTo = vue.ref(props.returnDefault);
     const responseMessage = vue.ref(null);
@@ -4384,8 +4061,8 @@ const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
   setup(__props) {
     const cart = vue.ref();
     const store = useFVStore();
-    const router = useRouter();
-    const route = useRoute();
+    const router = vueRouter.useRouter();
+    const route = vueRouter.useRoute();
     const routeOrderUuid = vue.computed(() => route.query.Order__);
     const translate = useTranslation();
     const isAuth = vue.computed(() => store.isAuth);
@@ -4914,7 +4591,7 @@ const _sfc_main$2 = /* @__PURE__ */ vue.defineComponent({
     const props = __props;
     const slugWatcher = vue.ref();
     const page = vue.ref();
-    const route = useRoute();
+    const route = vueRouter.useRoute();
     const is404 = vue.ref(false);
     const eventBus = useEventBus();
     const seo = vue.ref({
@@ -5017,7 +4694,7 @@ const _sfc_main$1 = /* @__PURE__ */ vue.defineComponent({
   async setup(__props) {
     let __temp, __restore;
     const props = __props;
-    const route = useRoute();
+    const route = vueRouter.useRoute();
     const translate = useTranslation();
     const blogName = vue.ref("");
     const seo = vue.ref({});
@@ -5589,7 +5266,7 @@ const formatTimeago = (dt) => {
 function useUserCheck(path = "/login") {
   const store = useFVStore();
   const isAuth = vue.computed(() => store.isAuth);
-  const router = useRouter();
+  const router = vueRouter.useRouter();
   const checkUser = (route) => {
     if (route.meta.reqLogin) {
       if (!isAuth.value)

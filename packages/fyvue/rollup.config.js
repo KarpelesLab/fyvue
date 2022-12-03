@@ -32,6 +32,7 @@ function createEntry(options) {
       '@vuelidate/validators',
       '@vueuse/core',
       'pinia',
+      'vue-router',
     ],
     plugins: [
       vue({
@@ -119,6 +120,7 @@ function createEntry(options) {
         '@vuelidate/validators': 'vValidateV',
         '@vueuse/core': 'vueuseC',
         pinia: 'pinia',
+        'vue-router': 'vr',
       },
     },
   };
