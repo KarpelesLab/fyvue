@@ -1,7 +1,6 @@
 <script setup>
 import { useSeo, useTranslation } from '@karpeleslab/fyvue';
 import { onMounted, onUnmounted, ref, watch } from 'vue';
-import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 import { rest } from '@karpeleslab/fyvue';
 import { useRoute } from 'vue-router';
 import { useEventBus } from '@karpeleslab/fyvue';
@@ -18,9 +17,9 @@ const slugToUrl = {
   'ssr-router': '/ssr/router',
   'helpers-eventBus': '/helpers/events',
   'helpers-i18n': '/helpers/i18n',
-  'helpers-formatting': 'helpers/formatting',
-  'helpers-store': 'helpers/store',
-  'helpers-styling': 'helpers/styles',
+  'helpers-formatting': '/helpers/formatting',
+  'helpers-store': '/helpers/store',
+  'helpers-styling': '/helpers/styles',
   'getting-started': '/',
 };
 
@@ -71,7 +70,6 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <SchemaOrgWebPage :type="['CollectionPage', 'SearchResultsPage']" />
   <div class="doc-contained flex-1 fv-typo mt-4">
     <FyBreadcrumb :nav="$route.meta.breadcrumb" />
     <div class="card-container card-defaults mt-4">

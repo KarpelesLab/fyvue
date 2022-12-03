@@ -1,5 +1,4 @@
 import { renderToString } from '@vue/server-renderer';
-import { renderHeadToString } from '@vueuse/head';
 import { getUuid, getPath, getInitialState, getMode } from '@karpeleslab/klbfw';
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
@@ -117,7 +116,7 @@ export async function handleSSR(
   try {
     const html = await renderToString(app, {});
     const { headTags, htmlAttrs, bodyAttrs, bodyTags } =
-      await renderHeadToString(head);
+      await head.renderHeadToString();
 
     result.meta = headTags;
     result.bodyAttributes = bodyAttrs;

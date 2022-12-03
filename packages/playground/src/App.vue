@@ -3,7 +3,6 @@ import {
   i18nextPromise,
   countriesPromise,
   useUserCheck,
-  useSeo,
   useEventBus,
 } from '@karpeleslab/fyvue';
 
@@ -14,7 +13,6 @@ import { onClickOutside } from '@vueuse/core';
 import { Backend } from '@karpeleslab/i18next-klb-backend';
 import ComponentIndex from '@/componentIndex';
 import { useFyHead } from '@fy/head';
-import { useHead } from '@vueuse/head';
 
 await i18nextPromise(Backend);
 const route = useRoute();
@@ -39,7 +37,17 @@ onUnmounted(() => {
   eventBus.off('leaveSearchPage', '*');
 });
 
-
+const fyhead = useFyHead();
+fyhead.lazySeo({
+  name: 'fyvue',
+  type: 'website',
+  image: 'https://fy-vue.com/fyvue.png',
+  title: computed(() =>
+    computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
+  ),
+  searchAction: '/search/{search_term_string}',
+});
+/*
 useSeo(
   ref({
     name: 'fyvue',
@@ -51,7 +59,7 @@ useSeo(
     searchAction: '/search/{search_term_string}',
   }),
   true
-);
+);*/
 </script>
 
 <template>

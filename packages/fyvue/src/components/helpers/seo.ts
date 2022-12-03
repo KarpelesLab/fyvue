@@ -1,18 +1,7 @@
-import { computed } from 'vue';
 import type { Ref } from 'vue';
-import { useHead } from '@vueuse/head';
-import type { SeoData } from '../../dts/index';
 import { getUrl, getLocale, getMode } from '@karpeleslab/klbfw';
-
-import {
-  useSchemaOrg,
-  defineWebSite,
-  defineOrganization,
-  defineWebPage,
-  defineSearchAction,
-} from '@vueuse/schema-org/runtime';
 import { useFyHead } from '@fy/head';
-import type { FyHeadLazy } from '@fy/head/types';
+import type { FyHeadLazy } from '@fy/head';
 
 export const useSeo = (seo: Ref<FyHeadLazy>, initial: boolean = false) => {
   if (initial) {

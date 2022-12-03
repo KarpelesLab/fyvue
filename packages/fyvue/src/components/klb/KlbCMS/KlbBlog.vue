@@ -202,7 +202,6 @@ onUnmounted(() => {
     slugWatcher.value();
   }
 });
-
 useSeo(seo);
 </script>
 <template>

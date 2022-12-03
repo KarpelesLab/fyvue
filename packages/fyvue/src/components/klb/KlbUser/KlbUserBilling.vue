@@ -23,8 +23,8 @@ import type {
   KlbAPISetupIntent,
   KlbAPIUserLocation,
 } from '../../../dts/klb';
-import { eventBus, useEventBus } from '../../../utils/helpers';
-import { useHead } from '@vueuse/head';
+import { eventBus } from '../../../utils/helpers';
+import { useFyHead } from '@fy/head';
 import FyModal from '../../ui/FyModal/FyModal.vue';
 import { useHistory } from '../../../utils/ssr';
 const props = withDefaults(
@@ -273,14 +273,7 @@ onUnmounted(() => {
   if (billingWatcher.value) billingWatcher.value();
 });
 
-useHead({
-  script: [
-    {
-      src: 'https://js.stripe.com/v3',
-      key: 'stripe-script',
-    },
-  ],
-});
+useFyHead().addScript('https://js.stripe.com/v3', 'stripe-script');
 </script>
 <template>
   <div

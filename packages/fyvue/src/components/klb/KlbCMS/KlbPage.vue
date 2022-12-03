@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, reactive, watch, onMounted, onUnmounted } from 'vue';
-import { rest } from '../../../utils/rest';
-import { useHistory } from '../../../utils/ssr';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import type { KlbAPIContentCmsSingle } from '../../../dts/klb';
-import { useHead } from '@vueuse/head';
 import { useRoute } from 'vue-router';
 import { useEventBus } from '../../../utils/helpers';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
@@ -11,7 +8,6 @@ import Fy404View from '../../ui/Fy404/Fy404View.vue';
 import KlbBlogInnerPost from './KlbBlogInnerPost.vue';
 import type { SeoData } from '../../../dts/index';
 import { useSeo } from '../../helpers/seo';
-import { cropText } from '../../../utils/display';
 import { useCMS } from './useCms';
 import type { WatchStopHandle } from 'vue';
 import type { FyVueBreadcrumb } from '../../../dts/index';

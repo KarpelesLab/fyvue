@@ -1,8 +1,7 @@
 <script setup>
-import { ref, computed, defineAsyncComponent } from 'vue';
+import { computed, defineAsyncComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import Error404View from '@/views/Error404View.vue';
-import ComponentIndex from '@/componentIndex';
 
 const route = useRoute();
 

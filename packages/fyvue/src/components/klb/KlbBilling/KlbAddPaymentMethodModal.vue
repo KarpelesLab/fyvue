@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useHead } from '@vueuse/head';
+import { useFyHead } from '@fy/head';
 import { ref, onMounted, onUnmounted, computed, reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
@@ -152,14 +152,8 @@ onMounted(async () => {
 onUnmounted(() => {
   eventBus.off('ShowAddPaymentMethodModal', showAddPaymentMethodModal);
 });
-useHead({
-  script: [
-    {
-      src: 'https://js.stripe.com/v3',
-      key: 'stripe-script',
-    },
-  ],
-});
+
+useFyHead().addScript('https://js.stripe.com/v3', 'stripe-script');
 </script>
 <template>
   <div v-if="isAuth">

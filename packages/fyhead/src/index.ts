@@ -1,49 +1,37 @@
-import type { App, Ref } from 'vue';
-import type { Store } from 'pinia';
-import { inject, watchEffect, onBeforeUnmount, onBeforeMount } from 'vue';
-import { useFyheadState, FyHeadState } from './store';
-import { storeToRefs } from 'pinia';
+import type { App } from 'vue';
+import { inject, watch, onUnmounted } from 'vue';
+import { FyHead } from './fyhead';
+import type { FyHeadLazy } from './fyhead';
 
-const __isBrowser__ = typeof window !== 'undefined';
-// Public Domain/MIT
-
-export const useFyHead = () => {
-  const fyHeadState = inject('fyhead');
-  if (!fyHeadState) throw new Error('Did you apply app.use(fyhead)?');
-
-  // @ts-expect-error
-  fyHeadState.injectFyHead(fyHeadState.head);
+const useFyHead = () => {
+  const fyhead = inject<FyHead>('fyhead');
+  if (!fyhead) throw new Error('Did you apply app.use(fyhead)?');
+  const __isBrowser__ = typeof window !== 'undefined';
   if (__isBrowser__) {
-    watchEffect(() => {
-      // @ts-expect-error
-      fyHeadState.injectFyHead(fyHeadState.head);
+    watch(fyhead.state.elements, (v) => {
+      FyHead.injectFyHead(v);
     });
-    onBeforeMount(() => {
-      // @ts-expect-error
-      fyHeadState.injectFyHead(fyHeadState.head);
-    });
-    onBeforeUnmount(() => {
-      // @ts-expect-error
-      fyHeadState.$reset();
-      // @ts-expect-error
-      fyHeadState.injectFyHead(fyHeadState.head);
+    onUnmounted(() => {
+      fyhead.reset();
     });
   }
-  return fyHeadState;
+  return fyhead;
 };
 
-export const createFyHead = () => {
-  const fyHeadState = useFyheadState();
+const createFyHead = () => {
+  const fyHead = new FyHead();
 
-  fyHeadState.$reset();
+  fyHead.reset();
 
-  const fyHead = {
+  const fyHeadPlugin = {
     install(app: App) {
       if (app.config.globalProperties) {
-        app.config.globalProperties.$fyhead = fyHeadState;
-        app.provide('fyhead', fyHeadState);
+        app.config.globalProperties.$fyhead = fyHead;
+        app.provide('fyhead', fyHead);
       }
     },
   };
-  return fyHead;
+  return fyHeadPlugin;
 };
+
+export { useFyHead, createFyHead, FyHeadLazy };
