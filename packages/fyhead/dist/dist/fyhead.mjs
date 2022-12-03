@@ -1,11 +1,11 @@
 
 /**
- * @fy-/head v0.0.13
+ * @fy-/head v0.0.14
  * (c) 2022 Florian "Fy" Gasquez
  * Released under the MIT License
  */
 
-import { reactive, inject, watch, onUnmounted } from 'vue';
+import { reactive, shallowRef, inject, watchEffect, onBeforeUnmount } from 'vue';
 
 function generateUUID() {
     var d = new Date().getTime();
@@ -43,6 +43,7 @@ class El {
     properties;
     content;
     key;
+    uuid;
     constructor(tag, properties = [], key, content) {
         this.tag = tag;
         this.properties = properties;
@@ -51,6 +52,7 @@ class El {
             this.key = key;
         else
             this.key = this.getKey();
+        this.uuid = generateUUID();
     }
     getKey() {
         return generateUUID();
@@ -79,20 +81,56 @@ class El {
 
 const __fyHeadCount__ = 'fyhead:count';
 class FyHead {
-    state;
+    elements;
+    context;
+    currentContext;
     constructor() {
-        this.state = reactive({ elements: {} });
+        this.elements = reactive(new Map());
+        this.context = new Map();
+        this.currentContext = generateUUID();
     }
-    reset() {
-        this.state.elements = {};
+    static createHead() {
+        const head = new FyHead();
+        return head;
+    }
+    setContext() {
+        this.currentContext = generateUUID();
+        return this.currentContext;
+    }
+    clearContext(ctx) {
+        this.currentContext = undefined;
+        this.context.delete(ctx);
+    }
+    addToContext(key) {
+        if (this.currentContext) {
+            if (!this.context.has(this.currentContext))
+                this.context.set(this.currentContext, []);
+            this.context.get(this.currentContext)?.push(key);
+        }
+    }
+    install(app) {
+        if (app.config.globalProperties) {
+            app.config.globalProperties.$fyhead = this;
+            app.provide('fyhead', this);
+        }
+    }
+    reset(ctx) {
+        for (const el of this.elements.values()) {
+            if (this.context.get(ctx)?.includes(el.uuid))
+                this.elements.delete(el.key);
+        }
+        this.clearContext(ctx);
     }
     addElement(el) {
-        this.state.elements[el.key] = el;
+        if (!this.currentContext) {
+            console.log('Warning: Trying to add element without context: ', el);
+            return;
+        }
+        this.addToContext(el.uuid);
+        this.elements.set(el.key, el);
     }
     addTitle(title) {
-        if (typeof title !== 'string')
-            return;
-        this.state.elements.title = new El('title', [], 'title', title);
+        this.addElement(new El('title', [], 'title', title));
     }
     addScript(src, key, nonce, async = false) {
         if (!key)
@@ -102,20 +140,20 @@ class FyHead {
             properties.push(new ElProperty('async'));
         if (nonce)
             properties.push(new ElProperty('nonce', nonce));
-        this.state.elements[key] = new El('script', properties, key);
+        this.addElement(new El('script', properties, key));
     }
     addLink(rel, href, key = undefined) {
         if (!key)
             key = generateUUID();
-        this.state.elements[key] = new El('link', [new ElProperty('rel', rel), new ElProperty('href', href)], key);
+        this.addElement(new El('link', [new ElProperty('rel', rel), new ElProperty('href', href)], key));
     }
     addMeta(value, content, type = 'property') {
         const key = value + '-' + type;
-        this.state.elements[key] = new El('meta', [new ElProperty(type, value), new ElProperty('content', content)], key);
+        this.addElement(new El('meta', [new ElProperty(type, value), new ElProperty('content', content)], key));
     }
     renderHeadToString() {
         let headTags = '';
-        Object.values(this.state.elements).forEach((el) => {
+        Object.values(this.elements).forEach((el) => {
             headTags += `${el.toString()}\n`;
         });
         const htmlAttrs = '';
@@ -129,52 +167,53 @@ class FyHead {
         };
     }
     lazySeo(data, reset = false) {
-        if (data.url) {
-            this.addMeta('og:url', data.url);
+        data = shallowRef(data);
+        if (data.value.url) {
+            this.addMeta('og:url', data.value.url);
         }
-        if (data.canonical) {
-            this.addLink('canonical', data.canonical);
+        if (data.value.canonical) {
+            this.addLink('canonical', data.value.canonical);
         }
-        if (data.robots) {
-            this.addMeta('robots', data.robots, 'name');
+        if (data.value.robots) {
+            this.addMeta('robots', data.value.robots, 'name');
         }
-        if (data.type) {
-            this.addMeta('og:type', data.type);
+        if (data.value.type) {
+            this.addMeta('og:type', data.value.type);
         }
-        if (data.title) {
-            this.addTitle(data.title);
+        if (data.value.title) {
+            this.addTitle(data.value.title);
         }
-        if (data.description) {
-            this.addMeta('og:description', data.description);
-            this.addMeta('twitter:description', data.description, 'name');
-            this.addMeta('description', data.description, 'name');
-            this.addMeta('og:description', data.description);
+        if (data.value.description) {
+            this.addMeta('og:description', data.value.description);
+            this.addMeta('twitter:description', data.value.description, 'name');
+            this.addMeta('description', data.value.description, 'name');
+            this.addMeta('og:description', data.value.description);
         }
-        if (data.modified) {
-            this.addMeta('article:modified_time', data.modified);
+        if (data.value.modified) {
+            this.addMeta('article:modified_time', data.value.modified);
         }
-        if (data.published) {
-            this.addMeta('article:published_time', data.published);
+        if (data.value.published) {
+            this.addMeta('article:published_time', data.value.published);
         }
-        if (data.imageWidth && data.imageHeight) {
-            this.addMeta('og:image:width', data.imageWidth);
-            this.addMeta('og:image:height', data.imageHeight);
+        if (data.value.imageWidth && data.value.imageHeight) {
+            this.addMeta('og:image:width', data.value.imageWidth);
+            this.addMeta('og:image:height', data.value.imageHeight);
         }
-        if (data.imageType) {
-            this.addMeta('og:image:type', data.imageType);
+        if (data.value.imageType) {
+            this.addMeta('og:image:type', data.value.imageType);
         }
-        if (data.image) {
-            this.addMeta('og:image', data.image);
-            this.addMeta('twitter:image', data.image, 'name');
+        if (data.value.image) {
+            this.addMeta('og:image', data.value.image);
+            this.addMeta('twitter:image', data.value.image, 'name');
         }
-        if (data.next) {
-            this.addLink('next', data.next);
+        if (data.value.next) {
+            this.addLink('next', data.value.next);
         }
-        if (data.prev) {
-            this.addLink('prev', data.prev);
+        if (data.value.prev) {
+            this.addLink('prev', data.value.prev);
         }
     }
-    static injectFyHead(head) {
+    injectFyHead() {
         const newElements = [];
         const oldElements = [];
         if (document && document.head) {
@@ -195,10 +234,10 @@ class FyHead {
             headCountEl.setAttribute('name', __fyHeadCount__);
             headCountEl.setAttribute('content', '0');
             document.head.append(headCountEl);
-            Object.values(head).forEach((el) => {
+            for (const el of this.elements.values()) {
                 const elDom = el.toDom(document);
                 newElements.push(elDom);
-            });
+            }
             newElements.forEach((n) => {
                 document.head.insertBefore(n, headCountEl);
             });
@@ -217,30 +256,17 @@ const useFyHead = () => {
         throw new Error('Did you apply app.use(fyhead)?');
     const __isBrowser__ = typeof window !== 'undefined';
     if (__isBrowser__) {
-        watch(fyhead.state.elements, (v) => {
-            FyHead.injectFyHead(v);
+        const ctx = fyhead.setContext();
+        watchEffect(() => {
+            fyhead.injectFyHead();
         });
-        onUnmounted(() => {
-            fyhead.reset();
+        onBeforeUnmount(() => {
+            fyhead.reset(ctx);
+            fyhead.injectFyHead();
         });
     }
     return fyhead;
 };
-const createFyHead = () => {
-    const fyHead = new FyHead();
-    fyHead.reset();
-    const fyHeadPlugin = {
-        install(app) {
-            if (app.config.globalProperties) {
-                app.config.globalProperties.$fyhead = fyHead;
-                app.provide('fyhead', fyHead);
-            }
-        },
-        renderHeadToString() {
-            return fyHead.renderHeadToString();
-        },
-    };
-    return fyHeadPlugin;
-};
+const createFyHead = () => FyHead.createHead();
 
 export { createFyHead, useFyHead };

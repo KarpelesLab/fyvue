@@ -1,5 +1,5 @@
-import type { App } from 'vue';
-import { inject, watch, onUnmounted } from 'vue';
+import type { App, Ref } from 'vue';
+import { inject, watch, onBeforeUnmount, watchEffect, ref } from 'vue';
 import { FyHead } from './fyhead';
 import type { FyHeadLazy } from './fyhead';
 
@@ -8,33 +8,19 @@ const useFyHead = () => {
   if (!fyhead) throw new Error('Did you apply app.use(fyhead)?');
   const __isBrowser__ = typeof window !== 'undefined';
   if (__isBrowser__) {
-    watch(fyhead.state.elements, (v) => {
-      FyHead.injectFyHead(v);
+    const ctx = fyhead.setContext();
+    watchEffect(() => {
+      fyhead.injectFyHead();
     });
-    onUnmounted(() => {
-      fyhead.reset();
+
+    onBeforeUnmount(() => {
+      fyhead.reset(ctx);
+      fyhead.injectFyHead();
     });
   }
   return fyhead;
 };
 
-const createFyHead = () => {
-  const fyHead = new FyHead();
-
-  fyHead.reset();
-
-  const fyHeadPlugin = {
-    install(app: App) {
-      if (app.config.globalProperties) {
-        app.config.globalProperties.$fyhead = fyHead;
-        app.provide('fyhead', fyHead);
-      }
-    },
-    renderHeadToString() {
-      return fyHead.renderHeadToString();
-    },
-  };
-  return fyHeadPlugin;
-};
+const createFyHead = () => FyHead.createHead();
 
 export { useFyHead, createFyHead, FyHeadLazy };

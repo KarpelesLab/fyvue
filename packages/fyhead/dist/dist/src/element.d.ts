@@ -10,6 +10,7 @@ export declare class El {
     properties: ElProperty[];
     content?: string;
     key: string;
+    uuid: string;
     constructor(tag: ElTag, properties?: ElProperty[], key?: string, content?: string);
     getKey(): string;
     toStringProperties(): string;

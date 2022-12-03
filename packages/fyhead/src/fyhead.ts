@@ -1,15 +1,12 @@
-import { reactive } from 'vue';
-import type { ShallowReactive } from 'vue';
+import type { App, Ref, ShallowReactive } from 'vue';
+import { reactive, shallowRef } from 'vue';
 import { generateUUID } from './helpers';
 import { El, ElProperty } from './element';
 
 const __fyHeadCount__ = 'fyhead:count';
 
-export interface FyHeadState {
-  elements: ShallowReactive<{
-    [key: string]: El;
-  }>;
-}
+type MaybeRef<T> = T | Ref<T>;
+
 export interface FyHeadLazy {
   name?: string;
   title?: string;
@@ -32,33 +29,72 @@ export interface FyHeadLazy {
 }
 
 export class FyHead {
-  state: FyHeadState;
+  elements: ShallowReactive<Map<string, El>>;
+  context: Map<string, string[]>;
+  currentContext?: string;
   constructor() {
-    this.state = reactive({ elements: {} });
+    this.elements = reactive<Map<string, El>>(new Map<string, El>());
+    this.context = new Map<string, string[]>();
+    this.currentContext = generateUUID();
   }
-  reset() {
-    this.state.elements = {};
+  static createHead() {
+    const head = new FyHead();
+    return head;
+  }
+  setContext() {
+    this.currentContext = generateUUID();
+    return this.currentContext;
+  }
+  clearContext(ctx: string) {
+    this.currentContext = undefined;
+    this.context.delete(ctx);
+  }
+  addToContext(key: string) {
+    if (this.currentContext) {
+      if (!this.context.has(this.currentContext))
+        this.context.set(this.currentContext, []);
+      this.context.get(this.currentContext)?.push(key);
+    }
+  }
+  install(app: App) {
+    if (app.config.globalProperties) {
+      app.config.globalProperties.$fyhead = this;
+      app.provide('fyhead', this);
+    }
+  }
+  reset(ctx: string) {
+    for (const el of this.elements.values()) {
+      if (this.context.get(ctx)?.includes(el.uuid))
+        this.elements.delete(el.key);
+    }
+    this.clearContext(ctx);
   }
   addElement(el: El) {
-    this.state.elements[el.key] = el;
+    if (!this.currentContext) {
+      console.log('Warning: Trying to add element without context: ', el);
+      return;
+    }
+    this.addToContext(el.uuid);
+    this.elements.set(el.key, el);
   }
   addTitle(title: string) {
-    if (typeof title !== 'string') return;
-    this.state.elements.title = new El('title', [], 'title', title);
+    this.addElement(new El('title', [], 'title', title));
   }
   addScript(src: string, key?: string, nonce?: string, async: boolean = false) {
     if (!key) key = generateUUID();
     const properties = [new ElProperty('id', key), new ElProperty('src', src)];
     if (async) properties.push(new ElProperty('async'));
     if (nonce) properties.push(new ElProperty('nonce', nonce));
-    this.state.elements[key] = new El('script', properties, key);
+    this.addElement(new El('script', properties, key));
   }
   addLink(rel: string, href: string, key: string | undefined = undefined) {
     if (!key) key = generateUUID();
-    this.state.elements[key] = new El(
-      'link',
-      [new ElProperty('rel', rel), new ElProperty('href', href)],
-      key
+    this.addElement(
+      new El(
+        'link',
+        [new ElProperty('rel', rel), new ElProperty('href', href)],
+        key
+      )
     );
   }
   addMeta(
@@ -67,15 +103,17 @@ export class FyHead {
     type: 'name' | 'property' = 'property'
   ) {
     const key = value + '-' + type;
-    this.state.elements[key] = new El(
-      'meta',
-      [new ElProperty(type, value), new ElProperty('content', content)],
-      key
+    this.addElement(
+      new El(
+        'meta',
+        [new ElProperty(type, value), new ElProperty('content', content)],
+        key
+      )
     );
   }
   renderHeadToString() {
     let headTags = '';
-    Object.values(this.state.elements).forEach((el) => {
+    Object.values(this.elements).forEach((el) => {
       headTags += `${el.toString()}\n`;
     });
     const htmlAttrs = '';
@@ -88,57 +126,54 @@ export class FyHead {
       bodyTags,
     };
   }
-  lazySeo(data: FyHeadLazy, reset: boolean = false) {
-    if (data.url) {
-      this.addMeta('og:url', data.url);
+  lazySeo(data: MaybeRef<FyHeadLazy>, reset: boolean = false) {
+    data = shallowRef(data);
+    if (data.value.url) {
+      this.addMeta('og:url', data.value.url);
     }
-    if (data.canonical) {
-      this.addLink('canonical', data.canonical);
+    if (data.value.canonical) {
+      this.addLink('canonical', data.value.canonical);
     }
-    if (data.robots) {
-      this.addMeta('robots', data.robots, 'name');
+    if (data.value.robots) {
+      this.addMeta('robots', data.value.robots, 'name');
     }
-    if (data.type) {
-      this.addMeta('og:type', data.type);
+    if (data.value.type) {
+      this.addMeta('og:type', data.value.type);
     }
-    if (data.title) {
-      this.addTitle(data.title);
+    if (data.value.title) {
+      this.addTitle(data.value.title);
     }
-    if (data.description) {
-      this.addMeta('og:description', data.description);
-      this.addMeta('twitter:description', data.description, 'name');
-      this.addMeta('description', data.description, 'name');
-      this.addMeta('og:description', data.description);
+    if (data.value.description) {
+      this.addMeta('og:description', data.value.description);
+      this.addMeta('twitter:description', data.value.description, 'name');
+      this.addMeta('description', data.value.description, 'name');
+      this.addMeta('og:description', data.value.description);
     }
-    if (data.modified) {
-      this.addMeta('article:modified_time', data.modified);
+    if (data.value.modified) {
+      this.addMeta('article:modified_time', data.value.modified);
     }
-    if (data.published) {
-      this.addMeta('article:published_time', data.published);
+    if (data.value.published) {
+      this.addMeta('article:published_time', data.value.published);
     }
-    if (data.imageWidth && data.imageHeight) {
-      this.addMeta('og:image:width', data.imageWidth);
-      this.addMeta('og:image:height', data.imageHeight);
+    if (data.value.imageWidth && data.value.imageHeight) {
+      this.addMeta('og:image:width', data.value.imageWidth);
+      this.addMeta('og:image:height', data.value.imageHeight);
     }
-    if (data.imageType) {
-      this.addMeta('og:image:type', data.imageType);
+    if (data.value.imageType) {
+      this.addMeta('og:image:type', data.value.imageType);
     }
-    if (data.image) {
-      this.addMeta('og:image', data.image);
-      this.addMeta('twitter:image', data.image, 'name');
+    if (data.value.image) {
+      this.addMeta('og:image', data.value.image);
+      this.addMeta('twitter:image', data.value.image, 'name');
     }
-    if (data.next) {
-      this.addLink('next', data.next);
+    if (data.value.next) {
+      this.addLink('next', data.value.next);
     }
-    if (data.prev) {
-      this.addLink('prev', data.prev);
+    if (data.value.prev) {
+      this.addLink('prev', data.value.prev);
     }
   }
-  static injectFyHead(
-    head: ShallowReactive<{
-      [key: string]: El;
-    }>
-  ) {
+  injectFyHead() {
     const newElements: Element[] = [];
     const oldElements: Element[] = [];
     if (document && document.head) {
@@ -166,11 +201,10 @@ export class FyHead {
       headCountEl.setAttribute('content', '0');
       document.head.append(headCountEl);
 
-      Object.values(head).forEach((el) => {
+      for (const el of this.elements.values()) {
         const elDom = el.toDom(document);
         newElements.push(elDom);
-      });
-
+      }
       newElements.forEach((n) => {
         document.head.insertBefore(n, headCountEl);
       });

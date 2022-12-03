@@ -18,6 +18,7 @@ export class El {
   properties: ElProperty[];
   content?: string;
   key: string;
+  uuid: string;
   constructor(
     tag: ElTag,
     properties: ElProperty[] = [],
@@ -29,6 +30,7 @@ export class El {
     this.content = content;
     if (key) this.key = key;
     else this.key = this.getKey();
+    this.uuid = generateUUID();
   }
   getKey() {
     return generateUUID();

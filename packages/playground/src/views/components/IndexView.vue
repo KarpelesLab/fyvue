@@ -1,7 +1,10 @@
 <script setup>
+import { useFyHead } from '@fy-/head';
 import IndexViewKlb from './klb/IndexView.vue';
 import IndexViewUI from './ui/IndexView.vue';
 import IndexViewMisc from './misc/IndexView.vue';
+const fyhead = useFyHead();
+fyhead.addTitle('Components Index');
 </script>
 <template>
   <div class="doc-contained flex-1 fv-typo mt-4">

@@ -1,10 +1,6 @@
-import type { ShallowReactive } from 'vue';
+import type { App, Ref, ShallowReactive } from 'vue';
 import { El } from './element';
-export interface FyHeadState {
-    elements: ShallowReactive<{
-        [key: string]: El;
-    }>;
-}
+type MaybeRef<T> = T | Ref<T>;
 export interface FyHeadLazy {
     name?: string;
     title?: string;
@@ -26,9 +22,16 @@ export interface FyHeadLazy {
     url?: string;
 }
 export declare class FyHead {
-    state: FyHeadState;
+    elements: ShallowReactive<Map<string, El>>;
+    context: Map<string, string[]>;
+    currentContext?: string;
     constructor();
-    reset(): void;
+    static createHead(): FyHead;
+    setContext(): string;
+    clearContext(ctx: string): void;
+    addToContext(key: string): void;
+    install(app: App): void;
+    reset(ctx: string): void;
     addElement(el: El): void;
     addTitle(title: string): void;
     addScript(src: string, key?: string, nonce?: string, async?: boolean): void;
@@ -40,8 +43,7 @@ export declare class FyHead {
         bodyAttrs: string;
         bodyTags: string;
     };
-    lazySeo(data: FyHeadLazy, reset?: boolean): void;
-    static injectFyHead(head: ShallowReactive<{
-        [key: string]: El;
-    }>): Element[];
+    lazySeo(data: MaybeRef<FyHeadLazy>, reset?: boolean): void;
+    injectFyHead(): Element[];
 }
+export {};
