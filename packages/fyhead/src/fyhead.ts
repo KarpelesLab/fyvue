@@ -48,7 +48,7 @@ export class FyHead {
   }
   addScript(src: string, key?: string, nonce?: string, async: boolean = false) {
     if (!key) key = generateUUID();
-    const properties = [new ElProperty('id', key)];
+    const properties = [new ElProperty('id', key), new ElProperty('src', src)];
     if (async) properties.push(new ElProperty('async'));
     if (nonce) properties.push(new ElProperty('nonce', nonce));
     this.state.elements[key] = new El('script', properties, key);

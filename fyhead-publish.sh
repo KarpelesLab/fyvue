@@ -5,4 +5,4 @@ pnpm run lint:fyhead --fix
 pnpm run build:fyhead
 cd packages/fyhead/dist
 
-npm publish --tag alpha --access public
+npm publish --access public

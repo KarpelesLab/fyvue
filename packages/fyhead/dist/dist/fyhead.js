@@ -1,6 +1,6 @@
 
 /**
- * @fy-/head v0.0.12
+ * @fy-/head v0.0.13
  * (c) 2022 Florian "Fy" Gasquez
  * Released under the MIT License
  */
@@ -99,7 +99,7 @@ class FyHead {
     addScript(src, key, nonce, async = false) {
         if (!key)
             key = generateUUID();
-        const properties = [new ElProperty('id', key)];
+        const properties = [new ElProperty('id', key), new ElProperty('src', src)];
         if (async)
             properties.push(new ElProperty('async'));
         if (nonce)
