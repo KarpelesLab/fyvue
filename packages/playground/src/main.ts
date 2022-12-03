@@ -40,5 +40,5 @@ export const createApp = async (isSSR = false) => {
   app.use(VueCodeHighlight);
   app.component('FyDocPreview', FyDocPreview);
   app.component('FvHL', FvHL);
-  return { app, router, fyhead, pinia };
+  return { app, router, head: fyhead, pinia };
 };
