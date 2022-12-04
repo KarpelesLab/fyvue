@@ -52,9 +52,9 @@ const stringHashcode = (str: string) => {
 export function restFetch<ResultType extends FetchResult>(
   url: string,
   method: string = 'GET',
-  params: object = {},
-  isSSR: boolean = false
+  params: object = {}
 ): Promise<ResultType> {
+  /*
   const requestHash = stringHashcode(url + method + JSON.stringify(params));
   const restState = useRestState();
 
@@ -67,7 +67,7 @@ export function restFetch<ResultType extends FetchResult>(
         reject(result);
       } else resolve(result);
     });
-  }
+  }*/
   const headers = new Headers();
   headers.set('Content-Type', 'application/json');
   let _params: any = params;
@@ -91,10 +91,11 @@ export function restFetch<ResultType extends FetchResult>(
           data: err,
           status: err.status,
         };
-        if (isSSR) {
+        /*
+        if (getMode() == 'ssr') {
           _res.fvReject = true;
           restState.fetchResults[requestHash] = _res;
-        }
+        }*/
         reject(_res as ResultType);
       })
       .then((res) => {
@@ -104,9 +105,10 @@ export function restFetch<ResultType extends FetchResult>(
             data: undefined,
             status: res.status,
           };
+
           res.json().then((data: any) => {
             _res.data = data;
-            if (isSSR) restState.fetchResults[requestHash] = _res;
+            //if (getMode() == 'ssr') restState.fetchResults[requestHash] = _res;
             resolve(_res as ResultType);
           });
         }

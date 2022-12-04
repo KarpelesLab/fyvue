@@ -1,86 +1,68 @@
-import Vue from 'unplugin-vue/rollup';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
 import scss from 'rollup-plugin-scss';
-import copy from 'rollup-plugin-copy';
-import cleanup from 'rollup-plugin-cleanup';
+import vue from '@vitejs/plugin-vue';
 import esbuild from 'rollup-plugin-esbuild';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import cleanup from 'rollup-plugin-cleanup';
+import copy from 'rollup-plugin-copy';
+import pkg from './package.json';
 import typescript from 'rollup-plugin-typescript2';
-import dts from 'rollup-plugin-dts';
 
-const pkg = require('./package.json');
-const name = pkg.name;
+const banner = `
+/**
+ * ${pkg.name} v${pkg.version}
+ * (c) ${new Date().getFullYear()} Florian "Fy" Gasquez
+ * Released under the MIT License
+ */
+`;
 
-const banner = `/*!
-  * ${pkg.name} v${pkg.version}
-  * (c) ${new Date().getFullYear()} Florian Gasquez <m@fy.to>
-  * @license MIT
-  */`;
+function createEntry(options) {
+  const { format, input } = options;
 
-const globals = {
-  '@vueuse/head': 'vhead',
-  vue: 'vue',
-  '@headlessui/vue': 'hlui',
-  '@karpeleslab/klbfw': 'klbfw',
-  i18next: 'i18next',
-  '@heroicons/vue/24/solid': 'hisol',
-};
-
-export default [
-  {
-    input: 'src/fyvue.scss',
+  const config = {
+    input,
+    external: [
+      'vue',
+      '@vue/compiler-dom',
+      '@karpeleslab/klbfw',
+      '@heroicons/vue/24/solid',
+      '@headlessui/vue',
+      'i18next',
+      '@vue/server-renderer',
+      '@vuelidate/core',
+      '@vuelidate/validators',
+      '@vueuse/core',
+      'pinia',
+      'vue-router',
+      '@fy-/head',
+    ],
     plugins: [
+      vue({
+        isProduction: true,
+      }),
+      nodeResolve({
+        extensions: ['.mjs', '.js', '.json', '.ts'],
+      }),
       scss({
-        output: 'dist/dist/fyvue.scss',
+        name: 'fyvue.scss',
+        fileName: 'fyvue.css',
         sass: require('sass'),
         verbose: false,
       }),
-    ],
-  },
-  {
-    input: './src/index.ts',
-    output: [{ file: 'dist/dist/index.d.ts', format: 'es' }],
-    plugins: [dts()],
-  },
-  {
-    input: 'src/index.ts',
-    output: [
-      {
-        inlineDynamicImports: true,
-        format: 'cjs',
-        sourcemap: true,
-        file: 'dist/dist/fyvue.js',
-        name: 'fyvue',
-        globals: globals,
-        banner: banner,
-      },
-      {
-        inlineDynamicImports: true,
-        format: 'es',
-        sourcemap: true,
-        file: 'dist/dist/fyvue.mjs',
-        globals: globals,
-        banner: banner,
-      },
-    ],
-    plugins: [
-      peerDepsExternal(),
-      Vue({
-        isProduction: true,
-        sourceMap: false,
-        template: {
-          ssr: true
-        }
-      }),
+      typescript(),
       esbuild({
-        tsconfig: 'tsconfig.json',
-        minifySyntax: true,
+        exclude: [],
+        sourceMap: true,
         target: 'es2018',
-        platform: 'neutral',
+        loaders: {
+          '.vue': 'ts',
+        },
+        define: {
+          'process.env.NODE_ENV': JSON.stringify('production'),
+        },
+        treeShaking: true,
+        legalComments: 'eof',
+        tsconfig: 'tsconfig.json', // default
       }),
-      /*typescript({
-        tsconfig: 'tsconfig.json',
-      }),*/
       copy({
         targets: [
           {
@@ -97,10 +79,13 @@ export default [
                   /"devDependencies": {([\S\s]+)}/gm,
                   '"devDependencies": {}\n}'
                 );
+              _contents = _contents
+                .toString()
+                .replaceAll(/"scripts": {([\S\s]+)}/gm, '"scripts": {}\n}');
               return _contents;
             },
           },
-          { src: 'README.md', dest: 'dist/', rename: 'README.md' },
+          { src: '../../README.md', dest: 'dist/', rename: 'README.md' },
           {
             src: 'src/dts/components.d.ts',
             dest: 'dist/dist/',
@@ -118,9 +103,87 @@ export default [
           },
         ],
       }),
-
       cleanup(),
-      resolve(),
     ],
-  },
+    output: {
+      banner,
+      name: 'fyvue',
+      file: 'dist/fyvue.js',
+      format,
+      globals: {
+        vue: 'Vue',
+        '@vue/compiler-dom': 'VueCompilerDOM',
+        '@headlessui/vue': 'headlessUI',
+        '@karpeleslab/klbfw': 'klbfw',
+        i18next: 'i18next',
+        '@heroicons/vue/24/solid': 'heroIcons',
+        '@vuelidate/core': 'vValidateC',
+        '@vuelidate/validators': 'vValidateV',
+        '@vueuse/core': 'vueuseC',
+        pinia: 'pinia',
+        'vue-router': 'vr',
+        '@fy-/head': 'fh',
+      },
+    },
+  };
+
+  if (format === 'es') {
+    config.output.file = 'dist/dist/fyvue.mjs';
+  }
+  if (format === 'cjs') {
+    config.output.file = 'dist/dist/fyvue.js';
+  }
+  console.log(`Building ${format}: ${config.output.file}`);
+
+  return config;
+}
+
+export default [
+  createEntry({ format: 'es', input: 'src/index.ts' }),
+  createEntry({ format: 'cjs', input: 'src/index.ts' }),
+  /*
+  {
+    input: './src/index.ts',
+    output: [{ file: 'dist/dist/index.d.ts', format: 'es' }],
+    external: [
+      'vue',
+      '@vue/compiler-dom',
+      '@karpeleslab/klbfw',
+      '@heroicons/vue/24/solid',
+      '@headlessui/vue',
+      'i18next',
+      '@vue/server-renderer',
+      '@vuelidate/core',
+      '@vuelidate/validators',
+      '@vueuse/core',
+      'pinia',
+    ],
+    globals: {
+      vue: 'Vue',
+      '@vue/compiler-dom': 'VueCompilerDOM',
+      '@headlessui/vue': 'headlessUI',
+      '@karpeleslab/klbfw': 'klbfw',
+      i18next: 'i18next',
+      '@heroicons/vue/24/solid': 'heroIcons',
+      '@vuelidate/core': 'vValidateC',
+      '@vuelidate/validators': 'vValidateV',
+      '@vueuse/core': 'vueuseC',
+      pinia: 'pinia',
+    },
+    plugins: [
+      vue({
+        isProduction: true,
+      }),
+      scss({
+        name: 'fyvue.scss',
+        fileName: 'fyvue.css',
+        sass: require('sass'),
+        verbose: false,
+      }),
+      nodeResolve({
+        extensions: ['.mjs', '.js', '.json', '.ts'],
+      }),
+      typescript(),
+    ],
+  },*/
 ];

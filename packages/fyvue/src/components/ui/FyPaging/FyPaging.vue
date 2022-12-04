@@ -4,10 +4,10 @@ import { watch, onUnmounted, ref, WatchStopHandle, onMounted } from 'vue';
 import type { KlbApiPaging } from '../../../dts/klb';
 import { useEventBus } from '../../../utils/helpers';
 import { useHistory } from '../../../utils/ssr';
-import { useSeo } from '../../helpers/seo';
 import { getUrl } from '@karpeleslab/klbfw';
 import type { SeoData } from '../../../dts';
 import { useRoute } from 'vue-router';
+import { useSeo } from '../../helpers/seo';
 const props = defineProps<{
   items: KlbApiPaging;
   id: string;
@@ -66,6 +66,7 @@ const checkPageNumber = (page: number = 1) => {
     }`;
   }
 };
+
 eventBus.on(`${props.id}GoToPage`, checkPageNumber);
 onMounted(() => {
   pageWatcher.value = watch(

@@ -1,4 +1,5 @@
 # yarn
+.rollup.*
 .pnp.*
 .yarn/*
 !.yarn/patches

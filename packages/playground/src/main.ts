@@ -6,11 +6,11 @@ import {
   createWebHistory,
   createMemoryHistory,
 } from 'vue-router';
-import { createHead } from '@vueuse/head';
+import { createFyHead } from '@fy-/head';
+
 import { createPinia } from 'pinia';
 import { routes } from './routes';
 import VueCodeHighlight from 'vue-code-highlight';
-import { installSchemaOrg } from '@vueuse/schema-org-vite/vite';
 
 import './style.scss';
 import 'vue-code-highlight/themes/prism-tomorrow.css';
@@ -19,7 +19,6 @@ import FyDocPreview from '@/components/FvDocPreview.vue';
 import FvHL from '@/components/FvHL.vue';
 
 export const createApp = async (isSSR = false) => {
-  const head = createHead();
   const pinia = createPinia();
 
   const fyvue = createFyvue();
@@ -32,17 +31,14 @@ export const createApp = async (isSSR = false) => {
   });
 
   app.use(router);
-  app.use(head);
   app.use(pinia);
-  installSchemaOrg(
-    { app, router },
-    {
-      canonicalHost: 'https://fy-vue.com',
-    }
-  );
+  const fyhead = createFyHead();
+
+  app.use(fyhead);
+
   app.use(fyvue, { loadKlb: true });
   app.use(VueCodeHighlight);
   app.component('FyDocPreview', FyDocPreview);
   app.component('FvHL', FvHL);
-  return { app, router, head, pinia };
+  return { app, router, head: fyhead, pinia };
 };

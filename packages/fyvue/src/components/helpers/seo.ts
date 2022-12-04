@@ -1,63 +1,53 @@
-import { computed } from 'vue';
 import type { Ref } from 'vue';
-import { useHead } from '@vueuse/head';
-import type { SeoData } from '../../dts/index';
 import { getUrl, getLocale, getMode } from '@karpeleslab/klbfw';
-import {
-  useSchemaOrg,
-  defineWebSite,
-  defineOrganization,
-  defineWebPage,
-  defineSearchAction,
-} from '@vueuse/schema-org/runtime';
+import { useFyHead } from '@fy-/head';
+import type { FyHeadLazy } from '@fy-/head';
+import { computed } from 'vue';
 
-export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
+export const useSeo = (seo: Ref<FyHeadLazy>, initial: boolean = false) => {
+  /*
   if (initial) {
-    useSchemaOrg([
-      defineOrganization({
-        name: seo.value.name,
-        logo: seo.value.image,
-      }),
-      defineWebSite({
-        name: seo.value.name,
-        potentialAction: computed(() => {
-          const _res: Array<any> = [];
-          if (seo.value.searchAction) {
-            _res.push(defineSearchAction({ target: seo.value.searchAction }));
-          }
-          return _res;
-        }),
-      }),
-      defineWebPage(),
-    ]);
+    seo.value.url = `${getUrl().scheme}://${getUrl().host}${getUrl().path}`;
+    seo.value.canonical = `${getUrl().scheme}://${getUrl().host}${
+      getUrl().path
+    }`;
   }
+  seo.value.locale = getLocale().replace('-', '_');
+  if (!seo.value.type) seo.value.type = 'website';
+  seo.value.robots =
+    'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
-  useHead({
+  useFyHead().lazySeo(seo.value, initial);*/
+
+  useFyHead({
     title: computed(() => seo.value.title),
-    link: computed(() => {
+    links: computed(() => {
       const _res: Array<any> = [];
 
       if (initial && getMode() == 'ssr') {
         _res.push({
           rel: 'canonical',
           href: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
+          key: 'canonical',
         });
       }
       if (seo.value.prev) {
         _res.push({
           rel: 'prev',
           href: seo.value.prev,
+          key: 'prev',
         });
       }
       if (seo.value.next) {
         _res.push({
           rel: 'next',
           href: seo.value.next,
+          key: 'next',
         });
       }
       return _res;
     }),
-    htmlAttrs: computed(() => {
+    /*htmlAttrs: computed(() => {
       if (initial && getMode() == 'ssr')
         return { lang: computed(() => getLocale()) };
       return {};
@@ -65,8 +55,8 @@ export const useSeo = (seo: Ref<SeoData>, initial: boolean = false) => {
     bodyAttrs: computed(() => {
       if (initial) return { itemtype: 'http://schema.org/WebPage' };
       return {};
-    }),
-    meta: computed(() => {
+    }),*/
+    metas: computed(() => {
       const _res: Array<any> = [];
 
       if (initial) {

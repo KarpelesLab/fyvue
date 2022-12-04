@@ -3,8 +3,8 @@ import {
   i18nextPromise,
   countriesPromise,
   useUserCheck,
-  useSeo,
   useEventBus,
+  useSeo,
 } from '@karpeleslab/fyvue';
 
 import { ref, computed, onUnmounted, onMounted } from 'vue';
@@ -13,6 +13,7 @@ import { useRoute } from 'vue-router';
 import { onClickOutside } from '@vueuse/core';
 import { Backend } from '@karpeleslab/i18next-klb-backend';
 import ComponentIndex from '@/componentIndex';
+import { useFyHead } from '@fy-/head';
 
 await i18nextPromise(Backend);
 const route = useRoute();
@@ -37,18 +38,25 @@ onUnmounted(() => {
   eventBus.off('leaveSearchPage', '*');
 });
 
-useSeo(
-  ref({
-    name: 'fyvue',
-    type: 'website',
-    image: 'https://fy-vue.com/fyvue.png',
-    title: computed(() =>
-      computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
-    ),
-    searchAction: '/search/{search_term_string}',
-  }),
-  true
-);
+useFyHead({
+  title: computed(() =>
+    computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
+  ),
+  metas: [
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:image',
+      content: 'https://fy-vue.com/fyvue.png',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://fy-vue.com/fyvue.png',
+    },
+  ],
+});
 </script>
 
 <template>
@@ -199,17 +207,20 @@ useSeo(
         />
       </button>
     </aside>
-
+    <!--<pre>{{ fyhead }}</pre>-->
     <div class="flex-1 flex flex-col relative">
       <RouterView v-slot="{ Component }">
         <Suspense timeout="0">
-          <template #default><component :is="Component" /></template>
-          <template #fallback
-            ><FyLoader
+          <template #default>
+            <component :is="Component" />
+          </template>
+          <template #fallback>
+            <FyLoader
               id="app-suspender"
               :force="true"
               :show-loading-text="false"
-          /></template>
+            />
+          </template>
         </Suspense>
       </RouterView>
     </div>

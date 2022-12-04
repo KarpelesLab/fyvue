@@ -1,7 +1,6 @@
 <script setup>
 import { useSeo, useTranslation } from '@karpeleslab/fyvue';
 import { ref } from 'vue';
-const translate = useTranslation();
 useSeo(ref({ title: 'Contact - Fyvue' }));
 </script>
 <template>

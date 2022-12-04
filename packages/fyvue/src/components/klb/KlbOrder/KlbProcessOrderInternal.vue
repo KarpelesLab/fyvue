@@ -8,7 +8,7 @@ import {
   onUnmounted,
   WatchStopHandle,
 } from 'vue';
-import { useHead } from '@vueuse/head';
+import { useFyHead } from '@fy-/head';
 import {
   KlbUserBilling,
   KlbOrder,
@@ -27,11 +27,12 @@ import { useHistory } from '../../../utils/ssr';
 import { rest } from '../../../utils/rest';
 let stripe: any;
 let stripeElements: any;
-useHead({
-  script: [
+
+useFyHead({
+  scripts: [
     {
       src: 'https://js.stripe.com/v3',
-      key: 'stripe-script',
+      id: 'stripe-script',
     },
   ],
 });

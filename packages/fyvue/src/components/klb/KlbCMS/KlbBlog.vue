@@ -22,7 +22,7 @@ import type {
   KlbAPIContentCmsSearch,
   KlbClassifyTag,
 } from '../../../dts/klb';
-import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
+//import { SchemaOrgWebPage } from '@vueuse/schema-org/runtime';
 
 const props = withDefaults(
   defineProps<{
@@ -202,7 +202,6 @@ onUnmounted(() => {
     slugWatcher.value();
   }
 });
-
 useSeo(seo);
 </script>
 <template>
@@ -213,7 +212,7 @@ useSeo(seo);
       v-if="displayType == 'multiple' && data && data.result"
       class="multiple"
     >
-      <SchemaOrgWebPage :type="['CollectionPage', 'SearchResultsPage']" />
+      <!--<SchemaOrgWebPage :type="['CollectionPage', 'SearchResultsPage']" />-->
       <main>
         <FyBreadcrumb :nav="breadcrumb" />
 

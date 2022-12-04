@@ -2,7 +2,7 @@
 packages/fy-sitemap
 
 # yarn
-.pnp.*
+
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
