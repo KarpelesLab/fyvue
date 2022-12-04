@@ -1,44 +1,33 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "declaration": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist",
-    "baseUrl": "packages/fyvue/",
-    "allowJs": false,
-    "strict": true,
-    "noUnusedLocals": false,
-    "lib": ["esnext", "dom"],
-    "allowSyntheticDefaultImports": true,
-    "types": ["vite/client", "@types/node"],
-    "removeComments": true,
-    "noImplicitAny": false,
-    /*
-    "paths": {
-      "@fy/head/*": [
-        "../fy-head/*"
-      ],
-    }*/
+    "emitDeclarationOnly": true,
+    "declarationDir": "./dist/types",
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "types": [
+      "vite/client"
+    ]
   },
-  "references": [
-    {
-      "path": "../fyhead"
-    }
-  ],
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/dts/*.d.ts",
-    "../../node_modules/vue-router/dist/vue-router.d.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": [
     "node_modules",
-  ]
+    "dist",
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
+
+

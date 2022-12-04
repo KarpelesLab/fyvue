@@ -4,7 +4,7 @@ import { ref, reactive, computed } from 'vue';
 import { useFVStore } from '../../../utils/store';
 import { email, required } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
-import { useEventBus } from '../../../utils/helpers';
+import { useEventBus } from '@fy-/core';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);

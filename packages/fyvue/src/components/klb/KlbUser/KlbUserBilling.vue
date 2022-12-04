@@ -23,8 +23,8 @@ import type {
   KlbAPISetupIntent,
   KlbAPIUserLocation,
 } from '../../../dts/klb';
-import { eventBus } from '../../../utils/helpers';
 import { useFyHead } from '@fy-/head';
+import { useEventBus } from '@fy-/core';
 import FyModal from '../../ui/FyModal/FyModal.vue';
 import { useHistory } from '../../../utils/ssr';
 const props = withDefaults(
@@ -41,6 +41,7 @@ interface KlbBillingProfileByUuid {
   [key: string]: KlbUserBilling;
 }
 
+const eventBus = useEventBus();
 const store = useFVStore();
 const history = useHistory();
 const isAuth = computed(() => store.isAuth);

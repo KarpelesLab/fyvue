@@ -1,14 +1,14 @@
 import { useFVStore } from '../../../utils/store';
 import { useHistory } from '../../../utils/ssr';
 import { computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { RouteLocation, useRouter } from 'vue-router';
 
 export function useUserCheck(path = '/login') {
   const store = useFVStore();
   const isAuth = computed(() => store.isAuth);
   const router = useRouter();
 
-  const checkUser = (route) => {
+  const checkUser = (route: RouteLocation) => {
     if (route.meta.reqLogin) {
       if (!isAuth.value) router.push(path);
     }

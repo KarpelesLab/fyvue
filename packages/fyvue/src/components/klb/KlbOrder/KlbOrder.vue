@@ -14,11 +14,10 @@ import { KlbAPICatalogCart, KlbOrder } from '../../../dts/klb';
 import { TrashIcon } from '@heroicons/vue/24/solid';
 import { useFVStore } from '../../../utils/store';
 import KlbUserLocationVue from '../KlbUser/KlbUserLocation.vue';
-import { useTranslation } from '../../../utils/helpers';
 import { useRouter, useRoute } from 'vue-router';
 import KlbProcessOrderInternal from './KlbProcessOrderInternal.vue';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
-import { useEventBus } from '../../../utils/helpers';
+import { useEventBus, useTranslation } from '@fy-/core';
 
 const cart = ref<KlbAPICatalogCart>();
 const store = useFVStore();

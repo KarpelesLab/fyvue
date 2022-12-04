@@ -5,8 +5,7 @@ import { useHistory } from '../../../utils/ssr';
 import type { FyVueBreadcrumb } from '../../../dts/index';
 import { MagnifyingGlassIcon, FolderOpenIcon } from '@heroicons/vue/24/solid';
 import { useRoute } from 'vue-router';
-import { useEventBus } from '../../../utils/helpers';
-import { useTranslation } from '../../../utils/helpers';
+import { useEventBus, useTranslation } from '@fy-/core';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 import KlbBlogInnerPost from './KlbBlogInnerPost.vue';
 import FyBreadcrumb from '../../ui/FyBreadcrumb/FyBreadcrumb.vue';
@@ -80,7 +79,7 @@ const getArticle = async (slug: string) => {
   eventBus.emit('cmsBlog-loading', false);
 };
 
-const getCategories = async (uuid) => {
+const getCategories = async (uuid: string) => {
   const _cats = await rest<KlbAPIClassify>(`Classify/${uuid}`, 'GET');
   if (_cats && _cats.result == 'success') {
     cats.value = _cats.data.Root_Tags;

@@ -18,7 +18,7 @@ export function useCart() {
           });
       });
     },
-    createOrder(billingLocation) {
+    createOrder(billingLocation: { User_Location__: string }) {
       return rest<KlbAPIOrder>('Catalog/Cart/@:createOrder', 'POST', {
         Billing: billingLocation,
       });

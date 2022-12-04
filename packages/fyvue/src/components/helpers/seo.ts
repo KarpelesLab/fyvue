@@ -1,24 +1,30 @@
 import type { Ref } from 'vue';
 import { getUrl, getLocale, getMode } from '@karpeleslab/klbfw';
 import { useFyHead } from '@fy-/head';
-import type { FyHeadLazy } from '@fy-/head';
 import { computed } from 'vue';
 
+export interface FyHeadLazy {
+  name?: string;
+  title?: string;
+  image?: string;
+  imageType?: string;
+  imageWidth?: string;
+  imageHeight?: string;
+  description?: string;
+  published?: string;
+  modified?: string;
+  keywords?: string;
+  type?: 'blog' | 'search' | 'article' | 'website';
+  searchAction?: string;
+  next?: string;
+  prev?: string;
+  canonical?: string;
+  locale?: string;
+  robots?: string;
+  url?: string;
+}
+
 export const useSeo = (seo: Ref<FyHeadLazy>, initial: boolean = false) => {
-  /*
-  if (initial) {
-    seo.value.url = `${getUrl().scheme}://${getUrl().host}${getUrl().path}`;
-    seo.value.canonical = `${getUrl().scheme}://${getUrl().host}${
-      getUrl().path
-    }`;
-  }
-  seo.value.locale = getLocale().replace('-', '_');
-  if (!seo.value.type) seo.value.type = 'website';
-  seo.value.robots =
-    'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
-
-  useFyHead().lazySeo(seo.value, initial);*/
-
   useFyHead({
     title: computed(() => seo.value.title),
     links: computed(() => {

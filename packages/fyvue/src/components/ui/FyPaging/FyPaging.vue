@@ -2,7 +2,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
 import { watch, onUnmounted, ref, WatchStopHandle, onMounted } from 'vue';
 import type { KlbApiPaging } from '../../../dts/klb';
-import { useEventBus } from '../../../utils/helpers';
+import { useEventBus } from '@fy-/core';
 import { useHistory } from '../../../utils/ssr';
 import { getUrl } from '@karpeleslab/klbfw';
 import type { SeoData } from '../../../dts';

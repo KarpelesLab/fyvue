@@ -6,7 +6,7 @@ import { PencilIcon } from '@heroicons/vue/24/solid';
 
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
-import { useEventBus } from '../../../utils/helpers';
+import { useEventBus } from '@fy-/core';
 
 import FyInput from '../../ui/FyInput/FyInput.vue';
 

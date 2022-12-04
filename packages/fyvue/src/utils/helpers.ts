@@ -1,10 +1,6 @@
-import mitt, { Emitter } from 'mitt';
 import { getCurrentInstance } from 'vue';
 import { rest } from './rest';
 import type { KlbAPICountry, KlbCountry } from '../dts/klb';
-type Events = {
-  [key: string]: any;
-};
 
 export type GlobalCountries = {
   countries: Array<KlbCountry>;
@@ -17,8 +13,6 @@ const countries: GlobalCountries = {
   countries: new Array<KlbCountry>(),
   byUuid: {},
 };
-
-const eventBus: Emitter<Events> = mitt<Events>();
 
 const useCountries = () => {
   const vueInstance = getCurrentInstance();
@@ -41,21 +35,4 @@ const countriesPromise = () => {
   });
 };
 
-const useEventBus = () => {
-  const vueInstance = getCurrentInstance();
-  return vueInstance!.appContext.config.globalProperties.$eventBus;
-};
-
-const useTranslation = () => {
-  const vueInstance = getCurrentInstance();
-  return vueInstance!.appContext.config.globalProperties.$t;
-};
-
-export {
-  eventBus,
-  useEventBus,
-  useTranslation,
-  countriesPromise,
-  useCountries,
-  countries,
-};
+export { countriesPromise, useCountries, countries };

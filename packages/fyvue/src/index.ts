@@ -1,13 +1,13 @@
 import type { App, Plugin } from 'vue';
 //import Backend from '../lib/klb-i18n-backend.js';
-import i18next from 'i18next';
+import i18next, { BackendModule } from 'i18next';
 import uiComponents from './components/ui';
 import klb from './components/klb';
 import helpersComponents from './components/helpers';
 import {
-  eventBus,
-  useEventBus,
-  useTranslation,
+  //eventBus,
+  // useEventBus,
+  // useTranslation,
   useCountries,
   countriesPromise,
   countries,
@@ -28,25 +28,31 @@ import type { FyvueOptions } from './dts';
 import { useUserCheck } from './components/klb/KlbUser/useUserCheck';
 import { getLocale } from '@karpeleslab/klbfw';
 import { useSeo } from './components/helpers/seo';
+import {
+  createFyCore,
+  useEventBus,
+  useTranslation,
+  i18nextPromise as _i18nextPromise,
+} from '@fy-/core';
+import { createFyUI } from '@fy-/ui';
 import './fyvue.scss';
 
-const components = { ...uiComponents, ...klb.components, ...helpersComponents };
-export const i18nextPromise = (backend) => {
-  return i18next.use(backend).init({
-    ns: ['translation'],
-    defaultNS: 'translation',
-    debug: false,
-    lng: getLocale(),
-    load: 'currentOnly',
-    initImmediate: false,
-  });
+const i18nextPromise = (backend: BackendModule) => {
+  return _i18nextPromise(backend, getLocale());
 };
 
+const components = { ...uiComponents, ...klb.components, ...helpersComponents };
+
 const createFyvue = () => {
+  const fycore = createFyCore();
+  const fyui = createFyUI();
   const install = (app: App, options?: FyvueOptions | undefined) => {
     if (!options) options = { loadKlb: true };
-    app.config.globalProperties.$eventBus = eventBus;
-    app.config.globalProperties.$t = i18next.t;
+
+    app.use(fycore);
+    app.use(fyui);
+    //app.config.globalProperties.$eventBus = eventBus;
+    //app.config.globalProperties.$t = i18next.t;
     app.config.globalProperties.$cropText = cropText;
     app.config.globalProperties.$formatBytes = formatBytes;
     app.config.globalProperties.$formatDate = formatDate;
@@ -90,7 +96,6 @@ const helpers = {
   formatDatetime,
   formatTimeago,
   formatKlbRecurringPaymentCycle,
-  eventBus,
 };
 const helpersSSR = {
   setupClient,
@@ -116,4 +121,5 @@ export {
   rest,
   restFetch,
   KlbUse,
+  i18nextPromise,
 };

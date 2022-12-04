@@ -19,7 +19,7 @@ import {
   KlbAPIUserLocation,
   KlbAPIResultUnknown,
 } from '../../../dts/klb';
-import { useTranslation } from '../../../utils/helpers';
+import { useTranslation } from '@fy-/core';
 
 const props = withDefaults(
   defineProps<{

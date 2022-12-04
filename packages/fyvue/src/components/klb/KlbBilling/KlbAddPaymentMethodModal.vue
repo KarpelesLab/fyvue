@@ -6,7 +6,7 @@ import { required } from '@vuelidate/validators';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import FyModal from '../../ui/FyModal/FyModal.vue';
-import { useEventBus } from '../../../utils/helpers';
+import { useEventBus } from '@fy-/core';
 import { getLocale, getUrl, getPath } from '@karpeleslab/klbfw';
 import type { KlbAPISetupIntent } from '../../../dts/klb';
 import { useBilling } from './useBilling';

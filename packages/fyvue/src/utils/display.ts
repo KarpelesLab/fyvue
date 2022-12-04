@@ -1,4 +1,4 @@
-import { useTranslation } from './helpers';
+import { useTranslation } from '@fy-/core';
 import { format as formatDateTimeago } from 'timeago.js';
 import { getLocale } from '@karpeleslab/klbfw';
 

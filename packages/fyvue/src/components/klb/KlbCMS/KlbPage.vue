@@ -2,7 +2,7 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue';
 import type { KlbAPIContentCmsSingle } from '../../../dts/klb';
 import { useRoute } from 'vue-router';
-import { useEventBus } from '../../../utils/helpers';
+import { useEventBus } from '@fy-/core';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
 import Fy404View from '../../ui/Fy404/Fy404View.vue';
 import KlbBlogInnerPost from './KlbBlogInnerPost.vue';
@@ -11,6 +11,7 @@ import { useSeo } from '../../helpers/seo';
 import { useCMS } from './useCms';
 import type { WatchStopHandle } from 'vue';
 import type { FyVueBreadcrumb } from '../../../dts/index';
+
 const props = withDefaults(
   defineProps<{
     pagesAlias?: string;
@@ -78,6 +79,7 @@ useSeo(seo);
 </script>
 <template>
   <div class="fv-relative klb-blog">
+    <FyTest title="hey" />
     <FyLoader id="cmsPage" />
     <KlbBlogInnerPost
       v-if="page"

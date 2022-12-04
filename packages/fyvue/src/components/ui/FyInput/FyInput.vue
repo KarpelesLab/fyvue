@@ -3,7 +3,7 @@ import { LinkIcon } from '@heroicons/vue/24/solid';
 import { computed, ref, toRef } from 'vue';
 import type { modelValueType, checkboxValueType } from '../../../dts/';
 import type { ErrorObject } from '@vuelidate/core';
-import { useTranslation } from '../../../utils/helpers';
+import { useTranslation } from '@fy-/core';
 const props = withDefaults(
   defineProps<{
     id: string;

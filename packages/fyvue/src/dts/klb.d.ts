@@ -468,6 +468,7 @@ export interface KlbCatalogProduct {
   'Shipping.Type': 'package' | 'letter' | 'cool' | 'freeze';
   'Shipping.Volumetric_Weight': number;
   'Shipping.Weight': number;
+  'Meta.description'?: string;
   Image?: { list?: Array<KlbMediaImage> };
 }
 // KlbCatalogCart (https://ws.atonline.com/_special/rest/Catalog/Cart)

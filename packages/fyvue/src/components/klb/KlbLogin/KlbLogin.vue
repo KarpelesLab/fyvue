@@ -3,7 +3,7 @@ import { ref, onMounted, reactive } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import FyInput from '../../ui/FyInput/FyInput.vue';
-import { useEventBus } from '../../../utils/helpers';
+import { useEventBus, useTranslation } from '@fy-/core';
 import { useRoute, useRouter } from 'vue-router';
 import type {
   KlbUserFlow,
@@ -14,7 +14,6 @@ import type { ObjectS2Any } from '../../../dts';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import { ClientOnly } from '../../helpers/ClientOnly';
-import { useTranslation } from '../../../utils/helpers';
 const props = withDefaults(
   defineProps<{
     returnDefault?: string;

@@ -9,6 +9,7 @@ import {
   WatchStopHandle,
 } from 'vue';
 import { useFyHead } from '@fy-/head';
+import { useEventBus } from '@fy-/core';
 import {
   KlbUserBilling,
   KlbOrder,
@@ -20,7 +21,6 @@ import { useOrder } from './userOrder';
 import { useFVStore } from '../../../utils/store';
 import { ObjectS2Any } from '../../../dts';
 import FyLoader from '../../ui/FyLoader/FyLoader.vue';
-import { useEventBus } from '../../../utils/helpers';
 import FyInput from '../../ui/FyInput/FyInput.vue';
 import { getPath, getUrl } from '@karpeleslab/klbfw';
 import { useHistory } from '../../../utils/ssr';

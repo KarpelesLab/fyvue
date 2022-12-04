@@ -9,7 +9,7 @@ import {
 
 export function useOrder() {
   return {
-    process(data, orderUuid: string) {
+    process(data: any, orderUuid: string) {
       return rest<KlbAPIOrderProcess>(
         `Order/${orderUuid}:process`,
         'POST',
