@@ -53,7 +53,7 @@ const doSearch = async (page = 1) => {
   }
 };
 await doSearch();
-useSeo(ref(seo));
+useSeo(seo);
 onMounted(() => {
   queryWatcher.value = watch(
     () => route.params.query,
