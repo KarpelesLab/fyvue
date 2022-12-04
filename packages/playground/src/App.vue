@@ -38,7 +38,6 @@ onUnmounted(() => {
   eventBus.off('leaveSearchPage', '*');
 });
 
-
 useFyHead({
   title: computed(() =>
     computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
@@ -212,13 +211,16 @@ useFyHead({
     <div class="flex-1 flex flex-col relative">
       <RouterView v-slot="{ Component }">
         <Suspense timeout="0">
-          <template #default><component :is="Component" /></template>
-          <template #fallback
-            ><FyLoader
+          <template #default>
+            <component :is="Component" />
+          </template>
+          <template #fallback>
+            <FyLoader
               id="app-suspender"
               :force="true"
               :show-loading-text="false"
-          /></template>
+            />
+          </template>
         </Suspense>
       </RouterView>
     </div>
