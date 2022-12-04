@@ -1,3 +1,9 @@
 [submodule "packages/fyhead"]
 	path = packages/fyhead
 	url = git@github.com:Fy-/fyhead.git
+[submodule "packages/fycore"]
+	path = packages/fycore
+	url = git@github.com:fyvue/core.git
+[submodule "packages/fyui"]
+	path = packages/fyui
+	url = git@github.com:fyvue/ui.git
