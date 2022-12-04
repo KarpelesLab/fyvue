@@ -42,21 +42,6 @@ const seo = ref<SeoData>({
   type: 'blog',
 });
 
-const resetSeo = (type: 'blog' | 'search' | 'article' = 'blog') => {
-  seo.value = {
-    title: undefined,
-    image: undefined,
-    imageType: undefined,
-    description: undefined,
-    published: undefined,
-    modified: undefined,
-    keywords: undefined,
-    imageWidth: undefined,
-    imageHeight: undefined,
-    type: type,
-  };
-};
-
 const getArticle = async (slug: string) => {
   eventBus.emit('cmsPage-loading', true);
   await useCMS().getArticle(

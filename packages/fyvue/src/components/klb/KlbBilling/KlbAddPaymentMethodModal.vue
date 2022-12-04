@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useFyHead } from '@fy-/head';
-import { ref, onMounted, onUnmounted, computed, reactive } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 import { useFVStore } from '../../../utils/store';

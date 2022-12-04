@@ -1,6 +1,6 @@
 
 /**
- * @karpeleslab/fyvue v0.2.5-alpha3
+ * @karpeleslab/fyvue v0.2.5-alpha4
  * (c) 2022 Florian "Fy" Gasquez
  * Released under the MIT License
  */
@@ -1202,7 +1202,7 @@ const _sfc_main$i = /* @__PURE__ */ vue.defineComponent({
     vue.onMounted(() => {
       pageWatcher.value = vue.watch(
         () => route.query.page,
-        (v, ov) => {
+        (v) => {
           eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
         }
       );
@@ -1367,7 +1367,7 @@ const useFVStore = pinia.defineStore({
       }
     },
     async refreshUser(params = {}) {
-      const apiData = await klbfw.rest("User:get", "GET", params).catch((err) => {
+      const apiData = await klbfw.rest("User:get", "GET", params).catch(() => {
       });
       if (apiData.result == "success" && apiData.data != null) {
         this.user = apiData.data;
@@ -1376,7 +1376,7 @@ const useFVStore = pinia.defineStore({
       }
     },
     async logout() {
-      const apiData = await klbfw.rest("User:logout", "POST").catch((err) => {
+      const apiData = await klbfw.rest("User:logout", "POST").catch(() => {
       });
       if (apiData.result == "success") {
         this.setUser(null);
@@ -1746,6 +1746,7 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
     const pwdRecoverMailSent = vue.ref(false);
     const pwdRecoverError = vue.ref();
     const inputs = vue.ref([]);
+    const translate = useTranslation();
     const formData = vue.ref({
       return_to: props.returnDefault,
       session: null,
@@ -1768,12 +1769,12 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
       var _a;
       eventBus.emit("klblogin-loading", true);
       fieldsError.value = {};
-      hasOauth.value = false;
+      responseError.value = void 0;
       if (params.initial === false) {
         let hasError = false;
         responseReq.value.forEach((field) => {
           if (!formData.value[field] || formData.value[field] == "") {
-            fieldsError.value[field] = "error_form_value_is_required";
+            fieldsError.value[field] = translate("vuelidate_validator_req");
             hasError = true;
           }
         });
@@ -1782,6 +1783,7 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
           return;
         }
       }
+      hasOauth.value = false;
       if (params.oauth) {
         formData.value.oauth2 = params.oauth;
       }
@@ -1808,6 +1810,10 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
         }
         if (response.value.data.url) {
           window.location.href = response.value.data.url;
+          return;
+        }
+        if (response.value.data.Redirect && response.value.data.complete) {
+          router.push("/");
           return;
         }
         if (response.value.data.complete == true && response.value.data.user) {
@@ -1858,7 +1864,7 @@ const _sfc_main$e = /* @__PURE__ */ vue.defineComponent({
               vue.createVNode(_component_FyLoader, { id: "klblogin" }),
               vue.createElementVNode("div", _hoisted_1$e, [
                 responseMessage.value ? (vue.openBlock(), vue.createElementBlock("h2", _hoisted_2$e, vue.toDisplayString(responseMessage.value), 1)) : vue.createCommentVNode("v-if", true),
-                responseFields.value.length > 0 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+                responseFields.value && responseFields.value.length > 0 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
                   (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList(responseFields.value, (field) => {
                     return vue.openBlock(), vue.createElementBlock(vue.Fragment, {
                       key: field.label
@@ -2134,8 +2140,8 @@ const _sfc_main$c = /* @__PURE__ */ vue.defineComponent({
       errorOnSubmit.value = void 0;
       if (await v$.value.$validate()) {
         const _updateResult = await rest("User/@:setPassword", "POST", {
-          old_password: oldPwd,
-          password: pwd
+          old_password: oldPwd.value,
+          password: pwd.value
         }).catch((err) => {
           errorOnSubmit.value = err.token;
         });
@@ -2467,16 +2473,12 @@ const _sfc_main$9 = /* @__PURE__ */ vue.defineComponent({
         editMode.value = false;
         await getUserLocation();
       } else {
-        await rest(
-          `User/Location`,
-          "POST",
-          {
-            First_Name: state.firstname,
-            Last_Name: state.lastname,
-            Zip: state.zip,
-            Country__: state.country
-          }
-        ).catch(() => {
+        await rest(`User/Location`, "POST", {
+          First_Name: state.firstname,
+          Last_Name: state.lastname,
+          Zip: state.zip,
+          Country__: state.country
+        }).catch(() => {
         });
         editMode.value = false;
         await getUserLocation();
@@ -3360,11 +3362,13 @@ const _sfc_main$7 = /* @__PURE__ */ vue.defineComponent({
                       vue.createTextVNode(vue.toDisplayString(_ctx.$t("payment_method_exp")) + ": ", 1),
                       vue.createElementVNode("b", null, vue.toDisplayString(billingProfile.value.Methods[0].Expiration), 1)
                     ]),
-                    vue.createElementVNode("button", {
-                      class: "btn primary btn-defaults",
-                      type: "button",
-                      onClick: _cache[5] || (_cache[5] = ($event) => openEditModal())
-                    }, vue.toDisplayString(_ctx.$t("klb_billing_edit_pm_cta")), 1)
+                    vue.createElementVNode("div", null, [
+                      vue.createElementVNode("button", {
+                        class: "btn primary btn-defaults",
+                        type: "button",
+                        onClick: _cache[5] || (_cache[5] = ($event) => openEditModal())
+                      }, vue.toDisplayString(_ctx.$t("klb_billing_edit_pm_cta")), 1)
+                    ])
                   ])) : vue.createCommentVNode("v-if", true)
                 ]),
                 vue.createVNode(KlbUserLocation, {
@@ -3666,6 +3670,7 @@ const _sfc_main$5 = /* @__PURE__ */ vue.defineComponent({
         const _process = await useOrder().process(data, props.orderUuid).catch((err) => {
           errorMessage.value = err.message;
         });
+        await store.refreshCart();
         if (!errorMessage.value)
           await getOrderProcess(_process);
         else
@@ -3789,6 +3794,7 @@ const _sfc_main$5 = /* @__PURE__ */ vue.defineComponent({
         ).catch((err) => {
           errorMessage.value = err.message;
         });
+        await store.refreshCart();
         if (!errorMessage.value)
           await getOrderProcess(_process);
         else
@@ -4021,12 +4027,12 @@ const _sfc_main$4 = /* @__PURE__ */ vue.defineComponent({
       });
       if (_result && _result.result == "success") {
         hasOrder.value = _result.data;
+        await store.refreshCart();
         router.push({
           path: router.currentRoute.value.path,
           query: { Order__: hasOrder.value.Order__ }
         });
       }
-      await store.refreshCart();
       eventBus.emit("klb-order-main-loading", false);
     };
     vue.onMounted(async () => {

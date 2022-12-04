@@ -387,13 +387,15 @@ useFyHead({
                 {{ $t('payment_method_exp') }}:
                 <b>{{ billingProfile.Methods[0].Expiration }}</b>
               </span>
-              <button
-                class="btn primary btn-defaults"
-                type="button"
-                @click="openEditModal()"
-              >
-                {{ $t('klb_billing_edit_pm_cta') }}
-              </button>
+              <div>
+                <button
+                  class="btn primary btn-defaults"
+                  type="button"
+                  @click="openEditModal()"
+                >
+                  {{ $t('klb_billing_edit_pm_cta') }}
+                </button>
+              </div>
             </div>
           </div>
           <KlbUserLocation

@@ -64,7 +64,7 @@ useFyHead({
     <FyNavbar
       title="fyvue"
       :showDashboardLink="false"
-      :showCart="false"
+      :showCart="true"
       cartPath="/components/klb/KlbOrder"
       :links="[
         { to: '/blog', name: 'Blog' },

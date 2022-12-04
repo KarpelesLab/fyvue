@@ -1,7 +1,7 @@
 import { useFVStore } from '../../../utils/store';
 import { useHistory } from '../../../utils/ssr';
 import { computed } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 export function useUserCheck(path = '/login') {
   const store = useFVStore();

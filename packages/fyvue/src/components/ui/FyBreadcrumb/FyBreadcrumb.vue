@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { FyVueBreadcrumb } from '../../../dts';
 import { HomeIcon, ChevronRightIcon } from '@heroicons/vue/24/solid';
-import { computed } from 'vue';
 //import { SchemaOrgBreadcrumb } from '@vueuse/schema-org/runtime';
-const props = withDefaults(
+withDefaults(
   defineProps<{
     nav: FyVueBreadcrumb[];
     maxLength?: number;

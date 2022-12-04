@@ -3,6 +3,7 @@ import type { KlbContentCms, KlbAPIComments } from '../../../dts/klb';
 import { rest } from '../../../utils/rest';
 import { ref } from 'vue';
 
+/*
 import type { FyVueBreadcrumb } from '../../../dts/index';
 import FyBreadcrumb from '../../ui/FyBreadcrumb/FyBreadcrumb.vue';
 import type { KlbCms } from '../../../dts/klb';
@@ -11,7 +12,7 @@ import {
   ChatBubbleBottomCenterIcon,
   PaperClipIcon,
   TagIcon,
-} from '@heroicons/vue/24/solid';
+} from '@heroicons/vue/24/solid';*/
 import { onMounted } from 'vue';
 const props = withDefaults(
   defineProps<{
@@ -21,6 +22,7 @@ const props = withDefaults(
 );
 const comments = ref<KlbAPIComments>();
 
+/*
 const postComment = async (message: string) => {
   const _res = await rest<KlbAPIComments>(
     `Content/Cms/Entry/${props.post.Content_Cms_Entry__}:comment`,
@@ -28,12 +30,13 @@ const postComment = async (message: string) => {
     { message }
   );
   console.log(_res);
-};
+};*/
+
 const getComments = async (page: number = 1) => {
   if (!props.post.Comments?.Commented) return;
   const _res = await rest<KlbAPIComments>(`Social/Comment/`, 'GET', {
     key: props.post.Comments.Key,
-    page_no: 1,
+    page_no: page,
     results_per_page: 10,
   });
   if (_res && _res.result == 'success') {

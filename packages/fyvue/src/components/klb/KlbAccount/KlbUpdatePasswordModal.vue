@@ -10,7 +10,7 @@ import { useEventBus } from '../../../utils/helpers';
 
 import FyInput from '../../ui/FyInput/FyInput.vue';
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     showValueButton?: boolean;
   }>(),
@@ -37,8 +37,8 @@ const changeEmail = async () => {
   errorOnSubmit.value = undefined;
   if (await v$.value.$validate()) {
     const _updateResult = await rest('User/@:setPassword', 'POST', {
-      old_password: oldPwd,
-      password: pwd,
+      old_password: oldPwd.value,
+      password: pwd.value,
     }).catch((err) => {
       errorOnSubmit.value = err.token;
     });

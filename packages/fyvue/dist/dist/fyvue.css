@@ -904,12 +904,18 @@ button[type=submit] {
 .klb-user-location .form-grid {
   @apply grid grid-cols-2 gap-2;
 }
+.klb-user-location .btn {
+  @apply whitespace-nowrap;
+}
 
 .klb-user-billing .billing-select {
   @apply flex space-x-2;
 }
+.klb-user-billing .btn {
+  @apply whitespace-nowrap;
+}
 .klb-user-billing .billing-method-summary {
-  @apply my-2 p-1.5 flex justify-between items-center;
+  @apply my-2 p-1.5 flex-wrap flex gap-2 justify-between items-center;
 }
 
 .klb-contact-form {

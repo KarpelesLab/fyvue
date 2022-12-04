@@ -10,7 +10,7 @@ import { useEventBus } from '../../../utils/helpers';
 
 import FyInput from '../../ui/FyInput/FyInput.vue';
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     showValueButton?: boolean;
   }>(),

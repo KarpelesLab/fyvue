@@ -73,17 +73,18 @@ const createOrder = async () => {
     });
   if (_result && _result.result == 'success') {
     hasOrder.value = _result.data;
+    await store.refreshCart();
     router.push({
       path: router.currentRoute.value.path,
       query: { Order__: hasOrder.value.Order__ },
     });
   }
-  await store.refreshCart();
   eventBus.emit('klb-order-main-loading', false);
 };
+/*
 const getLastUnfinishedOrder = async () => {
-  //const _unfinishedOrder = await useOrder().getLastUnfinishedOrder();
-};
+  const _unfinishedOrder = await useOrder().getLastUnfinishedOrder();
+};*/
 onMounted(async () => {
   eventBus.emit('klb-order-main-loading', true);
   orderWatcher.value = watch(routeOrderUuid, async (v) => {

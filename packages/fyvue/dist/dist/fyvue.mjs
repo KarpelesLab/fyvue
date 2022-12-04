@@ -1,6 +1,6 @@
 
 /**
- * @karpeleslab/fyvue v0.2.5-alpha3
+ * @karpeleslab/fyvue v0.2.5-alpha4
  * (c) 2022 Florian "Fy" Gasquez
  * Released under the MIT License
  */
@@ -1193,7 +1193,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     onMounted(() => {
       pageWatcher.value = watch(
         () => route.query.page,
-        (v, ov) => {
+        (v) => {
           eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
         }
       );
@@ -1358,7 +1358,7 @@ const useFVStore = defineStore({
       }
     },
     async refreshUser(params = {}) {
-      const apiData = await rest$1("User:get", "GET", params).catch((err) => {
+      const apiData = await rest$1("User:get", "GET", params).catch(() => {
       });
       if (apiData.result == "success" && apiData.data != null) {
         this.user = apiData.data;
@@ -1367,7 +1367,7 @@ const useFVStore = defineStore({
       }
     },
     async logout() {
-      const apiData = await rest$1("User:logout", "POST").catch((err) => {
+      const apiData = await rest$1("User:logout", "POST").catch(() => {
       });
       if (apiData.result == "success") {
         this.setUser(null);
@@ -1737,6 +1737,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
     const pwdRecoverMailSent = ref(false);
     const pwdRecoverError = ref();
     const inputs = ref([]);
+    const translate = useTranslation();
     const formData = ref({
       return_to: props.returnDefault,
       session: null,
@@ -1759,12 +1760,12 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
       var _a;
       eventBus.emit("klblogin-loading", true);
       fieldsError.value = {};
-      hasOauth.value = false;
+      responseError.value = void 0;
       if (params.initial === false) {
         let hasError = false;
         responseReq.value.forEach((field) => {
           if (!formData.value[field] || formData.value[field] == "") {
-            fieldsError.value[field] = "error_form_value_is_required";
+            fieldsError.value[field] = translate("vuelidate_validator_req");
             hasError = true;
           }
         });
@@ -1773,6 +1774,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
           return;
         }
       }
+      hasOauth.value = false;
       if (params.oauth) {
         formData.value.oauth2 = params.oauth;
       }
@@ -1799,6 +1801,10 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
         }
         if (response.value.data.url) {
           window.location.href = response.value.data.url;
+          return;
+        }
+        if (response.value.data.Redirect && response.value.data.complete) {
+          router.push("/");
           return;
         }
         if (response.value.data.complete == true && response.value.data.user) {
@@ -1849,7 +1855,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
               createVNode(_component_FyLoader, { id: "klblogin" }),
               createElementVNode("div", _hoisted_1$e, [
                 responseMessage.value ? (openBlock(), createElementBlock("h2", _hoisted_2$e, toDisplayString(responseMessage.value), 1)) : createCommentVNode("v-if", true),
-                responseFields.value.length > 0 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                responseFields.value && responseFields.value.length > 0 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                   (openBlock(true), createElementBlock(Fragment, null, renderList(responseFields.value, (field) => {
                     return openBlock(), createElementBlock(Fragment, {
                       key: field.label
@@ -2125,8 +2131,8 @@ const _sfc_main$c = /* @__PURE__ */ defineComponent({
       errorOnSubmit.value = void 0;
       if (await v$.value.$validate()) {
         const _updateResult = await rest("User/@:setPassword", "POST", {
-          old_password: oldPwd,
-          password: pwd
+          old_password: oldPwd.value,
+          password: pwd.value
         }).catch((err) => {
           errorOnSubmit.value = err.token;
         });
@@ -2458,16 +2464,12 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
         editMode.value = false;
         await getUserLocation();
       } else {
-        await rest(
-          `User/Location`,
-          "POST",
-          {
-            First_Name: state.firstname,
-            Last_Name: state.lastname,
-            Zip: state.zip,
-            Country__: state.country
-          }
-        ).catch(() => {
+        await rest(`User/Location`, "POST", {
+          First_Name: state.firstname,
+          Last_Name: state.lastname,
+          Zip: state.zip,
+          Country__: state.country
+        }).catch(() => {
         });
         editMode.value = false;
         await getUserLocation();
@@ -3351,11 +3353,13 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
                       createTextVNode(toDisplayString(_ctx.$t("payment_method_exp")) + ": ", 1),
                       createElementVNode("b", null, toDisplayString(billingProfile.value.Methods[0].Expiration), 1)
                     ]),
-                    createElementVNode("button", {
-                      class: "btn primary btn-defaults",
-                      type: "button",
-                      onClick: _cache[5] || (_cache[5] = ($event) => openEditModal())
-                    }, toDisplayString(_ctx.$t("klb_billing_edit_pm_cta")), 1)
+                    createElementVNode("div", null, [
+                      createElementVNode("button", {
+                        class: "btn primary btn-defaults",
+                        type: "button",
+                        onClick: _cache[5] || (_cache[5] = ($event) => openEditModal())
+                      }, toDisplayString(_ctx.$t("klb_billing_edit_pm_cta")), 1)
+                    ])
                   ])) : createCommentVNode("v-if", true)
                 ]),
                 createVNode(KlbUserLocation, {
@@ -3657,6 +3661,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         const _process = await useOrder().process(data, props.orderUuid).catch((err) => {
           errorMessage.value = err.message;
         });
+        await store.refreshCart();
         if (!errorMessage.value)
           await getOrderProcess(_process);
         else
@@ -3780,6 +3785,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
         ).catch((err) => {
           errorMessage.value = err.message;
         });
+        await store.refreshCart();
         if (!errorMessage.value)
           await getOrderProcess(_process);
         else
@@ -4012,12 +4018,12 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       });
       if (_result && _result.result == "success") {
         hasOrder.value = _result.data;
+        await store.refreshCart();
         router.push({
           path: router.currentRoute.value.path,
           query: { Order__: hasOrder.value.Order__ }
         });
       }
-      await store.refreshCart();
       eventBus.emit("klb-order-main-loading", false);
     };
     onMounted(async () => {

@@ -24,7 +24,7 @@ import { useEventBus } from '../../../utils/helpers';
 import FyInput from '../../ui/FyInput/FyInput.vue';
 import { getPath, getUrl } from '@karpeleslab/klbfw';
 import { useHistory } from '../../../utils/ssr';
-import { rest } from '../../../utils/rest';
+
 let stripe: any;
 let stripeElements: any;
 
@@ -110,7 +110,7 @@ const processOrder = async () => {
       .catch((err) => {
         errorMessage.value = err.message;
       });
-
+    await store.refreshCart();
     if (!errorMessage.value) await getOrderProcess(_process);
     else await getOrderProcess();
   }
@@ -278,7 +278,7 @@ onMounted(async () => {
       .catch((err) => {
         errorMessage.value = err.message;
       });
-
+    await store.refreshCart();
     if (!errorMessage.value) await getOrderProcess(_process);
     else await getOrderProcess();
     await store.refreshCart();

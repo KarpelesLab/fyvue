@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { rest } from '../../../utils/rest';
-import { ref, onMounted, reactive, computed } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { useFVStore } from '../../../utils/store';
 import { email, required } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';

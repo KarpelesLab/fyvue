@@ -1,9 +1,7 @@
 import type { Ref } from 'vue';
-import { ref } from 'vue';
 import { rest } from '../../../utils/rest';
 import { useHistory } from '../../../utils/ssr';
 import type { FyVueBreadcrumb } from '../../../dts/index';
-import { useEventBus } from '../../../utils/helpers';
 import type { SeoData } from '../../../dts/index';
 import type { KlbAPIContentCmsSingle } from '../../../dts/klb';
 

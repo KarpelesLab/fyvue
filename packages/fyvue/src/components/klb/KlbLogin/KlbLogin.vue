@@ -14,7 +14,7 @@ import type { ObjectS2Any } from '../../../dts';
 import { useFVStore } from '../../../utils/store';
 import { rest } from '../../../utils/rest';
 import { ClientOnly } from '../../helpers/ClientOnly';
-
+import { useTranslation } from '../../../utils/helpers';
 const props = withDefaults(
   defineProps<{
     returnDefault?: string;
@@ -52,6 +52,7 @@ const fieldsError = ref<ObjectS2Any>({});
 const pwdRecoverMailSent = ref<boolean>(false);
 const pwdRecoverError = ref<KlbAPIResultUnknown>();
 const inputs = ref<InstanceType<typeof FyInput>[]>([]);
+const translate = useTranslation();
 
 const formData = ref<ObjectS2Any>({
   return_to: props.returnDefault,
@@ -78,13 +79,13 @@ const forgotPassword = async () => {
 const userFlow = async (params: paramsType = { initial: false }) => {
   eventBus.emit('klblogin-loading', true);
   fieldsError.value = {};
+  responseError.value = undefined;
 
-  hasOauth.value = false;
   if (params.initial === false) {
     let hasError = false;
     responseReq.value.forEach((field) => {
       if (!formData.value[field] || formData.value[field] == '') {
-        fieldsError.value[field] = 'error_form_value_is_required';
+        fieldsError.value[field] = translate('vuelidate_validator_req');
         hasError = true;
       }
     });
@@ -93,6 +94,7 @@ const userFlow = async (params: paramsType = { initial: false }) => {
       return;
     }
   }
+  hasOauth.value = false;
 
   if (params.oauth) {
     formData.value.oauth2 = params.oauth;
@@ -128,6 +130,10 @@ const userFlow = async (params: paramsType = { initial: false }) => {
     }
     if (response.value.data.url) {
       window.location.href = response.value.data.url;
+      return;
+    }
+    if (response.value.data.Redirect && response.value.data.complete) {
+      router.push('/');
       return;
     }
     if (response.value.data.complete == true && response.value.data.user) {
@@ -173,7 +179,7 @@ onMounted(async () => {
         <FyLoader id="klblogin" />
         <div class="w-full">
           <h2 class="message" v-if="responseMessage">{{ responseMessage }}</h2>
-          <template v-if="responseFields.length > 0">
+          <template v-if="responseFields && responseFields.length > 0">
             <template v-for="field of responseFields" :key="field.label">
               <h3
                 v-if="field.type == 'label'"

@@ -1,19 +1,10 @@
 import { renderToString } from '@vue/server-renderer';
-import { getUuid, getPath, getInitialState, getMode } from '@karpeleslab/klbfw';
+import { getUuid, getPath, getInitialState } from '@karpeleslab/klbfw';
 import type { Router } from 'vue-router';
 import type { Pinia } from 'pinia';
 import { defineStore } from 'pinia';
 import type { KlbSSR } from '../dts/klb';
-//import { decode } from '../lib/he';
-//import { NavigationCallback } from "vue-router"
 
-/*
-interface AppContext {
-  pinia: Pinia
-  router: Router
-  query: LocationQuery
-  params: Record<string, string>
-}*/
 export type HistoryState = {
   _router: any | null;
   status: number;

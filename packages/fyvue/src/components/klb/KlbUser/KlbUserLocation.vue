@@ -88,7 +88,7 @@ const deleteLocation = async () => {
 };
 const submitLocation = async () => {
   if (location.value) {
-    const _updateLocation = await rest<KlbAPIUserLocation>(
+    await rest<KlbAPIUserLocation>(
       `User/Location/${location.value?.User_Location__}`,
       'PATCH',
       {
@@ -101,16 +101,12 @@ const submitLocation = async () => {
     editMode.value = false;
     await getUserLocation();
   } else {
-    const _updateLocation = await rest<KlbAPIUserLocation>(
-      `User/Location`,
-      'POST',
-      {
-        First_Name: state.firstname,
-        Last_Name: state.lastname,
-        Zip: state.zip,
-        Country__: state.country,
-      }
-    ).catch(() => {});
+    await rest<KlbAPIUserLocation>(`User/Location`, 'POST', {
+      First_Name: state.firstname,
+      Last_Name: state.lastname,
+      Zip: state.zip,
+      Country__: state.country,
+    }).catch(() => {});
     editMode.value = false;
     await getUserLocation();
   }

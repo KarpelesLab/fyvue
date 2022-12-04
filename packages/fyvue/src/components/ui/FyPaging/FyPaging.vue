@@ -71,7 +71,7 @@ eventBus.on(`${props.id}GoToPage`, checkPageNumber);
 onMounted(() => {
   pageWatcher.value = watch(
     () => route.query.page,
-    (v, ov) => {
+    (v) => {
       eventBus.emit(`${props.id}GoToPage`, v ? v : 1);
     }
   );

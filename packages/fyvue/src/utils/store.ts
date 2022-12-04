@@ -44,7 +44,7 @@ export const useFVStore = defineStore({
         'User:get',
         'GET',
         params
-      ).catch((err: KlbAPIResultUnknown) => {}); // @todo
+      ).catch(() => {}); // @todo
       if (apiData.result == 'success' && apiData.data != null) {
         this.user = apiData.data as KlbUser;
       } else {
@@ -55,7 +55,7 @@ export const useFVStore = defineStore({
       const apiData: KlbAPIResultUnknown = await rest(
         'User:logout',
         'POST'
-      ).catch((err: KlbAPIResultUnknown) => {}); // @todo
+      ).catch(() => {}); // @todo
 
       if (apiData.result == 'success') {
         this.setUser(null);
