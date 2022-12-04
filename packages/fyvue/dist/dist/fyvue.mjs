@@ -1,6 +1,6 @@
 
 /**
- * @karpeleslab/fyvue v0.2.5-alpha2
+ * @karpeleslab/fyvue v0.2.5-alpha3
  * (c) 2022 Florian "Fy" Gasquez
  * Released under the MIT License
  */
@@ -987,6 +987,131 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
 });
 var FyInput = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["__file", "FyInput.vue"]]);
 
+const useSeo = (seo, initial = false) => {
+  useFyHead({
+    title: computed(() => seo.value.title),
+    links: computed(() => {
+      const _res = [];
+      if (initial && getMode() == "ssr") {
+        _res.push({
+          rel: "canonical",
+          href: `${getUrl().scheme}://${getUrl().host}${getUrl().path}`,
+          key: "canonical"
+        });
+      }
+      if (seo.value.prev) {
+        _res.push({
+          rel: "prev",
+          href: seo.value.prev,
+          key: "prev"
+        });
+      }
+      if (seo.value.next) {
+        _res.push({
+          rel: "next",
+          href: seo.value.next,
+          key: "next"
+        });
+      }
+      return _res;
+    }),
+    metas: computed(() => {
+      const _res = [];
+      if (initial) {
+        if (getMode() == "ssr") {
+          _res.push({
+            property: "og:locale",
+            content: getLocale$1().replace("-", "_")
+          }, {
+            property: "og:url",
+            content: getUrl().full
+          });
+        }
+        _res.push({
+          property: "og:type",
+          content: "website"
+        }, {
+          name: "robots",
+          content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        });
+      }
+      if (seo.value.name) {
+        _res.push({
+          property: "og:site_name",
+          content: seo.value.name
+        });
+      }
+      if (seo.value.type) {
+        _res.push({
+          property: "og:type",
+          content: seo.value.type
+        });
+      }
+      if (seo.value.title) {
+        _res.push({
+          property: "og:title",
+          content: seo.value.title
+        }, {
+          name: "twitter:title",
+          content: seo.value.title
+        });
+      }
+      if (seo.value.description) {
+        _res.push({
+          property: "og:description",
+          content: seo.value.description
+        }, {
+          name: "twitter:description",
+          content: seo.value.description
+        }, {
+          property: "og:description",
+          content: seo.value.description
+        }, {
+          name: "description",
+          content: seo.value.description
+        });
+      }
+      if (seo.value.modified) {
+        _res.push({
+          property: "article:published_time",
+          content: seo.value.modified
+        });
+      }
+      if (seo.value.published) {
+        _res.push({
+          property: "article:modified_time",
+          content: seo.value.published
+        });
+      }
+      if (seo.value.imageWidth && seo.value.imageHeight) {
+        _res.push({
+          property: "og:image:width",
+          content: seo.value.imageWidth
+        }, {
+          property: "og:image:height",
+          content: seo.value.imageHeight
+        });
+      }
+      if (seo.value.imageType) {
+        _res.push({
+          property: "og:image:type",
+          content: seo.value.imageType
+        });
+      }
+      if (seo.value.image) {
+        _res.push({
+          property: "og:image",
+          content: seo.value.image
+        }, {
+          name: "twitter:image",
+          content: seo.value.image
+        });
+      }
+      return _res;
+    })
+  });
+};
+
 const _hoisted_1$h = {
   key: 0,
   class: "fy-paging"
@@ -1024,7 +1149,6 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     const history = useHistory();
     const prevNextSeo = ref({});
     const url = getUrl();
-    const fyhead = useFyHead();
     const isNewPage = (page2) => {
       return page2 >= 1 && page2 <= props.items.page_max && page2 != props.items.page_no;
     };
@@ -1059,16 +1183,10 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
       prevNextSeo.value.next = void 0;
       prevNextSeo.value.prev = void 0;
       if (page2 + 1 <= props.items.page_max) {
-        fyhead.addLink(
-          "next",
-          `${url.scheme}://${url.host}${url.path}?page=${page2 + 1}`
-        );
+        prevNextSeo.value.next = `${url.scheme}://${url.host}${url.path}?page=${page2 + 1}`;
       }
       if (page2 - 1 >= 1) {
-        fyhead.addLink(
-          "prev",
-          `${url.scheme}://${url.host}${url.path}?page=${page2 - 1}`
-        );
+        prevNextSeo.value.prev = `${url.scheme}://${url.host}${url.path}?page=${page2 - 1}`;
       }
     };
     eventBus.on(`${props.id}GoToPage`, checkPageNumber);
@@ -1086,6 +1204,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
         pageWatcher.value();
     });
     checkPageNumber(props.items.page_no);
+    useSeo(prevNextSeo);
     return (_ctx, _cache) => {
       return __props.items && __props.items.page_max > 1 && __props.items.page_no ? (openBlock(), createElementBlock("div", _hoisted_1$h, [
         createElementVNode("div", _hoisted_2$h, [
@@ -2757,7 +2876,14 @@ const _sfc_main$8 = /* @__PURE__ */ defineComponent({
     onUnmounted(() => {
       eventBus.off("ShowAddPaymentMethodModal", showAddPaymentMethodModal);
     });
-    useFyHead().addScript("https://js.stripe.com/v3", "stripe-script");
+    useFyHead({
+      scripts: [
+        {
+          src: "https://js.stripe.com/v3",
+          id: "stripe-script"
+        }
+      ]
+    });
     return (_ctx, _cache) => {
       const _component_FyLoader = resolveComponent("FyLoader");
       const _component_FyInput = resolveComponent("FyInput");
@@ -3123,7 +3249,14 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
       if (billingWatcher.value)
         billingWatcher.value();
     });
-    useFyHead().addScript("https://js.stripe.com/v3", "stripe-script");
+    useFyHead({
+      scripts: [
+        {
+          src: "https://js.stripe.com/v3",
+          id: "stripe-script"
+        }
+      ]
+    });
     return (_ctx, _cache) => {
       const _component_FyInput = resolveComponent("FyInput");
       return openBlock(), createElementBlock(Fragment, null, [
@@ -3455,7 +3588,14 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     const props = __props;
     let stripe;
     let stripeElements;
-    useFyHead().addScript("https://js.stripe.com/v3", "stripe-script");
+    useFyHead({
+      scripts: [
+        {
+          src: "https://js.stripe.com/v3",
+          id: "stripe-script"
+        }
+      ]
+    });
     const currentMethod = ref();
     const stripeElementsRef = ref();
     const history = useHistory();
@@ -4264,18 +4404,6 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   }
 });
 var KlbBlogInnerPost = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__file", "KlbBlogInnerPost.vue"]]);
-
-const useSeo = (seo, initial = false) => {
-  if (initial) {
-    seo.value.url = `${getUrl().scheme}://${getUrl().host}${getUrl().path}`;
-    seo.value.canonical = `${getUrl().scheme}://${getUrl().host}${getUrl().path}`;
-  }
-  seo.value.locale = getLocale$1().replace("-", "_");
-  if (!seo.value.type)
-    seo.value.type = "website";
-  seo.value.robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
-  useFyHead().lazySeo(seo.value, initial);
-};
 
 function useCMS() {
   return {

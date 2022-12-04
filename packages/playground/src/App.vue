@@ -4,6 +4,7 @@ import {
   countriesPromise,
   useUserCheck,
   useEventBus,
+  useSeo,
 } from '@karpeleslab/fyvue';
 
 import { ref, computed, onUnmounted, onMounted } from 'vue';
@@ -37,29 +38,26 @@ onUnmounted(() => {
   eventBus.off('leaveSearchPage', '*');
 });
 
-const fyhead = useFyHead();
-fyhead.lazySeo({
-  name: 'fyvue',
-  type: 'website',
-  image: 'https://fy-vue.com/fyvue.png',
+
+useFyHead({
   title: computed(() =>
     computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
   ),
-  searchAction: '/search/{search_term_string}',
+  metas: [
+    {
+      property: 'og:type',
+      content: 'website',
+    },
+    {
+      property: 'og:image',
+      content: 'https://fy-vue.com/fyvue.png',
+    },
+    {
+      name: 'twitter:image',
+      content: 'https://fy-vue.com/fyvue.png',
+    },
+  ],
 });
-/*
-useSeo(
-  ref({
-    name: 'fyvue',
-    type: 'website',
-    image: 'https://fy-vue.com/fyvue.svg',
-    title: computed(() =>
-      computedRoute.value.meta.title ? computedRoute.value.meta.title : 'fyvue'
-    ),
-    searchAction: '/search/{search_term_string}',
-  }),
-  true
-);*/
 </script>
 
 <template>

@@ -28,7 +28,14 @@ import { rest } from '../../../utils/rest';
 let stripe: any;
 let stripeElements: any;
 
-useFyHead().addScript('https://js.stripe.com/v3', 'stripe-script');
+useFyHead({
+  scripts: [
+    {
+      src: 'https://js.stripe.com/v3',
+      id: 'stripe-script',
+    },
+  ],
+});
 
 const currentMethod = ref<string>();
 const stripeElementsRef = ref();

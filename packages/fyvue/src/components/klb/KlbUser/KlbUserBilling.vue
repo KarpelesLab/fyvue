@@ -273,7 +273,14 @@ onUnmounted(() => {
   if (billingWatcher.value) billingWatcher.value();
 });
 
-useFyHead().addScript('https://js.stripe.com/v3', 'stripe-script');
+useFyHead({
+  scripts: [
+    {
+      src: 'https://js.stripe.com/v3',
+      id: 'stripe-script',
+    },
+  ],
+});
 </script>
 <template>
   <div
