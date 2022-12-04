@@ -44,7 +44,7 @@ function createEntry(options) {
       }),
       scss({
         name: 'fyvue.scss',
-        fileName: 'fyvue.css',
+        fileName: 'fyvue.scss',
         sass: require('sass'),
         verbose: false,
       }),

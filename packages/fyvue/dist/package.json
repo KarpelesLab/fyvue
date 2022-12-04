@@ -1,6 +1,6 @@
 {
     "name": "@karpeleslab/fyvue",
-    "version": "0.2.5-alpha4",
+    "version": "0.2.5-alpha5",
     "description": "Vue lib for KLB systems",
     "author": "Florian 'Fy' Gasquez <m@fy.to>",
     "main": "dist/fyvue.js",
