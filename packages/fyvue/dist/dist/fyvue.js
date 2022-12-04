@@ -1,6 +1,6 @@
 
 /**
- * @karpeleslab/fyvue v0.2.5-alpha7
+ * @karpeleslab/fyvue v0.2.5-alpha8
  * (c) 2022 Florian "Fy" Gasquez
  * Released under the MIT License
  */
