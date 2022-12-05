@@ -1,3 +1,4 @@
+/*
 .btn-box, .box-btn {
   @apply inline-flex space-x-2;
 }
@@ -10,7 +11,6 @@ button[type=submit] {
   &.disabled {
     @apply  shadow-sm  bg-neutral-300 text-neutral-500  dark:bg-neutral-700;
     cursor: not-allowed;
-    //pointer-events: all !important;
   }
   &.primary {
     @apply text-white bg-fv-primary-700 hover:bg-fv-primary-900  dark:bg-fv-primary-600 dark:hover:bg-fv-primary-800 ;
@@ -40,3 +40,5 @@ button[type=submit] {
     @apply rounded-full;
   }
 }
+
+*/

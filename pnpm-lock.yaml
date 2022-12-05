@@ -105,60 +105,42 @@ importers:
 
   packages/fyui:
     specifiers:
-      '@rollup/plugin-json': ^5.0.2
+      '@headlessui/vue': ^1.7.4
+      '@heroicons/vue': ^2.0.13
       '@rollup/plugin-node-resolve': ^15.0.1
-      '@rollup/plugin-replace': ^5.0.1
       '@types/node': ^18.11.10
       '@vitejs/plugin-vue': ^3.2.0
       '@vue/compiler-sfc': ^3.2.45
       '@vue/server-renderer': ^3.2.45
-      esbuild: ^0.15.17
+      '@vueuse/core': ^9.6.0
       eslint: ^8.29.0
-      i18next: ^22.0.6
-      mitt: ^3.0.0
-      pinia: ^2.0.27
+      postcss: ^8.4.19
       rollup: ^2.50.0
-      rollup-plugin-cleanup: ^3.2.1
       rollup-plugin-copy: ^3.4.0
-      rollup-plugin-esbuild: ^5.0.0
-      rollup-plugin-peer-deps-external: ^2.2.4
-      rollup-plugin-scss: ^4.0.0
-      rollup-plugin-typescript2: ^0.34.1
+      sass: ^1.56.1
       typescript: ^4.9.3
-      unplugin-auto-import: ^0.12.0
-      unplugin-vue: ^3.1.3
       unplugin-vue-components: ^0.22.11
-      unplugin-vue-macros: ^1.0.3
       vite: ^3.2.4
       vue: ^3.2.45
       vue-router: ^4.1.6
       vue-tsc: ^1.0.9
     devDependencies:
-      '@rollup/plugin-json': 5.0.2_rollup@2.79.1
+      '@headlessui/vue': 1.7.4_vue@3.2.45
+      '@heroicons/vue': 2.0.13_vue@3.2.45
       '@rollup/plugin-node-resolve': 15.0.1_rollup@2.79.1
-      '@rollup/plugin-replace': 5.0.1_rollup@2.79.1
       '@types/node': 18.11.10
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.4+vue@3.2.45
       '@vue/compiler-sfc': 3.2.45
       '@vue/server-renderer': 3.2.45_vue@3.2.45
-      esbuild: 0.15.17
+      '@vueuse/core': 9.6.0_vue@3.2.45
       eslint: 8.29.0
-      i18next: 22.0.6
-      mitt: 3.0.0
-      pinia: 2.0.27_mgnvym7yiazkylwwogi5r767ue
+      postcss: 8.4.19
       rollup: 2.79.1
-      rollup-plugin-cleanup: 3.2.1_rollup@2.79.1
       rollup-plugin-copy: 3.4.0
-      rollup-plugin-esbuild: 5.0.0_47f5fnj7v7aphmxk5twg4imube
-      rollup-plugin-peer-deps-external: 2.2.4_rollup@2.79.1
-      rollup-plugin-scss: 4.0.0
-      rollup-plugin-typescript2: 0.34.1_k35zwyycrckt5xfsejji7kbwn4
+      sass: 1.56.1
       typescript: 4.9.3
-      unplugin-auto-import: 0.12.0_rollup@2.79.1
-      unplugin-vue: 3.1.3_vite@3.2.4+vue@3.2.45
       unplugin-vue-components: 0.22.11_rollup@2.79.1+vue@3.2.45
-      unplugin-vue-macros: 1.0.3_jod36vedrakmctmjbz3bmnbqna
-      vite: 3.2.4_@types+node@18.11.10
+      vite: 3.2.4_clvymlzunojxjbv3h6i2warera
       vue: 3.2.45
       vue-router: 4.1.6_vue@3.2.45
       vue-tsc: 1.0.11_typescript@4.9.3
@@ -920,19 +902,6 @@ packages:
       rollup: 3.5.1
     dev: true
 
-  /@rollup/plugin-json/5.0.2_rollup@2.79.1:
-    resolution: {integrity: sha512-D1CoOT2wPvadWLhVcmpkDnesTzjhNIQRWLsc3fA49IFOP2Y84cFOOJ+nKGYedvXHKUsPeq07HR4hXpBBr+CHlA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
-      rollup: 2.79.1
-    dev: true
-
   /@rollup/plugin-json/5.0.2_rollup@3.5.1:
     resolution: {integrity: sha512-D1CoOT2wPvadWLhVcmpkDnesTzjhNIQRWLsc3fA49IFOP2Y84cFOOJ+nKGYedvXHKUsPeq07HR4hXpBBr+CHlA==}
     engines: {node: '>=14.0.0'}
@@ -995,20 +964,6 @@ packages:
       is-module: 1.0.0
       resolve: 1.22.1
       rollup: 3.5.1
-    dev: true
-
-  /@rollup/plugin-replace/5.0.1_rollup@2.79.1:
-    resolution: {integrity: sha512-Z3MfsJ4CK17BfGrZgvrcp/l6WXoKb0kokULO+zt/7bmcyayokDaQ2K3eDJcRLCTAlp5FPI4/gz9MHAsosz4Rag==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
-      magic-string: 0.26.7
-      rollup: 2.79.1
     dev: true
 
   /@rollup/plugin-replace/5.0.1_rollup@3.5.1:
@@ -1431,21 +1386,6 @@ packages:
       magic-string: 0.26.7
     dev: true
 
-  /@vue-macros/define-model/1.0.0:
-    resolution: {integrity: sha512-Nyh1fidDcfCzEKAo/ljwdQbpgMOrNowdJomB/qnkz/Lx4CVEaRk87LA2o3T99qIOogRfya8af+bLM8dNOq8dAQ==}
-    engines: {node: '>=14.19.0'}
-    peerDependencies:
-      '@vueuse/core': ^9.0.0
-    peerDependenciesMeta:
-      '@vueuse/core':
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      '@vue-macros/common': 0.13.4
-      ast-walker-scope: 0.3.0
-      unplugin: 1.0.0
-    dev: true
-
   /@vue-macros/define-model/1.0.0_@vueuse+core@9.6.0:
     resolution: {integrity: sha512-Nyh1fidDcfCzEKAo/ljwdQbpgMOrNowdJomB/qnkz/Lx4CVEaRk87LA2o3T99qIOogRfya8af+bLM8dNOq8dAQ==}
     engines: {node: '>=14.19.0'}
@@ -1507,24 +1447,6 @@ packages:
       unplugin: 1.0.0
     dev: true
 
-  /@vue-macros/named-template/0.0.6_jod36vedrakmctmjbz3bmnbqna:
-    resolution: {integrity: sha512-nEoutSYbwu7QC+uWcs90rD28erP6xZ0aU4uYnrxTUnVcbga9xMchxcs3MgI/2ax6dz/EXf1f1utYXXpGgLi+Tw==}
-    engines: {node: '>=14.19.0'}
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      '@vitejs/plugin-vue': 3.2.0_vite@3.2.4+vue@3.2.45
-      '@vue-macros/common': 0.13.4
-      '@vue/compiler-dom': 3.2.45
-      unplugin: 1.0.0
-      unplugin-combine: 0.2.8_llnxqfm7wweaegreukwwvgspcu
-    transitivePeerDependencies:
-      - esbuild
-      - rollup
-      - vite
-      - vue
-      - webpack
-    dev: true
-
   /@vue-macros/named-template/0.0.6_mmz462rpeg7pyjht5gaq6f6x3y:
     resolution: {integrity: sha512-nEoutSYbwu7QC+uWcs90rD28erP6xZ0aU4uYnrxTUnVcbga9xMchxcs3MgI/2ax6dz/EXf1f1utYXXpGgLi+Tw==}
     engines: {node: '>=14.19.0'}
@@ -1551,21 +1473,6 @@ packages:
       '@vue-macros/common': 0.13.4
       '@vue/compiler-dom': 3.2.45
       unplugin: 1.0.0
-    dev: true
-
-  /@vue-macros/setup-component/0.12.8_llnxqfm7wweaegreukwwvgspcu:
-    resolution: {integrity: sha512-2tRMl8l8OYMpIRYsZyAZfH0dNT7CONMTcmdGEffJb5GvK8XOmdgGk7NFUhaQg3EEnk1SUq1Kdcx+gyH/a0qE4A==}
-    engines: {node: '>=14.19.0'}
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      '@vue-macros/common': 0.13.4
-      unplugin: 1.0.0
-      unplugin-combine: 0.2.8_llnxqfm7wweaegreukwwvgspcu
-    transitivePeerDependencies:
-      - esbuild
-      - rollup
-      - vite
-      - webpack
     dev: true
 
   /@vue-macros/setup-component/0.12.8_ysekwq2bt3pwd5crya5imy3si4:
@@ -4226,17 +4133,6 @@ packages:
       rollup-pluginutils: 2.8.2
     dev: true
 
-  /rollup-plugin-cleanup/3.2.1_rollup@2.79.1:
-    resolution: {integrity: sha512-zuv8EhoO3TpnrU8MX8W7YxSbO4gmOR0ny06Lm3nkFfq0IVKdBUtHwhVzY1OAJyNCIAdLiyPnOrU0KnO0Fri1GQ==}
-    engines: {node: ^10.14.2 || >=12.0.0}
-    peerDependencies:
-      rollup: '>=2.0'
-    dependencies:
-      js-cleanup: 1.2.0
-      rollup: 2.79.1
-      rollup-pluginutils: 2.8.2
-    dev: true
-
   /rollup-plugin-cleanup/3.2.1_rollup@3.5.1:
     resolution: {integrity: sha512-zuv8EhoO3TpnrU8MX8W7YxSbO4gmOR0ny06Lm3nkFfq0IVKdBUtHwhVzY1OAJyNCIAdLiyPnOrU0KnO0Fri1GQ==}
     engines: {node: ^10.14.2 || >=12.0.0}
@@ -4305,24 +4201,6 @@ packages:
       - supports-color
     dev: true
 
-  /rollup-plugin-esbuild/5.0.0_47f5fnj7v7aphmxk5twg4imube:
-    resolution: {integrity: sha512-1cRIOHAPh8WQgdQQyyvFdeOdxuiyk+zB5zJ5+YOwrZP4cJ0MT3Fs48pQxrZeyZHcn+klFherytILVfE4aYrneg==}
-    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
-    peerDependencies:
-      esbuild: '>=0.10.1'
-      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0
-    dependencies:
-      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
-      debug: 4.3.4
-      es-module-lexer: 1.1.0
-      esbuild: 0.15.17
-      joycon: 3.1.1
-      jsonc-parser: 3.2.0
-      rollup: 2.79.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /rollup-plugin-esbuild/5.0.0_okdlgivigpskxpa36mtdz7r5se:
     resolution: {integrity: sha512-1cRIOHAPh8WQgdQQyyvFdeOdxuiyk+zB5zJ5+YOwrZP4cJ0MT3Fs48pQxrZeyZHcn+klFherytILVfE4aYrneg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
@@ -4349,14 +4227,6 @@ packages:
       rollup: 2.50.0
     dev: true
 
-  /rollup-plugin-peer-deps-external/2.2.4_rollup@2.79.1:
-    resolution: {integrity: sha512-AWdukIM1+k5JDdAqV/Cxd+nejvno2FVLVeZ74NKggm3Q5s9cbbcOgUPGdbxPi4BXu7xGaZ8HG12F+thImYu/0g==}
-    peerDependencies:
-      rollup: '*'
-    dependencies:
-      rollup: 2.79.1
-    dev: true
-
   /rollup-plugin-peer-deps-external/2.2.4_rollup@3.5.1:
     resolution: {integrity: sha512-AWdukIM1+k5JDdAqV/Cxd+nejvno2FVLVeZ74NKggm3Q5s9cbbcOgUPGdbxPi4BXu7xGaZ8HG12F+thImYu/0g==}
     peerDependencies:
@@ -4369,21 +4239,6 @@ packages:
     resolution: {integrity: sha512-wxasNXDYC2m+fDxCMgK00WebVWYmeFvShyNABmjvSJZ6D1/SepwqFeaMFMQromveI79gfvb64yJjiZZxSZxEIA==}
     dependencies:
       rollup-pluginutils: 2.8.2
-    dev: true
-
-  /rollup-plugin-typescript2/0.34.1_k35zwyycrckt5xfsejji7kbwn4:
-    resolution: {integrity: sha512-P4cHLtGikESmqi1CA+tdMDUv8WbQV48mzPYt77TSTOPJpERyZ9TXdDgjSDix8Fkqce6soYz3+fa4lrC93IEkcw==}
-    peerDependencies:
-      rollup: '>=1.26.3'
-      typescript: '>=2.4.0'
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      find-cache-dir: 3.3.2
-      fs-extra: 10.1.0
-      rollup: 2.79.1
-      semver: 7.3.8
-      tslib: 2.4.1
-      typescript: 4.9.3
     dev: true
 
   /rollup-plugin-typescript2/0.34.1_rt6svyh24sgpogwv5hms77uhpq:
@@ -4810,24 +4665,6 @@ packages:
       - rollup
     dev: true
 
-  /unimport/1.0.1_rollup@2.79.1:
-    resolution: {integrity: sha512-SEPKl3uyqUvi6c0MnyCmUF9H07CuC9j9p2p33F03LmegU0sxjpnjL0fLKAhh7BTfcKaJKj+1iOiAFtg7P3m5mQ==}
-    dependencies:
-      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
-      escape-string-regexp: 5.0.0
-      fast-glob: 3.2.12
-      local-pkg: 0.4.2
-      magic-string: 0.26.7
-      mlly: 1.0.0
-      pathe: 1.0.0
-      pkg-types: 1.0.1
-      scule: 1.0.0
-      strip-literal: 1.0.0
-      unplugin: 1.0.0
-    transitivePeerDependencies:
-      - rollup
-    dev: true
-
   /universalify/0.1.2:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
     engines: {node: '>= 4.0.0'}
@@ -4841,25 +4678,6 @@ packages:
   /unpipe/1.0.0:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
-    dev: true
-
-  /unplugin-auto-import/0.12.0_rollup@2.79.1:
-    resolution: {integrity: sha512-y1flixUHt0UioxeUwXe4N9GmIJskBz7uoC2qFGaUJO1feN9PYITHhRVqfXxYt7VAaZ24InNIeZIAIoQbRm3ZPw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@vueuse/core': '*'
-    peerDependenciesMeta:
-      '@vueuse/core':
-        optional: true
-    dependencies:
-      '@antfu/utils': 0.7.2
-      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
-      local-pkg: 0.4.2
-      magic-string: 0.26.7
-      unimport: 1.0.1_rollup@2.79.1
-      unplugin: 1.0.0
-    transitivePeerDependencies:
-      - rollup
     dev: true
 
   /unplugin-auto-import/0.12.0_sucvu3podec3dcu3mrmzqlt634:
@@ -4880,31 +4698,6 @@ packages:
       unplugin: 1.0.0
     transitivePeerDependencies:
       - rollup
-    dev: true
-
-  /unplugin-combine/0.2.8_llnxqfm7wweaegreukwwvgspcu:
-    resolution: {integrity: sha512-Z38AC/TEjXbVyZ5HjVqo+lADj0/dcfwWC0Z4y0LNhybJzJQwmcMxm+ZsqHY3faauj4YigmlRMdptR5JEW9RuLg==}
-    engines: {node: '>=14.19.0'}
-    peerDependencies:
-      esbuild: '>=0.13'
-      rollup: ^2.50.0
-      vite: ^2.3.0 || ^3.0.0
-      webpack: 4 || 5
-    peerDependenciesMeta:
-      esbuild:
-        optional: true
-      rollup:
-        optional: true
-      vite:
-        optional: true
-      webpack:
-        optional: true
-    dependencies:
-      '@antfu/utils': 0.6.3
-      esbuild: 0.15.17
-      rollup: 2.79.1
-      unplugin: 0.10.2
-      vite: 3.2.4_@types+node@18.11.10
     dev: true
 
   /unplugin-combine/0.2.8_ysekwq2bt3pwd5crya5imy3si4:
@@ -4994,36 +4787,6 @@ packages:
       unplugin: 1.0.0
     dev: true
 
-  /unplugin-vue-macros/1.0.3_jod36vedrakmctmjbz3bmnbqna:
-    resolution: {integrity: sha512-QONC2iP0JNmIpbpL2jwsY89Lq6oTZf8JSbhQSVGB7xu+/iY52ZdfEB/bysai3lS5ScTH3M4y0KQHWVcyxBof7g==}
-    engines: {node: '>=14.19.0'}
-    peerDependencies:
-      vue: ^2.7.0 || ^3.2.25
-    dependencies:
-      '@rollup/pluginutils': 4.2.1
-      '@vue-macros/better-define': 1.0.0
-      '@vue-macros/define-model': 1.0.0
-      '@vue-macros/define-props': 0.0.3_vue@3.2.45
-      '@vue-macros/define-render': 1.0.1_vue@3.2.45
-      '@vue-macros/define-slots': 0.0.6_vue@3.2.45
-      '@vue-macros/hoist-static': 1.0.0
-      '@vue-macros/named-template': 0.0.6_jod36vedrakmctmjbz3bmnbqna
-      '@vue-macros/setup-block': 0.0.1
-      '@vue-macros/setup-component': 0.12.8_llnxqfm7wweaegreukwwvgspcu
-      '@vue-macros/setup-sfc': 0.12.8
-      '@vue-macros/short-emits': 1.0.1
-      local-pkg: 0.4.2
-      unplugin-combine: 0.2.8_llnxqfm7wweaegreukwwvgspcu
-      unplugin-vue-define-options: 1.0.0
-      vue: 3.2.45
-    transitivePeerDependencies:
-      - '@vueuse/core'
-      - esbuild
-      - rollup
-      - vite
-      - webpack
-    dev: true
-
   /unplugin-vue-macros/1.0.3_zo3ycwpk6tqodtedmjvqrtwu2q:
     resolution: {integrity: sha512-QONC2iP0JNmIpbpL2jwsY89Lq6oTZf8JSbhQSVGB7xu+/iY52ZdfEB/bysai3lS5ScTH3M4y0KQHWVcyxBof7g==}
     engines: {node: '>=14.19.0'}
@@ -5067,7 +4830,7 @@ packages:
       debug: 4.3.4
       tsx: 3.12.1
       unplugin: 0.9.6
-      vite: 3.2.4_clvymlzunojxjbv3h6i2warera
+      vite: 3.2.4_@types+node@18.11.10
       vue: 3.2.45
     transitivePeerDependencies:
       - supports-color
