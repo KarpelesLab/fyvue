@@ -79,7 +79,6 @@ const createFyvue = () => {
     app.component('FyTable', DefaultTable);
     app.component('FyDatatable', DefaultTable);
     app.component('FyError404', DefaultError404);
-    app.component('FyNavbar', FyNavbar);
     // End aliases.
 
     if (options.loadKlb) {

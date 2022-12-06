@@ -278,7 +278,7 @@ useSeo(seo);
       />
     </main>
     <main v-if="is404" class="is-404">
-      <Fy404View />
+      <FyError404 />
     </main>
   </div>
 </template>

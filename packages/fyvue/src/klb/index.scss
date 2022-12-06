@@ -32,7 +32,17 @@ html, body {
   @apply relative;
 }
 
-
+.fyui-nav__wrapper {
+  .nav-cart {
+    @apply relative mr-2;
+    .badge {
+      @apply inline-flex absolute -top-2 -right-2 justify-center items-center w-5 h-5 text-xs font-bold text-white bg-fv-primary-500 rounded-full;
+    }
+    svg {
+      @apply w-7 h-7 text-fv-neutral-600 dark:text-fv-neutral-300;
+    }
+  }
+}
 @import "./components/KlbLogin/KlbLogin.scss";
 @import "./components/KlbAccount/KlbAccount.scss";
 @import "./components/KlbBilling/KlbBilling.scss";

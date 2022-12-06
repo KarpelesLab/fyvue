@@ -88,7 +88,7 @@ useSeo(seo);
       :isPage="true"
     />
     <div class="fv-typo" v-if="is404">
-      <Fy404View />
+      <FyError404 />
     </div>
   </div>
 </template>
