@@ -1,8 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "../../fyvue/src/fyvue.scss";
+@import "../../fyui/src/styles/style.scss";
+@import "../../fyvue/src/klb/index.scss";
 
 .link-group {
   @apply overflow-hidden text-sm font-medium text-fv-neutral-900 bg-white rounded-lg border border-fv-neutral-200 dark:bg-fv-neutral-800 dark:border-fv-neutral-600 dark:text-white;

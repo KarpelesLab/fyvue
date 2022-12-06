@@ -6,6 +6,8 @@
     "main": "dist/fyvue.cjs.js",
     "module": "dist/fyvue.es.js",
     "typings": "dist/index.d.ts",
+    "types": "dist/index.d.ts",
+    "type": "module",
     "exports": {
         ".": {
             "import": "./dist/fyvue.es.js",
@@ -40,7 +42,7 @@
         "vue-router": "^4.1.6"
     },
     "scripts": {
-        "build": "rm -rf dist/ && vite build --mode prod && vue-tsc --emitDeclarationOnly",
+        "build": "rm -rf dist/ && vite build --mode prod && vue-tsc  --declaration --emitDeclarationOnly --emitDeclarationOnly --outdir ./dist",
         "lint:check": "eslint src/ --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore"
     },
     "devDependencies": {

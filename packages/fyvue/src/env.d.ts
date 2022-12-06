@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
-
-declare module '@karpeleslab/fyvue';
+/// <reference types="@fy-/core" />
+/// <reference types="@fy-/ui" />
+/// <reference types="@fy-/head" />
 
 declare module '*.vue' {
   import type { DefineComponent } from 'vue';

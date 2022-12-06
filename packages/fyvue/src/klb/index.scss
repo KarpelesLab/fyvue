@@ -1,0 +1,42 @@
+html, body {
+  @apply antialiased
+}
+.container {
+  @apply max-w-screen-xl;
+}
+.is-sr {
+  @apply sr-only;
+}
+.fv-icon-base {
+  @apply h-5 w-5
+}
+.self-loader-fyvue {
+  @apply h-16  relative;
+}
+.card-container {
+  @apply block  border border-fv-neutral-200 rounded dark:border-fv-neutral-700 bg-fv-neutral-200/[0.30] dark:bg-fv-neutral-900/[0.30];
+  :first-child {
+    @apply mt-0;
+  }
+  &.card-defaults {
+    @apply p-2 md:p-3 lg:p-4 xl:p-5 2xl:p-6;
+  }
+  &.card-defaults-static {
+    @apply p-2 ;
+  }
+}
+.fv-tag {
+  @apply bg-fv-neutral-200 text-fv-neutral-800 font-semibold text-xs px-2.5 py-0.5 rounded dark:bg-fv-neutral-700 dark:text-fv-neutral-300;
+}
+.fv-relative {
+  @apply relative;
+}
+
+
+@import "./components/KlbLogin/KlbLogin.scss";
+@import "./components/KlbAccount/KlbAccount.scss";
+@import "./components/KlbBilling/KlbBilling.scss";
+@import "./components/KlbOrder/KlbOrder.scss";
+@import "./components/KlbUser/KlbUser.scss";
+@import "./components/KlbMisc/KlbMisc.scss";
+@import "./components/KlbCMS/KlbCMS.scss";

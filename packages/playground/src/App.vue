@@ -4,7 +4,6 @@ import {
   countriesPromise,
   useUserCheck,
   useEventBus,
-  useSeo,
 } from '@karpeleslab/fyvue';
 
 import { ref, computed, onUnmounted, onMounted } from 'vue';
@@ -201,7 +200,7 @@ useFyHead({
       </button>
     </aside>
     <!--<pre>{{ fyhead }}</pre>-->
-    <div class="flex-1 flex flex-col relative">
+    <div class="flex-1 flex flex-col relative" id="skip-nav">
       <RouterView v-slot="{ Component }">
         <Suspense timeout="0">
           <template #default>

@@ -20,7 +20,11 @@
         "vue": "^3.2.45",
         "vue-code-highlight": "^0.7.8",
         "vue-router": "^4.1.6",
-        "xml-formatter": "^2.6.1"
+        "xml-formatter": "^2.6.1",
+        "@fy-/core": "workspace:*",
+        "@fy-/head": "workspace:*",
+        "@fy-/ui": "workspace:*",
+        "@karpeleslab/fyvue": "workspace:*"
     },
     "devDependencies": {
         "@babel/types": "^7.20.2",

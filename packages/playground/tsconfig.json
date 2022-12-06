@@ -18,19 +18,12 @@
       "dom"
     ],
     "types": [
-      "vite/client",
-      "../fyvue/src/dts/components"
+      "vite/client"
     ],
     "paths": {
       "@/*": [
         "src/*"
       ],
-      "@fy-/head": [
-        "../fy-head/"
-      ],
-      "@vueuse/schema-org/runtime": [
-        "./../../node_modules/@vueuse/schema-org/dist/runtime-simple/index"
-      ]
     }
   },
   "include": [

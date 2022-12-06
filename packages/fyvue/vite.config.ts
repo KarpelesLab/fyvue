@@ -2,13 +2,17 @@ import type { UserConfig } from 'vite';
 import copy from 'rollup-plugin-copy';
 import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
-
-const path = require('path');
-
+import path from 'path';
+import { fyuiResolver } from '@fy-/ui';
+import { fycoreResolver } from '@fy-/core';
 const config: UserConfig = {
   plugins: [
     vue(),
-    Components({ dts: 'src/components.d.ts' }),
+    Components({
+      dts: 'src/components.d.ts',
+      dirs: ['src/klb/components'],
+      resolvers: [fyuiResolver, fycoreResolver],
+    }),
     // @ts-ignore
     copy({
       targets: [
@@ -59,6 +63,8 @@ const config: UserConfig = {
         'pinia',
         'vue-router',
         '@fy-/head',
+        '@fy-/core',
+        '@fy-/ui',
       ],
       output: {
         exports: 'named',
@@ -76,7 +82,9 @@ const config: UserConfig = {
           '@vueuse/core': 'vueuseC',
           pinia: 'pinia',
           'vue-router': 'vr',
-          '@fy-/head': 'fh',
+          '@fy-/head': 'fyhead',
+          '@fy-/ui': 'fyui',
+          '@fy-/core': 'fycore',
         },
       },
     },
