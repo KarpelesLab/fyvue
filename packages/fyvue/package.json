@@ -1,13 +1,12 @@
 {
     "name": "@karpeleslab/fyvue",
-    "version": "0.2.5-beta1",
+    "version": "0.2.5-beta2",
     "description": "Vue lib for KLB systems",
     "author": "Florian 'Fy' Gasquez <m@fy.to>",
     "main": "dist/fyvue.cjs.js",
     "module": "dist/fyvue.es.js",
     "typings": "dist/index.d.ts",
     "types": "dist/index.d.ts",
-    "type": "module",
     "exports": {
         ".": {
             "import": "./dist/fyvue.es.js",
