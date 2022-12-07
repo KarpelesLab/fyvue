@@ -353,7 +353,7 @@ useFyHead({
         {{ $t('klb_add_new_billing_profile') }}
       </button>
     </div>
-    <div v-if="editMode">
+    <div v-if="editMode" class="billing-display">
       <div>
         <form @submit.prevent="submitUserBilling">
           <FyInput
@@ -367,7 +367,7 @@ useFyHead({
             type="text"
           ></FyInput>
           <div class="fui-input">
-            <label class="fui-input__label" for="theCard"
+            <label class="fui-input__label is-card" for="theCard"
               >{{ $t('klb_billing_payment_method_label') }}
             </label>
             <div

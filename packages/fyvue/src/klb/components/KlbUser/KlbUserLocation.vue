@@ -241,7 +241,7 @@ onUnmounted(() => {
         </button>
       </template>
     </div>
-    <div v-if="editMode">
+    <div v-if="editMode" class="location-display">
       <div>
         <form @submit.prevent="submitLocation">
           <div class="form-grid">

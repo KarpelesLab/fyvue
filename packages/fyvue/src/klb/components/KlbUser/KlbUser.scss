@@ -3,7 +3,10 @@
       @apply flex space-x-2 ;
   }
   .form-grid {
-    @apply grid grid-cols-2 gap-2 pt-4;
+    @apply grid grid-cols-2 gap-2;
+  }
+  .location-display {
+    @apply p-2 pt-4;
   }
   .btn {
     @apply whitespace-nowrap	;
@@ -12,6 +15,12 @@
 .klb-user-billing {
   .billing-select {
     @apply flex space-x-2;
+  }
+  .billing-display {
+    @apply p-2 pt-4;
+    .is-card {
+      @apply mt-2;
+    }
   }
   .btn {
     @apply whitespace-nowrap	;

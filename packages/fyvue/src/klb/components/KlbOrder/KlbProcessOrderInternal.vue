@@ -296,8 +296,8 @@ onUnmounted(() => {
       <form @submit.prevent="processOrder">
         <template v-if="process.order_payable">
           <template v-if="currentMethod == 'Stripe'">
-            <div class="input-group">
-              <label class="label-basic" for="stripeElementsRef"
+            <div class="fui-input">
+              <label class="fui-input__label" for="stripeElementsRef"
                 >{{ $t('klb_order_payment_card_label') }}
               </label>
               <div
@@ -365,7 +365,7 @@ onUnmounted(() => {
             {{ errorMessage }}
           </div>
           <div class="klb-order-button">
-            <button class="btn primary btn-defaults">
+            <button class="btn primary big btn-defaults">
               {{ $t('klb_order_process_cta') }}
             </button>
           </div>
