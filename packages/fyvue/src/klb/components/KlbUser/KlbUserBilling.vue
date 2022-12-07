@@ -397,6 +397,11 @@ useFyHead({
               </div>
             </div>
           </div>
+          <div class="fui-input">
+            <label class="fui-input__label" for="countryChoice"
+              >{{ $t('klb_user_location_label') }}
+            </label>
+          </div>
           <KlbUserLocation
             :displayOnly="true"
             :selectedLocation="state.billingProfile.location"

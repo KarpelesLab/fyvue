@@ -277,7 +277,7 @@ onUnmounted(() => {
             ></FyInput>
             <div class="fui-input">
               <div class="mr-4 w-16">
-                <label class="label-basic" for="countryChoice"
+                <label class="fui-input__label" for="countryChoice"
                   >{{ $t('klb_location_country_label') }}
                 </label>
               </div>
