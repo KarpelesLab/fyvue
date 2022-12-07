@@ -4,6 +4,10 @@ export const routes = [
     component: () => import('./views/IndexView.vue'),
   },
   {
+    path: '/test',
+    component: () => import('./views/TestPage.vue'),
+  },
+  {
     path: '/login',
     component: () => import('./views/LoginView.vue'),
     meta: {
