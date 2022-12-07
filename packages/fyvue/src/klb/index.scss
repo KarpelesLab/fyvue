@@ -82,6 +82,8 @@ html, body {
     }
   }
 }
+
+/*
 .btn {
   &.big {
     @apply text-2xl px-5 py-1.5;
@@ -90,6 +92,7 @@ html, body {
     @apply text-sm;
   }
 }
+*/
 // End fyvue < 0.2.x
 
 .fyui-nav__wrapper {
@@ -110,3 +113,7 @@ html, body {
 @import "./components/KlbUser/KlbUser.scss";
 @import "./components/KlbMisc/KlbMisc.scss";
 @import "./components/KlbCMS/KlbCMS.scss";
+
+.response-error {
+  @apply  text-red-800 text-sm my-2 p-1 border-red-300 rounded;
+}

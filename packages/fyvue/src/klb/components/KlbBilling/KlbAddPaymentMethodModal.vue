@@ -211,12 +211,12 @@ useFyHead({
             :label="$t('add_pm_zip_label')"
             type="text"
           ></FyInput>
-          <div class="input-group">
-            <label class="label-basic" for="typeDef"
+          <div class="fui-input">
+            <label class="fui-input__label" for="typeDef"
               >{{ $t('add_pm_country_label') }}
             </label>
-            <div class="input-box">
-              <select class="input-basic" v-model="state.country">
+            <div class="fui-input__box">
+              <select class="fui-input__input" v-model="state.country">
                 <option
                   :value="country.Country__"
                   v-for="country in $countries.countries"
@@ -228,8 +228,8 @@ useFyHead({
             </div>
           </div>
         </div>
-        <div class="input-group">
-          <label class="label-basic" for="typeDef"
+        <div class="fui-input">
+          <label class="fui-input__label" for="typeDef"
             >{{ $t('payment_method_label') }}
           </label>
           <div

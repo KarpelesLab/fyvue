@@ -118,7 +118,7 @@ const sendMessage = async () => {
         <p class="response-error" v-if="globalFormError">
           {{ globalFormError }}
         </p>
-        <button class="btn primary btn-defaults" type="submit">
+        <button class="btn primary mt-4 big" type="submit">
           {{ $t('klb_contact_cta') }}
         </button>
       </div>

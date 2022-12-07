@@ -1,6 +1,9 @@
 .klb-user-location {
   .location-select {
       @apply flex space-x-2 ;
+      .btn {
+        @apply my-0.5;
+      }
   }
   .form-grid {
     @apply grid grid-cols-2 gap-2;
@@ -15,6 +18,9 @@
 .klb-user-billing {
   .billing-select {
     @apply flex space-x-2;
+    .btn {
+      @apply my-0.5;
+    }
   }
   .billing-display {
     @apply p-2 pt-4;

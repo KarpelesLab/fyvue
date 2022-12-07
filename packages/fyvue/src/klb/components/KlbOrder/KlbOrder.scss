@@ -55,6 +55,9 @@
 }
 .klb-product {
   @apply w-full;
+  .btn {
+    @apply whitespace-nowrap;
+  }
   .subs {
     @apply flex flex-wrap gap-4 justify-center	 ;
 
@@ -126,9 +129,9 @@
     .price-btn {
       @apply flex items-center justify-between mt-4;
       span {
-        @apply text-2xl font-bold text-fv-neutral-900 dark:text-white;
+        @apply text-2xl font-bold text-fv-neutral-900 dark:text-white whitespace-nowrap mr-2;
         .cycle {
-          @apply ml-1 text-lg font-normal text-fv-neutral-500 dark:text-fv-neutral-400;
+          @apply ml-0.5 text-base font-normal text-fv-neutral-500 dark:text-fv-neutral-400;
         }
       }
     }
