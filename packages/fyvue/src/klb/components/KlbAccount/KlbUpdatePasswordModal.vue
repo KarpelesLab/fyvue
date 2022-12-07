@@ -48,9 +48,9 @@ const changeEmail = async () => {
 </script>
 <template>
   <div v-if="isAuth" class="klb-account">
-    <div v-if="showValueButton" class="input-group">
-      <div class="label-basic">{{ $t('update_pwd_display_label') }}</div>
-      <div class="input-box-child">
+    <div v-if="showValueButton">
+      <h2 class="h4">{{ $t('update_pwd_display_label') }}</h2>
+      <div class="klb-account-edit-data">
         <button
           @click="eventBus.emit('updatePwdModal', true)"
           class="btn primary small"

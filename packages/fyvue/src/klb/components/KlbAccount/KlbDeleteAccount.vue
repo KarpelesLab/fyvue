@@ -15,17 +15,12 @@ const isAuth = computed(() => store.isAuth);
 </script>
 <template>
   <div v-if="isAuth" class="klb-account">
-    <div class="input-group">
-      <div class="label-basic">{{ $t('delete_account_display_label') }}</div>
-      <div class="input-box-child">
-        <router-link
-          :to="`${url}?act=delete_account`"
-          class="btn primary small"
-        >
-          <ExclamationTriangleIcon class="edit-icon" />
-          {{ $t('delete_account_display_cta') }}
-        </router-link>
-      </div>
+    <h2 class="h4">{{ $t('delete_account_display_label') }}</h2>
+    <div class="klb-account-edit-data">
+      <router-link :to="`${url}?act=delete_account`" class="btn primary small">
+        <ExclamationTriangleIcon class="edit-icon" />
+        {{ $t('delete_account_display_cta') }}
+      </router-link>
     </div>
   </div>
 </template>

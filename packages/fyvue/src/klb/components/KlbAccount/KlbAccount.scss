@@ -1,16 +1,13 @@
 .klb-account {
-  @apply border-b border-b-fv-neutral-300 py-1 my-2;
+  @apply py-1 mt-2 mb-3;
   .edit-icon { // Maybe do something more generic?
-    @apply w-4 inline-block -mt-0.5;
+    @apply w-4 h-4 mr-2;
   }
 
-  .input-box-child {
-    @apply flex items-center justify-start  w-full;
+  .klb-account-edit-data {
+    @apply flex items-center justify-start  w-full mt-1.5;
     .main {
-      @apply  px-2  ;
-    }
-    .btn {
-      @apply px-2  ;
+      @apply  pr-4  ;
     }
   }
 

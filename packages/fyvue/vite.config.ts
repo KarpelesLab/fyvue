@@ -21,18 +21,47 @@ const config: UserConfig = {
           dest: 'dist/',
           rename: 'package.json',
           transform: (contents) => {
+            let _contents = contents.toString();
+
+            //_contents = _contents.replace('"main": ""type": "module",\n', '');
+            _contents = _contents.replace(
+              '"main": "src/index.ts"',
+              '"main": "fyvue.cjs.js"'
+            );
+            _contents = _contents.replace(
+              '"module": "src/index.ts"',
+              '"module": "fyvue.es.js"'
+            );
+            _contents = _contents.replace(
+              '"typings": "src/index.ts"',
+              '"typings": "index.d.ts"'
+            );
+            _contents = _contents.replace(
+              '"types": "src/index.ts"',
+              '"types": "index.d.ts"'
+            );
+            _contents = _contents.replace(
+              '"import": "./src/index.ts"',
+              '"import": "./fyvue.es.js"'
+            );
+            _contents = _contents.replace(
+              '"require": "./src/index.ts"',
+              '"require": "./fyvue.cjs.js"'
+            );
+            _contents = _contents.replace(
+              '"types": "./src/index.ts"',
+              '"types": "./index.d.ts"'
+            );
             // @ts-ignore
-            let _contents = contents.toString().replaceAll('./dist/', './');
-            _contents = _contents.replaceAll('dist/', '');
-            _contents = _contents
-              .toString()
-              .replaceAll(
-                /"devDependencies": {([\S\s]+)}/gm,
-                '"devDependencies": {}\n}'
-              );
-            _contents = _contents
-              .toString()
-              .replaceAll(/"scripts": {([\S\s]+)}/gm, '"scripts": {}\n}');
+            _contents = _contents.replaceAll(
+              /"devDependencies": {([\S\s]+)}/gm,
+              '"devDependencies": {}\n}'
+            );
+            // @ts-ignore
+            _contents = _contents.replaceAll(
+              /"scripts": {([\S\s]+)}/gm,
+              '"scripts": {}\n}'
+            );
             return _contents;
           },
         },

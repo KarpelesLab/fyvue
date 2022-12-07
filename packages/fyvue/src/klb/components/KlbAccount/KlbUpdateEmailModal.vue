@@ -47,10 +47,10 @@ const changeEmail = async () => {
 </script>
 <template>
   <div v-if="isAuth" class="klb-account">
-    <div v-if="showValueButton" class="input-group">
-      <div class="label-basic">{{ $t('update_email_display_label') }}</div>
-      <div class="input-box-child">
-        <div class="main">{{ store.user?.Email }}</div>
+    <div v-if="showValueButton">
+      <h2 class="h4">{{ $t('update_email_display_label') }}</h2>
+      <div class="klb-account-edit-data">
+        <div class="main h5">{{ store.user?.Email }}</div>
 
         <button
           @click="eventBus.emit('UpdateEmailModal', true)"
