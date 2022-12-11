@@ -45,7 +45,6 @@ withDefaults(
   >
     <template v-slot:logo>
       <slot name="logo"></slot>
-      <span v-if="title && showTitle">{{ title }}</span>
     </template>
     <template v-slot:actions>
       <ClientOnly>

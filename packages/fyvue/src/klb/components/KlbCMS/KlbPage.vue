@@ -16,11 +16,13 @@ const props = withDefaults(
     showFooter?: boolean;
     breadcrumbBase?: BreadcrumbLink[];
     forceSlug?: string;
+    isPage?: boolean;
   }>(),
   {
     pagesAlias: '@pages',
     showFooter: true,
     breadcrumbBase: () => [],
+    isPage: true,
   }
 );
 const slugWatcher = ref<WatchStopHandle>();
@@ -29,7 +31,7 @@ const page = ref<KlbAPIContentCmsSingle>();
 const route = useRoute();
 const is404 = ref<Boolean>(false);
 const eventBus = useEventBus();
-
+const breadcrumb = ref<Array<BreadcrumbLink>>([...props.breadcrumbBase]);
 const seo = ref<SeoData>({
   title: undefined,
   image: undefined,
@@ -48,10 +50,13 @@ const getArticle = async (slug: string) => {
     '',
     props.pagesAlias,
     '',
-    [],
+    props.breadcrumbBase,
     seo,
     is404,
-    page
+    page,
+    undefined,
+    undefined,
+    breadcrumb
   );
   eventBus.emit('cmsPage-loading', false);
 };
@@ -84,8 +89,8 @@ useSeo(seo);
       :cms="page.data.content_cms"
       :single="true"
       :showFooter="showFooter"
-      :breadcrumbBase="breadcrumbBase"
-      :isPage="true"
+      :breadcrumbBase="breadcrumb"
+      :isPage="isPage"
     />
     <div class="fv-typo" v-if="is404">
       <FyError404 />

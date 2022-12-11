@@ -59,12 +59,19 @@ export function useCMS() {
       });
       if (_data && _data.result == 'success') {
         if (blogName) blogName.value = _data.data.content_cms.Name;
-        if (breadcrumb && blogName)
-          breadcrumb.value = [
-            ...breadcrumbBase,
-            { name: blogName.value, to: basePath },
-            { name: _data.data.content_cms_entry_data.Title },
-          ];
+        if (breadcrumb && breadcrumb.value.length)
+          if (blogName) {
+            breadcrumb.value = [
+              ...breadcrumbBase,
+              { name: blogName.value, to: basePath },
+              { name: _data.data.content_cms_entry_data.Title },
+            ];
+          } else {
+            breadcrumb.value = [
+              ...breadcrumbBase,
+              { name: _data.data.content_cms_entry_data.Title },
+            ];
+          }
         dataSingle.value = _data;
         seo.value.published = new Date(
           parseInt(_data.data.content_cms_entry_data.Published.unixms)

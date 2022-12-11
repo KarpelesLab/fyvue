@@ -126,19 +126,19 @@ const userFlow = async (params: paramsType = { initial: false }) => {
     if (props.onSuccess) {
       await props.onSuccess();
     }
+    if (response.value.data.complete == true && response.value.data.user) {
+      store.setUser(response.value.data.user);
+      const routeExists = router.resolve(returnTo.value);
+      if (routeExists.matched.length != 0) router.push(returnTo.value);
+      else window.location.href = returnTo.value;
+      return;
+    }
     if (response.value.data.url) {
       window.location.href = response.value.data.url;
       return;
     }
     if (response.value.data.Redirect && response.value.data.complete) {
       router.push('/');
-      return;
-    }
-    if (response.value.data.complete == true && response.value.data.user) {
-      store.setUser(response.value.data.user);
-      const routeExists = router.resolve(returnTo.value);
-      if (routeExists.matched.length != 0) router.push(returnTo.value);
-      else window.location.href = returnTo.value;
       return;
     }
     formData.value = {
@@ -172,130 +172,126 @@ onMounted(async () => {
 </script>
 <template>
   <ClientOnly>
-    <div>
-      <form @submit.prevent="userFlow()" v-if="!completed" class="klb-login">
-        <FyLoader id="klblogin" />
-        <div class="w-full">
-          <h2 class="message" v-if="responseMessage">{{ responseMessage }}</h2>
-          <template v-if="responseFields && responseFields.length > 0">
-            <template v-for="field of responseFields" :key="field.label">
-              <h3
-                v-if="field.type == 'label'"
-                class="label"
-                :class="field.style == 'error' ? 'response-error' : ''"
+    <form @submit.prevent="userFlow()" v-if="!completed" class="klb-login">
+      <FyLoader id="klblogin" />
+      <div class="klb-login__container">
+        <h2 class="message" v-if="responseMessage">{{ responseMessage }}</h2>
+        <template v-if="responseFields && responseFields.length > 0">
+          <template v-for="field of responseFields" :key="field.label">
+            <h3
+              v-if="field.type == 'label'"
+              class="label"
+              :class="field.style == 'error' ? 'response-error' : ''"
+            >
+              {{ field.label }}
+            </h3>
+            <template v-if="field.cat == 'input'">
+              <template
+                v-if="
+                  field.type == 'text' ||
+                  field.type == 'password' ||
+                  field.type == 'email'
+                "
               >
-                {{ field.label }}
-              </h3>
-              <template v-if="field.cat == 'input'">
-                <template
-                  v-if="
-                    field.type == 'text' ||
-                    field.type == 'password' ||
-                    field.type == 'email'
-                  "
-                >
-                  <FyInput
-                    v-if="field.name"
-                    :id="field.name"
-                    :label="field.label"
-                    :placeholder="
-                      field.name == 'name' ? 'John Doe' : field.label
-                    "
-                    :error="fieldsError[field.name]"
-                    :type="field.type"
-                    ref="inputs"
-                    v-model="formData[field.name]"
-                    :req="responseReq.includes(field.name)"
-                  />
-                </template>
-              </template>
-              <template v-if="field.type == 'checkbox'">
                 <FyInput
                   v-if="field.name"
                   :id="field.name"
                   :label="field.label"
+                  :placeholder="field.name == 'name' ? 'John Doe' : field.label"
                   :error="fieldsError[field.name]"
                   :type="field.type"
-                  v-model:checkbox-value="formData[field.name]"
+                  ref="inputs"
+                  v-model="formData[field.name]"
                   :req="responseReq.includes(field.name)"
-                  :link-icon="field.link"
                 />
               </template>
             </template>
-            <div class="oauth-container" v-if="hasOauth">
-              <template v-for="field of responseFields" :key="field.id">
-                <a
-                  @click="
-                    () => {
-                      userFlow({ initial: true, oauth: field.id });
-                    }
-                  "
-                  v-if="field.type && field.type == 'oauth2' && field.button"
-                  href="javascript:void(0);"
-                >
-                  <img
-                    :key="`${field.label}oauth`"
-                    class="oauth-button"
-                    :alt="field.info.Name"
-                    :src="field.button.logo"
-                    :style="`background: ${field.button['background-color']}`"
-                  />
-                </a>
-              </template>
-            </div>
-            <div
-              class="response-error"
-              v-if="responseError && responseError.token"
-            >
-              {{ $t(responseError.token) }}
-            </div>
-            <div v-if="responseReq.includes('password') && 0" class="reset-pwd">
+            <template v-if="field.type == 'checkbox'">
+              <FyInput
+                v-if="field.name"
+                :id="field.name"
+                :label="field.label"
+                :error="fieldsError[field.name]"
+                :type="field.type"
+                v-model:checkbox-value="formData[field.name]"
+                :req="responseReq.includes(field.name)"
+                :link-icon="field.link"
+              />
+            </template>
+          </template>
+          <div class="oauth-container" v-if="hasOauth">
+            <template v-for="field of responseFields" :key="field.id">
               <a
-                href="javascript:void(0)"
                 @click="
                   () => {
-                    eventBus.emit('ResetPasswordModal', true);
-                    pwdRecoverMailSent = false;
+                    userFlow({ initial: true, oauth: field.id });
                   }
                 "
-                >{{ $t('recover_pwd_link') }}</a
+                v-if="field.type && field.type == 'oauth2' && field.button"
+                href="javascript:void(0);"
               >
-            </div>
-            <button class="btn primary btn-defaults">
-              {{ $t('cta_login_next') }}
-            </button>
-          </template>
-        </div>
-      </form>
-      <FyModal id="ResetPassword" :title="`${$t('recover_pwd_title')}`">
-        <template v-if="!pwdRecoverMailSent">
-          <FyInput
-            id="emailRecover"
-            :req="true"
-            :showLabel="true"
-            :placeholder="$t('recover_pwd_email_placeholder')"
-            v-model="state.userEmail"
-            :errorVuelidate="v$.userEmail.$errors"
-            type="email"
-            :label="$t('recover_pwd_email_label')"
-          ></FyInput>
+                <img
+                  :key="`${field.label}oauth`"
+                  class="oauth-button"
+                  :alt="field.info.Name"
+                  :src="field.button.logo"
+                  :style="`background: ${field.button['background-color']}`"
+                />
+              </a>
+            </template>
+          </div>
           <div
             class="response-error"
-            v-if="pwdRecoverError && pwdRecoverError.token"
+            v-if="responseError && responseError.token"
           >
-            {{ $t(pwdRecoverError.token) }}
+            {{ $t(responseError.token) }}
           </div>
-          <a
-            href="javascript:void(0)"
-            @click="forgotPassword()"
-            class="mt-2 float-right btn px-5 py-2 primary"
-            >{{ $t('recover_pwd_cta') }}</a
-          ><br style="clear: both" />
+          <div v-if="responseReq.includes('password') && 0" class="reset-pwd">
+            <a
+              href="javascript:void(0)"
+              @click="
+                () => {
+                  eventBus.emit('ResetPasswordModal', true);
+                  pwdRecoverMailSent = false;
+                }
+              "
+              >{{ $t('recover_pwd_link') }}</a
+            >
+          </div>
+          <button class="btn primary btn-defaults">
+            {{ $t('cta_login_next') }}
+          </button>
         </template>
-        <div v-else>
-          {{ $t('pwd_recover_confirm') }}
+      </div>
+    </form>
+    <FyModal id="ResetPassword" :title="`${$t('recover_pwd_title')}`">
+      <template v-if="!pwdRecoverMailSent">
+        <FyInput
+          id="emailRecover"
+          :req="true"
+          :showLabel="true"
+          :placeholder="$t('recover_pwd_email_placeholder')"
+          v-model="state.userEmail"
+          :errorVuelidate="v$.userEmail.$errors"
+          type="email"
+          :label="$t('recover_pwd_email_label')"
+        ></FyInput>
+        <div
+          class="response-error"
+          v-if="pwdRecoverError && pwdRecoverError.token"
+        >
+          {{ $t(pwdRecoverError.token) }}
         </div>
-      </FyModal>
-    </div>
+        <a
+          href="javascript:void(0)"
+          @click="forgotPassword()"
+          class="mt-2 float-right btn px-5 py-2 primary"
+          >{{ $t('recover_pwd_cta') }}</a
+        ><br style="clear: both" />
+      </template>
+      <div v-else>
+        {{ $t('pwd_recover_confirm') }}
+      </div>
+    </FyModal>
   </ClientOnly>
 </template>
