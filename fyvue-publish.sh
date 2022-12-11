@@ -5,4 +5,4 @@ pnpm run lint:fyvue --fix
 pnpm run build:fyvue
 cd packages/fyvue/dist
 
-npm publish --tag alpha
+npm publish

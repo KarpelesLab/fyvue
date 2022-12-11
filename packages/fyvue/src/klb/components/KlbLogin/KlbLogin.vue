@@ -74,6 +74,18 @@ const forgotPassword = async () => {
     }
   }
 };
+const doTrigger = async (field: any) => {
+  // eslint-disable-next-line
+
+  const _res = await eval(
+    `const _rest = rest; ${field.info.Button_Extra.trigger}`
+  );
+  if (_res.ethereum) {
+    formData.value.ethereum = _res.ethereum;
+    responseReq.value = [];
+    await userFlow();
+  }
+};
 const userFlow = async (params: paramsType = { initial: false }) => {
   eventBus.emit('klblogin-loading', true);
   fieldsError.value = {};
@@ -224,7 +236,11 @@ onMounted(async () => {
               <a
                 @click="
                   () => {
-                    userFlow({ initial: true, oauth: field.id });
+                    if (field.info.Button_Extra?.trigger) {
+                      doTrigger(field);
+                    } else {
+                      userFlow({ initial: true, oauth: field.id });
+                    }
                   }
                 "
                 v-if="field.type && field.type == 'oauth2' && field.button"
