@@ -3,14 +3,19 @@ import { useHistory } from '../../helpers/ssr';
 import { computed } from 'vue';
 import { RouteLocation, useRouter } from 'vue-router';
 
-export function useUserCheck(path = '/login') {
+export function useUserCheck(path = '/login', redirectLink = false) {
   const store = useFVStore();
   const isAuth = computed(() => store.isAuth);
   const router = useRouter();
 
   const checkUser = (route: RouteLocation) => {
     if (route.meta.reqLogin) {
-      if (!isAuth.value) router.push(path);
+      if (!isAuth.value) {
+        if (!redirectLink) router.push(path);
+        else {
+          router.push(`${path}?return_to=${route.path}`);
+        }
+      }
     }
   };
 

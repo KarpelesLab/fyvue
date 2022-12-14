@@ -19,10 +19,13 @@ import {
   TiktokIcon,
   VkIcon,
   YoutubeIcon,
+  GithubIcon,
+  NobemIcon
 } from '@fy-/ui';
 </script>
 <template>
   <NavSide
+  class="!bg-red-500"
     :links="[
       { to: '/', name: 'DiscordIcon', icon: DiscordIcon },
       { to: '/', name: 'FacebookIcon', icon: FacebookIcon },
@@ -36,6 +39,8 @@ import {
       { to: '/', name: 'RedditIcon', icon: RedditIcon },
       { to: '/', name: 'TiktokIcon', icon: TiktokIcon },
       { to: '/', name: 'VkIcon', icon: VkIcon },
+      { to: '/', name: 'NobemIcon', icon: NobemIcon },
+      { to: '/', name: 'GithubIcon', icon: GithubIcon },
       { to: '/', name: 'YoutubeIcon', icon: YoutubeIcon },
     ]"
   />

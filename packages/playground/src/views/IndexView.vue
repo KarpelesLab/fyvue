@@ -16,6 +16,23 @@ useSeo(
     forceSlug="getting-started"
   />
   <div class="fv-typo doc-contained margins">
+    <div
+      class="font-medium p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-900 dark:text-red-100"
+      role="alert"
+    >
+      <p class="text-lg">
+        This documentation is not up to date. You should check starters
+        templates instead:
+        <br />fyvue ->
+        <a href="https://github.com/fyvue/fyvue" class="a" target="_blank"
+          >https://github.com/fyvue/fyvue</a
+        >
+        <br />fyvue + klb ->
+        <a href="https://github.com/fyvue/klb-starter" class="a" target="_blank"
+          >https://github.com/fyvue/klb-starter</a
+        >
+      </p>
+    </div>
     <h2>Getting started</h2>
     <p>First you'll need to install <b>fyvue</b>.</p>
     <!-- prettier-ignore --><FvHL lang="bash"><pre>yarn add @karpeleslab/fyvue</pre></FvHL>
