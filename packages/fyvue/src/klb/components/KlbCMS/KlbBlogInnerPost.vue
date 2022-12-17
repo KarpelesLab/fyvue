@@ -19,6 +19,7 @@ withDefaults(
     cms: KlbCms;
     showFooter?: boolean;
     isPage?: boolean;
+    replaceInContent?: Function;
   }>(),
   {
     single: true,
@@ -31,25 +32,12 @@ withDefaults(
 </script>
 <template>
   <section>
-    <article v-if="post" :class="single ? 'is-single' : 'is-multiple'">
-      <!--<SchemaOrgArticle
-        v-if="single"
-        :headline="post.Title"
-        :date-published="
-          new Date(parseInt(post.Published.unixms)).toISOString()
-        "
-        :date-modified="
-          new Date(parseInt(post.Last_Modified.unixms)).toISOString()
-        "
-        :description="post.Short_Contents ? post.Short_Contents : undefined"
-        :image="
-          post.Top_Drive_Item &&
-          post.Top_Drive_Item.Media_Image &&
-          post.Top_Drive_Item.Media_Image?.Variation
-            ? post.Top_Drive_Item.Media_Image?.Variation['banner']
-            : undefined
-        "
-      />-->
+    <article
+      v-if="post"
+      :class="single ? 'is-single' : 'is-multiple'"
+      itemscope
+      itemtype="https://schema.org/Article"
+    >
       <header class="entry-header" v-if="!single">
         <RouterLink :to="`${basePath}/${post.Slug}`" :title="post.Title">
           <figure
@@ -61,17 +49,16 @@ withDefaults(
             "
           >
             <img
+              itemprop="image"
               :src="post.Top_Drive_Item.Media_Image?.Variation['banner']"
               :title="post.Title"
               :alt="post.Title"
             />
           </figure>
-          <!--<div class="keywords" v-if="post.Keywords.length">
-          <span class="tag" v-for="keyword in post.Keywords">{{
-            keyword
-          }}</span>
-        </div>-->
-          <h2 :class="post.Top_Drive_Item?.Media_Image ? 'title-has-pic' : ''">
+          <h2
+            itemprop="headline"
+            :class="post.Top_Drive_Item?.Media_Image ? 'title-has-pic' : ''"
+          >
             {{ post.Title }}
           </h2>
         </RouterLink>
@@ -89,10 +76,19 @@ withDefaults(
         "
       >
         <div class="h1-bg dark">
-          <h1>{{ post.Title }}</h1>
+          <h1 itemprop="headline">{{ post.Title }}</h1>
           <NavBreadcrumb
             v-if="breadcrumbBase.length > 0"
             :nav="breadcrumbBase"
+          />
+          <meta
+            itemprop="image"
+            v-if="
+              post.Top_Drive_Item &&
+              post.Top_Drive_Item.Media_Image &&
+              post.Top_Drive_Item.Media_Image?.Variation
+            "
+            :content="post.Top_Drive_Item.Media_Image?.Variation['source']"
           />
         </div>
       </header>
@@ -100,13 +96,16 @@ withDefaults(
       <div class="entry-main">
         <div class="entry-content">
           <div
+            itemprop="articleBody"
             v-html="
               single || !post.Short_Contents
-                ? post.Contents
+                ? replaceInContent
+                  ? replaceInContent(post.Contents)
+                  : post.Contents
                 : '<p>' + post.Short_Contents + '</p>'
             "
           />
-          <div v-if="!single && post.Short_Contents">
+          <div v-if="!single && post.Short_Contents" itemprop="articleBody">
             <router-link :to="`${basePath}/${post.Slug}`">{{
               $t('klb_blog_readmore')
             }}</router-link>
@@ -130,6 +129,8 @@ withDefaults(
             <CalendarDaysIcon />
             <time
               class="entry-date published"
+              itemprop="datePublished"
+              :content="new Date(parseInt(post.Published.unixms)).toISOString()"
               :datetime="
                 new Date(parseInt(post.Published.unixms)).toISOString()
               "
@@ -152,12 +153,17 @@ withDefaults(
             <CalendarDaysIcon />
             <time
               class="updated"
+              itemprop="dateModified"
+              :content="
+                new Date(parseInt(post.Last_Modified.unixms)).toISOString()
+              "
               :datetime="
                 new Date(parseInt(post.Last_Modified.unixms)).toISOString()
               "
               >{{ $formatDate(post.Last_Modified.unixms) }}
             </time>
           </span>
+          <meta itemprop="inLanguage" :content="post.Language__" />
         </footer>
       </div>
     </article>

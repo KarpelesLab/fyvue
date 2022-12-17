@@ -112,7 +112,7 @@ const getArticles = async (
       page_no: page,
       results_per_page: 8,
       sort: 'published:desc',
-      image_variation: 'strip&scale_crop=1280x160&alias=banner',
+      image_variation: 'strip&format=png&scale_crop=1280x160&alias=banner',
       query: {
         tag: category,
         all: search,

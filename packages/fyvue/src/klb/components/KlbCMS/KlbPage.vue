@@ -17,6 +17,7 @@ const props = withDefaults(
     breadcrumbBase?: BreadcrumbLink[];
     forceSlug?: string;
     isPage?: boolean;
+    replaceInContent?: Function;
   }>(),
   {
     pagesAlias: '@pages',
@@ -91,6 +92,7 @@ useSeo(seo);
       :showFooter="showFooter"
       :breadcrumbBase="breadcrumb"
       :isPage="isPage"
+      :replaceInContent="replaceInContent"
     />
     <div class="fv-typo" v-if="is404">
       <FyError404 />

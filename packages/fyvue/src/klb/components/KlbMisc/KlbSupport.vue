@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { rest } from '../../helpers/rest';
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed, watch, onMounted, onUnmounted } from 'vue';
 import { useFVStore } from '../../helpers/store';
 import { email, required } from '@vuelidate/validators';
 import { useVuelidate } from '@vuelidate/core';
@@ -8,6 +8,7 @@ import { useEventBus } from '@fy-/core';
 const store = useFVStore();
 const isAuth = computed(() => store.isAuth);
 const eventBus = useEventBus();
+const isAuthWatcher = ref();
 const props = withDefaults(
   defineProps<{
     to?: string;
@@ -57,6 +58,15 @@ const sendMessage = async () => {
     eventBus.emit('klb-contact-form-loading', false);
   }
 };
+onMounted(() => {
+  isAuthWatcher.value = watch(isAuth, () => {
+    state.contact.fullname = store.user?.Profile.Display_Name;
+    state.contact.email = store.user?.Email;
+  });
+});
+onUnmounted(() => {
+  if (isAuthWatcher.value) isAuthWatcher.value();
+});
 </script>
 <template>
   <div>

@@ -1,3 +1,5 @@
 <template>
-  <Suspense><KlbPage /></Suspense>
+  <Suspense>
+    <KlbPage />
+  </Suspense>
 </template>

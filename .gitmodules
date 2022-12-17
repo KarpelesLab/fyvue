@@ -7,3 +7,9 @@
 [submodule "packages/fyui"]
 	path = packages/fyui
 	url = git@github.com:fyvue/ui.git
+[submodule "packages/w3"]
+	path = packages/w3
+	url = git@github.com:fyvue/w3.git
+[submodule "packages/fyw3"]
+	path = packages/fyw3
+	url = git@github.com:fyvue/w3.git

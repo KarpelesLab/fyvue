@@ -690,6 +690,7 @@ export interface KlbContentCms {
   Contents: string;
   Title: string;
   User__: KlbUUID;
+  Language__: string;
   Tag_Category?: KlbClassifyTag;
   Keywords: Array<string>;
   Comments?: {

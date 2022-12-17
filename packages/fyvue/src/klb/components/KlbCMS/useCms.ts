@@ -21,9 +21,10 @@ export function useCMS() {
       blogName: Ref<string> | undefined = undefined,
       breadcrumb: Ref<Array<BreadcrumbLink>> | undefined = undefined,
       vars: Array<string> = [
-        'strip&scale_crop=512x512&alias=squared',
-        'strip&scale_crop=1280x100&alias=bannerx100',
-        'strip&scale_crop=1200x630&alias=seo',
+        'strip&format=png&scale_crop=512x512&alias=squared',
+        'strip&format=png&scale_crop=1280x100&alias=bannerx100',
+        'strip&format=png&scale_crop=1200x630&alias=seo',
+        'strip&format=png&alias=source',
       ]
     ) => {
       seo.value = {
