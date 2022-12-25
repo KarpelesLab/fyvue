@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { KlbContentCms } from '../../KlbApiTypes';
-import { NavBreadcrumb, BreadcrumbLink } from '@fy-/ui';
+import { NavBreadcrumb, BreadcrumbLink, NavLink } from '@fy-/ui';
 import type { KlbCms } from '../../KlbApiTypes';
 import {
   CalendarDaysIcon,
   ChatBubbleBottomCenterIcon,
   PaperClipIcon,
   TagIcon,
+  UserCircleIcon,
 } from '@heroicons/vue/24/solid';
 import KlbComments from './KlbComments.vue';
 
@@ -20,6 +21,7 @@ withDefaults(
     showFooter?: boolean;
     isPage?: boolean;
     replaceInContent?: Function;
+    author?: NavLink;
   }>(),
   {
     single: true,
@@ -148,6 +150,31 @@ withDefaults(
           <span class="category" v-if="post.Keywords && post.Keywords.length">
             <TagIcon />
             {{ post.Keywords.join(', ') }}
+          </span>
+          <span class="author" v-if="author && author.to">
+            <UserCircleIcon />
+
+            <span
+              v-if="!author.id"
+              itemprop="author"
+              itemscope
+              itemtype="https://schema.org/Person"
+            >
+              <RouterLink itemprop="url" class="a" :to="author.to">
+                <span itemprop="name">{{ author.name }}</span>
+              </RouterLink>
+            </span>
+            <span
+              v-else
+              itemprop="author"
+              itemscope
+              itemtype="https://schema.org/Person"
+              :itemid="author.id"
+            >
+              <RouterLink itemprop="url" class="a" :to="author.to">
+                <span itemprop="name">{{ author.name }}</span>
+              </RouterLink>
+            </span>
           </span>
           <span class="modified">
             <CalendarDaysIcon />

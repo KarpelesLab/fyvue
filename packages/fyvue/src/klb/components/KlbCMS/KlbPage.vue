@@ -7,7 +7,7 @@ import KlbBlogInnerPost from './KlbBlogInnerPost.vue';
 import type { SeoData } from '../../types';
 import { useSeo } from '../../../misc/seo';
 import { useCMS } from './useCms';
-import { BreadcrumbLink } from '@fy-/ui';
+import { BreadcrumbLink, NavLink } from '@fy-/ui';
 import type { WatchStopHandle } from 'vue';
 
 const props = withDefaults(
@@ -18,6 +18,7 @@ const props = withDefaults(
     forceSlug?: string;
     isPage?: boolean;
     replaceInContent?: Function;
+    author?: NavLink;
   }>(),
   {
     pagesAlias: '@pages',
@@ -93,6 +94,7 @@ useSeo(seo);
       :breadcrumbBase="breadcrumb"
       :isPage="isPage"
       :replaceInContent="replaceInContent"
+      :author="author"
     />
     <div class="fv-typo" v-if="is404">
       <FyError404 />

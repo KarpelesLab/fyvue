@@ -13,3 +13,6 @@
 [submodule "packages/fyw3"]
 	path = packages/fyw3
 	url = git@github.com:fyvue/w3.git
+[submodule "packages/fyicons"]
+	path = packages/fyicons
+	url = git@github.com:fyvue/icons.git
