@@ -145,8 +145,16 @@
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                  		Your login: <b>{{_CUSTOMER/Login|entities()}}</b>
+                      Your login: <b>{{_CUSTOMER/Login|entities()}}</b>
                     </p>
+                    <p
+                      style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+                      &nbsp;
+                    </p>
+                    <p
+                      style="font-family: sans-serif; font-size: 12px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+                      If you are not trying to create a new account, please ignore this email. It is possible that this
+                      message was delivered to you accidentally. </p>
                   </td>
                 </tr>
               </table>
