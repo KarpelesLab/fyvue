@@ -26,7 +26,7 @@ jobs:
     - run: pnpm run build:all
     - run: pnpm run build:play
     - run: sudo apt-get update -qq && DEBIAN_FRONTEND=noninteractive sudo apt-get -y install zip
-    - run: zip -9r final.zip dist etc
+    - run: zip -9r final.zip dist etc views
       working-directory: packages/playground
     - uses: actions/upload-artifact@v1
       with:
