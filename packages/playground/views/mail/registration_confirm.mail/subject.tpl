@@ -1,1 +1,1 @@
-Account Validation
+Fyvue account activation

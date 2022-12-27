@@ -1,1 +1,1 @@
-Password Recovery
+Fyvue password reset request
