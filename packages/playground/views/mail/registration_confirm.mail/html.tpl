@@ -132,7 +132,8 @@
                       Hello {{_USR/Profile/Display_Name|entities()}},
                     <p <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      Thank you for registering for an account with {{_EXTRA_FW/Realm/Name}}. Please use the following code to activate
+                      Thank you for registering for an account with {{_EXTRA_FW/Realm/Name}}. Please use the following
+                      code to activate
                       your account: </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
@@ -163,7 +164,6 @@
               </table>
             </td>
           </tr>
-
           <!-- END MAIN CONTENT AREA -->
         </table>
 

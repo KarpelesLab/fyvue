@@ -133,7 +133,8 @@
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      We have received a request to delete your {{_EXTRA_FW/Realm/Name}} account associated with the email
+                      We have received a request to delete your {{_EXTRA_FW/Realm/Name}} account associated with the
+                      email
                       {{_USR/Email|entities()}}. If you did not initiate this request, you can safely ignore this email.
 
                     </p>
