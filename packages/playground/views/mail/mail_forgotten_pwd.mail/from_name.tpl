@@ -1,1 +1,1 @@
-fy-vue
+{{_EXTRA_FW/Realm/Name}}

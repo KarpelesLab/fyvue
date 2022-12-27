@@ -1,1 +1,1 @@
-noreply@fy-vue.com
+noreply@{{_EXTRA_FW/Realm/Domain}}
