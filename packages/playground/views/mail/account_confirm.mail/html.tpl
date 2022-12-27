@@ -174,7 +174,7 @@
                 <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">
                   This message was automatically sent to you. Please do not respond to it.
                 </span>
-                <br> {{ "now"|date("Y") }} ©
+                <br> {{@string("now")|date("%Y")}} ©
                 <a href="https://www.fy-vue.com/" target="_blank"
                   style="text-decoration: underline; font-size: 12px; text-align: center;">www.fy-vue.com</a>.
               </td>
