@@ -129,7 +129,7 @@
                   <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      Hello {{_USR/Profile/Display_Name|entities()}},
+                      Hello {{_NAME|entities()}},
                     <p <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
                       Thank you for registering for an account with {{_EXTRA_FW/Realm/Name}}. Please use the following
@@ -146,10 +146,6 @@
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
                       &nbsp;
-                    </p>
-                    <p
-                      style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      Thank you for registering with us using the email {{_USR/Email|entities()}}.
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
