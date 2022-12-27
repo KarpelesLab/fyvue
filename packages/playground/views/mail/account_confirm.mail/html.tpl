@@ -137,7 +137,7 @@
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 18px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      {{_CUSTOMER/Validation_Code}}
+                      {{_USR/Validation_Code}}
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
@@ -145,7 +145,7 @@
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      Your login: <b>{{_CUSTOMER/Login|entities()}}</b>
+                      Your login: <b>{{_USR/Email|entities()}}</b>
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
