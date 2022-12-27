@@ -1,1 +1,1 @@
-Fyvue account deletion confirmation
+{{_EXTRA_FW/Realm/Name}} password change confirmation

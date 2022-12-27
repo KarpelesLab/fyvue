@@ -1,1 +1,1 @@
-Fyvue password reset request
+{{_EXTRA_FW/Realm/Name}} password reset request

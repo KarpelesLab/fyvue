@@ -99,7 +99,7 @@
 </style>
 <span class="preheader"
   style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">
-  Confirm the deletion of your {{_EXTRA_FW/Realm/Name}} account
+  Confirm that your {{_EXTRA_FW/Realm/Name}} password has been changed
 </span>
 <table border="0" cellpadding="0" cellspacing="0" class="body"
   style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background-color: #f6f6f6;">
@@ -116,7 +116,7 @@
           <tr>
             <td>
               <br />
-              <h1 style="text-align: center;">{{_EXTRA_FW/Realm/Name}} account deletion confirmation</h1>
+              <h1 style="text-align: center;">{{_EXTRA_FW/Realm/Name}} password change confirmation</h1>
             </td>
           </tr>
           <!-- START MAIN CONTENT AREA -->
@@ -133,26 +133,11 @@
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      We have received a request to delete your {{_EXTRA_FW/Realm/Name}} account associated with the email
-                      {{_USR/Email|entities()}}. If you did not initiate this request, you can safely ignore this email.
-
+                      We are writing to confirm that the password for your Fyvue account associated with the email {{_USR/Email|entities()}} has been successfully changed.
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      To confirm the deletion of your account, please use the following code: </p>
-                    <p
-                      style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      &nbsp;
-                    </p>
-                    <p
-                      style="font-family: sans-serif; font-size: 18px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      {{_CODE}}
-
-                    </p>
-                    <p
-                      style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      Please note that this action is irreversible and will permanently delete your account and all
-                      associated data.
+                      If you did not initiate this password change, please contact us immediately.
                     </p>
                   </td>
                 </tr>

@@ -1,1 +1,1 @@
-Fyvue account activation
+{{_EXTRA_FW/Realm/Name}} account activation
