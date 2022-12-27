@@ -195,7 +195,10 @@ onMounted(async () => {
               class="label"
               :class="field.style == 'error' ? 'response-error' : ''"
             >
-              {{ field.label }}
+              <a :href="field.link" v-if="field.link" class="a">{{
+                field.label
+              }}</a>
+              <span v-else>{{ field.label }}</span>
             </h3>
             <template v-if="field.cat == 'input'">
               <template
