@@ -175,7 +175,7 @@
                   This message was automatically sent to you. Please do not respond to it.
                 </span>
                 <br> {{@string("now")|date("%Y")}} ©
-                <a href="https://{{_EXTRA_FW/Realm/Main_Domain}}/" target="_blank"
+                <a href="https://{{_EXTRA_FW/Realm/Domain}}/" target="_blank"
                   style="text-decoration: underline; font-size: 12px; text-align: center;">{{_EXTRA_FW/Realm/Name}}</a>.
               </td>
             </tr>
