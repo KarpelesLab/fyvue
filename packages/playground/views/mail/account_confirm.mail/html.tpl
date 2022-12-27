@@ -132,14 +132,17 @@
                       Hello {{_USR/Profile/Display_Name|entities()}},
                     <p <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      Welcome to {{_EXTRA_FW/Realm/Name}}! We are pleased to confirm that your account has been successfully activated.
+                      Welcome to {{_EXTRA_FW/Realm/Name}}! We are pleased to confirm that your account has been
+                      successfully activated.
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
                       &nbsp;
                     </p>
+
                     <p
                       style="font-family: sans-serif; font-size: 18px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                      Thank you for joining our community. We hope you enjoy using our service and look forward to seeing you online.
+                      Thank you for joining our community. We hope you enjoy using our service and look forward to
+                      seeing you online.
                     </p>
                     <p
                       style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
