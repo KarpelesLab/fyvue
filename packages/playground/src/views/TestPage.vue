@@ -1,47 +1,10 @@
 <script setup>
-import {
-  KeyIcon,
-  CogIcon,
-  GifIcon,
-  EyeDropperIcon,
-} from '@heroicons/vue/24/solid';
-import {
-  DiscordIcon,
-  FacebookIcon,
-  InstagramIcon,
-  TelegramIcon,
-  TwitterIcon,
-  CoinMarketCapIcon,
-  GoogleIcon,
-  LinkedInIcon,
-  OpenSeaIcon,
-  RedditIcon,
-  TiktokIcon,
-  VkIcon,
-  YoutubeIcon,
-  GithubIcon,
-  NobemIcon
-} from '@fy-/ui';
+import { Web3Connect } from '@fy-/w3';
 </script>
 <template>
-  <NavSide
-  class="!bg-red-500"
-    :links="[
-      { to: '/', name: 'DiscordIcon', icon: DiscordIcon },
-      { to: '/', name: 'FacebookIcon', icon: FacebookIcon },
-      { to: '/test', name: 'InstagramIcon', icon: InstagramIcon },
-      { to: '/', name: 'TelegramIcon', icon: TelegramIcon },
-      { to: '/', name: 'TwitterIcon', icon: TwitterIcon },
-      { to: '/', name: 'CoinMarketCapIcon', icon: CoinMarketCapIcon },
-      { to: '/', name: 'GoogleIcon', icon: GoogleIcon },
-      { to: '/', name: 'LinkedInIcon', icon: LinkedInIcon },
-      { to: '/', name: 'OpenSeaIcon', icon: OpenSeaIcon },
-      { to: '/', name: 'RedditIcon', icon: RedditIcon },
-      { to: '/', name: 'TiktokIcon', icon: TiktokIcon },
-      { to: '/', name: 'VkIcon', icon: VkIcon },
-      { to: '/', name: 'NobemIcon', icon: NobemIcon },
-      { to: '/', name: 'GithubIcon', icon: GithubIcon },
-      { to: '/', name: 'YoutubeIcon', icon: YoutubeIcon },
-    ]"
-  />
+  <div>
+    <ClientOnly>
+      <Web3Connect force-chain-by-name="polygon" />
+    </ClientOnly>
+  </div>
 </template>

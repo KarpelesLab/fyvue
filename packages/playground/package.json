@@ -12,19 +12,21 @@
         "lint:check": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore"
     },
     "dependencies": {
+        "@fy-/core": "workspace:*",
+        "@fy-/head": "workspace:*",
+        "@fy-/ui": "workspace:*",
+        "@fy-/w3": "workspace:*",
+        "@karpeleslab/fyvue": "workspace:*",
         "@karpeleslab/i18next-klb-backend": "^0.1.0",
         "@vuelidate/core": "^2.0.0",
         "@vuelidate/validators": "^2.0.0",
         "@vueuse/core": "^9.5.0",
+        "ethers": "^5.7.2",
         "sitemap": "^7.1.1",
         "vue": "^3.2.45",
         "vue-code-highlight": "^0.7.8",
         "vue-router": "^4.1.6",
-        "xml-formatter": "^2.6.1",
-        "@fy-/core": "workspace:*",
-        "@fy-/head": "workspace:*",
-        "@fy-/ui": "workspace:*",
-        "@karpeleslab/fyvue": "workspace:*"
+        "xml-formatter": "^2.6.1"
     },
     "devDependencies": {
         "@babel/types": "^7.20.2",
@@ -50,6 +52,7 @@
         "pinia": "^2.0.23",
         "postcss": "^8.4.18",
         "prettier": "^2.5.1",
+        "rollup-plugin-node-polyfills": "^0.2.1",
         "sass": "^1.56.0",
         "tailwindcss": "^3.2.2",
         "typescript": "~4.9.3",
