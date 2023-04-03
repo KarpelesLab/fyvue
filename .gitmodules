@@ -13,3 +13,6 @@
 [submodule "packages/fyw3"]
 	path = packages/fyw3
 	url = https://github.com/fyvue/w3
+[submodule "packages/components"]
+	path = packages/components
+	url = git@github.com:fyvue/components.git

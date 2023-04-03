@@ -1,2 +1,9 @@
 packages:
-  - 'packages/*'
+  - 'packages/components'
+  - 'packages/fyhead'
+  - 'packages/fycore'
+  - 'packages/fyicons'
+  - 'packages/fyui'
+  - 'packages/fyvue'
+  - 'packages/fyw3'
+  - 'packages/playground'
